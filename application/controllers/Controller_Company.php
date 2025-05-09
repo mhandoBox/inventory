@@ -22,6 +22,8 @@ class Controller_Company extends Admin_Controller
     */
 	public function index()
 	{  
+        $this->data['can_edit_company'] = in_array('updateCompany', $this->permission);
+
         if(!in_array('updateCompany', $this->permission)) {
             redirect('dashboard', 'refresh');
         }

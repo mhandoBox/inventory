@@ -209,7 +209,7 @@ class Admin_Controller extends MY_Controller
 		  'SYP' => '&#163;',
 		  'SZL' => '&#76;', // ?
 		  'THB' => '&#3647;',
-		  'TJS' => '&#84;&#74;&#83;', // ? TJS (guess)
+		  'TZS' => '&#84;&#74;&#83;', // ? TJS (guess)
 		  'TMT' => '&#109;',
 		  'TND' => '&#1583;.&#1578;',
 		  'TOP' => '&#84;&#36;',

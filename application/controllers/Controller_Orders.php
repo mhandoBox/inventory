@@ -73,7 +73,7 @@ class Controller_Orders extends Admin_Controller
                 'customer_phone' => $value['customer_phone'],
                 'date_time' => $date_time,
                 'product_qty' => $count_total_item,
-                'amount' => '$'.$value['net_amount'],
+                'amount' => 'TZS     '.number_format($value['net_amount'], 2),
                 'user_name' => $user_name, // Only the name
                 'actions' => $buttons
             );
@@ -239,7 +239,7 @@ class Controller_Orders extends Admin_Controller
             }
 
             $order_date = isset($order_data['date_time']) ? date('F d, Y', $order_data['date_time']) : date('F d, Y');
-            $paid_status = (isset($order_data['paid_status']) && $order_data['paid_status'] == 1) ? "Paid" : "Not Paid";
+            $paid_status = (isset($order_data['paid_status']) && $order_data['paid_status'] == 1) ? "Not Paid" : "Paid";
             $company_name = isset($company_info['company_name']) ? $company_info['company_name'] : 'Company Name';
             $bill_no = isset($order_data['bill_no']) ? $order_data['bill_no'] : '';
             $customer_name = isset($order_data['customer_name']) ? $order_data['customer_name'] : '';
@@ -540,15 +540,15 @@ class Controller_Orders extends Admin_Controller
                 $amount = isset($v['amount']) ? $v['amount'] : 0;
                 
                 $html .= '
-                <tr>
-                  <td>'.str_pad($counter, 2, '0', STR_PAD_LEFT).'</td>
-                  <td>
-                    <strong>'.$product_name.'</strong><br>
-                  </td>
-                  <td>$'.number_format($rate, 2).'</td>
-                  <td>'.$qty.'</td>
-                  <td class="text-right">$'.number_format($amount, 2).'</td>
-                </tr>';
+    <tr>
+      <td>'.str_pad($counter, 2, '0', STR_PAD_LEFT).'</td>
+      <td>
+        <strong>'.$product_name.'</strong><br>
+      </td>
+      <td>TZS     '.number_format($rate, 2).'</td>
+      <td>'.$qty.'</td>
+      <td class="text-right">TZS     '.number_format($amount, 2).'</td>
+    </tr>';
                 $counter++;
             }
 
@@ -559,21 +559,21 @@ class Controller_Orders extends Admin_Controller
               <div class="payment-container">
                 <div class="payment-Status">
                   <h3>Payment Details</h3>
-                  <p><span class="status-badge '.($paid_status == "Paid" ? "status-paid" : "status-unpaid").'">'.$paid_status.'</span></p>
+                  <p><span class="status-badge '.($paid_status == "unpaid" ? "status-unpaid" : "status-paid").'">'.$paid_status.'</span></p>
                 </div>
 
                 <div class="payment-summary">
                   <table>
                     <tr>
                       <td>Subtotal:</td>
-                      <td class="text-right">$'.number_format($gross_amount, 2).'</td>
+                      <td class="text-right">TZS     '.number_format($gross_amount, 2).'</td>
                     </tr>';
 
             if ($discount > 0) {
                 $html .= '
                     <tr>
                       <td>Discount:</td>
-                      <td class="text-right">$'.number_format($discount, 2).'</td>
+                      <td class="text-right">TZS     '.number_format($discount, 2).'</td>
                     </tr>';
             }
 
@@ -581,14 +581,14 @@ class Controller_Orders extends Admin_Controller
                 $html .= '
                     <tr>
                       <td>Tax ('.number_format($vat_charge_rate, 0).'%):</td>
-                      <td class="text-right">$'.number_format($vat_charge, 2).'</td>
+                      <td class="text-right">TZS     '.number_format($vat_charge, 2).'</td>
                     </tr>';
             }
 
             $html .= '
                     <tr>
                       <td><strong>Total Amount:</strong></td>
-                      <td class="text-right"><strong>$'.number_format($net_amount, 2).'</strong></td>
+                      <td class="text-right"><strong>TZS     '.number_format($net_amount, 2).'</strong></td>
                     </tr>
                   </table>
                 </div>

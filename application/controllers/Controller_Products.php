@@ -66,12 +66,12 @@ class Controller_Products extends Admin_Controller
 
 
 			$result['data'][$key] = array(
-				$value['name'],
-				'$'.$value['price'],
+                $value['name'],
+                'TZS '.number_format($value['price'], 2),
                 $value['qty'] . ' ' . $qty_status,
                 isset($store_data['name']) ? $store_data['name'] : '',
-				$availability,
-				$buttons
+                $availability,
+                $buttons
 			);
 		} // /foreach
 

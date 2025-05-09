@@ -1,6 +1,8 @@
-
-
-  <!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
+<?php
+$readonly = empty($can_edit_company) ? 'readonly disabled' : '';
+$disabled = empty($can_edit_company) ? 'disabled' : '';
+?>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -41,38 +43,36 @@
 
                 <div class="form-group">
                   <label for="company_name">Company Name</label>
-                  <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Enter company name" value="<?php echo $company_data['company_name'] ?>" autocomplete="off">
+                  <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Enter company name" value="<?php echo $company_data['company_name'] ?>" autocomplete="off" <?php echo $readonly; ?>>
                 </div>
                 <div class="form-group">
                   <label for="service_charge_value">Charge Amount (%)</label>
-                  <input type="text" class="form-control" id="service_charge_value" name="service_charge_value" placeholder="Enter charge amount %" value="<?php echo $company_data['service_charge_value'] ?>" autocomplete="off">
+                  <input type="text" class="form-control" id="service_charge_value" name="service_charge_value" placeholder="Enter charge amount %" value="<?php echo $company_data['service_charge_value'] ?>" autocomplete="off" <?php echo $readonly ?>>
                 </div>
                 <div class="form-group">
                   <label for="vat_charge_value">Vat Charge (%)</label>
-                  <input type="text" class="form-control" id="vat_charge_value" name="vat_charge_value" placeholder="Enter vat charge %" value="<?php echo $company_data['vat_charge_value'] ?>" autocomplete="off">
+                  <input type="text" class="form-control" id="vat_charge_value" name="vat_charge_value" placeholder="Enter vat charge %" value="<?php echo $company_data['vat_charge_value'] ?>" autocomplete="off" <?php echo $readonly ?>>
                 </div>
                 <div class="form-group">
                   <label for="address">Address</label>
-                  <input type="text" class="form-control" id="address" name="address" placeholder="Enter address" value="<?php echo $company_data['address'] ?>" autocomplete="off">
+                  <input type="text" class="form-control" id="address" name="address" placeholder="Enter address" value="<?php echo $company_data['address'] ?>" autocomplete="off" <?php echo $readonly ?>>
                 </div>
                 <div class="form-group">
                   <label for="phone">Phone</label>
-                  <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter phone" value="<?php echo $company_data['phone'] ?>" autocomplete="off">
+                  <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter phone" value="<?php echo $company_data['phone'] ?>" autocomplete="off" <?php echo $readonly ?>>
                 </div>
                 <div class="form-group">
                   <label for="country">Country</label>
-                  <input type="text" class="form-control" id="country" name="country" placeholder="Enter country" value="<?php echo $company_data['country'] ?>" autocomplete="off">
+                  <input type="text" class="form-control" id="country" name="country" placeholder="Enter country" value="<?php echo $company_data['country'] ?>" autocomplete="off" <?php echo $readonly ?>>
                 </div>
                 <div class="form-group">
                   <label for="permission">Message</label>
-                  <textarea class="form-control" id="message" name="message">
-                     <?php echo $company_data['message'] ?>
-                  </textarea>
+                  <textarea class="form-control" id="message" name="message" <?php echo $readonly; ?>><?php echo $company_data['message'] ?></textarea>
                 </div>
                 <div class="form-group">
                   <label for="currency">Currency</label>
                   <?php ?>
-                  <select class="form-control" id="currency" name="currency">
+                  <select class="form-control" id="currency" name="currency" <?php echo $disabled; ?>>
                     <option value="">~~SELECT~~</option>
 
                     <?php foreach ($currency_symbols as $k => $v): ?>
@@ -87,7 +87,7 @@
               <!-- /.box-body -->
 
               <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <button type="submit" class="btn btn-primary" <?php echo $disabled; ?>>Save Changes</button>
               </div>
             </form>
           </div>

@@ -1763,3 +1763,37 @@ ul.activity-timeline > li {
     border: 1px solid #CCC; }
 
 /*# sourceMappingURL=main.css.map */
+
+/* Hide sidebar by default on small screens */
+@media (max-width: 767px) {
+  #sidebar {
+    position: fixed;
+    left: -220px;
+    top: 0;
+    width: 220px;
+    height: 100%;
+    background: #222d32;
+    z-index: 9999;
+    transition: left 0.3s;
+  }
+  #sidebar.in {
+    left: 0;
+  }
+  .content-wrapper {
+    margin-left: 0 !important;
+  }
+}
+
+/* On larger screens, show sidebar as usual */
+@media (min-width: 768px) {
+  #sidebar {
+    position: static;
+    width: 220px;
+    height: 100%;
+    left: 0;
+    transition: none;
+  }
+  .content-wrapper {
+    margin-left: 220px;
+  }
+}
