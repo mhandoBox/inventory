@@ -63,7 +63,7 @@ class Controller_Members extends Admin_Controller
 				'lastname' => $this->input->post('lname'),
 				'phone' => $this->input->post('phone'),
 				'gender' => $this->input->post('gender'),
-				'store_id' => $this->input->post('store_id'), // <-- Add this line
+				'store_id' => $this->input->post('store_id'),
 			);
 
 			$create = $this->model_users->create($data, $this->input->post('groups'));
@@ -307,10 +307,17 @@ class Controller_Members extends Admin_Controller
 	            }
 	        }
 
+	        // Add Activate/Deactivate button based on active status
+	        if (isset($v['active']) && $v['active'] == 1) {
+	            $statusBtn = '<a href="'.base_url('Controller_Members/deactivate/'.$v['id']).'" class="btn btn-default btn-sm">Deactivate</a>';
+	        } else {
+	            $statusBtn = '<a href="'.base_url('Controller_Members/activate/'.$v['id']).'" class="btn btn-success btn-sm">Activate</a>';
+	        }
+
 	        $buttons = '
 	            <a href="'.base_url('Controller_Members/edit/'.$v['id']).'" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
 	            <a href="'.base_url('Controller_Members/delete/'.$v['id']).'" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
-	        ';
+	            '.$statusBtn;
 
 	        $result['data'][] = array(
 	            $v['username'],
@@ -324,6 +331,42 @@ class Controller_Members extends Admin_Controller
 	    }
 
 	    echo json_encode($result);
+	}
+
+	public function activate($id)
+	{
+	    if (!in_array('updateUser', $this->permission)) {
+	        redirect('dashboard', 'refresh');
+	    }
+
+	    if ($id) {
+	        $data = array('active' => 1);
+	        $update = $this->model_users->edit($data, $id);
+	        if ($update) {
+	            $this->session->set_flashdata('success', 'Member activated successfully');
+	        } else {
+	            $this->session->set_flashdata('errors', 'Error occurred while activating member');
+	        }
+	        redirect('Controller_Members/', 'refresh');
+	    }
+	}
+
+	public function deactivate($id)
+	{
+	    if (!in_array('updateUser', $this->permission)) {
+	        redirect('dashboard', 'refresh');
+	    }
+
+	    if ($id) {
+	        $data = array('active' => 0);
+	        $update = $this->model_users->edit($data, $id);
+	        if ($update) {
+	            $this->session->set_flashdata('success', 'Member deactivated successfully');
+	        } else {
+	            $this->session->set_flashdata('errors', 'Error occurred while deactivating member');
+	        }
+	        redirect('Controller_Members/', 'refresh');
+	    }
 	}
 
 

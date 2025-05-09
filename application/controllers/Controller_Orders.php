@@ -14,6 +14,7 @@ class Controller_Orders extends Admin_Controller
         $this->load->model('model_products');
         $this->load->model('model_company');
         $this->load->model('model_users');
+        $this->load->model('model_activity_log');
     }
 
     /* 
@@ -98,6 +99,9 @@ class Controller_Orders extends Admin_Controller
             $order_id = $this->model_orders->create();
             
             if ($order_id) {
+                // Log the activity
+                $this->model_activity_log->log($this->session->userdata('id'), 'Created Order', 'Order ID: '.$order_id);
+
                 $this->session->set_flashdata('success', 'Successfully created');
                 redirect('Controller_Orders/update/'.$order_id, 'refresh');
             } else {
