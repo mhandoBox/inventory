@@ -4,7 +4,6 @@
   <section class="content-header">
     <h1>
      Edit Products
-
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -32,7 +31,6 @@
           </div>
         <?php endif; ?>
 
-
         <div class="box">
          
           <!-- /.box-header -->
@@ -41,16 +39,10 @@
 
                 <?php echo validation_errors(); ?>
 
-
                 <div class="form-group">
                   <label for="product_name">Product name</label>
                   <input type="text" class="form-control" id="product_name" name="product_name" placeholder="Enter product name" value="<?php echo $product_data['name']; ?>"  autocomplete="off"/>
                 </div>
-
-                <!-- <div class="form-group"> -->
-                  <!-- <label for="sku">SKU</label> -->
-                  <!-- <input type="text" class="form-control" id="sku" name="sku" placeholder="Enter sku" value="<?php echo $product_data['sku']; ?>" autocomplete="off" /> -->
-                <!-- </div> -->
 
                 <div class="form-group">
                   <label for="price">Price</label>
@@ -64,20 +56,22 @@
 
                 <div class="form-group">
                   <label for="description">Description</label>
-                  <textarea type="text" class="form-control" id="description" name="description" placeholder="Enter 
-                  description" autocomplete="off">
+                  <textarea type="text" class="form-control" id="description" name="description" placeholder="Enter description" autocomplete="off">
                     <?php echo $product_data['description']; ?>
                   </textarea>
                 </div>
 
-                <?php $attribute_id = json_decode($product_data['attribute_value_id']); ?>
+                <?php 
+                $attribute_id = isset($product_data['attribute_value_id']) && !empty($product_data['attribute_value_id']) ? 
+                                json_decode($product_data['attribute_value_id']) : array(); 
+                ?>
                 <?php if($attributes): ?>
                   <?php foreach ($attributes as $k => $v): ?>
                     <div class="form-group">
                       <label for="groups"><?php echo $v['attribute_data']['name'] ?></label>
                       <select class="form-control select_group" id="attributes_value_id" name="attributes_value_id[]" multiple="multiple">
                         <?php foreach ($v['attribute_value'] as $k2 => $v2): ?>
-                          <option value="<?php echo $v2['id'] ?>" <?php if(in_array($v2['id'], $attribute_id)) { echo "selected"; } ?>><?php echo $v2['value'] ?></option>
+                          <option value="<?php echo $v2['id'] ?>" <?php if(in_array($v2['id'], (array)$attribute_id)) { echo "selected"; } ?>><?php echo $v2['value'] ?></option>
                         <?php endforeach ?>
                       </select>
                     </div>    
@@ -86,20 +80,22 @@
 
                 <div class="form-group">
                   <label for="brands">Items</label>
-                  <?php $brand_data = json_decode($product_data['brand_id']); ?>
+                  <?php $brand_data = isset($product_data['brand_id']) && !empty($product_data['brand_id']) ? 
+                                      json_decode($product_data['brand_id']) : array(); ?>
                   <select class="form-control select_group" id="brands" name="brands[]" multiple="multiple">
                     <?php foreach ($brands as $k => $v): ?>
-                      <option value="<?php echo $v['id'] ?>" <?php if(in_array($v['id'], $brand_data)) { echo 'selected="selected"'; } ?>><?php echo $v['name'] ?></option>
+                      <option value="<?php echo $v['id'] ?>" <?php if(in_array($v['id'], (array)$brand_data)) { echo 'selected="selected"'; } ?>><?php echo $v['name'] ?></option>
                     <?php endforeach ?>
                   </select>
                 </div>
 
                 <div class="form-group">
                   <label for="category">Category</label>
-                  <?php $category_data = json_decode($product_data['category_id']); ?>
+                  <?php $category_data = isset($product_data['category_id']) && !empty($product_data['category_id']) ? 
+                                          json_decode($product_data['category_id']) : array(); ?>
                   <select class="form-control select_group" id="category" name="category[]" multiple="multiple">
                     <?php foreach ($category as $k => $v): ?>
-                      <option value="<?php echo $v['id'] ?>" <?php if(in_array($v['id'], $category_data)) { echo 'selected="selected"'; } ?>><?php echo $v['name'] ?></option>
+                      <option value="<?php echo $v['id'] ?>" <?php if(in_array($v['id'], (array)$category_data)) { echo 'selected="selected"'; } ?>><?php echo $v['name'] ?></option>
                     <?php endforeach ?>
                   </select>
                 </div>
@@ -120,8 +116,6 @@
                     <option value="2" <?php if($product_data['availability'] != 1) { echo "selected='selected'"; } ?>>No</option>
                   </select>
                 </div>
-
-
 
               </div>
               <!-- /.box-body -->
@@ -170,7 +164,6 @@
         removeTitle: 'Cancel or reset changes',
         elErrorContainer: '#kv-avatar-errors-1',
         msgErrorClass: 'alert alert-block alert-danger',
-        // defaultPreviewContent: '<img src="/uploads/default_avatar_male.jpg" alt="Your Avatar">',
         layoutTemplates: {main2: '{preview} ' +  btnCust + ' {remove} {browse}'},
         allowedFileExtensions: ["jpg", "png", "gif"]
     });

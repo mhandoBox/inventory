@@ -27,8 +27,8 @@
  * THE SOFTWARE.
  *
  * @package	CodeIgniter
- * @author	EllisLab Dev Team
- * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
+ * @author	Ezekiel Praygod Mhando
+ * @copyright	Copyright (c) 2008 - 2014,
  * @copyright	Copyright (c) 2014 - 2017, British Columbia Institute of Technology (http://bcit.ca/)
  * @license	http://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
@@ -47,7 +47,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @package		CodeIgniter
  * @subpackage	Drivers
  * @category	Database
- * @author		EllisLab Dev Team
+ * @author		Ezekiel Praygod Mhando
  * @link		https://codeigniter.com/user_guide/database/
  */
 class CI_DB_mysqli_driver extends CI_DB {
