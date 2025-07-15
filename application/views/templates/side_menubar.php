@@ -61,10 +61,10 @@
                 <li id="manageProductNav"><a href="<?php echo base_url('Controller_Products') ?>"><i class="fa fa-circle-o"></i> Manage Products</a></li>
                 <?php endif; ?>
                 <li id="purchasesNav"><a href="<?php echo base_url('Controller_Products/purchases') ?>"><i class="fa fa-circle-o"></i> Purchases</a></li>
+
               </ul>
             </li>
           <?php endif; ?>
-
 
           <?php if(in_array('createOrder', $user_permission) || in_array('updateOrder', $user_permission) || in_array('viewOrder', $user_permission) || in_array('deleteOrder', $user_permission)): ?>
             <li class="treeview" id="mainOrdersNav">
@@ -82,6 +82,24 @@
                 <?php if(in_array('updateOrder', $user_permission) || in_array('viewOrder', $user_permission) || in_array('deleteOrder', $user_permission)): ?>
                 <li id="manageOrdersNav"><a href="<?php echo base_url('Controller_Orders') ?>"><i class="fa fa-circle-o"></i> Manage Orders</a></li>
                 <?php endif; ?>
+              </ul>
+            </li>
+          <?php endif; ?>
+          <?php if(in_array('viewReport', $user_permission)): ?>
+            <li class="treeview" id="mainReportsNav">
+              <a href="#">
+                <i class="glyphicon glyphicon-stats"></i>
+                <span>Reports</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                
+                <li id="salesReportNav"><a href="<?php echo base_url('Controller_Reports/sales_report') ?>"><i class="fa fa-circle-o"></i> Sales Report</a></li>
+                <li id="purchaseReportNav"><a href="<?php echo base_url('Controller_Reports/purchase_report') ?>"><i class="fa fa-circle-o"></i> Purchase Report</a></li>
+                <li id="generalReportNav"><a href="<?php echo base_url('Controller_Reports/general_report') ?>"><i class="fa fa-circle-o"></i> General Report</a></li>
+                <li id="legacyReportNav"><a href="<?php echo base_url('reports/') ?>"><i class="fa fa-circle-o"></i> Annual Overview</a></li>
               </ul>
             </li>
           <?php endif; ?>
@@ -127,13 +145,6 @@
             </li>
           <?php endif; ?>
 
-         <!--  <?php if(in_array('viewReports', $user_permission)): ?>
-            <li id="reportNav">
-              <a href="<?php echo base_url('reports/') ?>">
-                <i class="glyphicon glyphicon-stats"></i> <span>Reports</span>
-              </a>
-            </li>
-          <?php endif; ?> -->
 
 
           <?php if(in_array('updateCompany', $user_permission)): ?>

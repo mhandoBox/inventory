@@ -18,44 +18,74 @@ class Auth extends Admin_Controller
 	*/
 	public function login()
 	{
-
 		$this->logged_in();
 
 		$this->form_validation->set_rules('email', 'Email', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
 
         if ($this->form_validation->run() == TRUE) {
-            // true case
-           	$email_exists = $this->model_auth->check_email($this->input->post('email'));
+            // Debug: Log form submission
+            log_message('debug', 'Login form submitted - Email: ' . $this->input->post('email'));
 
-           	if($email_exists == TRUE) {
-           		$login = $this->model_auth->login($this->input->post('email'), $this->input->post('password'));
+            $email_exists = $this->model_auth->check_email($this->input->post('email'));
 
-           		if($login) {
+            if ($email_exists == TRUE) {
+                $login = $this->model_auth->login($this->input->post('email'), $this->input->post('password'));
 
-           			$logged_in_sess = array(
-           				'id' => $login['id'],
-				        'username'  => $login['username'],
-				        'email'     => $login['email'],
-				        'logged_in' => TRUE
-					);
+                // Debug: Log login attempt result
+                log_message('debug', 'Login attempt result: ' . ($login ? 'success' : 'failed'));
 
-					$this->session->set_userdata($logged_in_sess);
-           			redirect('dashboard', 'refresh');
-           		}
-           		else {
-           			$this->data['errors'] = 'Incorrect username/password combination';
-           			$this->load->view('login', $this->data);
-           		}
-           	}
-           	else {
-           		$this->data['errors'] = 'Email does not exists';
+                if ($login) {
+                    // Fetch the user's role dynamically
+                    $this->db->select('g.group_name AS role');
+                    $this->db->from('users u');
+                    $this->db->join('user_group ug', 'u.id = ug.user_id');
+                    $this->db->join('groups g', 'ug.group_id = g.id');
+                    $this->db->where('u.id', $login['id']);
+                    $query = $this->db->get();
+                    
+                    // Debug: Log role query
+                    log_message('debug', 'Role query: ' . $this->db->last_query());
+                    
+                    $role = $query->row() ? $query->row()->role : '';
 
-           		$this->load->view('login', $this->data);
-           	}	
-        }
-        else {
-            // false case
+                    // Store user data in session
+                    $logged_in_sess = array(
+                        'id' => $login['id'],
+                        'username' => $login['username'],
+                        'email' => $login['email'],
+                        'role' => $role,
+                        'user_permission' => is_array($login['permission']) ? $login['permission'] : array(),
+                        'logged_in' => TRUE
+                    );
+
+                    // Debug: Log session data before setting
+                    log_message('debug', 'Setting session data: ' . print_r($logged_in_sess, true));
+
+                    $this->session->set_userdata($logged_in_sess);
+
+                    // Verify session was set
+                    if ($this->session->userdata('logged_in')) {
+                        log_message('debug', 'Session set successfully, redirecting to dashboard');
+                        redirect('dashboard', 'refresh');
+                    } else {
+                        log_message('error', 'Failed to set session data');
+                        $this->data['errors'] = 'Session creation failed';
+                        $this->load->view('login', $this->data);
+                    }
+                } else {
+                    log_message('debug', 'Incorrect password for user: ' . $this->input->post('email'));
+                    $this->data['errors'] = 'Incorrect username/password combination';
+                    $this->load->view('login', $this->data);
+                }
+            } else {
+                log_message('debug', 'Email does not exist: ' . $this->input->post('email'));
+                $this->data['errors'] = 'Email does not exist';
+                $this->load->view('login', $this->data);
+            }
+        } else {
+            // Debug: Log validation errors if any
+            log_message('debug', 'Form validation errors: ' . validation_errors());
             $this->load->view('login');
         }	
 	}
@@ -67,6 +97,26 @@ class Auth extends Admin_Controller
 	{
 		$this->session->sess_destroy();
 		redirect('auth/login', 'refresh');
+	}
+
+	public function forgot_password()
+	{
+	    $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+
+	    if ($this->form_validation->run() == TRUE) {
+	        $email = $this->input->post('email');
+	        $user_exists = $this->model_auth->check_email($email);
+
+	        if ($user_exists) {
+	            // Here you would generate a reset token and send an email.
+	            // For demo, just show a success message.
+	            $this->data['success'] = 'A password reset link has been sent to your email address.';
+	        } else {
+	            $this->data['errors'] = 'Email address not found.';
+	        }
+	    }
+
+	    $this->load->view('forgot_password', $this->data ?? []);
 	}
 
 }

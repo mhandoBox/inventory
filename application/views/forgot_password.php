@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login | NMC Inventory Management System</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Forgot Password</title>
   <link rel="stylesheet" href="<?php echo base_url('assets/bower_components/bootstrap/dist/css/bootstrap.min.css')?>">
-  <link rel="stylesheet" href="<?php echo base_url('assets/bower_components/font-awesome/css/font-awesome.min.css')?>">
   <style>
     body {
       background: linear-gradient(120deg, #6a11cb 0%, #2575fc 100%);
@@ -57,10 +54,6 @@
       margin-bottom: 18px;
       font-size: 15px;
     }
-    .checkbox label {
-      font-weight: 400;
-      color: #666;
-    }
     .text-center a {
       color: #2575fc;
       font-weight: 500;
@@ -85,39 +78,29 @@
     <a href=""><b>NMC Inventory Management System</b></a>
   </div>
   <div class="login-box-body">
-    <p class="login-box-msg">Log in to start your session</p>
+    <p class="login-box-msg">Enter your email to reset your password</p>
 
+    <?php if(isset($success)): ?>
+      <div class="alert alert-success"><?php echo $success; ?></div>
+    <?php endif; ?>
     <?php if(isset($errors)): ?>
       <div class="alert alert-danger"><?php echo $errors; ?></div>
     <?php endif; ?>
-    <?php if(validation_errors()): ?>
-      <div class="alert alert-danger"><?php echo validation_errors(); ?></div>
-    <?php endif; ?>
 
-    <form action="<?php echo base_url('auth/login') ?>" method="post">
+    <form action="<?php echo base_url('auth/forgot_password') ?>" method="post">
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" name="email" id="email" placeholder="Email" autocomplete="off" required>
+        <input type="email" class="form-control" name="email" placeholder="Email" autocomplete="off" required>
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" name="password" id="password" placeholder="Password" autocomplete="off" required>
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-      </div>
-      <div class="row" style="margin-bottom: 10px;">
-        <div class="col-xs-8">
-          <div class="checkbox icheck" style="margin-top: 0;">
-            <label>
-              <input type="checkbox" name="remember"> Remember Me
-            </label>
-          </div>
-        </div>
+      <div class="row">
+        <div class="col-xs-8"></div>
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Send</button>
         </div>
       </div>
     </form>
     <div class="text-center" style="margin-top:18px;">
-      <a href="<?php echo base_url('auth/forgot_password'); ?>">Forgot Password?</a>
+      <a href="<?php echo base_url('auth/login'); ?>">&#8592; Back to Login</a>
     </div>
   </div>
 </div>

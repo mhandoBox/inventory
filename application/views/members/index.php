@@ -60,11 +60,17 @@
                   <?php if($user_data): ?>                  
                     <?php foreach ($user_data as $k => $v): ?>
                       <tr>
-                        <td><?php echo $v['user_info']['username']; ?></td>
-                        <td><?php echo $v['user_info']['email']; ?></td>
-                        <td><?php echo $v['user_info']['firstname'] .' '. $v['user_info']['lastname']; ?></td>
-                        <td><?php echo $v['user_info']['phone']; ?></td>
-                        <td><?php echo $v['user_group']['group_name']; ?></td>
+                        <td><?php echo (is_array($v['user_info']) && isset($v['user_info']['username'])) ? $v['user_info']['username'] : ''; ?></td>
+                        <td><?php echo (is_array($v['user_info']) && isset($v['user_info']['email'])) ? $v['user_info']['email'] : ''; ?></td>
+                        <td>
+                          <?php
+                            echo (is_array($v['user_info']) && isset($v['user_info']['firstname']) ? $v['user_info']['firstname'] : '')
+                               . ' ' .
+                                 (is_array($v['user_info']) && isset($v['user_info']['lastname']) ? $v['user_info']['lastname'] : '');
+                          ?>
+                        </td>
+                        <td><?php echo (is_array($v['user_info']) && isset($v['user_info']['phone'])) ? $v['user_info']['phone'] : ''; ?></td>
+                        <td><?php echo (is_array($v['user_group']) && isset($v['user_group']['group_name'])) ? $v['user_group']['group_name'] : ''; ?></td>
 
                         <?php if(in_array('updateUser', $user_permission) || in_array('deleteUser', $user_permission)): ?>
 

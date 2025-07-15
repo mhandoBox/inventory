@@ -20,19 +20,27 @@ class Model_users extends CI_Model
 		return $query->result_array();
 	}
 
-	public function getUserGroup($userId = null) 
+	public function getUserGroup($user_id)
 	{
-		if($userId) {
-			$sql = "SELECT * FROM user_group WHERE user_id = ?";
-			$query = $this->db->query($sql, array($userId));
-			$result = $query->row_array();
+	    if(!$user_id) return null;
 
-			$group_id = $result['group_id'];
-			$g_sql = "SELECT * FROM groups WHERE id = ?";
-			$g_query = $this->db->query($g_sql, array($group_id));
-			$q_result = $g_query->row_array();
-			return $q_result;
-		}
+	    $sql = "SELECT * FROM user_group WHERE user_id = ?";
+	    $query = $this->db->query($sql, array($user_id));
+	    $result = $query->row_array();
+
+	    if ($result) {
+	        // Optionally, fetch group details if needed
+	        $group_sql = "SELECT * FROM groups WHERE id = ?";
+	        $group_query = $this->db->query($group_sql, array($result['group_id']));
+	        $group = $group_query->row_array();
+	        if ($group) {
+	            $result['group_name'] = $group['group_name'];
+	        }
+	        return $result;
+	    } else {
+	        // Return an empty array instead of null
+	        return array();
+	    }
 	}
 
 	public function create($data = '', $group_id = null)

@@ -52,3 +52,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'auth/login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+// Advanced Reporting Module
+$route['reports'] = 'Controller_Reports/index';
+$route['reports/sales'] = 'Controller_Reports/sales_report';
+$route['reports/purchases'] = 'Controller_Reports/purchase_report';
+$route['reports/general'] = 'Controller_Reports/general_report';
+$route['reports/export/(:any)/(:any)'] = 'Controller_Reports/export/$1/$2';
+$route['reports/chart_data/(:any)'] = 'Controller_Reports/chart_data/$1';

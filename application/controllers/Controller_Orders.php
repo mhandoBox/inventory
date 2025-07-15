@@ -50,6 +50,7 @@ class Controller_Orders extends Admin_Controller
 
             if (in_array('viewOrder', $this->permission)) {
                 $buttons .= '<a target="__blank" href="'.base_url('Controller_Orders/printDiv/'.$value['id']).'" class="btn btn-primary btn-sm"><i class="fa fa-print"></i></a>';
+                $buttons .= ' <a href="'.base_url('Controller_Orders/printThermal/'.$value['id']).'" class="btn btn-info btn-sm"><i class="fa fa-print"></i> Thermal</a>';
             }
 
             if (in_array('updateOrder', $this->permission)) {
@@ -75,7 +76,7 @@ class Controller_Orders extends Admin_Controller
                 'date_time' => $date_time,
                 'product_qty' => $count_total_item,
                 'amount' => 'TZS     '.number_format($value['net_amount'], 2),
-                'user_name' => $user_name, // Only the name
+                'user_name' => $user_name,
                 'actions' => $buttons
             );
         }
@@ -96,12 +97,16 @@ class Controller_Orders extends Admin_Controller
         $this->form_validation->set_rules('product[]', 'Product name', 'trim|required');
         
         if ($this->form_validation->run() == TRUE) {            
+            $paid_status = $this->input->post('paid_status');
+            if ($paid_status == 2) {
+                $paid_status = 1;
+                $_POST['paid_status'] = 1;
+            }
+
             $order_id = $this->model_orders->create();
             
             if ($order_id) {
-                // Log the activity
                 $this->model_activity_log->log($this->session->userdata('id'), 'Created Order', 'Order ID: '.$order_id);
-
                 $this->session->set_flashdata('success', 'Successfully created');
                 redirect('Controller_Orders/update/'.$order_id, 'refresh');
             } else {
@@ -109,13 +114,11 @@ class Controller_Orders extends Admin_Controller
                 redirect('Controller_Orders/create/', 'refresh');
             }
         } else {
-            // False case - load view with data
             $company = $this->model_company->getCompanyData(1);
             $this->data['company_data'] = $company;
             $this->data['is_vat_enabled'] = ($company['vat_charge_value'] > 0) ? true : false;
             $this->data['is_service_enabled'] = ($company['service_charge_value'] > 0) ? true : false;
             $this->data['products'] = $this->model_products->getActiveProductData();          
-
             $this->render_template('orders/create', $this->data);
         }    
     }
@@ -158,6 +161,11 @@ class Controller_Orders extends Admin_Controller
         $this->form_validation->set_rules('product[]', 'Product name', 'trim|required');
         
         if ($this->form_validation->run() == TRUE) {            
+            $paid_status = $this->input->post('paid_status');
+            if ($paid_status !== null) {
+                $_POST['paid_status'] = $paid_status;
+            }
+
             $update = $this->model_orders->update($id);
             
             if ($update == true) {
@@ -168,7 +176,6 @@ class Controller_Orders extends Admin_Controller
                 redirect('Controller_Orders/update/'.$id, 'refresh');
             }
         } else {
-            // False case - load view with data
             $company = $this->model_company->getCompanyData(1);
             $this->data['company_data'] = $company;
             $this->data['is_vat_enabled'] = ($company['vat_charge_value'] > 0) ? true : false;
@@ -219,7 +226,7 @@ class Controller_Orders extends Admin_Controller
     }
 
     /*
-     * Generates printable invoice
+     * Generates printable invoice matching the design in Capture.PNG
      */
     public function printDiv($id)
     {
@@ -232,7 +239,6 @@ class Controller_Orders extends Admin_Controller
             $orders_items = $this->model_orders->getOrdersItemData($id);
             $company_info = $this->model_company->getCompanyData(1);
 
-            // Fetch the user who created the order
             $user = $this->model_users->getUserData($order_data['user_id']);
             $user_fullname = 'Clerk';
             if ($user) {
@@ -243,375 +249,372 @@ class Controller_Orders extends Admin_Controller
             }
 
             $order_date = isset($order_data['date_time']) ? date('F d, Y', $order_data['date_time']) : date('F d, Y');
-            $paid_status = (isset($order_data['paid_status']) && $order_data['paid_status'] == 1) ? "Not Paid" : "Paid";
+            $paid_status = (isset($order_data['paid_status']) && $order_data['paid_status'] == 1) ? "Paid" : "Not Paid";
             $company_name = isset($company_info['company_name']) ? $company_info['company_name'] : 'Company Name';
             $bill_no = isset($order_data['bill_no']) ? $order_data['bill_no'] : '';
             $customer_name = isset($order_data['customer_name']) ? $order_data['customer_name'] : '';
             $customer_address = isset($order_data['customer_address']) ? $order_data['customer_address'] : '';
             $customer_phone = isset($order_data['customer_phone']) ? $order_data['customer_phone'] : '';
-            $customer_email = isset($order_data['customer_email']) ? $order_data['customer_email'] : '';
             $gross_amount = isset($order_data['gross_amount']) ? $order_data['gross_amount'] : 0;
-            $service_charge = isset($order_data['service_charge']) ? $order_data['service_charge'] : 0;
-            $service_charge_rate = isset($order_data['service_charge_rate']) ? $order_data['service_charge_rate'] : 0;
             $vat_charge = isset($order_data['vat_charge']) ? $order_data['vat_charge'] : 0;
             $vat_charge_rate = isset($order_data['vat_charge_rate']) ? $order_data['vat_charge_rate'] : 0;
             $discount = isset($order_data['discount']) ? $order_data['discount'] : 0;
             $net_amount = isset($order_data['net_amount']) ? $order_data['net_amount'] : 0;
-            $terms_condition = isset($company_info['terms_condition']) ? $company_info['terms_condition'] : 'Payment is due within 15 days. Please make payment by the due date to avoid late fees.';
 
             $html = '<!DOCTYPE html>
             <html>
             <head>
-              <meta charset="utf-8">
-              <meta http-equiv="X-UA-Compatible" content="IE=edge">
-              <title>Invoice</title>
-              <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-              <style>
-                body {
-                  font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
-                  line-height: 1.6;
-                  color: #222;
-                  max-width: 900px;
-                  margin: 0 auto;
-                  padding: 20px;
-                  background: #f7f7f7;
-                }
-                .invoice-wrapper {
-                  background: #fff;
-                  border-radius: 10px;
-                  padding: 28px 28px 18px 28px;
-                  box-shadow: 0 4px 16px rgba(44, 62, 80, 0.08);
-                  margin-bottom: 10px;
-                  border: 1.5px solid #bbb;
-                  position: relative;
-                  overflow: hidden;
-                }
-                .invoice-header-combined {
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: flex-end;
-                  margin-bottom: 10px;
-                  padding-bottom: 18px;
-                  border-bottom: 2px solid #bbb;
-                  background: linear-gradient(90deg, #2196f3 0%, #4caf50 100%);
-                  color: #fff;
-                  border-radius: 12px 12px 0 0;
-                  box-shadow: 0 2px 12px rgba(33,150,243,0.10);
-                }
-                .invoice-header-combined .company-name {
-                  font-size: 28px;
-                  font-weight: bold;
-                  letter-spacing: 2px;
-                  text-transform: uppercase;
-                  text-shadow: 1px 2px 8px rgba(33,150,243,0.18);
-                }
-                .invoice-header-combined .invoice-meta {
-                  text-align: right;
-                  font-size: 17px;
-                  font-weight: 500;
-                }
-                .invoice-header-combined .invoice-meta .invoice-number {
-                  font-weight: bold;
-                  color: #2196f3;
-                  background: #fff;
-                  padding: 2px 12px;
-                  border-radius: 8px;
-                  margin-left: 5px;
-                  box-shadow: 0 1px 4px rgba(33,150,243,0.10);
-                }
-                .invoice-from-to {
-                  display: flex;
-                  justify-content: space-between;
-                  margin-bottom: 14px;
-                  gap: 12px;
-                }
-                .invoice-from, .invoice-to {
-                  width: 48%;
-                  padding: 12px;
-                  border-radius: 7px;
-                  background: #fafafa;
-                  border: 1px solid #ddd;
-                  box-shadow: 0 1px 4px rgba(33,33,33,0.03);
-                }
-                .invoice-from h3, .invoice-to h3 {
-                  border-bottom: 1px solid #bbb;
-                  padding-bottom: 4px;
-                  margin-bottom: 8px;
-                  color: #444;
-                  font-size: 16px;
-                  letter-spacing: 1px;
-                }
-                .divider {
-                  border-top: 1.5px dashed #bbb;
-                  margin: 12px 0;
-                }
-                table {
-                  width: 100%;
-                  border-collapse: collapse;
-                  margin-bottom: 18px;
-                  background: #fff;
-                  border-radius: 7px;
-                  overflow: hidden;
-                  box-shadow: 0 1px 4px rgba(33,33,33,0.02);
-                }
-                table th {
-                  text-align: left;
-                  padding: 10px 8px;
-                  background: #ededed;
-                  color: #222;
-                  border: none;
-                  font-size: 14px;
-                  letter-spacing: 1px;
-                }
-                table td {
-                  padding: 9px 8px;
-                  border-bottom: 1px solid #e0e0e0;
-                  font-size: 14px;
-                }
-                table tr:nth-child(even) {
-                  background-color: #f8f8f8;
-                }
-                table tr:hover {
-                  background-color: #f1f1f1;
-                }
-                .text-right {
-                  text-align: right;
-                }
-                .payment-container {
-                  display: flex;
-                  justify-content: space-between;
-                  margin-bottom: 18px;
-                  gap: 12px;
-                }
-                .payment-Status {
-                  width: 48%;
-                  padding: 10px;
-                  background: #f9fbe7;
-                  border-radius: 7px;
-                  border: 1px solid #dce775;
-                  box-shadow: 0 1px 4px rgba(205,220,57,0.04);
-                  text-align: center;
-                }
-                .payment-Status h3 {
-                  color: #888;
-                  margin-bottom: 8px;
-                  font-size: 15px;
-                }
-                .payment-summary {
-                  width: 48%;
-                  padding: 10px;
-                  background: #f3e5f5;
-                  border-radius: 7px;
-                  border: 1px solid #ce93d8;
-                  box-shadow: 0 1px 4px rgba(142,36,170,0.03);
-                }
-                .payment-summary table {
-                  width: 100%;
-                }
-                .payment-summary td {
-                  padding: 6px 4px;
-                  font-size: 14px;
-                }
-                .payment-summary tr:last-child td {
-                  font-weight: bold;
-                  border-top: 1.5px solid #bbb;
-                  font-size: 1em;
-                  color: #333;
-                }
-                .terms {
-                  clear: both;
-                  margin-top: 16px;
-                  padding: 10px;
-                  background: #fafafa;
-                  border-radius: 6px;
-                  border-left: 3px solid #bbb;
-                }
-                .terms h3 {
-                  color: #888;
-                  margin-bottom: 6px;
-                }
-                .signature {
-                  text-align: center;
-                  margin-top: 28px;
-                  padding-top: 12px;
-                  border-top: 1.5px dashed #bbb;
-                  font-size: 15px;
-                  color: #333;
-                }
-                .invoice-number {
-                  font-weight: bold;
-                  color: #222;
-                  background: #e0e0e0;
-                  padding: 2px 10px;
-                  border-radius: 6px;
-                  margin-left: 5px;
-                }
-                .status-badge {
-                  display: inline-block;
-                  padding: 5px 14px;
-                  border-radius: 14px;
-                  font-weight: bold;
-                  font-size: 0.95em;
-                  letter-spacing: 1px;
-                  box-shadow: 0 1px 4px rgba(76,175,80,0.04);
-                }
-                .status-paid {
-                  background: #e0f2f1;
-                  color: #388e3c;
-                  border: 1px solid #388e3c;
-                }
-                .status-unpaid {
-                  background: #ffebee;
-                  color: #c62828;
-                  border: 1px solid #c62828;
-                }
-              </style>
+                <meta charset="utf-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <title>Invoice</title>
+                <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        line-height: 1.5;
+                        color: #000;
+                        max-width: 800px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        background: #fff;
+                    }
+                    .invoice-header {
+                        text-align: center;
+                        margin-bottom: 20px;
+                        border-bottom: 1px solid #000;
+                        padding-bottom: 10px;
+                    }
+                    .company-name {
+                        font-size: 24px;
+                        font-weight: bold;
+                        margin-bottom: 5px;
+                    }
+                    .invoice-meta {
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 20px;
+                    }
+                    .invoice-number, .invoice-date {
+                        font-weight: bold;
+                    }
+                    .divider {
+                        border-top: 1px solid #000;
+                        margin: 15px 0;
+                    }
+                    .invoice-section {
+                        margin-bottom: 15px;
+                    }
+                    .section-title {
+                        font-weight: bold;
+                        font-size: 18px;
+                        margin-bottom: 10px;
+                    }
+                    .customer-info, .company-info {
+                        margin-bottom: 10px;
+                    }
+                    .items-table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        margin: 15px 0;
+                    }
+                    .items-table th {
+                        text-align: left;
+                        padding: 8px 5px;
+                        border-bottom: 1px solid #000;
+                    }
+                    .items-table td {
+                        padding: 8px 5px;
+                        border-bottom: 1px solid #ddd;
+                    }
+                    .text-right {
+                        text-align: right;
+                    }
+                    .summary-table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        margin-top: 20px;
+                    }
+                    .summary-table td {
+                        padding: 5px;
+                    }
+                    .summary-table .total-row {
+                        font-weight: bold;
+                        border-top: 1px solid #000;
+                    }
+                    .payment-status {
+                        margin: 15px 0;
+                        font-weight: bold;
+                    }
+                    .signature {
+                        margin-top: 30px;
+                        text-align: right;
+                    }
+                    @media print {
+                        body {
+                            padding: 0;
+                        }
+                        .no-print {
+                            display: none;
+                        }
+                    }
+                </style>
             </head>
             <body onload="window.print();">
-            
-            <div class="invoice-wrapper">
-              <div class="invoice-header-combined">
-                <div class="company-name">'.$company_name.'</div>
-                <div class="invoice-meta">
-                  <div><strong>Invoice No:</strong> <span class="invoice-number">'.$bill_no.'</span></div>
-                  <div><strong>Date:</strong> '.$order_date.'</div>
+                <div class="invoice-header">
+                    <div class="company-name">'.strtoupper($company_name).'</div>
                 </div>
-              </div>
 
-              <div class="invoice-from-to">
-                <div class="invoice-to">
-                  <h3>Invoice To:</h3>
-                  <strong>'.$customer_name.'</strong><br>';
+                <div class="invoice-meta">
+                    <div class="invoice-number">Invoice No: '.$bill_no.'</div>
+                    <div class="invoice-date">Date: '.$order_date.'</div>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="invoice-section">
+                    <div class="section-title">Invoice To:</div>
+                    <div class="customer-info">
+                        <strong>'.$customer_name.'</strong><br>';
             
             if (!empty($customer_address)) {
                 $html .= $customer_address.'<br>';
             }
             
-            $html .= 'Phone: '.$customer_phone.'<br>';
-            
-            if (!empty($customer_email)) {
-                $html .= 'Email: '.$customer_email;
+            if (!empty($customer_phone)) {
+                $html .= $customer_phone;
             }
             
             $html .= '
+                    </div>
                 </div>
-                <div class="invoice-from">
-                  <h3>Invoice From:</h3>
-                  <strong>'.$company_name.'</strong><br>'; // Print user full name here
 
+                <div class="invoice-section">
+                    <div class="section-title">Income From:</div>
+                    <div class="company-info">
+                        <strong>'.$company_name.'</strong><br>';
+            
             if (!empty($company_info['address'])) {
                 $html .= $company_info['address'].'<br>';
             }
             
             if (!empty($company_info['phone'])) {
-                $html .= 'Phone: '.$company_info['phone'].'<br>';
-            }
-            
-            if (!empty($company_info['email'])) {
-                $html .= 'Email: '.$company_info['email'];
+                $html .= $company_info['phone'];
             }
             
             $html .= '
+                    </div>
                 </div>
-              </div>
 
-              <div class="divider"></div>
+                <div class="divider"></div>
 
-              <table>
-                <thead>
-                  <tr>
-                    <th>S/N</th>
-                    <th>PRODUCT</th>
-                    <th>PRICE</th>
-                    <th>QTY.</th>
-                    <th class="text-right">TOTAL</th>
-                  </tr>
-                </thead>
-                <tbody>';
-
+                <div class="invoice-section">
+                    <div class="section-title">Items & Services</div>
+                    <table class="items-table">
+                        <thead>
+                            <tr>
+                                <th>S/N</th>
+                                <th>PRODUCT</th>
+                                <th>PRICE</th>
+                                <th>QTY.</th>
+                                <th class="text-right">TOTAL</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
+            
             $counter = 1;
             foreach ($orders_items as $k => $v) {
-                // Try to use product_name from the order item if available (e.g., from a join)
-                if (isset($v['product_name']) && !empty($v['product_name'])) {
-                    $product_name = $v['product_name'];
-                } else {
-                    // Fallback: fetch from products table
-                    $product_data = $this->model_products->getProductData($v['product_id']);
-                    $product_name = ($product_data && !empty($product_data['name'])) ? $product_data['name'] : '[Unknown Product]';
-                }
+                $product_data = $this->model_products->getProductData($v['product_id']);
+                $product_name = ($product_data && !empty($product_data['name'])) ? $product_data['name'] : '[Unknown Product]';
                 $rate = isset($v['rate']) ? $v['rate'] : 0;
                 $qty = isset($v['qty']) ? $v['qty'] : 0;
                 $amount = isset($v['amount']) ? $v['amount'] : 0;
                 
                 $html .= '
-    <tr>
-      <td>'.str_pad($counter, 2, '0', STR_PAD_LEFT).'</td>
-      <td>
-        <strong>'.$product_name.'</strong><br>
-      </td>
-      <td>TZS     '.number_format($rate, 2).'</td>
-      <td>'.$qty.'</td>
-      <td class="text-right">TZS     '.number_format($amount, 2).'</td>
-    </tr>';
+                            <tr>
+                                <td>'.str_pad($counter, 2, '0', STR_PAD_LEFT).'</td>
+                                <td>'.$product_name.'</td>
+                                <td>TZS '.number_format($rate, 2).'</td>
+                                <td>'.$qty.'</td>
+                                <td class="text-right">TZS '.number_format($amount, 2).'</td>
+                            </tr>';
                 $counter++;
             }
-
+            
             $html .= '
-                </tbody>
-              </table>
-
-              <div class="payment-container">
-                <div class="payment-Status">
-                  <h3>Payment Details</h3>
-                  <p><span class="status-badge '.($paid_status == "unpaid" ? "status-unpaid" : "status-paid").'">'.$paid_status.'</span></p>
+                        </tbody>
+                    </table>
                 </div>
 
-                <div class="payment-summary">
-                  <table>
-                    <tr>
-                      <td>Subtotal:</td>
-                      <td class="text-right">TZS     '.number_format($gross_amount, 2).'</td>
-                    </tr>';
+                <div class="divider"></div>
 
+                <div class="payment-status">
+                    <strong>'.$paid_status.'</strong><br>
+                    Payment completed successfully
+                </div>
+
+                <div class="invoice-section">
+                    <div class="section-title">Summary</div>
+                    <table class="summary-table">
+                        <tr>
+                            <td>Subtotal:</td>
+                            <td class="text-right">TZS '.number_format($gross_amount, 2).'</td>
+                        </tr>';
+            
             if ($discount > 0) {
                 $html .= '
-                    <tr>
-                      <td>Discount:</td>
-                      <td class="text-right">TZS     '.number_format($discount, 2).'</td>
-                    </tr>';
+                        <tr>
+                            <td>Discount:</td>
+                            <td class="text-right">-TZS '.number_format($discount, 2).'</td>
+                        </tr>';
             }
-
+            
             if ($vat_charge > 0) {
                 $html .= '
-                    <tr>
-                      <td>Tax ('.number_format($vat_charge_rate, 0).'%):</td>
-                      <td class="text-right">TZS     '.number_format($vat_charge, 2).'</td>
-                    </tr>';
+                        <tr>
+                            <td>Tax ('.number_format($vat_charge_rate, 0).'%):</td>
+                            <td class="text-right">TZS '.number_format($vat_charge, 2).'</td>
+                        </tr>';
             }
-
+            
             $html .= '
-                    <tr>
-                      <td><strong>Total Amount:</strong></td>
-                      <td class="text-right"><strong>TZS     '.number_format($net_amount, 2).'</strong></td>
-                    </tr>
-                  </table>
+                        <tr class="total-row">
+                            <td><strong>Total Amount:</strong></td>
+                            <td class="text-right"><strong>TZS '.number_format($net_amount, 2).'</strong></td>
+                        </tr>
+                    </table>
                 </div>
-              </div>
 
-              <div class="divider"></div>
+                <div class="signature">
+                    <div>Authorized Signature</div>
+                    <div style="margin-top: 40px;">_________________________</div>
+                    <div>Clerk<br>'.$user_fullname.'</div>
+                </div>
 
-              <div class="signature">
-                <p>Authorized Signature</p>
-                <p>_________________________</p>
-                <p style="margin-top:10px;"><strong>Clerk:</strong> '.$user_fullname.'</p> <!-- Clerk name here -->
-              </div>
-
-            </div>
-
+                <div class="no-print" style="margin-top: 20px; text-align: center;">
+                    <button onclick="window.print()" style="padding: 10px 20px; background: #4CAF50; color: white; border: none; cursor: pointer;">Print Invoice</button>
+                </div>
             </body>
             </html>';
 
             echo $html;
+        }
+    }
+
+    /*
+     * Generates thermal printer-friendly receipt for Incotex 777M via COM3
+     */
+    public function printThermal($id)
+    {
+        if (!in_array('viewOrder', $this->permission)) {
+            redirect('dashboard', 'refresh');
+        }
+        
+        if ($id) {
+            $order_data = $this->model_orders->getOrdersData($id);
+            $orders_items = $this->model_orders->getOrdersItemData($id);
+            $company_info = $this->model_company->getCompanyData(1);
+
+            $user = $this->model_users->getUserData($order_data['user_id']);
+            $user_fullname = 'Clerk';
+            if ($user) {
+                $user_fullname = trim($user['firstname'] . ' ' . $user['lastname']);
+                if (empty($user_fullname)) {
+                    $user_fullname = $user['username'];
+                }
+            }
+
+            $order_date = isset($order_data['date_time']) ? date('d-m-Y H:i', $order_data['date_time']) : date('d-m-Y H:i');
+            $paid_status = (isset($order_data['paid_status']) && $order_data['paid_status'] == 1) ? "Paid" : "Not Paid";
+            $company_name = isset($company_info['company_name']) ? $company_info['company_name'] : 'Company Name';
+            $bill_no = isset($order_data['bill_no']) ? $order_data['bill_no'] : '';
+            $customer_name = isset($order_data['customer_name']) ? $order_data['customer_name'] : '';
+            $gross_amount = isset($order_data['gross_amount']) ? $order_data['gross_amount'] : 0;
+            $vat_charge = isset($order_data['vat_charge']) ? $order_data['vat_charge'] : 0;
+            $vat_charge_rate = isset($order_data['vat_charge_rate']) ? $order_data['vat_charge_rate'] : 0;
+            $discount = isset($order_data['discount']) ? $order_data['discount'] : 0;
+            $net_amount = isset($order_data['net_amount']) ? $order_data['net_amount'] : 0;
+
+            // ESC/POS commands
+            $ESC = "\x1B";
+            $GS = "\x1D";
+            $LF = "\n";
+            $initialize = $ESC . "@";
+            $center_align = $ESC . "a1";
+            $left_align = $ESC . "a0";
+            $bold_on = $ESC . "E1";
+            $bold_off = $ESC . "E0";
+            $cut_paper = $GS . "V1";
+            $set_code_page = $ESC . "t" . chr(0);
+
+            // Build receipt content
+            $receipt = $initialize . $set_code_page;
+            $receipt .= $center_align;
+            $receipt .= $bold_on . strtoupper(substr($company_name, 0, 30)) . $bold_off . $LF;
+            $receipt .= "Receipt #" . substr($bill_no, 0, 20) . $LF;
+            $receipt .= "Date: " . $order_date . $LF;
+            $receipt .= "Customer: " . substr($customer_name, 0, 15) . $LF;
+            $receipt .= "Clerk: " . substr($user_fullname, 0, 15) . $LF;
+            $receipt .= str_repeat("-", 32) . $LF;
+            $receipt .= $left_align;
+
+            // Item header (adjusted for 58mm, ~32 characters)
+            $receipt .= sprintf("%-15s %4s %6s %6s\n", "Item", "Qty", "Price", "Total");
+
+            // Items
+            foreach ($orders_items as $k => $v) {
+                if (isset($v['product_name']) && !empty($v['product_name'])) {
+                    $product_name = substr($v['product_name'], 0, 15);
+                } else {
+                    $product_data = $this->model_products->getProductData($v['product_id']);
+                    $product_name = ($product_data && !empty($product_data['name'])) ? substr($product_data['name'], 0, 15) : '[Unknown]';
+                }
+                $rate = isset($v['rate']) ? $v['rate'] : 0;
+                $qty = isset($v['qty']) ? $v['qty'] : 0;
+                $amount = isset($v['amount']) ? $v['amount'] : 0;
+
+                $receipt .= sprintf("%-15s %4d %6.2f %6.2f\n", $product_name, $qty, $rate, $amount);
+            }
+
+            $receipt .= str_repeat("-", 32) . $LF;
+            $receipt .= sprintf("%-15s %16.2f\n", "Subtotal:", $gross_amount);
+            if ($discount > 0) {
+                $receipt .= sprintf("%-15s %16.2f\n", "Discount:", $discount);
+            }
+            if ($vat_charge > 0) {
+                $receipt .= sprintf("%-15s %16.2f\n", "Tax (" . number_format($vat_charge_rate, 0) . "%):", $vat_charge);
+            }
+            $receipt .= $bold_on . sprintf("%-15s %16.2f\n", "Total:", $net_amount) . $bold_off;
+            $receipt .= sprintf("%-15s %16s\n", "Status:", $paid_status);
+            $receipt .= str_repeat("-", 32) . $LF;
+            $receipt .= $center_align . "Thank you for your business!" . $LF . $LF;
+            $receipt .= $cut_paper;
+
+            // Log receipt data for debugging
+            $log_file = FCPATH . 'application/logs/receipt_' . date('Ymd_His') . '.txt';
+            file_put_contents($log_file, bin2hex($receipt) . "\n\n" . $receipt);
+
+            // Open COM3 port
+            $port = "COM3";
+            try {
+                system("mode $port BAUD=9600 PARITY=n DATA=8 STOP=1 to=off dtr=off rts=off");
+                
+                $fp = fopen($port, 'w');
+                if ($fp === false) {
+                    throw new Exception("Failed to open COM3 port. Ensure the printer is connected, powered on, and the port is not in use.");
+                }
+
+                if (fwrite($fp, $receipt) === false) {
+                    throw new Exception("Failed to write to COM3 port. Check printer connection or port settings.");
+                }
+
+                fclose($fp);
+
+                $this->session->set_flashdata('success', 'Receipt sent to printer on COM3. Check log at ' . $log_file);
+                redirect('Controller_Orders', 'refresh');
+            } catch (Exception $e) {
+                $this->session->set_flashdata('errors', 'Error printing receipt: ' . $e->getMessage());
+                redirect('Controller_Orders', 'refresh');
+            }
         }
     }
 }

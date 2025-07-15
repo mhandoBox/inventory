@@ -31,12 +31,7 @@ class Dashboard extends Admin_Controller
 		$this->data['total_brands'] = $this->model_products->countTotalbrands();
 		$this->data['total_category'] = $this->model_products->countTotalcategory();
 		$this->data['total_attribures'] = $this->model_products->countTotalattribures();
-		// $this->data['total_stores'] = $this->model_stores->countTotalStores();
 
-		$user_id = $this->session->userdata('id');
-		$is_admin = ($user_id == 1) ? true :false;
-
-		$this->data['is_admin'] = $is_admin;
 		$this->render_template('dashboard', $this->data);
 	}
 }

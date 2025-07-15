@@ -1,11 +1,65 @@
 <?php 
 
-class MY_Controller extends CI_Controller
+class MY_Controller extends CI_Controller 
 {
-	public function __construct()
-	{
-		parent::__construct();
-	}
+    public $data = array();
+
+    public function __construct()
+    {
+        parent::__construct();
+        
+        // Load required libraries
+        $this->load->library('session');
+        $this->load->database();
+
+        // Initialize permission array
+        $this->permission = array();
+
+        // Initialize role flags with default values
+        $this->data['is_admin'] = false;
+        $this->data['is_manager'] = false;
+        $this->data['user_permission'] = array();
+
+        // Check if user is logged in and has permissions
+        if ($this->session->userdata('logged_in')) {
+            // Get user role with null coalescing
+            $role = strtolower($this->session->userdata('role') ?? '');
+            
+            // Set role flags
+            $this->data['is_admin'] = ($role === 'administrator');
+            $this->data['is_manager'] = ($role === 'manager');
+
+            // Get user permissions safely
+            $user_permission = $this->session->userdata('user_permission');
+            if ($user_permission !== null) {
+                $this->permission = is_array($user_permission) ? $user_permission : array();
+            }
+
+            // Debug log
+            log_message('debug', 'MY_Controller - Role: ' . $role);
+            log_message('debug', 'MY_Controller - Is Admin: ' . ($this->data['is_admin'] ? 'true' : 'false'));
+            log_message('debug', 'MY_Controller - Permissions: ' . print_r($this->permission, true));
+        } else {
+            log_message('debug', 'MY_Controller - User not logged in');
+        }
+    }
+
+    public function not_logged_in()
+    {
+        if (!$this->session->userdata('logged_in')) {
+            redirect('auth/login', 'refresh');
+        }
+    }
+
+    protected function render_template($page = null, $data = array())
+    {
+        if ($page) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/side_menubar', $data);
+            $this->load->view($page, $data);
+            $this->load->view('templates/footer', $data);
+        }
+    }
 }
 
 class Admin_Controller extends MY_Controller 
@@ -25,9 +79,40 @@ class Admin_Controller extends MY_Controller
 			$user_id = $this->session->userdata('id');
 			$this->load->model('model_groups');
 			$group_data = $this->model_groups->getUserGroupByUserId($user_id);
-			
-			$this->data['user_permission'] = unserialize($group_data['permission']);
-			$this->permission = unserialize($group_data['permission']);
+
+			$user_permission = array();
+			if (is_array($group_data) && isset($group_data['permission']) && !empty($group_data['permission'])) {
+				$user_permission = @unserialize($group_data['permission']);
+				if ($user_permission === false) {
+					$user_permission = array();
+				}
+			}
+			$this->data['user_permission'] = $user_permission;
+			$this->permission = $user_permission;
+
+			if (is_array($user_permission) && isset($user_permission['some_permission'])) {
+				$this->data['some_permission'] = $user_permission['some_permission'];
+			} else {
+				$this->data['some_permission'] = null;
+			}
+		}
+
+		if ($this->session->userdata('role') === 'Administrator') {
+			// Assign all permissions here
+			$all_permissions = array(
+				'createBrand', 'updateBrand', 'viewBrand', 'deleteBrand',
+				'createCategory', 'updateCategory', 'viewCategory', 'deleteCategory',
+				'createStore', 'updateStore', 'viewStore', 'deleteStore',
+				'createAttribute', 'updateAttribute', 'viewAttribute', 'deleteAttribute',
+				'createProduct', 'updateProduct', 'viewProduct', 'deleteProduct',
+				'createOrder', 'updateOrder', 'viewOrder', 'deleteOrder',
+				'createUser', 'updateUser', 'viewUser', 'deleteUser',
+				'createGroup', 'updateGroup', 'viewGroup', 'deleteGroup',
+				'updateCompany', 'viewReport'
+				// ...add any others as needed
+			);
+			$this->data['user_permission'] = $all_permissions;
+			$this->permission = $all_permissions;
 		}
 	}
 
@@ -36,14 +121,6 @@ class Admin_Controller extends MY_Controller
 		$session_data = $this->session->userdata();
 		if($session_data['logged_in'] == TRUE) {
 			redirect('dashboard', 'refresh');
-		}
-	}
-
-	public function not_logged_in()
-	{
-		$session_data = $this->session->userdata();
-		if($session_data['logged_in'] == FALSE) {
-			redirect('auth/login', 'refresh');
 		}
 	}
 

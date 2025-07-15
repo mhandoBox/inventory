@@ -41,7 +41,7 @@
           <?php endif; ?>
 
          
-            <form role="form" action="<?php base_url('Controller_Members/create') ?>" method="post">
+            <form role="form" action="<?php echo base_url('Controller_Members/create') ?>" method="post">
               <div class="box-body">
 
                 <?php echo validation_errors(); ?>

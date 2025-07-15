@@ -27,32 +27,27 @@ class Reports extends Admin_Controller
 			$today_year = $this->input->post('select_year');
 		}
 
-		$parking_data = $this->model_reports->getOrderData($today_year);
+		$order_data = $this->model_reports->getOrderData($today_year);
 		$this->data['report_years'] = $this->model_reports->getOrderYear();
 		
+		// Initialize monthly data array
+		$monthly_data = array();
+		for($i = 1; $i <= 12; $i++) {
+			$monthly_data[$i] = 0;
+		}
 
-		$final_parking_data = array();
-		foreach ($parking_data as $k => $v) {
-			
-			if(count($v) > 1) {
-				$total_amount_earned = array();
-				foreach ($v as $k2 => $v2) {
-					if($v2) {
-						$total_amount_earned[] = $v2['gross_amount'];						
-					}
-				}
-				$final_parking_data[$k] = array_sum($total_amount_earned);	
+		// Process order data and group by month
+		foreach ($order_data as $order) {
+			if($order && isset($order['date_time']) && isset($order['gross_amount'])) {
+				$month = date('n', strtotime($order['date_time'])); // Get month number (1-12)
+				$monthly_data[$month] += floatval($order['gross_amount']);
 			}
-			else {
-				$final_parking_data[$k] = 0;	
-			}
-			
 		}
 		
 		$this->data['selected_year'] = $today_year;
 		$this->data['company_currency'] = $this->company_currency();
-		$this->data['results'] = $final_parking_data;
+		$this->data['results'] = $monthly_data;
 
 		$this->render_template('reports/index', $this->data);
 	}
-}	
+}

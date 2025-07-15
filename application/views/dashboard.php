@@ -1,4 +1,3 @@
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
@@ -19,7 +18,7 @@
     <!-- Main content -->
     <section class="content">
       <!-- Small boxes (Stat box) -->
-      <?php if($is_admin == true): ?>
+      <?php if(!empty($is_admin) || !empty($is_manager)): ?>
 
         <div class="row">
           <div class="col-lg-3 col-xs-6">
