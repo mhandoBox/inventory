@@ -36,25 +36,11 @@ class Controller_Reports extends Admin_Controller
             'date_from' => $this->input->get('date_from'),
             'date_to' => $this->input->get('date_to'),
             'customer' => $this->input->get('customer'),
+            'status' => $this->input->get('status')
         );
 
         // Data
         $report = $this->Model_reporting->getSalesReport($filters);
-        // For each sale, fetch its items and convert status
-        if (!empty($report) && is_array($report)) {
-            foreach ($report as &$sale) {
-                if (isset($sale['order_id'])) {
-                    $sale['items'] = $this->Model_reporting->getSaleItems($sale['order_id']);
-                } else {
-                    $sale['items'] = array();
-                }
-                // Convert status to Paid/Unpaid
-                if (isset($sale['status'])) {
-                    $sale['status'] = ($sale['status'] == 1) ? 'Unpaid' : 'Paid';
-                }
-            }
-            unset($sale);
-        }
         $aggregates = $this->Model_reporting->getSalesAggregates($filters);
         $customers = $this->Model_reporting->getCustomerList();
 
@@ -165,21 +151,47 @@ class Controller_Reports extends Admin_Controller
         } elseif ($format == 'pdf') {
             // PDF export (requires dompdf or similar library)
             // For now, output HTML for print-to-PDF
-            echo '<html><head><title>' . ucfirst($type) . ' Report</title></head><body>';
+            echo '<html><head><title>' . ucfirst($type) . ' Report</title>';
+            echo '<style>table { border-collapse: collapse; width: 100%; } th, td { border: 1px solid #000; padding: 8px; } .items-table { margin-left: 20px; font-size: 90%; }</style>';
+            echo '</head><body>';
             echo '<h2>' . ucfirst($type) . ' Report</h2>';
-            echo '<table border="1" cellpadding="5" cellspacing="0">';
+            echo '<p>Generated on: ' . date('Y-m-d H:i:s') . '</p>';
+            if ($type == 'sales') {
+                echo '<p>Period: ' . (isset($filters['date_from']) ? htmlspecialchars($filters['date_from']) : 'N/A') . ' to ' . 
+                     (isset($filters['date_to']) ? htmlspecialchars($filters['date_to']) : 'N/A') . '</p>';
+            }
+            echo '<table>';
             if (!empty($data) && is_array($data)) {
                 echo '<tr>';
                 foreach (array_keys(reset($data)) as $col) {
-                    echo '<th>' . htmlspecialchars($col) . '</th>';
+                    if ($col !== 'items') { // Exclude items column for main table
+                        echo '<th>' . htmlspecialchars($col) . '</th>';
+                    }
                 }
                 echo '</tr>';
                 foreach ($data as $row) {
                     echo '<tr>';
-                    foreach ($row as $cell) {
-                        echo '<td>' . htmlspecialchars($cell) . '</td>';
+                    foreach ($row as $key => $cell) {
+                        if ($key !== 'items') {
+                            echo '<td>' . htmlspecialchars($cell) . '</td>';
+                        }
                     }
                     echo '</tr>';
+                    // Add items table for sales report
+                    if ($type == 'sales' && !empty($row['items'])) {
+                        echo '<tr><td colspan="' . (count(array_keys($row)) - 1) . '">';
+                        echo '<table class="items-table">';
+                        echo '<tr><th>Item</th><th>Qty</th><th>Unit Price</th><th>Total</th></tr>';
+                        foreach ($row['items'] as $item) {
+                            echo '<tr>';
+                            echo '<td>' . (isset($item['name']) ? htmlspecialchars($item['name']) : 'N/A') . '</td>';
+                            echo '<td>' . (isset($item['quantity']) ? number_format($item['quantity'], 2) : '0.00') . '</td>';
+                            echo '<td>' . (isset($item['unit_price']) ? number_format($item['unit_price'], 2) : '0.00') . '</td>';
+                            echo '<td>' . (isset($item['total']) ? number_format($item['total'], 2) : '0.00') . '</td>';
+                            echo '</tr>';
+                        }
+                        echo '</table></td></tr>';
+                    }
                 }
             }
             echo '</table></body></html>';
@@ -209,3 +221,4 @@ class Controller_Reports extends Admin_Controller
         echo json_encode($data);
     }
 }
+?>

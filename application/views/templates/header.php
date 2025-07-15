@@ -14,7 +14,6 @@
   <link rel="stylesheet" href="<?php echo base_url('assets/bower_components/Ionicons/css/ionicons.min.css') ?>">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/AdminLTE.min.css') ?>">
-  
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/skins/_all-skins.min.css') ?>">
@@ -28,7 +27,6 @@
   <!-- <link rel="stylesheet" href="<?php echo base_url('assets/bower_components/style/style.css') ?>"> -->
   <link rel="stylesheet" href="<?php echo base_url('assets/bower_components/style/main.css') ?>"> 
 
-  <!-- icheck -->
   <!-- iCheck for checkboxes and radio inputs -->
   <link rel="stylesheet" href="<?php echo base_url('assets/plugins/iCheck/all.css') ?>">
 
@@ -42,50 +40,32 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-  <!-- jQuery 3 -->
-  <script src="<?php echo base_url('assets/bower_components/jquery/dist/jquery.min.js') ?>"></script>
-  
-  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-  <script>
-    $.widget.bridge('uibutton', $.ui.button);
-  </script>
-  <!-- Bootstrap 3.3.7 -->
-  <script src="<?php echo base_url('assets/bower_components/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
- 
-  <!-- jQuery Knob Chart -->
+  <!-- Load jQuery first -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <!-- Then jQuery UI -->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <!-- Then Bootstrap -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!-- Then DataTables -->
+  <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
+
+  <!-- Other scripts (keep only if needed and not conflicting) -->
   <script src="<?php echo base_url('assets/bower_components/jquery-knob/dist/jquery.knob.min.js') ?>"></script>
-  <!-- daterangepicker -->
-  <script src="<?php echo base_url('assets/bower_components/bootstrap-daterangepicker/daterangepicker.js') ?>"></script>
-  <!-- Bootstrap WYSIHTML5 -->
   <script src="<?php echo base_url('assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') ?>"></script>
-  <!-- Slimscroll -->
   <script src="<?php echo base_url('assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') ?>"></script>
-  <!-- FastClick -->
   <script src="<?php echo base_url('assets/bower_components/fastclick/lib/fastclick.js') ?>"></script>
-  <!-- Select2 -->
   <script src="<?php echo base_url('assets/bower_components/select2/dist/js/select2.full.min.js') ?>"></script>
-  <!-- AdminLTE App -->  
   <script src="<?php echo base_url('assets/dist/js/adminlte.min.js') ?>"></script>
-  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <!-- Add this before your dashboard.js script -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
   <script src="<?php echo base_url('assets/dist/js/pages/dashboard.js') ?>"></script>
-  <!-- AdminLTE for demo purposes -->
   <script src="<?php echo base_url('assets/dist/js/demo.js') ?>"></script>
   <script src="<?php echo base_url('assets/plugins/fileinput/fileinput.min.js') ?>"></script>
-
-  <!-- icheck -->
   <script src="<?php echo base_url('assets/plugins/iCheck/icheck.min.js') ?>"></script>
 
-  <!-- DataTables -->
-<script src="<?php echo base_url('assets/bower_components/datatables.net/js/jquery.dataTables.min.js') ?>"></script>
-<script src="<?php echo base_url('assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') ?>"></script>
-
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap.min.js"></script>
-
 </head>
-<body class="hold-transition skin-red sidebar-mini">
+<body class="hold-transition skin-red sidebar-mini fixed">
 <div class="wrapper">
-
-  

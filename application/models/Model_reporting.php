@@ -1,4 +1,3 @@
-```php
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
@@ -9,20 +8,27 @@ class Model_reporting extends CI_Model {
 
     // Get items for a specific sale/order
     public function getSaleItems($order_id) {
-        $this->db->select('orders_item.product_name as name, orders_item.qty as quantity, orders_item.rate as unit_price, (orders_item.qty * orders_item.rate) as total');
+        $this->db->select('orders_item.product_name as name, orders_item.qty as quantity, orders_item.rate as unit_price, orders_item.amount as total');
         $this->db->from('orders_item');
         $this->db->where('orders_item.order_id', $order_id);
         $query = $this->db->get();
-        if ($query && $query->num_rows() > 0) {
-            return $query->result_array();
+        
+        if ($query === FALSE) {
+            log_message('error', 'getSaleItems failed for order_id ' . $order_id . ': ' . json_encode($this->db->error()));
+            return array();
         }
-        return array();
+        
+        $result = $query->num_rows() > 0 ? $query->result_array() : array();
+        if (empty($result)) {
+            log_message('debug', 'No items found for order_id ' . $order_id);
+        }
+        return $result;
     }
 
     // Sales Report method
     public function getSalesReport($filters = array()) {
         $this->db->select('orders.id as order_id, orders.date_time as date, orders.customer_name as customer, 
-                          orders.gross_amount as total, orders.paid_status as status, COUNT(orders_item.id) as item_count');
+                          orders.net_amount as total, orders.paid_status as status, COUNT(orders_item.id) as total_items');
         $this->db->from('orders');
         $this->db->join('orders_item', 'orders_item.order_id = orders.id', 'left');
         $this->db->group_by('orders.id');
@@ -40,14 +46,23 @@ class Model_reporting extends CI_Model {
             $this->db->where('orders.paid_status', $filters['status']);
         }
         
-        $this->db->order_by('orders.date_time', 'DESC');
+        $this->db->order_by('orders.date_time', 'ASC'); // Sort from oldest to latest
         $query = $this->db->get();
+        
+        if ($query === FALSE) {
+            log_message('error', 'getSalesReport failed: ' . json_encode($this->db->error()));
+            $this->session->set_flashdata('error', 'Error fetching sales data.');
+            return array();
+        }
         
         $results = $query->result_array();
         
         // Fetch items for each order
         foreach ($results as &$result) {
             $result['items'] = $this->getSaleItems($result['order_id']);
+            if (empty($result['items']) && $result['total_items'] > 0) {
+                log_message('error', 'Mismatch: total_items ' . $result['total_items'] . ' but no items for order_id ' . $result['order_id']);
+            }
         }
         
         return $results;
@@ -131,7 +146,7 @@ class Model_reporting extends CI_Model {
     // Helper method to calculate general metrics
     private function calculateGeneralMetrics($filters) {
         // Get total revenue
-        $this->db->select('SUM(gross_amount) as total_revenue, COUNT(*) as total_orders');
+        $this->db->select('SUM(net_amount) as total_revenue, COUNT(*) as total_orders');
         $this->db->from('orders');
         if (!empty($filters['date_from'])) {
             $this->db->where('DATE(date_time) >=', $filters['date_from']);
@@ -175,7 +190,7 @@ class Model_reporting extends CI_Model {
 
     // Sales Aggregates
     public function getSalesAggregates($filters = array()) {
-        $this->db->select('SUM(gross_amount) as total_revenue, COUNT(*) as total_orders, AVG(gross_amount) as avg_order_value');
+        $this->db->select('SUM(net_amount) as total_revenue, COUNT(*) as total_orders, AVG(net_amount) as avg_order_value');
         $this->db->from('orders');
         
         if (!empty($filters['date_from'])) {
@@ -193,14 +208,19 @@ class Model_reporting extends CI_Model {
         
         return array(
             'total_revenue' => $result['total_revenue'] ? $result['total_revenue'] : 0,
-            'total_items' => $result['total_orders'] ? $result['total_orders'] : 0,
-            'avg_order_value' => $result['avg_order_value'] ? $result['avg_order_value'] : 0
+            'total_orders' => $result['total_orders'] ? $result['total_orders'] : 0,
+            'avg_order_value' => $result['avg_order_value'] ? $result['avg_order_value'] : 0,
+            'conversion_rate' => 0 // Placeholder, as not calculated in model
         );
     }
 
     // Customer List
     public function getCustomerList() {
-        $query = $this->db->get('customers');
+        $this->db->select('id, customer_name as name');
+        $this->db->from('orders');
+        $this->db->where('customer_name IS NOT NULL');
+        $this->db->group_by('customer_name');
+        $query = $this->db->get();
         if ($query && $query instanceof CI_DB_result) {
             return $query->result_array();
         }
@@ -272,7 +292,7 @@ class Model_reporting extends CI_Model {
 
     // Sales Chart Data
     public function getSalesChartData($filters = array()) {
-        $this->db->select('DATE(date_time) as date, SUM(gross_amount) as total');
+        $this->db->select('DATE(date_time) as date, SUM(net_amount) as total');
         $this->db->from('orders');
         if (!empty($filters['date_from'])) {
             $this->db->where('DATE(date_time) >=', $filters['date_from']);
@@ -313,4 +333,3 @@ class Model_reporting extends CI_Model {
     }
 }
 ?>
-```

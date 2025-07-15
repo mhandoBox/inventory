@@ -1,6 +1,27 @@
-```php
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/b-1.7.0/b-html5-1.7.0/b-print-1.7.0/datatables.min.css"/>
+<!-- reporting/sales_report.php -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css"/>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css"/>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+
+<style>
+@media print {
+  body { font-family: Arial, sans-serif; }
+  .no-print { display: none; }
+  .content-wrapper { margin: 0; padding: 0; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { border: 1px solid #000; padding: 8px; font-size: 12px; }
+  .items-table { margin-left: 20px; font-size: 11px; margin-top: 10px; }
+  .print-header { text-align: center; margin-bottom: 20px; }
+  .print-footer { text-align: center; margin-top: 20px; font-size: 10px; }
+}
+.dt-buttons { margin-bottom: 10px; }
+.dt-button { margin-right: 5px; }
+.items-table-container { display: none; }
+@media print {
+  .items-table-container { display: block; }
+}
+</style>
 
 <div class="content-wrapper">
   <section class="content-header">
@@ -18,12 +39,12 @@
         <?php if($this->session->flashdata('success')): ?>
           <div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert">×</button>
-            <?php echo $this->session->flashdata('success'); ?>
+            <?php echo htmlspecialchars($this->session->flashdata('success')); ?>
           </div>
         <?php elseif($this->session->flashdata('error')): ?>
           <div class="alert alert-danger alert-dismissible">
             <button type="button" class="close" data-dismiss="alert">×</button>
-            <?php echo $this->session->flashdata('error'); ?>
+            <?php echo htmlspecialchars($this->session->flashdata('error')); ?>
           </div>
         <?php endif; ?>
 
@@ -49,21 +70,23 @@
                 <form method="get" class="form-inline">
                   <div class="form-group">
                     <label for="date_from">From:</label>
-                    <input type="date" class="form-control input-sm" id="date_from" name="date_from" value="<?php echo isset($filters['date_from']) ? $filters['date_from'] : ''; ?>">
+                    <input type="date" class="form-control input-sm" id="date_from" name="date_from" value="<?php echo isset($filters['date_from']) ? htmlspecialchars($filters['date_from']) : ''; ?>">
                   </div>
                   <div class="form-group">
                     <label for="date_to">To:</label>
-                    <input type="date" class="form-control input-sm" id="date_to" name="date_to" value="<?php echo isset($filters['date_to']) ? $filters['date_to'] : ''; ?>">
+                    <input type="date" class="form-control input-sm" id="date_to" name="date_to" value="<?php echo isset($filters['date_to']) ? htmlspecialchars($filters['date_to']) : ''; ?>">
                   </div>
                   <div class="form-group">
                     <label for="customer">Customer:</label>
                     <select class="form-control input-sm" id="customer" name="customer">
                       <option value="">All Customers</option>
-                      <?php foreach ($customers as $customer): ?>
-                        <option value="<?php echo $customer['id']; ?>" <?php echo (isset($filters['customer']) && $filters['customer'] == $customer['id'] ? 'selected' : ''); ?>>
-                          <?php echo $customer['name']; ?>
-                        </option>
-                      <?php endforeach; ?>
+                      <?php if (!empty($customers)): ?>
+                        <?php foreach ($customers as $customer): ?>
+                          <option value="<?php echo htmlspecialchars($customer['id']); ?>" <?php echo (isset($filters['customer']) && $filters['customer'] == $customer['id'] ? 'selected' : ''); ?>>
+                            <?php echo htmlspecialchars($customer['name']); ?>
+                          </option>
+                        <?php endforeach; ?>
+                      <?php endif; ?>
                     </select>
                   </div>
                   <div class="form-group">
@@ -71,7 +94,7 @@
                     <select class="form-control input-sm" id="status" name="status">
                       <option value="">All</option>
                       <option value="1" <?php echo (isset($filters['status']) && $filters['status'] == '1' ? 'selected' : ''); ?>>Unpaid</option>
-                      <option value="0" <?php echo (isset($filters['status']) && $filters['status'] == '0' ? 'selected' : ''); ?>>Paid</option>
+                      <option value="2" <?php echo (isset($filters['status']) && $filters['status'] == '2' ? 'selected' : ''); ?>>Paid</option>
                     </select>
                   </div>
                   <button type="submit" class="btn btn-primary btn-sm">Filter</button>
@@ -97,7 +120,7 @@
                   <span class="info-box-icon bg-blue"><i class="fa fa-shopping-cart"></i></span>
                   <div class="info-box-content">
                     <span class="info-box-text">Total Orders</span>
-                    <span class="info-box-number"><?php echo isset($aggregates['total_items']) ? number_format($aggregates['total_items']) : '0'; ?></span>
+                    <span class="info-box-number"><?php echo isset($aggregates['total_orders']) ? number_format($aggregates['total_orders']) : '0'; ?></span>
                   </div>
                 </div>
               </div>
@@ -115,7 +138,7 @@
                   <span class="info-box-icon bg-red"><i class="fa fa-percent"></i></span>
                   <div class="info-box-content">
                     <span class="info-box-text">Conversion Rate</span>
-                    <span class="info-box-number"><?php echo isset($aggregates['conversion_rate']) ? number_format($aggregates['conversion_rate'], 2).'%' : 'N/A'; ?></span>
+                    <span class="info-box-number"><?php echo isset($aggregates['conversion_rate']) ? number_format($aggregates['conversion_rate'], 2) . '%' : 'N/A'; ?></span>
                   </div>
                 </div>
               </div>
@@ -127,30 +150,30 @@
                   <th>Order ID</th>
                   <th>Date</th>
                   <th>Customer</th>
-                  <th>Items</th>
+                  <th>Total Items</th>
                   <th>Total Amount</th>
                   <th>Status</th>
-                  <th>Actions</th>
+                  <th class="no-print">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 <?php if (!empty($report)): ?>
                   <?php foreach ($report as $row): ?>
                     <tr>
-                      <td><?php echo htmlspecialchars($row['order_id']); ?></td>
-                      <td><?php echo date('Y-m-d H:i', strtotime($row['date'])); ?></td>
-                      <td><?php echo htmlspecialchars($row['customer']); ?></td>
-                      <td><?php echo count($row['items'] ?? []); ?></td>
-                      <td><?php echo number_format($row['total'], 2); ?></td>
+                      <td><?php echo isset($row['order_id']) ? htmlspecialchars($row['order_id']) : '-'; ?></td>
+                      <td><?php echo isset($row['date']) ? date('Y-m-d H:i', strtotime($row['date'])) : '-'; ?></td>
+                      <td><?php echo isset($row['customer']) ? htmlspecialchars($row['customer']) : '-'; ?></td>
+                      <td><?php echo isset($row['total_items']) ? number_format($row['total_items'], 0) : 0; ?></td>
+                      <td><?php echo isset($row['total']) ? number_format($row['total'], 2) : '0.00'; ?></td>
                       <td>
-                        <span class="label label-<?php echo ($row['status'] == 'Paid' ? 'success' : 'danger'); ?>">
-                          <?php echo ucfirst($row['status']); ?>
+                        <span class="label label-<?php echo (isset($row['status']) && $row['status'] == '2' ? 'success' : 'danger'); ?>">
+                          <?php echo (isset($row['status']) && $row['status'] == '2' ? 'Paid' : 'Unpaid'); ?>
                         </span>
                       </td>
-                      <td>
+                      <td class="no-print">
                         <button class="btn btn-xs btn-info view-items" 
-                          data-orderid="<?php echo htmlspecialchars($row['order_id']); ?>"
-                          data-items='<?php echo htmlspecialchars(json_encode($row['items'] ?? []), ENT_QUOTES, 'UTF-8'); ?>'>
+                                data-orderid="<?php echo isset($row['order_id']) ? htmlspecialchars($row['order_id']) : ''; ?>"
+                                data-items='<?php echo isset($row['items']) ? htmlspecialchars(json_encode($row['items']), ENT_QUOTES, 'UTF-8') : '[]'; ?>'>
                           <i class="fa fa-eye"></i> View Items
                         </button>
                       </td>
@@ -161,6 +184,38 @@
                 <?php endif; ?>
               </tbody>
             </table>
+
+            <!-- Items tables for printing -->
+            <?php if (!empty($report)): ?>
+              <?php foreach ($report as $row): ?>
+                <div class="items-table-container" data-orderid="<?php echo isset($row['order_id']) ? htmlspecialchars($row['order_id']) : ''; ?>">
+                  <table class="table table-bordered items-table">
+                    <thead>
+                      <tr>
+                        <th>Item</th>
+                        <th>Qty</th>
+                        <th>Unit Price</th>
+                        <th>Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php if (!empty($row['items'])): ?>
+                        <?php foreach ($row['items'] as $item): ?>
+                          <tr>
+                            <td><?php echo isset($item['name']) ? htmlspecialchars($item['name']) : 'N/A'; ?></td>
+                            <td><?php echo isset($item['quantity']) ? number_format($item['quantity'], 2) : '0.00'; ?></td>
+                            <td><?php echo isset($item['unit_price']) ? number_format($item['unit_price'], 2) : '0.00'; ?></td>
+                            <td><?php echo isset($item['total']) ? number_format($item['total'], 2) : '0.00'; ?></td>
+                          </tr>
+                        <?php endforeach; ?>
+                      <?php else: ?>
+                        <tr><td colspan="4">No items found for this order</td></tr>
+                      <?php endif; ?>
+                    </tbody>
+                  </table>
+                </div>
+              <?php endforeach; ?>
+            <?php endif; ?>
           </div>
         </div>
       </div>
@@ -169,7 +224,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="saleDetailsModal" tabindex="-1" role="dialog">
+<div class="modal fade no-print" id="saleDetailsModal" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -186,84 +241,172 @@
   </div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script>var $j = jQuery.noConflict(true);</script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/b-1.7.0/b-html5-1.7.0/b-print-1.7.0/datatables.min.js"></script>
 <script type="text/javascript">
 $j(document).ready(function() {
-  // Initialize DataTable
-  var table = $j('#reportTable').DataTable({
-    dom: 'Blfrtip',
-    buttons: [
-      'copy', 
-      {
-        extend: 'csv',
-        title: 'Sales_Report_<?php echo date('Y-m-d'); ?>',
-        exportOptions: {
-          columns: ':not(:last-child)'
-        }
-      },
-      {
-        extend: 'excel',
-        title: 'Sales_Report_<?php echo date('Y-m-d'); ?>',
-        exportOptions: {
-          columns: ':not(:last-child)'
-        }
-      },
-      {
-        extend: 'print',
-        title: 'Sales Report - <?php echo date('Y-m-d'); ?>',
-        exportOptions: {
-          columns: ':not(:last-child)'
+  console.log('Script execution started');
+  console.log('jQuery version:', $j.fn.jquery);
+  console.log('jQuery UI loaded:', typeof $j.ui !== 'undefined');
+  console.log('Bootstrap loaded:', typeof $j.fn.modal !== 'undefined');
+  console.log('DataTables loaded:', typeof $j.fn.DataTable !== 'undefined');
+  console.log('DataTable initialization started');
+
+  // Validate table structure
+  var thCount = $j('#reportTable thead th').length;
+  var tdCount = $j('#reportTable tbody tr:first-child td').length;
+  console.log('Table structure: ' + thCount + ' headers, ' + tdCount + ' columns in first row');
+
+  if (thCount !== tdCount) {
+    console.error('Table structure mismatch: headers (' + thCount + ') do not match columns (' + tdCount + ')');
+  }
+
+  try {
+    // Initialize DataTable
+    var table = $j('#reportTable').DataTable({
+      dom: 'Bflrtip',
+      buttons: [
+        {
+          extend: 'copy',
+          text: 'Copy',
+          className: 'dt-button',
+          exportOptions: {
+            columns: ':not(:last-child)'
+          }
         },
-        customize: function (win) {
-          $(win.document.body).find('h1').css('text-align','center');
-          $(win.document.body).find('table').addClass('compact').css('font-size', 'inherit');
+        {
+          extend: 'csv',
+          text: 'CSV',
+          title: 'Sales_Report_<?php echo date('Y-m-d'); ?>',
+          className: 'dt-button',
+          exportOptions: {
+            columns: ':not(:last-child)'
+          }
+        },
+        {
+          extend: 'excel',
+          text: 'Excel',
+          title: 'Sales_Report_<?php echo date('Y-m-d'); ?>',
+          className: 'dt-button',
+          exportOptions: {
+            columns: ':not(:last-child)'
+          }
+        },
+        {
+          extend: 'print',
+          text: 'Print',
+          title: '',
+          className: 'dt-button',
+          exportOptions: {
+            columns: ':not(:last-child)'
+          },
+          customize: function(win) {
+            console.log('Print button customization called');
+            $j(win.document.body).prepend(
+              '<div class="print-header">' +
+              '<h1>Sales Report</h1>' +
+              '<p>Generated on: <?php echo date('Y-m-d H:i:s'); ?> EAT</p>' +
+              '<p>Period: <?php echo isset($filters['date_from']) ? htmlspecialchars($filters['date_from']) : 'N/A'; ?> to ' +
+              '<?php echo isset($filters['date_to']) ? htmlspecialchars($filters['date_to']) : 'N/A'; ?></p>' +
+              '</div>'
+            );
+            $j(win.document.body).append(
+              '<div class="print-footer">Generated by System - Page 1 of 1</div>'
+            );
+            $j(win.document.body).find('#reportTable').addClass('compact').css({
+              'font-size': '12px',
+              'border-collapse': 'collapse',
+              'width': '100%'
+            });
+            $j(win.document.body).find('#reportTable th, #reportTable td').css({
+              'border': '1px solid #000',
+              'padding': '8px'
+            });
+            // Append items tables after each row
+            $j('#reportTable tbody tr').each(function() {
+              var orderId = $j(this).find('.view-items').data('orderid');
+              if (orderId) {
+                var itemsTable = $j('.items-table-container[data-orderid="' + orderId + '"]').clone();
+                itemsTable.css('display', 'block');
+                $j(this).after('<tr><td colspan="6">' + itemsTable.prop('outerHTML') + '</td></tr>');
+              }
+            });
+          }
         }
+      ],
+      order: [[1, 'desc']],
+      pageLength: 10,
+      lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+      pagingType: 'full_numbers',
+      responsive: true,
+      language: {
+        search: "_INPUT_",
+        searchPlaceholder: "Search...",
+        lengthMenu: "Show _MENU_ entries",
+        info: "Showing _START_ to _END_ of _TOTAL_ entries",
+        infoEmpty: "Showing 0 to 0 of 0 entries",
+        infoFiltered: "(filtered from _MAX_ total entries)",
+        paginate: {
+          first: "First",
+          last: "Last",
+          next: "Next",
+          previous: "Previous"
+        }
+      },
+      initComplete: function() {
+        console.log('DataTable initialized successfully');
       }
-    ],
-    order: [[1, 'desc']],
-    pageLength: 10,
-    lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-    pagingType: 'full_numbers',
-    responsive: true,
-    language: {
-      search: "_INPUT_",
-      searchPlaceholder: "Search...",
-      lengthMenu: "Show _MENU_ entries",
-      info: "Showing _START_ to _END_ of _TOTAL_ entries",
-      infoEmpty: "Showing 0 to 0 of 0 entries",
-      infoFiltered: "(filtered from _MAX_ total entries)",
-      paginate: {
-        first: "First",
-        last: "Last",
-        next: "Next",
-        previous: "Previous"
-      }
-    }
-  });
+    });
+  } catch (e) {
+    console.error('DataTable initialization failed:', e);
+  }
 
   // Show sale details modal
-  $j(document).on('click', '.view-items', function() {
-    var orderId = $j(this).data('orderid');
-    var items = $j(this).data('items');
+  $j(document).on('click', '.view-items', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
     
-    $j('#modalOrderId').text(orderId);
+    console.log('View Items button clicked');
+    
+    var orderId = $j(this).data('orderid');
+    var items;
+    try {
+      items = $j(this).data('items') || [];
+      if (typeof items === 'string') {
+        items = JSON.parse(items);
+      }
+    } catch (err) {
+      console.error('Error parsing data-items for order_id ' + orderId + ': ', err);
+      items = [];
+    }
+    
+    console.log('Order ID:', orderId, 'Items:', items);
+    
+    $j('#modalOrderId').text(orderId || 'N/A');
     
     var html = '<div class="table-responsive"><table class="table table-bordered">';
     html += '<thead><tr><th>Item</th><th>Qty</th><th>Unit Price</th><th>Total</th></tr></thead><tbody>';
     
-    if (items && items.length > 0) {
+    if (items && Array.isArray(items) && items.length > 0) {
       items.forEach(function(item) {
         html += '<tr>';
-        html += '<td>' + (item.name || '') + '</td>';
-        html += '<td>' + (item.quantity || 0) + '</td>';
-        html += '<td>' + parseFloat(item.unit_price || 0).toFixed(2) + '</td>';
-        html += '<td>' + parseFloat(item.total || 0).toFixed(2) + '</td>';
+        html += '<td>' + (item.name ? $j('<div/>').text(item.name).html() : 'N/A') + '</td>';
+        html += '<td>' + (item.quantity ? parseFloat(item.quantity).toFixed(2) : '0.00') + '</td>';
+        html += '<td>' + (item.unit_price ? parseFloat(item.unit_price).toFixed(2) : '0.00') + '</td>';
+        html += '<td>' + (item.total ? parseFloat(item.total).toFixed(2) : '0.00') + '</td>';
         html += '</tr>';
       });
     } else {
-      html += '<tr><td colspan="4" class="text-center">No item data available</td></tr>';
+      html += '<tr><td colspan="4" class="text-center">No items found for this order</td></tr>';
     }
     
     html += '</tbody></table></div>';
@@ -272,4 +415,3 @@ $j(document).ready(function() {
   });
 });
 </script>
-```
