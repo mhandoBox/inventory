@@ -1,6 +1,4 @@
-
-
-  <!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -128,6 +126,13 @@
                         <td><input type="checkbox" name="permission[]" id="permission" value="updateCompany" class="minimal"></td>
                         <td> - </td>
                         <td> - </td>
+                      </tr>
+                      <tr>
+                        <td>Accounting</td>
+                        <td><input type="checkbox" name="permission[]" value="viewAccounting" class="minimal"></td>
+                        <td><input type="checkbox" name="permission[]" value="updateAccounting" class="minimal"></td>
+                        <td><input type="checkbox" name="permission[]" value="reportAccounting" class="minimal"></td>
+                        <td><input type="checkbox" name="permission[]" value="deleteAccounting" class="minimal"></td>
                       </tr>
                   
                     </tbody>

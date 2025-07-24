@@ -1,5 +1,4 @@
 <?php 
-
 class MY_Controller extends CI_Controller 
 {
     public $data = array();
@@ -64,251 +63,125 @@ class MY_Controller extends CI_Controller
 
 class Admin_Controller extends MY_Controller 
 {
-	var $permission = array();
+    var $permission = array();
 
-	public function __construct() 
-	{
-		parent::__construct();
+    public function __construct() 
+    {
+        parent::__construct();
 
-		$group_data = array();
-		if(empty($this->session->userdata('logged_in'))) {
-			$session_data = array('logged_in' => FALSE);
-			$this->session->set_userdata($session_data);
-		}
-		else {
-			$user_id = $this->session->userdata('id');
-			$this->load->model('model_groups');
-			$group_data = $this->model_groups->getUserGroupByUserId($user_id);
+        $group_data = array();
+        if (empty($this->session->userdata('logged_in'))) {
+            $session_data = array('logged_in' => FALSE);
+            $this->session->set_userdata($session_data);
+        } else {
+            $user_id = $this->session->userdata('id');
+            $this->load->model('model_groups');
+            $group_data = $this->model_groups->getUserGroupByUserId($user_id);
 
-			$user_permission = array();
-			if (is_array($group_data) && isset($group_data['permission']) && !empty($group_data['permission'])) {
-				$user_permission = @unserialize($group_data['permission']);
-				if ($user_permission === false) {
-					$user_permission = array();
-				}
-			}
-			$this->data['user_permission'] = $user_permission;
-			$this->permission = $user_permission;
+            $user_permission = array();
+            if (is_array($group_data) && isset($group_data['permission']) && !empty($group_data['permission'])) {
+                $user_permission = @unserialize($group_data['permission']);
+                if ($user_permission === false) {
+                    $user_permission = array();
+                }
+            }
+            $this->data['user_permission'] = $user_permission;
+            $this->permission = $user_permission;
 
-			if (is_array($user_permission) && isset($user_permission['some_permission'])) {
-				$this->data['some_permission'] = $user_permission['some_permission'];
-			} else {
-				$this->data['some_permission'] = null;
-			}
-		}
+            if (is_array($user_permission) && isset($user_permission['some_permission'])) {
+                $this->data['some_permission'] = $user_permission['some_permission'];
+            } else {
+                $this->data['some_permission'] = null;
+            }
+        }
 
-		if ($this->session->userdata('role') === 'Administrator') {
-			// Assign all permissions here
-			$all_permissions = array(
-				'createBrand', 'updateBrand', 'viewBrand', 'deleteBrand',
-				'createCategory', 'updateCategory', 'viewCategory', 'deleteCategory',
-				'createStore', 'updateStore', 'viewStore', 'deleteStore',
-				'createAttribute', 'updateAttribute', 'viewAttribute', 'deleteAttribute',
-				'createProduct', 'updateProduct', 'viewProduct', 'deleteProduct',
-				'createOrder', 'updateOrder', 'viewOrder', 'deleteOrder',
-				'createUser', 'updateUser', 'viewUser', 'deleteUser',
-				'createGroup', 'updateGroup', 'viewGroup', 'deleteGroup',
-				'updateCompany', 'viewReport'
-				// ...add any others as needed
-			);
-			$this->data['user_permission'] = $all_permissions;
-			$this->permission = $all_permissions;
-		}
-	}
+        if ($this->session->userdata('role') === 'Administrator') {
+            // Assign all permissions here
+            $all_permissions = array(
+                'createBrand', 'updateBrand', 'viewBrand', 'deleteBrand',
+                'createCategory', 'updateCategory', 'viewCategory', 'deleteCategory',
+                'createStore', 'updateStore', 'viewStore', 'deleteStore',
+                'createAttribute', 'updateAttribute', 'viewAttribute', 'deleteAttribute',
+                'createProduct', 'updateProduct', 'viewProduct', 'deleteProduct',
+                'createOrder', 'updateOrder', 'viewOrder', 'deleteOrder',
+                'createUser', 'updateUser', 'viewUser', 'deleteUser',
+                'createGroup', 'updateGroup', 'viewGroup', 'deleteGroup',
+                'createExpense', 'updateExpense', 'viewExpense', 'deleteExpense',
+                'viewReport', 'updateCompany', 'viewAccounting', 'updateAccounting',
+                 'reportAccounting', 'deleteAccounting' // Restored for dashboard compatibility
+            );
+            $this->data['user_permission'] = $all_permissions;
+            $this->permission = $all_permissions;
+        }
+    }
 
-	public function logged_in()
-	{
-		$session_data = $this->session->userdata();
-		if($session_data['logged_in'] == TRUE) {
-			redirect('dashboard', 'refresh');
-		}
-	}
+    public function logged_in()
+    {
+        $session_data = $this->session->userdata();
+        if ($session_data['logged_in'] == TRUE) {
+            redirect('dashboard', 'refresh');
+        }
+    }
 
-	public function render_template($page = null, $data = array())
-	{
+    public function render_template($page = null, $data = array())
+    {
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/header_menu', $data);
+        $this->load->view('templates/side_menubar', $data);
+        $this->load->view($page, $data);
+        $this->load->view('templates/footer', $data);
+    }
 
-		$this->load->view('templates/header',$data);
-		$this->load->view('templates/header_menu',$data);
-		$this->load->view('templates/side_menubar',$data);
-		$this->load->view($page, $data);
-		$this->load->view('templates/footer',$data);
-	}
+    public function company_currency()
+    {
+        $this->load->model('model_company');
+        $company_currency = $this->model_company->getCompanyData(1);
+        $currencies = $this->currency();
+            
+        $currency = '';
+        foreach ($currencies as $key => $value) {
+            if ($key == $company_currency['currency']) {
+                $currency = $value;
+            }
+        }
+        return $currency;
+    }
 
-	public function company_currency()
-	{
-		$this->load->model('model_company');
-		$company_currency = $this->model_company->getCompanyData(1);
-		$currencies = $this->currency();
-			
-		$currency = '';
-		foreach ($currencies as $key => $value) {
-			if($key == $company_currency['currency']) {
-				$currency = $value;
-			}
-		}
-
-		return $currency;
-
-	}
-
-	
-	public function currency()
-	{
-		return $currency_symbols = array(
-		  'AED' => '&#1583;.&#1573;', // ?
-		  'AFN' => '&#65;&#102;',
-		  'ALL' => '&#76;&#101;&#107;',
-		  'ANG' => '&#402;',
-		  'AOA' => '&#75;&#122;', // ?
-		  'ARS' => '&#36;',
-		  'AUD' => '&#36;',
-		  'AWG' => '&#402;',
-		  'AZN' => '&#1084;&#1072;&#1085;',
-		  'BAM' => '&#75;&#77;',
-		  'BBD' => '&#36;',
-		  'BDT' => '&#2547;', // ?
-		  'BGN' => '&#1083;&#1074;',
-		  'BHD' => '.&#1583;.&#1576;', // ?
-		  'BIF' => '&#70;&#66;&#117;', // ?
-		  'BMD' => '&#36;',
-		  'BND' => '&#36;',
-		  'BOB' => '&#36;&#98;',
-		  'BRL' => '&#82;&#36;',
-		  'BSD' => '&#36;',
-		  'BTN' => '&#78;&#117;&#46;', // ?
-		  'BWP' => '&#80;',
-		  'BYR' => '&#112;&#46;',
-		  'BZD' => '&#66;&#90;&#36;',
-		  'CAD' => '&#36;',
-		  'CDF' => '&#70;&#67;',
-		  'CHF' => '&#67;&#72;&#70;',
-		  'CLP' => '&#36;',
-		  'CNY' => '&#165;',
-		  'COP' => '&#36;',
-		  'CRC' => '&#8353;',
-		  'CUP' => '&#8396;',
-		  'CVE' => '&#36;', // ?
-		  'CZK' => '&#75;&#269;',
-		  'DJF' => '&#70;&#100;&#106;', // ?
-		  'DKK' => '&#107;&#114;',
-		  'DOP' => '&#82;&#68;&#36;',
-		  'DZD' => '&#1583;&#1580;', // ?
-		  'EGP' => '&#163;',
-		  'ETB' => '&#66;&#114;',
-		  'EUR' => '&#8364;',
-		  'FJD' => '&#36;',
-		  'FKP' => '&#163;',
-		  'GBP' => '&#163;',
-		  'GEL' => '&#4314;', // ?
-		  'GHS' => '&#162;',
-		  'GIP' => '&#163;',
-		  'GMD' => '&#68;', // ?
-		  'GNF' => '&#70;&#71;', // ?
-		  'GTQ' => '&#81;',
-		  'GYD' => '&#36;',
-		  'HKD' => '&#36;',
-		  'HNL' => '&#76;',
-		  'HRK' => '&#107;&#110;',
-		  'HTG' => '&#71;', // ?
-		  'HUF' => '&#70;&#116;',
-		  'IDR' => '&#82;&#112;',
-		  'ILS' => '&#8362;',
-		  'INR' => '&#8377;',
-		  'IQD' => '&#1593;.&#1583;', // ?
-		  'IRR' => '&#65020;',
-		  'ISK' => '&#107;&#114;',
-		  'JEP' => '&#163;',
-		  'JMD' => '&#74;&#36;',
-		  'JOD' => '&#74;&#68;', // ?
-		  'JPY' => '&#165;',
-		  'KES' => '&#75;&#83;&#104;', // ?
-		  'KGS' => '&#1083;&#1074;',
-		  'KHR' => '&#6107;',
-		  'KMF' => '&#67;&#70;', // ?
-		  'KPW' => '&#8361;',
-		  'KRW' => '&#8361;',
-		  'KWD' => '&#1583;.&#1603;', // ?
-		  'KYD' => '&#36;',
-		  'KZT' => '&#1083;&#1074;',
-		  'LAK' => '&#8365;',
-		  'LBP' => '&#163;',
-		  'LKR' => '&#8360;',
-		  'LRD' => '&#36;',
-		  'LSL' => '&#76;', // ?
-		  'LTL' => '&#76;&#116;',
-		  'LVL' => '&#76;&#115;',
-		  'LYD' => '&#1604;.&#1583;', // ?
-		  'MAD' => '&#1583;.&#1605;.', //?
-		  'MDL' => '&#76;',
-		  'MGA' => '&#65;&#114;', // ?
-		  'MKD' => '&#1076;&#1077;&#1085;',
-		  'MMK' => '&#75;',
-		  'MNT' => '&#8366;',
-		  'MOP' => '&#77;&#79;&#80;&#36;', // ?
-		  'MRO' => '&#85;&#77;', // ?
-		  'MUR' => '&#8360;', // ?
-		  'MVR' => '.&#1923;', // ?
-		  'MWK' => '&#77;&#75;',
-		  'MXN' => '&#36;',
-		  'MYR' => '&#82;&#77;',
-		  'MZN' => '&#77;&#84;',
-		  'NAD' => '&#36;',
-		  'NGN' => '&#8358;',
-		  'NIO' => '&#67;&#36;',
-		  'NOK' => '&#107;&#114;',
-		  'NPR' => '&#8360;',
-		  'NZD' => '&#36;',
-		  'OMR' => '&#65020;',
-		  'PAB' => '&#66;&#47;&#46;',
-		  'PEN' => '&#83;&#47;&#46;',
-		  'PGK' => '&#75;', // ?
-		  'PHP' => '&#8369;',
-		  'PKR' => '&#8360;',
-		  'PLN' => '&#122;&#322;',
-		  'PYG' => '&#71;&#115;',
-		  'QAR' => '&#65020;',
-		  'RON' => '&#108;&#101;&#105;',
-		  'RSD' => '&#1044;&#1080;&#1085;&#46;',
-		  'RUB' => '&#1088;&#1091;&#1073;',
-		  'RWF' => '&#1585;.&#1587;',
-		  'SAR' => '&#65020;',
-		  'SBD' => '&#36;',
-		  'SCR' => '&#8360;',
-		  'SDG' => '&#163;', // ?
-		  'SEK' => '&#107;&#114;',
-		  'SGD' => '&#36;',
-		  'SHP' => '&#163;',
-		  'SLL' => '&#76;&#101;', // ?
-		  'SOS' => '&#83;',
-		  'SRD' => '&#36;',
-		  'STD' => '&#68;&#98;', // ?
-		  'SVC' => '&#36;',
-		  'SYP' => '&#163;',
-		  'SZL' => '&#76;', // ?
-		  'THB' => '&#3647;',
-		  'TZS' => '&#84;&#74;&#83;', // ? TJS (guess)
-		  'TMT' => '&#109;',
-		  'TND' => '&#1583;.&#1578;',
-		  'TOP' => '&#84;&#36;',
-		  'TRY' => '&#8356;', // New Turkey Lira (old symbol used)
-		  'TTD' => '&#36;',
-		  'TWD' => '&#78;&#84;&#36;',
-		  'UAH' => '&#8372;',
-		  'UGX' => '&#85;&#83;&#104;',
-		  'USD' => '&#36;',
-		  'UYU' => '&#36;&#85;',
-		  'UZS' => '&#1083;&#1074;',
-		  'VEF' => '&#66;&#115;',
-		  'VND' => '&#8363;',
-		  'VUV' => '&#86;&#84;',
-		  'WST' => '&#87;&#83;&#36;',
-		  'XAF' => '&#70;&#67;&#70;&#65;',
-		  'XCD' => '&#36;',
-		  'XPF' => '&#70;',
-		  'YER' => '&#65020;',
-		  'ZAR' => '&#82;',
-		  'ZMK' => '&#90;&#75;', // ?
-		  'ZWL' => '&#90;&#36;',
-		);
-	}
+    public function currency()
+    {
+        return $currency_symbols = array(
+            'AED' => 'د.إ', 'AFN' => 'Af', 'ALL' => 'Lek', 'ANG' => 'ƒ',
+            'AOA' => 'Kz', 'ARS' => '$', 'AUD' => '$', 'AWG' => 'ƒ', 'AZN' => 'ман',
+            'BAM' => 'KM', 'BBD' => '$', 'BDT' => '৳', 'BGN' => 'лв', 'BHD' => '.د.ب',
+            'BIF' => 'FBu', 'BMD' => '$', 'BND' => '$', 'BOB' => '$b', 'BRL' => 'R$',
+            'BSD' => '$', 'BTN' => 'Nu.', 'BWP' => 'P', 'BYR' => 'p.', 'BZD' => 'BZ$',
+            'CAD' => '$', 'CDF' => 'FC', 'CHF' => 'CHF', 'CLP' => '$', 'CNY' => '¥',
+            'COP' => '$', 'CRC' => '₡', 'CUP' => '⃌', 'CVE' => '$', 'CZK' => 'Kč',
+            'DJF' => 'Fdj', 'DKK' => 'kr', 'DOP' => 'RD$', 'DZD' => 'دج',
+            'EGP' => '£', 'ETB' => 'Br', 'EUR' => '€', 'FJD' => '$', 'FKP' => '£',
+            'GBP' => '£', 'GEL' => 'ლ', 'GHS' => '¢', 'GIP' => '£', 'GMD' => 'D',
+            'GNF' => 'FG', 'GTQ' => 'Q', 'GYD' => '$', 'HKD' => '$', 'HNL' => 'L',
+            'HRK' => 'kn', 'HTG' => 'G', 'HUF' => 'Ft', 'IDR' => 'Rp', 'ILS' => '₪',
+            'INR' => '₹', 'IQD' => 'ع.د', 'IRR' => '﷼', 'ISK' => 'kr', 'JEP' => '£',
+            'JMD' => 'J$', 'JOD' => 'JD', 'JPY' => '¥', 'KES' => 'KSh', 'KGS' => 'лв',
+            'KHR' => '៛', 'KMF' => 'CF', 'KPW' => '₩', 'KRW' => '₩', 'KWD' => 'د.ك',
+            'KYD' => '$', 'KZT' => 'лв', 'LAK' => '₭', 'LBP' => '£', 'LKR' => '₨',
+            'LRD' => '$', 'LSL' => 'L', 'LTL' => 'Lt', 'LVL' => 'Ls', 'LYD' => 'ل.د',
+            'MAD' => 'د.م.', 'MDL' => 'L', 'MGA' => 'Ar', 'MKD' => 'ден',
+            'MMK' => 'K', 'MNT' => '₮', 'MOP' => 'MOP$', 'MRO' => 'UM', 'MUR' => '₨',
+            'MVR' => '.ރ', 'MWK' => 'MK', 'MXN' => '$', 'MYR' => 'RM', 'MZN' => 'MT',
+            'NAD' => '$', 'NGN' => '₦', 'NIO' => 'C$', 'NOK' => 'kr', 'NPR' => '₨',
+            'NZD' => '$', 'OMR' => '﷼', 'PAB' => 'B/.', 'PEN' => 'S/.', 'PGK' => 'K',
+            'PHP' => '₱', 'PKR' => '₨', 'PLN' => 'zł', 'PYG' => 'Gs', 'QAR' => '﷼',
+            'RON' => 'lei', 'RSD' => 'Дин.', 'RUB' => 'руб',
+            'RWF' => 'ر.س', 'SAR' => '﷼', 'SBD' => '$', 'SCR' => '₨', 'SDG' => '£',
+            'SEK' => 'kr', 'SGD' => '$', 'SHP' => '£', 'SLL' => 'Le', 'SOS' => 'S',
+            'SRD' => '$', 'STD' => 'Db', 'SVC' => '$', 'SYP' => '£', 'SZL' => 'L',
+            'THB' => '฿', 'TZS' => 'TZS', 'TMT' => 'm', 'TND' => 'د.ت', 'TOP' => 'T$',
+            'TRY' => '₤', 'TTD' => '$', 'TWD' => 'NT$', 'UAH' => '₴', 'UGX' => 'USh',
+            'USD' => '$', 'UYU' => '$U', 'UZS' => 'лв', 'VEF' => 'Bs', 'VND' => '₫',
+            'VUV' => 'VT', 'WST' => 'WS$', 'XAF' => 'FCFA', 'XCD' => '$',
+            'XPF' => 'F', 'YER' => '﷼', 'ZAR' => 'R', 'ZMK' => 'ZK', 'ZWL' => 'Z$'
+        );
+    }
 }

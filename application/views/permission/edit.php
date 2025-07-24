@@ -1,6 +1,4 @@
-
-
-  <!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -205,6 +203,17 @@
                         } ?>></td>
                         <td> - </td>
                         <td> - </td>
+                      </tr>
+                      <tr>
+                        <td>Accounting</td>
+                        <td><input type="checkbox" name="permission[]" value="viewAccounting" class="minimal"
+    <?php if($serialize_permission && in_array('viewAccounting', $serialize_permission)) echo "checked"; ?>></td>
+  <td><input type="checkbox" name="permission[]" value="updateAccounting" class="minimal"
+    <?php if($serialize_permission && in_array('updateAccounting', $serialize_permission)) echo "checked"; ?>></td>
+  <td><input type="checkbox" name="permission[]" value="reportAccounting" class="minimal"
+    <?php if($serialize_permission && in_array('reportAccounting', $serialize_permission)) echo "checked"; ?>></td>
+  <td><input type="checkbox" name="permission[]" value="deleteAccounting" class="minimal"
+    <?php if($serialize_permission && in_array('deleteAccounting', $serialize_permission)) echo "checked"; ?>></td>
                       </tr>
                     
                     </tbody>

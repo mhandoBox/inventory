@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
 
 
@@ -57,21 +56,21 @@
                   <div class="form-group">
                     <label for="gross_amount" class="col-sm-5 control-label" style="text-align:left;">Client Name</label>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control" id="customer_name" name="customer_name" placeholder="Enter Client Name" value="<?php echo $order_data['order']['customer_name'] ?>" autocomplete="off"/>
+                      <input type="text" class="form-control" id="customer_name" name="customer_name" placeholder="Enter Client Name" value="<?php echo isset($order_data['order']['customer_name']) ? $order_data['order']['customer_name'] : ''; ?>" autocomplete="off"/>
                     </div>
                   </div>
 
                   <div class="form-group">
                     <label for="gross_amount" class="col-sm-5 control-label" style="text-align:left;">Client Address</label>
                     <div class="col-sm-7">
-                      <textarea type="text" class="form-control" id="customer_address" name="customer_address" placeholder="Enter Client Address" value="<?php echo $order_data['order']['customer_address'] ?>" autocomplete="off"></textarea> 
+                      <textarea type="text" class="form-control" id="customer_address" name="customer_address" placeholder="Enter Client Address" autocomplete="off"><?php echo isset($order_data['order']['customer_address']) ? $order_data['order']['customer_address'] : ''; ?></textarea> 
                     </div>
                   </div>
 
                   <div class="form-group">
                     <label for="gross_amount" class="col-sm-5 control-label" style="text-align:left;">Client Phone</label>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control" id="customer_phone" name="customer_phone" placeholder="Enter Client Phone" value="<?php echo $order_data['order']['customer_phone'] ?>" autocomplete="off">
+                      <input type="text" class="form-control" id="customer_phone" name="customer_phone" placeholder="Enter Client Phone" value="<?php echo isset($order_data['order']['customer_phone']) ? $order_data['order']['customer_phone'] : ''; ?>" autocomplete="off">
                     </div>
                   </div>
                 </div>
@@ -183,7 +182,7 @@
                 <input type="hidden" name="service_charge_rate" value="<?php echo $company_data['service_charge_value'] ?>" autocomplete="off">
                 <input type="hidden" name="vat_charge_rate" value="<?php echo $company_data['vat_charge_value'] ?>" autocomplete="off">
 
-                <a target="__blank" href="<?php echo base_url() . 'Controller_Orders/printDiv/'.$order_data['order']['id'] ?>" class="btn bg-blue" >Print</a>
+                <button type="button" class="btn bg-blue" onclick="previewOrder(<?php echo $order_data['order']['id']; ?>)">Print</button>
                 <button type="submit" class="btn btn-primary">Save Changes</button>
                 <a href="<?php echo base_url('Controller_Orders/') ?>" class="btn btn-danger">Back</a>
               </div>
@@ -201,6 +200,24 @@
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+<div class="modal fade" id="printModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Print Preview</h4>
+      </div>
+      <div class="modal-body" id="printDiv">
+        <!-- Print content will be loaded here -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="printOrder()">Print</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript">
   var base_url = "<?php echo base_url(); ?>";
@@ -413,6 +430,31 @@
     $("#product_info_table tbody tr#row_"+tr_id).remove();
     subAmount();
   }
+
+  function previewOrder(id) {
+    $.ajax({
+        url: base_url + 'Controller_Orders/printDiv/' + id,
+        type: 'GET',
+        success: function(response) {
+            $('#printDiv').html(response);
+            $('#printModal').modal('show');
+        },
+        error: function(xhr, status, error) {
+            console.error('Print preview error:', status, error);
+            alert('Error loading print preview: ' + error);
+        }
+    });
+}
+
+function printOrder() {
+    var printContent = document.getElementById('printDiv').innerHTML;
+    var originalContent = document.body.innerHTML;
+    document.body.innerHTML = printContent;
+    window.print();
+    document.body.innerHTML = originalContent;
+    $('#printModal').modal('hide');
+    location.reload();
+}
 </script>
 
 <script type="text/javascript" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>

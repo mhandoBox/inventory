@@ -1,4 +1,4 @@
-<?php
+<?php 
 class Model_orders extends CI_Model
 {
     public function __construct()
@@ -6,225 +6,268 @@ class Model_orders extends CI_Model
         parent::__construct();
     }
 
-    /* Get orders data with optional filters */
-    public function getOrdersData($id = null, $filters = null)
+    public function getOrdersData($id = null) 
     {
-        $this->db->select('*');
-        $this->db->from('orders');
+        try {
+            if ($id) {
+                $sql = "SELECT o.*, 
+                        COALESCE((SELECT SUM(oi.qty) FROM orders_item oi WHERE oi.order_id = o.id), 0) as total_products,
+                        u.username as clerk_name
+                        FROM orders o
+                        LEFT JOIN users u ON u.id = o.user_id
+                        WHERE o.id = ?";
+                $query = $this->db->query($sql, array($id));
+                log_message('debug', 'Single order query: ' . $this->db->last_query());
+                if ($query === FALSE) {
+                    log_message('error', 'Single order query failed: ' . $this->db->error()['message']);
+                    return null;
+                }
+                $result = $query->row_array();
+                log_message('debug', 'Single order result: ' . json_encode($result));
+                return $result;
+            }
 
-        if ($id) {
-            $this->db->where('id', $id);
-            $query = $this->db->get();
-            return $query->row_array();
+            $sql = "SELECT o.*, 
+                    COALESCE(SUM(oi.qty), 0) as total_products,
+                    COALESCE(SUM(oi.amount), 0) as total_amount,
+                    COALESCE(u.username, 'Unknown') as clerk_name
+                    FROM orders o
+                    LEFT JOIN orders_item oi ON o.id = oi.order_id
+                    LEFT JOIN users u ON u.id = o.user_id
+                    GROUP BY o.id, o.bill_no, o.customer_name, o.customer_phone, 
+                             o.date_time, o.gross_amount, o.service_charge_rate, 
+                             o.service_charge, o.vat_charge_rate, o.vat_charge, 
+                             o.discount, o.net_amount, o.paid_status, o.user_id,
+                             u.username
+                    ORDER BY o.id DESC";
+            $query = $this->db->query($sql);
+            log_message('debug', 'All orders query: ' . $this->db->last_query());
+            if ($query === FALSE) {
+                log_message('error', 'All orders query failed: ' . $this->db->error()['message']);
+                return [];
+            }
+            $result = $query->result_array();
+            log_message('debug', 'Number of orders found: ' . count($result));
+            log_message('debug', 'Orders result: ' . json_encode($result));
+            return $result;
+        } catch (Exception $e) {
+            log_message('error', 'Exception in getOrdersData: ' . $e->getMessage());
+            return [];
         }
-
-        if ($filters && is_array($filters)) {
-            if (!empty($filters['date_from'])) {
-                $this->db->where('date_time >=', strtotime($filters['date_from']));
-            }
-            if (!empty($filters['date_to'])) {
-                $this->db->where('date_time <=', strtotime($filters['date_to'] . ' 23:59:59'));
-            }
-            if (!empty($filters['customer_name'])) {
-                $this->db->where('customer_name', $filters['customer_name']);
-            }
-            if (!empty($filters['warehouse']) && $this->db->field_exists('warehouse', 'orders')) {
-                $this->db->where('warehouse', $filters['warehouse']);
-            }
-            if (!empty($filters['bill_no'])) {
-                $this->db->like('bill_no', $filters['bill_no']);
-            }
-            if ($filters['paid_status'] !== '' && in_array($filters['paid_status'], ['0', '1'])) {
-                $this->db->where('paid_status', $filters['paid_status']);
-            }
-        }
-
-        $this->db->order_by('id', 'DESC');
-        $query = $this->db->get();
-        return $query->result_array();
     }
 
-    /* Get distinct customers for filter dropdown */
-    public function getDistinctCustomers()
+    public function countOrderItem($order_id) 
     {
-        $this->db->select('customer_name');
-        $this->db->distinct();
-        $this->db->from('orders');
-        $this->db->where('customer_name IS NOT NULL');
-        $this->db->order_by('customer_name', 'ASC');
-        $query = $this->db->get();
-        return $query->result_array();
-    }
-
-    /* Get distinct warehouses for filter dropdown */
-    public function getDistinctWarehouses()
-    {
-        if ($this->db->field_exists('warehouse', 'orders')) {
-            $this->db->select('warehouse');
-            $this->db->distinct();
-            $this->db->from('orders');
-            $this->db->where('warehouse IS NOT NULL');
-            $this->db->order_by('warehouse', 'ASC');
-            $query = $this->db->get();
-            return $query->result_array();
+        if ($order_id) {
+            $sql = "SELECT SUM(qty) as count_qty FROM orders_item WHERE order_id = ? AND order_id > 0";
+            $query = $this->db->query($sql, array($order_id));
+            log_message('debug', 'countOrderItem Query: ' . $this->db->last_query());
+            return $query->row_array()['count_qty'];
         }
-        return [];
+        return 0;
     }
 
-    /* Get order items by order ID */
-    public function getOrdersItemData($order_id = null)
+    public function create() 
     {
-        if (!$order_id) {
-            return false;
-        }
+        log_message('debug', 'Entered Model_orders::create()');
+        log_message('debug', 'POST data: ' . json_encode($this->input->post()));
 
-        $sql = "SELECT * FROM orders_item WHERE order_id = ?";
-        $query = $this->db->query($sql, array($order_id));
-        return $query->result_array();
-    }
-
-    /* Create a new order */
-    public function create()
-    {
         $user_id = $this->session->userdata('id');
-        $bill_no = 'BILPR-' . strtoupper(substr(md5(uniqid(mt_rand(), true)), 0, 4));
-        $data = array(
+        $bill_no = 'ORD-' . strtoupper(substr(md5(uniqid(mt_rand(), true)), 0, 4)) . date('Ymd');
+        
+        $total_purchased = array();
+        foreach ($this->input->post('product') as $product_id) {
+            $sql = "SELECT COALESCE(SUM(qty), 0) as qty FROM purchases WHERE product_id = ?";
+            $query = $this->db->query($sql, array($product_id));
+            log_message('debug', 'create Purchase Query for Product ID ' . $product_id . ': ' . $this->db->last_query());
+            $total_purchased[$product_id] = $query->row()->qty ? (int)$query->row()->qty : 0;
+        }
+
+        $total_ordered = array();
+        foreach ($this->input->post('product') as $product_id) {
+            $sql = "SELECT COALESCE(SUM(qty), 0) as qty FROM orders_item WHERE product_id = ? AND order_id > 0";
+            $query = $this->db->query($sql, array($product_id));
+            log_message('debug', 'create Order Item Query for Product ID ' . $product_id . ': ' . $this->db->last_query());
+            $total_ordered[$product_id] = $query->row()->qty ? (int)$query->row()->qty : 0;
+        }
+
+        $order_data = array(
             'bill_no' => $bill_no,
+            'date_time' => date('Y-m-d H:i:s'),
+            'gross_amount' => $this->input->post('gross_amount_value'),
+            'service_charge_rate' => $this->input->post('service_charge_rate'),
+            'service_charge' => $this->input->post('service_charge_value'),
+            'vat_charge_rate' => $this->input->post('vat_charge_rate'),
+            'vat_charge' => $this->input->post('vat_charge_value'),
+            'discount' => $this->input->post('discount'),
+            'net_amount' => $this->input->post('net_amount_value'),
             'customer_name' => $this->input->post('customer_name'),
             'customer_address' => $this->input->post('customer_address'),
             'customer_phone' => $this->input->post('customer_phone'),
-            'date_time' => strtotime(date('Y-m-d h:i:s a')),
-            'gross_amount' => $this->input->post('gross_amount_value'),
-            'service_charge_rate' => $this->input->post('service_charge_rate'),
-            'service_charge' => ($this->input->post('service_charge_value') > 0) ? $this->input->post('service_charge_value') : 0,
-            'vat_charge_rate' => $this->input->post('vat_charge_rate'),
-            'vat_charge' => ($this->input->post('vat_charge_value') > 0) ? $this->input->post('vat_charge_value') : 0,
-            'net_amount' => $this->input->post('net_amount_value'),
-            'discount' => $this->input->post('discount'),
-            'paid_status' => $this->input->post('paid_status') == 2 ? 1 : $this->input->post('paid_status'),
-            'user_id' => $user_id
+            'user_id' => $user_id,
+            'paid_status' => $this->input->post('paid_status'),
+            'amount_paid' => $this->input->post('amount_paid')
         );
 
-        $insert = $this->db->insert('orders', $data);
+        $this->db->insert('orders', $order_data);
         $order_id = $this->db->insert_id();
 
-        $this->load->model('model_products');
+        $product = $this->input->post('product');
+        $qty = $this->input->post('qty');
+        $rate = $this->input->post('rate_value');
+        $amount = $this->input->post('amount_value');
 
-        $count_product = count($this->input->post('product'));
-        for ($x = 0; $x < $count_product; $x++) {
-            $items = array(
-                'order_id' => $order_id,
-                'product_id' => $this->input->post('product')[$x],
-                'qty' => $this->input->post('qty')[$x],
-                'rate' => $this->input->post('rate_value')[$x],
-                'amount' => $this->input->post('amount_value')[$x],
-            );
+        $order_item = array();
+        $error = '';
+        for ($x = 0; $x < count($product); $x++) {
+            $stock = max(0, $total_purchased[$product[$x]] - $total_ordered[$product[$x]]);
+            log_message('debug', 'Create Order - Product ID: ' . $product[$x] . ', Total Purchased: ' . $total_purchased[$product[$x]] . ', Total Ordered: ' . $total_ordered[$product[$x]] . ', Stock: ' . $stock . ', Requested Qty: ' . $qty[$x]);
 
-            $this->db->insert('orders_item', $items);
-
-            // Decrease stock from the product
-            $product_data = $this->model_products->getProductData($this->input->post('product')[$x]);
-            $qty = (int) $product_data['qty'] - (int) $this->input->post('qty')[$x];
-
-            $update_product = array('qty' => $qty);
-            $this->model_products->update($update_product, $this->input->post('product')[$x]);
+            if ($qty[$x] > $stock) {
+                $error .= "Quantity exceeds available stock ($stock) for product ID " . $product[$x] . ". ";
+            } else {
+                $order_item[] = array(
+                    'order_id' => $order_id,
+                    'product_id' => $product[$x],
+                    'qty' => $qty[$x],
+                    'rate' => $rate[$x],
+                    'amount' => $amount[$x]
+                );
+            }
         }
 
-        return ($order_id) ? $order_id : false;
+        if ($error) {
+            $this->db->where('id', $order_id);
+            $this->db->delete('orders');
+            log_message('debug', 'Order creation error: ' . $error);
+            return array('success' => false, 'error' => $error);
+        }
+
+        if (!empty($order_item)) {
+            $this->db->insert_batch('orders_item', $order_item);
+        }
+
+        log_message('debug', 'Order creation success, order_id: ' . $order_id);
+        return array('success' => true, 'order_id' => $order_id);
     }
 
-    /* Count items in an order */
-    public function countOrderItem($order_id)
+    public function getOrdersItemData($order_id) 
     {
         if ($order_id) {
-            $sql = "SELECT * FROM orders_item WHERE order_id = ?";
+            $sql = "SELECT orders_item.*, products.name as product_name 
+                    FROM orders_item 
+                    LEFT JOIN products ON products.id = orders_item.product_id 
+                    WHERE orders_item.order_id = ? AND orders_item.order_id > 0";
             $query = $this->db->query($sql, array($order_id));
-            return $query->num_rows();
+            log_message('debug', 'getOrdersItemData Query: ' . $this->db->last_query());
+            return $query->result_array();
         }
+        return array();
     }
 
-    /* Update an existing order */
-    public function update($id)
+    public function update($id) 
     {
         if ($id) {
             $user_id = $this->session->userdata('id');
-            $data = array(
+
+            $total_purchased = array();
+            foreach ($this->input->post('product') as $product_id) {
+                $sql = "SELECT COALESCE(SUM(qty), 0) as qty FROM purchases WHERE product_id = ?";
+                $query = $this->db->query($sql, array($product_id));
+                log_message('debug', 'update Purchase Query for Product ID ' . $product_id . ': ' . $this->db->last_query());
+                $total_purchased[$product_id] = $query->row()->qty ? (int)$query->row()->qty : 0;
+            }
+
+            $total_ordered = array();
+            foreach ($this->input->post('product') as $product_id) {
+                $sql = "SELECT COALESCE(SUM(qty), 0) as qty FROM orders_item WHERE product_id = ? AND order_id > 0 AND order_id != ?";
+                $query = $this->db->query($sql, array($product_id, $id));
+                log_message('debug', 'update Order Item Query for Product ID ' . $product_id . ': ' . $this->db->last_query());
+                $total_ordered[$product_id] = $query->row()->qty ? (int)$query->row()->qty : 0;
+            }
+
+            $order_data = array(
+                'gross_amount' => $this->input->post('gross_amount_value'),
+                'service_charge_rate' => $this->input->post('service_charge_rate'),
+                'service_charge' => $this->input->post('service_charge_value'),
+                'vat_charge_rate' => $this->input->post('vat_charge_rate'),
+                'vat_charge' => $this->input->post('vat_charge_value'),
+                'discount' => $this->input->post('discount'),
+                'net_amount' => $this->input->post('net_amount_value'),
                 'customer_name' => $this->input->post('customer_name'),
                 'customer_address' => $this->input->post('customer_address'),
                 'customer_phone' => $this->input->post('customer_phone'),
-                'gross_amount' => $this->input->post('gross_amount_value'),
-                'service_charge_rate' => $this->input->post('service_charge_rate'),
-                'service_charge' => ($this->input->post('service_charge_value') > 0) ? $this->input->post('service_charge_value') : 0,
-                'vat_charge_rate' => $this->input->post('vat_charge_rate'),
-                'vat_charge' => ($this->input->post('vat_charge_value') > 0) ? $this->input->post('vat_charge_value') : 0,
-                'net_amount' => $this->input->post('net_amount_value'),
-                'discount' => $this->input->post('discount'),
+                'user_id' => $user_id,
                 'paid_status' => $this->input->post('paid_status'),
-                'user_id' => $user_id
+                'amount_paid' => $this->input->post('amount_paid')
             );
 
             $this->db->where('id', $id);
-            $update = $this->db->update('orders', $data);
+            $this->db->update('orders', $order_data);
 
-            // Restore and update product quantities
-            $this->load->model('model_products');
-            $get_order_item = $this->getOrdersItemData($id);
-            foreach ($get_order_item as $k => $v) {
-                $product_id = $v['product_id'];
-                $qty = $v['qty'];
-                $product_data = $this->model_products->getProductData($product_id);
-                $update_qty = $qty + $product_data['qty'];
-                $update_product_data = array('qty' => $update_qty);
-                $this->model_products->update($update_product_data, $product_id);
-            }
-
-            // Remove existing order items
             $this->db->where('order_id', $id);
             $this->db->delete('orders_item');
 
-            // Insert updated order items
-            $count_product = count($this->input->post('product'));
-            for ($x = 0; $x < $count_product; $x++) {
-                $items = array(
-                    'order_id' => $id,
-                    'product_id' => $this->input->post('product')[$x],
-                    'qty' => $this->input->post('qty')[$x],
-                    'rate' => $this->input->post('rate_value')[$x],
-                    'amount' => $this->input->post('amount_value')[$x],
-                );
-                $this->db->insert('orders_item', $items);
+            $product = $this->input->post('product');
+            $qty = $this->input->post('qty');
+            $rate = $this->input->post('rate_value');
+            $amount = $this->input->post('amount_value');
 
-                // Decrease stock from the product
-                $product_data = $this->model_products->getProductData($this->input->post('product')[$x]);
-                $qty = (int) $product_data['qty'] - (int) $this->input->post('qty')[$x];
-                $update_product = array('qty' => $qty);
-                $this->model_products->update($update_product, $this->input->post('product')[$x]);
+            $order_item = array();
+            $error = '';
+            for ($x = 0; $x < count($product); $x++) {
+                $stock = max(0, $total_purchased[$product[$x]] - $total_ordered[$product[$x]]);
+                log_message('debug', 'Update Order - Product ID: ' . $product[$x] . ', Total Purchased: ' . $total_purchased[$product[$x]] . ', Total Ordered: ' . $total_ordered[$product[$x]] . ', Stock: ' . $stock . ', Requested Qty: ' . $qty[$x]);
+
+                if ($qty[$x] > $stock) {
+                    $error .= "Quantity exceeds available stock ($stock) for product ID " . $product[$x] . ". ";
+                } else {
+                    $order_item[] = array(
+                        'order_id' => $id,
+                        'product_id' => $product[$x],
+                        'qty' => $qty[$x],
+                        'rate' => $rate[$x],
+                        'amount' => $amount[$x]
+                    );
+                }
             }
+
+            if ($error) {
+                return array('success' => false, 'error' => $error);
+            }
+
+            if (!empty($order_item)) {
+                $this->db->insert_batch('orders_item', $order_item);
+            }
+
+            return array('success' => true, 'error' => null);
+        }
+        return array('success' => false, 'error' => 'Invalid order ID');
+    }
+
+    public function remove($order_id)
+    {
+        if ($order_id) {
+            $this->db->trans_start(); // Start transaction
+
+            $this->db->where('order_id', $order_id);
+            $this->db->delete('orders_item');
+
+            $this->db->where('id', $order_id);
+            $this->db->delete('orders');
+
+            $this->db->trans_complete(); // Complete transaction
 
             return true;
         }
         return false;
     }
 
-    /* Remove an order */
-    public function remove($id)
-    {
-        if ($id) {
-            $this->db->where('id', $id);
-            $delete = $this->db->delete('orders');
-
-            $this->db->where('order_id', $id);
-            $delete_item = $this->db->delete('orders_item');
-            return ($delete == true && $delete_item) ? true : false;
-        }
-        return false;
-    }
-
-    /* Count total paid orders */
     public function countTotalPaidOrders()
     {
-        $sql = "SELECT * FROM orders WHERE paid_status = ?";
-        $query = $this->db->query($sql, array(1));
-        return $query->num_rows();
+        $sql = "SELECT COUNT(*) as total FROM orders WHERE paid_status = 1";
+        $query = $this->db->query($sql);
+        return $query->row()->total;
     }
 }
+?>

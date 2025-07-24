@@ -17,9 +17,6 @@ class Controller_Orders extends Admin_Controller
         $this->load->model('model_activity_log');
     }
 
-    /* 
-     * Redirects to the manage order page
-     */
     public function index()
     {
         if (!in_array('viewOrder', $this->permission)) {
@@ -30,123 +27,330 @@ class Controller_Orders extends Admin_Controller
         $this->render_template('orders/index', $this->data);        
     }
 
-    /*
-     * Fetches the orders data from the orders table 
-     * Called from the datatable ajax function
-     */
     public function fetchOrdersData()
     {
-        $result = array('data' => array());
-        $data = $this->model_orders->getOrdersData();
+        log_message('debug', 'fetchOrdersData called');
+        log_message('debug', 'Is AJAX request: ' . ($this->input->is_ajax_request() ? 'yes' : 'no'));
 
-        foreach ($data as $key => $value) {
-            $count_total_item = $this->model_orders->countOrderItem($value['id']);
-            $date = date('d-m-Y', $value['date_time']);
-            $time = date('h:i a', $value['date_time']);
-            $date_time = $date . ' ' . $time;
-
-            // Generate action buttons
-            $buttons = '';
-
-            if (in_array('viewOrder', $this->permission)) {
-                $buttons .= '<a target="__blank" href="'.base_url('Controller_Orders/printDiv/'.$value['id']).'" class="btn btn-primary btn-sm"><i class="fa fa-print"></i></a>';
-                $buttons .= ' <a href="'.base_url('Controller_Orders/printThermal/'.$value['id']).'" class="btn btn-info btn-sm"><i class="fa fa-print"></i> Thermal</a>';
-            }
-
-            if (in_array('updateOrder', $this->permission)) {
-                $buttons .= ' <a href="'.base_url('Controller_Orders/update/'.$value['id']).'" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>';
-            }
-
-            if (in_array('deleteOrder', $this->permission)) {
-                $buttons .= ' <button type="button" class="btn btn-danger btn-sm" onclick="removeFunc('.$value['id'].')" data-toggle="modal" data-target="#removeModal"><i class="fa fa-trash"></i></button>';
-            }
-
-            $paid_status = ($value['paid_status'] == 1) 
-                ? '<span class="label label-success">Paid</span>' 
-                : '<span class="label label-warning">Not Paid</span>';
-
-            // Fetch the user who created the order
-            $user = $this->model_users->getUserData($value['user_id']);
-            $user_name = $user ? $user['username'] : 'Unknown';
-
-            $result['data'][$key] = array(
-                'bill_no' => $value['bill_no'],
-                'customer_name' => $value['customer_name'],
-                'customer_phone' => $value['customer_phone'],
-                'date_time' => $date_time,
-                'product_qty' => $count_total_item,
-                'amount' => 'TZS     '.number_format($value['net_amount'], 2),
-                'user_name' => $user_name,
-                'actions' => $buttons
-            );
+        if (!$this->input->is_ajax_request()) {
+            log_message('error', 'Non-AJAX request to fetchOrdersData');
+            exit('No direct script access allowed');
         }
 
-        echo json_encode($result);
+        try {
+            $orders = $this->model_orders->getOrdersData();
+            // Log the raw data fetched from the database
+            log_message('debug', 'Raw database data from getOrdersData: ' . json_encode($orders, JSON_PRETTY_PRINT));
+
+            $data = array('data' => array());
+            if ($orders && is_array($orders)) {
+                log_message('debug', 'Processing ' . count($orders) . ' orders for DataTable');
+                foreach ($orders as $order) {
+                    // Add detailed logging for each order's product quantity
+                    log_message('debug', 'Order ID: ' . $order['id'] . ', Total Products: ' . $order['total_products']);
+                    
+                    if (!isset($order['id'])) {
+                        log_message('error', 'Order missing ID: ' . json_encode($order));
+                        continue;
+                    }
+
+                    $row = array(
+                        'id' => $order['id'],
+                        'bill_no' => $order['bill_no'] ?? 'N/A',
+                        'customer_name' => $order['customer_name'] ?? 'N/A',
+                        'customer_phone' => $order['customer_phone'] ?? 'N/A',
+                        'date_time' => $order['date_time'] ? date('Y-m-d H:i:s', strtotime($order['date_time'])) : 'N/A',
+                        'total_products' => intval($order['total_products'] ?? 0),
+                        'total_amount' => floatval($order['total_amount'] ?? 0),
+                        'clerk_name' => $order['clerk_name'] ?? 'Unknown'
+                    );
+                    $data['data'][] = $row;
+                }
+                log_message('debug', 'Processed data for DataTable: ' . json_encode($data, JSON_PRETTY_PRINT));
+            } else {
+                log_message('debug', 'No orders found or error in getOrdersData()');
+            }
+            
+            header('Content-Type: application/json');
+            echo json_encode($data);
+        } catch (Exception $e) {
+            log_message('error', 'Error in fetchOrdersData: ' . $e->getMessage());
+            header('Content-Type: application/json');
+            echo json_encode(['data' => [], 'error' => 'Server error: ' . $e->getMessage()]);
+        }
+        exit;
     }
 
-    /*
-     * Creates a new order
-     */
     public function create()
     {
+        log_message('debug', 'Entered create() method');
+        log_message('debug', 'User permissions: ' . json_encode($this->permission));
+        
         if (!in_array('createOrder', $this->permission)) {
+            log_message('debug', 'User does not have createOrder permission');
             redirect('dashboard', 'refresh');
         }
 
-        $this->data['page_title'] = 'Add Order';
         $this->form_validation->set_rules('product[]', 'Product name', 'trim|required');
-        
-        if ($this->form_validation->run() == TRUE) {            
-            $paid_status = $this->input->post('paid_status');
-            if ($paid_status == 2) {
-                $paid_status = 1;
-                $_POST['paid_status'] = 1;
+        $this->form_validation->set_rules('qty[]', 'Quantity', 'trim|required|numeric|greater_than[0]');
+        $this->form_validation->set_rules('customer_name', 'Client name', 'trim|required');
+
+        if ($this->form_validation->run() == TRUE) {
+            log_message('debug', 'Form validation passed');
+            
+            // Generate bill_no
+            $bill_no = 'BILPR-' . strtoupper(substr(md5(uniqid()), 0, 4));
+            
+            // Prepare order data
+            $order_data = array(
+                'bill_no' => $bill_no,
+                'customer_name' => $this->input->post('customer_name'),
+                'customer_address' => $this->input->post('customer_address'),
+                'customer_phone' => $this->input->post('customer_phone'),
+                'gross_amount' => floatval($this->input->post('gross_amount_value')),
+                'service_charge_rate' => floatval($this->input->post('service_charge_rate') ?? 0),
+                'service_charge' => floatval($this->input->post('service_charge_value') ?? 0),
+                'vat_charge_rate' => floatval($this->input->post('vat_charge_rate') ?? 0),
+                'vat_charge' => floatval($this->input->post('vat_charge_value') ?? 0),
+                'discount' => floatval($this->input->post('discount') ?? 0),
+                'net_amount' => floatval($this->input->post('net_amount_value')),
+                'paid_status' => intval($this->input->post('paid_status')),
+                'user_id' => intval($this->session->userdata('id'))
+            );
+
+            $this->db->trans_start(); // Start transaction
+
+            // Insert order
+            $this->db->insert('orders', $order_data);
+            $order_id = $this->db->insert_id();
+
+            // Prepare order items
+            $products = $this->input->post('product');
+            $qtys = $this->input->post('qty');
+            $rates = $this->input->post('rate');
+            $amounts = $this->input->post('amount_value');
+
+            $order_items = array();
+            foreach ($products as $key => $product_id) {
+                $order_items[] = array(
+                    'order_id' => $order_id,
+                    'product_id' => intval($product_id),
+                    'qty' => intval($qtys[$key]),
+                    'rate' => floatval($rates[$key]),
+                    'amount' => floatval($amounts[$key])
+                );
             }
 
-            $order_id = $this->model_orders->create();
-            
-            if ($order_id) {
-                $this->model_activity_log->log($this->session->userdata('id'), 'Created Order', 'Order ID: '.$order_id);
-                $this->session->set_flashdata('success', 'Successfully created');
-                redirect('Controller_Orders/update/'.$order_id, 'refresh');
+            // Insert order items
+            if (!empty($order_items)) {
+                $this->db->insert_batch('orders_item', $order_items);
+            }
+
+            $this->db->trans_complete(); // Complete transaction
+
+            if ($this->input->is_ajax_request()) {
+                if ($this->db->trans_status() === FALSE) {
+                    log_message('error', 'Order creation failed: ' . $this->db->error()['message']);
+                    echo json_encode([
+                        'success' => false,
+                        'error' => 'Error occurred while creating the order!'
+                    ]);
+                } else {
+                    log_message('debug', 'Order created successfully. Order ID: ' . $order_id);
+                    echo json_encode([
+                        'success' => true,
+                        'redirect' => base_url('Controller_Orders/index')
+                    ]);
+                }
+                return;
             } else {
-                $this->session->set_flashdata('errors', 'Error occurred!!');
-                redirect('Controller_Orders/create/', 'refresh');
+                if ($this->db->trans_status() === FALSE) {
+                    $this->session->set_flashdata('error', 'Error occurred while creating the order');
+                    redirect('Controller_Orders/create', 'refresh');
+                } else {
+                    $this->session->set_flashdata('success', 'Successfully created order');
+                    redirect('Controller_Orders/index', 'refresh');
+                }
             }
         } else {
-            $company = $this->model_company->getCompanyData(1);
-            $this->data['company_data'] = $company;
-            $this->data['is_vat_enabled'] = ($company['vat_charge_value'] > 0) ? true : false;
-            $this->data['is_service_enabled'] = ($company['service_charge_value'] > 0) ? true : false;
-            $this->data['products'] = $this->model_products->getActiveProductData();          
-            $this->render_template('orders/create', $this->data);
+            // Validation failed
+            if ($this->input->is_ajax_request()) {
+                echo json_encode([
+                    'success' => false,
+                    'error' => validation_errors()
+                ]);
+                return;
+            }
+            $this->data['page_title'] = 'Add Order';
+            $this->load_form_data();
         }    
     }
 
-    /*
-     * Gets product value by ID (AJAX)
-     */
+    private function load_form_data()
+    {
+        $company = $this->model_company->getCompanyData(1);
+        $this->data['company_data'] = $company;
+        $this->data['is_vat_enabled'] = ($company['vat_charge_value'] > 0) ? true : false;
+        $this->data['is_service_enabled'] = ($company['service_charge_value'] > 0) ? true : false;
+
+        // Fetch products with calculated stock
+        $this->db->select('p.id, p.name, p.price, 
+            COALESCE(SUM(pur.qty), 0) as total_purchased,
+            COALESCE((SELECT SUM(oi.qty) FROM orders_item oi WHERE oi.product_id = p.id AND oi.order_id > 0), 0) as total_ordered');
+        $this->db->from('products p'); 
+        $this->db->where('p.availability', 1);
+        $this->db->join('purchases pur', 'pur.product_id = p.id', 'left');
+        $this->db->group_by('p.id, p.name, p.price');
+        $query = $this->db->get();
+        
+        log_message('debug', 'load_form_data Query: ' . $this->db->last_query());
+        if ($query === FALSE) {
+            log_message('error', 'load_form_data Database Error: ' . $this->db->error()['message']);
+            // Fallback to basic product data
+            $products_with_stock = array();
+            $products = $this->model_products->getActiveProductData();
+            foreach ($products as $product) {
+                // Calculate stock for fallback
+                $this->db->select_sum('qty', 'total_purchased');
+                $this->db->where('product_id', $product['id']);
+                $purchase_query = $this->db->get('purchases');
+                $total_purchased = $purchase_query->row()->total_purchased ? (int)$purchase_query->row()->total_purchased : 0;
+
+                $this->db->select_sum('qty', 'total_ordered');
+                $this->db->where('product_id', $product['id']);
+                $this->db->where('order_id >', 0);
+                $order_item_query = $this->db->get('orders_item');
+                $total_ordered = $order_item_query->row()->total_ordered ? (int)$order_item_query->row()->total_ordered : 0;
+
+                $stock = max(0, $total_purchased - $total_ordered);
+                log_message('debug', 'load_form_data Fallback - Product ID: ' . $product['id'] . ', Name: ' . $product['name'] . ', Total Purchased: ' . $total_purchased . ', Total Ordered: ' . $total_ordered . ', Stock: ' . $stock);
+
+                if ($stock > 0 && $product['price'] > 0) {
+                    $products_with_stock[] = array(
+                        'id' => $product['id'],
+                        'name' => $product['name'],
+                        'price' => $product['price'],
+                        'qty' => $stock
+                    );
+                }
+            }
+        } else {
+            $products_with_stock = array();
+            foreach ($query->result_array() as $product) {
+                $stock = max(0, (int)$product['total_purchased'] - (int)$product['total_ordered']);
+                log_message('debug', 'load_form_data - Product ID: ' . $product['id'] . ', Name: ' . $product['name'] . ', Total Purchased: ' . $product['total_purchased'] . ', Total Ordered: ' . $product['total_ordered'] . ', Stock: ' . $stock);
+                if ($stock > 0 && $product['price'] > 0) {
+                    $products_with_stock[] = array(
+                        'id' => $product['id'],
+                        'name' => $product['name'],
+                        'price' => $product['price'],
+                        'qty' => $stock
+                    );
+                }
+            }
+        }
+
+        log_message('debug', 'load_form_data Products with stock: ' . json_encode($products_with_stock));
+        $this->data['products'] = $products_with_stock;
+        
+        $this->render_template('orders/create', $this->data);
+    }
+
     public function getProductValueById()
     {
         $product_id = $this->input->post('product_id');
-        if ($product_id) {
-            $product_data = $this->model_products->getProductData($product_id);
-            echo json_encode($product_data);
+        log_message('debug', 'Received product_id: ' . var_export($product_id, true));
+
+        if (!$product_id || !is_numeric($product_id)) {
+            log_message('error', 'getProductValueById - Invalid product ID: ' . var_export($product_id, true));
+            echo json_encode(array('error' => 'Invalid product ID'));
+            return;
         }
+
+        $product_data = $this->model_products->getProductData($product_id);
+        if (!$product_data || $product_data['availability'] != 1) {
+            log_message('error', 'getProductValueById - Product not found or unavailable: ' . $product_id);
+            echo json_encode(array('error' => 'Product not found or unavailable'));
+            return;
+        }
+
+        $this->db->select_sum('qty', 'total_purchased');
+        $this->db->where('product_id', $product_id);
+        $purchase_query = $this->db->get('purchases');
+        log_message('debug', 'getProductValueById Purchase Query: ' . $this->db->last_query());
+        if ($purchase_query === FALSE) {
+            log_message('error', 'getProductValueById Purchase Error: ' . $this->db->error()['message']);
+            echo json_encode(array('error' => 'Database error: Unable to fetch purchase data'));
+            return;
+        }
+        $total_purchased = $purchase_query->row()->total_purchased ? (int)$purchase_query->row()->total_purchased : 0;
+
+        $this->db->select_sum('qty', 'total_ordered');
+        $this->db->where('product_id', $product_id);
+        $this->db->where('order_id >', 0);
+        $order_item_query = $this->db->get('orders_item');
+        log_message('debug', 'getProductValueById Order Item Query: ' . $this->db->last_query());
+        if ($order_item_query === FALSE) {
+            log_message('error', 'getProductValueById Order Item Error: ' . $this->db->error()['message']);
+            echo json_encode(array('error' => 'Database error: Unable to fetch order item data'));
+            return;
+        }
+        $total_ordered = $order_item_query->row()->total_ordered ? (int)$order_item_query->row()->total_ordered : 0;
+
+        $stock = max(0, $total_purchased - $total_ordered);
+        log_message('debug', 'getProductValueById - Product ID: ' . $product_id . ', Total Purchased: ' . $total_purchased . ', Total Ordered: ' . $total_ordered . ', Stock: ' . $stock);
+
+        $response = array(
+            'id' => $product_data['id'],
+            'name' => $product_data['name'],
+            'price' => $product_data['price'],
+            'qty' => $stock
+        );
+        echo json_encode($response);
     }
 
-    /*
-     * Gets all active products (AJAX)
-     */
     public function getTableProductRow()
     {
         $products = $this->model_products->getActiveProductData();
-        echo json_encode($products);
+        $products_with_stock = array();
+        
+        foreach ($products as $product) {
+            $this->db->select_sum('qty', 'total_purchased');
+            $this->db->where('product_id', $product['id']);
+            $purchase_query = $this->db->get('purchases');
+            log_message('debug', 'getTableProductRow Purchase Query: ' . $this->db->last_query());
+            if ($purchase_query === FALSE) {
+                log_message('error', 'getTableProductRow Purchase Error: ' . $this->db->error()['message']);
+            }
+            $total_purchased = $purchase_query->row()->total_purchased ? (int)$purchase_query->row()->total_purchased : 0;
+
+            $this->db->select_sum('qty', 'total_ordered');
+            $this->db->where('product_id', $product['id']);
+            $this->db->where('order_id >', 0);
+            $order_item_query = $this->db->get('orders_item');
+            log_message('debug', 'getTableProductRow Order Item Query: ' . $this->db->last_query());
+            if ($order_item_query === FALSE) {
+                log_message('error', 'getTableProductRow Order Item Error: ' . $this->db->error()['message']);
+            }
+            $total_ordered = $order_item_query->row()->total_ordered ? (int)$order_item_query->row()->total_ordered : 0;
+
+            $stock = max(0, $total_purchased - $total_ordered);
+            log_message('debug', 'getTableProductRow - Product ID: ' . $product['id'] . ', Name: ' . $product['name'] . ', Total Purchased: ' . $total_purchased . ', Total Ordered: ' . $total_ordered . ', Stock: ' . $stock);
+
+            if ($stock > 0 && $product['price'] > 0) {
+                $products_with_stock[] = array(
+                    'id' => $product['id'],
+                    'name' => $product['name'],
+                    'price' => $product['price'],
+                    'qty' => $stock
+                );
+            }
+        }
+
+        log_message('debug', 'getTableProductRow response: ' . json_encode($products_with_stock));
+        echo json_encode($products_with_stock);
     }
 
-    /*
-     * Updates an existing order
-     */
     public function update($id)
     {
         if (!in_array('updateOrder', $this->permission)) {
@@ -159,6 +363,12 @@ class Controller_Orders extends Admin_Controller
 
         $this->data['page_title'] = 'Update Order';
         $this->form_validation->set_rules('product[]', 'Product name', 'trim|required');
+        $this->form_validation->set_rules('qty[]', 'Quantity', 'trim|required|numeric|greater_than[0]', [
+            'required' => 'Quantity is required for all products.',
+            'numeric' => 'Quantity must be a number.',
+            'greater_than' => 'Quantity must be greater than 0.'
+        ]);
+        $this->form_validation->set_rules('customer_name', 'Client name', 'trim|required');
         
         if ($this->form_validation->run() == TRUE) {            
             $paid_status = $this->input->post('paid_status');
@@ -168,11 +378,11 @@ class Controller_Orders extends Admin_Controller
 
             $update = $this->model_orders->update($id);
             
-            if ($update == true) {
+            if ($update['success']) {
                 $this->session->set_flashdata('success', 'Successfully updated');
                 redirect('Controller_Orders/update/'.$id, 'refresh');
             } else {
-                $this->session->set_flashdata('errors', 'Error occurred!!');
+                $this->session->set_flashdata('errors', $update['error'] ?: 'Error occurred while updating the order!');
                 redirect('Controller_Orders/update/'.$id, 'refresh');
             }
         } else {
@@ -183,438 +393,410 @@ class Controller_Orders extends Admin_Controller
 
             $result = array();
             $orders_data = $this->model_orders->getOrdersData($id);
-            $result['order'] = $orders_data;
-            
-            $orders_item = $this->model_orders->getOrdersItemData($orders_data['id']);
-            foreach ($orders_item as $k => $v) {
-                $result['order_item'][] = $v;
+            if ($orders_data) {
+                $result['order'] = $orders_data;
+                
+                $orders_item = $this->model_orders->getOrdersItemData($orders_data['id']);
+                if (is_array($orders_item)) {
+                    foreach ($orders_item as $k => $v) {
+                        $result['order_item'][] = $v;
+                    }
+                } else {
+                    $result['order_item'] = array();
+                }
+            } else {
+                $this->session->set_flashdata('errors', 'Order data not found!');
+                redirect('Controller_Orders/', 'refresh');
             }
 
             $this->data['order_data'] = $result;
-            $this->data['products'] = $this->model_products->getActiveProductData();          
-            $this->render_template('orders/edit', $this->data);
+            $this->data['products'] = $this->model_products->getActiveProductData();
+            $this->render_template('orders/update', $this->data);
         }
     }
 
-    /*
-     * Removes an order
-     */
     public function remove()
     {
         if (!in_array('deleteOrder', $this->permission)) {
             redirect('dashboard', 'refresh');
         }
 
-        $order_id = $this->input->post('order_id');
-        $response = array();
+        $order_id = $this->input->post('id');
+        $response = array('success' => false, 'messages' => '');
 
         if ($order_id) {
-            $delete = $this->model_orders->remove($order_id);
-            if ($delete == true) {
-                $response['success'] = true;
-                $response['messages'] = "Successfully removed"; 
+            // Check if order exists
+            $order = $this->model_orders->getOrdersData($order_id);
+            if (!$order) {
+                $response['messages'] = "Order not found!";
             } else {
-                $response['success'] = false;
-                $response['messages'] = "Error in the database while removing the product information";
+                $this->db->trans_start(); // Start transaction
+
+                // Delete order items
+                $this->db->where('order_id', $order_id);
+                $this->db->delete('orders_item');
+
+                // Delete order
+                $this->db->where('id', $order_id);
+                $this->db->delete('orders');
+
+                $this->db->trans_complete(); // Complete transaction
+
+                if ($this->db->trans_status() === FALSE) {
+                    $response['messages'] = "Error in the database while removing the order";
+                } else {
+                    $response['success'] = true;
+                    $response['messages'] = "Order removed successfully";
+                }
             }
         } else {
-            $response['success'] = false;
-            $response['messages'] = "Refersh the page again!!";
+            $response['messages'] = "Refresh the page again!!";
         }
 
         echo json_encode($response); 
     }
 
-    /*
-     * Generates printable invoice matching the design in Capture.PNG
-     */
     public function printDiv($id)
     {
-        if (!in_array('viewOrder', $this->permission)) {
-            redirect('dashboard', 'refresh');
+        // If not AJAX request or direct access, redirect to orders page
+        if (!$this->input->is_ajax_request()) {
+            redirect('Controller_Orders');
+            return;
         }
-        
-        if ($id) {
-            $order_data = $this->model_orders->getOrdersData($id);
-            $orders_items = $this->model_orders->getOrdersItemData($id);
-            $company_info = $this->model_company->getCompanyData(1);
 
-            $user = $this->model_users->getUserData($order_data['user_id']);
-            $user_fullname = 'Clerk';
-            if ($user) {
-                $user_fullname = trim($user['firstname'] . ' ' . $user['lastname']);
-                if (empty($user_fullname)) {
-                    $user_fullname = $user['username'];
+        // Validate order ID
+        if (!$id || !is_numeric($id)) {
+            header('Content-Type: application/json');
+            echo json_encode(['error' => 'Invalid order ID']);
+            return;
+        }
+
+        // Get order data
+        $order_data = $this->model_orders->getOrdersData($id);
+        if (!$order_data) {
+            header('Content-Type: application/json');
+            echo json_encode(['error' => 'Order not found']);
+            return;
+        }
+
+        // Set content type for HTML response
+        header('Content-Type: text/html; charset=utf-8');
+
+        $orders_items = $this->model_orders->getOrdersItemData($id);
+        $company_info = $this->model_company->getCompanyData(1);
+
+        $order_date = new DateTime($order_data['date_time']);
+        $formatted_date = $order_date->format('Y-m-d');
+        $formatted_time = $order_date->format('h:i A');
+
+        // Calculate subtotals
+        $subtotal = floatval($order_data['gross_amount']);
+        $vat = floatval($order_data['vat_charge']);
+        $service = floatval($order_data['service_charge']);
+        $discount = floatval($order_data['discount']);
+        $total = floatval($order_data['net_amount']);
+
+        // Clean HTML template
+        $html = '
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="utf-8">
+            <title>Invoice #'.$order_data['bill_no'].'</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    padding: 20px;
+                    color: #333;
                 }
-            }
-
-            $order_date = isset($order_data['date_time']) ? date('F d, Y', $order_data['date_time']) : date('F d, Y');
-            $paid_status = (isset($order_data['paid_status']) && $order_data['paid_status'] == 1) ? "Paid" : "Not Paid";
-            $company_name = isset($company_info['company_name']) ? $company_info['company_name'] : 'Company Name';
-            $bill_no = isset($order_data['bill_no']) ? $order_data['bill_no'] : '';
-            $customer_name = isset($order_data['customer_name']) ? $order_data['customer_name'] : '';
-            $customer_address = isset($order_data['customer_address']) ? $order_data['customer_address'] : '';
-            $customer_phone = isset($order_data['customer_phone']) ? $order_data['customer_phone'] : '';
-            $gross_amount = isset($order_data['gross_amount']) ? $order_data['gross_amount'] : 0;
-            $vat_charge = isset($order_data['vat_charge']) ? $order_data['vat_charge'] : 0;
-            $vat_charge_rate = isset($order_data['vat_charge_rate']) ? $order_data['vat_charge_rate'] : 0;
-            $discount = isset($order_data['discount']) ? $order_data['discount'] : 0;
-            $net_amount = isset($order_data['net_amount']) ? $order_data['net_amount'] : 0;
-
-            $html = '<!DOCTYPE html>
-            <html>
-            <head>
-                <meta charset="utf-8">
-                <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                <title>Invoice</title>
-                <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-                <style>
+                .invoice-container {
+                    max-width: 800px;
+                    margin: 0 auto;
+                    background: #fff;
+                    padding: 20px;
+                    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                }
+                .header {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                    padding-bottom: 20px;
+                    border-bottom: 1px solid #eee;
+                }
+                .company-info {
+                    text-align: right;
+                }
+                .invoice-title {
+                    font-size: 24px;
+                    font-weight: bold;
+                    color: #3a7bd5;
+                    margin-bottom: 10px;
+                }
+                .invoice-details {
+                    margin-bottom: 20px;
+                }
+                .customer-info {
+                    margin-bottom: 20px;
+                    padding: 15px;
+                    background: #f9f9f9;
+                    border-radius: 5px;
+                }
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-bottom: 20px;
+                }
+                table th {
+                    background: #3a7bd5;
+                    color: white;
+                    padding: 10px;
+                    text-align: left;
+                }
+                table td {
+                    padding: 10px;
+                    border-bottom: 1px solid #eee;
+                }
+                .text-right {
+                    text-align: right;
+                }
+                .totals {
+                    margin-left: auto;
+                    width: 300px;
+                }
+                .totals table {
+                    width: 100%;
+                }
+                .totals td {
+                    padding: 8px;
+                }
+                .totals tr:last-child td {
+                    font-weight: bold;
+                    border-top: 1px solid #333;
+                }
+                .footer {
+                    margin-top: 30px;
+                    padding-top: 20px;
+                    border-top: 1px solid #eee;
+                    font-size: 12px;
+                    color: #777;
+                }
+                .status {
+                    display: inline-block;
+                    padding: 5px 10px;
+                    border-radius: 3px;
+                    font-weight: bold;
+                }
+                .status-paid {
+                    background: #4CAF50;
+                    color: white;
+                }
+                .status-unpaid {
+                    background: #F44336;
+                    color: white;
+                }
+                @media print {
                     body {
-                        font-family: Arial, sans-serif;
-                        line-height: 1.5;
-                        color: #000;
-                        max-width: 800px;
-                        margin: 0 auto;
-                        padding: 20px;
-                        background: #fff;
+                        padding: 0;
                     }
-                    .invoice-header {
-                        text-align: center;
-                        margin-bottom: 20px;
-                        border-bottom: 1px solid #000;
-                        padding-bottom: 10px;
+                    .invoice-container {
+                        box-shadow: none;
                     }
-                    .company-name {
-                        font-size: 24px;
-                        font-weight: bold;
-                        margin-bottom: 5px;
-                    }
-                    .invoice-meta {
-                        display: flex;
-                        justify-content: space-between;
-                        margin-bottom: 20px;
-                    }
-                    .invoice-number, .invoice-date {
-                        font-weight: bold;
-                    }
-                    .divider {
-                        border-top: 1px solid #000;
-                        margin: 15px 0;
-                    }
-                    .invoice-section {
-                        margin-bottom: 15px;
-                    }
-                    .section-title {
-                        font-weight: bold;
-                        font-size: 18px;
-                        margin-bottom: 10px;
-                    }
-                    .customer-info, .company-info {
-                        margin-bottom: 10px;
-                    }
-                    .items-table {
-                        width: 100%;
-                        border-collapse: collapse;
-                        margin: 15px 0;
-                    }
-                    .items-table th {
-                        text-align: left;
-                        padding: 8px 5px;
-                        border-bottom: 1px solid #000;
-                    }
-                    .items-table td {
-                        padding: 8px 5px;
-                        border-bottom: 1px solid #ddd;
-                    }
-                    .text-right {
-                        text-align: right;
-                    }
-                    .summary-table {
-                        width: 100%;
-                        border-collapse: collapse;
-                        margin-top: 20px;
-                    }
-                    .summary-table td {
-                        padding: 5px;
-                    }
-                    .summary-table .total-row {
-                        font-weight: bold;
-                        border-top: 1px solid #000;
-                    }
-                    .payment-status {
-                        margin: 15px 0;
-                        font-weight: bold;
-                    }
-                    .signature {
-                        margin-top: 30px;
-                        text-align: right;
-                    }
-                    @media print {
-                        body {
-                            padding: 0;
-                        }
-                        .no-print {
-                            display: none;
-                        }
-                    }
-                </style>
-            </head>
-            <body onload="window.print();">
-                <div class="invoice-header">
-                    <div class="company-name">'.strtoupper($company_name).'</div>
-                </div>
-
-                <div class="invoice-meta">
-                    <div class="invoice-number">Invoice No: '.$bill_no.'</div>
-                    <div class="invoice-date">Date: '.$order_date.'</div>
-                </div>
-
-                <div class="divider"></div>
-
-                <div class="invoice-section">
-                    <div class="section-title">Invoice To:</div>
-                    <div class="customer-info">
-                        <strong>'.$customer_name.'</strong><br>';
-            
-            if (!empty($customer_address)) {
-                $html .= $customer_address.'<br>';
-            }
-            
-            if (!empty($customer_phone)) {
-                $html .= $customer_phone;
-            }
-            
-            $html .= '
+                }
+            </style>
+        </head>
+        <body>
+            <div class="invoice-container">
+                <div class="header">
+                    <div>
+                        <div class="invoice-title">INVOICE</div>
+                        <div class="invoice-details">
+                            <strong>Invoice #:</strong> '.$order_data['bill_no'].'<br>
+                            <strong>Date:</strong> '.$formatted_date.'<br>
+                            <strong>Time:</strong> '.$formatted_time.'
+                        </div>
                     </div>
-                </div>
-
-                <div class="invoice-section">
-                    <div class="section-title">Income From:</div>
                     <div class="company-info">
-                        <strong>'.$company_name.'</strong><br>';
-            
-            if (!empty($company_info['address'])) {
-                $html .= $company_info['address'].'<br>';
-            }
-            
-            if (!empty($company_info['phone'])) {
-                $html .= $company_info['phone'];
-            }
-            
-            $html .= '
+                        <h2>'.$company_info['company_name'].'</h2>
+                        <p>'.$company_info['address'].'</p>
+                        <p>Phone: '.$company_info['phone'].'</p>
+                        <p>TIN: '.$company_info['tin'].'</p>
                     </div>
                 </div>
 
-                <div class="divider"></div>
+                <div class="customer-info">
+                    <h3>Bill To:</h3>
+                    <p><strong>Name:</strong> '.$order_data['customer_name'].'</p>
+                    <p><strong>Address:</strong> '.$order_data['customer_address'].'</p>
+                    <p><strong>Phone:</strong> '.$order_data['customer_phone'].'</p>
+                    <p><strong>Status:</strong> <span class="status status-'.($order_data['paid_status'] == 1 ? 'paid">Paid' : 'unpaid">Unpaid').'</span></p>
+                </div>
 
-                <div class="invoice-section">
-                    <div class="section-title">Items & Services</div>
-                    <table class="items-table">
-                        <thead>
-                            <tr>
-                                <th>S/N</th>
-                                <th>PRODUCT</th>
-                                <th>PRICE</th>
-                                <th>QTY.</th>
-                                <th class="text-right">TOTAL</th>
-                            </tr>
-                        </thead>
-                        <tbody>';
-            
-            $counter = 1;
-            foreach ($orders_items as $k => $v) {
-                $product_data = $this->model_products->getProductData($v['product_id']);
-                $product_name = ($product_data && !empty($product_data['name'])) ? $product_data['name'] : '[Unknown Product]';
-                $rate = isset($v['rate']) ? $v['rate'] : 0;
-                $qty = isset($v['qty']) ? $v['qty'] : 0;
-                $amount = isset($v['amount']) ? $v['amount'] : 0;
-                
-                $html .= '
-                            <tr>
-                                <td>'.str_pad($counter, 2, '0', STR_PAD_LEFT).'</td>
-                                <td>'.$product_name.'</td>
-                                <td>TZS '.number_format($rate, 2).'</td>
-                                <td>'.$qty.'</td>
-                                <td class="text-right">TZS '.number_format($amount, 2).'</td>
-                            </tr>';
-                $counter++;
-            }
-            
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price ('.$company_info['currency'].')</th>
+                            <th>Qty</th>
+                            <th class="text-right">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+
+        foreach ($orders_items as $item) {
             $html .= '
-                        </tbody>
-                    </table>
-                </div>
+                        <tr>
+                            <td>'.$item['product_name'].'</td>
+                            <td>'.number_format(floatval($item['rate']), 2).'</td>
+                            <td>'.$item['qty'].'</td>
+                            <td class="text-right">'.number_format(floatval($item['amount']), 2).'</td>
+                        </tr>';
+        }
 
-                <div class="divider"></div>
+        $html .= '
+                    </tbody>
+                </table>
 
-                <div class="payment-status">
-                    <strong>'.$paid_status.'</strong><br>
-                    Payment completed successfully
-                </div>
-
-                <div class="invoice-section">
-                    <div class="section-title">Summary</div>
-                    <table class="summary-table">
+                <div class="totals">
+                    <table>
                         <tr>
                             <td>Subtotal:</td>
-                            <td class="text-right">TZS '.number_format($gross_amount, 2).'</td>
+                            <td class="text-right">'.$company_info['currency'].' '.number_format(floatval($subtotal), 2).'</td>
                         </tr>';
-            
-            if ($discount > 0) {
-                $html .= '
+
+        if ($vat > 0) {
+            $html .= '
+                        <tr>
+                            <td>VAT ('.$order_data['vat_charge_rate'].'%):</td>
+                            <td class="text-right">'.$company_info['currency'].' '.number_format(floatval($vat), 2).'</td>
+                        </tr>';
+        }
+
+        if ($service > 0) {
+            $html .= '
+                        <tr>
+                            <td>Service Charge ('.$order_data['service_charge_rate'].'%):</td>
+                            <td class="text-right">'.$company_info['currency'].' '.number_format(floatval($service), 2).'</td>
+                        </tr>';
+        }
+
+        if ($discount > 0) {
+            $html .= '
                         <tr>
                             <td>Discount:</td>
-                            <td class="text-right">-TZS '.number_format($discount, 2).'</td>
+                            <td class="text-right">-'.$company_info['currency'].' '.number_format(floatval($discount), 2).'</td>
                         </tr>';
-            }
-            
-            if ($vat_charge > 0) {
-                $html .= '
+        }
+
+        $html .= '
                         <tr>
-                            <td>Tax ('.number_format($vat_charge_rate, 0).'%):</td>
-                            <td class="text-right">TZS '.number_format($vat_charge, 2).'</td>
-                        </tr>';
-            }
-            
-            $html .= '
-                        <tr class="total-row">
-                            <td><strong>Total Amount:</strong></td>
-                            <td class="text-right"><strong>TZS '.number_format($net_amount, 2).'</strong></td>
+                            <td><strong>Total:</strong></td>
+                            <td class="text-right"><strong>'.$company_info['currency'].' '.number_format(floatval($total), 2).'</strong></td>
                         </tr>
                     </table>
                 </div>
 
-                <div class="signature">
-                    <div>Authorized Signature</div>
-                    <div style="margin-top: 40px;">_________________________</div>
-                    <div>Clerk<br>'.$user_fullname.'</div>
+                <div class="footer">
+                    <p>Thank you for your support!</p>
+                    <p>This is a computer generated invoice and does not require signature.</p>
                 </div>
+            </div>
 
-                <div class="no-print" style="margin-top: 20px; text-align: center;">
-                    <button onclick="window.print()" style="padding: 10px 20px; background: #4CAF50; color: white; border: none; cursor: pointer;">Print Invoice</button>
-                </div>
-            </body>
-            </html>';
+            <script>
+                window.print();
+            </script>
+        </body>
+        </html>';
 
-            echo $html;
-        }
+        echo $html;
     }
 
-    /*
-     * Generates thermal printer-friendly receipt for Incotex 777M via COM3
-     */
-    public function printThermal($id)
+    public function mockCreateOrder()
     {
-        if (!in_array('viewOrder', $this->permission)) {
-            redirect('dashboard', 'refresh');
+        $form_data = $this->input->post();
+        log_message('debug', 'Received form data: ' . json_encode($form_data));
+
+        // Generate bill_no
+        $bill_no = 'BILPR-' . strtoupper(substr(md5(uniqid()), 0, 4));
+
+        // Main order SQL
+        $order_sql = sprintf(
+            "INSERT INTO orders (bill_no, customer_name, customer_address, customer_phone, 
+            gross_amount, service_charge_rate, service_charge, vat_charge_rate, vat_charge, 
+            discount, net_amount, paid_status, user_id) 
+            VALUES ('%s', %s, %s, %s, %.2f, %.2f, %.2f, %.2f, %.2f, %.2f, %.2f, %d, %d);",
+            $bill_no,
+            $this->db->escape($form_data['customer_name']),
+            $this->db->escape($form_data['customer_address']),
+            $this->db->escape($form_data['customer_phone']),
+            floatval($form_data['gross_amount_value']),
+            floatval($form_data['service_charge_rate'] ?? 0),
+            floatval($form_data['service_charge_value'] ?? 0),
+            floatval($form_data['vat_charge_rate'] ?? 0),
+            floatval($form_data['vat_charge_value'] ?? 0),
+            floatval($form_data['discount'] ?? 0),
+            floatval($form_data['net_amount_value']),
+            intval($form_data['paid_status']),
+            intval($this->session->userdata('id'))
+        );
+
+        // Order items SQL
+        $items_sql = [];
+        if (!empty($form_data['product'])) {
+            foreach ($form_data['product'] as $key => $product_id) {
+                $items_sql[] = sprintf(
+                    "INSERT INTO orders_item (order_id, product_id, qty, rate, amount) 
+                    VALUES (LAST_INSERT_ID(), %d, %d, %.2f, %.2f);",
+                    intval($product_id),
+                    intval($form_data['qty'][$key]),
+                    floatval($form_data['rate'][$key]),
+                    floatval($form_data['amount_value'][$key])
+                );
+            }
         }
+
+        // Log queries
+        log_message('debug', 'Mock Order SQL: ' . $order_sql);
+        foreach ($items_sql as $sql) {
+            log_message('debug', 'Mock Order Item SQL: ' . $sql);
+        }
+
+        // Return all SQL statements
+        echo json_encode([
+            'mock_sql' => $order_sql . "\n\n" . implode("\n", $items_sql),
+            'bill_no' => $bill_no
+        ]);
+    }
+
+    public function edit($id)
+    {
+        if (!$id) {
+            redirect('Controller_Orders');
+        }
+
+        $this->data['page_title'] = 'Edit Order';
         
-        if ($id) {
-            $order_data = $this->model_orders->getOrdersData($id);
-            $orders_items = $this->model_orders->getOrdersItemData($id);
-            $company_info = $this->model_company->getCompanyData(1);
-
-            $user = $this->model_users->getUserData($order_data['user_id']);
-            $user_fullname = 'Clerk';
-            if ($user) {
-                $user_fullname = trim($user['firstname'] . ' ' . $user['lastname']);
-                if (empty($user_fullname)) {
-                    $user_fullname = $user['username'];
-                }
-            }
-
-            $order_date = isset($order_data['date_time']) ? date('d-m-Y H:i', $order_data['date_time']) : date('d-m-Y H:i');
-            $paid_status = (isset($order_data['paid_status']) && $order_data['paid_status'] == 1) ? "Paid" : "Not Paid";
-            $company_name = isset($company_info['company_name']) ? $company_info['company_name'] : 'Company Name';
-            $bill_no = isset($order_data['bill_no']) ? $order_data['bill_no'] : '';
-            $customer_name = isset($order_data['customer_name']) ? $order_data['customer_name'] : '';
-            $gross_amount = isset($order_data['gross_amount']) ? $order_data['gross_amount'] : 0;
-            $vat_charge = isset($order_data['vat_charge']) ? $order_data['vat_charge'] : 0;
-            $vat_charge_rate = isset($order_data['vat_charge_rate']) ? $order_data['vat_charge_rate'] : 0;
-            $discount = isset($order_data['discount']) ? $order_data['discount'] : 0;
-            $net_amount = isset($order_data['net_amount']) ? $order_data['net_amount'] : 0;
-
-            // ESC/POS commands
-            $ESC = "\x1B";
-            $GS = "\x1D";
-            $LF = "\n";
-            $initialize = $ESC . "@";
-            $center_align = $ESC . "a1";
-            $left_align = $ESC . "a0";
-            $bold_on = $ESC . "E1";
-            $bold_off = $ESC . "E0";
-            $cut_paper = $GS . "V1";
-            $set_code_page = $ESC . "t" . chr(0);
-
-            // Build receipt content
-            $receipt = $initialize . $set_code_page;
-            $receipt .= $center_align;
-            $receipt .= $bold_on . strtoupper(substr($company_name, 0, 30)) . $bold_off . $LF;
-            $receipt .= "Receipt #" . substr($bill_no, 0, 20) . $LF;
-            $receipt .= "Date: " . $order_date . $LF;
-            $receipt .= "Customer: " . substr($customer_name, 0, 15) . $LF;
-            $receipt .= "Clerk: " . substr($user_fullname, 0, 15) . $LF;
-            $receipt .= str_repeat("-", 32) . $LF;
-            $receipt .= $left_align;
-
-            // Item header (adjusted for 58mm, ~32 characters)
-            $receipt .= sprintf("%-15s %4s %6s %6s\n", "Item", "Qty", "Price", "Total");
-
-            // Items
-            foreach ($orders_items as $k => $v) {
-                if (isset($v['product_name']) && !empty($v['product_name'])) {
-                    $product_name = substr($v['product_name'], 0, 15);
-                } else {
-                    $product_data = $this->model_products->getProductData($v['product_id']);
-                    $product_name = ($product_data && !empty($product_data['name'])) ? substr($product_data['name'], 0, 15) : '[Unknown]';
-                }
-                $rate = isset($v['rate']) ? $v['rate'] : 0;
-                $qty = isset($v['qty']) ? $v['qty'] : 0;
-                $amount = isset($v['amount']) ? $v['amount'] : 0;
-
-                $receipt .= sprintf("%-15s %4d %6.2f %6.2f\n", $product_name, $qty, $rate, $amount);
-            }
-
-            $receipt .= str_repeat("-", 32) . $LF;
-            $receipt .= sprintf("%-15s %16.2f\n", "Subtotal:", $gross_amount);
-            if ($discount > 0) {
-                $receipt .= sprintf("%-15s %16.2f\n", "Discount:", $discount);
-            }
-            if ($vat_charge > 0) {
-                $receipt .= sprintf("%-15s %16.2f\n", "Tax (" . number_format($vat_charge_rate, 0) . "%):", $vat_charge);
-            }
-            $receipt .= $bold_on . sprintf("%-15s %16.2f\n", "Total:", $net_amount) . $bold_off;
-            $receipt .= sprintf("%-15s %16s\n", "Status:", $paid_status);
-            $receipt .= str_repeat("-", 32) . $LF;
-            $receipt .= $center_align . "Thank you for your business!" . $LF . $LF;
-            $receipt .= $cut_paper;
-
-            // Log receipt data for debugging
-            $log_file = FCPATH . 'application/logs/receipt_' . date('Ymd_His') . '.txt';
-            file_put_contents($log_file, bin2hex($receipt) . "\n\n" . $receipt);
-
-            // Open COM3 port
-            $port = "COM3";
-            try {
-                system("mode $port BAUD=9600 PARITY=n DATA=8 STOP=1 to=off dtr=off rts=off");
-                
-                $fp = fopen($port, 'w');
-                if ($fp === false) {
-                    throw new Exception("Failed to open COM3 port. Ensure the printer is connected, powered on, and the port is not in use.");
-                }
-
-                if (fwrite($fp, $receipt) === false) {
-                    throw new Exception("Failed to write to COM3 port. Check printer connection or port settings.");
-                }
-
-                fclose($fp);
-
-                $this->session->set_flashdata('success', 'Receipt sent to printer on COM3. Check log at ' . $log_file);
-                redirect('Controller_Orders', 'refresh');
-            } catch (Exception $e) {
-                $this->session->set_flashdata('errors', 'Error printing receipt: ' . $e->getMessage());
-                redirect('Controller_Orders', 'refresh');
-            }
+        // Get order data with proper structure
+        $order_data = $this->model_orders->getOrdersData($id);
+        if (!$order_data) {
+            $this->session->set_flashdata('error', 'Order not found');
+            redirect('Controller_Orders');
         }
+
+        // Structure the data correctly
+        $this->data['order_data'] = array(
+            'order' => $order_data,
+            'order_item' => $this->model_orders->getOrdersItemData($id)
+        );
+
+        // Get other required data
+        $this->data['products'] = $this->model_products->getActiveProductData();
+        $company = $this->model_company->getCompanyData(1);
+        $this->data['company_data'] = $company;
+        $this->data['is_vat_enabled'] = ($company['vat_charge_value'] > 0);
+        $this->data['is_service_enabled'] = ($company['service_charge_value'] > 0);
+
+        $this->render_template('orders/edit', $this->data);
     }
 }
+?>

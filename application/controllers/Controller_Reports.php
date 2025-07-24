@@ -12,26 +12,28 @@ class Controller_Reports extends Admin_Controller
         $this->load->model('model_users');
         $this->load->model('model_products');
         $this->load->model('model_company');
+        log_message('debug', 'Controller_Reports initialized');
     }
 
     // Dashboard landing page for reports
     public function index()
     {
         if (!in_array('viewReport', $this->permission)) {
+            $this->session->set_flashdata('error', 'Unauthorized access to reports');
             redirect('dashboard', 'refresh');
         }
         $this->data['tab'] = 'orders';
         $this->render_template('reporting/index', $this->data);
     }
 
-    // Orders (Sales) Report
+    // Sales Report
     public function sales_report()
     {
         if (!in_array('viewReport', $this->permission)) {
+            $this->session->set_flashdata('error', 'Unauthorized access to sales reports');
             redirect('dashboard', 'refresh');
         }
 
-        // Filters
         $filters = array(
             'date_from' => $this->input->get('date_from'),
             'date_to' => $this->input->get('date_to'),
@@ -39,7 +41,6 @@ class Controller_Reports extends Admin_Controller
             'status' => $this->input->get('status')
         );
 
-        // Data
         $report = $this->Model_reporting->getSalesReport($filters);
         $aggregates = $this->Model_reporting->getSalesAggregates($filters);
         $customers = $this->Model_reporting->getCustomerList();
@@ -57,6 +58,7 @@ class Controller_Reports extends Admin_Controller
     public function purchase_report()
     {
         if (!in_array('viewReport', $this->permission)) {
+            $this->session->set_flashdata('error', 'Unauthorized access to purchase reports');
             redirect('dashboard', 'refresh');
         }
 
@@ -67,22 +69,47 @@ class Controller_Reports extends Admin_Controller
         );
 
         $report = $this->Model_reporting->getPurchaseReport($filters);
-        $summary = $this->Model_reporting->getStockMovementSummary($filters);
         $products = $this->Model_reporting->getProductList();
 
-        $this->data['report'] = $report;
-        $this->data['summary'] = $summary;
+        $this->data['report'] = $report['report'];
+        $this->data['summary'] = $report['summary'];
         $this->data['filters'] = $filters;
-        $this->data['products'] = $products;
+        $this->data['products'] = $report['products'];
         $this->data['tab'] = 'purchases';
 
         $this->render_template('reporting/purchase_report', $this->data);
+    }
+
+    // Expense Report
+    public function expense_report()
+    {
+        if (!in_array('viewReport', $this->permission)) {
+            $this->session->set_flashdata('error', 'Unauthorized access to expense reports');
+            redirect('dashboard', 'refresh');
+        }
+
+        $filters = array(
+            'date_from' => $this->input->get('date_from'),
+            'date_to' => $this->input->get('date_to'),
+            'category' => $this->input->get('category')
+        );
+
+        $report = $this->Model_reporting->getExpenseReport($filters);
+        $aggregates = $this->Model_reporting->getExpenseAggregates($filters);
+
+        $this->data['report'] = $report;
+        $this->data['aggregates'] = $aggregates;
+        $this->data['filters'] = $filters;
+        $this->data['tab'] = 'expenses';
+
+        $this->render_template('reporting/expense_report', $this->data);
     }
 
     // General (Profit/Turnover) Report
     public function general_report()
     {
         if (!in_array('viewReport', $this->permission)) {
+            $this->session->set_flashdata('error', 'Unauthorized access to general reports');
             redirect('dashboard', 'refresh');
         }
 
@@ -114,7 +141,10 @@ class Controller_Reports extends Admin_Controller
                 $data = $this->Model_reporting->getSalesReport($filters);
                 break;
             case 'purchases':
-                $data = $this->Model_reporting->getPurchaseReport($filters);
+                $data = $this->Model_reporting->getPurchaseReport($filters)['report'];
+                break;
+            case 'expenses':
+                $data = $this->Model_reporting->getExpenseReport($filters);
                 break;
             case 'general':
                 $data = $this->Model_reporting->getGeneralReport($filters);
@@ -128,58 +158,70 @@ class Controller_Reports extends Admin_Controller
             header('Content-Disposition: attachment; filename="' . $filename . '.csv"');
             $out = fopen('php://output', 'w');
             if (!empty($data) && is_array($data)) {
-                fputcsv($out, array_keys(reset($data)));
+                $keys = array_keys(reset($data));
+                if ($type === 'sales') {
+                    $keys = array_filter($keys, function($key) { return $key !== 'items'; });
+                }
+                fputcsv($out, $keys);
                 foreach ($data as $row) {
-                    fputcsv($out, $row);
+                    $row_data = array();
+                    foreach ($keys as $key) {
+                        $row_data[] = isset($row[$key]) ? $row[$key] : '';
+                    }
+                    fputcsv($out, $row_data);
                 }
             }
             fclose($out);
             exit;
         } elseif ($format == 'excel') {
-            // Simple Excel export (CSV with .xls extension)
             header('Content-Type: application/vnd.ms-excel');
             header('Content-Disposition: attachment; filename="' . $filename . '.xls"');
             $out = fopen('php://output', 'w');
             if (!empty($data) && is_array($data)) {
-                fputcsv($out, array_keys(reset($data)));
+                $keys = array_keys(reset($data));
+                if ($type === 'sales') {
+                    $keys = array_filter($keys, function($key) { return $key !== 'items'; });
+                }
+                fputcsv($out, $keys);
                 foreach ($data as $row) {
-                    fputcsv($out, $row);
+                    $row_data = array();
+                    foreach ($keys as $key) {
+                        $row_data[] = isset($row[$key]) ? $row[$key] : '';
+                    }
+                    fputcsv($out, $row_data);
                 }
             }
             fclose($out);
             exit;
         } elseif ($format == 'pdf') {
-            // PDF export (requires dompdf or similar library)
-            // For now, output HTML for print-to-PDF
             echo '<html><head><title>' . ucfirst($type) . ' Report</title>';
             echo '<style>table { border-collapse: collapse; width: 100%; } th, td { border: 1px solid #000; padding: 8px; } .items-table { margin-left: 20px; font-size: 90%; }</style>';
             echo '</head><body>';
             echo '<h2>' . ucfirst($type) . ' Report</h2>';
             echo '<p>Generated on: ' . date('Y-m-d H:i:s') . '</p>';
-            if ($type == 'sales') {
+            if ($type == 'sales' || $type == 'expenses') {
                 echo '<p>Period: ' . (isset($filters['date_from']) ? htmlspecialchars($filters['date_from']) : 'N/A') . ' to ' . 
                      (isset($filters['date_to']) ? htmlspecialchars($filters['date_to']) : 'N/A') . '</p>';
             }
             echo '<table>';
             if (!empty($data) && is_array($data)) {
+                $keys = array_keys(reset($data));
+                if ($type === 'sales') {
+                    $keys = array_filter($keys, function($key) { return $key !== 'items'; });
+                }
                 echo '<tr>';
-                foreach (array_keys(reset($data)) as $col) {
-                    if ($col !== 'items') { // Exclude items column for main table
-                        echo '<th>' . htmlspecialchars($col) . '</th>';
-                    }
+                foreach ($keys as $col) {
+                    echo '<th>' . htmlspecialchars($col) . '</th>';
                 }
                 echo '</tr>';
                 foreach ($data as $row) {
                     echo '<tr>';
-                    foreach ($row as $key => $cell) {
-                        if ($key !== 'items') {
-                            echo '<td>' . htmlspecialchars($cell) . '</td>';
-                        }
+                    foreach ($keys as $key) {
+                        echo '<td>' . htmlspecialchars($row[$key] ?? '') . '</td>';
                     }
                     echo '</tr>';
-                    // Add items table for sales report
                     if ($type == 'sales' && !empty($row['items'])) {
-                        echo '<tr><td colspan="' . (count(array_keys($row)) - 1) . '">';
+                        echo '<tr><td colspan="' . count($keys) . '">';
                         echo '<table class="items-table">';
                         echo '<tr><th>Item</th><th>Qty</th><th>Unit Price</th><th>Total</th></tr>';
                         foreach ($row['items'] as $item) {
@@ -201,7 +243,7 @@ class Controller_Reports extends Admin_Controller
         }
     }
 
-    // (Optional) AJAX endpoint for chart data
+    // AJAX endpoint for chart data
     public function chart_data($type = 'sales')
     {
         if (!in_array('viewReport', $this->permission)) {
@@ -214,6 +256,9 @@ class Controller_Reports extends Admin_Controller
                 break;
             case 'purchases':
                 $data = $this->Model_reporting->getPurchaseChartData($filters);
+                break;
+            case 'expenses':
+                $data = $this->Model_reporting->getExpenseChartData($filters);
                 break;
             default:
                 $data = array();

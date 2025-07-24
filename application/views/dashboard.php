@@ -20,52 +20,7 @@
       <!-- Small boxes (Stat box) -->
       <?php if(!empty($is_admin) || !empty($is_manager)): ?>
 
-        <div class="row">
-          <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-purple">
-              <div class="inner">
-                <h3><?php echo $total_brands ?></h3>
-
-                <h4><b>Total Items</b></h4>
-              </div>
-              <div class="icon">
-                <i class="fa fa-cubes"></i>
-              </div>
-              <a href="<?php echo base_url('Controller_Items/') ?>" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-teal">
-              <div class="inner">
-                <h3><?php echo $total_category ?></h3>
-
-                <h4><b>Total Category</b></h4>
-              </div>
-              <div class="icon">
-                <i class="fa fa-th"></i>
-              </div>
-              <a href="<?php echo base_url('Controller_Category/') ?>" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-yellow">
-              <div class="inner">
-                <h3><?php echo $total_attribures; ?></h3>
-
-               <h4><b>Total Elements</h4></b>
-              </div>
-              <div class="icon">
-                <i class="fa fa-files-o"></i>
-              </div>
-              <a href="<?php echo base_url('Controller_Element/') ?>" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
+        <div class="row"> 
           <div class="col-lg-3 col-xs-6">
             <!-- small box -->
             <div class="small-box bg-green">

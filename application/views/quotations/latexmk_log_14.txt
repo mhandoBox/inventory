@@ -1,0 +1,104 @@
+Initial Win CP for (console input, console output, system): (CP437, CP65001, CP1252)
+I changed them all to CP1252
+Rc files read:
+  NONE
+Latexmk: This is Latexmk, John Collins, 15 June 2025. Version 4.87.
+No existing .aux file, so I'll make a simple one, and require run of *latex.
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Category 'other':
+  Rerun of 'pdflatex' forced or previously required:
+    Reason or flag: 'Initial setup'
+
+------------
+Run number 1 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -interaction=nonstopmode -recorder -output-directory="application/views/quotations"  "C:/xampp/htdocs/Inventory_CI/application/views/quotations/quotation_14.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex.fmt)
+ restricted \write18 enabled.
+entering extended mode
+(C:/xampp/htdocs/Inventory_CI/application/views/quotations/quotation_14.tex
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-07-11>
+(C:\Users\mhando\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(C:\Users\mhando\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo))
+(C:\Users\mhando\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty)
+(C:\Users\mhando\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+(C:\Users\mhando\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty)
+(C:\Users\mhando\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
+(C:\Users\mhando\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty))
+(C:\Users\mhando\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg)
+)
+(C:\Users\mhando\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty)
+ (C:\Users\mhando\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+(C:\Users\mhando\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+(C:\Users\mhando\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty)
+(C:\Users\mhando\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.
+cfg)
+(C:\Users\mhando\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.de
+f))) (C:\Users\mhando\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty)
+(C:\Users\mhando\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty)
+ (C:\Users\mhando\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\times.sty)
+(C:\Users\mhando\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1ptm.fd)
+(C:\Users\mhando\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pd
+ftex.def)
+(C:\xampp\htdocs\Inventory_CI\application\views\quotations\quotation_14.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+
+(C:\Users\mhando\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.m
+kii
+[Loading MPS to PDF converter (version 2006.09.02).]
+)
+(C:\Users\mhando\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-
+base.sty
+(C:\Users\mhando\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.
+cfg))
+Overfull \hbox (410.29092pt too wide) in paragraph at lines 26--49
+[] []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 60.50554pt, for example:
+(fancyhdr)                \setlength{\headheight}{60.50554pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-48.50554pt}.
+
+(C:\Users\mhando\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd)
+[1{C:/Users/mhando/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/m
+hando/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc} <C:/xampp/htdo
+cs/Inventory_CI/Uploads/company/a12ba40d9f1e7829852a943e9f94a365.png>]
+(C:\xampp\htdocs\Inventory_CI\application\views\quotations\quotation_14.aux) )
+(see the transcript file for additional information)<C:/Users/mhando/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/mhando/AppData/L
+ocal/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb>
+Output written on C:\xampp\htdocs\Inventory_CI\application\views\quotations\quo
+tation_14.pdf (1 page, 37711 bytes).
+Transcript written on C:\xampp\htdocs\Inventory_CI\application\views\quotations
+\quotation_14.log.
+Latexmk: Getting log file 'application/views/quotations/quotation_14.log'
+Latexmk: Examining 'application/views/quotations/quotation_14.fls'
+Latexmk: Examining 'application/views/quotations/quotation_14.log'
+Latexmk: Log file says output to 'application/views/quotations/quotation_14.pdf'
+Latexmk: Using bibtex to make bibliography file(s).
+Latexmk: All targets (application/views/quotations/quotation_14.pdf) are up-to-date
+
+Latexmk: Nothing to do for 'C:/Users/mhando/AppData/Local/Programs/MiKTeX/tex/latex/tools/.tex'.
+Latexmk: All targets (application/views/quotations/.pdf) are up-to-date
+Collected error summary (may duplicate other messages):
+  pdflatex: gave an error in previous invocation of latexmk.
+
+
+------------
+Latexmk: Some operations failed, for the following tex file(s)
+  
+Latexmk: Sometimes, the -f option can be used to get latexmk
+  to try to force complete processing.
+  But normally, you will need to correct the file(s) that caused the
+  error, and then rerun latexmk.
+  In some cases, it is best to clean out generated files before rerunning
+  latexmk after you've corrected the files.
+Reverting Windows console CPs to (in,out) = (437,65001)

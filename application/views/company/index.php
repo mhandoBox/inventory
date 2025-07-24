@@ -36,14 +36,46 @@ $disabled = empty($can_edit_company) ? 'disabled' : '';
 
           <div class="box">
             
-            <form role="form" action="<?php base_url('company/update') ?>" method="post">
+            <form role="form" action="<?php echo base_url('company/update'); ?>" method="post" enctype="multipart/form-data">
               <div class="box-body">
 
                 <?php echo validation_errors(); ?>
 
+                <?php if($company_data['logo']): ?>
+                  <div class="form-group">
+                    <label>Company Logo</label><br>
+                    <img src="<?php echo base_url().'assets/images/'.$company_data['logo'] ?>" width="150" height="150">
+                  </div>
+                <?php endif; ?>
+
+                <div class="form-group">
+                  <label for="logo">Update Logo</label>
+                  <input type="file" class="form-control" id="logo" name="logo" <?php echo $disabled; ?>>
+                </div>
+
+                <?php if($company_data['image']): ?>
+                  <div class="form-group">
+                    <label>Company Image</label><br>
+                    <img src="<?php echo base_url().'assets/images/'.$company_data['image'] ?>" width="150" height="150">
+                  </div>
+                <?php endif; ?>
+
+                <div class="form-group">
+                  <label for="image">Update Image</label>
+                  <input type="file" class="form-control" id="image" name="image" <?php echo $disabled; ?>>
+                </div>
+
                 <div class="form-group">
                   <label for="company_name">Company Name</label>
                   <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Enter company name" value="<?php echo $company_data['company_name'] ?>" autocomplete="off" <?php echo $readonly; ?>>
+                </div>
+                <div class="form-group">
+                  <label for="registration">Registration Number</label>
+                  <input type="text" class="form-control" id="registration" name="registration" placeholder="Enter registration number" value="<?php echo $company_data['registration'] ?>" autocomplete="off" <?php echo $readonly; ?>>
+                </div>
+                <div class="form-group">
+                  <label for="tin">TIN Number</label>
+                  <input type="text" class="form-control" id="tin" name="tin" placeholder="Enter TIN number" value="<?php echo $company_data['tin'] ?>" autocomplete="off" <?php echo $readonly; ?>>
                 </div>
                 <div class="form-group">
                   <label for="service_charge_value">Charge Amount (%)</label>
@@ -66,8 +98,8 @@ $disabled = empty($can_edit_company) ? 'disabled' : '';
                   <input type="text" class="form-control" id="country" name="country" placeholder="Enter country" value="<?php echo $company_data['country'] ?>" autocomplete="off" <?php echo $readonly ?>>
                 </div>
                 <div class="form-group">
-                  <label for="permission">Message</label>
-                  <textarea class="form-control" id="message" name="message" <?php echo $readonly; ?>><?php echo $company_data['message'] ?></textarea>
+                  <label for="message">Message</label>
+                  <input type="text" class="form-control" id="message" name="message" placeholder="Enter message" value="<?php echo $company_data['message'] ?>" autocomplete="off" <?php echo $readonly; ?>>
                 </div>
                 <div class="form-group">
                   <label for="currency">Currency</label>
@@ -106,7 +138,6 @@ $disabled = empty($can_edit_company) ? 'disabled' : '';
 <script type="text/javascript">
   $(document).ready(function() {
     $("#companyNav").addClass('active');
-    $("#message").wysihtml5();
   });
 </script>
 

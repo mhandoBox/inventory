@@ -26,11 +26,7 @@ class Dashboard extends Admin_Controller
 		$this->data['total_products'] = $this->model_products->countTotalProducts();
 		$this->data['total_paid_orders'] = $this->model_orders->countTotalPaidOrders();
 		$this->data['total_users'] = $this->model_users->countTotalUsers();
-		$this->data['total_stores'] = $this->model_stores->countTotalStores();
-
-		$this->data['total_brands'] = $this->model_products->countTotalbrands();
-		$this->data['total_category'] = $this->model_products->countTotalcategory();
-		$this->data['total_attribures'] = $this->model_products->countTotalattribures();
+		$this->data['total_stores'] = $this->model_stores->countTotalStores();  
 
 		$this->render_template('dashboard', $this->data);
 	}

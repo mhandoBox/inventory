@@ -46,7 +46,7 @@ class Model_reporting extends CI_Model {
             $this->db->where('orders.paid_status', $filters['status']);
         }
         
-        $this->db->order_by('orders.date_time', 'ASC'); // Sort from oldest to latest
+        $this->db->order_by('orders.date_time', 'ASC');
         $query = $this->db->get();
         
         if ($query === FALSE) {
@@ -57,7 +57,6 @@ class Model_reporting extends CI_Model {
         
         $results = $query->result_array();
         
-        // Fetch items for each order
         foreach ($results as &$result) {
             $result['items'] = $this->getSaleItems($result['order_id']);
             if (empty($result['items']) && $result['total_items'] > 0) {
@@ -66,126 +65,6 @@ class Model_reporting extends CI_Model {
         }
         
         return $results;
-    }
-
-    // Updated Purchases Report method
-    public function getPurchaseReport($filters = array()) {
-        // Initialize default response
-        $response = [
-            'report' => [],
-            'products' => [],
-            'filters' => $filters,
-            'summary' => ['opening' => 0, 'additions' => 0, 'reductions' => 0, 'closing' => 0]
-        ];
-
-        // Fetch products for dropdown
-        $this->db->select('id, name');
-        $this->db->from('products');
-        $this->db->order_by('name', 'ASC');
-        $products_query = $this->db->get();
-        if ($products_query !== FALSE) {
-            $response['products'] = $products_query->result_array();
-        } else {
-            log_message('error', 'Failed to fetch products: ' . json_encode($this->db->error()));
-            $this->session->set_flashdata('error', 'Error fetching products.');
-        }
-
-        // Fetch purchase report from product_stock_history
-        $this->db->select('psh.date, p.name as product, psh.qty as quantity, psh.price as unit_cost, 
-                          (psh.qty * psh.price) as total_cost, psh.supplier as source');
-        $this->db->from('product_stock_history psh');
-        $this->db->join('products p', 'p.id = psh.product_id', 'left');
-        
-        if (!empty($filters['date_from'])) {
-            $this->db->where('DATE(psh.date) >=', $filters['date_from']);
-        }
-        if (!empty($filters['date_to'])) {
-            $this->db->where('DATE(psh.date) <=', $filters['date_to']);
-        }
-        if (!empty($filters['product'])) {
-            $this->db->where('psh.product_id', $filters['product']);
-        }
-        
-        $this->db->order_by('psh.date', 'DESC');
-        $query = $this->db->get();
-
-        if ($query !== FALSE) {
-            $response['report'] = $query->result_array();
-        } else {
-            log_message('error', 'Purchase query failed: ' . json_encode($this->db->error()));
-            $this->session->set_flashdata('error', 'Error fetching purchase data.');
-        }
-
-        // Fetch summary
-        $response['summary'] = $this->getStockMovementSummary($filters);
-
-        return $response;
-    }
-
-    // General Report method
-    public function getGeneralReport($filters = array()) {
-        // Current period data
-        $current = $this->calculateGeneralMetrics($filters);
-        
-        // Previous period data for comparison
-        $prevFilters = [
-            'date_from' => date('Y-m-d', strtotime($filters['date_from'] . ' -1 month')),
-            'date_to' => date('Y-m-d', strtotime($filters['date_to'] . ' -1 month'))
-        ];
-        $previous = $this->calculateGeneralMetrics($prevFilters);
-        
-        // Calculate percentage changes
-        $current['revenue_change'] = $this->calculatePercentageChange($previous['total_revenue'], $current['total_revenue']);
-        $current['cost_change'] = $this->calculatePercentageChange($previous['total_cost'], $current['total_cost']);
-        $current['profit_change'] = $this->calculatePercentageChange($previous['gross_profit'], $current['gross_profit']);
-        $current['turnover_change'] = $this->calculatePercentageChange($previous['turnover_rate'], $current['turnover_rate']);
-        
-        return $current;
-    }
-
-    // Helper method to calculate general metrics
-    private function calculateGeneralMetrics($filters) {
-        // Get total revenue
-        $this->db->select('SUM(net_amount) as total_revenue, COUNT(*) as total_orders');
-        $this->db->from('orders');
-        if (!empty($filters['date_from'])) {
-            $this->db->where('DATE(date_time) >=', $filters['date_from']);
-        }
-        if (!empty($filters['date_to'])) {
-            $this->db->where('DATE(date_time) <=', $filters['date_to']);
-        }
-        $revenue_query = $this->db->get();
-        $revenue = $revenue_query->row_array();
-        
-        // Get total cost from product_stock_history
-        $this->db->select('SUM(psh.price * psh.qty) as total_cost');
-        $this->db->from('product_stock_history psh');
-        if (!empty($filters['date_from'])) {
-            $this->db->where('DATE(psh.date) >=', $filters['date_from']);
-        }
-        if (!empty($filters['date_to'])) {
-            $this->db->where('DATE(psh.date) <=', $filters['date_to']);
-        }
-        $cost_query = $this->db->get();
-        $cost = $cost_query->row_array();
-        
-        $total_revenue = $revenue['total_revenue'] ? $revenue['total_revenue'] : 0;
-        $total_cost = $cost['total_cost'] ? $cost['total_cost'] : 0;
-        $gross_profit = $total_revenue - $total_cost;
-        
-        return array(
-            'total_revenue' => $total_revenue,
-            'total_cost' => $total_cost,
-            'gross_profit' => $gross_profit,
-            'turnover_rate' => $total_cost > 0 ? round($total_revenue / $total_cost, 2) : 0,
-            'total_orders' => $revenue['total_orders'] ? $revenue['total_orders'] : 0
-        );
-    }
-
-    // Helper method to calculate percentage change
-    private function calculatePercentageChange($oldValue, $newValue) {
-        if ($oldValue == 0) return 0;
-        return (($newValue - $oldValue) / $oldValue) * 100;
     }
 
     // Sales Aggregates
@@ -214,22 +93,58 @@ class Model_reporting extends CI_Model {
         );
     }
 
-    // Customer List
-    public function getCustomerList() {
-        $this->db->select('id, customer_name as name');
-        $this->db->from('orders');
-        $this->db->where('customer_name IS NOT NULL');
-        $this->db->group_by('customer_name');
-        $query = $this->db->get();
-        if ($query && $query instanceof CI_DB_result) {
-            return $query->result_array();
+    // Purchase Report method
+    public function getPurchaseReport($filters = array()) {
+        $response = [
+            'report' => [],
+            'products' => [],
+            'filters' => $filters,
+            'summary' => ['opening' => 0, 'additions' => 0, 'reductions' => 0, 'closing' => 0]
+        ];
+
+        $this->db->select('id, name');
+        $this->db->from('products');
+        $this->db->order_by('name', 'ASC');
+        $products_query = $this->db->get();
+        if ($products_query !== FALSE) {
+            $response['products'] = $products_query->result_array();
+        } else {
+            log_message('error', 'Failed to fetch products: ' . json_encode($this->db->error()));
+            $this->session->set_flashdata('error', 'Error fetching products.');
         }
-        return array();
+
+        $this->db->select('psh.date, p.name as product, psh.qty as quantity, psh.price as unit_cost, 
+                          (psh.qty * psh.price) as total_cost, psh.supplier as source');
+        $this->db->from('product_stock_history psh');
+        $this->db->join('products p', 'p.id = psh.product_id', 'left');
+        
+        if (!empty($filters['date_from'])) {
+            $this->db->where('DATE(psh.date) >=', $filters['date_from']);
+        }
+        if (!empty($filters['date_to'])) {
+            $this->db->where('DATE(psh.date) <=', $filters['date_to']);
+        }
+        if (!empty($filters['product'])) {
+            $this->db->where('psh.product_id', $filters['product']);
+        }
+        
+        $this->db->order_by('psh.date', 'DESC');
+        $query = $this->db->get();
+
+        if ($query !== FALSE) {
+            $response['report'] = $query->result_array();
+        } else {
+            log_message('error', 'Purchase query failed: ' . json_encode($this->db->error()));
+            $this->session->set_flashdata('error', 'Error fetching purchase data.');
+        }
+
+        $response['summary'] = $this->getStockMovementSummary($filters);
+
+        return $response;
     }
 
     // Stock Movement Summary
     public function getStockMovementSummary($filters = array()) {
-        // Get total stock additions
         $this->db->select('SUM(qty) as total_additions');
         $this->db->from('product_stock_history');
         if (!empty($filters['date_from'])) {
@@ -240,8 +155,7 @@ class Model_reporting extends CI_Model {
         }
         $additions_query = $this->db->get();
         $additions = $additions_query->row_array();
-        
-        // Get total stock reductions (from orders)
+
         $this->db->select('SUM(orders_item.qty) as total_reductions');
         $this->db->from('orders_item');
         $this->db->join('orders', 'orders.id = orders_item.order_id');
@@ -253,8 +167,7 @@ class Model_reporting extends CI_Model {
         }
         $reductions_query = $this->db->get();
         $reductions = $reductions_query->row_array();
-        
-        // Calculate opening stock (before date_from)
+
         $this->db->select('SUM(qty) as total_opening');
         $this->db->from('product_stock_history');
         if (!empty($filters['date_from'])) {
@@ -262,7 +175,7 @@ class Model_reporting extends CI_Model {
         }
         $opening_query = $this->db->get();
         $opening = $opening_query->row_array();
-        
+
         $total_additions = $additions['total_additions'] ? $additions['total_additions'] : 0;
         $total_reductions = $reductions['total_reductions'] ? $reductions['total_reductions'] : 0;
         $opening_stock = $opening['total_opening'] ? $opening['total_opening'] : 0;
@@ -274,6 +187,148 @@ class Model_reporting extends CI_Model {
             'reductions' => $total_reductions,
             'closing' => $closing_stock
         );
+    }
+
+    // Expense Report method
+    public function getExpenseReport($filters = array()) {
+        $this->db->select('company_expenses.id, company_expenses.expense_date, company_expenses.amount, 
+                          company_expenses.description, company_expenses.category, users.username as user_name');
+        $this->db->from('company_expenses');
+        $this->db->join('users', 'users.id = company_expenses.user_id', 'left');
+        
+        if (!empty($filters['date_from'])) {
+            $this->db->where('DATE(company_expenses.expense_date) >=', $filters['date_from']);
+        }
+        if (!empty($filters['date_to'])) {
+            $this->db->where('DATE(company_expenses.expense_date) <=', $filters['date_to']);
+        }
+        if (!empty($filters['category'])) {
+            $this->db->where('company_expenses.category', $filters['category']);
+        }
+        
+        $this->db->order_by('company_expenses.expense_date', 'DESC');
+        $query = $this->db->get();
+        
+        if ($query === FALSE) {
+            log_message('error', 'getExpenseReport failed: ' . json_encode($this->db->error()));
+            $this->session->set_flashdata('error', 'Error fetching expense data.');
+            return array();
+        }
+        
+        return $query->result_array();
+    }
+
+    // Expense Aggregates
+    public function getExpenseAggregates($filters = array()) {
+        $this->db->select('SUM(amount) as total_expenses, COUNT(*) as total_transactions, AVG(amount) as avg_expense_value');
+        $this->db->from('company_expenses');
+        
+        if (!empty($filters['date_from'])) {
+            $this->db->where('DATE(expense_date) >=', $filters['date_from']);
+        }
+        if (!empty($filters['date_to'])) {
+            $this->db->where('DATE(expense_date) <=', $filters['date_to']);
+        }
+        if (!empty($filters['category'])) {
+            $this->db->where('category', $filters['category']);
+        }
+        
+        $query = $this->db->get();
+        $result = $query->row_array();
+        
+        return array(
+            'total_expenses' => $result['total_expenses'] ? $result['total_expenses'] : 0,
+            'total_transactions' => $result['total_transactions'] ? $result['total_transactions'] : 0,
+            'avg_expense_value' => $result['avg_expense_value'] ? $result['avg_expense_value'] : 0
+        );
+    }
+
+    // General Report method
+    public function getGeneralReport($filters = array()) {
+        $current = $this->calculateGeneralMetrics($filters);
+        
+        $prevFilters = [
+            'date_from' => date('Y-m-d', strtotime($filters['date_from'] . ' -1 month')),
+            'date_to' => date('Y-m-d', strtotime($filters['date_to'] . ' -1 month'))
+        ];
+        $previous = $this->calculateGeneralMetrics($prevFilters);
+        
+        $current['revenue_change'] = $this->calculatePercentageChange($previous['total_revenue'], $current['total_revenue']);
+        $current['cost_change'] = $this->calculatePercentageChange($previous['total_cost'], $current['total_cost']);
+        $current['profit_change'] = $this->calculatePercentageChange($previous['gross_profit'], $current['gross_profit']);
+        $current['expense_change'] = $this->calculatePercentageChange($previous['total_expenses'], $current['total_expenses']);
+        $current['turnover_change'] = $this->calculatePercentageChange($previous['turnover_rate'], $current['turnover_rate']);
+        
+        return $current;
+    }
+
+    // Helper method to calculate general metrics
+    private function calculateGeneralMetrics($filters) {
+        $this->db->select('SUM(net_amount) as total_revenue, COUNT(*) as total_orders');
+        $this->db->from('orders');
+        if (!empty($filters['date_from'])) {
+            $this->db->where('DATE(date_time) >=', $filters['date_from']);
+        }
+        if (!empty($filters['date_to'])) {
+            $this->db->where('DATE(date_time) <=', $filters['date_to']);
+        }
+        $revenue_query = $this->db->get();
+        $revenue = $revenue_query->row_array();
+
+        $this->db->select('SUM(psh.price * psh.qty) as total_cost');
+        $this->db->from('product_stock_history psh');
+        if (!empty($filters['date_from'])) {
+            $this->db->where('DATE(psh.date) >=', $filters['date_from']);
+        }
+        if (!empty($filters['date_to'])) {
+            $this->db->where('DATE(psh.date) <=', $filters['date_to']);
+        }
+        $cost_query = $this->db->get();
+        $cost = $cost_query->row_array();
+
+        $this->db->select('SUM(amount) as total_expenses');
+        $this->db->from('company_expenses');
+        if (!empty($filters['date_from'])) {
+            $this->db->where('DATE(expense_date) >=', $filters['date_from']);
+        }
+        if (!empty($filters['date_to'])) {
+            $this->db->where('DATE(expense_date) <=', $filters['date_to']);
+        }
+        $expense_query = $this->db->get();
+        $expenses = $expense_query->row_array();
+
+        $total_revenue = $revenue['total_revenue'] ? $revenue['total_revenue'] : 0;
+        $total_cost = $cost['total_cost'] ? $cost['total_cost'] : 0;
+        $total_expenses = $expenses['total_expenses'] ? $expenses['total_expenses'] : 0;
+        $gross_profit = $total_revenue - $total_cost - $total_expenses;
+
+        return array(
+            'total_revenue' => $total_revenue,
+            'total_cost' => $total_cost,
+            'total_expenses' => $total_expenses,
+            'gross_profit' => $gross_profit,
+            'turnover_rate' => $total_cost > 0 ? round($total_revenue / $total_cost, 2) : 0,
+            'total_orders' => $revenue['total_orders'] ? $revenue['total_orders'] : 0
+        );
+    }
+
+    // Helper method to calculate percentage change
+    private function calculatePercentageChange($oldValue, $newValue) {
+        if ($oldValue == 0) return 0;
+        return round((($newValue - $oldValue) / $oldValue) * 100, 2);
+    }
+
+    // Customer List
+    public function getCustomerList() {
+        $this->db->select('id, customer_name as name');
+        $this->db->from('orders');
+        $this->db->where('customer_name IS NOT NULL');
+        $this->db->group_by('customer_name');
+        $query = $this->db->get();
+        if ($query && $query instanceof CI_DB_result) {
+            return $query->result_array();
+        }
+        return array();
     }
 
     // Product List
@@ -328,6 +383,27 @@ class Model_reporting extends CI_Model {
             return $query->result_array();
         } else {
             log_message('error', 'Failed to fetch purchase chart data: ' . json_encode($this->db->error()));
+            return array();
+        }
+    }
+
+    // Expense Chart Data
+    public function getExpenseChartData($filters = array()) {
+        $this->db->select('DATE(expense_date) as date, SUM(amount) as total');
+        $this->db->from('company_expenses');
+        if (!empty($filters['date_from'])) {
+            $this->db->where('DATE(expense_date) >=', $filters['date_from']);
+        }
+        if (!empty($filters['date_to'])) {
+            $this->db->where('DATE(expense_date) <=', $filters['date_to']);
+        }
+        $this->db->group_by('DATE(expense_date)');
+        $this->db->order_by('expense_date', 'ASC');
+        $query = $this->db->get();
+        if ($query !== FALSE) {
+            return $query->result_array();
+        } else {
+            log_message('error', 'Failed to fetch expense chart data: ' . json_encode($this->db->error()));
             return array();
         }
     }

@@ -1,359 +1,628 @@
 <?php
-
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Controller_Products extends Admin_Controller 
 {
-	public function __construct()
-	{
-		parent::__construct();
-
-		$this->not_logged_in();
-
-		$this->data['page_title'] = 'Products';
-
-		$this->load->model('model_products');
-		$this->load->model('model_brands');
-		$this->load->model('model_category');
-		$this->load->model('model_stores');
-		$this->load->model('model_attributes');
-	}
-
-    /* 
-    * It only redirects to the manage product page
-    */
-	public function index()
-	{
-        if(!in_array('viewProduct', $this->permission)) {
-            redirect('dashboard', 'refresh');
-        }
-
-		$this->render_template('products/index', $this->data);	
-	}
-
-    /*
-    * It Fetches the products data from the product table 
-    * this function is called from the datatable ajax function
-    */
-	public function fetchProductData()
-	{
-		$result = array('data' => array());
-
-		$data = $this->model_products->getProductData();
-
-		foreach ($data as $key => $value) {
-
-            $store_data = $this->model_stores->getStoresData($value['store_id']);
-			// button
-            $buttons = '';
-            if(in_array('updateProduct', $this->permission)) {
-    			$buttons .= '<a href="'.base_url('Controller_Products/update/'.$value['id']).'" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>';
-            }
-
-            if(in_array('deleteProduct', $this->permission)) { 
-    			$buttons .= ' <button type="button" class="btn btn-danger btn-sm" onclick="removeFunc('.$value['id'].')" data-toggle="modal" data-target="#removeModal"><i class="fa fa-trash"></i></button>';
-            }
-			
-
-			$availability = ($value['availability'] == 1) ? '<span class="label label-success">Active</span>' : '<span class="label label-warning">Inactive</span>';
-
-            $qty_status = '';
-            if($value['qty'] <= 10) {
-                $qty_status = '<span class="label label-warning">Low</span>';
-            } else if($value['qty'] <= 0) {
-                $qty_status = '<span class="label label-danger">Out of Stock!</span>';
-            }
-
-
-			$result['data'][$key] = array(
-                $value['name'],
-                'TZS '.number_format($value['price'], 2),
-                $value['qty'] . ' ' . $qty_status,
-                isset($store_data['name']) ? $store_data['name'] : '',
-                $availability,
-                $buttons
-			);
-		} // /foreach
-
-		echo json_encode($result);
-	}	
-
-    /*
-    * If the validation is not valid, then it redirects to the create page.
-    * If the validation for each input field is valid then it inserts the data into the database 
-    * and it stores the operation message into the session flashdata and display on the manage product page
-    */
-	public function create()
-	{
-        // echo 'came';
-        // exit();
-		if(!in_array('createProduct', $this->permission)) {
-            redirect('dashboard', 'refresh');
-        }
-
-		$this->form_validation->set_rules('product_name', 'Product name', 'trim|required');
-		// $this->form_validation->set_rules('sku', 'SKU', 'trim|required');
-		$this->form_validation->set_rules('price', 'Price', 'trim|required');
-		$this->form_validation->set_rules('qty', 'Qty', 'trim|required');
-        $this->form_validation->set_rules('store', 'Store', 'trim|required');
-		$this->form_validation->set_rules('availability', 'Availability', 'trim|required');
-		
-	
-        if ($this->form_validation->run() == TRUE) {
-            // true case
-        	$upload_image = $this->upload_image();
-
-        	$data = array(
-        		'name' => $this->input->post('product_name'),
-        		// 'sku' => $this->input->post('sku'),
-        		'price' => $this->input->post('price'),
-        		'qty' => $this->input->post('qty'),
-        		'image' => $upload_image,
-        		'description' => $this->input->post('description'),
-        		'attribute_value_id' => json_encode($this->input->post('attributes_value_id')),
-        		'brand_id' => json_encode($this->input->post('brands')),
-        		'category_id' => json_encode($this->input->post('category')),
-                'store_id' => $this->input->post('store'),
-        		'availability' => $this->input->post('availability'),
-        	);
-
-        	$create = $this->model_products->create($data);
-        	if($create == true) {
-        		$this->session->set_flashdata('success', 'Successfully created');
-        		redirect('Controller_Products/', 'refresh');
-        	}
-        	else {
-        		$this->session->set_flashdata('errors', 'Error occurred!!');
-        		redirect('Controller_Products/create', 'refresh');
-        	}
-        }
-        else {
-            // false case
-
-        	// attributes 
-        	$attribute_data = $this->model_attributes->getActiveAttributeData();
-
-        	$attributes_final_data = array();
-        	foreach ($attribute_data as $k => $v) {
-        		$attributes_final_data[$k]['attribute_data'] = $v;
-
-        		$value = $this->model_attributes->getAttributeValueData($v['id']);
-
-        		$attributes_final_data[$k]['attribute_value'] = $value;
-        	}
-
-        	$this->data['attributes'] = $attributes_final_data;
-			$this->data['brands'] = $this->model_brands->getActiveBrands();        	
-			$this->data['category'] = $this->model_category->getActiveCategroy();        	
-			$this->data['stores'] = $this->model_stores->getActiveStore();        	
-
-            $this->render_template('products/create', $this->data);
-        }	
-	}
-
-    /*
-    * This function is invoked from another function to upload the image into the assets folder
-    * and returns the image path
-    */
-	public function upload_image()
+    public function __construct()
     {
-    	// assets/images/product_image
-        $config['upload_path'] = 'assets/images/product_image';
-        $config['file_name'] =  uniqid();
-        $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size'] = '1000';
-
-        // $config['max_width']  = '1024';s
-        // $config['max_height']  = '768';
-
-        $this->load->library('upload', $config);
-        if ( ! $this->upload->do_upload('product_image'))
-        {
-            $error = $this->upload->display_errors();
-            return $error;
-        }
-        else
-        {
-            $data = array('upload_data' => $this->upload->data());
-            $type = explode('.', $_FILES['product_image']['name']);
-            $type = $type[count($type) - 1];
-            
-            $path = $config['upload_path'].'/'.$config['file_name'].'.'.$type;
-            return ($data == true) ? $path : false;            
-        }
+        parent::__construct();
+        $this->not_logged_in();
+        $this->data['page_title'] = 'Products';
+        $this->load->model('model_products');
+        $this->load->model('model_brands');
+        $this->load->model('model_category');
+        $this->load->model('model_stores');
+        $this->load->model('model_attributes');
     }
 
-    /*
-    * If the validation is not valid, then it redirects to the edit product page 
-    * If the validation is successfully then it updates the data into the database 
-    * and it stores the operation message into the session flashdata and display on the manage product page
-    */
-	public function update($product_id)
-	{      
-        if(!in_array('updateProduct', $this->permission)) {
+    public function index()
+    {
+        if (!in_array('viewProduct', $this->permission)) {
             redirect('dashboard', 'refresh');
         }
 
-        if(!$product_id) {
-            redirect('dashboard', 'refresh');
+        $this->data['attributes'] = $this->prepareAttributeData();
+        $this->data['brands'] = $this->model_brands->getActiveBrands();
+        $this->data['category'] = $this->model_category->getActiveCategory();
+        $this->data['stores'] = $this->model_stores->getActiveStore();
+
+        $this->render_template('products/index', $this->data);
+    }
+
+    private function prepareAttributeData()
+    {
+        $attribute_data = $this->model_attributes->getActiveAttributeData();
+        $attributes_final_data = array();
+        foreach ($attribute_data as $k => $v) {
+            $attributes_final_data[$k]['attribute_data'] = $v;
+            $value = $this->model_attributes->getAttributeValueData($v['id']);
+            $attributes_final_data[$k]['attribute_value'] = $value;
+        }
+        return $attributes_final_data;
+    }
+
+    public function fetchProductData()
+    {
+        if (!in_array('viewProduct', $this->permission)) {
+            $response = array(
+                'error' => true,
+                'message' => 'Permission denied'
+            );
+            echo json_encode($response);
+            return;
+        }
+
+        $result = array('data' => array());
+
+        $this->db->select('products.*, brands.name as brand_name, stores.name as store_name, COALESCE(SUM(purchases.qty), 0) - COALESCE(SUM(orders_item.qty), 0) as total_stock');
+        $this->db->from('products');
+        $this->db->join('brands', 'brands.id = products.brand_id', 'left');
+        $this->db->join('stores', 'stores.id = products.store_id', 'left');
+        $this->db->join('purchases', 'purchases.product_id = products.id', 'left');
+        $this->db->join('orders_item', 'orders_item.product_id = products.id', 'left');
+        $this->db->group_by('products.id');
+        $this->db->order_by('products.id', 'DESC');
+        $data = $this->db->get()->result_array();
+
+        foreach ($data as $key => $value) {
+            $stock = max(0, $value['total_stock']);
+            $stock_status = $stock <= 10 ? '<span class="label label-danger">Low ('.$stock.')</span>' : $stock;
+
+            $availability = ($value['availability'] == 1) ? '<span class="label label-success">Active</span>' : '<span class="label label-warning">Inactive</span>';
+
+            $buttons = '';
+            if (in_array('updateProduct', $this->permission)) {
+                $buttons .= '<button class="btn btn-warning btn-sm edit-product" data-id="'.$value['id'].'" data-toggle="modal" data-target="#editProductModal"><i class="fa fa-pencil"></i> Edit</button>';
+            }
+            if (in_array('deleteProduct', $this->permission)) {
+                $buttons .= ' <button type="button" class="btn btn-danger btn-sm delete-product" data-id="'.$value['id'].'"><i class="fa fa-trash"></i> Delete</button>';
+            }
+
+            $result['data'][$key] = array(
+                'name' => $value['name'],
+                'price' => 'TZS '.number_format($value['price'], 2),
+                'unit_status' => $value['unit'],
+                'warehouse' => $value['store_name'] ? $value['store_name'] : '',
+                'stock' => $stock_status,
+                'availability' => $availability,
+                'actions' => $buttons,
+                'id' => $value['id']
+            );
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($result);
+    }
+
+    public function fetchPurchasesData()
+    {
+        if (!in_array('viewProduct', $this->permission)) {
+            $response = array(
+                'error' => true,
+                'message' => 'Permission denied'
+            );
+            echo json_encode($response);
+            return;
+        }
+
+        $result = array('data' => array());
+
+        $data = $this->model_products->getPurchasesData();
+
+        foreach ($data as $key => $value) {
+            $buttons = '';
+            if (in_array('updateProduct', $this->permission)) {
+                $buttons .= '<button class="btn btn-warning btn-sm edit-purchase" data-id="'.$value['id'].'" data-toggle="modal" data-target="#editStockModal"><i class="fa fa-pencil"></i> Edit</button>';
+            }
+            if (in_array('deleteProduct', $this->permission)) {
+                $buttons .= ' <button type="button" class="btn btn-danger btn-sm delete-purchase" data-id="'.$value['id'].'"><i class="fa fa-trash"></i> Delete</button>';
+            }
+
+            $result['data'][$key] = array(
+                'id' => $value['id'],
+                'product_name' => $value['product_name'] ?? 'Unknown Product',
+                'qty' => $value['qty'],
+                'unit' => $value['unit'],
+                'supplier' => $value['supplier'],
+                'price' => number_format($value['price'], 2),
+                'total_amount' => number_format($value['total_amount'], 2),
+                'amount_paid' => number_format($value['amount_paid'], 2),
+                'status' => $value['status'],
+                'purchase_date' => $value['purchase_date'],
+                'stock' => $value['stock'],
+                'actions' => $buttons
+            );
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($result);
+    }
+
+    public function getPurchaseData($purchase_id)
+    {
+        if (!in_array('updateProduct', $this->permission)) {
+            $response = array(
+                'success' => false,
+                'message' => 'Permission denied'
+            );
+            echo json_encode($response);
+            return;
+        }
+
+        $this->db->select('purchases.*, products.store_id');
+        $this->db->from('purchases');
+        $this->db->join('products', 'products.id = purchases.product_id', 'left');
+        $this->db->where('purchases.id', $purchase_id);
+        $query = $this->db->get();
+        $purchase_data = $query->row_array();
+
+        if ($purchase_data) {
+            $response = array(
+                'success' => true,
+                'data' => array(
+                    'id' => $purchase_data['id'],
+                    'product_id' => $purchase_data['product_id'],
+                    'qty' => $purchase_data['qty'],
+                    'unit' => $purchase_data['unit'],
+                    'supplier' => $purchase_data['supplier'],
+                    'price' => number_format($purchase_data['price'], 2),
+                    'total_amount' => number_format($purchase_data['total_amount'], 2),
+                    'amount_paid' => number_format($purchase_data['amount_paid'], 2),
+                    'status' => $purchase_data['status'],
+                    'purchase_date' => $purchase_data['purchase_date'],
+                    'store_id' => $purchase_data['store_id']
+                )
+            );
+        } else {
+            $response = array(
+                'success' => false,
+                'message' => 'Purchase not found'
+            );
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($response);
+    }
+
+    public function create()
+    {
+        if (!in_array('createProduct', $this->permission)) {
+            echo json_encode(['success' => false, 'messages' => 'Permission denied']);
+            return;
         }
 
         $this->form_validation->set_rules('product_name', 'Product name', 'trim|required');
-        // $this->form_validation->set_rules('sku', 'SKU', 'trim|required');
-        $this->form_validation->set_rules('price', 'Price', 'trim|required');
-        $this->form_validation->set_rules('qty', 'Qty', 'trim|required');
-        $this->form_validation->set_rules('store', 'Store', 'trim|required');
-        $this->form_validation->set_rules('availability', 'Availability', 'trim|required');
+        $this->form_validation->set_rules('price', 'Price', 'trim|required|numeric|greater_than[0]');
+        $this->form_validation->set_rules('unit', 'Unit of Measurement', 'trim|required');
+        $this->form_validation->set_rules('store', 'Store', 'trim|required|numeric|greater_than[0]');
+        $this->form_validation->set_rules('category', 'Category', 'trim|required|numeric|greater_than[0]');
+        $this->form_validation->set_rules('availability', 'Availability', 'trim|required|in_list[0,1]');
+        $this->form_validation->set_rules('brand', 'Brand', 'trim|numeric');
 
         if ($this->form_validation->run() == TRUE) {
-            // true case
-            
+            $upload_image = $this->upload_image();
+
+            if (is_string($upload_image) && strpos($upload_image, 'assets/images/product_image') === false) {
+                echo json_encode(['success' => false, 'messages' => 'Image upload failed: ' . $upload_image]);
+                return;
+            }
+
+            $data = [
+                'name' => $this->input->post('product_name'),
+                'price' => $this->input->post('price'),
+                'unit' => $this->input->post('unit'),
+                'description' => $this->input->post('description') ?: '',
+                'attribute_value_id' => $this->input->post('attributes_value_id') ? json_encode($this->input->post('attributes_value_id')) : NULL,
+                'brand_id' => $this->input->post('brand') ? (int)$this->input->post('brand') : NULL,
+                'category_id' => (int)$this->input->post('category'),
+                'store_id' => (int)$this->input->post('store'),
+                'availability' => (int)$this->input->post('availability'),
+                'image' => is_string($upload_image) ? $upload_image : NULL
+            ];
+
+            $create = $this->model_products->create($data);
+            $sql_query = $this->db->last_query();
+
+            if ($create) {
+                echo json_encode([
+                    'success' => true,
+                    'messages' => 'Product created successfully',
+                    'sql_query' => $sql_query
+                ]);
+            } else {
+                $db_error = $this->db->error();
+                $error_message = isset($db_error['message']) ? $db_error['message'] : 'Unknown database error';
+                echo json_encode([
+                    'success' => false,
+                    'messages' => 'Failed to create product: ' . $error_message,
+                    'sql_query' => $sql_query
+                ]);
+            }
+        } else {
+            echo json_encode(['success' => false, 'messages' => validation_errors()]);
+        }
+    }
+
+    public function upload_image()
+    {
+        if ($_FILES['product_image']['size'] == 0) {
+            return NULL;
+        }
+
+        $config['upload_path'] = 'assets/images/product_image';
+        $config['file_name'] = uniqid();
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = '1000';
+
+        $this->load->library('upload', $config);
+        if (!$this->upload->do_upload('product_image')) {
+            $error = $this->upload->display_errors('', '');
+            return $error;
+        } else {
+            $data = $this->upload->data();
+            $path = $config['upload_path'] . '/' . $data['file_name'];
+            return $path;
+        }
+    }
+
+    public function update($product_id = null)
+    {
+        if (!in_array('updateProduct', $this->permission)) {
+            redirect('dashboard', 'refresh');
+        }
+
+        if (!$product_id) {
+            $product_id = $this->input->post('product_id');
+            if (!$product_id) {
+                redirect('dashboard', 'refresh');
+            }
+        }
+
+        $this->form_validation->set_rules('product_name', 'Product name', 'trim|required');
+        $this->form_validation->set_rules('price', 'Price', 'trim|required|numeric|greater_than[0]');
+        $this->form_validation->set_rules('unit', 'Unit of Measurement', 'trim|required');
+        $this->form_validation->set_rules('store', 'Store', 'trim|required|numeric|greater_than[0]');
+        $this->form_validation->set_rules('category', 'Category', 'trim|required|numeric|greater_than[0]');
+        $this->form_validation->set_rules('availability', 'Availability', 'trim|required|in_list[0,1]');
+        $this->form_validation->set_rules('brand', 'Brand', 'trim|numeric');
+
+        if ($this->form_validation->run() == TRUE) {
             $data = array(
                 'name' => $this->input->post('product_name'),
-                // 'sku' => $this->input->post('sku'),
                 'price' => $this->input->post('price'),
-                'qty' => $this->input->post('qty'),
-                'description' => $this->input->post('description'),
-                'attribute_value_id' => json_encode($this->input->post('attributes_value_id')),
-                'brand_id' => json_encode($this->input->post('brands')),
-                'category_id' => json_encode($this->input->post('category')),
-                'store_id' => $this->input->post('store'),
-                'availability' => $this->input->post('availability'),
+                'unit' => $this->input->post('unit'),
+                'description' => $this->input->post('description') ?: '',
+                'attribute_value_id' => $this->input->post('attributes_value_id') ? json_encode($this->input->post('attributes_value_id')) : NULL,
+                'brand_id' => $this->input->post('brand') ? (int)$this->input->post('brand') : NULL,
+                'category_id' => (int)$this->input->post('category'),
+                'store_id' => (int)$this->input->post('store'),
+                'availability' => (int)$this->input->post('availability')
             );
 
-            
-            if($_FILES['product_image']['size'] > 0) {
+            if ($_FILES['product_image']['size'] > 0) {
                 $upload_image = $this->upload_image();
-                $upload_image = array('image' => $upload_image);
-                
-                $this->model_products->update($upload_image, $product_id);
+                if (is_string($upload_image) && strpos($upload_image, 'assets/images/product_image') === false) {
+                    $this->session->set_flashdata('error', 'Image upload failed: ' . $upload_image);
+                    redirect('Controller_Products/', 'refresh');
+                }
+                $data['image'] = $upload_image;
             }
 
             $update = $this->model_products->update($data, $product_id);
-            if($update == true) {
-                $this->session->set_flashdata('success', 'Successfully updated');
+            $sql_query = $this->db->last_query();
+
+            if ($update) {
+                $this->session->set_flashdata('success', 'Successfully updated product ID ' . $product_id);
+                redirect('Controller_Products/', 'refresh');
+            } else {
+                $db_error = $this->db->error();
+                $error_message = isset($db_error['message']) ? $db_error['message'] : 'Unknown database error';
+                $this->session->set_flashdata('error', 'Failed to update product: ' . $error_message);
                 redirect('Controller_Products/', 'refresh');
             }
-            else {
-                $this->session->set_flashdata('errors', 'Error occurred!!');
-                redirect('Controller_Products/update/'.$product_id, 'refresh');
-            }
+        } else {
+            $this->data['attributes'] = $this->prepareAttributeData();
+            $this->data['brands'] = $this->model_brands->getActiveBrands();
+            $this->data['category'] = $this->model_category->getActiveCategory();
+            $this->data['stores'] = $this->model_stores->getActiveStore();
+            $this->data['product_data'] = $this->model_products->getProductData($product_id);
+            $this->session->set_flashdata('error', 'Form validation failed: ' . validation_errors());
+            $this->render_template('products/index', $this->data);
         }
-        else {
-            // attributes 
-            $attribute_data = $this->model_attributes->getActiveAttributeData();
+    }
 
-            $attributes_final_data = array();
-            foreach ($attribute_data as $k => $v) {
-                $attributes_final_data[$k]['attribute_data'] = $v;
-
-                $value = $this->model_attributes->getAttributeValueData($v['id']);
-
-                $attributes_final_data[$k]['attribute_value'] = $value;
-            }
-            
-            // false case
-            $this->data['attributes'] = $attributes_final_data;
-            $this->data['brands'] = $this->model_brands->getActiveBrands();         
-            $this->data['category'] = $this->model_category->getActiveCategroy();           
-            $this->data['stores'] = $this->model_stores->getActiveStore();          
-
-            $product_data = $this->model_products->getProductData($product_id);
-            $this->data['product_data'] = $product_data;
-            $this->render_template('products/edit', $this->data); 
-        }   
-	}
-
-    /*
-    * It removes the data from the database
-    * and it returns the response into the json format
-    */
-	public function remove()
-	{
-        if(!in_array('deleteProduct', $this->permission)) {
+    public function remove()
+    {
+        if (!in_array('deleteProduct', $this->permission)) {
             redirect('dashboard', 'refresh');
         }
         
         $product_id = $this->input->post('product_id');
 
         $response = array();
-        if($product_id) {
+        if ($product_id) {
             $delete = $this->model_products->remove($product_id);
-            if($delete == true) {
+            $sql_query = $this->db->last_query();
+
+            if ($delete) {
+                $this->db->insert('activity_log', [
+                    'user_id' => $this->session->userdata('id') ?? 1,
+                    'activity' => 'Deleted Product',
+                    'details' => "Product ID: $product_id",
+                    'created_at' => date('Y-m-d H:i:s')
+                ]);
                 $response['success'] = true;
-                $response['messages'] = "Successfully removed"; 
-            }
-            else {
+                $response['messages'] = "Successfully removed";
+            } else {
+                $db_error = $this->db->error();
+                $error_message = isset($db_error['message']) ? $db_error['message'] : 'Unknown database error';
                 $response['success'] = false;
-                $response['messages'] = "Error in the database while removing the product information";
+                $response['messages'] = "Failed to delete product: " . $error_message;
             }
-        }
-        else {
+        } else {
             $response['success'] = false;
-            $response['messages'] = "Refresh the page again!!";
+            $response['messages'] = "No product ID provided";
         }
 
+        header('Content-Type: application/json');
         echo json_encode($response);
-	}
+    }
 
     public function purchases()
     {
-        // Load purchase history from the database
-        $this->load->model('model_products');
-        $purchases = $this->db->select('product_stock_history.*, products.name as product_name')
-            ->from('product_stock_history')
-            ->join('products', 'products.id = product_stock_history.product_id')
-            ->order_by('product_stock_history.date', 'DESC')
-            ->get()->result_array();
+        if (!in_array('viewProduct', $this->permission)) {
+            redirect('dashboard', 'refresh');
+        }
 
-        $this->data['purchases'] = $purchases;
+        $this->data['purchases'] = $this->model_products->getPurchasesData();
+        $this->data['products'] = $this->model_products->getActiveProductData();
         $this->render_template('products/purchases', $this->data);
     }
 
     public function addStock()
     {
-        if(!in_array('createProduct', $this->permission)) {
-            redirect('dashboard', 'refresh');
+        if (!in_array('createProduct', $this->permission)) {
+            $response = array(
+                'success' => false,
+                'messages' => 'Permission denied'
+            );
+            echo json_encode($response);
+            return;
         }
 
-        $this->form_validation->set_rules('product_id', 'Product', 'required');
-        $this->form_validation->set_rules('qty', 'Quantity', 'required|integer');
+        $this->form_validation->set_rules('product_id', 'Product', 'required|numeric|greater_than[0]');
+        $this->form_validation->set_rules('qty', 'Quantity', 'required|numeric|greater_than[0]');
         $this->form_validation->set_rules('supplier', 'Supplier', 'required');
-        $this->form_validation->set_rules('price', 'Price', 'required|numeric');
-        $this->form_validation->set_rules('date', 'Date', 'required');
+        $this->form_validation->set_rules('price', 'Price', 'required|numeric|greater_than_equal_to[0]');
+        $this->form_validation->set_rules('status', 'Status', 'required|in_list[Paid,Unpaid,Partial]');
+        $this->form_validation->set_rules('unit', 'Unit', 'required');
+        $this->form_validation->set_rules('total_amount', 'Total Amount', 'required|numeric|greater_than_equal_to[0]');
+        $this->form_validation->set_rules('purchase_date', 'Purchase Date', 'required');
+        if ($this->input->post('status') === 'Partial') {
+            $this->form_validation->set_rules('amount_paid', 'Amount Paid', 'required|numeric|greater_than_equal_to[0]|less_than_equal_to['.$this->input->post('total_amount').']');
+        }
 
         if ($this->form_validation->run() == TRUE) {
-            $product_id = $this->input->post('product_id');
-            $qty_to_add = $this->input->post('qty');
-            $supplier = $this->input->post('supplier');
-            $price = $this->input->post('price');
-            $date = $this->input->post('date');
+            $product_id   = $this->input->post('product_id');
+            $qty          = $this->input->post('qty');
+            $supplier     = $this->input->post('supplier');
+            $price        = $this->input->post('price');
+            $status       = $this->input->post('status');
+            $unit         = $this->input->post('unit');
+            $total_amount = $this->input->post('total_amount');
+            $purchase_date= $this->input->post('purchase_date');
+            $user_id      = $this->session->userdata('id') ?? 1;
+            $amount_paid  = ($status === 'Paid') ? $total_amount : ($status === 'Partial' ? $this->input->post('amount_paid') : 0);
 
-            // Update product quantity
+            // Fetch store_id from products table
             $product = $this->model_products->getProductData($product_id);
-            if ($product) {
-                $new_qty = $product['qty'] + $qty_to_add;
-                $this->model_products->update(['qty' => $new_qty], $product_id);
+            $store_id = $product['store_id'] ?? NULL;
 
-                // Log stock addition
-                $this->db->insert('product_stock_history', [
-                    'product_id' => $product_id,
-                    'qty' => $qty_to_add,
-                    'supplier' => $supplier,
-                    'price' => $price,
-                    'date' => $date
-                ]);
-
-                $this->session->set_flashdata('success', 'Stock added successfully');
-                redirect('Controller_Products/purchases', 'refresh');
-            } else {
-                $this->session->set_flashdata('errors', 'Product not found');
-                redirect('Controller_Products/addStock', 'refresh');
+            // Validate total_amount matches price * qty
+            if (abs($price * $qty - $total_amount) > 0.01) {
+                $response = array(
+                    'success' => false,
+                    'messages' => 'Total amount does not match price × quantity'
+                );
+                echo json_encode($response);
+                return;
             }
+
+            $purchase_data = [
+                'product_id'   => $product_id,
+                'supplier'     => $supplier,
+                'qty'          => $qty,
+                'unit'         => $unit,
+                'price'        => $price,
+                'total_amount' => $total_amount,
+                'status'       => $status,
+                'purchase_date' => $purchase_date,
+                'user_id'      => $user_id,
+                'amount_paid'  => $amount_paid,
+                'store_id'     => $store_id
+            ];
+
+            $this->db->trans_start();
+            $insert = $this->db->insert('purchases', $purchase_data);
+            $sql_query = $this->db->last_query();
+            $this->db->trans_complete();
+
+            if ($this->db->trans_status() === FALSE) {
+                $db_error = $this->db->error();
+                $error_message = isset($db_error['message']) ? $db_error['message'] : 'Unknown database error';
+                $response = array(
+                    'success' => false,
+                    'messages' => 'Failed to add purchase: ' . $error_message,
+                    'sql_query' => $sql_query
+                );
+            } else {
+                $response = array(
+                    'success' => true,
+                    'messages' => 'Purchase added successfully',
+                    'sql_query' => $sql_query
+                );
+            }
+
+            header('Content-Type: application/json');
+            echo json_encode($response);
         } else {
-            $this->data['products'] = $this->model_products->getActiveProductData();
-            $this->render_template('products/add_stock', $this->data);
+            $response = array(
+                'success' => false,
+                'messages' => validation_errors()
+            );
+            echo json_encode($response);
         }
     }
 
+    public function updatePurchase()
+    {
+        if (!in_array('updateProduct', $this->permission)) {
+            $response = array(
+                'success' => false,
+                'messages' => 'Permission denied'
+            );
+            echo json_encode($response);
+            return;
+        }
+
+        $this->form_validation->set_rules('purchase_id', 'Purchase ID', 'required|numeric|greater_than[0]');
+        $this->form_validation->set_rules('product_id', 'Product', 'required|numeric|greater_than[0]');
+        $this->form_validation->set_rules('qty', 'Quantity', 'required|numeric|greater_than[0]');
+        $this->form_validation->set_rules('supplier', 'Supplier', 'required');
+        $this->form_validation->set_rules('price', 'Price', 'required|numeric|greater_than_equal_to[0]');
+        $this->form_validation->set_rules('status', 'Status', 'required|in_list[Paid,Unpaid,Partial]');
+        $this->form_validation->set_rules('unit', 'Unit', 'required');
+        $this->form_validation->set_rules('total_amount', 'Total Amount', 'required|numeric|greater_than_equal_to[0]');
+        $this->form_validation->set_rules('purchase_date', 'Purchase Date', 'required');
+        if ($this->input->post('status') === 'Partial') {
+            $this->form_validation->set_rules('amount_paid', 'Amount Paid', 'required|numeric|greater_than_equal_to[0]|less_than_equal_to['.$this->input->post('total_amount').']');
+        }
+
+        if ($this->form_validation->run() == TRUE) {
+            $purchase_id  = $this->input->post('purchase_id');
+            $product_id   = $this->input->post('product_id');
+            $qty          = $this->input->post('qty');
+            $supplier     = $this->input->post('supplier');
+            $price        = $this->input->post('price');
+            $status       = $this->input->post('status');
+            $unit         = $this->input->post('unit');
+            $total_amount = $this->input->post('total_amount');
+            $purchase_date= $this->input->post('purchase_date');
+            $user_id      = $this->session->userdata('id') ?? 1;
+            $amount_paid  = ($status === 'Paid') ? $total_amount : ($status === 'Partial' ? $this->input->post('amount_paid') : 0);
+
+            // Fetch store_id from products table
+            $product = $this->model_products->getProductData($product_id);
+            $store_id = $product['store_id'] ?? NULL;
+
+            // Validate total_amount matches price * qty
+            if (abs($price * $qty - $total_amount) > 0.01) {
+                $response = array(
+                    'success' => false,
+                    'messages' => 'Total amount does not match price × quantity'
+                );
+                echo json_encode($response);
+                return;
+            }
+
+            $purchase_data = [
+                'product_id'   => $product_id,
+                'supplier'     => $supplier,
+                'qty'          => $qty,
+                'unit'         => $unit,
+                'price'        => $price,
+                'total_amount' => $total_amount,
+                'status'       => $status,
+                'purchase_date' => $purchase_date,
+                'user_id'      => $user_id,
+                'amount_paid'  => $amount_paid,
+                'store_id'     => $store_id
+            ];
+
+            $this->db->trans_start();
+            $this->db->where('id', $purchase_id);
+            $update = $this->db->update('purchases', $purchase_data);
+            $sql_query = $this->db->last_query();
+            $this->db->trans_complete();
+
+            if ($this->db->trans_status() === FALSE) {
+                $db_error = $this->db->error();
+                $error_message = isset($db_error['message']) ? $db_error['message'] : 'Unknown database error';
+                $response = array(
+                    'success' => false,
+                    'messages' => 'Failed to update purchase: ' . $error_message,
+                    'sql_query' => $sql_query
+                );
+            } else {
+                $response = array(
+                    'success' => true,
+                    'messages' => 'Purchase updated successfully',
+                    'sql_query' => $sql_query
+                );
+            }
+
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        } else {
+            $response = array(
+                'success' => false,
+                'messages' => validation_errors()
+            );
+            echo json_encode($response);
+        }
+    }
+
+    public function removePurchase()
+    {
+        if (!in_array('deleteProduct', $this->permission)) {
+            $response = array(
+                'success' => false,
+                'messages' => 'Permission denied'
+            );
+            echo json_encode($response);
+            return;
+        }
+
+        $purchase_id = $this->input->post('purchase_id');
+
+        if (!$purchase_id) {
+            $response = array(
+                'success' => false,
+                'messages' => 'No purchase ID provided'
+            );
+            echo json_encode($response);
+            return;
+        }
+
+        $this->db->trans_start();
+        $this->db->where('id', $purchase_id);
+        $delete = $this->db->delete('purchases');
+        $sql_query = $this->db->last_query();
+        $this->db->trans_complete();
+
+        if ($this->db->trans_status() === FALSE) {
+            $db_error = $this->db->error();
+            $error_message = isset($db_error['message']) ? $db_error['message'] : 'Unknown database error';
+            $response = array(
+                'success' => false,
+                'messages' => 'Failed to delete purchase: ' . $error_message,
+                'sql_query' => $sql_query
+            );
+        } else {
+            $this->db->insert('activity_log', [
+                'user_id' => $this->session->userdata('id') ?? 1,
+                'activity' => 'Deleted Purchase',
+                'details' => "Purchase ID: $purchase_id",
+                'created_at' => date('Y-m-d H:i:s')
+            ]);
+            $response = array(
+                'success' => true,
+                'messages' => 'Purchase deleted successfully',
+                'sql_query' => $sql_query
+            );
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($response);
+    }
 }
