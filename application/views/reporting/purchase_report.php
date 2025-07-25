@@ -85,10 +85,13 @@
                 <tr>
                   <th>Date</th>
                   <th>Product</th>
+                  <th>Supplier</th>
                   <th>Quantity</th>
-                  <th>Unit Cost</th>
-                  <th>Total Cost</th>
-                  <th>Source</th>
+                  <th>Unit</th>
+                  <th>Unit Price</th>
+                  <th>Total Amount</th>
+                  <th>Amount Paid</th>
+                  <th>Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -97,10 +100,30 @@
                     <tr>
                       <td><?php echo isset($row['date']) ? date('Y-m-d H:i', strtotime($row['date'])) : '-'; ?></td>
                       <td><?php echo isset($row['product']) ? htmlspecialchars($row['product']) : '-'; ?></td>
+                      <td><?php echo isset($row['supplier']) ? htmlspecialchars($row['supplier']) : '-'; ?></td>
                       <td><?php echo isset($row['quantity']) ? number_format($row['quantity']) : '0'; ?></td>
+                      <td><?php echo isset($row['unit']) ? htmlspecialchars($row['unit']) : '-'; ?></td>
                       <td><?php echo isset($row['unit_cost']) ? number_format($row['unit_cost'], 2) : '0.00'; ?></td>
                       <td><?php echo isset($row['total_cost']) ? number_format($row['total_cost'], 2) : '0.00'; ?></td>
-                      <td><?php echo isset($row['source']) ? htmlspecialchars($row['source']) : '-'; ?></td>
+                      <td><?php echo isset($row['amount_paid']) ? number_format($row['amount_paid'], 2) : '0.00'; ?></td>
+                      <td>
+                        <?php 
+                          $status_class = '';
+                          switch($row['status']) {
+                            case 'Paid':
+                              $status_class = 'label-success';
+                              break;
+                            case 'Partial':
+                              $status_class = 'label-warning';
+                              break;
+                            case 'Unpaid':
+                              $status_class = 'label-danger';
+                              break;
+                          }
+                        ?>
+                        <span class="label <?php echo $status_class; ?>"><?php echo htmlspecialchars($row['status']); ?></span>
+                      </td>
+                    </tr> 
                     </tr>
                   <?php endforeach; ?>
                 <?php else: ?>
@@ -117,7 +140,7 @@
                   <span class="info-box-icon bg-blue"><i class="fa fa-cubes"></i></span>
                   <div class="info-box-content">
                     <span class="info-box-text">Opening Stock</span>
-                    <span class="info-box-number"><?php echo isset($summary['opening']) ? number_format($summary['opening']) : '0'; ?></span>
+                    <span class="info-box-number"><?php echo isset($summary['opening_stock']) ? number_format($summary['opening_stock']) : '0'; ?></span>
                   </div>
                 </div>
               </div>
@@ -144,7 +167,7 @@
                   <span class="info-box-icon bg-yellow"><i class="fa fa-cube"></i></span>
                   <div class="info-box-content">
                     <span class="info-box-text">Closing Stock</span>
-                    <span class="info-box-number"><?php echo isset($summary['closing']) ? number_format($summary['closing']) : '0'; ?></span>
+                    <span class="info-box-number"><?php echo isset($summary['closing_stock']) ? number_format($summary['closing_stock']) : '0'; ?></span>
                   </div>
                 </div>
               </div>

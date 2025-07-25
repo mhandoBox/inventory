@@ -28,12 +28,14 @@ class Model_orders extends CI_Model
             }
 
             $sql = "SELECT o.*, 
-                    COALESCE(SUM(oi.qty), 0) as total_products,
+                    COUNT(DISTINCT oi.id) as total_products,
                     COALESCE(SUM(oi.amount), 0) as total_amount,
-                    COALESCE(u.username, 'Unknown') as clerk_name
+                    COALESCE(u.username, 'Unknown') as clerk_name,
+                    COALESCE(s.name, 'N/A') as store_name
                     FROM orders o
                     LEFT JOIN orders_item oi ON o.id = oi.order_id
                     LEFT JOIN users u ON u.id = o.user_id
+                    LEFT JOIN stores s ON o.store_id = s.id
                     GROUP BY o.id, o.bill_no, o.customer_name, o.customer_phone, 
                              o.date_time, o.gross_amount, o.service_charge_rate, 
                              o.service_charge, o.vat_charge_rate, o.vat_charge, 
@@ -71,6 +73,7 @@ class Model_orders extends CI_Model
     {
         log_message('debug', 'Entered Model_orders::create()');
         log_message('debug', 'POST data: ' . json_encode($this->input->post()));
+        log_message('debug', 'Session store_id: ' . $this->session->userdata('store_id'));
 
         $user_id = $this->session->userdata('id');
         $bill_no = 'ORD-' . strtoupper(substr(md5(uniqid(mt_rand(), true)), 0, 4)) . date('Ymd');
@@ -91,9 +94,20 @@ class Model_orders extends CI_Model
             $total_ordered[$product_id] = $query->row()->qty ? (int)$query->row()->qty : 0;
         }
 
+        // Debug log before creating order data
+        log_message('debug', 'Creating order with store_id: ' . $this->session->userdata('store_id'));
+
+        $current_datetime = date('Y-m-d H:i:s');
+        $store_id = $this->session->userdata('store_id');
+
+        if (empty($store_id)) {
+            log_message('error', 'No store_id found in session');
+            return array('success' => false, 'error' => 'No store assigned to user');
+        }
+
         $order_data = array(
             'bill_no' => $bill_no,
-            'date_time' => date('Y-m-d H:i:s'),
+            'date_time' => $current_datetime,
             'gross_amount' => $this->input->post('gross_amount_value'),
             'service_charge_rate' => $this->input->post('service_charge_rate'),
             'service_charge' => $this->input->post('service_charge_value'),
@@ -105,6 +119,7 @@ class Model_orders extends CI_Model
             'customer_address' => $this->input->post('customer_address'),
             'customer_phone' => $this->input->post('customer_phone'),
             'user_id' => $user_id,
+            'store_id' => $store_id,
             'paid_status' => $this->input->post('paid_status'),
             'amount_paid' => $this->input->post('amount_paid')
         );

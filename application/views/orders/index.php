@@ -129,6 +129,7 @@
                   <th>Client</th>
                   <th>Contact</th>
                   <th>DateTime</th>
+                  <th>Store</th>
                   <th>Prod.Qty</th>
                   <th>Amount</th>
                   <th>Clerk</th>
@@ -273,6 +274,7 @@ $(document).ready(function() {
             {"data": "customer_name", "defaultContent": "N/A"},
             {"data": "customer_phone", "defaultContent": "N/A"},
             {"data": "date_time", "defaultContent": "N/A"},
+            {"data": "store_name", "defaultContent": "N/A"},
             {
                 "data": "total_products",
                 "render": function(data) {

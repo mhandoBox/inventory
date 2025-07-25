@@ -167,9 +167,18 @@ class Model_reporting extends CI_Model {
             'report' => [],
             'products' => [],
             'filters' => $filters,
-            'summary' => ['opening' => 0, 'additions' => 0, 'reductions' => 0, 'closing' => 0]
+            'summary' => [
+                'total_purchases' => 0, 
+                'total_paid' => 0, 
+                'total_unpaid' => 0,
+                'opening_stock' => 0,
+                'additions' => 0,
+                'reductions' => 0,
+                'closing_stock' => 0
+            ]
         ];
 
+        // Get all products for the filter dropdown
         $this->db->select('id, name');
         $this->db->from('products');
         $this->db->order_by('name', 'ASC');
@@ -181,22 +190,28 @@ class Model_reporting extends CI_Model {
             $this->session->set_flashdata('error', 'Error fetching products.');
         }
 
-        $this->db->select('psh.date, p.name as product, psh.qty as quantity, psh.price as unit_cost, 
-                          (psh.qty * psh.price) as total_cost, psh.supplier as source');
-        $this->db->from('product_stock_history psh');
-        $this->db->join('products p', 'p.id = psh.product_id', 'left');
+        // Get purchase report data
+        $this->db->select('p.purchase_date as date, prod.name as product, p.qty as quantity, 
+                          p.price as unit_cost, p.total_amount as total_cost, 
+                          p.supplier, p.amount_paid, p.status, p.unit');
+        $this->db->from('purchases p');
+        $this->db->join('products prod', 'prod.id = p.product_id', 'left');
         
+        // Apply filters
         if (!empty($filters['date_from'])) {
-            $this->db->where('DATE(psh.date) >=', $filters['date_from']);
+            $this->db->where('DATE(p.purchase_date) >=', $filters['date_from']);
         }
         if (!empty($filters['date_to'])) {
-            $this->db->where('DATE(psh.date) <=', $filters['date_to']);
+            $this->db->where('DATE(p.purchase_date) <=', $filters['date_to']);
         }
         if (!empty($filters['product'])) {
-            $this->db->where('psh.product_id', $filters['product']);
+            $this->db->where('p.product_id', $filters['product']);
+        }
+        if (!empty($filters['status'])) {
+            $this->db->where('p.status', $filters['status']);
         }
         
-        $this->db->order_by('psh.date', 'DESC');
+        $this->db->order_by('p.purchase_date', 'DESC');
         $query = $this->db->get();
 
         if ($query !== FALSE) {
@@ -206,7 +221,61 @@ class Model_reporting extends CI_Model {
             $this->session->set_flashdata('error', 'Error fetching purchase data.');
         }
 
-        $response['summary'] = $this->getStockMovementSummary($filters);
+        // Calculate stock metrics
+        // 1. Opening Stock (stock before the filter date)
+        if (!empty($filters['date_from'])) {
+            $this->db->select('COALESCE(SUM(p.qty), 0) as opening_stock');
+            $this->db->from('purchases p');
+            $this->db->where('DATE(p.purchase_date) <', $filters['date_from']);
+            if (!empty($filters['product'])) {
+                $this->db->where('p.product_id', $filters['product']);
+            }
+            $opening_query = $this->db->get();
+            if ($opening_query !== FALSE) {
+                $response['summary']['opening_stock'] = (int)$opening_query->row()->opening_stock;
+            }
+        }
+
+        // 2. Additions (purchases within date range)
+        $this->db->select('COALESCE(SUM(p.qty), 0) as additions');
+        $this->db->from('purchases p');
+        if (!empty($filters['date_from'])) {
+            $this->db->where('DATE(p.purchase_date) >=', $filters['date_from']);
+        }
+        if (!empty($filters['date_to'])) {
+            $this->db->where('DATE(p.purchase_date) <=', $filters['date_to']);
+        }
+        if (!empty($filters['product'])) {
+            $this->db->where('p.product_id', $filters['product']);
+        }
+        $additions_query = $this->db->get();
+        if ($additions_query !== FALSE) {
+            $response['summary']['additions'] = (int)$additions_query->row()->additions;
+        }
+
+        // 3. Reductions (from orders within date range)
+        $this->db->select('COALESCE(SUM(oi.qty), 0) as reductions');
+        $this->db->from('order_items oi');
+        $this->db->join('orders o', 'o.id = oi.order_id');
+        if (!empty($filters['date_from'])) {
+            $this->db->where('DATE(o.date_time) >=', $filters['date_from']);
+        }
+        if (!empty($filters['date_to'])) {
+            $this->db->where('DATE(o.date_time) <=', $filters['date_to']);
+        }
+        if (!empty($filters['product'])) {
+            $this->db->where('oi.product_id', $filters['product']);
+        }
+        $reductions_query = $this->db->get();
+        if ($reductions_query !== FALSE) {
+            $response['summary']['reductions'] = (int)$reductions_query->row()->reductions;
+        }
+
+        // 4. Calculate Closing Stock
+        $response['summary']['closing_stock'] = 
+            $response['summary']['opening_stock'] + 
+            $response['summary']['additions'] - 
+            $response['summary']['reductions'];
 
         return $response;
     }

@@ -69,6 +69,19 @@
                       <input type="text" class="form-control" id="customer_phone" name="customer_phone" placeholder="Enter Client Phone" autocomplete="off" value="<?php echo isset($form_data['customer_phone']) ? htmlspecialchars($form_data['customer_phone']) : set_value('customer_phone'); ?>">
                     </div>
                   </div>
+
+                  <div class="form-group">
+                    <label for="store_display" class="col-sm-5 control-label" style="text-align:left;">Store</label>
+                    <div class="col-sm-7">
+                      <input type="text" class="form-control" id="store_display" value="<?php echo isset($store_data['store_name']) ? htmlspecialchars($store_data['store_name']) : ''; ?>" readonly>
+                      <input type="hidden" name="store_id" id="store_id" value="<?php echo isset($store_data['store_id']) ? htmlspecialchars($store_data['store_id']) : ''; ?>" required>
+                    </div>
+                  </div>
+                  <?php if (!isset($store_data['store_id'])): ?>
+                  <div class="alert alert-danger">
+                    Error: No store assigned to your account. Please contact administrator.
+                  </div>
+                  <?php endif; ?>
                 </div>
                 
                 <br /> <br/>
@@ -235,11 +248,25 @@
         // Create FormData object
         var formData = $(this).serializeArray();
         
-        // Add current timestamp
+        // Add current timestamp and ensure store_id is included
         formData.push({
             name: 'date_time',
             value: moment().format('YYYY-MM-DD HH:mm:ss')
         });
+
+        
+        // Ensure store_id is included
+        var store_id = $("#store_id").val();
+        if (!store_id) {
+            $("#messages").html(
+                '<div class="alert alert-danger alert-dismissible" role="alert">' +
+                '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                '<span aria-hidden="true">&times;</span></button>' +
+                'Store ID is required. Please contact administrator if no store is assigned.' +
+                '</div>'
+            );
+            return false;
+        }
 
         // Submit via AJAX
         $.ajax({
@@ -265,12 +292,19 @@
                 }
             },
             error: function(xhr, status, error) {
-                console.error("AJAX Error:", error);
+                var errorMessage = 'Server error occurred. Please try again.';
+                try {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.error) {
+                        errorMessage = response.error;
+                    }
+                } catch (e) {}
+                
                 $("#messages").html(
                     '<div class="alert alert-danger alert-dismissible" role="alert">' +
                     '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
                     '<span aria-hidden="true">&times;</span></button>' +
-                    'Server error occurred. Please try again.' +
+                    errorMessage +
                     '</div>'
                 );
                 $("#createOrderBtn").prop('disabled', false).html('Create Order');

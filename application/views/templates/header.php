@@ -41,12 +41,17 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
+  <!-- Loading Overlay -->
+  <link rel="stylesheet" href="<?php echo base_url('assets/common/loading-overlay.css') ?>">
+
   <!-- Load jQuery first -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <!-- Then jQuery UI -->
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
   <!-- Then Bootstrap -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!-- Loading Overlay JS -->
+  <script src="<?php echo base_url('assets/common/loading-overlay.js') ?>"></script>
   <!-- jVectorMap CSS --> 
 <!-- jVectorMap JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jvectormap/2.0.5/jquery-jvectormap.min.js"></script>
@@ -76,4 +81,9 @@
 
 </head>
 <body class="hold-transition skin-red sidebar-mini fixed">
+<div id="loading-overlay" style="display: none;">
+    <div class="loading-icon">
+        <img src="<?php echo base_url('JEMAU-loading-animation-xl.svg') ?>" alt="Loading...">
+    </div>
+</div>
 <div class="wrapper">

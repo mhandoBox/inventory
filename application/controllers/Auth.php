@@ -50,11 +50,28 @@ class Auth extends Admin_Controller
                     $role = $query->row() ? $query->row()->role : '';
 
                     // Store user data in session
+                    // Get user's store information
+                    $this->db->select('s.id as store_id, s.name as store_name');
+                    $this->db->from('users u');
+                    $this->db->join('stores s', 'u.store_id = s.id');
+                    $this->db->where('u.id', $login['id']);
+                    $store_query = $this->db->get();
+                    $store_data = $store_query->row_array();
+
+                    if (!$store_data) {
+                        log_message('error', 'No store assigned to user ID: ' . $login['id']);
+                        $this->data['errors'] = 'No store assigned to user. Please contact administrator.';
+                        $this->load->view('login', $this->data);
+                        return;
+                    }
+
                     $logged_in_sess = array(
                         'id' => $login['id'],
                         'username' => $login['username'],
                         'email' => $login['email'],
                         'role' => $role,
+                        'store_id' => $store_data['store_id'],
+                        'store_name' => $store_data['store_name'],
                         'user_permission' => is_array($login['permission']) ? $login['permission'] : array(),
                         'logged_in' => TRUE
                     );

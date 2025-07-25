@@ -15,6 +15,32 @@ class Controller_Orders extends Admin_Controller
         $this->load->model('model_company');
         $this->load->model('model_users');
         $this->load->model('model_activity_log');
+        $this->load->model('model_stores');
+
+        // Ensure store_id is set in session
+        if (!$this->session->userdata('store_id')) {
+            $user_id = $this->session->userdata('id');
+            if ($user_id) {
+                $this->db->select('store_id');
+                $this->db->from('users');
+                $this->db->where('id', $user_id);
+                $query = $this->db->get();
+                $user = $query->row();
+                if ($user && $user->store_id) {
+                    $this->session->set_userdata('store_id', $user->store_id);
+                    
+                    // Also get store name
+                    $store = $this->model_stores->getStoresData($user->store_id);
+                    if ($store) {
+                        $this->session->set_userdata('store_name', $store['name']);
+                    }
+                }
+            }
+        }
+        
+        // Debug log for store information
+        log_message('debug', 'Store ID in session: ' . $this->session->userdata('store_id'));
+        log_message('debug', 'Store Name in session: ' . $this->session->userdata('store_name'));
     }
 
     public function index()
@@ -60,6 +86,7 @@ class Controller_Orders extends Admin_Controller
                         'customer_name' => $order['customer_name'] ?? 'N/A',
                         'customer_phone' => $order['customer_phone'] ?? 'N/A',
                         'date_time' => $order['date_time'] ? date('Y-m-d H:i:s', strtotime($order['date_time'])) : 'N/A',
+                        'store_name' => $order['store_name'],
                         'total_products' => intval($order['total_products'] ?? 0),
                         'total_amount' => floatval($order['total_amount'] ?? 0),
                         'clerk_name' => $order['clerk_name'] ?? 'Unknown'
@@ -86,6 +113,12 @@ class Controller_Orders extends Admin_Controller
         log_message('debug', 'Entered create() method');
         log_message('debug', 'User permissions: ' . json_encode($this->permission));
         
+        // Log all form data received
+        log_message('debug', '=== START FORM DATA ===');
+        log_message('debug', 'POST Data: ' . json_encode($this->input->post(), JSON_PRETTY_PRINT));
+        log_message('debug', 'Raw POST Data: ' . file_get_contents('php://input'));
+        log_message('debug', '=== END FORM DATA ===');
+        
         if (!in_array('createOrder', $this->permission)) {
             log_message('debug', 'User does not have createOrder permission');
             redirect('dashboard', 'refresh');
@@ -94,12 +127,43 @@ class Controller_Orders extends Admin_Controller
         $this->form_validation->set_rules('product[]', 'Product name', 'trim|required');
         $this->form_validation->set_rules('qty[]', 'Quantity', 'trim|required|numeric|greater_than[0]');
         $this->form_validation->set_rules('customer_name', 'Client name', 'trim|required');
+        $this->form_validation->set_rules('store_id', 'Store', 'trim|required|numeric');
+        $this->form_validation->set_rules('store_id', 'Store', 'trim|required|integer');
 
         if ($this->form_validation->run() == TRUE) {
             log_message('debug', 'Form validation passed');
             
             // Generate bill_no
             $bill_no = 'BILPR-' . strtoupper(substr(md5(uniqid()), 0, 4));
+            
+            // Get user data including store_id
+            $user_id = intval($this->session->userdata('id'));
+            $user_data = $this->model_users->getUserData($user_id);
+            
+            // Get store_id from session or user data
+            $store_id = $this->session->userdata('store_id');
+            if (!$store_id && isset($user_data['store_id'])) {
+                $store_id = $user_data['store_id'];
+            }
+            
+            if (!$store_id) {
+                log_message('error', 'No store_id found in session or user data');
+                if ($this->input->is_ajax_request()) {
+                    echo json_encode([
+                        'success' => false,
+                        'error' => 'Store ID not found. Please contact administrator.'
+                    ]);
+                    exit;
+                }
+                redirect('dashboard', 'refresh');
+            }
+
+            // Get current timestamp
+            $current_datetime = date('Y-m-d H:i:s');
+            
+            // Log the values we're about to use
+            log_message('debug', 'Order Creation - Store ID: ' . $store_id);
+            log_message('debug', 'Order Creation - DateTime: ' . $current_datetime);
             
             // Prepare order data
             $order_data = array(
@@ -115,14 +179,24 @@ class Controller_Orders extends Admin_Controller
                 'discount' => floatval($this->input->post('discount') ?? 0),
                 'net_amount' => floatval($this->input->post('net_amount_value')),
                 'paid_status' => intval($this->input->post('paid_status')),
-                'user_id' => intval($this->session->userdata('id'))
+                'user_id' => $user_id,
+                'store_id' => $store_id,
+                'date_time' => $current_datetime
             );
 
             $this->db->trans_start(); // Start transaction
 
-            // Insert order
+            // Log the order data before insertion
+            log_message('debug', 'Order data to be inserted: ' . json_encode($order_data));
+
+            // Insert order and store the query
             $this->db->insert('orders', $order_data);
+            $order_query = $this->db->last_query();
+            log_message('debug', 'Order Insert Query: ' . $order_query);
             $order_id = $this->db->insert_id();
+
+            // Log the received POST data
+            log_message('debug', 'POST data received: ' . json_encode($this->input->post()));
 
             // Prepare order items
             $products = $this->input->post('product');
@@ -141,9 +215,11 @@ class Controller_Orders extends Admin_Controller
                 );
             }
 
-            // Insert order items
+            // Insert order items and log the query
             if (!empty($order_items)) {
+                log_message('debug', 'Order items to be inserted: ' . json_encode($order_items));
                 $this->db->insert_batch('orders_item', $order_items);
+                log_message('debug', 'Order Items Insert Query: ' . $this->db->last_query());
             }
 
             $this->db->trans_complete(); // Complete transaction
@@ -156,10 +232,30 @@ class Controller_Orders extends Admin_Controller
                         'error' => 'Error occurred while creating the order!'
                     ]);
                 } else {
+                    // Verify the order was created with correct data
+                    $created_order = $this->db->get_where('orders', array('id' => $order_id))->row_array();
+                    log_message('debug', 'Created order data: ' . json_encode($created_order));
+                    
+                    // Verify store_id and date_time
+                    if (empty($created_order['store_id'])) {
+                        log_message('error', 'Created order is missing store_id');
+                    }
+                    if (empty($created_order['date_time'])) {
+                        log_message('error', 'Created order is missing date_time');
+                    }
+                    
                     log_message('debug', 'Order created successfully. Order ID: ' . $order_id);
+                    
+                    // Get all queries executed in this transaction
+                    $debug_queries = array(
+                        'order_query' => $order_query,
+                        'items_query' => $this->db->last_query()
+                    );
+                    
                     echo json_encode([
                         'success' => true,
-                        'redirect' => base_url('Controller_Orders/index')
+                        'redirect' => base_url('Controller_Orders/index'),
+                        'debug_query' => $debug_queries
                     ]);
                 }
                 return;
@@ -192,6 +288,20 @@ class Controller_Orders extends Admin_Controller
         $this->data['company_data'] = $company;
         $this->data['is_vat_enabled'] = ($company['vat_charge_value'] > 0) ? true : false;
         $this->data['is_service_enabled'] = ($company['service_charge_value'] > 0) ? true : false;
+        
+        // Get user's store information
+        $user_id = $this->session->userdata('id');
+        $this->db->select('s.id as store_id, s.name as store_name');
+        $this->db->from('users u');
+        $this->db->join('stores s', 'u.store_id = s.id');
+        $this->db->where('u.id', $user_id);
+        $query = $this->db->get();
+        $store_data = $query->row_array();
+        
+        log_message('debug', 'Store Query: ' . $this->db->last_query());
+        log_message('debug', 'Store Data: ' . print_r($store_data, true));
+        
+        $this->data['store_data'] = $store_data;
 
         // Fetch products with calculated stock
         $this->db->select('p.id, p.name, p.price, 
@@ -713,22 +823,48 @@ class Controller_Orders extends Admin_Controller
 
     public function mockCreateOrder()
     {
-        $form_data = $this->input->post();
-        log_message('debug', 'Received form data: ' . json_encode($form_data));
+        if (!$this->input->is_ajax_request()) {
+            redirect('dashboard', 'refresh');
+            return;
+        }
 
+        $form_data = $this->input->post();
+        
         // Generate bill_no
         $bill_no = 'BILPR-' . strtoupper(substr(md5(uniqid()), 0, 4));
+        
+        // Get the store_id and current timestamp
+        $store_id = intval($form_data['store_id']);
+        $current_datetime = $form_data['date_time'] ?? date('Y-m-d H:i:s');
 
-        // Main order SQL
+        // Format the main order SQL query
         $order_sql = sprintf(
-            "INSERT INTO orders (bill_no, customer_name, customer_address, customer_phone, 
-            gross_amount, service_charge_rate, service_charge, vat_charge_rate, vat_charge, 
-            discount, net_amount, paid_status, user_id) 
-            VALUES ('%s', %s, %s, %s, %.2f, %.2f, %.2f, %.2f, %.2f, %.2f, %.2f, %d, %d);",
+            "-- Main Order Insert Query\nINSERT INTO orders (\n" .
+            "    bill_no, customer_name, customer_address, customer_phone,\n" .
+            "    gross_amount, service_charge_rate, service_charge,\n" .
+            "    vat_charge_rate, vat_charge, discount,\n" .
+            "    net_amount, paid_status, user_id, store_id, date_time\n" .
+            ") VALUES (\n" .
+            "    '%s',  -- bill_no\n" .
+            "    %s,    -- customer_name\n" .
+            "    %s,    -- customer_address\n" .
+            "    %s,    -- customer_phone\n" .
+            "    %.2f,  -- gross_amount\n" .
+            "    %.2f,  -- service_charge_rate\n" .
+            "    %.2f,  -- service_charge\n" .
+            "    %.2f,  -- vat_charge_rate\n" .
+            "    %.2f,  -- vat_charge\n" .
+            "    %.2f,  -- discount\n" .
+            "    %.2f,  -- net_amount\n" .
+            "    %d,    -- paid_status\n" .
+            "    %d,    -- user_id\n" .
+            "    %d,    -- store_id\n" .
+            "    '%s'   -- date_time\n" .
+            ");",
             $bill_no,
             $this->db->escape($form_data['customer_name']),
-            $this->db->escape($form_data['customer_address']),
-            $this->db->escape($form_data['customer_phone']),
+            $this->db->escape($form_data['customer_address'] ?? ''),
+            $this->db->escape($form_data['customer_phone'] ?? ''),
             floatval($form_data['gross_amount_value']),
             floatval($form_data['service_charge_rate'] ?? 0),
             floatval($form_data['service_charge_value'] ?? 0),
@@ -737,16 +873,27 @@ class Controller_Orders extends Admin_Controller
             floatval($form_data['discount'] ?? 0),
             floatval($form_data['net_amount_value']),
             intval($form_data['paid_status']),
-            intval($this->session->userdata('id'))
+            intval($this->session->userdata('id')),
+            $store_id,
+            $current_datetime
         );
 
-        // Order items SQL
+        // Format the order items SQL queries
         $items_sql = [];
         if (!empty($form_data['product'])) {
             foreach ($form_data['product'] as $key => $product_id) {
                 $items_sql[] = sprintf(
-                    "INSERT INTO orders_item (order_id, product_id, qty, rate, amount) 
-                    VALUES (LAST_INSERT_ID(), %d, %d, %.2f, %.2f);",
+                    "-- Order Item Insert Query for Product ID: %d\n" .
+                    "INSERT INTO orders_item (\n" .
+                    "    order_id, product_id, qty, rate, amount\n" .
+                    ") VALUES (\n" .
+                    "    LAST_INSERT_ID(),  -- order_id (from previous insert)\n" .
+                    "    %d,    -- product_id\n" .
+                    "    %d,    -- qty\n" .
+                    "    %.2f,  -- rate\n" .
+                    "    %.2f   -- amount\n" .
+                    ");",
+                    intval($product_id),
                     intval($product_id),
                     intval($form_data['qty'][$key]),
                     floatval($form_data['rate'][$key]),
@@ -755,15 +902,15 @@ class Controller_Orders extends Admin_Controller
             }
         }
 
-        // Log queries
-        log_message('debug', 'Mock Order SQL: ' . $order_sql);
-        foreach ($items_sql as $sql) {
-            log_message('debug', 'Mock Order Item SQL: ' . $sql);
-        }
+        // Combine all SQL with START TRANSACTION and COMMIT
+        $full_sql = "-- Start Transaction\nSTART TRANSACTION;\n\n" . 
+                   $order_sql . "\n\n" .
+                   implode("\n\n", $items_sql) . "\n\n" .
+                   "-- Commit Transaction\nCOMMIT;";
 
-        // Return all SQL statements
+        // Return the formatted SQL
         echo json_encode([
-            'mock_sql' => $order_sql . "\n\n" . implode("\n", $items_sql),
+            'mock_sql' => $full_sql,
             'bill_no' => $bill_no
         ]);
     }
