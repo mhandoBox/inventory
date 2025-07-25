@@ -12,6 +12,7 @@ class Controller_Reports extends Admin_Controller
         $this->load->model('model_users');
         $this->load->model('model_products');
         $this->load->model('model_company');
+        $this->load->model('Model_reports');
         log_message('debug', 'Controller_Reports initialized');
     }
 
@@ -37,21 +38,80 @@ class Controller_Reports extends Admin_Controller
         $filters = array(
             'date_from' => $this->input->get('date_from'),
             'date_to' => $this->input->get('date_to'),
-            'customer' => $this->input->get('customer'),
+            'warehouse' => $this->input->get('warehouse'),
             'status' => $this->input->get('status')
         );
 
+        // Load Models
+        $this->load->model('Model_stores');
+
+        // Get report data
         $report = $this->Model_reporting->getSalesReport($filters);
         $aggregates = $this->Model_reporting->getSalesAggregates($filters);
-        $customers = $this->Model_reporting->getCustomerList();
+        $warehouses = $this->Model_stores->getActiveStores();
 
+        // Set view data
         $this->data['report'] = $report;
         $this->data['aggregates'] = $aggregates;
         $this->data['filters'] = $filters;
-        $this->data['customers'] = $customers;
-        $this->data['tab'] = 'orders';
+        $this->data['warehouses'] = $warehouses;
+        $this->data['tab'] = 'sales';
 
+        // Render the template
         $this->render_template('reporting/sales_report', $this->data);
+    }
+
+    // Stock Report
+    public function stock_report()
+    {
+        if (!in_array('viewReport', $this->permission)) {
+            $this->session->set_flashdata('error', 'Unauthorized access to stock reports');
+            redirect('dashboard', 'refresh');
+        }
+
+        // Get filter parameters
+        $filters = array(
+            'category' => $this->input->get('category'),
+            'warehouse' => $this->input->get('warehouse'),
+            'stock_status' => $this->input->get('stock_status')
+        );
+        
+        // Get filter data for dropdowns
+        $this->load->model('Model_category');
+        $this->load->model('Model_stores');
+        
+        $this->data['categories'] = $this->Model_category->getActiveCategories();
+        $this->data['warehouses'] = $this->Model_stores->getActiveStores();
+        
+        // Get stock report data
+        $this->data['report'] = $this->Model_reporting->getStockReport($filters);
+        
+        // Calculate aggregates
+        $aggregates = array(
+            'total_items' => 0,
+            'total_value' => 0,
+            'low_stock_items' => 0,
+            'out_of_stock_items' => 0
+        );
+        
+        if(!empty($this->data['report'])) {
+            foreach($this->data['report'] as $item) {
+                $aggregates['total_items'] += $item['quantity'];
+                $aggregates['total_value'] += ($item['quantity'] * $item['price']);
+                if($item['quantity'] <= $item['minimum_quantity']) {
+                    $aggregates['low_stock_items']++;
+                }
+                if($item['quantity'] == 0) {
+                    $aggregates['out_of_stock_items']++;
+                }
+            }
+        }
+        
+        $this->data['aggregates'] = $aggregates;
+        $this->data['filters'] = $filters;
+        $this->data['tab'] = 'stock';
+        
+        $this->render_template('reporting/stock_report', $this->data);
     }
 
     // Purchases/Stock Additions Report

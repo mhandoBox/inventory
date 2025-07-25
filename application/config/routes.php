@@ -60,3 +60,11 @@ $route['reports/purchases'] = 'Controller_Reports/purchase_report';
 $route['reports/general'] = 'Controller_Reports/general_report';
 $route['reports/export/(:any)/(:any)'] = 'Controller_Reports/export/$1/$2';
 $route['reports/chart_data/(:any)'] = 'Controller_Reports/chart_data/$1';
+
+// Accounting Module
+$route['accounting'] = 'Controller_accounting/index';
+$route['accounting/journal_entry'] = 'Controller_accounting/journal_entry';
+$route['accounting/trial_balance'] = 'Controller_accounting/trial_balance';
+$route['accounting/income_statement'] = 'Controller_accounting/income_statement';
+$route['accounting/balance_sheet'] = 'Controller_accounting/balance_sheet';
+$route['accounting/save_journal_entry'] = 'Controller_accounting/save_journal_entry';

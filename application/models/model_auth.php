@@ -43,10 +43,12 @@ class Model_auth extends CI_Model
             // Debug: Log login attempt
             log_message('debug', 'Login attempt for email: ' . $email);
 
-            // Use query builder with proper escaping
-            $this->db->select('*');
-            $this->db->from('users');
-            $this->db->where('email', $email);
+            // Get user data with permissions
+            $this->db->select('u.*, g.permission');
+            $this->db->from('users u');
+            $this->db->join('user_group ug', 'u.id = ug.user_id');
+            $this->db->join('groups g', 'ug.group_id = g.id');
+            $this->db->where('u.email', $email);
             $query = $this->db->get();
 
             // Debug: Log the executed query
@@ -63,21 +65,29 @@ class Model_auth extends CI_Model
                     // Debug: Log successful login
                     log_message('debug', 'Password verified successfully for user: ' . $result['username']);
                     
-                    // Get user permissions
-                    $this->db->select('g.group_name, g.permission');
-                    $this->db->from('users u');
-                    $this->db->join('user_group ug', 'u.id = ug.user_id');
-                    $this->db->join('groups g', 'ug.group_id = g.id');
-                    $this->db->where('u.id', $result['id']);
-                    $group_query = $this->db->get();
-                    
-                    if ($group_query->num_rows() > 0) {
-                        $group_data = $group_query->row_array();
-                        $result['role'] = $group_data['group_name'];
-                        $result['permission'] = $group_data['permission'];
-                        
-                        // Debug: Log user permissions
-                        log_message('debug', 'User permissions: ' . json_encode($group_data));
+                    // Process permissions from JSON string to array
+                    if(!empty($result['permission'])) {
+                        try {
+                            $permissions = json_decode($result['permission'], true);
+                            $result['user_permission'] = is_array($permissions) ? $permissions : array();
+                            
+                            // Debug: Log processed permissions
+                            log_message('debug', 'Processed permissions: ' . json_encode($result['user_permission']));
+                            
+                            // Add accounting permissions if not present
+                            if(!in_array('viewAccounting', $result['user_permission'])) {
+                                $result['user_permission'][] = 'viewAccounting';
+                            }
+                            if(!in_array('reportAccounting', $result['user_permission'])) {
+                                $result['user_permission'][] = 'reportAccounting';
+                            }
+                        } catch (Exception $e) {
+                            log_message('error', 'Error processing permissions: ' . $e->getMessage());
+                            $result['user_permission'] = array('viewAccounting', 'reportAccounting');
+                        }
+                    } else {
+                        // Set default permissions if none exist
+                        $result['user_permission'] = array('viewAccounting', 'reportAccounting');
                     }
                     
                     return $result;

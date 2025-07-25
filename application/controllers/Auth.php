@@ -36,8 +36,8 @@ class Auth extends Admin_Controller
                 log_message('debug', 'Login attempt result: ' . ($login ? 'success' : 'failed'));
 
                 if ($login) {
-                    // Fetch the user's role dynamically
-                    $this->db->select('g.group_name AS role');
+                    // Fetch the user's role and permissions dynamically
+                    $this->db->select('g.group_name AS role, g.permission');
                     $this->db->from('users u');
                     $this->db->join('user_group ug', 'u.id = ug.user_id');
                     $this->db->join('groups g', 'ug.group_id = g.id');

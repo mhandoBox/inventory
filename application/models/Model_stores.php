@@ -2,6 +2,22 @@
 
 class Model_stores extends CI_Model
 {
+    public function getActiveStores()
+    {
+        $this->db->select('id, name');
+        $this->db->from('stores');
+        $this->db->where('active', 1);
+        $this->db->order_by('name', 'ASC');
+        
+        $query = $this->db->get();
+        
+        if ($query !== FALSE) {
+            return $query->result_array();
+        } else {
+            log_message('error', 'getActiveStores failed: ' . json_encode($this->db->error()));
+            return array();
+        }
+    }
 	public function __construct()
 	{
 		parent::__construct();

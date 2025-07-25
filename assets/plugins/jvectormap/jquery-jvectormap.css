@@ -1,0 +1,82 @@
+.jvectormap-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.jvectormap-tip {
+    position: absolute;
+    display: none;
+    border: solid 1px #CDCDCD;
+    border-radius: 3px;
+    background: #292929;
+    color: white;
+    font-family: sans-serif, Verdana;
+    font-size: smaller;
+    padding: 3px;
+}
+
+.jvectormap-zoomin, .jvectormap-zoomout, .jvectormap-goback {
+    position: absolute;
+    left: 10px;
+    border-radius: 3px;
+    background: #292929;
+    padding: 3px;
+    color: white;
+    cursor: pointer;
+    line-height: 10px;
+    text-align: center;
+    box-sizing: content-box;
+}
+
+.jvectormap-zoomin, .jvectormap-zoomout {
+    width: 10px;
+    height: 10px;
+}
+
+.jvectormap-zoomin {
+    top: 10px;
+}
+
+.jvectormap-zoomout {
+    top: 30px;
+}
+
+.jvectormap-legend {
+    background: black;
+    color: white;
+    padding: 10px;
+}
+
+.jvectormap-legend-title {
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.jvectormap-legend-cnt {
+    position: absolute;
+}
+
+.jvectormap-legend-cnt-h {
+    bottom: 0;
+    right: 0;
+}
+
+.jvectormap-legend-cnt-v {
+    top: 0;
+    right: 0;
+}
+
+.jvectormap-label {
+    position: absolute;
+    display: none;
+    border: solid 1px #CDCDCD;
+    border-radius: 3px;
+    background: #292929;
+    color: white;
+    font-family: sans-serif, Verdana;
+    font-size: smaller;
+    padding: 3px;
+    pointer-events: none;
+}

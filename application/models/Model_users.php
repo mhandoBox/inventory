@@ -87,9 +87,17 @@ class Model_users extends CI_Model
 
 	public function countTotalUsers()
 	{
-		$sql = "SELECT * FROM users";
+		$sql = "SELECT COUNT(*) as total FROM users";
 		$query = $this->db->query($sql);
-		return $query->num_rows();
+		
+		if($query === FALSE) {
+			// Query failed to execute
+			log_message('error', 'Database query failed in countTotalUsers: ' . $this->db->error()['message']);
+			return 0;
+		}
+		
+		$result = $query->row();
+		return $result ? $result->total : 0;
 	}
 	
 }

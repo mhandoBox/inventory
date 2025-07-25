@@ -49,13 +49,21 @@ class Model_groups extends CI_Model
 
 	public function getUserGroupByUserId($user_id) 
 	{
+		if(!$user_id) {
+			return null;
+		}
+
 		$sql = "SELECT * FROM user_group 
 		INNER JOIN groups ON groups.id = user_group.group_id 
 		WHERE user_group.user_id = ?";
 		$query = $this->db->query($sql, array($user_id));
-		$result = $query->row_array();
+		
+		if($query === FALSE) {
+			// Query failed to execute
+			log_message('error', 'Database query failed in getUserGroupByUserId: ' . $this->db->error()['message']);
+			return null;
+		}
 
-		return $result;
-
+		return ($query->num_rows() > 0) ? $query->row_array() : null;
 	}
 }

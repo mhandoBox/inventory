@@ -98,6 +98,7 @@
               </a>
               <ul class="treeview-menu">
                 <li id="salesReportNav"><a href="<?php echo base_url('Controller_Reports/sales_report') ?>"><i class="fa fa-circle-o"></i> Sales Report</a></li>
+                <li id="stockReportNav"><a href="<?php echo base_url('Controller_Reports/stock_report') ?>"><i class="fa fa-circle-o"></i> Stock Report</a></li>
                 <li id="purchaseReportNav"><a href="<?php echo base_url('Controller_Reports/purchase_report') ?>"><i class="fa fa-circle-o"></i> Purchase Report</a></li>
                 <li id="expenseReportNav"><a href="<?php echo base_url('Controller_Reports/expense_report') ?>"><i class="fa fa-circle-o"></i> Expense Report</a></li>
                 <li id="generalReportNav"><a href="<?php echo base_url('Controller_Reports/general_report') ?>"><i class="fa fa-circle-o"></i> General Report</a></li>
@@ -106,7 +107,8 @@
             </li>
           <?php endif; ?>
 
-          <?php if(in_array('viewAccounting', $user_permission) || in_array('reportAccounting', $user_permission)): ?>
+          <?php /* Accounting menu temporarily disabled
+          if(in_array('viewAccounting', $user_permission) || in_array('reportAccounting', $user_permission)): ?>
             <li class="treeview" id="mainAccountingNav">
               <a href="#">
                 <i class="fa fa-calculator"></i>
@@ -116,19 +118,45 @@
                 </span>
               </a>
               <ul class="treeview-menu">
+                <li id="accountingDashboardNav">
+                  <a href="<?php echo base_url('accounting'); ?>">
+                    <i class="fa fa-dashboard"></i> Dashboard
+                  </a>
+                </li>
+                <li id="chartOfAccountsNav">
+                  <a href="<?php echo base_url('accounting/chart_of_accounts'); ?>">
+                    <i class="fa fa-list"></i> Chart of Accounts
+                  </a>
+                </li>
+                <li id="accountManagementNav">
+                  <a href="<?php echo base_url('accounting/accounts'); ?>">
+                    <i class="fa fa-cogs"></i> Account Management
+                  </a>
+                </li>
+                <li id="journalEntryNav">
+                  <a href="<?php echo base_url('accounting/journal_entry'); ?>">
+                    <i class="fa fa-pencil"></i> Journal Entry
+                  </a>
+                </li>
                 <li id="trialBalanceNav">
                   <a href="<?php echo base_url('accounting/trial_balance'); ?>">
-                    <i class="fa fa-circle-o"></i> Trial Balance
+                    <i class="fa fa-balance-scale"></i> Trial Balance
                   </a>
                 </li>
                 <li id="incomeStatementNav">
                   <a href="<?php echo base_url('accounting/income_statement'); ?>">
-                    <i class="fa fa-circle-o"></i> Income Statement
+                    <i class="fa fa-line-chart"></i> Income Statement
+                  </a>
+                </li>
+                <li id="balanceSheetNav">
+                  <a href="<?php echo base_url('accounting/balance_sheet'); ?>">
+                    <i class="fa fa-book"></i> Balance Sheet
                   </a>
                 </li>
               </ul>
             </li>
-          <?php endif; ?>
+          <?php endif; */
+          ?>
 
           <?php if(in_array('createUser', $user_permission) || in_array('updateUser', $user_permission) || in_array('viewUser', $user_permission) || in_array('deleteUser', $user_permission)): ?>
             <li class="treeview" id="mainUserNav">

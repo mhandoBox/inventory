@@ -6,6 +6,74 @@ class Model_reporting extends CI_Model {
         parent::__construct();
     }
 
+    // Stock Report method
+    public function getStockReport($filters = array()) {
+        $this->db->select('p.id, p.name, p.price, p.unit, p.minimum_quantity,
+                          (COALESCE(SUM(CASE WHEN ph.type = "purchase" THEN ph.qty ELSE 0 END), 0)) as total_purchased,
+                          (COALESCE(SUM(CASE WHEN oi.id IS NOT NULL THEN oi.qty ELSE 0 END), 0)) as total_sold,
+                          (COALESCE(SUM(CASE WHEN ph.type = "purchase" THEN ph.qty ELSE 0 END), 0) - 
+                           COALESCE(SUM(CASE WHEN oi.id IS NOT NULL THEN oi.qty ELSE 0 END), 0)) as quantity,
+                          c.name as category_name, s.name as warehouse_name,
+                          MAX(GREATEST(COALESCE(ph.date, "1900-01-01"), COALESCE(o.date_time, "1900-01-01"))) as last_stock_update,
+                          COUNT(DISTINCT o.id) as number_of_orders,
+                          MAX(o.date_time) as last_order_date,
+                          MIN(o.date_time) as first_order_date,
+                          GROUP_CONCAT(DISTINCT o.bill_no ORDER BY o.date_time DESC LIMIT 5) as recent_order_numbers');
+        $this->db->from('products p');
+        $this->db->join('categories c', 'c.id = p.category_id', 'left');
+        $this->db->join('stores s', 's.id = p.store_id', 'left');
+        $this->db->join('purchase_items ph', 'p.id = ph.product_id', 'left');
+        $this->db->join('order_items oi', 'p.id = oi.product_id', 'left');
+        $this->db->join('orders o', 'o.id = oi.order_id', 'left');
+
+        // Apply filters
+        if (!empty($filters['category'])) {
+            $this->db->where('p.category_id', $filters['category']);
+        }
+        
+        if (!empty($filters['warehouse'])) {
+            $this->db->where('p.store_id', $filters['warehouse']);
+        }
+        
+        if (!empty($filters['stock_status'])) {
+            // We need to use a subquery for stock status filtering since we can't filter on computed columns
+            $stock_query = "(SELECT p2.id, 
+                                  (COALESCE(SUM(CASE WHEN ph2.type = 'purchase' THEN ph2.qty ELSE 0 END), 0) - 
+                                   COALESCE(SUM(CASE WHEN oi2.id IS NOT NULL THEN oi2.qty ELSE 0 END), 0)) as current_stock
+                           FROM products p2
+                           LEFT JOIN purchase_items ph2 ON p2.id = ph2.product_id
+                           LEFT JOIN order_items oi2 ON p2.id = oi2.product_id
+                           GROUP BY p2.id) stock_calc";
+            
+            $this->db->join($stock_query, 'stock_calc.id = p.id', 'left');
+            
+            switch ($filters['stock_status']) {
+                case 'out_of_stock':
+                    $this->db->where('stock_calc.current_stock', 0);
+                    break;
+                case 'low_stock':
+                    $this->db->where('stock_calc.current_stock <=', 'p.minimum_quantity', false);
+                    $this->db->where('stock_calc.current_stock >', 0);
+                    break;
+                case 'in_stock':
+                    $this->db->where('stock_calc.current_stock >', 'p.minimum_quantity', false);
+                    break;
+            }
+        }
+
+        $this->db->group_by('p.id, p.name, p.price, p.unit, p.minimum_quantity, c.name, s.name');
+        $this->db->order_by('p.name', 'ASC');
+        
+        $query = $this->db->get();
+        
+        if ($query === FALSE) {
+            log_message('error', 'getStockReport failed: ' . json_encode($this->db->error()));
+            return array();
+        }
+        
+        return $query->result_array();
+    }
+
     // Get items for a specific sale/order
     public function getSaleItems($order_id) {
         $this->db->select('orders_item.product_name as name, orders_item.qty as quantity, orders_item.rate as unit_price, orders_item.amount as total');
@@ -78,8 +146,8 @@ class Model_reporting extends CI_Model {
         if (!empty($filters['date_to'])) {
             $this->db->where('DATE(date_time) <=', $filters['date_to']);
         }
-        if (!empty($filters['customer'])) {
-            $this->db->where('customer_name LIKE', '%' . $filters['customer'] . '%');
+        if (!empty($filters['warehouse'])) {
+            $this->db->where('orders.store_id', $filters['warehouse']);
         }
         
         $query = $this->db->get();
@@ -153,9 +221,225 @@ class Model_reporting extends CI_Model {
         if (!empty($filters['date_to'])) {
             $this->db->where('DATE(date) <=', $filters['date_to']);
         }
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
+    // General Business Report
+    public function getGeneralReport($filters = array()) {
+        $data = array();
+        
+        // Sales/Revenue Data
+        $this->db->select('SUM(net_amount) as total_revenue, COUNT(*) as total_orders');
+        $this->db->from('orders');
+        if (!empty($filters['date_from'])) {
+            $this->db->where('DATE(date_time) >=', $filters['date_from']);
+        }
+        if (!empty($filters['date_to'])) {
+            $this->db->where('DATE(date_time) <=', $filters['date_to']);
+        }
+        $sales_query = $this->db->get();
+        if ($sales_query !== FALSE) {
+            $sales_data = $sales_query->row_array();
+            $data['total_revenue'] = $sales_data['total_revenue'] ?? 0;
+            $data['total_orders'] = $sales_data['total_orders'] ?? 0;
+        } else {
+            log_message('error', 'getGeneralReport: sales query failed: ' . json_encode($this->db->error()));
+            $data['total_revenue'] = 0;
+            $data['total_orders'] = 0;
+        }
+
+        // Purchase Data from purchases table
+        $this->db->select('SUM(total_amount) as total_purchases, COUNT(*) as total_items');
+        $this->db->from('purchases');
+        if (!empty($filters['date_from'])) {
+            $this->db->where('DATE(purchase_date) >=', $filters['date_from']);
+        }
+        if (!empty($filters['date_to'])) {
+            $this->db->where('DATE(purchase_date) <=', $filters['date_to']);
+        }
+        $purchase_query = $this->db->get();
+        if ($purchase_query !== FALSE) {
+            $purchase_data = $purchase_query->row_array();
+            $data['total_purchases'] = $purchase_data['total_purchases'] ?? 0;
+            $data['total_items_purchased'] = $purchase_data['total_items'] ?? 0;
+        } else {
+            log_message('error', 'getGeneralReport: purchases query failed: ' . json_encode($this->db->error()));
+            $data['total_purchases'] = 0;
+            $data['total_items_purchased'] = 0;
+        }
+
+        // Calculate purchase growth
+        $previous_period_start = date('Y-m-d', strtotime('-1 month', strtotime($filters['date_from'] ?? date('Y-m-d'))));
+        $previous_period_end = date('Y-m-d', strtotime('-1 month', strtotime($filters['date_to'] ?? date('Y-m-d'))));
+        
+        $this->db->select('SUM(total_amount) as prev_purchases');
+        $this->db->from('purchases');
+        $this->db->where('DATE(purchase_date) >=', $previous_period_start);
+        $this->db->where('DATE(purchase_date) <=', $previous_period_end);
+        $prev_purchase_query = $this->db->get();
+        if ($prev_purchase_query !== FALSE) {
+            $prev_purchase_data = $prev_purchase_query->row_array();
+            $prev_purchases = $prev_purchase_data['prev_purchases'] ?? 0;
+        } else {
+            log_message('error', 'getGeneralReport: prev purchases query failed: ' . json_encode($this->db->error()));
+            $prev_purchases = 0;
+        }
+        $data['purchases_growth'] = $prev_purchases > 0 ? 
+            (($data['total_purchases'] - $prev_purchases) / $prev_purchases) * 100 : 0;
+
+        // Expense Data
+        $this->db->select('SUM(amount) as total_expenses');
+        $this->db->from('company_expenses');
+        if (!empty($filters['date_from'])) {
+            $this->db->where('DATE(expense_date) >=', $filters['date_from']);
+        }
+        if (!empty($filters['date_to'])) {
+            $this->db->where('DATE(expense_date) <=', $filters['date_to']);
+        }
+        $expense_query = $this->db->get();
+        if ($expense_query !== FALSE) {
+            $expense_data = $expense_query->row_array();
+            $data['total_expenses'] = $expense_data['total_expenses'] ?? 0;
+        } else {
+            log_message('error', 'getGeneralReport: expenses query failed: ' . json_encode($this->db->error()));
+            $data['total_expenses'] = 0;
+        }
+        
+        // Calculate operating expenses (excluding purchases)
+        $data['operating_expenses'] = $data['total_expenses'];
+        $data['expense_ratio'] = $data['total_revenue'] > 0 ? 
+            ($data['total_expenses'] / $data['total_revenue']) * 100 : 0;
+
+        // Calculate profits
+        $data['gross_profit'] = $data['total_revenue'] - $data['total_purchases'];
+        $data['net_profit'] = $data['gross_profit'] - $data['operating_expenses'];
+        $data['profit_margin'] = $data['total_revenue'] > 0 ? 
+            ($data['net_profit'] / $data['total_revenue']) * 100 : 0;
+
+        // Get monthly data for trends
+        $data['months'] = array();
+        $data['monthly_sales'] = array();
+        $data['monthly_purchases'] = array();
+        $data['monthly_expenses'] = array();
+        $data['monthly_profit'] = array();
+
+        // Get last 6 months of data
+        for ($i = 5; $i >= 0; $i--) {
+            $month = date('M', strtotime("-$i months"));
+            $year_month = date('Y-m', strtotime("-$i months"));
+            
+            $data['months'][] = $month;
+            
+            // Monthly sales
+            $this->db->select('COALESCE(SUM(net_amount), 0) as monthly_sale');
+            $this->db->from('orders');
+            $this->db->where("DATE_FORMAT(date_time, '%Y-%m') =", $year_month);
+            $monthly_sales_query = $this->db->get();
+            if ($monthly_sales_query !== FALSE) {
+                $monthly_sales = floatval($monthly_sales_query->row()->monthly_sale);
+            } else {
+                log_message('error', 'Monthly sales query failed for ' . $year_month . ': ' . json_encode($this->db->error()));
+                $monthly_sales = 0;
+            }
+            $data['monthly_sales'][] = $monthly_sales;
+            // Monthly purchases
+            $this->db->select('COALESCE(SUM(total_amount), 0) as monthly_purchase');
+            $this->db->from('purchases');
+            $this->db->where("DATE_FORMAT(purchase_date, '%Y-%m') =", $year_month);
+            $monthly_purchases_query = $this->db->get();
+            if ($monthly_purchases_query !== FALSE) {
+                $monthly_purchases = floatval($monthly_purchases_query->row()->monthly_purchase);
+            } else {
+                log_message('error', 'Monthly purchases query failed for ' . $year_month . ': ' . json_encode($this->db->error()));
+                $monthly_purchases = 0;
+            }
+            $data['monthly_purchases'][] = $monthly_purchases;
+            // Monthly expenses
+            $this->db->select('COALESCE(SUM(amount), 0) as monthly_expense');
+            $this->db->from('company_expenses');
+            $this->db->where("DATE_FORMAT(expense_date, '%Y-%m') =", $year_month);
+            $monthly_expenses_query = $this->db->get();
+            if ($monthly_expenses_query !== FALSE) {
+                $monthly_expenses = floatval($monthly_expenses_query->row()->monthly_expense);
+            } else {
+                log_message('error', 'Monthly expenses query failed for ' . $year_month . ': ' . json_encode($this->db->error()));
+                $monthly_expenses = 0;
+            }
+            $data['monthly_expenses'][] = $monthly_expenses;
+            $data['monthly_profit'][] = $monthly_sales - $monthly_purchases - $monthly_expenses;
+        }
+
+        // Get expense categories breakdown
+        $this->db->select('category, SUM(amount) as amount');
+        $this->db->from('company_expenses');
+        if (!empty($filters['date_from'])) {
+            $this->db->where('DATE(expense_date) >=', $filters['date_from']);
+        }
+        if (!empty($filters['date_to'])) {
+            $this->db->where('DATE(expense_date) <=', $filters['date_to']);
+        }
+        $this->db->group_by('category');
+        $expense_categories_query = $this->db->get();
+        if ($expense_categories_query !== FALSE) {
+            $expense_categories = $expense_categories_query->result_array();
+        } else {
+            log_message('error', 'getGeneralReport: expense categories query failed: ' . json_encode($this->db->error()));
+            $expense_categories = array();
+        }
+        $data['expense_categories'] = array();
+        $data['expense_amounts'] = array();
+        foreach ($expense_categories as $category) {
+            $data['expense_categories'][] = $category['category'];
+            $data['expense_amounts'][] = $category['amount'];
+        }
+
+        // Add purchases as a category in expense breakdown
+        $data['expense_categories'][] = 'Purchases';
+        $data['expense_amounts'][] = $data['total_purchases'];
+
+        // Calculate inventory metrics
+        $this->db->select('SUM(stock * price) as inventory_value');
+        $this->db->from('products');
+        $inventory_query = $this->db->get();
+        if ($inventory_query !== FALSE) {
+            $inventory_data = $inventory_query->row_array();
+            $data['inventory_value'] = $inventory_data['inventory_value'] ?? 0;
+        } else {
+            log_message('error', 'getGeneralReport: inventory query failed: ' . json_encode($this->db->error()));
+            $data['inventory_value'] = 0;
+        }
+
+        // Calculate inventory turnover rate
+        $average_inventory = $data['inventory_value'];
+        $data['turnover_rate'] = $average_inventory > 0 ? 
+            ($data['total_purchases'] / $average_inventory) : 0;
+
+        // Add debug arrays for frontend/browser debugging
+        $data['debug_months'] = $data['months'];
+        $data['debug_monthly_sales'] = $data['monthly_sales'];
+        $data['debug_monthly_purchases'] = $data['monthly_purchases'];
+        $data['debug_monthly_expenses'] = $data['monthly_expenses'];
+        $data['debug_monthly_profit'] = $data['monthly_profit'];
+
+        return $data;
+    }
+
+    // Get Stock Movements
+    private function getStockMovements($filters = array()) {
+        // Get stock additions
+        $this->db->select('SUM(qty) as total_additions');
+        $this->db->from('product_stock_history');
+        if (!empty($filters['date_from'])) {
+            $this->db->where('DATE(date) >=', $filters['date_from']);
+        }
+        if (!empty($filters['date_to'])) {
+            $this->db->where('DATE(date) <=', $filters['date_to']);
+        }
         $additions_query = $this->db->get();
         $additions = $additions_query->row_array();
 
+        // Get stock reductions from sales
         $this->db->select('SUM(orders_item.qty) as total_reductions');
         $this->db->from('orders_item');
         $this->db->join('orders', 'orders.id = orders_item.order_id');
@@ -168,6 +452,7 @@ class Model_reporting extends CI_Model {
         $reductions_query = $this->db->get();
         $reductions = $reductions_query->row_array();
 
+        // Get opening stock
         $this->db->select('SUM(qty) as total_opening');
         $this->db->from('product_stock_history');
         if (!empty($filters['date_from'])) {
@@ -176,6 +461,7 @@ class Model_reporting extends CI_Model {
         $opening_query = $this->db->get();
         $opening = $opening_query->row_array();
 
+        // Calculate totals
         $total_additions = $additions['total_additions'] ? $additions['total_additions'] : 0;
         $total_reductions = $reductions['total_reductions'] ? $reductions['total_reductions'] : 0;
         $opening_stock = $opening['total_opening'] ? $opening['total_opening'] : 0;
@@ -241,25 +527,6 @@ class Model_reporting extends CI_Model {
             'total_transactions' => $result['total_transactions'] ? $result['total_transactions'] : 0,
             'avg_expense_value' => $result['avg_expense_value'] ? $result['avg_expense_value'] : 0
         );
-    }
-
-    // General Report method
-    public function getGeneralReport($filters = array()) {
-        $current = $this->calculateGeneralMetrics($filters);
-        
-        $prevFilters = [
-            'date_from' => date('Y-m-d', strtotime($filters['date_from'] . ' -1 month')),
-            'date_to' => date('Y-m-d', strtotime($filters['date_to'] . ' -1 month'))
-        ];
-        $previous = $this->calculateGeneralMetrics($prevFilters);
-        
-        $current['revenue_change'] = $this->calculatePercentageChange($previous['total_revenue'], $current['total_revenue']);
-        $current['cost_change'] = $this->calculatePercentageChange($previous['total_cost'], $current['total_cost']);
-        $current['profit_change'] = $this->calculatePercentageChange($previous['gross_profit'], $current['gross_profit']);
-        $current['expense_change'] = $this->calculatePercentageChange($previous['total_expenses'], $current['total_expenses']);
-        $current['turnover_change'] = $this->calculatePercentageChange($previous['turnover_rate'], $current['turnover_rate']);
-        
-        return $current;
     }
 
     // Helper method to calculate general metrics
@@ -347,65 +614,104 @@ class Model_reporting extends CI_Model {
 
     // Sales Chart Data
     public function getSalesChartData($filters = array()) {
-        $this->db->select('DATE(date_time) as date, SUM(net_amount) as total');
-        $this->db->from('orders');
-        if (!empty($filters['date_from'])) {
-            $this->db->where('DATE(date_time) >=', $filters['date_from']);
+        $data = array();
+        
+        // Get last 6 months of data for consistency with monthly report
+        for ($i = 5; $i >= 0; $i--) {
+            $year_month = date('Y-m', strtotime("-$i months"));
+            $month_start = date('Y-m-01', strtotime("-$i months")); // First day of month
+            
+            $this->db->select('COALESCE(SUM(net_amount), 0) as total');
+            $this->db->from('orders');
+            $this->db->where("DATE_FORMAT(date_time, '%Y-%m') =", $year_month);
+            $query = $this->db->get();
+            
+            if ($query !== FALSE) {
+                $total = floatval($query->row()->total);
+                $data[] = array(
+                    'date' => $month_start, // Use first day of month for consistent date points
+                    'total' => $total,
+                    'month' => date('M Y', strtotime("-$i months")) // Add month name for labels
+                );
+            } else {
+                log_message('error', 'Failed to fetch sales chart data for ' . $year_month . ': ' . json_encode($this->db->error()));
+                $data[] = array(
+                    'date' => $month_start,
+                    'total' => 0,
+                    'month' => date('M Y', strtotime("-$i months"))
+                );
+            }
         }
-        if (!empty($filters['date_to'])) {
-            $this->db->where('DATE(date_time) <=', $filters['date_to']);
-        }
-        $this->db->group_by('DATE(date_time)');
-        $this->db->order_by('date_time', 'ASC');
-        $query = $this->db->get();
-        if ($query !== FALSE) {
-            return $query->result_array();
-        } else {
-            log_message('error', 'Failed to fetch sales chart data: ' . json_encode($this->db->error()));
-            return array();
-        }
+        log_message('debug', 'Sales Chart Data: ' . json_encode($data)); // Debug log
+        return $data;
     }
 
     // Purchase Chart Data
     public function getPurchaseChartData($filters = array()) {
-        $this->db->select('DATE(date) as date, SUM(qty) as total');
-        $this->db->from('product_stock_history');
-        if (!empty($filters['date_from'])) {
-            $this->db->where('DATE(date) >=', $filters['date_from']);
+        $data = array();
+        
+        // Get last 6 months of data for consistency with monthly report
+        for ($i = 5; $i >= 0; $i--) {
+            $year_month = date('Y-m', strtotime("-$i months"));
+            $month_start = date('Y-m-01', strtotime("-$i months")); // First day of month
+            
+            $this->db->select('COALESCE(SUM(total_amount), 0) as total');
+            $this->db->from('purchases');
+            $this->db->where("DATE_FORMAT(purchase_date, '%Y-%m') =", $year_month);
+            $query = $this->db->get();
+            
+            if ($query !== FALSE) {
+                $total = floatval($query->row()->total);
+                $data[] = array(
+                    'date' => $month_start, // Use first day of month for consistent date points
+                    'total' => $total,
+                    'month' => date('M Y', strtotime("-$i months")) // Add month name for labels
+                );
+            } else {
+                log_message('error', 'Failed to fetch purchase chart data for ' . $year_month . ': ' . json_encode($this->db->error()));
+                $data[] = array(
+                    'date' => $month_start,
+                    'total' => 0,
+                    'month' => date('M Y', strtotime("-$i months"))
+                );
+            }
         }
-        if (!empty($filters['date_to'])) {
-            $this->db->where('DATE(date) <=', $filters['date_to']);
-        }
-        $this->db->group_by('DATE(date)');
-        $this->db->order_by('date', 'ASC');
-        $query = $this->db->get();
-        if ($query !== FALSE) {
-            return $query->result_array();
-        } else {
-            log_message('error', 'Failed to fetch purchase chart data: ' . json_encode($this->db->error()));
-            return array();
-        }
+        log_message('debug', 'Purchase Chart Data: ' . json_encode($data)); // Debug log
+        return $data;
     }
 
     // Expense Chart Data
     public function getExpenseChartData($filters = array()) {
-        $this->db->select('DATE(expense_date) as date, SUM(amount) as total');
-        $this->db->from('company_expenses');
-        if (!empty($filters['date_from'])) {
-            $this->db->where('DATE(expense_date) >=', $filters['date_from']);
+        $data = array();
+        
+        // Get last 6 months of data for consistency with monthly report
+        for ($i = 5; $i >= 0; $i--) {
+            $year_month = date('Y-m', strtotime("-$i months"));
+            $month_start = date('Y-m-01', strtotime("-$i months")); // First day of month
+            
+            $this->db->select('COALESCE(SUM(amount), 0) as total');
+            $this->db->from('company_expenses');
+            $this->db->where("DATE_FORMAT(expense_date, '%Y-%m') =", $year_month);
+            $query = $this->db->get();
+            
+            if ($query !== FALSE) {
+                $total = floatval($query->row()->total);
+                $data[] = array(
+                    'date' => $month_start, // Use first day of month for consistent date points
+                    'total' => $total,
+                    'month' => date('M Y', strtotime("-$i months")) // Add month name for labels
+                );
+            } else {
+                log_message('error', 'Failed to fetch expense chart data for ' . $year_month . ': ' . json_encode($this->db->error()));
+                $data[] = array(
+                    'date' => $month_start,
+                    'total' => 0,
+                    'month' => date('M Y', strtotime("-$i months"))
+                );
+            }
         }
-        if (!empty($filters['date_to'])) {
-            $this->db->where('DATE(expense_date) <=', $filters['date_to']);
-        }
-        $this->db->group_by('DATE(expense_date)');
-        $this->db->order_by('expense_date', 'ASC');
-        $query = $this->db->get();
-        if ($query !== FALSE) {
-            return $query->result_array();
-        } else {
-            log_message('error', 'Failed to fetch expense chart data: ' . json_encode($this->db->error()));
-            return array();
-        }
+        log_message('debug', 'Expense Chart Data: ' . json_encode($data)); // Debug log
+        return $data;
     }
 }
 ?>

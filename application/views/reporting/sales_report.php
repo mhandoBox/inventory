@@ -1,8 +1,19 @@
-<!-- reporting/sales_report.php -->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css"/>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css"/>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Sales Report
+            <small>Sales Overview</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="<?php echo base_url('dashboard') ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="<?php echo base_url('Controller_Reports') ?>">Reports</a></li>
+            <li class="active">Sales</li>
+        </ol>
+    </section>
 
 <style>
 @media print {
@@ -21,17 +32,7 @@
 @media print {
   .items-table-container { display: block; }
 }
-</style>
-
-<div class="content-wrapper">
-  <section class="content-header">
-    <h1>Sales Report <small>Sales Activity Overview</small></h1>
-    <ol class="breadcrumb">
-      <li><a href="<?php echo base_url('dashboard'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="<?php echo base_url('Controller_Reports'); ?>">Reports</a></li>
-      <li class="active">Sales</li>
-    </ol>
-  </section>
+</style> 
 
   <section class="content">
     <div class="row">
@@ -77,13 +78,13 @@
                     <input type="date" class="form-control input-sm" id="date_to" name="date_to" value="<?php echo isset($filters['date_to']) ? htmlspecialchars($filters['date_to']) : ''; ?>">
                   </div>
                   <div class="form-group">
-                    <label for="customer">Customer:</label>
-                    <select class="form-control input-sm" id="customer" name="customer">
-                      <option value="">All Customers</option>
-                      <?php if (!empty($customers)): ?>
-                        <?php foreach ($customers as $customer): ?>
-                          <option value="<?php echo htmlspecialchars($customer['id']); ?>" <?php echo (isset($filters['customer']) && $filters['customer'] == $customer['id'] ? 'selected' : ''); ?>>
-                            <?php echo htmlspecialchars($customer['name']); ?>
+                    <label for="warehouse">Warehouse:</label>
+                    <select class="form-control input-sm" id="warehouse" name="warehouse">
+                      <option value="">All Warehouses</option>
+                      <?php if (!empty($warehouses)): ?>
+                        <?php foreach ($warehouses as $warehouse): ?>
+                          <option value="<?php echo htmlspecialchars($warehouse['id']); ?>" <?php echo (isset($filters['warehouse']) && $filters['warehouse'] == $warehouse['id'] ? 'selected' : ''); ?>>
+                            <?php echo htmlspecialchars($warehouse['name']); ?>
                           </option>
                         <?php endforeach; ?>
                       <?php endif; ?>
@@ -241,29 +242,30 @@
   </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<!-- Core JS Files -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script>var $j = jQuery.noConflict(true);</script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script type="text/javascript">
-$j(document).ready(function() {
-  console.log('Script execution started');
-  console.log('jQuery version:', $j.fn.jquery);
-  console.log('jQuery UI loaded:', typeof $j.ui !== 'undefined');
-  console.log('Bootstrap loaded:', typeof $j.fn.modal !== 'undefined');
-  console.log('DataTables loaded:', typeof $j.fn.DataTable !== 'undefined');
-  console.log('DataTable initialization started');
+$(document).ready(function() {
+    console.log('Script execution started');
+    
+    if (typeof $.fn.DataTable === 'undefined') {
+        console.error('DataTables is not loaded!');
+        return;
+    }
 
   // Validate table structure
-  var thCount = $j('#reportTable thead th').length;
-  var tdCount = $j('#reportTable tbody tr:first-child td').length;
+  var thCount = $('#reportTable thead th').length;
+  var tdCount = $('#reportTable tbody tr:first-child td').length;
   console.log('Table structure: ' + thCount + ' headers, ' + tdCount + ' columns in first row');
 
   if (thCount !== tdCount) {
@@ -272,8 +274,8 @@ $j(document).ready(function() {
 
   try {
     // Initialize DataTable
-    var table = $j('#reportTable').DataTable({
-      dom: 'Bflrtip',
+    var table = $('#reportTable').DataTable({
+      dom: 'Bfrtip',
       buttons: [
         {
           extend: 'copy',
@@ -311,7 +313,7 @@ $j(document).ready(function() {
           },
           customize: function(win) {
             console.log('Print button customization called');
-            $j(win.document.body).prepend(
+            $(win.document.body).prepend(
               '<div class="print-header">' +
               '<h1>Sales Report</h1>' +
               '<p>Generated on: <?php echo date('Y-m-d H:i:s'); ?> EAT</p>' +
@@ -319,10 +321,10 @@ $j(document).ready(function() {
               '<?php echo isset($filters['date_to']) ? htmlspecialchars($filters['date_to']) : 'N/A'; ?></p>' +
               '</div>'
             );
-            $j(win.document.body).append(
+            $(win.document.body).append(
               '<div class="print-footer">Generated by System - Page 1 of 1</div>'
             );
-            $j(win.document.body).find('#reportTable').addClass('compact').css({
+            $(win.document.body).find('#reportTable').addClass('compact').css({
               'font-size': '12px',
               'border-collapse': 'collapse',
               'width': '100%'
@@ -371,16 +373,16 @@ $j(document).ready(function() {
   }
 
   // Show sale details modal
-  $j(document).on('click', '.view-items', function(e) {
+  $(document).on('click', '.view-items', function(e) {
     e.preventDefault();
     e.stopPropagation();
     
     console.log('View Items button clicked');
     
-    var orderId = $j(this).data('orderid');
+    var orderId = $(this).data('orderid');
     var items;
     try {
-      items = $j(this).data('items') || [];
+      items = $(this).data('items') || [];
       if (typeof items === 'string') {
         items = JSON.parse(items);
       }
@@ -391,7 +393,7 @@ $j(document).ready(function() {
     
     console.log('Order ID:', orderId, 'Items:', items);
     
-    $j('#modalOrderId').text(orderId || 'N/A');
+    $('#modalOrderId').text(orderId || 'N/A');
     
     var html = '<div class="table-responsive"><table class="table table-bordered">';
     html += '<thead><tr><th>Item</th><th>Qty</th><th>Unit Price</th><th>Total</th></tr></thead><tbody>';
@@ -399,7 +401,7 @@ $j(document).ready(function() {
     if (items && Array.isArray(items) && items.length > 0) {
       items.forEach(function(item) {
         html += '<tr>';
-        html += '<td>' + (item.name ? $j('<div/>').text(item.name).html() : 'N/A') + '</td>';
+        html += '<td>' + (item.name ? $('<div/>').text(item.name).html() : 'N/A') + '</td>';
         html += '<td>' + (item.quantity ? parseFloat(item.quantity).toFixed(2) : '0.00') + '</td>';
         html += '<td>' + (item.unit_price ? parseFloat(item.unit_price).toFixed(2) : '0.00') + '</td>';
         html += '<td>' + (item.total ? parseFloat(item.total).toFixed(2) : '0.00') + '</td>';
@@ -410,8 +412,8 @@ $j(document).ready(function() {
     }
     
     html += '</tbody></table></div>';
-    $j('#saleDetailsBody').html(html);
-    $j('#saleDetailsModal').modal('show');
+    $('#saleDetailsBody').html(html);
+    $('#saleDetailsModal').modal('show');
   });
 });
 </script>
