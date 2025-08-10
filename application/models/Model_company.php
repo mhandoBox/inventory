@@ -20,10 +20,26 @@ class Model_company extends CI_Model
 	public function update($data, $id)
 	{
 		if($data && $id) {
+			// Get old image data
+			$old_data = $this->getCompanyData($id);
+			
 			$this->db->where('id', $id);
 			$update = $this->db->update('company', $data);
-			return ($update == true) ? true : false;
+			
+			if($update) {
+				// Delete old images if new ones were uploaded
+				if(!empty($data['logo']) && !empty($old_data['logo'])) {
+					$old_logo = FCPATH.'assets/images/'.$old_data['logo'];
+					if(file_exists($old_logo)) unlink($old_logo);
+				}
+				if(!empty($data['image']) && !empty($old_data['image'])) {
+					$old_image = FCPATH.'assets/images/'.$old_data['image'];
+					if(file_exists($old_image)) unlink($old_image);
+				}
+				return true;
+			}
 		}
+		return false;
 	}
 
 

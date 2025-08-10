@@ -314,3 +314,4 @@ switch (ENVIRONMENT)
  */
 error_reporting(E_ALL ^ E_DEPRECATED);
 require_once BASEPATH.'core/CodeIgniter.php';
+date_default_timezone_set('Africa/Nairobi');

@@ -39,7 +39,7 @@
         <div class="box">
           
           <!-- /.box-header -->
-          <form role="form" action="<?php base_url('Controller_Orders/create') ?>" method="post" class="form-horizontal">
+          <form role="form" action="<?php base_url('Controller_Orders/create') ?>" method="post" class="form-horizontal" id="editOrderForm">
               <div class="box-body">
 
                 <?php echo validation_errors(); ?>
@@ -163,14 +163,31 @@
                     </div>
                   </div>
 
+                  <!-- Payment Status -->
                   <div class="form-group">
-                    <label for="paid_status" class="col-sm-5 control-label">Paid Status</label>
-                    <div class="col-sm-7">
-                      <select type="text" class="form-control" id="paid_status" name="paid_status">
-                        <option value="1">Paid</option>
-                        <option value="2">Unpaid</option>
-                      </select>
-                    </div>
+                      <label for="paid_status" class="col-sm-5 control-label">Payment Status</label>
+                      <div class="col-sm-7">
+                          <select class="form-control" id="paid_status" name="paid_status" onchange="toggleAmountPaidField()">
+                              <option value="1" <?php echo (isset($order_data['order']['paid_status']) && $order_data['order']['paid_status'] == 1) ? 'selected' : ''; ?>>Not Paid</option>
+                              <option value="2" <?php echo (isset($order_data['order']['paid_status']) && $order_data['order']['paid_status'] == 2) ? 'selected' : ''; ?>>Paid</option>
+                              <option value="3" <?php echo (isset($order_data['order']['paid_status']) && $order_data['order']['paid_status'] == 3) ? 'selected' : ''; ?>>Partially Paid</option>
+                          </select>
+                      </div>
+                  </div>
+
+                  <!-- Amount Paid -->
+                  <div class="form-group" id="amount_paid_group" style="<?php echo (isset($order_data['order']['paid_status']) && ($order_data['order']['paid_status'] == 3 || $order_data['order']['paid_status'] == 2)) ? '' : 'display:none;'; ?>">
+                      <label for="amount_paid" class="col-sm-5 control-label">Amount Paid</label>
+                      <div class="col-sm-7">
+                          <input type="number" 
+                                 class="form-control" 
+                                 id="amount_paid" 
+                                 name="amount_paid" 
+                                 step="0.01" 
+                                 min="0"
+                                 value="<?php echo isset($order_data['order']['amount_paid']) ? $order_data['order']['amount_paid'] : '0.00'; ?>"
+                                 <?php echo (isset($order_data['order']['paid_status']) && $order_data['order']['paid_status'] == 2) ? 'disabled' : ''; ?>>
+                      </div>
                   </div>
 
                 </div>
@@ -179,8 +196,12 @@
 
               <div class="box-footer">
 
-                <input type="hidden" name="service_charge_rate" value="<?php echo $company_data['service_charge_value'] ?>" autocomplete="off">
-                <input type="hidden" name="vat_charge_rate" value="<?php echo $company_data['vat_charge_value'] ?>" autocomplete="off">
+                <input type="hidden" name="service_charge_rate" 
+                    value="<?php echo isset($company_data['service_charge_value']) ? $company_data['service_charge_value'] : 0; ?>" 
+                    autocomplete="off">
+                <input type="hidden" name="vat_charge_rate" 
+                    value="<?php echo isset($company_data['vat_charge_value']) ? $company_data['vat_charge_value'] : 0; ?>" 
+                    autocomplete="off">
 
                 <button type="button" class="btn bg-blue" onclick="previewOrder(<?php echo $order_data['order']['id']; ?>)">Print</button>
                 <button type="submit" class="btn btn-primary">Save Changes</button>
@@ -455,6 +476,43 @@ function printOrder() {
     $('#printModal').modal('hide');
     location.reload();
 }
+
+function toggleAmountPaidField() {
+    var paid_status = $("#paid_status").val();
+    var net_amount = parseFloat($("#net_amount_value").val()) || 0;
+    var current_amount = parseFloat($("#amount_paid").val()) || 0;
+
+    console.log('Toggling amount paid field:', {
+        paid_status: paid_status,
+        net_amount: net_amount,
+        current_amount: current_amount
+    });
+
+    if (paid_status == "3") { // Partially Paid
+        $("#amount_paid_group").show();
+        $("#amount_paid")
+            .prop('disabled', false)
+            .prop('required', true)
+            .attr('max', net_amount);
+    } else if (paid_status == "2") { // Paid
+        $("#amount_paid_group").show();
+        $("#amount_paid")
+            .val(net_amount.toFixed(2))
+            .prop('disabled', true)
+            .prop('required', true);
+    } else { // Not Paid (1)
+        $("#amount_paid_group").hide();
+        $("#amount_paid")
+            .val('0')
+            .prop('disabled', true)
+            .prop('required', false);
+    }
+}
+
+// Call on page load
+$(document).ready(function() {
+    toggleAmountPaidField();
+});
 </script>
 
 <script type="text/javascript" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>

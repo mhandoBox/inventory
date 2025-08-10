@@ -1,3 +1,6 @@
+// Define BASE_URL
+var BASE_URL = $('meta[name="base_url"]').attr('content');
+
 // Loading overlay management
 const LoadingOverlay = {
     init: function() {
@@ -61,4 +64,33 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('beforeunload', function() {
         LoadingOverlay.show();
     });
+});
+
+// Page Preloader
+document.onreadystatechange = function() {
+    var preloader = document.getElementById('page-preloader');
+    
+    if (document.readyState === "complete") {
+        // Add hidden class first (triggers transition)
+        preloader.classList.add('preloader-hidden');
+        
+        // Remove element after transition
+        setTimeout(function() {
+            if (preloader.parentNode) {
+                preloader.parentNode.removeChild(preloader);
+            }
+        }, 300);
+    }
+};
+
+// Ajax Loading Overlay
+$(document).ajaxStart(function() {
+    $('#loading-overlay').fadeIn(200);
+}).ajaxStop(function() {
+    $('#loading-overlay').fadeOut(200);
+});
+
+// Show loading overlay for form submissions
+$('form').on('submit', function() {
+    $('#loading-overlay').fadeIn(200);
 });

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login | NMC Inventory Management System</title>
+  <title>JICL</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="<?php echo base_url('assets/bower_components/bootstrap/dist/css/bootstrap.min.css')?>">
@@ -82,7 +82,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href=""><b>NMC Inventory Management System</b></a>
+    <a href=""><b>JEMUA INVESTMENT COMPANY LIMITED</b></a>
   </div>
   <div class="login-box-body">
     <p class="login-box-msg">Log in to start your session</p>

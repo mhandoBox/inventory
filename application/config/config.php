@@ -521,3 +521,16 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+/*
+|--------------------------------------------------------------------------
+| Time Zone
+|--------------------------------------------------------------------------
+|
+| This option lets you set the default time zone for your application.
+| Please see the user guide for a list of valid time zone identifiers.
+|
+| https://codeigniter.com/user_guide/general/helpers.html#date
+|
+*/
+$config['time_zone'] = 'Africa/Nairobi';

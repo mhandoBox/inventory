@@ -45,67 +45,40 @@ class Controller_Orders extends Admin_Controller
 
     public function index()
     {
-        if (!in_array('viewOrder', $this->permission)) {
+        if(!in_array('viewOrder', $this->permission)) {
             redirect('dashboard', 'refresh');
         }
 
-        $this->data['page_title'] = 'Manage Orders';
-        $this->render_template('orders/index', $this->data);        
+        $this->data['page_title'] = 'Orders';
+        $this->data['svg_logo'] = file_get_contents(FCPATH . 'JEMAU-loading-animation-xl.svg');
+
+        $this->render_template('orders/index', $this->data);
     }
 
     public function fetchOrdersData()
     {
-        log_message('debug', 'fetchOrdersData called');
-        log_message('debug', 'Is AJAX request: ' . ($this->input->is_ajax_request() ? 'yes' : 'no'));
-
-        if (!$this->input->is_ajax_request()) {
-            log_message('error', 'Non-AJAX request to fetchOrdersData');
-            exit('No direct script access allowed');
-        }
-
         try {
             $orders = $this->model_orders->getOrdersData();
-            // Log the raw data fetched from the database
-            log_message('debug', 'Raw database data from getOrdersData: ' . json_encode($orders, JSON_PRETTY_PRINT));
-
-            $data = array('data' => array());
-            if ($orders && is_array($orders)) {
-                log_message('debug', 'Processing ' . count($orders) . ' orders for DataTable');
-                foreach ($orders as $order) {
-                    // Add detailed logging for each order's product quantity
-                    log_message('debug', 'Order ID: ' . $order['id'] . ', Total Products: ' . $order['total_products']);
-                    
-                    if (!isset($order['id'])) {
-                        log_message('error', 'Order missing ID: ' . json_encode($order));
-                        continue;
-                    }
-
-                    $row = array(
-                        'id' => $order['id'],
-                        'bill_no' => $order['bill_no'] ?? 'N/A',
-                        'customer_name' => $order['customer_name'] ?? 'N/A',
-                        'customer_phone' => $order['customer_phone'] ?? 'N/A',
-                        'date_time' => $order['date_time'] ? date('Y-m-d H:i:s', strtotime($order['date_time'])) : 'N/A',
-                        'store_name' => $order['store_name'],
-                        'total_products' => intval($order['total_products'] ?? 0),
-                        'total_amount' => floatval($order['total_amount'] ?? 0),
-                        'clerk_name' => $order['clerk_name'] ?? 'Unknown'
-                    );
-                    $data['data'][] = $row;
-                }
-                log_message('debug', 'Processed data for DataTable: ' . json_encode($data, JSON_PRETTY_PRINT));
-            } else {
-                log_message('debug', 'No orders found or error in getOrdersData()');
-            }
             
-            header('Content-Type: application/json');
-            echo json_encode($data);
+            // Debug log the orders data
+            log_message('debug', 'Orders data: ' . json_encode($orders));
+            
+            $data = ['data' => $orders];
+            
+            $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode($data));
+            
         } catch (Exception $e) {
             log_message('error', 'Error in fetchOrdersData: ' . $e->getMessage());
-            header('Content-Type: application/json');
-            echo json_encode(['data' => [], 'error' => 'Server error: ' . $e->getMessage()]);
+            $this->output
+                ->set_content_type('application/json')
+                ->set_status_header(500)
+                ->set_output(json_encode([
+                    'data' => [], 
+                    'error' => 'Server error: ' . $e->getMessage()
+                ]));
         }
-        exit;
     }
 
     public function create()
@@ -131,72 +104,100 @@ class Controller_Orders extends Admin_Controller
         $this->form_validation->set_rules('store_id', 'Store', 'trim|required|integer');
 
         if ($this->form_validation->run() == TRUE) {
-            log_message('debug', 'Form validation passed');
-            
-            // Generate bill_no
-            $bill_no = 'BILPR-' . strtoupper(substr(md5(uniqid()), 0, 4));
-            
-            // Get user data including store_id
-            $user_id = intval($this->session->userdata('id'));
-            $user_data = $this->model_users->getUserData($user_id);
-            
-            // Get store_id from session or user data
-            $store_id = $this->session->userdata('store_id');
-            if (!$store_id && isset($user_data['store_id'])) {
-                $store_id = $user_data['store_id'];
-            }
-            
-            if (!$store_id) {
-                log_message('error', 'No store_id found in session or user data');
-                if ($this->input->is_ajax_request()) {
-                    echo json_encode([
-                        'success' => false,
-                        'error' => 'Store ID not found. Please contact administrator.'
-                    ]);
-                    exit;
-                }
-                redirect('dashboard', 'refresh');
+            // Clean and format numeric values
+            $gross_amount = str_replace(',', '', $this->input->post('gross_amount_value'));
+            $gross_amount = ($gross_amount !== null && $gross_amount !== '') ? 
+                            number_format(floatval($gross_amount), 2, '.', '') : 
+                            '0.00';
+
+            // Update the amount_paid calculation
+            $paid_status = intval($this->input->post('paid_status'));
+            $net_amount = floatval(str_replace(',', '', $this->input->post('net_amount_value')));
+            $amount_paid = 0;
+
+            switch ($paid_status) {
+                case 2: // Paid
+                    $amount_paid = $net_amount;
+                    break;
+                case 3: // Partially Paid
+                    $amount_paid = floatval(str_replace(',', '', $this->input->post('amount_paid')));
+                    $net_amount = floatval(str_replace(',', '', $this->input->post('net_amount_value')));
+
+                    // Debug logging
+                    log_message('debug', '=== Partial Payment Debug ===');
+                    log_message('debug', 'Raw amount_paid: ' . $this->input->post('amount_paid'));
+                    log_message('debug', 'Raw net_amount: ' . $this->input->post('net_amount_value'));
+                    log_message('debug', 'Cleaned amount_paid: ' . $amount_paid);
+                    log_message('debug', 'Cleaned net_amount: ' . $net_amount);
+                    log_message('debug', 'Comparison result: ' . ($amount_paid >= $net_amount ? 'true' : 'false'));
+                    log_message('debug', '========================');
+
+                    if ($amount_paid <= 0) {
+                        if ($this->input->is_ajax_request()) {
+                            echo json_encode([
+                                'success' => false,
+                                'error' => 'Amount paid must be greater than zero'
+                            ]);
+                            return;
+                        }
+                        $this->session->set_flashdata('error', 'Amount paid must be greater than zero');
+                        redirect('Controller_Orders/create', 'refresh');
+                    }
+
+                    // Fix comparison by using strict float comparison
+                    if (bccomp($amount_paid, $net_amount, 2) >= 0) {
+                        if ($this->input->is_ajax_request()) {
+                            echo json_encode([
+                                'success' => false,
+                                'error' => 'Partial payment cannot be greater than or equal to total amount'
+                            ]);
+                            return;
+                        }
+                        $this->session->set_flashdata('error', 'Partial payment cannot be greater than or equal to total amount');
+                        redirect('Controller_Orders/create', 'refresh');
+                    }
+                    break;
+                default: // Not Paid (1)
+                    $amount_paid = 0;
+                    break;
             }
 
-            // Get current timestamp
-            $current_datetime = date('Y-m-d H:i:s');
-            
-            // Log the values we're about to use
-            log_message('debug', 'Order Creation - Store ID: ' . $store_id);
-            log_message('debug', 'Order Creation - DateTime: ' . $current_datetime);
-            
-            // Prepare order data
+            // Update the order data array with cleaned numeric values
             $order_data = array(
-                'bill_no' => $bill_no,
+                'bill_no' => 'BILPR-' . strtoupper(substr(md5(uniqid(mt_rand(), true)), 0, 4)),
                 'customer_name' => $this->input->post('customer_name'),
-                'customer_address' => $this->input->post('customer_address'),
-                'customer_phone' => $this->input->post('customer_phone'),
-                'gross_amount' => floatval($this->input->post('gross_amount_value')),
-                'service_charge_rate' => floatval($this->input->post('service_charge_rate') ?? 0),
-                'service_charge' => floatval($this->input->post('service_charge_value') ?? 0),
-                'vat_charge_rate' => floatval($this->input->post('vat_charge_rate') ?? 0),
-                'vat_charge' => floatval($this->input->post('vat_charge_value') ?? 0),
-                'discount' => floatval($this->input->post('discount') ?? 0),
-                'net_amount' => floatval($this->input->post('net_amount_value')),
-                'paid_status' => intval($this->input->post('paid_status')),
-                'user_id' => $user_id,
-                'store_id' => $store_id,
-                'date_time' => $current_datetime
+                'customer_address' => $this->input->post('customer_address') ?? '',
+                'customer_phone' => $this->input->post('customer_phone') ?? '',
+                'date_time' => date('Y-m-d H:i:s'),
+                'gross_amount' => $gross_amount,
+                'service_charge_rate' => floatval(str_replace(',', '', $this->input->post('service_charge_rate') ?? '0')),
+                'service_charge' => floatval(str_replace(',', '', $this->input->post('service_charge_value') ?? '0')),
+                'vat_charge_rate' => floatval(str_replace(',', '', $this->input->post('vat_charge_rate') ?? '0')),
+                'vat_charge' => floatval(str_replace(',', '', $this->input->post('vat_charge_value') ?? '0')),
+                'net_amount' => number_format($net_amount, 2, '.', ''),
+                'discount' => floatval(str_replace(',', '', $this->input->post('discount') ?? '0')),
+                'paid_status' => $paid_status,
+                'amount_paid' => number_format($amount_paid, 2, '.', ''),
+                'user_id' => $this->session->userdata('id'),
+                'store_id' => $this->session->userdata('store_id')
             );
 
-            $this->db->trans_start(); // Start transaction
+            // Debug logging
+            log_message('debug', 'Order data after cleaning:');
+            log_message('debug', json_encode($order_data));
 
-            // Log the order data before insertion
-            log_message('debug', 'Order data to be inserted: ' . json_encode($order_data));
+            $this->db->trans_start();
+            
+            // Enable query logging
+            $this->db->db_debug = TRUE;
+            $this->db->save_queries = TRUE;
 
-            // Insert order and store the query
-            $this->db->insert('orders', $order_data);
-            $order_query = $this->db->last_query();
-            log_message('debug', 'Order Insert Query: ' . $order_query);
+            // Insert order data
+            $create_order = $this->db->insert('orders', $order_data);
             $order_id = $this->db->insert_id();
 
-            // Log the received POST data
-            log_message('debug', 'POST data received: ' . json_encode($this->input->post()));
+            // Get the order insert query
+            $order_query = $this->db->last_query();
 
             // Prepare order items
             $products = $this->input->post('product');
@@ -215,59 +216,76 @@ class Controller_Orders extends Admin_Controller
                 );
             }
 
-            // Insert order items and log the query
+            // Insert order items and collect queries
+            $item_queries = [];
             if (!empty($order_items)) {
-                log_message('debug', 'Order items to be inserted: ' . json_encode($order_items));
                 $this->db->insert_batch('orders_item', $order_items);
-                log_message('debug', 'Order Items Insert Query: ' . $this->db->last_query());
+                $item_queries[] = $this->db->last_query();
             }
 
-            $this->db->trans_complete(); // Complete transaction
+            $this->db->trans_complete();
 
+            // If this is an AJAX request
             if ($this->input->is_ajax_request()) {
-                if ($this->db->trans_status() === FALSE) {
-                    log_message('error', 'Order creation failed: ' . $this->db->error()['message']);
-                    echo json_encode([
-                        'success' => false,
-                        'error' => 'Error occurred while creating the order!'
-                    ]);
-                } else {
-                    // Verify the order was created with correct data
-                    $created_order = $this->db->get_where('orders', array('id' => $order_id))->row_array();
-                    log_message('debug', 'Created order data: ' . json_encode($created_order));
-                    
-                    // Verify store_id and date_time
-                    if (empty($created_order['store_id'])) {
-                        log_message('error', 'Created order is missing store_id');
-                    }
-                    if (empty($created_order['date_time'])) {
-                        log_message('error', 'Created order is missing date_time');
-                    }
-                    
-                    log_message('debug', 'Order created successfully. Order ID: ' . $order_id);
-                    
-                    // Get all queries executed in this transaction
-                    $debug_queries = array(
-                        'order_query' => $order_query,
-                        'items_query' => $this->db->last_query()
-                    );
-                    
+                if ($this->db->trans_status() === TRUE) {
                     echo json_encode([
                         'success' => true,
-                        'redirect' => base_url('Controller_Orders/index'),
-                        'debug_query' => $debug_queries
+                        'message' => 'Order created successfully',
+                        'order_id' => $order_id,
+                        'debug' => [
+                            'sql' => [
+                                'order' => $order_query,
+                                'items' => $item_queries
+                            ]
+                        ]
+                    ]);
+                } else {
+                    echo json_encode([
+                        'success' => false,
+                        'error' => 'Database error',
+                        'debug' => [
+                            'sql' => [
+                                'order' => $order_query,
+                                'items' => $item_queries,
+                                'error' => $this->db->error()
+                            ]
+                        ]
                     ]);
                 }
                 return;
+            }
+
+            // Success response
+            if ($this->db->trans_status() === TRUE) {
+                // Get all executed queries
+                $queries = $this->db->queries;
+                
+                if ($this->input->is_ajax_request()) {
+                    echo json_encode([
+                        'success' => true,
+                        'message' => 'Order created successfully',
+                        'order_id' => $order_id,
+                        'debug' => [
+                            'sql' => $queries // Add queries to response
+                        ]
+                    ]);
+                    return;
+                }
             } else {
-                if ($this->db->trans_status() === FALSE) {
-                    $this->session->set_flashdata('error', 'Error occurred while creating the order');
-                    redirect('Controller_Orders/create', 'refresh');
-                } else {
-                    $this->session->set_flashdata('success', 'Successfully created order');
-                    redirect('Controller_Orders/index', 'refresh');
+                if ($this->input->is_ajax_request()) {
+                    echo json_encode([
+                        'success' => false,
+                        'error' => 'Database error',
+                        'debug' => [
+                            'sql' => $this->db->queries // Add queries even on error
+                        ]
+                    ]);
+                    return;
                 }
             }
+
+            $this->session->set_flashdata('success', 'Order created successfully');
+            redirect('Controller_Orders/index', 'refresh');
         } else {
             // Validation failed
             if ($this->input->is_ajax_request()) {
@@ -480,20 +498,100 @@ class Controller_Orders extends Admin_Controller
         ]);
         $this->form_validation->set_rules('customer_name', 'Client name', 'trim|required');
         
+        $this->form_validation->set_rules('paid_status', 'Paid Status', 'required|in_list[1,2,3]');
+        if ($this->input->post('paid_status') == 3) {
+            $this->form_validation->set_rules('amount_paid', 'Amount Paid', 'required|numeric|greater_than[0]|less_than['.$this->input->post('net_amount_value').']');
+        }
+
         if ($this->form_validation->run() == TRUE) {            
             $paid_status = $this->input->post('paid_status');
             if ($paid_status !== null) {
                 $_POST['paid_status'] = $paid_status;
             }
 
-            $update = $this->model_orders->update($id);
+            // Update order data
+            $order_data = array(
+                'bill_no' => $this->input->post('bill_no'),
+                'customer_name' => $this->input->post('customer_name'),
+                'customer_address' => $this->input->post('customer_address'),
+                'customer_phone' => $this->input->post('customer_phone'),
+                'gross_amount' => floatval($this->input->post('gross_amount')),
+                'service_charge_rate' => floatval($this->input->post('service_charge_rate') ?? 0),
+                'service_charge' => floatval($this->input->post('service_charge_value') ?? 0),
+                'vat_charge_rate' => floatval($this->input->post('vat_charge_rate') ?? 0),
+                'vat_charge' => floatval($this->input->post('vat_charge_value') ?? 0),
+                'discount' => floatval($this->input->post('discount') ?? 0),
+                'net_amount' => floatval($this->input->post('net_amount')),
+                'paid_status' => $this->input->post('paid_status'),
+                'amount_paid' => ($this->input->post('paid_status') == 2) ? 
+                                $this->input->post('net_amount') :
+                                ($this->input->post('paid_status') == 3 ? 
+                                 $this->input->post('amount_paid') : 0)
+            );
+
+            // Debug logging
+            log_message('debug', 'Updating order with data: ' . json_encode($order_data));
             
-            if ($update['success']) {
-                $this->session->set_flashdata('success', 'Successfully updated');
-                redirect('Controller_Orders/update/'.$id, 'refresh');
+            $this->db->trans_start(); // Start transaction
+
+            // Update order
+            $this->db->where('id', $id);
+            $this->db->update('orders', $order_data);
+            log_message('debug', 'Order Update Query: ' . $this->db->last_query());
+
+            // Delete existing order items
+            $this->db->where('order_id', $id);
+            $this->db->delete('orders_item');
+
+            // Prepare order items
+            $products = $this->input->post('product');
+            $qtys = $this->input->post('qty');
+            $rates = $this->input->post('rate');
+            $amounts = $this->input->post('amount_value');
+
+            $order_items = array();
+            foreach ($products as $key => $product_id) {
+                $order_items[] = array(
+                    'order_id' => $id,
+                    'product_id' => intval($product_id),
+                    'qty' => intval($qtys[$key]),
+                    'rate' => floatval($rates[$key]),
+                    'amount' => floatval($amounts[$key])
+                );
+            }
+
+            // Insert new order items and log the query
+            if (!empty($order_items)) {
+                log_message('debug', 'Order items to be inserted: ' . json_encode($order_items));
+                $this->db->insert_batch('orders_item', $order_items);
+                log_message('debug', 'Order Items Insert Query: ' . $this->db->last_query());
+            }
+
+            $this->db->trans_complete(); // Complete transaction
+
+            if ($this->input->is_ajax_request()) {
+                if ($this->db->trans_status() === FALSE) {
+                    log_message('error', 'Order update failed: ' . $this->db->error()['message']);
+                    echo json_encode([
+                        'success' => false,
+                        'error' => 'Error occurred while updating the order!'
+                    ]);
+                } else {
+                    log_message('debug', 'Order updated successfully. Order ID: ' . $id);
+                    echo json_encode([
+                        'success' => true,
+                        'redirect' => base_url('Controller_Orders/index')
+                    ]);
+                }
+                return;
             } else {
-                $this->session->set_flashdata('errors', $update['error'] ?: 'Error occurred while updating the order!');
-                redirect('Controller_Orders/update/'.$id, 'refresh');
+                if ($this->db->trans_status() === FALSE) {
+                    $this->session->set_flashdata('error', 'Error occurred while updating the order');
+                    redirect('Controller_Orders/update/'.$id, 'refresh');
+                } else {
+                    $this->session->set_flashdata('success', 'Successfully updated order');
+                    redirect('Controller_Orders/index', 'refresh');
+                }
             }
         } else {
             $company = $this->model_company->getCompanyData(1);
@@ -705,6 +803,29 @@ class Controller_Orders extends Admin_Controller
                     background: #F44336;
                     color: white;
                 }
+                .payment-status {
+                    padding: 5px 10px;
+                    border-radius: 4px;
+                    font-weight: bold;
+                }
+                .payment-status.paid {
+                    color: #00a65a;
+                    border: 2px solid #00a65a;
+                }
+                .payment-status.partially {
+                    color: #f39c12;
+                    border: 2px solid #f39c12;
+                }
+                .payment-status.unpaid {
+                    color: #dd4b39;
+                    border: 2px solid #dd4b39;
+                }
+                .partial-payment-details {
+                    margin-top: 10px;
+                    padding: 10px;
+                    background-color: #f9f9f9;
+                    border-left: 3px solid #f39c12;
+                }
                 @media print {
                     body {
                         padding: 0;
@@ -739,7 +860,6 @@ class Controller_Orders extends Admin_Controller
                     <p><strong>Name:</strong> '.$order_data['customer_name'].'</p>
                     <p><strong>Address:</strong> '.$order_data['customer_address'].'</p>
                     <p><strong>Phone:</strong> '.$order_data['customer_phone'].'</p>
-                    <p><strong>Status:</strong> <span class="status status-'.($order_data['paid_status'] == 1 ? 'paid">Paid' : 'unpaid">Unpaid').'</span></p>
                 </div>
 
                 <table>
@@ -798,22 +918,59 @@ class Controller_Orders extends Admin_Controller
                         </tr>';
         }
 
-        $html .= '
+        // Add payment status section before the final total
+        if ($order_data['paid_status'] == 3) { // Partially Paid
+            $html .= '
                         <tr>
-                            <td><strong>Total:</strong></td>
+                            <td>Total Amount:</td>
+                            <td class="text-right">'.$company_info['currency'].' '.number_format($order_data['net_amount'], 2).'</td>
+                        </tr>
+                        <tr>
+                            <td>Amount Paid:</td>
+                            <td class="text-right">'.$company_info['currency'].' '.number_format($order_data['amount_paid'], 2).'</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Balance Due:</strong></td>
+                            <td class="text-right"><strong>'.$company_info['currency'].' '.number_format($order_data['net_amount'] - $order_data['amount_paid'], 2).'</strong></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-center" style="padding-top: 20px;">
+                                <strong>Payment Status: </strong>
+                                <span style="color: #f39c12;">PARTIALLY PAID</span>
+                            </td>
+                        </tr>';
+        } else {
+            $html .= '
+                        <tr>
+                            <td><strong>Total Amount:</strong></td>
                             <td class="text-right"><strong>'.$company_info['currency'].' '.number_format(floatval($total), 2).'</strong></td>
                         </tr>
-                    </table>
+                        <tr>
+                            <td colspan="2" class="text-center" style="padding-top: 20px;">
+                                <strong>Payment Status: </strong>'.
+                                ($order_data['paid_status'] == 1 ? 
+                                    '<span style="color: #00a65a;">PAID</span>' : 
+                                    '<span style="color: #dd4b39;">NOT PAID</span>').
+                            '</td>
+                        </tr>';
+        }
+
+        $html .= '
                 </div>
 
-                <div class="footer">
-                    <p>Thank you for your support!</p>
-                    <p>This is a computer generated invoice and does not require signature.</p>
+                <div class="footer" style="margin-top: 30px; text-align: center; padding: 20px; border-top: 1px solid #eee;">
+                    <p style="margin: 5px 0;">Thank you for your support!</p>
+                    <p style="margin: 5px 0;">This is a computer generated invoice and does not require signature.</p>
                 </div>
             </div>
 
             <script>
-                window.print();
+                window.onload = function() {
+                    window.print();
+                    window.onafterprint = function() {
+                        window.close();
+                    };
+                };
             </script>
         </body>
         </html>';
@@ -915,7 +1072,7 @@ class Controller_Orders extends Admin_Controller
         ]);
     }
 
-    public function edit($id)
+    public function edit($id) 
     {
         if (!$id) {
             redirect('Controller_Orders');
@@ -923,27 +1080,328 @@ class Controller_Orders extends Admin_Controller
 
         $this->data['page_title'] = 'Edit Order';
         
-        // Get order data with proper structure
-        $order_data = $this->model_orders->getOrdersData($id);
-        if (!$order_data) {
+        // Get order data
+        $order = $this->model_orders->getOrdersData($id);
+        
+        if (!$order) {
             $this->session->set_flashdata('error', 'Order not found');
             redirect('Controller_Orders');
         }
 
-        // Structure the data correctly
+        // Structure order data with default values
         $this->data['order_data'] = array(
-            'order' => $order_data,
-            'order_item' => $this->model_orders->getOrdersItemData($id)
+            'order' => array(
+                'id' => $order['id'],
+                'bill_no' => $order['bill_no'],
+                'customer_name' => $order['customer_name'],
+                'customer_address' => $order['customer_address'] ?? '',
+                'customer_phone' => $order['customer_phone'],
+                'date_time' => $order['date_time'],
+                'gross_amount' => $order['gross_amount'],
+                'service_charge_rate' => $order['service_charge_rate'] ?? 0,
+                'service_charge' => $order['service_charge'] ?? 0,
+                'vat_charge_rate' => $order['vat_charge_rate'] ?? 0,
+                'vat_charge' => $order['vat_charge'] ?? 0,
+                'net_amount' => $order['net_amount'],
+                'discount' => $order['discount'] ?? 0,
+                'paid_status' => $order['paid_status'] ?? 1,
+                'amount_paid' => $order['amount_paid'] ?? 0
+            )
         );
 
-        // Get other required data
-        $this->data['products'] = $this->model_products->getActiveProductData();
+        // Get order items
+        $this->data['order_data']['order_item'] = $this->model_orders->getOrdersItemData($id);
+
+        // Get company data with default values
         $company = $this->model_company->getCompanyData(1);
-        $this->data['company_data'] = $company;
-        $this->data['is_vat_enabled'] = ($company['vat_charge_value'] > 0);
-        $this->data['is_service_enabled'] = ($company['service_charge_value'] > 0);
+        $this->data['company_data'] = array(
+            'company_name' => $company['company_name'] ?? '',
+            'service_charge_value' => $company['service_charge_value'] ?? 0,
+            'vat_charge_value' => $company['vat_charge_value'] ?? 0,
+            'address' => $company['address'] ?? '',
+            'phone' => $company['phone'] ?? '',
+            'tin' => $company['tin'] ?? ''
+        );
+
+        $this->data['is_vat_enabled'] = ($this->data['company_data']['vat_charge_value'] > 0);
+        $this->data['is_service_enabled'] = ($this->data['company_data']['service_charge_value'] > 0);
+        
+        // Get active products
+        $this->data['products'] = $this->model_products->getActiveProductData();
 
         $this->render_template('orders/edit', $this->data);
+    }
+
+    public function printInvoice($id) 
+    {
+        if(!in_array('viewOrder', $this->permission)) {
+            redirect('dashboard', 'refresh');
+        }
+
+        if($id) {
+            $order_data = $this->model_orders->getOrdersData($id);
+            $orders_items = $this->model_orders->getOrdersItemData($id);
+            $company_info = $this->model_company->getCompanyData(1);
+
+            $order_date = date('d/m/Y', strtotime($order_data['date_time']));
+            
+            // Get correct payment status
+            $paid_status = '';
+            if ($order_data['paid_status'] == 2) {
+                $paid_status = 'PAID';
+                $status_color = '#00a65a';
+            } elseif ($order_data['paid_status'] == 3) {
+                $paid_status = 'PARTIALLY PAID';
+                $status_color = '#f39c12';
+            } else {
+                $paid_status = 'NOT PAID';
+                $status_color = '#dd4b39';
+            }
+
+            // Start HTML template
+            $html = '<!-- Previous HTML code remains the same until status display -->';
+
+            // Update the payment status display in details section
+            $html .= '<div class="invoice-details">
+                <p><strong>Invoice #:</strong> '.$order_data['bill_no'].'</p>
+                <p><strong>Date:</strong> '.$order_date.'</p>
+                <p><strong>Payment Status:</strong> <span style="color: '.$status_color.'; font-weight: bold;">'.$paid_status.'</span></p>
+            </div>';
+
+            // Rest of the HTML until payment totals
+            $html .= '<!-- Previous HTML code remains the same until payment totals -->';
+
+            // Update payment totals section based on status
+            if ($order_data['paid_status'] == 3) {
+                $html .= '<tr>
+                    <td>Total Amount:</td>
+                    <td class="text-right">'.$company_info['currency'].' '.number_format($order_data['net_amount'], 2).'</td>
+                </tr>
+                <tr>
+                    <td>Amount Paid:</td>
+                    <td class="text-right">'.$company_info['currency'].' '.number_format($order_data['amount_paid'], 2).'</td>
+                </tr>
+                <tr>
+                    <td><strong>Balance Due:</strong></td>
+                    <td class="text-right"><strong>'.$company_info['currency'].' '.number_format($order_data['net_amount'] - $order_data['amount_paid'], 2).'</strong></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-center" style="padding-top: 20px;">
+                        <strong>Payment Status: </strong>
+                        <span style="color: #f39c12;">PARTIALLY PAID</span>
+                    </td>
+                </tr>';
+            } else {
+                $html .= '<tr>
+                    <td><strong>Total Amount:</strong></td>
+                    <td class="text-right"><strong>'.$company_info['currency'].' '.number_format(floatval($order_data['net_amount']), 2).'</strong></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-center" style="padding-top: 20px;">
+                        <strong>Payment Status: </strong>
+                        <span style="color: '.$status_color.';">'.$paid_status.'</span>
+                    </td>
+                </tr>';
+            }
+
+            // Rest of the HTML remains the same
+            $html .= '<!-- Rest of the HTML template -->';
+
+            echo $html;
+        }
+    }
+
+    public function thermalPrint($id) 
+    {
+        if (!in_array('viewOrder', $this->permission)) {
+            redirect('dashboard', 'refresh');
+        }
+
+        if (!$id) {
+            show_404();
+            return;
+        }
+
+        try {
+            $order_data = $this->model_orders->getOrdersData($id);
+            $orders_items = $this->model_orders->getOrdersItemData($id);
+            $company_info = $this->model_company->getCompanyData(1);
+
+            // Verify data exists
+            if (!$order_data || !$orders_items || !$company_info) {
+                throw new Exception('Required data not found');
+            }
+
+            // Format data for view
+            $data = array(
+                'order_data' => $order_data,
+                'orders_items' => $orders_items,
+                'company_info' => $company_info
+            );
+
+            // Load view with data
+            $this->load->view('orders/thermal_receipt', $data);
+
+        } catch (Exception $e) {
+            log_message('error', 'Thermal Print Error: ' . $e->getMessage());
+            echo '<div class="alert alert-danger">Error generating receipt. Please try again.</div>';
+        }
+    }
+
+    public function printProforma($id)
+    {
+        try {
+            // Check permissions
+            if (!in_array('viewOrder', $this->permission)) {
+                throw new Exception('Permission denied');
+            }
+
+            // Validate ID
+            if (!$id || !is_numeric($id)) {
+                throw new Exception('Invalid order ID');
+            }
+
+            // Get required data with validation
+            $order_data = $this->model_orders->getOrdersData($id);
+            if (!$order_data) {
+                throw new Exception('Order not found');
+            }
+
+            $orders_items = $this->model_orders->getOrdersItemData($id);
+            if (!$orders_items) {
+                throw new Exception('Order items not found');
+            }
+
+            $company_info = $this->model_company->getCompanyData(1);
+            if (!$company_info) {
+                throw new Exception('Company information not found');
+            }
+
+            // Validate required fields
+            $required_fields = [
+                'order_data' => ['bill_no', 'customer_name', 'customer_phone', 'customer_address', 'date_time'],
+                'company_info' => ['company_name', 'address', 'phone', 'tin']
+            ];
+
+            foreach ($required_fields['order_data'] as $field) {
+                if (!isset($order_data[$field])) {
+                    throw new Exception("Missing order field: {$field}");
+                }
+            }
+
+            foreach ($required_fields['company_info'] as $field) {
+                if (!isset($company_info[$field])) {
+                    throw new Exception("Missing company field: {$field}");
+                }
+            }
+
+            // Set timezone
+            date_default_timezone_set('Africa/Nairobi');
+
+            // Prepare data for view
+            $data = array(
+                'order_data' => $order_data,
+                'orders_items' => $orders_items,
+                'company_info' => $company_info
+            );
+
+            // Load view
+            $html = $this->load->view('orders/proforma_invoice', $data, true);
+            
+            // Output the HTML
+            echo $html;
+
+        } catch (Exception $e) {
+            // Log error
+            log_message('error', 'Proforma Invoice Error: ' . $e->getMessage());
+            
+            // Return error response
+            $error_html = '
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    .alert { 
+                        padding: 15px; 
+                        margin: 20px; 
+                        border: 1px solid #f5c6cb; 
+                        border-radius: 4px; 
+                        color: #721c24; 
+                        background-color: #f8d7da; 
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="alert">
+                    Error generating proforma invoice: ' . htmlspecialchars($e->getMessage()) . '
+                    <br><br>
+                    Please try again or contact support if the issue persists.
+                </div>
+                <script>
+                    // Close window after 5 seconds
+                    setTimeout(function() {
+                        window.close();
+                    }, 5000);
+                </script>
+            </body>
+            </html>';
+            
+            echo $error_html;
+        }
+    }
+
+    public function printDeliveryNote($id)
+    {
+        if (!in_array('viewOrder', $this->permission)) {
+            redirect('dashboard', 'refresh');
+        }
+
+        if (!$id) {
+            show_404();
+        }
+
+        $order_data = $this->model_orders->getOrdersData($id);
+        $orders_items = $this->model_orders->getOrdersItemData($id);
+        $company_info = $this->model_company->getCompanyData(1);
+
+        $html = $this->load->view('orders/delivery_note', [
+            'order_data' => $order_data,
+            'orders_items' => $orders_items,
+            'company_info' => $company_info
+        ], true);
+
+        echo $html;
+    }
+
+    private function getPaymentStatusLabel($status) 
+    {
+        $status = intval($status);
+        switch($status) {
+            case 1:
+                return [
+                    'label' => 'NOT PAID',
+                    'color' => '#dd4b39',
+                    'class' => 'status-unpaid'
+                ];
+            case 2:
+                return [
+                    'label' => 'PAID',
+                    'color' => '#00a65a',
+                    'class' => 'status-paid'
+                ];
+            case 3:
+                return [
+                    'label' => 'PARTIALLY PAID',
+                    'color' => '#f39c12',
+                    'class' => 'status-partial'
+                ];
+            default:
+                return [
+                    'label' => 'NOT PAID',
+                    'color' => '#dd4b39',
+                    'class' => 'status-unpaid'
+                ];
+        }
     }
 }
 ?>

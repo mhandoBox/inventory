@@ -23,8 +23,18 @@
         $data['categories'] = $this->Model_category->getActiveCategories();
         $data['warehouses'] = $this->Model_stores->getActiveStores();
         
+        // Get pagination parameters
+        $limit = $this->input->get('limit') ? $this->input->get('limit') : 10;
+        $offset = $this->input->get('offset') ? $this->input->get('offset') : 0;
+        
         // Get stock report data
-        $data['report'] = $this->Model_reports->getStockReport($filters);
+        $stock_data = $this->Model_reporting->getStockReport($limit, $offset, $filters);
+        $data['report'] = array(
+            'data' => $stock_data,
+            'total_items' => count($stock_data),
+            'limit' => $limit,
+            'offset' => $offset
+        );
         
         // Calculate aggregates
         $aggregates = array(
@@ -34,8 +44,8 @@
             'out_of_stock_items' => 0
         );
         
-        if(!empty($data['report'])) {
-            foreach($data['report'] as $item) {
+        if(!empty($data['report']['data'])) {
+            foreach($data['report']['data'] as $item) {
                 $aggregates['total_items'] += $item['quantity'];
                 $aggregates['total_value'] += ($item['quantity'] * $item['price']);
                 if($item['quantity'] <= $item['minimum_quantity']) {

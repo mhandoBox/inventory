@@ -10,13 +10,11 @@ class Controller_Reports extends Admin_Controller
         $this->data['page_title'] = 'Advanced Reports';
         $this->load->model('Model_reporting');
         $this->load->model('model_users');
-        $this->load->model('model_products');
+        $this->load->model('Model_products'); // Changed from model_products to Model_products
         $this->load->model('model_company');
-        $this->load->model('Model_reports');
         log_message('debug', 'Controller_Reports initialized');
     }
 
-    // Dashboard landing page for reports
     public function index()
     {
         if (!in_array('viewReport', $this->permission)) {
@@ -27,7 +25,6 @@ class Controller_Reports extends Admin_Controller
         $this->render_template('reporting/index', $this->data);
     }
 
-    // Sales Report
     public function sales_report()
     {
         if (!in_array('viewReport', $this->permission)) {
@@ -36,32 +33,59 @@ class Controller_Reports extends Admin_Controller
         }
 
         $filters = array(
-            'date_from' => $this->input->get('date_from'),
-            'date_to' => $this->input->get('date_to'),
-            'warehouse' => $this->input->get('warehouse'),
-            'status' => $this->input->get('status')
+            'date_from' => $this->input->get('date_from') ?: date('Y-m-d', strtotime('-30 days')),
+            'date_to' => $this->input->get('date_to') ?: date('Y-m-d'),
+            'warehouse' => $this->input->get('warehouse') ?: '',
+            'status' => $this->input->get('status') ?: '',
+            'period' => $this->input->get('period') ?: 'last_30_days'
         );
 
-        // Load Models
         $this->load->model('Model_stores');
+        try {
+            log_message('debug', 'Sales report filters: ' . json_encode($filters));
+            $reportData = $this->Model_reporting->getSalesReport($filters);
+            $aggregates = $this->Model_reporting->getSalesAggregates($filters);
+            $warehouses = $this->Model_stores->getActiveStores();
+            // Reindex warehouses by id for easy lookup
+            $warehouses = array_column($warehouses, null, 'id');
+            log_message('debug', 'Raw Sales Report Data: ' . json_encode($reportData));
+            log_message('debug', 'Raw Sales Aggregates: ' . json_encode($aggregates));
+        } catch (Exception $e) {
+            log_message('error', 'Error in sales_report: ' . $e->getMessage());
+            $this->session->set_flashdata('error', 'Error generating sales report. Please try again.');
+            $reportData = [
+                'individual_sales' => [],
+                'aggregated_sales' => [],
+                'product_summary' => [],
+                'order_details' => [],
+                'period' => 'last_30_days',
+                'date_from' => date('Y-m-d', strtotime('-30 days')),
+                'date_to' => date('Y-m-d')
+            ];
+            $aggregates = [
+                'total_revenue' => 0,
+                'total_orders' => 0,
+                'avg_order_value' => 0,
+                'total_paid' => 0,
+                'total_unpaid' => 0,
+                'total_quantity' => 0,
+                'payment_ratio' => 0
+            ];
+            $warehouses = [];
+        }
 
-        // Get report data
-        $report = $this->Model_reporting->getSalesReport($filters);
-        $aggregates = $this->Model_reporting->getSalesAggregates($filters);
-        $warehouses = $this->Model_stores->getActiveStores();
-
-        // Set view data
-        $this->data['report'] = $report;
+        $this->data['report'] = $reportData['individual_sales'];
+        $this->data['aggregated_sales'] = $reportData['aggregated_sales'];
+        $this->data['product_summary'] = $reportData['product_summary'] ?? [];
+        $this->data['order_details'] = $reportData['order_details'] ?? [];
         $this->data['aggregates'] = $aggregates;
         $this->data['filters'] = $filters;
-        $this->data['warehouses'] = $warehouses;
+        $this->data['warehouses'] = $warehouses; // Pass reindexed array
         $this->data['tab'] = 'sales';
 
-        // Render the template
         $this->render_template('reporting/sales_report', $this->data);
     }
 
-    // Stock Report
     public function stock_report()
     {
         if (!in_array('viewReport', $this->permission)) {
@@ -69,103 +93,89 @@ class Controller_Reports extends Admin_Controller
             redirect('dashboard', 'refresh');
         }
 
-        // Get filter parameters
         $filters = array(
             'category' => $this->input->get('category'),
             'warehouse' => $this->input->get('warehouse'),
-            'stock_status' => $this->input->get('stock_status')
+            'stock_status' => $this->input->get('stock_status'),
+            'limit' => $this->input->get('limit') ? (int)$this->input->get('limit') : 10,
+            'offset' => $this->input->get('offset') ? (int)$this->input->get('offset') : 0
         );
-        
-        // Get filter data for dropdowns
+
         $this->load->model('Model_category');
         $this->load->model('Model_stores');
         
         $this->data['categories'] = $this->Model_category->getActiveCategories();
         $this->data['warehouses'] = $this->Model_stores->getActiveStores();
         
-        // Get stock report data
-        $this->data['report'] = $this->Model_reporting->getStockReport($filters);
+        log_message('debug', '=== Stock Report Debug ===');
+        log_message('debug', 'Filters being applied: ' . json_encode($filters));
         
-        // Calculate aggregates
-        $aggregates = array(
-            'total_items' => 0,
-            'total_value' => 0,
-            'low_stock_items' => 0,
-            'out_of_stock_items' => 0
-        );
-        
-        if(!empty($this->data['report'])) {
-            foreach($this->data['report'] as $item) {
-                $aggregates['total_items'] += $item['quantity'];
-                $aggregates['total_value'] += ($item['quantity'] * $item['price']);
-                if($item['quantity'] <= $item['minimum_quantity']) {
-                    $aggregates['low_stock_items']++;
-                }
-                if($item['quantity'] == 0) {
-                    $aggregates['out_of_stock_items']++;
-                }
-            }
+        try {
+            $limit = isset($filters['limit']) ? (int)$filters['limit'] : 10;
+            $offset = isset($filters['offset']) ? (int)$filters['offset'] : 0;
+            
+            log_message('debug', 'Calling getStockReport with params: ' . json_encode([
+                'limit' => $limit,
+                'offset' => $offset,
+                'filters' => $filters
+            ]));
+            
+            $report_data = $this->Model_reporting->getStockReport($limit, $offset, $filters);
+            $aggregates = $this->Model_reporting->getStockAggregates($filters);
+            
+        } catch (Exception $e) {
+            log_message('error', 'Error in stock_report: ' . $e->getMessage());
+            $this->session->set_flashdata('error', 'Error generating stock report. Please try again.');
+            $report_data = ['data' => [], 'total_items' => 0, 'limit' => $limit, 'offset' => $offset];
+            $aggregates = [
+                'total_items' => 0,
+                'total_value' => 0,
+                'total_purchase_value' => 0,
+                'low_stock_items' => 0,
+                'out_of_stock_items' => 0
+            ];
         }
         
+        log_message('debug', 'Report data retrieved: ' . json_encode([
+            'has_data' => !empty($report_data['data']),
+            'record_count' => count($report_data['data'] ?? []),
+            'total_items' => $report_data['total_items'] ?? 0,
+            'aggregates' => $aggregates
+        ]));
+        
+        if (isset($report_data['data']) && is_array($report_data['data'])) {
+            foreach ($report_data['data'] as $key => $row) {
+                $report_data['data'][$key] = array_merge([
+                    'id' => '',
+                    'name' => '',
+                    'price' => '0.00',
+                    'unit' => '',
+                    'quantity' => 0,
+                    'total_purchased' => 0,
+                    'total_sold' => 0,
+                    'category_name' => '',
+                    'warehouse_name' => '',
+                    'total_purchase_value' => 0,
+                    'store_id' => ''
+                ], $row);
+            }
+        } else {
+            $report_data['data'] = [];
+        }
+        
+        $this->data['report'] = $report_data;
         $this->data['aggregates'] = $aggregates;
         $this->data['filters'] = $filters;
         $this->data['tab'] = 'stock';
         
+        log_message('debug', 'Data being sent to view: ' . json_encode([
+            'stock_count' => count($report_data['data']),
+            'aggregate_keys' => array_keys($aggregates ?? [])
+        ]));
+        
         $this->render_template('reporting/stock_report', $this->data);
     }
 
-    // Purchases/Stock Additions Report
-    public function purchase_report()
-    {
-        if (!in_array('viewReport', $this->permission)) {
-            $this->session->set_flashdata('error', 'Unauthorized access to purchase reports');
-            redirect('dashboard', 'refresh');
-        }
-
-        $filters = array(
-            'date_from' => $this->input->get('date_from'),
-            'date_to' => $this->input->get('date_to'),
-            'product' => $this->input->get('product'),
-        );
-
-        $report = $this->Model_reporting->getPurchaseReport($filters);
-        $products = $this->Model_reporting->getProductList();
-
-        $this->data['report'] = $report['report'];
-        $this->data['summary'] = $report['summary'];
-        $this->data['filters'] = $filters;
-        $this->data['products'] = $report['products'];
-        $this->data['tab'] = 'purchases';
-
-        $this->render_template('reporting/purchase_report', $this->data);
-    }
-
-    // Expense Report
-    public function expense_report()
-    {
-        if (!in_array('viewReport', $this->permission)) {
-            $this->session->set_flashdata('error', 'Unauthorized access to expense reports');
-            redirect('dashboard', 'refresh');
-        }
-
-        $filters = array(
-            'date_from' => $this->input->get('date_from'),
-            'date_to' => $this->input->get('date_to'),
-            'category' => $this->input->get('category')
-        );
-
-        $report = $this->Model_reporting->getExpenseReport($filters);
-        $aggregates = $this->Model_reporting->getExpenseAggregates($filters);
-
-        $this->data['report'] = $report;
-        $this->data['aggregates'] = $aggregates;
-        $this->data['filters'] = $filters;
-        $this->data['tab'] = 'expenses';
-
-        $this->render_template('reporting/expense_report', $this->data);
-    }
-
-    // General (Profit/Turnover) Report
     public function general_report()
     {
         if (!in_array('viewReport', $this->permission)) {
@@ -174,11 +184,25 @@ class Controller_Reports extends Admin_Controller
         }
 
         $filters = array(
-            'date_from' => $this->input->get('date_from'),
-            'date_to' => $this->input->get('date_to'),
+            'date_from' => $this->input->get('date_from') ?: $this->Model_reporting->getEarliestOrderDate(),
+            'date_to' => $this->input->get('date_to') ?: date('Y-m-d'),
+            'warehouse' => $this->input->get('warehouse') ?: ''
         );
 
-        $general = $this->Model_reporting->getGeneralReport($filters);
+        try {
+            $general = $this->Model_reporting->getGeneralReport($filters);
+        } catch (Exception $e) {
+            log_message('error', 'Error in general_report: ' . $e->getMessage());
+            $this->session->set_flashdata('error', 'Error generating general report. Please try again.');
+            $general = [
+                'sales' => ['total_orders' => 0, 'total_amount' => 0],
+                'purchases' => ['total_purchases' => 0, 'total_amount' => 0],
+                'expenses' => ['total_expenses' => 0, 'total_amount' => 0],
+                'products' => ['total_products' => 0],
+                'profit' => 0
+            ];
+        }
+
         $this->data['general'] = $general;
         $this->data['filters'] = $filters;
         $this->data['tab'] = 'general';
@@ -186,7 +210,6 @@ class Controller_Reports extends Admin_Controller
         $this->render_template('reporting/general_report', $this->data);
     }
 
-    // Export functionality (CSV, Excel, PDF)
     public function export($type = 'sales', $format = 'csv')
     {
         if (!in_array('viewReport', $this->permission)) {
@@ -196,21 +219,26 @@ class Controller_Reports extends Admin_Controller
         $filters = $this->input->get();
         $filename = $type . '_report_' . date('Ymd_His');
 
-        switch ($type) {
-            case 'sales':
-                $data = $this->Model_reporting->getSalesReport($filters);
-                break;
-            case 'purchases':
-                $data = $this->Model_reporting->getPurchaseReport($filters)['report'];
-                break;
-            case 'expenses':
-                $data = $this->Model_reporting->getExpenseReport($filters);
-                break;
-            case 'general':
-                $data = $this->Model_reporting->getGeneralReport($filters);
-                break;
-            default:
-                show_error('Invalid report type', 400);
+        try {
+            switch ($type) {
+                case 'sales':
+                    $data = $this->Model_reporting->getSalesReport($filters)['individual_sales'];
+                    break;
+                case 'purchases':
+                    $data = $this->Model_reporting->getPurchaseReport($filters)['report'];
+                    break;
+                case 'expenses':
+                    $data = $this->Model_reporting->getExpenseReport($filters);
+                    break;
+                case 'general':
+                    $data = $this->Model_reporting->getGeneralReport($filters);
+                    break;
+                default:
+                    show_error('Invalid report type', 400);
+            }
+        } catch (Exception $e) {
+            log_message('error', 'Error in export (' . $type . '): ' . $e->getMessage());
+            show_error('Error generating export', 500);
         }
 
         if ($format == 'csv') {
@@ -303,27 +331,232 @@ class Controller_Reports extends Admin_Controller
         }
     }
 
-    // AJAX endpoint for chart data
     public function chart_data($type = 'sales')
     {
         if (!in_array('viewReport', $this->permission)) {
             show_error('Unauthorized', 403);
         }
         $filters = $this->input->get();
-        switch ($type) {
-            case 'sales':
-                $data = $this->Model_reporting->getSalesChartData($filters);
-                break;
-            case 'purchases':
-                $data = $this->Model_reporting->getPurchaseChartData($filters);
-                break;
-            case 'expenses':
-                $data = $this->Model_reporting->getExpenseChartData($filters);
-                break;
-            default:
-                $data = array();
+        try {
+            switch ($type) {
+                case 'sales':
+                    $data = $this->Model_reporting->getSalesChartData($filters);
+                    break;
+                case 'purchases':
+                    $data = $this->Model_reporting->getPurchaseChartData($filters);
+                    break;
+                case 'expenses':
+                    $data = $this->Model_reporting->getExpenseChartData($filters);
+                    break;
+                default:
+                    $data = [];
+            }
+        } catch (Exception $e) {
+            log_message('error', 'Error in chart_data (' . $type . '): ' . $e->getMessage());
+            $data = [];
         }
         echo json_encode($data);
     }
+
+    public function purchase_report()
+    {
+        if (!in_array('viewReport', $this->permission)) {
+            $this->session->set_flashdata('error', 'Unauthorized access to purchase reports');
+            redirect('dashboard', 'refresh');
+        }
+
+        // Set default filters
+        $filters = array(
+            'date_from' => $this->input->get('date_from') ?: date('Y-m-d', strtotime('-30 days')),
+            'date_to' => $this->input->get('date_to') ?: date('Y-m-d'),
+            'product' => $this->input->get('product') ?: '',
+            'status' => $this->input->get('status') ?: '',
+            'period' => $this->input->get('period') ?: 'last_30_days'
+        );
+
+        // Update date range based on period if selected
+        if (!empty($filters['period'])) {
+            switch($filters['period']) {
+                case 'today':
+                    $filters['date_from'] = date('Y-m-d');
+                    $filters['date_to'] = date('Y-m-d');
+                    break;
+                case 'this_week':
+                    $filters['date_from'] = date('Y-m-d', strtotime('monday this week'));
+                    $filters['date_to'] = date('Y-m-d', strtotime('sunday this week'));
+                    break;
+                case 'this_month':
+                    $filters['date_from'] = date('Y-m-01');
+                    $filters['date_to'] = date('Y-m-t');
+                    break;
+                case 'last_30_days':
+                    $filters['date_from'] = date('Y-m-d', strtotime('-30 days'));
+                    $filters['date_to'] = date('Y-m-d');
+                    break;
+            }
+        }
+
+        // Debug log the filters
+        log_message('debug', 'Purchase report filters: ' . json_encode($filters));
+
+        try {
+            // Direct debug output
+            echo "<!-- Debug Output Start -->\n";
+            echo "<pre style='display:none'>\n";
+            echo "Filters: " . print_r($filters, true) . "\n";
+            
+            // Check database connection
+            $db_connected = $this->db->initialize();
+            echo "Database connected: " . ($db_connected ? 'Yes' : 'No') . "\n";
+            
+            // Check table structure
+            $fields = $this->db->list_fields('purchases');
+            echo "Table fields: " . print_r($fields, true) . "\n";
+            
+            // Get record count
+            $this->db->select('COUNT(*) as count');
+            $this->db->from('purchases');
+            $total_count = $this->db->get()->row()->count;
+            echo "Total records: " . $total_count . "\n";
+            
+            // Get sample data
+            if ($total_count > 0) {
+                $this->db->limit(1);
+                $sample = $this->db->get('purchases')->row_array();
+                echo "Sample record: " . print_r($sample, true) . "\n";
+            }
+            
+            // Get report data
+            $report = $this->Model_reporting->getPurchaseReport($filters);
+            echo "Report data: " . print_r($report, true) . "\n";
+            
+            // Log to file
+            $log_file = APPPATH . 'logs/purchase_report_' . date('Y-m-d') . '.log';
+            file_put_contents($log_file, print_r([
+                'time' => date('Y-m-d H:i:s'),
+                'filters' => $filters,
+                'record_count' => $total_count,
+                'sample' => $sample ?? null,
+                'report' => $report
+            ], true), FILE_APPEND);
+            
+            echo "</pre>\n";
+            echo "<!-- Debug Output End -->\n";
+            
+            // Debug database connection
+            log_message('debug', '=== Purchase Report Debug Start ===');
+            log_message('debug', 'Database connected: ' . ($this->db->conn_id ? 'Yes' : 'No'));
+
+            // Check purchases table structure
+            $fields = $this->db->list_fields('purchases');
+            log_message('debug', 'Purchases table fields: ' . json_encode($fields));
+
+            // Get total records
+            $this->db->select('COUNT(*) as count');
+            $this->db->from('purchases');
+            $total_purchases = $this->db->get()->row()->count;
+            log_message('debug', 'Total purchases in database: ' . $total_purchases);
+
+            // Get sample record
+            if ($total_purchases > 0) {
+                $this->db->limit(1);
+                $sample = $this->db->get('purchases')->row_array();
+                log_message('debug', 'Sample purchase record: ' . json_encode($sample));
+            }
+            
+            // Get date range stats
+            $this->db->select('MIN(purchase_date) as earliest, MAX(purchase_date) as latest');
+            $this->db->from('purchases');
+            $date_range = $this->db->get()->row_array();
+            log_message('debug', 'Purchase date range: ' . json_encode($date_range));
+
+            // Debug filters
+            log_message('debug', 'Applied filters: ' . json_encode($filters));
+
+            // Enable query logging
+            $this->db->save_queries = TRUE;
+
+            // Get report data
+            $report = $this->Model_reporting->getPurchaseReport($filters);
+            
+            // Log the executed query
+            log_message('debug', 'Last executed query: ' . $this->db->last_query());
+            
+            // Debug report data structure
+            log_message('debug', 'Report structure: ' . json_encode([
+                'has_data' => !empty($report['report']),
+                'record_count' => count($report['report'] ?? []),
+                'first_record' => !empty($report['report']) ? reset($report['report']) : null,
+                'summary' => $report['summary'] ?? []
+            ]));
+
+            // Debug products data
+            $products = $this->Model_products->getActiveProductData();
+            log_message('debug', 'Active products count: ' . count($products));
+
+            // Prepare view data
+            $this->data['report'] = $report['report'] ?? [];
+            $this->data['summary'] = $report['summary'] ?? [
+                'total_purchases' => 0,
+                'total_amount' => 0,
+                'total_paid' => 0,
+                'pending_amount' => 0
+            ];
+            $this->data['filters'] = $filters;
+            $this->data['products'] = $products;
+            $this->data['page_title'] = 'Purchase Report';
+            $this->data['tab'] = 'purchases';
+
+            // Debug view data
+            log_message('debug', 'View data structure: ' . json_encode([
+                'report_count' => count($this->data['report']),
+                'has_summary' => !empty($this->data['summary']),
+                'product_count' => count($this->data['products']),
+                'applied_filters' => $this->data['filters']
+            ]));
+
+            log_message('debug', '=== Purchase Report Debug End ===');
+
+            // Render the view
+            $this->render_template('reporting/purchase_report', $this->data);
+
+        } catch (Exception $e) {
+            log_message('error', 'Error in purchase_report: ' . $e->getMessage());
+            log_message('error', 'Stack trace: ' . $e->getTraceAsString());
+            $this->session->set_flashdata('error', 'Error generating purchase report');
+            redirect('dashboard');
+        }
+    }
+
+    /**
+     * Format phone number for display
+     * @param string $phone
+     * @return string
+     */
+    private function formatPhoneNumber($phone) 
+    {
+        // Remove any non-numeric characters
+        $phone = preg_replace('/[^0-9]/', '', $phone);
+        
+        // Format based on length
+        $length = strlen($phone);
+        if ($length == 10) {
+            // Format as: (XXX) XXX-XXXX
+            return sprintf("(%s) %s-%s",
+                substr($phone, 0, 3),
+                substr($phone, 3, 3),
+                substr($phone, 6)
+            );
+        } elseif ($length == 11 && substr($phone, 0, 1) == '1') {
+            // Format as: +1 (XXX) XXX-XXXX
+            return sprintf("+1 (%s) %s-%s",
+                substr($phone, 1, 3),
+                substr($phone, 4, 3),
+                substr($phone, 7)
+            );
+        }
+        
+        // Return original if not standard format
+        return $phone;
+    }
 }
-?>

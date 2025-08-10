@@ -8,7 +8,7 @@ class Reports extends Admin_Controller
 	{
 		parent::__construct();
 		$this->data['page_title'] = 'Stores';
-		$this->load->model('model_reports');
+		$this->load->model('Model_reporting');
 	}
 
 	/* 
@@ -27,8 +27,8 @@ class Reports extends Admin_Controller
 			$today_year = $this->input->post('select_year');
 		}
 
-		$order_data = $this->model_reports->getOrderData($today_year);
-		$this->data['report_years'] = $this->model_reports->getOrderYear();
+		$order_data = $this->Model_reporting->getOrderData($today_year);
+		$this->data['report_years'] = $this->Model_reporting->getOrderYear();
 		
 		// Initialize monthly data array
 		$monthly_data = array();

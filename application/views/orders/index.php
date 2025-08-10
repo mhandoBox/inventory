@@ -79,6 +79,59 @@
         text-decoration: none;
         background-color: #f5f5f5;
     }
+
+    .status {
+        display: inline-block;
+        padding: 4px 8px;
+        border-radius: 3px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .status-paid {
+        background-color: #00a65a;
+        color: white;
+    }
+
+    .status-partial {
+        background-color: #f39c12;
+        color: white;
+    }
+
+    .status-unpaid {
+        background-color: #dd4b39;
+        color: white;
+    }
+
+    @media print {
+        .order-logo svg {
+            animation: none !important;
+        }
+        
+        .order-logo svg animate,
+        .order-logo svg animateTransform {
+            display: none;
+        }
+
+        /* Thermal Receipt Styles */
+        .thermal-receipt {
+            width: 80mm;
+            margin: 0;
+            padding: 0;
+        }
+
+        .thermal-receipt * {
+            font-family: "Courier New", monospace;
+            font-size: 12px;
+            line-height: 1.2;
+        }
+
+        /* Hide animations when printing */
+        .thermal-receipt svg animate,
+        .thermal-receipt svg animateTransform {
+            display: none;
+        }
+    }
 </style>
 
 <!-- Content Wrapper. Contains page content -->
@@ -87,6 +140,7 @@
   <section class="content-header">
     <h1>
       Manage Orders
+      <small>Orders</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -130,7 +184,7 @@
                   <th>Contact</th>
                   <th>DateTime</th>
                   <th>Store</th>
-                  <th>Prod.Qty</th>
+                  <th>Status</th>
                   <th>Amount</th>
                   <th>Clerk</th>
                   <?php if(in_array('updateOrder', $user_permission) || in_array('viewOrder', $user_permission) || in_array('deleteOrder', $user_permission)): ?>
@@ -263,7 +317,14 @@ $(document).ready(function() {
                 });
             },
             "dataSrc": function(response) {
-                return response && response.data ? response.data : [];
+                if (response && response.data) {
+                    // Log the status values
+                    response.data.forEach(function(item) {
+                        console.log('Order:', item.bill_no, 'Status:', item.paid_status);
+                    });
+                    return response.data;
+                }
+                return [];
             },
             "error": function(xhr, status, error) {
                 alert('Failed to load orders. Please try again or contact administrator.');
@@ -273,34 +334,67 @@ $(document).ready(function() {
             {"data": "bill_no", "defaultContent": "N/A"},
             {"data": "customer_name", "defaultContent": "N/A"},
             {"data": "customer_phone", "defaultContent": "N/A"},
-            {"data": "date_time", "defaultContent": "N/A"},
+            {
+                "data": "date_time",
+                "render": function(data) {
+                    return data ? moment(data).format('YYYY-MM-DD HH:mm') : 'N/A';
+                }
+            },
             {"data": "store_name", "defaultContent": "N/A"},
             {
-                "data": "total_products",
-                "render": function(data) {
-                    return data ? parseInt(data).toLocaleString() : '0';
+                "data": "paid_status",
+                "render": function(data, type, row) {
+                    var status = parseInt(data);
+                    switch(status) {
+                        case 1:
+                            return '<span class="label label-danger">NOT PAID</span>';
+                        case 2:
+                            return '<span class="label label-success">PAID</span>';
+                        case 3:
+                            return '<span class="label label-warning">PARTIALLY PAID</span>';
+                        default:
+                            return '<span class="label label-danger">NOT PAID</span>';
+                    }
                 },
-                "defaultContent": "0"
+                "defaultContent": '<span class="status status-unpaid">Not Paid</span>'
             },
             {
-                "data": "total_amount",
-                "render": function(data) {
-                    return data ? 'TZS ' + parseFloat(data).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',') : 'TZS 0.00';
-                }
+                "data": "net_amount",
+                "render": function(data, type, row) {
+                    if (type === 'display') {
+                        const amount = parseFloat(data) || 0;
+                        return 'TZS ' + amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                    }
+                    return data;
+                },
+                "defaultContent": "TZS 0.00"
             },
             {"data": "clerk_name", "defaultContent": "Unknown"},
             {
                 "data": null,
+                "orderable": false,
+                "searchable": false,
                 "render": function(data) {
                     var buttons = '<div class="btn-group dropright">';
-                    buttons += '<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>';
+                    buttons += '<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">';
+                    buttons += '<i class="fa fa-cog"></i> Actions <span class="caret"></span>';
+                    buttons += '</button>';
                     buttons += '<ul class="dropdown-menu dropdown-menu-right" role="menu">';
                     <?php if(in_array('updateOrder', $user_permission)): ?>
-                    buttons += '<li><a href="javascript:void(0)" onclick="editOrder(' + data.id + ')" class="dropdown-item"><i class="fa fa-edit"></i> Edit</a></li>';
+                    buttons += '<li><a href="javascript:void(0)" onclick="editOrder(' + data.id + ')" class="dropdown-item">';
+                    buttons += '<i class="fa fa-edit"></i> Edit</a></li>';
                     <?php endif; ?>
-                    buttons += '<li><a href="javascript:void(0)" onclick="printInvoice(' + data.id + ')" class="dropdown-item"><i class="fa fa-print"></i> Print Invoice</a></li>';
+                    buttons += '<li><a href="javascript:void(0)" onclick="printInvoice(' + data.id + ')" class="dropdown-item">';
+                    buttons += '<i class="fa fa-print"></i> Print Invoice</a></li>';
+                    buttons += '<li><a href="javascript:void(0)" onclick="printProforma(' + data.id + ')" class="dropdown-item">';
+                    buttons += '<i class="fa fa-file-invoice"></i> Proforma Invoice</a></li>';
+                    buttons += '<li><a href="javascript:void(0)" onclick="printDeliveryNote(' + data.id + ')" class="dropdown-item">';
+                    buttons += '<i class="fa fa-truck"></i> Delivery Note</a></li>';
+                    buttons += '<li><a href="javascript:void(0)" onclick="printThermal(' + data.id + ')" class="dropdown-item">';
+                    buttons += '<i class="fa fa-receipt"></i> Print Receipt</a></li>';
                     <?php if(in_array('deleteOrder', $user_permission)): ?>
-                    buttons += '<li><a href="javascript:void(0)" onclick="deleteOrder(' + data.id + ')" class="dropdown-item"><i class="fa fa-trash"></i> Delete</a></li>';
+                    buttons += '<li><a href="javascript:void(0)" onclick="deleteOrder(' + data.id + ')" class="dropdown-item">';
+                    buttons += '<i class="fa fa-trash"></i> Delete</a></li>';
                     <?php endif; ?>
                     buttons += '</ul></div>';
                     return buttons;
@@ -402,6 +496,103 @@ function printInvoice(id) {
     printWindow.document.close();
 }
 
+function printThermal(id) {
+    if (!id) {
+        console.error('Invalid order ID');
+        return;
+    }
+
+    // Open in new window with specific size for thermal receipt
+    var printWindow = window.open(
+        '<?php echo base_url("Controller_Orders/thermalPrint/"); ?>' + id,
+        'thermal_print',
+        'width=400,height=600,scrollbars=yes'
+    );
+
+    // Add error handling
+    if (!printWindow) {
+        alert('Please allow popups for printing receipts');
+        return;
+    }
+
+    printWindow.onerror = function() {
+        alert('Error loading receipt. Please try again.');
+        printWindow.close();
+    };
+}
+
+function printProforma(id) {
+    if (!id) {
+        alert('Invalid order ID');
+        return;
+    }
+
+    // Open print window
+    var printWindow = window.open(
+        '<?php echo base_url("Controller_Orders/printProforma/"); ?>' + id,
+        'proforma_print',
+        'width=800,height=600,scrollbars=yes'
+    );
+
+    // Check if window was blocked
+    if (!printWindow) {
+        alert('Please allow popups for printing proforma invoices');
+        return;
+    }
+
+    // Handle window load error
+    printWindow.onerror = function() {
+        alert('Error loading proforma invoice. Please try again.');
+        printWindow.close();
+    };
+}
+
+function printDeliveryNote(id) {
+    if (!id) {
+        console.error('Invalid order ID');
+        return;
+    }
+
+    var printWindow = window.open('', '_blank', 'width=800,height=600');
+    printWindow.document.write('<html><head><title>Delivery Note</title>');
+    printWindow.document.write('<style>');
+    printWindow.document.write(`
+        @media print {
+            body { margin: 0; padding: 20px; }
+            .delivery-container { max-width: 100%; }
+            .print-header { display: none; }
+        }
+        body { font-family: Arial, sans-serif; }
+        .delivery-container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .print-header { margin-bottom: 20px; }
+        .signature-section {
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .signature-box {
+            width: 45%;
+            border-top: 1px solid #000;
+            padding-top: 5px;
+            margin-top: 70px;
+        }
+    `);
+    printWindow.document.write('</style></head><body>');
+    
+    $.ajax({
+        url: '<?php echo base_url("Controller_Orders/printDeliveryNote/"); ?>' + id,
+        type: 'GET',
+        success: function(response) {
+            printWindow.document.body.innerHTML = '<div class="delivery-container">' + response + '</div>';
+            printWindow.document.close();
+            printWindow.focus();
+        },
+        error: function() {
+            printWindow.document.body.innerHTML = '<div class="alert alert-danger">Error loading delivery note</div>';
+        }
+    });
+}
+
 function deleteOrder(id) {
     if (!id) {
         console.error('Invalid order ID for deletion');
@@ -431,4 +622,13 @@ function deleteOrder(id) {
         });
     }
 }
+
+// Add this to your script section
+window.addEventListener('message', function(event) {
+    if (event.data === 'print_error') {
+        alert('There was an error printing the receipt. Please try printing manually.');
+    } else if (event.data === 'print_cancelled') {
+        console.log('Print cancelled by user');
+    }
+});
 </script>

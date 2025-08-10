@@ -1,0 +1,34 @@
+<svg width="800" height="480" viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="barGradient1" x1="0%" y1="100%" x2="0%" y2="0%">
+        <stop offset="0%" style="stop-color:#1e3a8a"/>
+        <stop offset="100%" style="stop-color:#3b82f6"/>
+      </linearGradient>
+      <linearGradient id="barGradient2" x1="0%" y1="100%" x2="0%" y2="0%">
+        <stop offset="0%" style="stop-color:#1e40af"/>
+        <stop offset="100%" style="stop-color:#3b82f6"/>
+      </linearGradient>
+      <linearGradient id="barGradient3" x1="0%" y1="100%" x2="0%" y2="0%">
+        <stop offset="0%" style="stop-color:#1d4ed8"/>
+        <stop offset="100%" style="stop-color:#fbbf24"/>
+      </linearGradient>
+    </defs>
+    
+    <!-- Circular brandmark centered at top -->
+    <circle cx="400" cy="120" r="96" fill="white" stroke="#1e3a8a" stroke-width="3"/>
+    
+    <!-- Growth bars inside circle -->
+    <g transform="translate(375, 112)">
+      <rect x="0" y="6" width="4" height="12" fill="url(#barGradient1)" rx="1"/>
+      <rect x="8" y="2" width="4" height="16" fill="url(#barGradient2)" rx="1"/>
+      <rect x="16" y="-2" width="4" height="20" fill="url(#barGradient3)" rx="1"/>
+      <rect x="24" y="2" width="4" height="16" fill="url(#barGradient2)" rx="1"/>
+      <rect x="32" y="6" width="4" height="12" fill="url(#barGradient1)" rx="1"/>
+    </g>
+    
+    <!-- JIC text inside circle -->
+    <text x="400" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#1e3a8a" letter-spacing="2px">JIC</text>
+    
+    <!-- Full company name below -->
+    <text x="400" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#1e3a8a" letter-spacing="3px">JEMAU INVESTMENT COMPANY LIMITED</text>
+  </svg>

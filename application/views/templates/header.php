@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="base_url" content="<?php echo base_url(); ?>">
   <title><?php echo $page_title; ?></title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -79,11 +80,42 @@
   <script src="<?php echo base_url('assets/plugins/fileinput/fileinput.min.js') ?>"></script>
   <script src="<?php echo base_url('assets/plugins/iCheck/icheck.min.js') ?>"></script>
 
+  <style>
+    #page-preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.98);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 0.3s ease-out;
+    }
+    
+    #page-preloader.loaded {
+        opacity: 0;
+        pointer-events: none;
+    }
+    
+    #page-preloader svg {
+        width: 120px;
+        height: 120px;
+    }
+    </style>
 </head>
 <body class="hold-transition skin-red sidebar-mini fixed">
-<div id="loading-overlay" style="display: none;">
-    <div class="loading-icon">
-        <img src="<?php echo base_url('JEMAU-loading-animation-xl.svg') ?>" alt="Loading...">
+    <!-- Page Preloader -->
+    <div id="page-preloader">
+        <?php include(FCPATH . 'JEMAU-loading-animation-xl.svg'); ?>
     </div>
-</div>
-<div class="wrapper">
+    
+    <!-- AJAX Loading Overlay -->
+    <div id="loading-overlay" style="display: none;">
+        <div class="loading-icon">
+            <img src="<?php echo base_url('JEMAU-loading-animation-xl.svg') ?>" alt="Loading...">
+        </div>
+    </div>
+    <div class="wrapper">

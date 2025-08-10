@@ -29,10 +29,22 @@
                 <span class="info-box-text">Total Revenue</span>
                 <span class="info-box-number">
                   <?php 
-                    $query = $this->db->query('SELECT COALESCE(SUM(net_amount), 0) as total, COUNT(*) as order_count FROM orders WHERE paid_status = 1');
+                    $query = $this->db->query('
+                        SELECT 
+                            COALESCE(SUM(net_amount), 0) as total, 
+                            COUNT(*) as order_count,
+                            SUM(CASE WHEN paid_status = 1 THEN net_amount ELSE 0 END) as paid_amount,
+                            SUM(CASE WHEN paid_status = 2 THEN net_amount ELSE 0 END) as partial_amount,
+                            SUM(CASE WHEN paid_status = 3 THEN net_amount ELSE 0 END) as unpaid_amount
+                        FROM orders 
+                        WHERE paid_status IN (1, 2, 3)
+                    ');
                     if ($query && $result = $query->row()) {
                         echo number_format($result->total, 2);
                         $order_count = $result->order_count;
+                        $paid_amount = $result->paid_amount;
+                        $partial_amount = $result->partial_amount;
+                        $unpaid_amount = $result->unpaid_amount;
                     } else {
                         echo '0.00';
                         $order_count = 0;
@@ -40,7 +52,10 @@
                   ?>
                 </span>
                 <span class="info-box-text text-muted">
-                  <small>From <?php echo number_format($order_count); ?> orders</small>
+                  <small>From <?php echo number_format($order_count); ?> orders</small><br>
+                  <small class="text-success">Paid: <?php echo number_format($paid_amount, 2); ?></small><br>
+                  <small class="text-warning">Partial: <?php echo number_format($partial_amount, 2); ?></small><br>
+                  <small class="text-danger">Unpaid: <?php echo number_format($unpaid_amount, 2); ?></small>
                 </span>
               </div>
             </div>
@@ -69,16 +84,29 @@
                 <span class="info-box-text">Today's Sales</span>
                 <span class="info-box-number">
                   <?php 
-                    $today_query = $this->db->query('SELECT COALESCE(SUM(net_amount), 0) as total FROM orders WHERE DATE(date_time) = CURDATE()');
+                    $today_query = $this->db->query('
+                        SELECT 
+                            COALESCE(SUM(net_amount), 0) as total,
+                            COUNT(*) as count,
+                            SUM(CASE WHEN paid_status = 1 THEN net_amount ELSE 0 END) as paid,
+                            SUM(CASE WHEN paid_status = 2 THEN net_amount ELSE 0 END) as partial,
+                            SUM(CASE WHEN paid_status = 3 THEN net_amount ELSE 0 END) as unpaid
+                        FROM orders 
+                        WHERE DATE(date_time) = CURDATE()
+                    ');
                     if ($today_query && $today_result = $today_query->row()) {
                         echo number_format($today_result->total, 2);
+                        $today_count = $today_result->count;
                     } else {
                         echo '0.00';
+                        $today_count = 0;
                     }
                   ?>
                 </span>
                 <span class="info-box-text text-muted">
-                  <small><?php echo date('d M Y'); ?></small>
+                  <small><?php echo date('d M Y'); ?> (<?php echo $today_count; ?> orders)</small><br>
+                  <small class="text-success">Paid: <?php echo number_format($today_result->paid, 2); ?></small><br>
+                  <small class="text-warning">Partial: <?php echo number_format($today_result->partial, 2); ?></small>
                 </span>
               </div>
             </div>
@@ -209,12 +237,25 @@
                 <span class="info-box-text">Monthly Revenue</span>
                 <span class="info-box-number">
                   <?php
-                    $revenue_query = $this->db->query('SELECT SUM(net_amount) as total FROM orders WHERE MONTH(date_time) = MONTH(CURRENT_DATE()) AND YEAR(date_time) = YEAR(CURRENT_DATE()) AND paid_status = 1');
-                    echo number_format($revenue_query->row()->total ?? 0, 2);
+                    $revenue_query = $this->db->query('
+                        SELECT 
+                            SUM(net_amount) as total,
+                            COUNT(*) as count,
+                            SUM(CASE WHEN paid_status = 1 THEN net_amount ELSE 0 END) as paid,
+                            SUM(CASE WHEN paid_status = 2 THEN net_amount ELSE 0 END) as partial,
+                            SUM(CASE WHEN paid_status = 3 THEN net_amount ELSE 0 END) as unpaid
+                        FROM orders 
+                        WHERE MONTH(date_time) = MONTH(CURRENT_DATE()) 
+                        AND YEAR(date_time) = YEAR(CURRENT_DATE())
+                    ');
+                    $monthly_data = $revenue_query->row();
+                    echo number_format($monthly_data->total ?? 0, 2);
                   ?>
                 </span>
                 <span class="info-box-text text-muted">
-                  <small>This Month</small>
+                  <small>This Month (<?php echo $monthly_data->count; ?> orders)</small><br>
+                  <small class="text-success">Paid: <?php echo number_format($monthly_data->paid, 2); ?></small><br>
+                  <small class="text-warning">Partial: <?php echo number_format($monthly_data->partial, 2); ?></small>
                 </span>
               </div>
             </div>
@@ -427,78 +468,31 @@
         data: {
           labels: <?php echo json_encode($labels); ?>,
           datasets: [{
-            label: 'Monthly Revenue',
+            label: 'Total Revenue',
             data: <?php echo json_encode($revenue_data); ?>,
-            fill: true,
-            backgroundColor: 'rgba(40, 167, 69, 0.2)',
             borderColor: '#28a745',
-            borderWidth: 2,
-            tension: 0.4,
-            pointRadius: 4,
-            pointBackgroundColor: '#28a745',
-            pointBorderColor: '#fff',
-            pointBorderWidth: 2,
-            pointHoverRadius: 6,
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: '#28a745'
+            backgroundColor: 'rgba(40, 167, 69, 0.2)',
+            borderWidth: 2
+          }, {
+            label: 'Paid Orders',
+            data: <?php echo json_encode($paid_data); ?>,
+            borderColor: '#28a745',
+            backgroundColor: 'transparent',
+            borderWidth: 2
+          }, {
+            label: 'Partial Payments',
+            data: <?php echo json_encode($partial_data); ?>,
+            borderColor: '#ffc107',
+            backgroundColor: 'transparent',
+            borderWidth: 2
           }]
         },
         options: {
           responsive: true,
-          maintainAspectRatio: false,
           plugins: {
             title: {
               display: true,
-              text: 'Revenue Trend (Last 6 Months)',
-              font: {
-                size: 16,
-                weight: 'bold'
-              },
-              padding: 20
-            },
-            tooltip: {
-              backgroundColor: 'rgba(0, 0, 0, 0.8)',
-              titleFont: {
-                size: 13
-              },
-              bodyFont: {
-                size: 13
-              },
-              padding: 12,
-              callbacks: {
-                label: function(context) {
-                  return 'Revenue: TZS ' + Number(context.raw).toLocaleString();
-                }
-              }
-            }
-          },
-          scales: {
-            y: {
-              beginAtZero: true,
-              grid: {
-                color: 'rgba(0, 0, 0, 0.05)',
-                drawBorder: false
-              },
-              ticks: {
-                callback: function(value) {
-                  return 'TZS ' + value.toLocaleString();
-                },
-                font: {
-                  size: 11
-                },
-                padding: 8
-              }
-            },
-            x: {
-              grid: {
-                display: false
-              },
-              ticks: {
-                font: {
-                  size: 11
-                },
-                padding: 8
-              }
+              text: 'Revenue Breakdown (Last 6 Months)'
             }
           }
         }

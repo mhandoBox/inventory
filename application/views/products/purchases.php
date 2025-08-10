@@ -45,6 +45,7 @@ ini_set('display_errors', 1);
                   <th>Product</th>
                   <th>Quantity</th>
                   <th>Supplier</th>
+                  <th>Supplier No</th>
                   <th>Price per Unit</th>
                   <th>Total Amount</th>
                   <th>Amount Paid</th>
@@ -79,8 +80,8 @@ ini_set('display_errors', 1);
                 <option value="">Select Product</option>
                 <?php if(isset($products) && !empty($products)): ?>
                   <?php foreach($products as $product): ?>
-                    <option value="<?php echo $product['id']; ?>" data-unit="<?php echo $product['unit']; ?>">
-                      <?php echo $product['name']; ?>
+                    <option value="<?php echo $product['id']; ?>" data-unit="<?php echo isset($product['unit']) ? htmlspecialchars($product['unit']) : ''; ?>">
+                      <?php echo htmlspecialchars($product['name']); ?>
                     </option>
                   <?php endforeach; ?>
                 <?php else: ?>
@@ -91,6 +92,10 @@ ini_set('display_errors', 1);
             <div class="form-group">
               <label for="add_supplier">Supplier</label>
               <input type="text" class="form-control" id="add_supplier" name="supplier" required>
+            </div>
+            <div class="form-group">
+              <label for="add_supplier_no">Supplier No</label>
+              <input type="text" class="form-control" id="add_supplier_no" name="supplier_no" placeholder="Enter supplier number">
             </div>
             <div class="form-group">
               <label for="add_price">Price per Unit</label>
@@ -152,8 +157,8 @@ ini_set('display_errors', 1);
                 <option value="">Select Product</option>
                 <?php if(isset($products) && !empty($products)): ?>
                   <?php foreach($products as $product): ?>
-                    <option value="<?php echo $product['id']; ?>" data-unit="<?php echo $product['unit']; ?>">
-                      <?php echo $product['name']; ?>
+                    <option value="<?php echo $product['id']; ?>" data-unit="<?php echo isset($product['unit']) ? htmlspecialchars($product['unit']) : ''; ?>">
+                      <?php echo htmlspecialchars($product['name']); ?>
                     </option>
                   <?php endforeach; ?>
                 <?php else: ?>
@@ -164,6 +169,10 @@ ini_set('display_errors', 1);
             <div class="form-group">
               <label for="edit_supplier">Supplier</label>
               <input type="text" class="form-control" id="edit_supplier" name="supplier" required>
+            </div>
+            <div class="form-group">
+              <label for="edit_supplier_no">Supplier No</label>
+              <input type="text" class="form-control" id="edit_supplier_no" name="supplier_no" placeholder="Enter supplier number">
             </div>
             <div class="form-group">
               <label for="edit_price">Price per Unit</label>
@@ -236,6 +245,7 @@ $(document).ready(function() {
         } 
       },
       { data: 'supplier' },
+      { data: 'supplier_no' },
       { data: 'price', render: function(data) { return 'TZS ' + data; } },
       { data: 'total_amount', render: function(data) { return 'TZS ' + data; } },
       { data: 'amount_paid', render: function(data) { return 'TZS ' + data; } },

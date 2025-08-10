@@ -168,7 +168,7 @@ class Model_products extends CI_Model
 
     public function getPurchasesData()
     {
-        $this->db->select('purchases.*, products.name as product_name, COALESCE(SUM(purchases.qty), 0) - COALESCE(SUM(orders_item.qty), 0) as stock');
+        $this->db->select('purchases.*, products.name as product_name, purchases.supplier_no, COALESCE(SUM(purchases.qty), 0) - COALESCE(SUM(orders_item.qty), 0) as stock');
         $this->db->from('purchases');
         $this->db->join('products', 'products.id = purchases.product_id', 'left');
         $this->db->join('orders_item', 'orders_item.product_id = purchases.product_id', 'left');
