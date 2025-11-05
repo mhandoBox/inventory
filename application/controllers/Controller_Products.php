@@ -1,14 +1,38 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Controller_Products extends Admin_Controller 
+class Controller_Products extends Admin_Controller
 {
     public function __construct()
     {
         parent::__construct();
+
+        // Ensure product model is available under both property names used in the file
+        if (file_exists(APPPATH . 'models/Model_products.php')) {
+            $this->load->model('Model_products', 'Model_products');
+            $this->load->model('Model_products', 'model_products');
+        } elseif (file_exists(APPPATH . 'models/model_products.php')) {
+            $this->load->model('model_products', 'Model_products');
+            $this->load->model('model_products', 'model_products');
+        } else {
+            log_message('error', 'Products model not found. Expected Model_products.php or model_products.php');
+            $this->Model_products = $this->model_products = null;
+        }
+
+        // Load purchases model if available (alias as both common property names)
+        if (file_exists(APPPATH . 'models/Model_purchases.php')) {
+            $this->load->model('Model_purchases', 'Model_purchases');
+            $this->load->model('Model_purchases', 'model_purchases');
+        } elseif (file_exists(APPPATH . 'models/model_purchases.php')) {
+            $this->load->model('model_purchases', 'Model_purchases');
+            $this->load->model('model_purchases', 'model_purchases');
+        } else {
+            log_message('error', 'Purchases model not found. Expected Model_purchases.php or model_purchases.php');
+            $this->Model_purchases = $this->model_purchases = null;
+        }
+
         $this->not_logged_in();
         $this->data['page_title'] = 'Products';
-        $this->load->model('model_products');
         $this->load->model('model_brands');
         $this->load->model('model_category');
         $this->load->model('model_stores');
@@ -17,16 +41,73 @@ class Controller_Products extends Admin_Controller
 
     public function index()
     {
-        if (!in_array('viewProduct', $this->permission)) {
-            redirect('dashboard', 'refresh');
+        // do not redirect users away — pass an access flag instead
+        $access_denied = !in_array('viewProduct', $this->permission);
+        $this->data['access_denied'] = $access_denied;
+
+        // Provide safe defaults so views don't throw notices
+        $this->data['products'] = $this->data['products'] ?? [];
+        $this->data['stores'] = $this->data['stores'] ?? $this->db->get('stores')->result_array();
+        $this->data['categories'] = $this->data['categories'] ?? $this->db->get('categories')->result_array();
+
+        // ensure sidebar knows what to highlight
+        $this->data['user_permission'] = $this->permission;
+        $this->data['page'] = 'products';
+        $this->data['tab'] = 'products';
+
+        // If access is denied: render page (so header/footer/styles load) but don't fetch sensitive data
+        if ($access_denied) {
+            // optionally set empty report/data for the view
+            $this->data['products'] = [];
+            $this->render_template('products/index', $this->data);
+            return;
         }
 
-        $this->data['attributes'] = $this->prepareAttributeData();
-        $this->data['brands'] = $this->model_brands->getActiveBrands();
-        $this->data['category'] = $this->model_category->getActiveCategory();
-        $this->data['stores'] = $this->model_stores->getActiveStore();
-
+        // permitted: fetch data and render as usual
+        $this->data['products'] = $this->Model_products->getAll(); // adjust to your model method
         $this->render_template('products/index', $this->data);
+    }
+
+    // Example: product view/edit page (replace your existing method body)
+    public function view($id = null)
+    {
+        $access_denied = !in_array('viewProduct', $this->permission);
+        $this->data['access_denied'] = $access_denied;
+
+        $this->data['user_permission'] = $this->permission;
+        $this->data['page'] = 'products';
+        $this->data['tab'] = 'products';
+
+        if ($access_denied) {
+            // Provide minimal data so the view renders without errors
+            $this->data['product'] = null;
+            $this->render_template('products/view', $this->data);
+            return;
+        }
+
+        if ($id === null) {
+            show_404();
+            return;
+        }
+
+        $this->data['product'] = $this->Model_products->getById($id);
+        if (!$this->data['product']) show_404();
+
+        $this->render_template('products/view', $this->data);
+    }
+
+    // Ensure AJAX endpoints still enforce permission, e.g. fetchProductsData:
+    public function fetchProductsData()
+    {
+        if (!in_array('viewProduct', $this->permission)) {
+            $this->output
+                 ->set_status_header(403)
+                 ->set_content_type('application/json')
+                 ->set_output(json_encode(['data'=>[], 'error'=>'Access denied']));
+            return;
+        }
+
+        // normal AJAX data work here...
     }
 
     private function prepareAttributeData()
@@ -44,30 +125,41 @@ class Controller_Products extends Admin_Controller
     public function fetchProductData()
     {
         if (!in_array('viewProduct', $this->permission)) {
-            $response = array(
-                'error' => true,
-                'message' => 'Permission denied'
-            );
-            echo json_encode($response);
+            echo json_encode(['error' => true, 'message' => 'Permission denied']);
             return;
         }
 
-        $result = array('data' => array());
+        $result = ['data' => []];
 
-        $this->db->select('products.*, brands.name as brand_name, stores.name as store_name, COALESCE(SUM(purchases.qty), 0) - COALESCE(SUM(orders_item.qty), 0) as total_stock');
-        $this->db->from('products');
-        $this->db->join('brands', 'brands.id = products.brand_id', 'left');
-        $this->db->join('stores', 'stores.id = products.store_id', 'left');
-        $this->db->join('purchases', 'purchases.product_id = products.id', 'left');
-        $this->db->join('orders_item', 'orders_item.product_id = products.id', 'left');
-        $this->db->group_by('products.id');
-        $this->db->order_by('products.id', 'DESC');
-        $data = $this->db->get()->result_array();
+        $sql = "
+            SELECT 
+                pr.*,
+                b.name AS brand_name,
+                s.name AS store_name,
+                COALESCE((
+                    SELECT SUM(pu.qty) FROM purchases pu
+                    WHERE pu.product_id = pr.id
+                    -- optional store filter if purchases are per-store:
+                    AND pu.store_id = pr.store_id
+                ), 0) AS total_purchased,
+                COALESCE((
+                    SELECT SUM(oi.qty) FROM orders_item oi
+                    JOIN orders o ON oi.order_id = o.id
+                    WHERE oi.product_id = pr.id
+                    -- optional store filter if orders are per-store:
+                    AND o.store_id = pr.store_id
+                ), 0) AS total_sold
+            FROM products pr
+            LEFT JOIN brands b ON b.id = pr.brand_id
+            LEFT JOIN stores s ON s.id = pr.store_id
+            ORDER BY pr.id DESC
+        ";
+
+        $data = $this->db->query($sql)->result_array();
 
         foreach ($data as $key => $value) {
-            $stock = max(0, $value['total_stock']);
+            $stock = max(0, intval($value['total_purchased']) - intval($value['total_sold']));
             $stock_status = $stock <= 10 ? '<span class="label label-danger">Low ('.$stock.')</span>' : $stock;
-
             $availability = ($value['availability'] == 1) ? '<span class="label label-success">Active</span>' : '<span class="label label-warning">Inactive</span>';
 
             $buttons = '';
@@ -78,16 +170,16 @@ class Controller_Products extends Admin_Controller
                 $buttons .= ' <button type="button" class="btn btn-danger btn-sm delete-product" data-id="'.$value['id'].'"><i class="fa fa-trash"></i> Delete</button>';
             }
 
-            $result['data'][$key] = array(
+            $result['data'][$key] = [
                 'name' => $value['name'],
                 'price' => 'TZS '.number_format($value['price'], 2),
                 'unit_status' => $value['unit'],
-                'warehouse' => $value['store_name'] ? $value['store_name'] : '',
+                'warehouse' => $value['store_name'] ?? '',
                 'stock' => $stock_status,
                 'availability' => $availability,
                 'actions' => $buttons,
                 'id' => $value['id']
-            );
+            ];
         }
 
         header('Content-Type: application/json');
@@ -96,47 +188,51 @@ class Controller_Products extends Admin_Controller
 
     public function fetchPurchasesData()
     {
-        if (!in_array('viewProduct', $this->permission)) {
-            $response = array(
-                'error' => true,
-                'message' => 'Permission denied'
-            );
-            echo json_encode($response);
-            return;
+        if (!$this->input->is_ajax_request()) {
+            exit('No direct script access allowed');
         }
 
-        $result = array('data' => array());
+        try {
+            $group_id = $this->session->userdata('group_id');
+            $store_id = $this->session->userdata('store_id');
+            
+            // Get filter values
+            $store_filter = $this->input->post('store_id');
+            
+            if ($group_id == 1 || $group_id == 2) {
+                $store_id = !empty($store_filter) ? $store_filter : null;
+            } // For clerks, keep session $store_id
 
-        $data = $this->model_products->getPurchasesData();
+            // Get purchases based on user role
+            $purchases = $this->model_products->getPurchasesData($store_id, $group_id);
 
-        foreach ($data as $key => $value) {
-            $buttons = '';
-            if (in_array('updateProduct', $this->permission)) {
-                $buttons .= '<button class="btn btn-warning btn-sm edit-purchase" data-id="'.$value['id'].'" data-toggle="modal" data-target="#editStockModal"><i class="fa fa-pencil"></i> Edit</button>';
-            }
-            if (in_array('deleteProduct', $this->permission)) {
-                $buttons .= ' <button type="button" class="btn btn-danger btn-sm delete-purchase" data-id="'.$value['id'].'"><i class="fa fa-trash"></i> Delete</button>';
-            }
-
-            $result['data'][$key] = array(
-                'id' => $value['id'],
-                'product_name' => $value['product_name'] ?? 'Unknown Product',
-                'qty' => $value['qty'],
-                'unit' => $value['unit'],
-                'supplier' => $value['supplier'],
-                'supplier_no' => $value['supplier_no'],
-                'price' => number_format($value['price'], 2),
-                'total_amount' => number_format($value['total_amount'], 2),
-                'amount_paid' => number_format($value['amount_paid'], 2),
-                'status' => $value['status'],
-                'purchase_date' => $value['purchase_date'],
-                'stock' => $value['stock'],
-                'actions' => $buttons
+            $response = array(
+                'data' => $purchases,
+                'recordsTotal' => count($purchases),
+                'recordsFiltered' => count($purchases)
             );
+
+        } catch (Exception $e) {
+            $response = array(
+                'error' => $e->getMessage(),
+                'data' => array()
+            );
+            log_message('error', 'Error fetching purchases: ' . $e->getMessage());
         }
 
         header('Content-Type: application/json');
-        echo json_encode($result);
+        echo json_encode($response);
+    }
+
+    private function calculateCurrentStock($product_id, $store_id)
+    {
+        // Get total purchased
+        $purchased = $this->model_products->getTotalPurchased($product_id, $store_id);
+        
+        // Get total sold
+        $sold = $this->model_products->getTotalSold($product_id, $store_id);
+        
+        return $purchased - $sold;
     }
 
     public function getPurchaseData($purchase_id)
@@ -186,63 +282,67 @@ class Controller_Products extends Admin_Controller
         echo json_encode($response);
     }
 
-    public function create()
+    public function create() 
     {
-        if (!in_array('createProduct', $this->permission)) {
-            echo json_encode(['success' => false, 'messages' => 'Permission denied']);
+        if(!in_array('createProduct', $this->permission)) {
+            redirect('dashboard', 'refresh');
+        }
+
+        // If AJAX POST, validate and create product, return JSON
+        if ($this->input->is_ajax_request() && $this->input->method() === 'post') {
+            $this->form_validation->set_rules('product_name', 'Product name', 'trim|required');
+            $this->form_validation->set_rules('price', 'Price', 'trim|required|numeric|greater_than[0]');
+            $this->form_validation->set_rules('store', 'Store', 'trim|required|numeric');
+            $this->form_validation->set_rules('availability', 'Availability', 'trim|required|in_list[1,2]');
+
+            header('Content-Type: application/json');
+
+            if ($this->form_validation->run() == TRUE) {
+                // Map posted fields to model create() expected keys
+                $data = [
+                    'name' => $this->input->post('product_name'),
+                    'price' => $this->input->post('price'), 
+                    'unit' => $this->input->post('unit') ? $this->input->post('unit') : 'pcs',
+                    'description' => $this->input->post('description') ?: '',
+                    'attribute_value_id' => $this->input->post('attributes_value_id') ? json_encode($this->input->post('attributes_value_id')) : NULL,
+                    'brand_id' => $this->input->post('brands') ? (int)$this->input->post('brands')[0] : NULL,
+                    'category_id' => is_array($this->input->post('category')) ? (int)$this->input->post('category')[0] : (int)$this->input->post('category'),
+                    'store_id' => (int)$this->input->post('store'),
+                    'availability' => (int)$this->input->post('availability')
+                ];
+
+                // Handle image upload if present
+                if (isset($_FILES['product_image']) && $_FILES['product_image']['size'] > 0) {
+                    $upload_result = $this->upload_image();
+                    if (is_string($upload_result) && strpos($upload_result, 'assets/images/product_image') === false) {
+                        echo json_encode(['success' => false, 'message' => 'Image upload failed: ' . $upload_result]);
+                        return;
+                    }
+                    $data['image'] = $upload_result;
+                }
+
+                $insert_id = $this->model_products->create($data);
+                if ($insert_id) {
+                    echo json_encode(['success' => true, 'message' => 'Product created', 'id' => $insert_id]);
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'Failed to create product']);
+                }
+            } else {
+                echo json_encode(['success' => false, 'message' => validation_errors()]);
+            }
             return;
         }
 
-        $this->form_validation->set_rules('product_name', 'Product name', 'trim|required');
-        $this->form_validation->set_rules('price', 'Price', 'trim|required|numeric|greater_than[0]');
-        $this->form_validation->set_rules('unit', 'Unit of Measurement', 'trim|required');
-        $this->form_validation->set_rules('store', 'Store', 'trim|required|numeric|greater_than[0]');
-        $this->form_validation->set_rules('category', 'Category', 'trim|required|numeric|greater_than[0]');
-        $this->form_validation->set_rules('availability', 'Availability', 'trim|required|in_list[0,1]');
-        $this->form_validation->set_rules('brand', 'Brand', 'trim|numeric');
+        // GET - render the form
+        $this->data['page_title'] = 'Add Purchase';
+        $this->data['products'] = $this->model_products->getActiveProductData();
 
-        if ($this->form_validation->run() == TRUE) {
-            $upload_image = $this->upload_image();
-
-            if (is_string($upload_image) && strpos($upload_image, 'assets/images/product_image') === false) {
-                echo json_encode(['success' => false, 'messages' => 'Image upload failed: ' . $upload_image]);
-                return;
-            }
-
-            $data = [
-                'name' => $this->input->post('product_name'),
-                'price' => $this->input->post('price'),
-                'unit' => $this->input->post('unit'),
-                'description' => $this->input->post('description') ?: '',
-                'attribute_value_id' => $this->input->post('attributes_value_id') ? json_encode($this->input->post('attributes_value_id')) : NULL,
-                'brand_id' => $this->input->post('brand') ? (int)$this->input->post('brand') : NULL,
-                'category_id' => (int)$this->input->post('category'),
-                'store_id' => (int)$this->input->post('store'),
-                'availability' => (int)$this->input->post('availability'),
-                'image' => is_string($upload_image) ? $upload_image : NULL
-            ];
-
-            $create = $this->model_products->create($data);
-            $sql_query = $this->db->last_query();
-
-            if ($create) {
-                echo json_encode([
-                    'success' => true,
-                    'messages' => 'Product created successfully',
-                    'sql_query' => $sql_query
-                ]);
-            } else {
-                $db_error = $this->db->error();
-                $error_message = isset($db_error['message']) ? $db_error['message'] : 'Unknown database error';
-                echo json_encode([
-                    'success' => false,
-                    'messages' => 'Failed to create product: ' . $error_message,
-                    'sql_query' => $sql_query
-                ]);
-            }
-        } else {
-            echo json_encode(['success' => false, 'messages' => validation_errors()]);
+        if($this->session->userdata('group_id') == 1 || $this->session->userdata('group_id') == 2) {
+            $this->load->model('model_stores');
+            $this->data['stores'] = $this->model_stores->getActiveStores();
         }
+
+        $this->render_template('products/purchases', $this->data);
     }
 
     public function upload_image()
@@ -376,255 +476,115 @@ class Controller_Products extends Admin_Controller
             redirect('dashboard', 'refresh');
         }
 
-        $this->data['purchases'] = $this->model_products->getPurchasesData();
-        $this->data['products'] = $this->model_products->getActiveProductData();
+        // Get user's store and role info
+        $store_id = $this->session->userdata('store_id');
+        $is_admin = ($this->session->userdata('group_id') == 1);
+
+        // Get active products with stock levels
+        $this->data['products'] = array_map(function($product) use ($store_id) {
+            $product['current_stock'] = $this->model_products->getAvailableStock(
+                $product['id'], 
+                $store_id
+            );
+            return $product;
+        }, $this->model_products->getActiveProductData());
+
+        // Get stores list for admin users
+        if ($is_admin) {
+            $this->load->model('model_stores');
+            $this->data['stores'] = $this->model_stores->getStoresData();
+        }
+
+        // Add debug information
+        log_message('debug', sprintf(
+            'Purchases view loaded - Store ID: %s, Is Admin: %s, Products Count: %d',
+            $store_id,
+            $is_admin ? 'Yes' : 'No',
+            count($this->data['products'])
+        ));
+
+        $this->data['is_admin'] = $is_admin;
+        $this->data['store_id'] = $store_id;
         $this->render_template('products/purchases', $this->data);
     }
 
     public function addStock()
     {
-        if (!in_array('createProduct', $this->permission)) {
-            $response = array(
-                'success' => false,
-                'messages' => 'Permission denied'
-            );
-            echo json_encode($response);
-            return;
-        }
+        // only allow via controller (prevent direct view access)
+        if ($this->input->method(true) === 'POST') {
+            $payload = $this->input->post();
 
-        $this->form_validation->set_rules('product_id', 'Product', 'required|numeric|greater_than[0]');
-        $this->form_validation->set_rules('qty', 'Quantity', 'required|numeric|greater_than[0]');
-        $this->form_validation->set_rules('supplier', 'Supplier', 'required');
-        $this->form_validation->set_rules('price', 'Price', 'required|numeric|greater_than_equal_to[0]');
-        $this->form_validation->set_rules('status', 'Status', 'required|in_list[Paid,Unpaid,Partial]');
-        $this->form_validation->set_rules('unit', 'Unit', 'required');
-        $this->form_validation->set_rules('total_amount', 'Total Amount', 'required|numeric|greater_than_equal_to[0]');
-        $this->form_validation->set_rules('purchase_date', 'Purchase Date', 'required');
-        if ($this->input->post('status') === 'Partial') {
-            $this->form_validation->set_rules('amount_paid', 'Amount Paid', 'required|numeric|greater_than_equal_to[0]|less_than_equal_to['.$this->input->post('total_amount').']');
-        }
-
-        if ($this->form_validation->run() == TRUE) {
-            $product_id   = $this->input->post('product_id');
-            $qty          = $this->input->post('qty');
-            $supplier     = $this->input->post('supplier');
-            $price        = $this->input->post('price');
-            $status       = $this->input->post('status');
-            $unit         = $this->input->post('unit');
-            $total_amount = $this->input->post('total_amount');
-            $purchase_date= $this->input->post('purchase_date');
-            $user_id      = $this->session->userdata('id') ?? 1;
-            $amount_paid  = ($status === 'Paid') ? $total_amount : ($status === 'Partial' ? $this->input->post('amount_paid') : 0);
-
-            // Fetch store_id from products table
-            $product = $this->model_products->getProductData($product_id);
-            $store_id = $product['store_id'] ?? NULL;
-
-            // Validate total_amount matches price * qty
-            if (abs($price * $qty - $total_amount) > 0.01) {
-                $response = array(
-                    'success' => false,
-                    'messages' => 'Total amount does not match price × quantity'
-                );
-                echo json_encode($response);
+            // basic server-side validation
+            if (empty($payload['product_id']) || empty($payload['qty'])) {
+                if ($this->input->is_ajax_request()) {
+                    $this->output->set_content_type('application/json')->set_output(json_encode(['success' => false, 'error' => 'Product and quantity are required']));
+                } else {
+                    $this->session->set_flashdata('error', 'Product and quantity are required');
+                    redirect('Controller_Products/purchases', 'refresh');
+                }
                 return;
             }
 
-            $purchase_data = [
-                'product_id'   => $product_id,
-                'supplier'     => $supplier,
-                'qty'          => $qty,
-                'unit'         => $unit,
-                'price'        => $price,
-                'total_amount' => $total_amount,
-                'status'       => $status,
-                'purchase_date' => $purchase_date,
-                'user_id'      => $user_id,
-                'amount_paid'  => $amount_paid,
-                'store_id'     => $store_id
+            // prepare data
+            $insert_data = [
+                'product_id'   => (int)$payload['product_id'],
+                'supplier'     => $payload['supplier'] ?? '',
+                'supplier_no'  => $payload['supplier_no'] ?? '',
+                'price'        => isset($payload['price']) ? (float)$payload['price'] : 0,
+                'unit'         => $payload['unit'] ?? '',
+                'qty'          => (float)$payload['qty'],
+                'total_amount' => isset($payload['total_amount']) ? (float)$payload['total_amount'] : ((float)$payload['price'] * (float)$payload['qty']),
+                'status'       => $payload['status'] ?? 'Unpaid',
+                'amount_paid'  => isset($payload['amount_paid']) ? (float)$payload['amount_paid'] : 0,
+                'purchase_date'=> $payload['purchase_date'] ?? date('Y-m-d H:i:s'),
+                'store_id'     => isset($payload['store_id']) ? $payload['store_id'] : $this->session->userdata('store_id'),
+                'created_by'   => $payload['created_by'] ?? $this->session->userdata('id') ?? 0
             ];
 
-            $this->db->trans_start();
-            $insert = $this->db->insert('purchases', $purchase_data);
-            $sql_query = $this->db->last_query();
-            $this->db->trans_complete();
+            // insert via model if available, otherwise fallback to direct DB insert
+            $insert_id = false;
+            if (!empty($this->model_purchases) && method_exists($this->model_purchases, 'create')) {
+                $insert_id = $this->model_purchases->create($insert_data);
+            } elseif (!empty($this->model_products)) {
+                if (method_exists($this->model_products, 'createPurchase')) {
+                    $insert_id = $this->model_products->createPurchase($insert_data);
+                } elseif (method_exists($this->model_products, 'create_purchase')) {
+                    $insert_id = $this->model_products->create_purchase($insert_data);
+                } elseif (method_exists($this->model_products, 'addPurchase')) {
+                    $insert_id = $this->model_products->addPurchase($insert_data);
+                } elseif (method_exists($this->model_products, 'add_purchase')) {
+                    $insert_id = $this->model_products->add_purchase($insert_data);
+                }
+            }
 
-            if ($this->db->trans_status() === FALSE) {
-                $db_error = $this->db->error();
-                $error_message = isset($db_error['message']) ? $db_error['message'] : 'Unknown database error';
-                $response = array(
-                    'success' => false,
-                    'messages' => 'Failed to add purchase: ' . $error_message,
-                    'sql_query' => $sql_query
-                );
+            if ($insert_id === false) {
+                // fallback DB insert
+                $this->db->insert('purchases', $insert_data);
+                $insert_id = $this->db->insert_id() ?: false;
+            }
+
+            if ($insert_id) {
+                if ($this->input->is_ajax_request()) {
+                    $this->output->set_content_type('application/json')->set_output(json_encode(['success' => true, 'id' => $insert_id]));
+                } else {
+                    $this->session->set_flashdata('success', 'Purchase added successfully');
+                    redirect('Controller_Products/purchases', 'refresh');
+                }
             } else {
-                $response = array(
-                    'success' => true,
-                    'messages' => 'Purchase added successfully',
-                    'sql_query' => $sql_query
-                );
+                if ($this->input->is_ajax_request()) {
+                    $this->output->set_content_type('application/json')->set_output(json_encode(['success' => false, 'error' => 'DB insert failed']));
+                } else {
+                    $this->session->set_flashdata('error', 'Failed to add purchase');
+                    redirect('Controller_Products/purchases', 'refresh');
+                }
             }
-
-            header('Content-Type: application/json');
-            echo json_encode($response);
-        } else {
-            $response = array(
-                'success' => false,
-                'messages' => validation_errors()
-            );
-            echo json_encode($response);
-        }
-    }
-
-    public function updatePurchase()
-    {
-        if (!in_array('updateProduct', $this->permission)) {
-            $response = array(
-                'success' => false,
-                'messages' => 'Permission denied'
-            );
-            echo json_encode($response);
             return;
         }
 
-        $this->form_validation->set_rules('purchase_id', 'Purchase ID', 'required|numeric|greater_than[0]');
-        $this->form_validation->set_rules('product_id', 'Product', 'required|numeric|greater_than[0]');
-        $this->form_validation->set_rules('qty', 'Quantity', 'required|numeric|greater_than[0]');
-        $this->form_validation->set_rules('supplier', 'Supplier', 'required');
-        $this->form_validation->set_rules('price', 'Price', 'required|numeric|greater_than_equal_to[0]');
-        $this->form_validation->set_rules('status', 'Status', 'required|in_list[Paid,Unpaid,Partial]');
-        $this->form_validation->set_rules('unit', 'Unit', 'required');
-        $this->form_validation->set_rules('total_amount', 'Total Amount', 'required|numeric|greater_than_equal_to[0]');
-        $this->form_validation->set_rules('purchase_date', 'Purchase Date', 'required');
-        if ($this->input->post('status') === 'Partial') {
-            $this->form_validation->set_rules('amount_paid', 'Amount Paid', 'required|numeric|greater_than_equal_to[0]|less_than_equal_to['.$this->input->post('total_amount').']');
-        }
-
-        if ($this->form_validation->run() == TRUE) {
-            $purchase_id  = $this->input->post('purchase_id');
-            $product_id   = $this->input->post('product_id');
-            $qty          = $this->input->post('qty');
-            $supplier     = $this->input->post('supplier');
-            $price        = $this->input->post('price');
-            $status       = $this->input->post('status');
-            $unit         = $this->input->post('unit');
-            $total_amount = $this->input->post('total_amount');
-            $purchase_date= $this->input->post('purchase_date');
-            $user_id      = $this->session->userdata('id') ?? 1;
-            $amount_paid  = ($status === 'Paid') ? $total_amount : ($status === 'Partial' ? $this->input->post('amount_paid') : 0);
-
-            // Fetch store_id from products table
-            $product = $this->model_products->getProductData($product_id);
-            $store_id = $product['store_id'] ?? NULL;
-
-            // Validate total_amount matches price * qty
-            if (abs($price * $qty - $total_amount) > 0.01) {
-                $response = array(
-                    'success' => false,
-                    'messages' => 'Total amount does not match price × quantity'
-                );
-                echo json_encode($response);
-                return;
-            }
-
-            $purchase_data = [
-                'product_id'   => $product_id,
-                'supplier'     => $supplier,
-                'qty'          => $qty,
-                'unit'         => $unit,
-                'price'        => $price,
-                'total_amount' => $total_amount,
-                'status'       => $status,
-                'purchase_date' => $purchase_date,
-                'user_id'      => $user_id,
-                'amount_paid'  => $amount_paid,
-                'store_id'     => $store_id
-            ];
-
-            $this->db->trans_start();
-            $this->db->where('id', $purchase_id);
-            $update = $this->db->update('purchases', $purchase_data);
-            $sql_query = $this->db->last_query();
-            $this->db->trans_complete();
-
-            if ($this->db->trans_status() === FALSE) {
-                $db_error = $this->db->error();
-                $error_message = isset($db_error['message']) ? $db_error['message'] : 'Unknown database error';
-                $response = array(
-                    'success' => false,
-                    'messages' => 'Failed to update purchase: ' . $error_message,
-                    'sql_query' => $sql_query
-                );
-            } else {
-                $response = array(
-                    'success' => true,
-                    'messages' => 'Purchase updated successfully',
-                    'sql_query' => $sql_query
-                );
-            }
-
-            header('Content-Type: application/json');
-            echo json_encode($response);
-        } else {
-            $response = array(
-                'success' => false,
-                'messages' => validation_errors()
-            );
-            echo json_encode($response);
-        }
+        // Non-POST requests: show purchases page (do not expose view file directly)
+        redirect('Controller_Products/purchases', 'refresh');
     }
 
-    public function removePurchase()
-    {
-        if (!in_array('deleteProduct', $this->permission)) {
-            $response = array(
-                'success' => false,
-                'messages' => 'Permission denied'
-            );
-            echo json_encode($response);
-            return;
-        }
-
-        $purchase_id = $this->input->post('purchase_id');
-
-        if (!$purchase_id) {
-            $response = array(
-                'success' => false,
-                'messages' => 'No purchase ID provided'
-            );
-            echo json_encode($response);
-            return;
-        }
-
-        $this->db->trans_start();
-        $this->db->where('id', $purchase_id);
-        $delete = $this->db->delete('purchases');
-        $sql_query = $this->db->last_query();
-        $this->db->trans_complete();
-
-        if ($this->db->trans_status() === FALSE) {
-            $db_error = $this->db->error();
-            $error_message = isset($db_error['message']) ? $db_error['message'] : 'Unknown database error';
-            $response = array(
-                'success' => false,
-                'messages' => 'Failed to delete purchase: ' . $error_message,
-                'sql_query' => $sql_query
-            );
-        } else {
-            $this->db->insert('activity_log', [
-                'user_id' => $this->session->userdata('id') ?? 1,
-                'activity' => 'Deleted Purchase',
-                'details' => "Purchase ID: $purchase_id",
-                'created_at' => date('Y-m-d H:i:s')
-            ]);
-            $response = array(
-                'success' => true,
-                'messages' => 'Purchase deleted successfully',
-                'sql_query' => $sql_query
-            );
-        }
-
-        header('Content-Type: application/json');
-        echo json_encode($response);
-    }
+    // ...existing methods...
 }
+?>

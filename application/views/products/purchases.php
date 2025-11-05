@@ -36,6 +36,20 @@ ini_set('display_errors', 1);
                   <option value="month">This Month</option>
                 </select>
               </div>
+              <!-- Update the store filter section -->
+              <?php if($this->session->userdata('group_id') == 1 || $this->session->userdata('group_id') == 2): ?>
+              <div class="col-md-4">
+                  <label for="storeFilter">Filter by Store:</label>
+                  <select id="storeFilter" class="form-control">
+                      <option value="">All Stores</option>
+                      <?php foreach($stores as $store): ?>
+                          <option value="<?php echo $store['id']; ?>">
+                              <?php echo htmlspecialchars($store['name']); ?>
+                          </option>
+                      <?php endforeach; ?>
+                  </select>
+              </div>
+              <?php endif; ?>
             </div>
           </div>
           <div class="box-body">
@@ -43,19 +57,18 @@ ini_set('display_errors', 1);
               <thead>
                 <tr>
                   <th>Product</th>
-                  <th>Quantity</th>
                   <th>Supplier</th>
-                  <th>Supplier No</th>
+                  <th>Supplier Phone</th>
+                  <th>Date</th>
+                  <?php if($this->session->userdata('group_id') == 1 || $this->session->userdata('group_id') == 2): ?>
+                  <th>Store</th>
+                  <?php endif; ?>
+                  <th>Quantity</th>
                   <th>Price per Unit</th>
                   <th>Total Amount</th>
-                  <th>Amount Paid</th>
-                  <th>Status</th>
-                  <th>Purchase Date</th>
-                  <th>Current Stock</th>
                   <th>Actions</th>
                 </tr>
               </thead>
-              <tbody></tbody>
             </table>
           </div>
         </div>
@@ -71,44 +84,44 @@ ini_set('display_errors', 1);
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
           <h4 class="modal-title" id="addStockModalLabel">Add Purchase</h4>
         </div>
-        <form id="addStockForm" action="<?php echo base_url('Controller_Products/addStock'); ?>" method="post">
+        <form id="addStockForm" action="<?php echo site_url('Controller_Products/addStock'); ?>" method="post">
           <div class="modal-body">
             <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
             <div class="form-group">
               <label for="add_product_id">Product</label>
               <select class="form-control select_group" id="add_product_id" name="product_id" required>
                 <option value="">Select Product</option>
-                <?php if(isset($products) && !empty($products)): ?>
-                  <?php foreach($products as $product): ?>
-                    <option value="<?php echo $product['id']; ?>" data-unit="<?php echo isset($product['unit']) ? htmlspecialchars($product['unit']) : ''; ?>">
-                      <?php echo htmlspecialchars($product['name']); ?>
+                <?php foreach ($products as $product): ?>
+                    <option value="<?php echo $product['id']; ?>" 
+                            data-price="<?php echo $product['price']; ?>"
+                            data-unit="<?php echo $product['unit']; ?>">
+                        <?php echo $product['name']; ?>
                     </option>
-                  <?php endforeach; ?>
-                <?php else: ?>
-                  <option value="">No products available</option>
-                <?php endif; ?>
+                <?php endforeach; ?>
               </select>
             </div>
+
             <div class="form-group">
-              <label for="add_supplier">Supplier</label>
+              <label for="add_supplier">Supplier Name</label>
               <input type="text" class="form-control" id="add_supplier" name="supplier" required>
             </div>
+
             <div class="form-group">
-              <label for="add_supplier_no">Supplier No</label>
-              <input type="text" class="form-control" id="add_supplier_no" name="supplier_no" placeholder="Enter supplier number">
+              <label for="add_supplier_no">Supplier Phone</label>
+              <input type="text" class="form-control" id="add_supplier_no" name="supplier_no" required>
             </div>
+
             <div class="form-group">
               <label for="add_price">Price per Unit</label>
-              <input type="number" min="0" step="0.01" class="form-control" id="add_price" name="price" required>
+              <input type="number" class="form-control" id="add_price" name="price" step="0.01" min="0" required>
             </div>
-            <div class="form-group">
-              <label for="add_unit">Unit</label>
-              <input type="text" class="form-control" id="add_unit" name="unit" required>
-            </div>
+            <input type="hidden" id="add_unit" name="unit">
+
             <div class="form-group">
               <label for="add_qty">Quantity</label>
-              <input type="number" min="1" max="999999999" class="form-control" id="add_qty" name="qty" required>
+              <input type="number" class="form-control" id="add_qty" name="qty" min="1" required>
             </div>
+
             <div class="form-group">
               <label for="add_total_amount">Total Amount</label>
               <input type="number" step="0.01" class="form-control" id="add_total_amount" name="total_amount" readonly>
@@ -124,11 +137,27 @@ ini_set('display_errors', 1);
             </div>
             <div class="form-group" id="add_amount_paid_group" style="display: none;">
               <label for="add_amount_paid">Amount Paid</label>
-              <input type="number" step="0.01" min="0" class="form-control" id="add_amount_paid" name="amount_paid" required>
+              <input type="number" step="0.01" min="0" class="form-control" id="add_amount_paid" name="amount_paid">
             </div>
             <div class="form-group">
               <label for="add_purchase_date">Purchase Date</label>
               <input type="datetime-local" class="form-control" id="add_purchase_date" name="purchase_date" value="<?php echo date('Y-m-d\TH:i'); ?>" required>
+            </div>
+            <div class="form-group">
+              <label for="add_store_id">Store</label>
+              <?php if($this->session->userdata('group_id') == 1): ?>
+                  <select class="form-control" id="add_store_id" name="store_id" required>
+                      <option value="">Select Store</option>
+                      <?php foreach($stores as $store): ?>
+                          <option value="<?php echo $store['id']; ?>">
+                              <?php echo htmlspecialchars($store['name']); ?>
+                          </option>
+                      <?php endforeach; ?>
+                  </select>
+              <?php else: ?>
+                  <input type="hidden" name="store_id" value="<?php echo $this->session->userdata('store_id'); ?>">
+                  <input type="text" class="form-control" value="<?php echo htmlspecialchars($this->session->userdata('store_name')); ?>" readonly>
+              <?php endif; ?>
             </div>
           </div>
           <div class="modal-footer">
@@ -171,8 +200,15 @@ ini_set('display_errors', 1);
               <input type="text" class="form-control" id="edit_supplier" name="supplier" required>
             </div>
             <div class="form-group">
-              <label for="edit_supplier_no">Supplier No</label>
-              <input type="text" class="form-control" id="edit_supplier_no" name="supplier_no" placeholder="Enter supplier number">
+              <label for="edit_supplier_no">Supplier Phone</label>
+              <input type="tel" 
+                     class="form-control" 
+                     id="edit_supplier_no" 
+                     name="supplier_no" 
+                     placeholder="Enter supplier phone number"
+                     pattern="[0-9]{10,15}"
+                     title="Please enter a valid phone number">
+              <small class="help-block">Format: 255XXXXXXXXX</small>
             </div>
             <div class="form-group">
               <label for="edit_price">Price per Unit</label>
@@ -216,323 +252,208 @@ ini_set('display_errors', 1);
       </div>
     </div>
   </div>
+
+  <!-- Products table with stock information -->
+  
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap.min.css">
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
 <script>
+var purchasesTable;
+
 $(document).ready(function() {
-  var purchasesTable = $('#purchasesTable').DataTable({
-    dom: 'Bfrtip',
-    buttons: ['copy', 'csv', 'excel', 'print'],
-    ajax: {
-      url: '<?php echo base_url('Controller_Products/fetchPurchasesData'); ?>',
-      dataSrc: 'data',
-      error: function(xhr, error, thrown) {
-        console.error('DataTable AJAX error:', xhr, error, thrown);
-        $('#messages').html('<div class="alert alert-error alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><strong>Error!</strong> Failed to load purchase data: ' + xhr.statusText + ' (Status: ' + xhr.status + ')</div>');
+  var columns = [
+    { "data": "product_name", "title": "Product" },
+    { "data": "supplier", "title": "Supplier" },
+    { "data": "supplier_no", "title": "Supplier Phone", "render": function(data){ return data || '-'; } },
+    { "data": "purchase_date", "title": "Date", "render": function(data) {
+        if (!data) return '-';
+        if (window.moment) return moment(data).format('DD/MM/YYYY HH:mm');
+        try { return new Date(data).toLocaleString(); } catch(e){ return data; }
       }
     },
-    columns: [
-      { data: 'product_name' },
-      { 
-        data: null, 
-        render: function(data, type, row) { 
-          return row.qty + ' ' + row.unit; 
-        } 
-      },
-      { data: 'supplier' },
-      { data: 'supplier_no' },
-      { data: 'price', render: function(data) { return 'TZS ' + data; } },
-      { data: 'total_amount', render: function(data) { return 'TZS ' + data; } },
-      { data: 'amount_paid', render: function(data) { return 'TZS ' + data; } },
-      { data: 'status' },
-      { data: 'purchase_date', render: function(data) { return new Date(data).toLocaleString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }); } },
-      { data: 'stock', render: function(data) { return data <= 10 ? '<span class="label label-danger">Low (' + data + ')</span>' : data; } },
-      {
-        data: null,
-        render: function(data, type, row) {
-          var buttons = '';
-          if (<?php echo in_array('updateProduct', $this->permission) ? 'true' : 'false'; ?>) {
-            buttons += '<button class="btn btn-warning btn-sm edit-purchase" data-id="' + row.id + '" data-toggle="modal" data-target="#editStockModal"><i class="fa fa-pencil"></i> Edit</button> ';
-          }
-          if (<?php echo in_array('deleteProduct', $this->permission) ? 'true' : 'false'; ?>) {
-            buttons += '<button class="btn btn-danger btn-sm delete-purchase" data-id="' + row.id + '"><i class="fa fa-trash"></i> Delete</button>';
-          }
-          return buttons;
-        }
-      }
-    ],
-    drawCallback: function(settings) {
-      var api = this.api();
-      var rows = api.rows({page: 'current'}).data();
-      var lowStockProducts = [];
-
-      for (var i = 0; i < rows.length; i++) {
-        if (rows[i].stock < 200) {
-          lowStockProducts.push(rows[i].product_name + ' (' + rows[i].stock + ' ' + rows[i].unit + ')');
-        }
-      }
-
-      if (lowStockProducts.length > 0) {
-        var message = '<div class="alert alert-warning alert-dismissible" role="alert">' +
-                      '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>' +
-                      '<strong>Warning!</strong> Low stock detected for: ' + lowStockProducts.join(', ') + '. Please restock soon.' +
-                      '</div>';
-        $('#messages').html(message);
-      } else {
-        if ($('#messages').find('.alert-warning').length > 0) {
-          $('#messages').empty();
-        }
+    <?php if($this->session->userdata('group_id') == 1 || $this->session->userdata('group_id') == 2): ?>
+    { "data": "store_name", "title": "Store" },
+    <?php endif; ?>
+    { "data": "qty", "title": "Quantity", "render": function(data, type, row){ return data + ' ' + (row.unit || ''); } },
+    { "data": "price", "title": "Price/Unit", "render": function(data){ return 'TZS ' + parseFloat(data).toFixed(2); } },
+    { "data": "total_amount", "title": "Total", "render": function(data){ return 'TZS ' + parseFloat(data).toFixed(2); } },
+    { "data": null, "title": "Actions", "orderable": false, "className": "text-center", "render": function(data,type,row){
+        var buttons = '<div class="btn-group">';
+        <?php if(in_array('updateProduct', $this->permission)): ?>
+        buttons += `<button class="btn btn-warning btn-sm" onclick="editPurchase(${row.id})" title="Edit"><i class="fa fa-pencil"></i></button>`;
+        <?php endif; ?>
+        <?php if(in_array('deleteProduct', $this->permission)): ?>
+        buttons += `<button class="btn btn-danger btn-sm" onclick="deletePurchase(${row.id})" title="Delete"><i class="fa fa-trash"></i></button>`;
+        <?php endif; ?>
+        buttons += '</div>';
+        return buttons;
       }
     }
-  });
+  ];
 
-  $('.select_group').select2({ width: '100%' });
+  // find index of purchase_date column to set default ordering
+  var orderIndex = columns.findIndex(function(c){ return c.data === 'purchase_date'; });
+  if (orderIndex < 0) orderIndex = 0; // fallback
 
-  // Auto-set unit based on product selection for Add modal
-  $('#add_product_id').on('change', function() {
-    var unit = $(this).find(':selected').data('unit');
-    $('#add_unit').val(unit ? unit : '');
-  });
+  // Initialize DataTable
+  purchasesTable = $('#purchasesTable').DataTable({
+    "processing": true,
+    "serverSide": false,
+    "ajax": {
+        "url": '<?php echo base_url('Controller_Products/fetchPurchasesData'); ?>',
+        "type": "POST",
+        "data": function(d) {
+            d.group_id = '<?php echo $this->session->userdata('group_id'); ?>';
+            d.store_id = $('#storeFilter').length ? $('#storeFilter').val() : '<?php echo $this->session->userdata('store_id'); ?>';
+            d.status_filter = $('#statusFilter').val() || '';
+            d.date_filter = $('#dateFilter').val() || '';
+          },
+          "error": function(xhr, error, thrown) {
+            console.error('purchases fetch error:', error, thrown, xhr.responseText);
+            $('#messages').html('<div class="alert alert-danger">Failed to load purchases. See console for details.</div>');
+          },
+          "dataType": "json",
+          "dataSrc": function(response) {
+              if (response === null || typeof response === 'undefined') {
+                console.error('Empty response from purchases endpoint');
+                return [];
+              }
+              if (response.error) {
+                console.error('Data error:', response.error);
+                showAlert('error', response.error);
+                return [];
+              }
+              var rows = response.data || [];
 
-  // Auto-set unit based on product selection for Edit modal
-  $('#edit_product_id').on('change', function() {
-    var unit = $(this).find(':selected').data('unit');
-    $('#edit_unit').val(unit ? unit : '');
-  });
-
-  // Auto-calculate total amount for Add modal
-  function calculateAddTotal() {
-    var price = parseFloat($('#add_price').val()) || 0;
-    var qty = parseInt($('#add_qty').val()) || 0;
-    var total = price * qty;
-    $('#add_total_amount').val(total.toFixed(2));
-    if ($('#add_status').val() === 'Paid') {
-      $('#add_amount_paid').val(total.toFixed(2));
-    } else if ($('#add_status').val() === 'Partial') {
-      $('#add_amount_paid').val(''); // Reset for manual entry
-    }
-  }
-
-  $('#add_price, #add_qty').on('input', calculateAddTotal);
-
-  // Auto-calculate total amount for Edit modal
-  function calculateEditTotal() {
-    var price = parseFloat($('#edit_price').val()) || 0;
-    var qty = parseInt($('#edit_qty').val()) || 0;
-    var total = price * qty;
-    $('#edit_total_amount').val(total.toFixed(2));
-    if ($('#edit_status').val() === 'Paid') {
-      $('#edit_amount_paid').val(total.toFixed(2));
-    } else if ($('#edit_status').val() === 'Partial') {
-      $('#edit_amount_paid').val(''); // Reset for manual entry
-    }
-  }
-
-  $('#edit_price, #edit_qty').on('input', calculateEditTotal);
-
-  // Handle status change for Add modal
-  $('#add_status').on('change', function() {
-    var status = $(this).val();
-    if (status === 'Partial') {
-      $('#add_amount_paid_group').show();
-      $('#add_amount_paid').prop('required', true).val(''); // Show and require, but don't auto-fill
-    } else if (status === 'Paid') {
-      $('#add_amount_paid_group').hide();
-      $('#add_amount_paid').prop('required', false);
-      calculateAddTotal(); // Auto-fill total for Paid
-    } else {
-      $('#add_amount_paid_group').hide();
-      $('#add_amount_paid').prop('required', false).val('');
-    }
-  });
-
-  // Handle status change for Edit modal
-  $('#edit_status').on('change', function() {
-    var status = $(this).val();
-    if (status === 'Partial') {
-      $('#edit_amount_paid_group').show();
-      $('#edit_amount_paid').prop('required', true).val(''); // Show and require, but don't auto-fill
-    } else if (status === 'Paid') {
-      $('#edit_amount_paid_group').hide();
-      $('#edit_amount_paid').prop('required', false);
-      calculateEditTotal(); // Auto-fill total for Paid
-    } else {
-      $('#edit_amount_paid_group').hide();
-      $('#edit_amount_paid').prop('required', false).val('');
-    }
-  });
-
-  // AJAX form submission for Add modal
-  $('#addStockForm').on('submit', function(e) {
-    e.preventDefault();
-    var form = $(this);
-    var formData = form.serialize();
-    var price = parseFloat($('#add_price').val()) || 0;
-    var qty = parseInt($('#add_qty').val()) || 0;
-    var total_amount = parseFloat($('#add_total_amount').val()) || 0;
-
-    if (Math.abs(price * qty - total_amount) > 0.01) {
-      $('#messages').html('<div class="alert alert-error alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><strong>Error!</strong> Total amount does not match price × quantity.</div>');
-      return;
-    }
-
-    $.ajax({
-      url: form.attr('action'),
-      type: form.attr('method'),
-      data: formData,
-      dataType: 'json',
-      success: function(response) {
-        if (response.success) {
-          $('#messages').html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><strong>Success!</strong> ' + response.messages + '</div>');
-          $('#addStockModal').modal('hide');
-          purchasesTable.ajax.reload(null, false);
-          form[0].reset();
-          $('#add_unit').val('');
-          $('#add_total_amount').val('');
-          $('#add_amount_paid_group').hide();
-          $('#add_amount_paid').prop('required', false);
-          $('#add_status').val('');
-        } else {
-          $('#messages').html('<div class="alert alert-error alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><strong>Error!</strong> ' + response.messages + '</div>');
+            // client-side filtering fallback (if server doesn't filter)
+            var statusF = $('#statusFilter').val();
+            if (statusF) {
+                rows = rows.filter(function(r){ return String(r.status || '').toLowerCase() === String(statusF).toLowerCase(); });
+            }
+            var dateF = $('#dateFilter').val();
+            if (dateF) {
+                var now = moment ? moment() : null;
+                rows = rows.filter(function(r){
+                    if (!r.purchase_date) return false;
+                    if (now) {
+                        var pd = moment(r.purchase_date);
+                        if (!pd.isValid()) return true;
+                        if (dateF === 'today') return pd.isSame(now, 'day');
+                        if (dateF === 'week') return pd.isSame(now, 'week');
+                        if (dateF === 'month') return pd.isSame(now, 'month');
+                        return true;
+                    } else {
+                        // fallback: compare dates approximately
+                        try {
+                            var pd2 = new Date(r.purchase_date);
+                            var todays = new Date();
+                            if (dateF === 'today') return pd2.toDateString() === todays.toDateString();
+                            if (dateF === 'week') {
+                                var oneWeekAgo = new Date(); oneWeekAgo.setDate(todays.getDate() - 7);
+                                return pd2 >= oneWeekAgo && pd2 <= todays;
+                            }
+                            if (dateF === 'month') {
+                                return pd2.getMonth() === todays.getMonth() && pd2.getFullYear() === todays.getFullYear();
+                            }
+                        } catch(e){ return true; }
+                        return true;
+                    }
+                });
+            }
+            return rows;
         }
-      },
-      error: function(xhr, error, thrown) {
-        console.error('Add purchase AJAX error:', xhr, error, thrown);
-        $('#messages').html('<div class="alert alert-error alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><strong>Error!</strong> AJAX request failed: ' + xhr.statusText + ' (Status: ' + xhr.status + ')</div>');
-      }
+    },
+    "columns": columns,
+    // order by purchase_date desc (latest first)
+    "order": [[ orderIndex, "desc" ]],
+    "pageLength": 25,
+    "dom": "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+           "<'row'<'col-sm-12'tr>>" +
+           "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+    "drawCallback": function() {
+      $('.dataTables_processing').hide();
+    }
+  });
+
+  // filter change handlers: reload table
+  $('#statusFilter, #dateFilter').on('change', function() { purchasesTable.ajax.reload(); });
+  <?php if($this->session->userdata('group_id') == 1 || $this->session->userdata('group_id') == 2): ?>
+  $('#storeFilter').on('change', function() { purchasesTable.ajax.reload(); });
+  <?php endif; ?>
+
+  // load moment.js (if not yet loaded) - keep existing call
+  $.getScript('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js');
+});
+</script>
+<script>
+$(function(){
+
+    // compute total for Add Purchase modal
+    function computeAddTotal() {
+        var price = parseFloat($('#add_price').val() || 0) || 0;
+        var qty   = parseFloat($('#add_qty').val()   || 0) || 0;
+        var total = (price * qty) || 0;
+        $('#add_total_amount').val(total.toFixed(2));
+    }
+
+    // compute total for Edit Purchase modal
+    function computeEditTotal() {
+        var price = parseFloat($('#edit_price').val() || 0) || 0;
+        var qty   = parseFloat($('#edit_qty').val()   || 0) || 0;
+        var total = (price * qty) || 0;
+        $('#edit_total_amount').val(total.toFixed(2));
+    }
+
+    // set price when product changed (Add)
+    $('#add_product_id').on('change', function(){
+        var price = parseFloat($(this).find('option:selected').data('price') || 0) || 0;
+        $('#add_price').val(price.toFixed(2));
+        var unit = $(this).find('option:selected').data('unit') || '';
+        $('#add_unit').val(unit);
+        computeAddTotal();
     });
-  });
 
-  // Handle Edit button click
-  $('#purchasesTable').on('click', '.edit-purchase', function() {
-    var purchaseId = $(this).data('id');
-    $.ajax({
-      url: '<?php echo base_url('Controller_Products/getPurchaseData'); ?>/' + purchaseId,
-      type: 'GET',
-      dataType: 'json',
-      success: function(response) {
-        if (response.success) {
-          $('#edit_purchase_id').val(response.data.id);
-          $('#edit_product_id').val(response.data.product_id).trigger('change');
-          $('#edit_supplier').val(response.data.supplier);
-          $('#edit_price').val(response.data.price);
-          $('#edit_unit').val(response.data.unit);
-          $('#edit_qty').val(response.data.qty);
-          $('#edit_total_amount').val(response.data.total_amount);
-          $('#edit_status').val(response.data.status).trigger('change');
-          $('#edit_amount_paid').val(response.data.amount_paid);
-          $('#edit_purchase_date').val(response.data.purchase_date.replace(' ', 'T'));
-          $('#editStockModal').modal('show');
-        } else {
-          $('#messages').html('<div class="alert alert-error alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><strong>Error!</strong> ' + response.message + '</div>');
-        }
-      },
-      error: function(xhr, error, thrown) {
-        console.error('Edit purchase AJAX error:', xhr, error, thrown);
-        $('#messages').html('<div class="alert alert-error alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><strong>Error!</strong> Failed to load purchase data: ' + xhr.statusText + '</div>');
-      }
+    // set price when product changed (Edit)
+    $('#edit_product_id').on('change', function(){
+        var price = parseFloat($(this).find('option:selected').data('price') || 0) || 0;
+        $('#edit_price').val(price.toFixed(2));
+        var unit = $(this).find('option:selected').data('unit') || '';
+        $('#edit_unit').val(unit);
+        computeEditTotal();
     });
-  });
 
-  // AJAX form submission for Edit modal
-  $('#editStockForm').on('submit', function(e) {
-    e.preventDefault();
-    var form = $(this);
-    var formData = form.serialize();
-    var price = parseFloat($('#edit_price').val()) || 0;
-    var qty = parseInt($('#edit_qty').val()) || 0;
-    var total_amount = parseFloat($('#edit_total_amount').val()) || 0;
-
-    if (Math.abs(price * qty - total_amount) > 0.01) {
-      $('#messages').html('<div class="alert alert-error alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><strong>Error!</strong> Total amount does not match price × quantity.</div>');
-      return;
-    }
-
-    $.ajax({
-      url: form.attr('action'),
-      type: form.attr('method'),
-      data: formData,
-      dataType: 'json',
-      success: function(response) {
-        if (response.success) {
-          $('#messages').html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><strong>Success!</strong> ' + response.messages + '</div>');
-          $('#editStockModal').modal('hide');
-          purchasesTable.ajax.reload(null, false);
-          form[0].reset();
-          $('#edit_unit').val('');
-          $('#edit_total_amount').val('');
-          $('#edit_amount_paid_group').hide();
-          $('#edit_amount_paid').prop('required', false);
-          $('#edit_status').val('');
-        } else {
-          $('#messages').html('<div class="alert alert-error alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><strong>Error!</strong> ' + response.messages + '</div>');
-        }
-      },
-      error: function(xhr, error, thrown) {
-        console.error('Update purchase AJAX error:', xhr, error, thrown);
-        $('#messages').html('<div class="alert alert-error alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><strong>Error!</strong> AJAX request failed: ' + xhr.statusText + ' (Status: ' + xhr.status + ')</div>');
-      }
+    // update total on input change (Add modal)
+    $('#add_price, #add_qty').on('input change', function(){
+        computeAddTotal();
     });
-  });
 
-  // Handle Delete button click
-  $('#purchasesTable').on('click', '.delete-purchase', function() {
-    var purchaseId = $(this).data('id');
-    if (confirm('Are you sure you want to delete this purchase?')) {
-      $.ajax({
-        url: '<?php echo base_url('Controller_Products/removePurchase'); ?>',
-        type: 'POST',
-        data: { purchase_id: purchaseId },
-        dataType: 'json',
-        success: function(response) {
-          if (response.success) {
-            $('#messages').html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><strong>Success!</strong> ' + response.messages + '</div>');
-            purchasesTable.ajax.reload(null, false);
-          } else {
-            $('#messages').html('<div class="alert alert-error alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><strong>Error!</strong> ' + response.messages + '</div>');
-          }
-        },
-        error: function(xhr, error, thrown) {
-          console.error('Delete purchase AJAX error:', xhr, error, thrown);
-          $('#messages').html('<div class="alert alert-error alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><strong>Error!</strong> AJAX request failed: ' + xhr.statusText + ' (Status: ' + xhr.status + ')</div>');
-        }
-      });
-    }
-  });
+    // update total on input change (Edit modal)
+    $('#edit_price, #edit_qty').on('input change', function(){
+        computeEditTotal();
+    });
 
-  // Status filter
-  $('#statusFilter').on('change', function() {
-    var status = $(this).val();
-    purchasesTable.columns(6).search(status ? status : '', true, false).draw();
-  });
+    // ensure totals are computed when modals open
+    $('#addStockModal').on('shown.bs.modal', function(){
+        computeAddTotal();
+        // focus qty
+        setTimeout(function(){ $('#add_qty').focus(); }, 50);
+    });
+    $('#editStockModal').on('shown.bs.modal', function(){
+        computeEditTotal();
+        setTimeout(function(){ $('#edit_qty').focus(); }, 50);
+    });
 
-  // Date filter
-  $('#dateFilter').on('change', function() {
-    var filter = $(this).val();
-    var now = new Date();
-    var startDate;
-
-    if (filter === 'today') {
-      startDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    } else if (filter === 'week') {
-      var firstDay = new Date(now.setDate(now.getDate() - now.getDay()));
-      startDate = new Date(firstDay.getFullYear(), firstDay.getMonth(), firstDay.getDate());
-    } else if (filter === 'month') {
-      startDate = new Date(now.getFullYear(), now.getMonth(), 1);
-    } else {
-      startDate = null; // All
-    }
-
-    if (startDate) {
-      purchasesTable.column(7).search(startDate.toISOString().split('T')[0], true, false).draw();
-    } else {
-      purchasesTable.column(7).search('').draw();
-    }
-  });
+    // also compute totals on page load in case fields are pre-filled (edit)
+    computeAddTotal();
+    computeEditTotal();
 });
 </script>

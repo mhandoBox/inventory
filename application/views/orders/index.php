@@ -133,7 +133,7 @@
         }
     }
 </style>
-
+<title>Manage Orders</title>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -174,6 +174,9 @@
         <?php endif; ?>
 
         <div class="box">
+          <div class="box-header">
+            <h3 class="box-title">Manage Orders</h3>
+          </div>
           <!-- /.box-header -->
           <div class="box-body">
             <table id="manageTable" class="table table-bordered table-hover table-striped">
@@ -308,26 +311,16 @@ $(document).ready(function() {
             'copy', 'csv', 'excel', 'pdf', 'print'
         ],
         "ajax": {
-            "url": '<?php echo base_url('Controller_Orders/fetchOrdersData'); ?>',
-            "type": 'POST',
-            "dataType": 'json',
-            "data": function(d) {
-                return $.extend({}, d, {
-                    '<?php echo addslashes($this->security->get_csrf_token_name()); ?>': '<?php echo addslashes($this->security->get_csrf_hash()); ?>'
-                });
-            },
-            "dataSrc": function(response) {
-                if (response && response.data) {
-                    // Log the status values
-                    response.data.forEach(function(item) {
-                        console.log('Order:', item.bill_no, 'Status:', item.paid_status);
-                    });
-                    return response.data;
-                }
-                return [];
-            },
-            "error": function(xhr, status, error) {
-                alert('Failed to load orders. Please try again or contact administrator.');
+            "url": "<?php echo base_url('Controller_Orders/fetchOrdersData') ?>",
+            "type": "POST",
+            "error": function(xhr, error, thrown) {
+                console.error('DataTables error:', error);
+                $('#manageTable tbody').html('<tr><td colspan="9" class="text-center">Error loading orders data</td></tr>');
+            }
+        },
+        "initComplete": function(settings, json) {
+            if (json.error) {
+                $('#manageTable tbody').html('<tr><td colspan="9" class="text-center">' + json.error + '</td></tr>');
             }
         },
         "columns": [

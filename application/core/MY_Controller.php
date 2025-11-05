@@ -1,7 +1,7 @@
 <?php 
 class MY_Controller extends CI_Controller 
 {
-    public $data = array();
+    protected $data = array();
 
     public function __construct()
     {
@@ -41,6 +41,10 @@ class MY_Controller extends CI_Controller
         } else {
             log_message('debug', 'MY_Controller - User not logged in');
         }
+
+        // Initialize common view variables
+        $this->data['page'] = ''; // Add this line
+        $this->data['user_permission'] = $this->session->userdata('user_permission');
     }
 
     public function not_logged_in()

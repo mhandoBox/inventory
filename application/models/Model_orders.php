@@ -14,74 +14,72 @@ class Model_orders extends CI_Model
     public function getOrdersData($id = null) 
     {
         try {
+            // Get user's store and role info
+            $store_id = $this->session->userdata('store_id');
+            $group_id = $this->session->userdata('group_id');
+            $is_privileged = in_array($group_id, [1, 2]); // Admin (1) or Manager (2)
+
+            log_message('debug', sprintf(
+                'User Info - Store ID: %s, Group ID: %s, Is Privileged: %s',
+                $store_id, 
+                $group_id, 
+                $is_privileged ? 'Yes' : 'No'
+            ));
+
             if ($id) {
-                // Query for single order
+                // Single order query with store restriction
                 $sql = "SELECT o.*,
                         COALESCE(s.name, 'N/A') as store_name,
-                        COALESCE(u.username, 'Unknown') as clerk_name,
-                        o.gross_amount,
-                        o.net_amount,
-                        o.paid_status,
-                        o.amount_paid,
-                        o.service_charge,
-                        o.vat_charge,
-                        o.discount
+                        COALESCE(u.username, 'Unknown') as clerk_name
                         FROM orders o
-                        LEFT JOIN users u ON u.id = o.user_id
                         LEFT JOIN stores s ON o.store_id = s.id
+                        LEFT JOIN users u ON o.user_id = u.id
                         WHERE o.id = ?";
+
+                // Add store restriction for non-privileged users
+                if (!$is_privileged) {
+                    $sql .= " AND o.store_id = " . $this->db->escape($store_id);
+                }
 
                 $query = $this->db->query($sql, array($id));
                 log_message('debug', 'Single order query: ' . $this->db->last_query());
-                return ($query) ? $this->formatOrderRow($query->row_array()) : null;
+                return ($query && $query->num_rows() > 0) ? $this->formatOrderRow($query->row_array()) : null;
             }
 
-            // Query for all orders
+            // Query for all orders with store restriction
             $sql = "SELECT o.*,
                     COALESCE(s.name, 'N/A') as store_name,
-                    COALESCE(u.username, 'Unknown') as clerk_name,
-                    CASE 
-                        WHEN o.paid_status = 1 THEN 'Not Paid'
-                        WHEN o.paid_status = 2 THEN 'Paid'
-                        WHEN o.paid_status = 3 THEN 'Partially Paid'
-                        ELSE 'Not Paid'
-                    END as payment_status
+                    COALESCE(u.username, 'Unknown') as clerk_name
                     FROM orders o
-                    LEFT JOIN users u ON u.id = o.user_id
                     LEFT JOIN stores s ON o.store_id = s.id
-                    ORDER BY o.id DESC";
+                    LEFT JOIN users u ON o.user_id = u.id";
+
+            // Add store restriction for non-privileged users
+            if (!$is_privileged) {
+                $sql .= " WHERE o.store_id = " . $this->db->escape($store_id);
+            }
+
+            $sql .= " ORDER BY o.id DESC";
 
             $query = $this->db->query($sql);
             log_message('debug', 'All orders query: ' . $this->db->last_query());
 
-            if (!$query) {
-                log_message('error', 'Query failed: ' . $this->db->error()['message']);
+            if (!$query || $query->num_rows() == 0) {
+                log_message('debug', 'No orders found for store_id: ' . $store_id);
                 return [];
             }
 
             $results = $query->result_array();
-            
-            // Debug log the raw results
-            log_message('debug', 'Raw results: ' . json_encode($results));
+            log_message('debug', sprintf(
+                'Found %d orders for store_id %s',
+                count($results),
+                $store_id
+            ));
 
-            return array_map(function($order) {
-                return [
-                    'id' => intval($order['id']),
-                    'bill_no' => $order['bill_no'],
-                    'customer_name' => $order['customer_name'],
-                    'customer_phone' => $order['customer_phone'],
-                    'date_time' => $order['date_time'],
-                    'store_name' => $order['store_name'],
-                    'paid_status' => intval($order['paid_status']), // Keep original status value
-                    'payment_status' => $order['payment_status'], // Add formatted status
-                    'net_amount' => floatval($order['net_amount']),
-                    'clerk_name' => $order['clerk_name']
-                ];
-            }, $results);
+            return array_map([$this, 'formatOrderRow'], $results);
 
         } catch (Exception $e) {
             log_message('error', 'Error in getOrdersData: ' . $e->getMessage());
-            log_message('error', 'Stack trace: ' . $e->getTraceAsString());
             return [];
         }
     }
@@ -165,136 +163,212 @@ class Model_orders extends CI_Model
         return 0;
     }
 
-    public function create() 
+    /**
+     * Create an order and its items from POST data or provided array.
+     * Accepts optional $input array (sanitized) from controller.
+     * Returns ['success'=>bool,'order_id'=>int|null,'error'=>string|null,'bill_no'=>string|null]
+     */
+    public function create($input = null)
     {
-        log_message('debug', 'Entered Model_orders::create()');
-        
-        // Get POST data with defaults to prevent undefined index errors
-        $post_data = array(
-            'gross_amount' => $this->input->post('gross_amount_value') ?? 0,
-            'service_charge_rate' => $this->input->post('service_charge_rate') ?? 0,
-            'service_charge' => $this->input->post('service_charge_value') ?? 0,
-            'vat_charge_rate' => $this->input->post('vat_charge_rate') ?? 0,
-            'vat_charge' => $this->input->post('vat_charge_value') ?? 0,
-            'discount' => $this->input->post('discount') ?? 0,
-            'net_amount' => $this->input->post('net_amount_value') ?? 0,
-            'customer_name' => $this->input->post('customer_name') ?? '',
-            'customer_address' => $this->input->post('customer_address') ?? '',
-            'customer_phone' => $this->input->post('customer_phone') ?? '',
-            'paid_status' => $this->input->post('paid_status') ?? 2,
-            'amount_paid' => $this->input->post('amount_paid') ?? 0
-        );
+        try {
+            $data = is_array($input) ? $input : $this->input->post(NULL, TRUE);
 
-        log_message('debug', 'POST data with defaults: ' . json_encode($post_data));
+            // arrays
+            $products = isset($data['product']) && is_array($data['product']) ? $data['product'] : [];
+            $qtys     = isset($data['qty']) && is_array($data['qty']) ? $data['qty'] : [];
+            $rates    = isset($data['rate']) && is_array($data['rate']) ? $data['rate'] : [];
+            $amounts  = isset($data['amount_value']) && is_array($data['amount_value']) ? $data['amount_value'] : (isset($data['amount']) && is_array($data['amount']) ? $data['amount'] : []);
 
-        $user_id = $this->session->userdata('id');
-        $bill_no = 'BILPR-' . strtoupper(substr(md5(uniqid(mt_rand(), true)), 0, 4));
-        $store_id = $this->session->userdata('store_id');
+            // header fields
+            $customer_name       = $data['customer_name'] ?? '';
+            $customer_address    = $data['customer_address'] ?? '';
+            $customer_phone      = $data['customer_phone'] ?? '';
+            $store_id            = $data['store_id'] ?? $this->session->userdata('store_id') ?? 0;
+            $gross_amount        = isset($data['gross_amount_value']) ? floatval($data['gross_amount_value']) : floatval($data['gross_amount'] ?? 0);
+            $service_charge_rate = isset($data['service_charge_rate']) ? $data['service_charge_rate'] : ($data['service_charge_rate'] ?? 0);
+            $service_charge      = isset($data['service_charge_value']) ? floatval($data['service_charge_value']) : floatval($data['service_charge'] ?? 0);
+            $vat_charge_rate     = isset($data['vat_charge_rate']) ? $data['vat_charge_rate'] : ($data['vat_charge_rate'] ?? 0);
+            $vat_charge          = isset($data['vat_charge_value']) ? floatval($data['vat_charge_value']) : floatval($data['vat_charge'] ?? 0);
+            $net_amount          = isset($data['net_amount_value']) ? floatval($data['net_amount_value']) : floatval($data['net_amount'] ?? 0);
+            $discount            = isset($data['discount']) ? floatval($data['discount']) : 0;
 
-        if (empty($store_id)) {
-            log_message('error', 'No store_id found in session');
-            return array('success' => false, 'error' => 'No store assigned to user');
-        }
+            $paid_status = isset($data['paid_status']) ? intval($data['paid_status']) : 1;
+            $amount_paid = isset($data['amount_paid']) ? floatval($data['amount_paid']) : 0.00;
 
-        $order_data = array(
-            'bill_no' => $bill_no,
-            'date_time' => date('Y-m-d H:i:s'),
-            'gross_amount' => $post_data['gross_amount'],
-            'service_charge_rate' => $post_data['service_charge_rate'],
-            'service_charge' => $post_data['service_charge'],
-            'vat_charge_rate' => $post_data['vat_charge_rate'],
-            'vat_charge' => $post_data['vat_charge'],
-            'discount' => $post_data['discount'],
-            'net_amount' => $post_data['net_amount'],
-            'customer_name' => $post_data['customer_name'],
-            'customer_address' => $post_data['customer_address'],
-            'customer_phone' => $post_data['customer_phone'],
-            'user_id' => $user_id,
-            'store_id' => $store_id,
-            'paid_status' => $post_data['paid_status'],
-            'amount_paid' => $post_data['amount_paid']
-        );
+            // safety enforce
+            if ($paid_status === 2) $amount_paid = $net_amount;
+            elseif ($paid_status !== 3) $amount_paid = 0.00;
 
-        // Debug log before inserting
-        log_message('debug', 'Order data to insert: ' . json_encode($order_data));
-
-        $this->db->insert('orders', $order_data);
-        $order_id = $this->db->insert_id();
-
-        $product = $this->input->post('product');
-        $qty = $this->input->post('qty');
-        $rate = $this->input->post('rate_value');
-        $amount = $this->input->post('amount_value');
-
-        $order_item = array();
-        $error = '';
-        for ($x = 0; $x < count($product); $x++) {
-            // Fetch total purchased and ordered for stock calculation
-            $total_purchased = $this->getTotalPurchased($product[$x]);
-            $total_ordered = $this->getTotalOrdered($product[$x]);
-            $stock = max(0, $total_purchased - $total_ordered);
-            log_message('debug', 'Create Order - Product ID: ' . $product[$x] . ', Total Purchased: ' . $total_purchased . ', Total Ordered: ' . $total_ordered . ', Stock: ' . $stock . ', Requested Qty: ' . $qty[$x]);
-
-            if ($qty[$x] > $stock) {
-                $error .= "Quantity exceeds available stock ($stock) for product ID " . $product[$x] . ". ";
-            } else {
-                $order_item[] = array(
-                    'order_id' => $order_id,
-                    'product_id' => $product[$x],
-                    'qty' => $qty[$x],
-                    'rate' => $rate[$x],
-                    'amount' => $amount[$x]
-                );
+            if (empty($products)) {
+                return ['success' => false, 'error' => 'No products provided', 'order_id' => null];
             }
-        }
 
-        if ($error) {
-            $this->db->where('id', $order_id);
-            $this->db->delete('orders');
-            log_message('debug', 'Order creation error: ' . $error);
-            return array('success' => false, 'error' => $error);
-        }
+            $this->db->trans_begin();
 
-        if (!empty($order_item)) {
-            $this->db->insert_batch('orders_item', $order_item);
-        }
+            $orderData = [
+                'bill_no' => '', // update after insert
+                'customer_name' => $customer_name,
+                'customer_address' => $customer_address,
+                'customer_phone' => $customer_phone,
+                'date_time' => date('Y-m-d H:i:s'),
+                'gross_amount' => $gross_amount,
+                'service_charge_rate' => $service_charge_rate,
+                'service_charge' => $service_charge,
+                'vat_charge_rate' => $vat_charge_rate,
+                'vat_charge' => $vat_charge,
+                'net_amount' => $net_amount,
+                'discount' => $discount,
+                'paid_status' => $paid_status,
+                'user_id' => $this->session->userdata('id') ?? 0,
+                'store_id' => $store_id,
+                'amount_paid' => number_format($amount_paid, 2, '.', '')
+            ];
 
-        log_message('debug', 'Order creation success, order_id: ' . $order_id);
-        return array('success' => true, 'order_id' => $order_id);
+            $this->db->insert('orders', $orderData);
+            $order_id = $this->db->insert_id();
+
+            // items
+            foreach ($products as $i => $pid) {
+                $p = intval($pid);
+                $q = isset($qtys[$i]) ? intval($qtys[$i]) : 0;
+                $r = isset($rates[$i]) ? floatval($rates[$i]) : 0.00;
+                $a = isset($amounts[$i]) ? floatval($amounts[$i]) : ($q * $r);
+
+                $item = [
+                    'order_id'   => $order_id,
+                    'product_id' => $p,
+                    'qty'        => $q,
+                    'rate'       => $r,
+                    'amount'     => $a
+                ];
+                $this->db->insert('orders_item', $item);
+            }
+
+            if ($this->db->trans_status() === FALSE) {
+                $this->db->trans_rollback();
+                return ['success' => false, 'error' => 'Database error while saving order', 'order_id' => null];
+            }
+
+            $this->db->trans_commit();
+
+            // generate bill and update
+            $bill_no = 'INV-' . date('Ymd') . '-' . str_pad($order_id, 6, '0', STR_PAD_LEFT);
+            if ($this->db->field_exists('bill_no', 'orders')) {
+                $this->db->where('id', $order_id)->update('orders', ['bill_no' => $bill_no]);
+            }
+
+            return ['success' => true, 'order_id' => $order_id, 'bill_no' => $bill_no];
+        } catch (Exception $e) {
+            log_message('error', 'Model_orders::create error: ' . $e->getMessage());
+            return ['success' => false, 'error' => 'Exception: ' . $e->getMessage(), 'order_id' => null];
+        }
     }
 
     /**
-     * Helper method to get total purchased for a product
+     * Get total purchased quantity for a product in a specific store
+     * @param int $product_id Product ID
+     * @param int|null $store_id Store ID
+     * @return int Total purchased quantity
      */
-    private function getTotalPurchased($product_id)
+    public function getTotalPurchased($product_id, $store_id = null)
     {
-        $sql = "SELECT SUM(qty) as total FROM purchases_item WHERE product_id = ?";
-        $query = $this->db->query($sql, array($product_id));
-        return $query->row()->total ?? 0;
+        try {
+            if ($store_id === null) {
+                $store_id = $this->session->userdata('store_id');
+            }
+
+            $sql = "SELECT COALESCE(SUM(qty), 0) as total_purchased 
+                    FROM purchases 
+                    WHERE product_id = ? AND store_id = ?";
+            $query = $this->db->query($sql, [$product_id, $store_id]);
+            $result = $query->row_array();
+            log_message('debug', "getTotalPurchased - Product ID: $product_id, Store ID: $store_id, Total: " . ($result['total_purchased'] ?? 0));
+            return intval($result['total_purchased'] ?? 0);
+        } catch (Exception $e) {
+            log_message('error', 'Error in getTotalPurchased: ' . $e->getMessage());
+            return 0;
+        }
     }
 
     /**
-     * Helper method to get total ordered for a product
+     * Get total ordered (sold) quantity for a product in a specific store
+     * @param int $product_id Product ID
+     * @param int|null $store_id Store ID
+     * @return int Total ordered quantity
      */
-    private function getTotalOrdered($product_id)
+    public function getTotalOrdered($product_id, $store_id = null)
     {
-        $sql = "SELECT SUM(qty) as total FROM orders_item WHERE product_id = ?";
-        $query = $this->db->query($sql, array($product_id));
-        return $query->row()->total ?? 0;
+        try {
+            if ($store_id === null) {
+                $store_id = $this->session->userdata('store_id');
+            }
+
+            $sql = "SELECT COALESCE(SUM(oi.qty), 0) as total_ordered 
+                    FROM orders_item oi 
+                    JOIN orders o ON oi.order_id = o.id 
+                    WHERE oi.product_id = ? AND o.store_id = ?";
+            $query = $this->db->query($sql, [$product_id, $store_id]);
+            $result = $query->row_array();
+            log_message('debug', "getTotalOrdered - Product ID: $product_id, Store ID: $store_id, Total: " . ($result['total_ordered'] ?? 0));
+            return intval($result['total_ordered'] ?? 0);
+        } catch (Exception $e) {
+            log_message('error', 'Error in getTotalOrdered: ' . $e->getMessage());
+            return 0;
+        }
     }
 
-    public function getOrdersItemData($order_id) 
+    /**
+     * Get products with their current stock for a specific store
+     * @param int|null $store_id Store ID
+     * @return array Array of products with stock information
+     */
+    public function getProductsWithStock($store_id = null)
     {
-        if ($order_id) {
-            $sql = "SELECT orders_item.*, products.name as product_name 
-                    FROM orders_item 
-                    LEFT JOIN products ON products.id = orders_item.product_id 
-                    WHERE orders_item.order_id = ? AND orders_item.order_id > 0";
-            $query = $this->db->query($sql, array($order_id));
-            log_message('debug', 'getOrdersItemData Query: ' . $this->db->last_query());
-            return $query->result_array();
+        try {
+            if ($store_id === null) {
+                $store_id = $this->session->userdata('store_id');
+            }
+
+            if (empty($store_id)) {
+                log_message('error', 'getProductsWithStock: no store_id provided');
+                return [];
+            }
+
+            $sql = "
+                SELECT 
+                    pr.id,
+                    pr.name,
+                    COALESCE(pr.price, 0) AS price,
+                    COALESCE((
+                        SELECT SUM(pu.qty) FROM purchases pu
+                        WHERE pu.product_id = pr.id AND pu.store_id = ?
+                    ), 0) AS total_purchased,
+                    COALESCE((
+                        SELECT SUM(oi.qty) FROM orders_item oi
+                        JOIN orders o ON oi.order_id = o.id
+                        WHERE oi.product_id = pr.id AND o.store_id = ?
+                    ), 0) AS total_ordered
+                FROM products pr
+                WHERE pr.store_id = ?
+                ORDER BY pr.name ASC
+            ";
+
+            $query = $this->db->query($sql, [$store_id, $store_id, $store_id]);
+            $rows = $query->result_array();
+
+            foreach ($rows as &$r) {
+                $r['total_purchased'] = intval($r['total_purchased']);
+                $r['total_ordered'] = intval($r['total_ordered']);
+                $r['current_stock'] = max(0, $r['total_purchased'] - $r['total_ordered']);
+                $r['price'] = floatval($r['price']);
+                log_message('debug', "getProductsWithStock - ID: {$r['id']}, purchased: {$r['total_purchased']}, ordered: {$r['total_ordered']}, stock: {$r['current_stock']}");
+            }
+
+            return $rows;
+        } catch (Exception $e) {
+            log_message('error', 'Error in getProductsWithStock: ' . $e->getMessage());
+            return [];
         }
-        return array();
     }
 
     public function update($id) 
@@ -413,6 +487,144 @@ class Model_orders extends CI_Model
         $sql = "SELECT COUNT(*) as total FROM orders WHERE paid_status = 1";
         $query = $this->db->query($sql);
         return $query->row()->total;
+    }
+
+    // Add store filtering to other relevant methods
+    public function countOrderData() 
+    {
+        $store_id = $this->session->userdata('store_id');
+        $group_id = $this->session->userdata('group_id');
+        $is_privileged = in_array($group_id, [1, 2]); // 1: admin, 2: manager
+
+        if($is_privileged) {
+            $sql = "SELECT COUNT(*) as count FROM orders";
+            $query = $this->db->query($sql);
+        } else {
+            $sql = "SELECT COUNT(*) as count FROM orders WHERE store_id = ?";
+            $query = $this->db->query($sql, array($store_id));
+        }
+
+        return $query->row()->count;
+    }
+
+    public function fetchOrdersData()
+    {
+        try {
+            // Get user's store and role info
+            $store_id = $this->session->userdata('store_id');
+            $group_id = $this->session->userdata('group_id');
+            $is_privileged = in_array($group_id, [1, 2]); // Admin (1) or Manager (2)
+
+            log_message('debug', sprintf(
+                'fetchOrdersData - Store ID: %s, Group ID: %s, Is Privileged: %s',
+                $store_id,
+                $group_id,
+                $is_privileged ? 'Yes' : 'No'
+            ));
+
+            // Build base query
+            $sql = "SELECT o.*,
+                    COALESCE(s.name, 'N/A') as store_name,
+                    COALESCE(u.username, 'Unknown') as clerk_name
+                    FROM orders o
+                    LEFT JOIN stores s ON o.store_id = s.id
+                    LEFT JOIN users u ON o.user_id = u.id";
+
+            // Add store restriction for non-privileged users
+            if (!$is_privileged && $store_id) {
+                $sql .= " WHERE o.store_id = " . $this->db->escape($store_id);
+                log_message('debug', 'Adding store restriction for store_id: ' . $store_id);
+            }
+
+            $sql .= " ORDER BY o.id DESC";
+
+            log_message('debug', 'Executing query: ' . $sql);
+            
+            $query = $this->db->query($sql);
+            
+            if (!$query) {
+                log_message('error', 'Query failed: ' . $this->db->error()['message']);
+                return ['data' => []];
+            }
+
+            $results = $query->result_array();
+            log_message('debug', sprintf('Query returned %d results', count($results)));
+
+            return ['data' => $results];
+
+        } catch (Exception $e) {
+            log_message('error', 'Error in fetchOrdersData: ' . $e->getMessage());
+            return ['data' => []];
+        }
+    }
+
+    public function getStoreStock($store_id, $product_id = null) 
+    {
+        try {
+            $sql = "SELECT 
+                    p.product_id,
+                    pr.name as product_name,
+                    pr.unit,
+                    COALESCE(SUM(p.qty), 0) as total_purchased,
+                    COALESCE(
+                        (SELECT SUM(oi.qty)
+                         FROM orders o
+                         JOIN orders_item oi ON o.id = oi.order_id
+                         WHERE o.store_id = p.store_id 
+                         AND oi.product_id = p.product_id
+                        ), 0
+                    ) as total_sold,
+                    (COALESCE(SUM(p.qty), 0) - COALESCE(
+                        (SELECT SUM(oi.qty)
+                         FROM orders o
+                         JOIN orders_item oi ON o.id = oi.order_id
+                         WHERE o.store_id = p.store_id 
+                         AND oi.product_id = p.product_id
+                        ), 0
+                    )) as current_stock
+                FROM purchases p
+                JOIN products pr ON p.product_id = pr.id
+                WHERE p.store_id = ?";
+
+            if ($product_id) {
+                $sql .= " AND p.product_id = ?";
+            }
+
+            $sql .= " GROUP BY p.product_id, pr.name, pr.unit";
+
+            $query = $this->db->query($sql, $product_id ? [$store_id, $product_id] : [$store_id]);
+            
+            return $product_id ? $query->row_array() : $query->result_array();
+
+        } catch (Exception $e) {
+            log_message('error', 'Error in getStoreStock: ' . $e->getMessage());
+            return null;
+        }
+    } 
+
+    /**
+     * Return order items for a given order id
+     * @param int $order_id
+     * @return array
+     */
+    public function getOrdersItemData($order_id)
+    {
+        if (empty($order_id)) {
+            return [];
+        }
+
+        $sql = "
+            SELECT 
+                oi.*,
+                p.name AS product_name,
+                p.unit AS product_unit
+            FROM orders_item oi
+            LEFT JOIN products p ON oi.product_id = p.id
+            WHERE oi.order_id = ?
+            ORDER BY oi.id ASC
+        ";
+        $query = $this->db->query($sql, [$order_id]);
+        return $query->result_array();
     }
 }
 ?>

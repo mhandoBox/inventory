@@ -1,4 +1,3 @@
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>var $j = jQuery.noConflict(true);</script>
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
@@ -44,7 +43,7 @@
         <div class="box">
          
           <!-- /.box-header -->
-          <form role="form" action="<?php base_url('users/create') ?>" method="post" enctype="multipart/form-data">
+          <form id="addProductForm" role="form" action="<?php echo base_url('Controller_Products/create'); ?>" method="post" enctype="multipart/form-data">
               <div class="box-body">
 
                 <?php echo validation_errors(); ?>
@@ -196,3 +195,50 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+<script>
+$(function(){
+  $('#addProductForm').on('submit', function(e){
+    e.preventDefault();
+    var form = this;
+    var formData = new FormData(form);
+    $.ajax({
+      url: $(form).attr('action'),
+      type: 'POST',
+      data: formData,
+      contentType: false,
+      processData: false,
+      dataType: 'text' // accept text so we can handle HTML or JSON
+    }).done(function(respText){
+      // Try parse JSON; if it fails show server response in console and UI
+      var resp = null;
+      try {
+        resp = JSON.parse(respText);
+      } catch (err) {
+        $('#messages').html(
+          '<div class="alert alert-danger">Server returned non-JSON response. Check console/network tab for details.</div>'
+        );
+        console.log('AJAX response (non-JSON):', respText);
+        return;
+      }
+      if (resp && resp.success) {
+        $('#messages').html('<div class="alert alert-success">'+resp.message+'</div>');
+        // optional: reset form or redirect
+      } else {
+        $('#messages').html('<div class="alert alert-danger">'+(resp.message || 'Error saving product')+'</div>');
+      }
+    }).fail(function(xhr, textStatus, errorThrown){
+      $('#messages').html('<div class="alert alert-danger">Error! AJAX request failed: '+ (xhr.statusText || textStatus) +' (Status: '+xhr.status+')</div>');
+      console.error('AJAX fail', xhr, textStatus, errorThrown);
+    });
+  });
+});
+</script>
+<?php
+// return from Controller_Products/create after processing
+if ($saved) {
+    echo json_encode(['success' => true, 'message' => 'Product added.']);
+} else {
+    echo json_encode(['success' => false, 'message' => 'Save failed.']);
+}
+return;
+?>

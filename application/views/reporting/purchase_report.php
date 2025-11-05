@@ -260,18 +260,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
 </div>
 
-<?php if(ENVIRONMENT === 'development'): ?>
-    <div class="debug-output" style="background:#f8f9fa; padding:15px; margin:15px; border:1px solid #ddd;">
-        <h4>Debug Information</h4>
-        <pre><?php
-            echo "Database Connected: " . ($this->db->conn_id ? 'Yes' : 'No') . "\n";
-            echo "Total Records: " . ($total_purchases ?? 'N/A') . "\n";
-            echo "Applied Filters: " . print_r($filters ?? [], true) . "\n";
-            echo "Report Data: " . print_r($report ?? [], true);
-        ?></pre>
-    </div>
-<?php endif; ?>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>var $j = jQuery.noConflict(true);</script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/b-1.7.0/b-html5-1.7.0/b-print-1.7.0/datatables.min.js"></script>
@@ -314,6 +302,77 @@ $j(document).ready(function() {
     $j('#edit_status').change(function() {
         $j('#amount_paid_group').toggle($j(this).val() === 'Partial');
     });
+
+    // Handle period selection
+    $j('#period').on('change', function() {
+        var period = $j(this).val();
+        var dateFrom = $j('#date_from');
+        var dateTo = $j('#date_to');
+        
+        // Reset dates if period is empty (Custom selected)
+        if (!period) {
+            dateFrom.val('');
+            dateTo.val('');
+            return;
+        }
+
+        var today = new Date();
+        var fromDate = new Date();
+        
+        switch(period) {
+            case 'today':
+                fromDate = today;
+                break;
+                
+            case 'this_week':
+                // Set to Monday of current week
+                fromDate.setDate(today.getDate() - today.getDay() + (today.getDay() === 0 ? -6 : 1));
+                break;
+                
+            case 'this_month':
+                // Set to first day of current month
+                fromDate.setDate(1);
+                break;
+                
+            case 'last_30_days':
+                // Set to 30 days ago
+                fromDate.setDate(today.getDate() - 29);
+                break;
+        }
+
+        // Format dates for input fields (YYYY-MM-DD)
+        dateFrom.val(formatDate(fromDate));
+        dateTo.val(formatDate(today));
+        
+        // Trigger form submission
+        $j('#filterForm').submit();
+    });
+
+    // Helper function to format date as YYYY-MM-DD
+    function formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+
+        return [year, month, day].join('-');
+    }
+
+    // Disable date inputs when period is selected
+    $j('#period').on('change', function() {
+        var isCustom = !$j(this).val();
+        $j('#date_from, #date_to').prop('disabled', !isCustom);
+    });
+
+    // Enable date inputs when custom is selected
+    if (!$j('#period').val()) {
+        $j('#date_from, #date_to').prop('disabled', false);
+    } else {
+        $j('#date_from, #date_to').prop('disabled', true);
+    }
 });
 
 // Edit purchase function

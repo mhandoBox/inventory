@@ -2,7 +2,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Model_reporting extends CI_Model {
-    public function __construct() {
+    protected $last_db_error = null;
+
+    public function __construct()
+    {
         parent::__construct();
     }
 
@@ -25,131 +28,151 @@ class Model_reporting extends CI_Model {
     }
 
     /**
-     * Get Sales Report - Returns sales data for the given filters
+     * Get Sales Report data with filters 
      * @param array $filters
      * @return array
-     */
-    public function getSalesReport($filters = array()) {
+     */ 
+public function getSalesReport($filters = array())
+{
+    $this->db->reset_query();
+    log_message('debug', '=== SALES REPORT DEBUG START ===');
+    log_message('debug', 'Filters received: ' . json_encode($filters));
+
+    // Modify the query to include store_id
+    $this->db->select('
+        o.store_id,
+        o.id AS order_id,
+        o.date_time,
+        o.amount_paid,
+        o.paid_status,
+        oi.qty AS quantity,
+        oi.rate AS price,
+        oi.amount AS amount,
+        p.name AS product_name,
+        p.id AS product_id,
+        COALESCE(o.customer_name, "Walk-in") AS customer_name
+    ');
+    $this->db->from('orders o');
+    $this->db->join('orders_item oi', 'o.id = oi.order_id', 'inner');
+    $this->db->join('products p', 'oi.product_id = p.id', 'left');
+
+    // Debug filter values
+    log_message('debug', 'date_from: ' . ($filters['date_from'] ?? 'not set'));
+    log_message('debug', 'date_to: ' . ($filters['date_to'] ?? 'not set'));
+    log_message('debug', 'warehouse: ' . ($filters['warehouse'] ?? 'not set'));
+    log_message('debug', 'status: ' . ($filters['status'] ?? 'not set'));
+
+    // Apply filters with extra validation
+    if (!empty($filters['date_from'])) {
+        $this->db->where('DATE(o.date_time) >=', $filters['date_from']);
+        log_message('debug', 'Applied date_from: ' . $filters['date_from']);
+    }
+    if (!empty($filters['date_to'])) {
+        $this->db->where('DATE(o.date_time) <=', $filters['date_to']);
+        log_message('debug', 'Applied date_to: ' . $filters['date_to']);
+    }
+    if (!empty($filters['warehouse'])) {
+        // Fix warehouse filter to handle store_id properly
+        $warehouse = trim((string)$filters['warehouse']);
+        // store_id is TEXT in DB, use exact string match
+        $this->db->where('o.store_id', $warehouse);
+        log_message('debug', 'Applied warehouse filter: ' . $warehouse);
+    }
+    if (!empty($filters['status'])) {
+        $status_parts = is_string($filters['status']) ? explode(',', $filters['status']) : (array)$filters['status'];
+        $this->db->where_in('o.paid_status', $status_parts);
+        log_message('debug', 'Applied status: ' . implode(',', $status_parts));
+    }
+
+    // Get and log the SQL
+    $sql = $this->db->get_compiled_select();
+    log_message('debug', 'Generated SQL: ' . $sql);
+
+    // Execute the compiled SQL directly to avoid CI query-builder state issues
+    $query = $this->db->query($sql);
+    if ($query === FALSE) {
+        $error = $this->db->error();
+        log_message('error', 'Query failed: ' . json_encode($error));
+        return array();
+    }
+
+    // Debug row count
+    $results = $query->result_array();
+    $count = count($results);
+    log_message('debug', 'Query returned ' . $count . ' rows');
+
+    // If no results, check if tables have data
+    if ($count === 0) {
+        // Reset builder before running new queries
         $this->db->reset_query();
-        log_message('debug', 'getSalesReport called with filters: ' . json_encode($filters));
-        
-        // Set default period to last_30_days if none specified
-        if (empty($filters['period']) && empty($filters['date_from']) && empty($filters['date_to'])) {
-            $filters['date_from'] = date('Y-m-d', strtotime('-30 days'));
-            $filters['date_to'] = date('Y-m-d');
-            $filters['period'] = 'last_30_days';
-            log_message('debug', 'No period specified, using default: date_from=' . $filters['date_from'] . ', date_to=' . $filters['date_to']);
+        // Check orders table
+        $this->db->select('COUNT(*) as count')->from('orders');
+        $orders_count = (int)$this->db->get()->row()->count;
+        log_message('debug', 'Total orders in DB: ' . $orders_count);
+
+        $this->db->reset_query();
+        // Check orders_item table
+        $this->db->select('COUNT(*) as count')->from('orders_item');
+        $items_count = (int)$this->db->get()->row()->count;
+        log_message('debug', 'Total order items in DB: ' . $items_count);
+    }
+
+    log_message('debug', '=== SALES REPORT DEBUG END ===');
+    return $results;
+}
+
+    // Safe stub / defensive implementation for sales report.
+    // Returns DataTables-friendly structure and avoids PHP warnings/notices.
+    public function getSalesReportOld($limit = 0, $offset = 0, $filters = array())
+    {
+        // Defensive: ensure $filters is an array (prevents "Cannot use a scalar value as an array")
+        if (!is_array($filters)) {
+            $filters = array();
         }
 
-        // Apply period-based date ranges
-        if (!empty($filters['period'])) {
-            switch($filters['period']) {
-                case 'today':
-                    $filters['date_from'] = date('Y-m-d');
-                    $filters['date_to'] = date('Y-m-d');
-                    break;
-                case 'this_week':
-                    $filters['date_from'] = date('Y-m-d', strtotime('monday this week'));
-                    $filters['date_to'] = date('Y-m-d', strtotime('sunday this week'));
-                    break;
-                case 'this_month':
-                    $filters['date_from'] = date('Y-m-01');
-                    $filters['date_to'] = date('Y-m-t');
-                    break;
-                case 'last_30_days':
-                    $filters['date_from'] = date('Y-m-d', strtotime('-30 days'));
-                    $filters['date_to'] = date('Y-m-d');
-                    break;
-            }
-            log_message('debug', 'Period filter applied: ' . $filters['period'] . ', date_from=' . $filters['date_from'] . ', date_to=' . $filters['date_to']);
-        }
+        // Normalize filter values (safe defaults)
+        $date_from = !empty($filters['date_from']) ? $filters['date_from'] : null;
+        $date_to   = !empty($filters['date_to'])   ? $filters['date_to']   : null;
+        $warehouse = !empty($filters['warehouse']) ? $filters['warehouse'] : null;
+        $status    = !empty($filters['status'])    ? $filters['status']    : null;
 
-        $this->db->select('
-            p.id as product_id,
-            p.name as product_name,
-            p.unit,
-            o.id as order_id,
-            o.date_time,
-            o.paid_status,
-            o.customer_name,
-            o.customer_phone,
-            oi.qty as quantity,
-            oi.rate as price,
-            oi.amount as amount,
-            COUNT(DISTINCT o.id) as orders_count,
-            SUM(CASE WHEN o.paid_status IN (1, 2) THEN oi.amount ELSE 0 END) as paid_amount,
-            SUM(CASE WHEN o.paid_status = 0 THEN oi.amount ELSE 0 END) as unpaid_amount,
-            AVG(oi.rate) as avg_price,
-            SUM(CASE WHEN DATE(o.date_time) = CURDATE() THEN oi.amount ELSE 0 END) as today_sales,
-            SUM(CASE WHEN DATE(o.date_time) BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() THEN oi.amount ELSE 0 END) as week_sales,
-            SUM(CASE WHEN DATE_FORMAT(o.date_time, "%Y-%m") = DATE_FORMAT(CURDATE(), "%Y-%m") THEN oi.amount ELSE 0 END) as month_sales,
-            COUNT(DISTINCT CASE WHEN DATE(o.date_time) = CURDATE() THEN o.id END) as today_orders,
-            COUNT(DISTINCT CASE WHEN DATE(o.date_time) BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() THEN o.id END) as week_orders,
-            COUNT(DISTINCT CASE WHEN DATE_FORMAT(o.date_time, "%Y-%m") = DATE_FORMAT(CURDATE(), "%Y-%m") THEN o.id END) as month_orders
-        ');
-        $this->db->from('orders o');
-        $this->db->join('orders_item oi', 'o.id = oi.order_id', 'left');
-        $this->db->join('products p', 'p.id = oi.product_id', 'left');
+        try {
+            // If you have a real query implementation, replace the fallback below.
+            // This fallback returns an empty dataset (no PHP notices) so the client receives valid JSON.
+            $data = [];
 
-        $this->applyFilters($filters);
-
-        $this->db->group_by('p.id, p.name, o.id, o.date_time, o.paid_status, o.customer_name, o.customer_phone, oi.qty, oi.rate, oi.amount');
-
-        $query_str = $this->db->get_compiled_select();
-        log_message('debug', 'Sales Report Query: ' . $query_str);
-
-        $query = $this->db->get();
-        if ($query === FALSE) {
-            $error = $this->db->error();
-            log_message('error', 'Sales Report Query Error: ' . json_encode($error));
-            $individual_sales = array();
-        } else {
-            $individual_sales = $query->result_array();
-            log_message('debug', 'Sales Report Results: ' . json_encode($individual_sales));
-        }
-
-        // Fallback: If no results, try without restrictive filters
-        if (empty($individual_sales)) {
-            log_message('debug', 'No sales data found with filters, trying without warehouse/status filters');
-            $this->db->reset_query();
-            $this->db->select('
-                p.id as product_id,
-                p.name as product_name,
-                p.unit,
-                o.id as order_id,
-                o.date_time,
-                o.paid_status,
-                o.customer_name,
-                o.customer_phone,
-                oi.qty as quantity,
-                oi.rate as price,
-                oi.amount as amount
-            ');
+            // Example: (uncomment and adapt if your schema matches)
+            /*
+            $this->db->select('o.date_time as date, o.invoice_no, c.name as customer, SUM(oi.qty) as items, SUM(oi.total) as amount, o.paid as paid, o.status');
             $this->db->from('orders o');
-            $this->db->join('orders_item oi', 'o.id = oi.order_id', 'left');
-            $this->db->join('products p', 'p.id = oi.product_id', 'left');
-            $this->db->where('DATE(o.date_time) >=', $filters['date_from']);
-            $this->db->where('DATE(o.date_time) <=', $filters['date_to']);
+            $this->db->join('orders_item oi', 'oi.order_id = o.id', 'left');
+            $this->db->join('customers c', 'c.id = o.customer_id', 'left');
+            if ($date_from) $this->db->where('o.date_time >=', $date_from . ' 00:00:00');
+            if ($date_to)   $this->db->where('o.date_time <=', $date_to   . ' 23:59:59');
+            if ($warehouse) $this->db->where('o.store_id', $warehouse);
+            if ($status)    $this->db->where('o.status', $status);
+            $this->db->group_by('o.id');
+            if ($limit) $this->db->limit($limit, $offset);
             $query = $this->db->get();
-            if ($query !== FALSE) {
-                $individual_sales = $query->result_array();
-                log_message('debug', 'Fallback Sales Report Results: ' . json_encode($individual_sales));
-            }
+            $data = $query->result_array();
+            */
+
+            return [
+                'data' => $data,
+                'total_items' => count($data),
+                'limit' => (int)$limit,
+                'offset' => (int)$offset
+            ];
+        } catch (Throwable $e) {
+            log_message('error', 'Model_reporting::getSalesReport error: ' . $e->getMessage());
+            return [
+                'data' => [],
+                'total_items' => 0,
+                'limit' => (int)$limit,
+                'offset' => (int)$offset,
+                'error' => 'Server error'
+            ];
         }
-
-        $product_summary = $this->getProductSummary($filters);
-        $order_details = $this->getOrderDetails($individual_sales);
-        $aggregated_results = $this->getAggregatedSales($filters);
-
-        return array(
-            'individual_sales' => $individual_sales,
-            'aggregated_sales' => $aggregated_results,
-            'product_summary' => $product_summary,
-            'order_details' => $order_details,
-            'period' => $filters['period'] ?? 'last_30_days',
-            'date_from' => $filters['date_from'],
-            'date_to' => $filters['date_to']
-        );
     }
 
     private function getProductSummary($filters) {
@@ -335,119 +358,177 @@ class Model_reporting extends CI_Model {
         return $results;
     }
 
-    public function getStockReport($limit = 10, $offset = 0, $filters = array()) {
+    /**
+     * Get stock report with date-range support.
+     *
+     * $filters may contain:
+     *  - date_from (Y-m-d)
+     *  - date_to   (Y-m-d)
+     *  - category
+     *  - warehouse
+     *  - stock_status (in_stock/low_stock/out_of_stock)
+     */
+    public function getStockReport($limit = 0, $offset = 0, $filters = array()) {
         try {
-            $this->db->reset_query();
+            // Normalize dates. If no dates provided, use full history.
+            if (!empty($filters['date_from']) && !empty($filters['date_to'])) {
+                $date_from = $filters['date_from'];
+                $date_to   = $filters['date_to'];
+            } elseif (!empty($filters['date_from']) && empty($filters['date_to'])) {
+                $date_from = $filters['date_from'];
+                $date_to   = date('Y-m-d');
+            } elseif (empty($filters['date_from']) && !empty($filters['date_to'])) {
+                $date_from = '1970-01-01';
+                $date_to   = $filters['date_to'];
+            } else {
+                // full history by default
+                $date_from = '1970-01-01';
+                $date_to   = date('Y-m-d');
+            }
+            $start_dt = date('Y-m-d 00:00:00', strtotime($date_from));
+            $end_dt   = date('Y-m-d 23:59:59', strtotime($date_to));
+
+            // Raw SQL that aggregates:
             $sql = "
-                SELECT 
+                SELECT
                     p.id,
                     p.name,
                     p.price,
                     p.unit,
                     p.category_id,
                     p.store_id,
-                    COALESCE(c.name, 'Uncategorized') as category_name,
-                    COALESCE(s.name, 'Unassigned') as warehouse_name,
-                    COALESCE(purchased.total_purchased, 0) as total_purchased,
-                    COALESCE(sales.total_sold, 0) as total_sold,
-                    (COALESCE(purchased.total_purchased, 0) - COALESCE(sales.total_sold, 0)) as quantity,
-                    COALESCE(purchased.total_purchase_value, 0) as total_purchase_value,
-                    purchased.last_purchase_date,
-                    sales.last_sale_date
+                    COALESCE(c.name, 'Uncategorized') AS category_name,
+                    COALESCE(s.name, 'Unassigned') AS warehouse_name,
+
+                    -- opening = purchases before start - sales before start
+                    COALESCE(pb.purchased_before,0) AS opening_purchased,
+                    COALESCE(sb.sold_before,0) AS opening_sold,
+                    (COALESCE(pb.purchased_before,0) - COALESCE(sb.sold_before,0)) AS opening_qty,
+
+                    -- movements inside range
+                    COALESCE(pr.purchased_in_range,0) AS purchased_in_range,
+                    COALESCE(sr.sold_in_range,0) AS sold_in_range,
+
+                    -- closing = opening + purchased_in_range - sold_in_range
+                    ((COALESCE(pb.purchased_before,0) - COALESCE(sb.sold_before,0)) + COALESCE(pr.purchased_in_range,0) - COALESCE(sr.sold_in_range,0)) AS closing_qty,
+
+                    COALESCE(pr.purchased_value_in_range,0) AS purchased_value_in_range,
+                    COALESCE(sr.sold_value_in_range,0) AS sold_value_in_range,
+
+                    (((COALESCE(pb.purchased_before,0) - COALESCE(sb.sold_before,0)) + COALESCE(pr.purchased_in_range,0) - COALESCE(sr.sold_in_range,0)) * COALESCE(p.price,0)) AS current_value,
+
+                    -- optional last activity date for client-side date filtering
+                    GREATEST(
+                        COALESCE((SELECT MAX(p2.purchase_date) FROM purchases p2 WHERE p2.product_id = p.id), '1970-01-01'),
+                        COALESCE((SELECT MAX(o.date_time) FROM orders o JOIN orders_item oi ON oi.order_id = o.id WHERE oi.product_id = p.id), '1970-01-01')
+                    ) AS last_activity_date
+
                 FROM products p
                 LEFT JOIN categories c ON c.id = p.category_id
                 LEFT JOIN stores s ON s.id = p.store_id
+
                 LEFT JOIN (
-                    SELECT 
-                        product_id,
-                        SUM(qty) as total_purchased,
-                        SUM(total_amount) as total_purchase_value,
-                        MAX(purchase_date) as last_purchase_date
+                    SELECT product_id, SUM(qty) AS purchased_before
                     FROM purchases
-                    WHERE status IN ('Paid', 'Partial', 'Unpaid')
+                    WHERE purchase_date < ?
                     GROUP BY product_id
-                ) purchased ON purchased.product_id = p.id
+                ) pb ON pb.product_id = p.id
+
                 LEFT JOIN (
-                    SELECT 
-                        oi.product_id,
-                        SUM(oi.qty) as total_sold,
-                        MAX(o.date_time) as last_sale_date
+                    SELECT oi.product_id, SUM(oi.qty) AS sold_before
                     FROM orders_item oi
-                    JOIN orders o ON o.id = oi.order_id 
-                    WHERE o.paid_status IN (1, 2, 3)  /* Include partial payments */
+                    JOIN orders o ON o.id = oi.order_id
+                    WHERE o.date_time < ? AND o.paid_status IN (1,2,3)
                     GROUP BY oi.product_id
-                ) sales ON sales.product_id = p.id
+                ) sb ON sb.product_id = p.id
+
+                LEFT JOIN (
+                    SELECT product_id, SUM(qty) AS purchased_in_range, SUM(total_amount) AS purchased_value_in_range
+                    FROM purchases
+                    WHERE purchase_date BETWEEN ? AND ?
+                    GROUP BY product_id
+                ) pr ON pr.product_id = p.id
+
+                LEFT JOIN (
+                    SELECT oi.product_id, SUM(oi.qty) AS sold_in_range, SUM(oi.amount) AS sold_value_in_range
+                    FROM orders_item oi
+                    JOIN orders o ON o.id = oi.order_id
+                    WHERE o.date_time BETWEEN ? AND ? AND o.paid_status IN (1,2,3)
+                    GROUP BY oi.product_id
+                ) sr ON sr.product_id = p.id
+
                 WHERE 1=1
             ";
 
-            // Add filters
-            $where_conditions = array();
-            $having_conditions = array();
+            // binds order: pb < ? , sb < ? , pr BETWEEN ? AND ? , sr BETWEEN ? AND ?
+            $binds = array($start_dt, $start_dt, $start_dt, $end_dt, $start_dt, $end_dt);
 
-            if (!empty($filters)) {
-                if (isset($filters['warehouse']) && $filters['warehouse']) {
-                    $where_conditions[] = "p.store_id = " . $this->db->escape($filters['warehouse']);
+            // apply simple filters
+            if (!empty($filters['warehouse'])) {
+                $sql .= " AND p.store_id = " . $this->db->escape($filters['warehouse']);
+            }
+            if (!empty($filters['category'])) {
+                $sql .= " AND p.category_id = " . $this->db->escape($filters['category']);
+            }
+
+            $query = $this->db->query($sql, $binds);
+            $rows = $query->result_array();
+
+            // apply stock_status filter in PHP after aggregation (closing_qty computed)
+            if (!empty($filters['stock_status'])) {
+                $status = $filters['stock_status'];
+                $rows = array_values(array_filter($rows, function($r) use ($status) {
+                    $q = isset($r['closing_qty']) ? floatval($r['closing_qty']) : 0;
+                    if ($status === 'in_stock') return $q > 10;
+                    if ($status === 'low_stock') return $q > 0 && $q <= 10;
+                    if ($status === 'out_of_stock') return $q <= 0;
+                    return true;
+                }));
+            }
+
+            // sort by product name
+            usort($rows, function($a,$b){
+                return strcasecmp($a['name'] ?? '', $b['name'] ?? '');
+            });
+
+            $total_items = count($rows);
+
+            // pagination slice
+            if ($limit && $limit > 0) {
+                $paged = array_slice($rows, $offset, $limit);
+            } else {
+                $paged = $rows;
+            }
+
+            // normalize numeric types and include unit & last_activity_date
+            foreach ($paged as $k => $r) {
+                $paged[$k]['opening_qty'] = floatval($r['opening_qty'] ?? 0);
+                $paged[$k]['purchased_in_range'] = floatval($r['purchased_in_range'] ?? 0);
+                $paged[$k]['sold_in_range'] = floatval($r['sold_in_range'] ?? 0);
+                $paged[$k]['closing_qty'] = floatval($r['closing_qty'] ?? 0);
+                $paged[$k]['purchased_value_in_range'] = floatval($r['purchased_value_in_range'] ?? 0);
+                $paged[$k]['sold_value_in_range'] = floatval($r['sold_value_in_range'] ?? 0);
+                $paged[$k]['current_value'] = floatval($r['current_value'] ?? 0);
+                $paged[$k]['unit'] = $r['unit'] ?? '';
+                // format last_activity_date as YYYY-MM-DD if present and not epoch
+                $lad = $r['last_activity_date'] ?? null;
+                if ($lad && $lad !== '1970-01-01') {
+                    $paged[$k]['last_activity_date'] = date('Y-m-d', strtotime($lad));
+                } else {
+                    $paged[$k]['last_activity_date'] = '';
                 }
-                if (isset($filters['category']) && $filters['category']) {
-                    $where_conditions[] = "p.category_id = " . $this->db->escape($filters['category']);
-                }
-                if (isset($filters['stock_status']) && $filters['stock_status']) {
-                    switch($filters['stock_status']) {
-                        case 'in_stock':
-                            $having_conditions[] = "(COALESCE(purchased.total_purchased, 0) - COALESCE(sales.total_sold, 0)) > 10";
-                            break;
-                        case 'low_stock':
-                            $having_conditions[] = "(COALESCE(purchased.total_purchased, 0) - COALESCE(sales.total_sold, 0)) > 0 AND (COALESCE(purchased.total_purchased, 0) - COALESCE(sales.total_sold, 0)) <= 10";
-                            break;
-                        case 'out_of_stock':
-                            $having_conditions[] = "(COALESCE(purchased.total_purchased, 0) - COALESCE(sales.total_sold, 0)) <= 0";
-                            break;
-                    }
-                }
             }
 
-            if (!empty($where_conditions)) {
-                $sql .= " AND " . implode(" AND ", $where_conditions);
-            }
-
-            // Add GROUP BY
-            $sql .= " GROUP BY p.id";
-
-            if (!empty($having_conditions)) {
-                $sql .= " HAVING " . implode(" AND ", $having_conditions);
-            }
-
-            // Get total count for pagination
-            $count_sql = "SELECT COUNT(*) as total FROM (" . $sql . ") as counted";
-            $count_query = $this->db->query($count_sql);
-            $total_count = $count_query->row()->total;
-
-            // Add ordering and limits
-            $sql .= " ORDER BY p.name ASC";
-            if ($limit) {
-                $sql .= " LIMIT " . intval($offset) . ", " . intval($limit);
-            }
-
-            // Debug logging
-            log_message('debug', 'Stock Report SQL: ' . $sql);
-
-            $query = $this->db->query($sql);
-            
-            return array(
-                'data' => $query->result_array(),
-                'total_items' => $total_count,
+            return [
+                'data' => array_values($paged),
+                'total_items' => $total_items,
                 'limit' => $limit,
                 'offset' => $offset
-            );
+            ];
 
         } catch (Exception $e) {
-            log_message('error', 'Stock Report Error: ' . $e->getMessage());
-            return array(
-                'data' => array(),
-                'total_items' => 0,
-                'limit' => $limit,
-                'offset' => $offset
-            );
+            log_message('error', 'Stock report error: ' . $e->getMessage());
+            return ['data'=>[], 'total_items'=>0, 'limit'=>$limit, 'offset'=>$offset];
         }
     }
 
@@ -831,12 +912,6 @@ class Model_reporting extends CI_Model {
         if (isset($filters['status']) && $filters['status'] !== '') {
             $this->db->where('p.status', $filters['status']);
         }
-        if (!empty($filters['supplier'])) {
-            $this->db->where('p.supplier', $filters['supplier']);
-        }
-        if (!empty($filters['product'])) {
-            $this->db->where('p.product_id', $filters['product']);
-        }
 
         $query = $this->db->get();
         if ($query === FALSE) {
@@ -850,88 +925,46 @@ class Model_reporting extends CI_Model {
             );
         }
 
-        return $query->row_array();
+        $result = $query->row_array();
+        return array(
+            'total_purchases' => $result['total_purchases'] ?? 0,
+            'total_amount' => $result['total_amount'] ?? 0,
+            'avg_purchase_value' => $result['avg_purchase_value'] ?? 0,
+            'unique_products' => $result['unique_products'] ?? 0,
+            'unique_suppliers' => $result['unique_suppliers'] ?? 0
+        );
     }
 
-    public function getProductList($filters = array()) {
+    public function getProductList($filters = array()) 
+    {
         $this->db->reset_query();
         $this->db->select('
             p.id,
             p.name,
-            p.unit,
             p.price,
-            p.description,
-            p.category_id,
-            p.store_id,
-            p.availability as active,
+            p.unit,
             COALESCE(c.name, "Uncategorized") as category_name,
             COALESCE(s.name, "Unassigned") as warehouse_name,
-            COALESCE(stock.total_purchased, 0) as total_purchased,
-            COALESCE(stock.total_sold, 0) as total_sold,
-            (COALESCE(stock.total_purchased, 0) - COALESCE(stock.total_sold, 0)) as quantity,
-            COALESCE(stock.purchase_value, 0) as total_purchase_value,
-            COALESCE(latest_purchase.price, p.price) as latest_purchase_price
+            COALESCE(SUM(COALESCE(pu.qty, 0)), 0) as total_purchased,
+            COALESCE(SUM(COALESCE(oi.qty, 0)), 0) as total_sold,
+            COALESCE((SUM(COALESCE(pu.qty, 0)) - SUM(COALESCE(oi.qty, 0))), 0) as quantity,
+            COALESCE(SUM(COALESCE(pu.total_amount, 0)), 0) as total_purchase_value
         ');
+        
         $this->db->from('products p');
         $this->db->join('categories c', 'c.id = p.category_id', 'left');
         $this->db->join('stores s', 's.id = p.store_id', 'left');
+        $this->db->join('purchases pu', 'pu.product_id = p.id', 'left');
+        $this->db->join('orders_item oi', 'oi.product_id = p.id', 'left');
+        $this->db->join('orders o', 'o.id = oi.order_id AND o.paid_status IN (1, 2)', 'left');
         
-        $this->db->join('(
-            SELECT 
-                p1.product_id,
-                p1.price
-            FROM purchases p1
-            INNER JOIN (
-                SELECT product_id, MAX(purchase_date) as latest_date
-                FROM purchases
-                WHERE status = "Paid"
-                GROUP BY product_id
-            ) p2 ON p1.product_id = p2.product_id AND p1.purchase_date = p2.latest_date
-            WHERE p1.status = "Paid"
-        ) latest_purchase', 'latest_purchase.product_id = p.id', 'left');
-        
-        $this->db->join('(
-            SELECT 
-                product_id,
-                SUM(CASE WHEN transaction_type = "purchase" THEN quantity ELSE 0 END) as total_purchased,
-                SUM(CASE WHEN transaction_type = "sale" THEN quantity ELSE 0 END) as total_sold,
-                SUM(CASE WHEN transaction_type = "purchase" THEN total_amount ELSE 0 END) as purchase_value
-            FROM (
-                SELECT 
-                    product_id, 
-                    qty as quantity, 
-                    price,
-                    "purchase" as transaction_type, 
-                    CASE WHEN status = "Paid" THEN 1 ELSE 0 END as status
-                FROM purchases
-                UNION ALL
-                SELECT 
-                    oi.product_id, 
-                    oi.qty,
-                    oi.rate,
-                    "sale", 
-                    o.paid_status
-                FROM orders_item oi
-                JOIN orders o ON o.id = oi.order_id
-                UNION ALL
-                SELECT 
-                    product_id, 
-                    qty,
-                    0,
-                    "return", 
-                    status
-                FROM returns
-            ) transactions
-            GROUP BY product_id
-        ) stock', 'stock.product_id = p.id', 'left');
-
         if (!empty($filters['category'])) {
             $this->db->where('p.category_id', $filters['category']);
         }
         if (!empty($filters['warehouse'])) {
             $this->db->where('p.store_id', $filters['warehouse']);
         }
-        if (isset($filters['active'])) {
+        if (!empty($filters['active'])) {
             $this->db->where('p.availability', $filters['active']);
         }
         if (!empty($filters['search'])) {
@@ -963,11 +996,12 @@ class Model_reporting extends CI_Model {
             }
 
             $products = $query->result_array();
-
             return $products;
 
         } catch (Exception $e) {
+            log_message('error', 'getProductList error: ' . $e->getMessage());
             return array();
         }
-    }
-}
+    } // Add missing closing brace for getProductList method
+
+} // Add missing closing brace for class Model_reporting

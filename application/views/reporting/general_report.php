@@ -61,12 +61,12 @@
                   <span class="info-box-icon"><i class="fa fa-money"></i></span>
                   <div class="info-box-content">
                     <span class="info-box-text">Total Sales Revenue</span>
-                    <span class="info-box-number"><?= number_format($general['total_revenue'] ?? 0, 2) ?></span>
+                    <span class="info-box-number"><?= number_format($general['summary']['total_revenue'] ?? 0, 2) ?></span>
                     <div class="progress">
                       <div class="progress-bar" style="width: 100%"></div>
                     </div>
                     <span class="progress-description">
-                      Orders: <?= number_format($general['total_orders'] ?? 0) ?>
+                      Orders: <?= number_format($general['summary']['total_orders'] ?? 0) ?>
                     </span>
                   </div>
                 </div>
@@ -78,7 +78,7 @@
                   <span class="info-box-icon"><i class="fa fa-shopping-cart"></i></span>
                   <div class="info-box-content">
                     <span class="info-box-text">Total Purchases</span>
-                    <span class="info-box-number"><?= number_format($general['total_purchases'] ?? 0, 2) ?></span>
+                    <span class="info-box-number"><?= number_format($general['summary']['total_purchases'] ?? 0, 2) ?></span>
                     <div class="progress">
                       <div class="progress-bar" style="width: 100%"></div>
                     </div>
@@ -95,12 +95,12 @@
                   <span class="info-box-icon"><i class="fa fa-credit-card"></i></span>
                   <div class="info-box-content">
                     <span class="info-box-text">Total Expenses</span>
-                    <span class="info-box-number"><?= number_format($general['total_expenses'] ?? 0, 2) ?></span>
+                    <span class="info-box-number"><?= number_format($general['summary']['total_expenses'] ?? 0, 2) ?></span>
                     <div class="progress">
                       <div class="progress-bar" style="width: 100%"></div>
                     </div>
                     <span class="progress-description">
-                      <?= number_format($general['expense_ratio'] ?? 0, 2) ?>% of Revenue
+                        <?= number_format($general['summary']['expense_ratio'] ?? 0, 2) ?>% of Revenue
                     </span>
                   </div>
                 </div>
@@ -112,12 +112,12 @@
                   <span class="info-box-icon"><i class="fa fa-line-chart"></i></span>
                   <div class="info-box-content">
                     <span class="info-box-text">Net Profit</span>
-                    <span class="info-box-number"><?= number_format($general['net_profit'] ?? 0, 2) ?></span>
+                    <span class="info-box-number"><?= number_format($general['summary']['net_profit'] ?? 0, 2) ?></span>
                     <div class="progress">
                       <div class="progress-bar" style="width: 100%"></div>
                     </div>
                     <span class="progress-description">
-                      Margin: <?= number_format($general['profit_margin'] ?? 0, 2) ?>%
+                        Margin: <?= number_format($general['summary']['profit_margin'] ?? 0, 2) ?>%
                     </span>
                   </div>
                 </div>
@@ -125,6 +125,14 @@
             </div>
 
             <table id="reportTable" class="table table-bordered table-striped">
+              <?php
+              // Initialize variables
+              $revenue = $general['summary']['total_revenue'] ?? 0;
+              $expenses = $general['summary']['total_expenses'] ?? 0;
+              $operatingExpenses = $general['summary']['operating_expenses'] ?? 0;
+              $grossProfit = $general['summary']['gross_profit'] ?? 0;
+              $netProfit = $general['summary']['net_profit'] ?? 0;
+              ?>
               <thead>
                 <tr>
                   <th>Metric</th>
@@ -137,9 +145,9 @@
                 <!-- Sales Metrics -->
                 <tr>
                   <td>Total Sales Revenue</td>
-                  <td><?= number_format($general['total_revenue'] ?? 0, 2) ?></td>
+                  <td><?= number_format($general['summary']['total_revenue'] ?? 0, 2) ?></td>
                   <td>100%</td>
-                  <td><?= number_format($general['sales_growth'] ?? 0, 2) ?>%</td>
+                  <td><?= number_format($general['summary']['sales_growth'] ?? 0, 2) ?>%</td>
                 </tr>
                 <tr>
                   <td>Number of Sales Orders</td>
@@ -151,8 +159,14 @@
                 <!-- Purchase Metrics -->
                 <tr>
                   <td>Total Purchases</td>
-                  <td><?= number_format($general['total_purchases'] ?? 0, 2) ?></td>
-                  <td><?= $general['total_revenue'] > 0 ? number_format(($general['total_purchases'] / $general['total_revenue']) * 100, 2) . '%' : '0%' ?></td>
+                  <td><?= number_format($general['summary']['total_purchases'] ?? 0, 2) ?></td>
+                  <td>
+                    <?php if (isset($general['summary']['total_revenue']) && $general['summary']['total_revenue'] > 0): ?>
+                      <?= number_format(($general['summary']['total_purchases'] / $general['summary']['total_revenue']) * 100, 2) ?>%
+                    <?php else: ?>
+                      0%
+                    <?php endif; ?>
+                  </td>
                   <td><?= number_format($general['purchases_growth'] ?? 0, 2) ?>%</td>
                 </tr>
                 <tr>
@@ -165,28 +179,28 @@
                 <!-- Expense Metrics -->
                 <tr>
                   <td>Total Expenses</td>
-                  <td><?= number_format($general['total_expenses'] ?? 0, 2) ?></td>
-                  <td><?= $general['total_revenue'] > 0 ? number_format(($general['total_expenses'] / $general['total_revenue']) * 100, 2) . '%' : '0%' ?></td>
+                  <td><?= number_format($expenses, 2) ?></td>
+                  <td><?= $revenue > 0 ? number_format(($expenses / $revenue) * 100, 2) : 0 ?>%</td>
                   <td><?= number_format($general['expenses_growth'] ?? 0, 2) ?>%</td>
                 </tr>
                 <tr>
                   <td>Operating Expenses</td>
-                  <td><?= number_format($general['operating_expenses'] ?? 0, 2) ?></td>
-                  <td><?= $general['total_revenue'] > 0 ? number_format(($general['operating_expenses'] / $general['total_revenue']) * 100, 2) . '%' : '0%' ?></td>
-                  <td><?= number_format($general['opex_growth'] ?? 0, 2) ?>%</td>
+                  <td><?= number_format($operatingExpenses, 2) ?></td>
+                  <td><?= $revenue > 0 ? number_format(($operatingExpenses / $revenue) * 100, 2) : 0 ?>%</td>
+                  <td><?= number_format($general['summary']['opex_growth'] ?? 0, 2) ?>%</td>
                 </tr>
                 
                 <!-- Profitability Metrics -->
                 <tr>
                   <td>Gross Profit</td>
-                  <td><?= number_format($general['gross_profit'] ?? 0, 2) ?></td>
-                  <td><?= $general['total_revenue'] > 0 ? number_format(($general['gross_profit'] / $general['total_revenue']) * 100, 2) . '%' : '0%' ?></td>
+                  <td><?= number_format($grossProfit, 2) ?></td>
+                  <td><?= $revenue > 0 ? number_format(($grossProfit / $revenue) * 100, 2) : 0 ?>%</td>
                   <td><?= number_format($general['gross_profit_growth'] ?? 0, 2) ?>%</td>
                 </tr>
                 <tr>
                   <td>Net Profit</td>
-                  <td><?= number_format($general['net_profit'] ?? 0, 2) ?></td>
-                  <td><?= $general['total_revenue'] > 0 ? number_format(($general['net_profit'] / $general['total_revenue']) * 100, 2) . '%' : '0%' ?></td>
+                  <td><?= number_format($netProfit, 2) ?></td>
+                  <td><?= $revenue > 0 ? number_format(($netProfit / $revenue) * 100, 2) : 0 ?>%</td>
                   <td><?= number_format($general['net_profit_growth'] ?? 0, 2) ?>%</td>
                 </tr>
                 
@@ -341,10 +355,10 @@ $j(document).ready(function() {
       datasets: [{
         label: 'Current Period',
         data: [
-          <?= $general['total_revenue'] ?? 0 ?>,
-          <?= $general['total_purchases'] ?? 0 ?>,
-          <?= $general['total_expenses'] ?? 0 ?>,
-          <?= $general['net_profit'] ?? 0 ?>
+            <?= $general['summary']['total_revenue'] ?? 0 ?>,
+            <?= $general['summary']['total_purchases'] ?? 0 ?>,
+            <?= $general['summary']['total_expenses'] ?? 0 ?>,
+            <?= $general['summary']['net_profit'] ?? 0 ?>
         ],
         backgroundColor: [
           'rgba(75, 192, 192, 0.6)',
@@ -539,4 +553,4 @@ $j(document).ready(function() {
     }
   });
 });
-</script> 
+</script>

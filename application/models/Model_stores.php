@@ -78,4 +78,65 @@ class Model_stores extends CI_Model
 		return $query->num_rows();
 	}
 
+	public function getStoreById($store_id)
+	{
+		if (!$store_id) {
+			return null;
+		}
+
+		$this->db->where('id', $store_id);
+		$query = $this->db->get('stores');
+
+		if ($query === FALSE) {
+			log_message('error', 'Failed to fetch store: ' . $this->db->error()['message']);
+			return null;
+		}
+
+		return $query->row_array();
+	}
+
+	public function getStoreData($store_id)
+	{
+		if (!$store_id) {
+			return null;
+		}
+
+		$this->db->select('
+			stores.*,
+			COALESCE(users.username, "Unassigned") as manager_name,
+			COALESCE(SUM(orders.net_amount), 0) as total_revenue,
+			COALESCE(SUM(orders.paid_amount), 0) as total_paid_amount,
+			COALESCE(SUM(purchases.total_amount), 0) as total_purchases,
+			COUNT(DISTINCT orders.id) as total_orders,
+			COUNT(DISTINCT purchases.id) as total_purchase_orders
+		');
+		$this->db->from('stores');
+		$this->db->join('users', 'users.id = stores.manager_id', 'left');
+		$this->db->join('orders', 'orders.store_id = stores.id', 'left');
+		$this->db->join('purchases', 'purchases.store_id = stores.id', 'left');
+		$this->db->where('stores.id', $store_id);
+		$this->db->where('stores.active', 1);
+		$this->db->group_by('stores.id, stores.name, users.username');
+		
+		$query = $this->db->get();
+
+		if ($query === FALSE) {
+			log_message('error', 'Failed to fetch store data: ' . $this->db->error()['message']);
+			return null;
+		}
+
+		$store_data = $query->row_array();
+
+		// Add calculated fields
+		if ($store_data) {
+			$store_data['total_revenue'] = floatval($store_data['total_revenue']);
+			$store_data['total_paid_amount'] = floatval($store_data['total_paid_amount']);
+			$store_data['total_purchases'] = floatval($store_data['total_purchases']);
+			$store_data['gross_profit'] = $store_data['total_revenue'] - $store_data['total_purchases'];
+			$store_data['payment_ratio'] = $store_data['total_revenue'] > 0 ? 
+				($store_data['total_paid_amount'] / $store_data['total_revenue']) * 100 : 0;
+		}
+
+		return $store_data;
+	}
 }

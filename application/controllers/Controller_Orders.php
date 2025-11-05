@@ -7,40 +7,54 @@ class Controller_Orders extends Admin_Controller
     {
         parent::__construct();
         $this->not_logged_in();
-        $this->data['page_title'] = 'Orders';
+        
+        // Load required models
+        $this->load->model([
+            'model_orders',
+            'model_products',
+            'model_company',
+            'model_users',
+            'model_stores'
+        ]);
 
-        // Load models
-        $this->load->model('model_orders');
-        $this->load->model('model_products');
-        $this->load->model('model_company');
-        $this->load->model('model_users');
-        $this->load->model('model_activity_log');
-        $this->load->model('model_stores');
+        // Ensure store assignment
+        $this->ensureStoreAssignment();
+    }
 
-        // Ensure store_id is set in session
+    private function ensureStoreAssignment()
+    {
         if (!$this->session->userdata('store_id')) {
             $user_id = $this->session->userdata('id');
+            $group_id = $this->session->userdata('group_id');
+            
+            // Skip for admin users
+            if ($group_id == 1) {
+                return;
+            }
+
             if ($user_id) {
-                $this->db->select('store_id');
-                $this->db->from('users');
-                $this->db->where('id', $user_id);
-                $query = $this->db->get();
-                $user = $query->row();
-                if ($user && $user->store_id) {
-                    $this->session->set_userdata('store_id', $user->store_id);
-                    
-                    // Also get store name
-                    $store = $this->model_stores->getStoresData($user->store_id);
+                $user = $this->model_users->getUserData($user_id);
+                if ($user && $user['store_id']) {
+                    // Set store info in session
+                    $store = $this->model_stores->getStoresData($user['store_id']);
                     if ($store) {
-                        $this->session->set_userdata('store_name', $store['name']);
+                        $this->session->set_userdata([
+                            'store_id' => $user['store_id'],
+                            'store_name' => $store['name']
+                        ]);
+                        
+                        log_message('debug', sprintf(
+                            'Store assignment set - ID: %s, Name: %s',
+                            $user['store_id'],
+                            $store['name']
+                        ));
                     }
+                } else {
+                    log_message('error', 'User has no store assignment: ' . $user_id);
+                    redirect('dashboard', 'refresh');
                 }
             }
         }
-        
-        // Debug log for store information
-        log_message('debug', 'Store ID in session: ' . $this->session->userdata('store_id'));
-        log_message('debug', 'Store Name in session: ' . $this->session->userdata('store_name'));
     }
 
     public function index()
@@ -49,434 +63,187 @@ class Controller_Orders extends Admin_Controller
             redirect('dashboard', 'refresh');
         }
 
-        $this->data['page_title'] = 'Orders';
-        $this->data['svg_logo'] = file_get_contents(FCPATH . 'JEMAU-loading-animation-xl.svg');
-
+        $group_id = $this->session->userdata('group_id');
+        $store_id = $this->session->userdata('store_id');
+        
+        $this->data['is_privileged'] = in_array($group_id, [1, 2]); // Admin or Manager
+        $this->data['store_id'] = $store_id;
+        $this->data['store_name'] = $this->session->userdata('store_name');
+        
+        log_message('debug', sprintf(
+            'Index loaded - Store: %s, Is Privileged: %s',
+            $store_id,
+            $this->data['is_privileged'] ? 'Yes' : 'No'
+        ));
+        
         $this->render_template('orders/index', $this->data);
     }
 
     public function fetchOrdersData()
     {
+        if(!in_array('viewOrder', $this->permission)) {
+            $this->output->set_content_type('application/json')
+                         ->set_output(json_encode(['error' => 'Access Denied']));
+            return;
+        }
+
         try {
-            $orders = $this->model_orders->getOrdersData();
+            $data = $this->model_orders->fetchOrdersData();
             
-            // Debug log the orders data
-            log_message('debug', 'Orders data: ' . json_encode($orders));
-            
-            $data = ['data' => $orders];
-            
-            $this->output
-                ->set_content_type('application/json')
-                ->set_output(json_encode($data));
-            
+            if (empty($data['data'])) {
+                log_message('debug', 'No orders found for current user');
+            } else {
+                log_message('debug', sprintf(
+                    'Found %d orders for user',
+                    count($data['data'])
+                ));
+            }
+
+            $this->output->set_content_type('application/json')
+                         ->set_output(json_encode(['data' => $data['data']]));
+                         
         } catch (Exception $e) {
-            log_message('error', 'Error in fetchOrdersData: ' . $e->getMessage());
-            $this->output
-                ->set_content_type('application/json')
-                ->set_status_header(500)
-                ->set_output(json_encode([
-                    'data' => [], 
-                    'error' => 'Server error: ' . $e->getMessage()
-                ]));
+            log_message('error', 'Error fetching orders: ' . $e->getMessage());
+            $this->output->set_content_type('application/json')
+                         ->set_output(json_encode([
+                             'error' => 'Error fetching orders',
+                             'data' => []
+                         ]));
         }
     }
 
     public function create()
     {
-        log_message('debug', 'Entered create() method');
-        log_message('debug', 'User permissions: ' . json_encode($this->permission));
-        
-        // Log all form data received
-        log_message('debug', '=== START FORM DATA ===');
-        log_message('debug', 'POST Data: ' . json_encode($this->input->post(), JSON_PRETTY_PRINT));
-        log_message('debug', 'Raw POST Data: ' . file_get_contents('php://input'));
-        log_message('debug', '=== END FORM DATA ===');
-        
-        if (!in_array('createOrder', $this->permission)) {
-            log_message('debug', 'User does not have createOrder permission');
-            redirect('dashboard', 'refresh');
-        }
+        // if POST -> handle AJAX submission
+        if ($this->input->server('REQUEST_METHOD') === 'POST') {
+            $this->load->model('model_orders');
 
-        $this->form_validation->set_rules('product[]', 'Product name', 'trim|required');
-        $this->form_validation->set_rules('qty[]', 'Quantity', 'trim|required|numeric|greater_than[0]');
-        $this->form_validation->set_rules('customer_name', 'Client name', 'trim|required');
-        $this->form_validation->set_rules('store_id', 'Store', 'trim|required|numeric');
-        $this->form_validation->set_rules('store_id', 'Store', 'trim|required|integer');
+            // get all POST, XSS cleaned
+            $post = $this->input->post(NULL, TRUE);
+            log_message('debug', 'Controller_Orders::create POST: ' . json_encode($post));
 
-        if ($this->form_validation->run() == TRUE) {
-            // Clean and format numeric values
-            $gross_amount = str_replace(',', '', $this->input->post('gross_amount_value'));
-            $gross_amount = ($gross_amount !== null && $gross_amount !== '') ? 
-                            number_format(floatval($gross_amount), 2, '.', '') : 
-                            '0.00';
+            // normalize numeric totals
+            $post['gross_amount_value'] = isset($post['gross_amount_value']) ? $post['gross_amount_value'] : ($post['gross_amount'] ?? 0);
+            $post['net_amount_value']   = isset($post['net_amount_value']) ? $post['net_amount_value'] : ($post['net_amount'] ?? 0);
+            $post['service_charge_value'] = isset($post['service_charge_value']) ? $post['service_charge_value'] : ($post['service_charge'] ?? 0);
+            $post['vat_charge_value'] = isset($post['vat_charge_value']) ? $post['vat_charge_value'] : ($post['vat_charge'] ?? 0);
 
-            // Update the amount_paid calculation
-            $paid_status = intval($this->input->post('paid_status'));
-            $net_amount = floatval(str_replace(',', '', $this->input->post('net_amount_value')));
-            $amount_paid = 0;
+            $post['paid_status'] = isset($post['paid_status']) ? intval($post['paid_status']) : 1;
+            $net = floatval($post['net_amount_value'] ?? 0);
 
-            switch ($paid_status) {
-                case 2: // Paid
-                    $amount_paid = $net_amount;
-                    break;
-                case 3: // Partially Paid
-                    $amount_paid = floatval(str_replace(',', '', $this->input->post('amount_paid')));
-                    $net_amount = floatval(str_replace(',', '', $this->input->post('net_amount_value')));
-
-                    // Debug logging
-                    log_message('debug', '=== Partial Payment Debug ===');
-                    log_message('debug', 'Raw amount_paid: ' . $this->input->post('amount_paid'));
-                    log_message('debug', 'Raw net_amount: ' . $this->input->post('net_amount_value'));
-                    log_message('debug', 'Cleaned amount_paid: ' . $amount_paid);
-                    log_message('debug', 'Cleaned net_amount: ' . $net_amount);
-                    log_message('debug', 'Comparison result: ' . ($amount_paid >= $net_amount ? 'true' : 'false'));
-                    log_message('debug', '========================');
-
-                    if ($amount_paid <= 0) {
-                        if ($this->input->is_ajax_request()) {
-                            echo json_encode([
-                                'success' => false,
-                                'error' => 'Amount paid must be greater than zero'
-                            ]);
-                            return;
-                        }
-                        $this->session->set_flashdata('error', 'Amount paid must be greater than zero');
-                        redirect('Controller_Orders/create', 'refresh');
-                    }
-
-                    // Fix comparison by using strict float comparison
-                    if (bccomp($amount_paid, $net_amount, 2) >= 0) {
-                        if ($this->input->is_ajax_request()) {
-                            echo json_encode([
-                                'success' => false,
-                                'error' => 'Partial payment cannot be greater than or equal to total amount'
-                            ]);
-                            return;
-                        }
-                        $this->session->set_flashdata('error', 'Partial payment cannot be greater than or equal to total amount');
-                        redirect('Controller_Orders/create', 'refresh');
-                    }
-                    break;
-                default: // Not Paid (1)
-                    $amount_paid = 0;
-                    break;
-            }
-
-            // Update the order data array with cleaned numeric values
-            $order_data = array(
-                'bill_no' => 'BILPR-' . strtoupper(substr(md5(uniqid(mt_rand(), true)), 0, 4)),
-                'customer_name' => $this->input->post('customer_name'),
-                'customer_address' => $this->input->post('customer_address') ?? '',
-                'customer_phone' => $this->input->post('customer_phone') ?? '',
-                'date_time' => date('Y-m-d H:i:s'),
-                'gross_amount' => $gross_amount,
-                'service_charge_rate' => floatval(str_replace(',', '', $this->input->post('service_charge_rate') ?? '0')),
-                'service_charge' => floatval(str_replace(',', '', $this->input->post('service_charge_value') ?? '0')),
-                'vat_charge_rate' => floatval(str_replace(',', '', $this->input->post('vat_charge_rate') ?? '0')),
-                'vat_charge' => floatval(str_replace(',', '', $this->input->post('vat_charge_value') ?? '0')),
-                'net_amount' => number_format($net_amount, 2, '.', ''),
-                'discount' => floatval(str_replace(',', '', $this->input->post('discount') ?? '0')),
-                'paid_status' => $paid_status,
-                'amount_paid' => number_format($amount_paid, 2, '.', ''),
-                'user_id' => $this->session->userdata('id'),
-                'store_id' => $this->session->userdata('store_id')
-            );
-
-            // Debug logging
-            log_message('debug', 'Order data after cleaning:');
-            log_message('debug', json_encode($order_data));
-
-            $this->db->trans_start();
-            
-            // Enable query logging
-            $this->db->db_debug = TRUE;
-            $this->db->save_queries = TRUE;
-
-            // Insert order data
-            $create_order = $this->db->insert('orders', $order_data);
-            $order_id = $this->db->insert_id();
-
-            // Get the order insert query
-            $order_query = $this->db->last_query();
-
-            // Prepare order items
-            $products = $this->input->post('product');
-            $qtys = $this->input->post('qty');
-            $rates = $this->input->post('rate');
-            $amounts = $this->input->post('amount_value');
-
-            $order_items = array();
-            foreach ($products as $key => $product_id) {
-                $order_items[] = array(
-                    'order_id' => $order_id,
-                    'product_id' => intval($product_id),
-                    'qty' => intval($qtys[$key]),
-                    'rate' => floatval($rates[$key]),
-                    'amount' => floatval($amounts[$key])
-                );
-            }
-
-            // Insert order items and collect queries
-            $item_queries = [];
-            if (!empty($order_items)) {
-                $this->db->insert_batch('orders_item', $order_items);
-                $item_queries[] = $this->db->last_query();
-            }
-
-            $this->db->trans_complete();
-
-            // If this is an AJAX request
-            if ($this->input->is_ajax_request()) {
-                if ($this->db->trans_status() === TRUE) {
-                    echo json_encode([
-                        'success' => true,
-                        'message' => 'Order created successfully',
-                        'order_id' => $order_id,
-                        'debug' => [
-                            'sql' => [
-                                'order' => $order_query,
-                                'items' => $item_queries
-                            ]
-                        ]
-                    ]);
-                } else {
-                    echo json_encode([
-                        'success' => false,
-                        'error' => 'Database error',
-                        'debug' => [
-                            'sql' => [
-                                'order' => $order_query,
-                                'items' => $item_queries,
-                                'error' => $this->db->error()
-                            ]
-                        ]
-                    ]);
-                }
-                return;
-            }
-
-            // Success response
-            if ($this->db->trans_status() === TRUE) {
-                // Get all executed queries
-                $queries = $this->db->queries;
-                
-                if ($this->input->is_ajax_request()) {
-                    echo json_encode([
-                        'success' => true,
-                        'message' => 'Order created successfully',
-                        'order_id' => $order_id,
-                        'debug' => [
-                            'sql' => $queries // Add queries to response
-                        ]
-                    ]);
-                    return;
-                }
+            // enforce amount_paid rules
+            if ($post['paid_status'] === 2) { // Paid
+                $post['amount_paid'] = $net;
+            } elseif ($post['paid_status'] === 3) { // Partially
+                $post['amount_paid'] = isset($post['amount_paid']) ? floatval($post['amount_paid']) : 0;
+                if ($post['amount_paid'] > $net) $post['amount_paid'] = $net;
             } else {
-                if ($this->input->is_ajax_request()) {
-                    echo json_encode([
-                        'success' => false,
-                        'error' => 'Database error',
-                        'debug' => [
-                            'sql' => $this->db->queries // Add queries even on error
-                        ]
-                    ]);
-                    return;
-                }
+                $post['amount_paid'] = 0;
             }
 
-            $this->session->set_flashdata('success', 'Order created successfully');
-            redirect('Controller_Orders/index', 'refresh');
-        } else {
-            // Validation failed
-            if ($this->input->is_ajax_request()) {
-                echo json_encode([
-                    'success' => false,
-                    'error' => validation_errors()
-                ]);
-                return;
-            }
-            $this->data['page_title'] = 'Add Order';
-            $this->load_form_data();
-        }    
-    }
+            // pass sanitized payload to model
+            $result = $this->model_orders->create($post);
 
-    private function load_form_data()
-    {
-        $company = $this->model_company->getCompanyData(1);
-        $this->data['company_data'] = $company;
-        $this->data['is_vat_enabled'] = ($company['vat_charge_value'] > 0) ? true : false;
-        $this->data['is_service_enabled'] = ($company['service_charge_value'] > 0) ? true : false;
-        
-        // Get user's store information
-        $user_id = $this->session->userdata('id');
-        $this->db->select('s.id as store_id, s.name as store_name');
-        $this->db->from('users u');
-        $this->db->join('stores s', 'u.store_id = s.id');
-        $this->db->where('u.id', $user_id);
-        $query = $this->db->get();
-        $store_data = $query->row_array();
-        
-        log_message('debug', 'Store Query: ' . $this->db->last_query());
-        log_message('debug', 'Store Data: ' . print_r($store_data, true));
-        
-        $this->data['store_data'] = $store_data;
-
-        // Fetch products with calculated stock
-        $this->db->select('p.id, p.name, p.price, 
-            COALESCE(SUM(pur.qty), 0) as total_purchased,
-            COALESCE((SELECT SUM(oi.qty) FROM orders_item oi WHERE oi.product_id = p.id AND oi.order_id > 0), 0) as total_ordered');
-        $this->db->from('products p'); 
-        $this->db->where('p.availability', 1);
-        $this->db->join('purchases pur', 'pur.product_id = p.id', 'left');
-        $this->db->group_by('p.id, p.name, p.price');
-        $query = $this->db->get();
-        
-        log_message('debug', 'load_form_data Query: ' . $this->db->last_query());
-        if ($query === FALSE) {
-            log_message('error', 'load_form_data Database Error: ' . $this->db->error()['message']);
-            // Fallback to basic product data
-            $products_with_stock = array();
-            $products = $this->model_products->getActiveProductData();
-            foreach ($products as $product) {
-                // Calculate stock for fallback
-                $this->db->select_sum('qty', 'total_purchased');
-                $this->db->where('product_id', $product['id']);
-                $purchase_query = $this->db->get('purchases');
-                $total_purchased = $purchase_query->row()->total_purchased ? (int)$purchase_query->row()->total_purchased : 0;
-
-                $this->db->select_sum('qty', 'total_ordered');
-                $this->db->where('product_id', $product['id']);
-                $this->db->where('order_id >', 0);
-                $order_item_query = $this->db->get('orders_item');
-                $total_ordered = $order_item_query->row()->total_ordered ? (int)$order_item_query->row()->total_ordered : 0;
-
-                $stock = max(0, $total_purchased - $total_ordered);
-                log_message('debug', 'load_form_data Fallback - Product ID: ' . $product['id'] . ', Name: ' . $product['name'] . ', Total Purchased: ' . $total_purchased . ', Total Ordered: ' . $total_ordered . ', Stock: ' . $stock);
-
-                if ($stock > 0 && $product['price'] > 0) {
-                    $products_with_stock[] = array(
-                        'id' => $product['id'],
-                        'name' => $product['name'],
-                        'price' => $product['price'],
-                        'qty' => $stock
-                    );
-                }
-            }
-        } else {
-            $products_with_stock = array();
-            foreach ($query->result_array() as $product) {
-                $stock = max(0, (int)$product['total_purchased'] - (int)$product['total_ordered']);
-                log_message('debug', 'load_form_data - Product ID: ' . $product['id'] . ', Name: ' . $product['name'] . ', Total Purchased: ' . $product['total_purchased'] . ', Total Ordered: ' . $product['total_ordered'] . ', Stock: ' . $stock);
-                if ($stock > 0 && $product['price'] > 0) {
-                    $products_with_stock[] = array(
-                        'id' => $product['id'],
-                        'name' => $product['name'],
-                        'price' => $product['price'],
-                        'qty' => $stock
-                    );
-                }
-            }
+            return $this->output
+                        ->set_content_type('application/json')
+                        ->set_output(json_encode($result));
         }
 
-        log_message('debug', 'load_form_data Products with stock: ' . json_encode($products_with_stock));
-        $this->data['products'] = $products_with_stock;
-        
+        // GET -> render form
+        // Ensure models loaded
+        $this->load->model('model_orders');
+        $this->load->model('model_company');
+
+        // Get store and products with stock/price
+        $store_id = $this->session->userdata('store_id');
+        $products = $this->model_orders->getProductsWithStock($store_id);
+
+        // Normalise exactly what the view expects
+        $prepared = [];
+        foreach ($products as $p) {
+            $prepared[] = [
+                'id'            => isset($p['id']) ? (int)$p['id'] : 0,
+                'name'          => $p['name'] ?? '',
+                'price'         => isset($p['price']) ? floatval($p['price']) : 0.00,
+                'current_stock' => isset($p['current_stock']) ? intval($p['current_stock']) : 0,
+                'unit'          => $p['unit'] ?? ''
+            ];
+        }
+
+        log_message('debug', 'Prepared products for create view: ' . json_encode($prepared));
+
+        $this->data['products'] = $prepared;
+        $this->data['store_data'] = [
+            'store_id' => $store_id,
+            'store_name' => $this->session->userdata('store_name')
+        ];
+
+        // Company flags required by the view
+        $company = $this->model_company->getCompanyData(1);
+        $this->data['company_data'] = $company ?: [];
+        $this->data['is_vat_enabled'] = (isset($company['vat_charge_value']) && floatval($company['vat_charge_value']) > 0);
+        $this->data['is_service_enabled'] = (isset($company['service_charge_value']) && floatval($company['service_charge_value']) > 0);
+
+        // Render create view
         $this->render_template('orders/create', $this->data);
     }
 
+     
+
     public function getProductValueById()
     {
-        $product_id = $this->input->post('product_id');
-        log_message('debug', 'Received product_id: ' . var_export($product_id, true));
+        $product_id = (int)$this->input->post('product_id');
+        $store_id = $this->input->post('store_id') ?: $this->session->userdata('store_id');
 
-        if (!$product_id || !is_numeric($product_id)) {
-            log_message('error', 'getProductValueById - Invalid product ID: ' . var_export($product_id, true));
-            echo json_encode(array('error' => 'Invalid product ID'));
-            return;
+        $this->load->model('model_orders');
+
+        if (!$product_id) {
+            return $this->output
+                        ->set_content_type('application/json')
+                        ->set_output(json_encode(['success' => false, 'error' => 'Missing product_id']));
         }
 
-        $product_data = $this->model_products->getProductData($product_id);
-        if (!$product_data || $product_data['availability'] != 1) {
-            log_message('error', 'getProductValueById - Product not found or unavailable: ' . $product_id);
-            echo json_encode(array('error' => 'Product not found or unavailable'));
-            return;
-        }
-
-        $this->db->select_sum('qty', 'total_purchased');
-        $this->db->where('product_id', $product_id);
-        $purchase_query = $this->db->get('purchases');
-        log_message('debug', 'getProductValueById Purchase Query: ' . $this->db->last_query());
-        if ($purchase_query === FALSE) {
-            log_message('error', 'getProductValueById Purchase Error: ' . $this->db->error()['message']);
-            echo json_encode(array('error' => 'Database error: Unable to fetch purchase data'));
-            return;
-        }
-        $total_purchased = $purchase_query->row()->total_purchased ? (int)$purchase_query->row()->total_purchased : 0;
-
-        $this->db->select_sum('qty', 'total_ordered');
-        $this->db->where('product_id', $product_id);
-        $this->db->where('order_id >', 0);
-        $order_item_query = $this->db->get('orders_item');
-        log_message('debug', 'getProductValueById Order Item Query: ' . $this->db->last_query());
-        if ($order_item_query === FALSE) {
-            log_message('error', 'getProductValueById Order Item Error: ' . $this->db->error()['message']);
-            echo json_encode(array('error' => 'Database error: Unable to fetch order item data'));
-            return;
-        }
-        $total_ordered = $order_item_query->row()->total_ordered ? (int)$order_item_query->row()->total_ordered : 0;
-
-        $stock = max(0, $total_purchased - $total_ordered);
-        log_message('debug', 'getProductValueById - Product ID: ' . $product_id . ', Total Purchased: ' . $total_purchased . ', Total Ordered: ' . $total_ordered . ', Stock: ' . $stock);
-
-        $response = array(
-            'id' => $product_data['id'],
-            'name' => $product_data['name'],
-            'price' => $product_data['price'],
-            'qty' => $stock
-        );
-        echo json_encode($response);
-    }
-
-    public function getTableProductRow()
-    {
-        $products = $this->model_products->getActiveProductData();
-        $products_with_stock = array();
-        
-        foreach ($products as $product) {
-            $this->db->select_sum('qty', 'total_purchased');
-            $this->db->where('product_id', $product['id']);
-            $purchase_query = $this->db->get('purchases');
-            log_message('debug', 'getTableProductRow Purchase Query: ' . $this->db->last_query());
-            if ($purchase_query === FALSE) {
-                log_message('error', 'getTableProductRow Purchase Error: ' . $this->db->error()['message']);
-            }
-            $total_purchased = $purchase_query->row()->total_purchased ? (int)$purchase_query->row()->total_purchased : 0;
-
-            $this->db->select_sum('qty', 'total_ordered');
-            $this->db->where('product_id', $product['id']);
-            $this->db->where('order_id >', 0);
-            $order_item_query = $this->db->get('orders_item');
-            log_message('debug', 'getTableProductRow Order Item Query: ' . $this->db->last_query());
-            if ($order_item_query === FALSE) {
-                log_message('error', 'getTableProductRow Order Item Error: ' . $this->db->error()['message']);
-            }
-            $total_ordered = $order_item_query->row()->total_ordered ? (int)$order_item_query->row()->total_ordered : 0;
-
-            $stock = max(0, $total_purchased - $total_ordered);
-            log_message('debug', 'getTableProductRow - Product ID: ' . $product['id'] . ', Name: ' . $product['name'] . ', Total Purchased: ' . $total_purchased . ', Total Ordered: ' . $total_ordered . ', Stock: ' . $stock);
-
-            if ($stock > 0 && $product['price'] > 0) {
-                $products_with_stock[] = array(
-                    'id' => $product['id'],
-                    'name' => $product['name'],
-                    'price' => $product['price'],
-                    'qty' => $stock
-                );
+        // Try to get from getProductsWithStock
+        $products = $this->model_orders->getProductsWithStock($store_id);
+        foreach ($products as $p) {
+            if (isset($p['id']) && intval($p['id']) === $product_id) {
+                $resp = [
+                    'success' => true,
+                    'data' => [
+                        'price' => isset($p['price']) ? floatval($p['price']) : 0,
+                        'current_stock' => isset($p['current_stock']) ? intval($p['current_stock']) : 0
+                    ]
+                ];
+                return $this->output
+                            ->set_content_type('application/json')
+                            ->set_output(json_encode($resp));
             }
         }
 
-        log_message('debug', 'getTableProductRow response: ' . json_encode($products_with_stock));
-        echo json_encode($products_with_stock);
+        // Fallback: read direct product row + compute stock via helpers
+        $prod = $this->db->select('id, price, store_id')->from('products')->where('id', $product_id)->get()->row_array();
+        if (!$prod) {
+            return $this->output
+                        ->set_content_type('application/json')
+                        ->set_output(json_encode(['success' => false, 'error' => 'Product not found']));
+        }
+
+        $price = isset($prod['price']) ? floatval($prod['price']) : 0;
+        $purchased = $this->model_orders->getTotalPurchased($product_id, $store_id);
+        $ordered = $this->model_orders->getTotalOrdered($product_id, $store_id);
+        $stock = max(0, intval($purchased) - intval($ordered));
+
+        $resp = [
+            'success' => true,
+            'data' => [
+                'price' => $price,
+                'current_stock' => $stock
+            ]
+            ];
+
+        return $this->output
+                    ->set_content_type('application/json')
+                    ->set_output(json_encode($resp));
     }
 
     public function update($id)
@@ -1194,7 +961,7 @@ class Controller_Orders extends Admin_Controller
             } else {
                 $html .= '<tr>
                     <td><strong>Total Amount:</strong></td>
-                    <td class="text-right"><strong>'.$company_info['currency'].' '.number_format(floatval($order_data['net_amount']), 2).'</strong></td>
+                    <td class="text-right"><strong>'.$company_info['currency'].' '.number_format(floatval($total), 2).'</strong></td>
                 </tr>
                 <tr>
                     <td colspan="2" class="text-center" style="padding-top: 20px;">
@@ -1402,6 +1169,34 @@ class Controller_Orders extends Admin_Controller
                     'class' => 'status-unpaid'
                 ];
         }
+    }
+
+    public function getAvailableProducts()
+    {
+        $store_id = $this->session->userdata('store_id');
+        $products = $this->model_orders->getProductsWithStock($store_id);
+
+        $results = [];
+        foreach ($products as $product) {
+            $results[] = [
+                'id'    => $product['id'],
+                'name'  => $product['name'],
+                'qty'   => $product['current_stock'], // <-- use current_stock here!
+                'price' => $product['price'],
+            ];
+        }
+        echo json_encode(['results' => $results]);
+    }
+
+    public function debugStock()
+    {
+        // only for dev - remove or protect later
+        $store_id = $this->session->userdata('store_id') ?: $this->input->get('store_id');
+        $this->load->model('model_orders');
+        $products = $this->model_orders->getProductsWithStock($store_id);
+        header('Content-Type: application/json');
+        echo json_encode($products, JSON_PRETTY_PRINT);
+        exit;
     }
 }
 ?>

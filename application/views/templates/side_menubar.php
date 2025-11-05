@@ -59,9 +59,14 @@
               </a>
               <ul class="treeview-menu">
                 <?php if(in_array('updateProduct', $user_permission) || in_array('viewProduct', $user_permission) || in_array('deleteProduct', $user_permission)): ?>
-                  <li id="manageProductNav"><a href="<?php echo base_url('Controller_Products') ?>"><i class="fa fa-circle-o"></i> Manage Products</a></li>
+                    <li id="manageProductNav"><a href="<?php echo base_url('Controller_Products') ?>"><i class="fa fa-circle-o"></i> Manage Products</a></li>
                 <?php endif; ?>
                 <li id="purchasesNav"><a href="<?php echo base_url('Controller_Products/purchases') ?>"><i class="fa fa-circle-o"></i> Purchases</a></li>
+                <li id="stockNav" class="<?php echo (isset($page) && $page == 'stock') ? 'active' : ''; ?>">
+                    <a href="<?php echo base_url('Controller_Products/stock') ?>">
+                        <i class="fa fa-cubes"></i> <span>Stock Levels</span>
+                    </a>
+                </li>
               </ul>
             </li>
           <?php endif; ?>
@@ -79,10 +84,25 @@
                 <?php if(in_array('createOrder', $user_permission)): ?>
                   <li id="addOrderNav"><a href="<?php echo base_url('Controller_Orders/create') ?>"><i class="fa fa-circle-o"></i> Add Order</a></li>
                 <?php endif; ?>
+                
                 <?php if(in_array('updateOrder', $user_permission) || in_array('viewOrder', $user_permission) || in_array('deleteOrder', $user_permission)): ?>
                   <li id="manageOrdersNav"><a href="<?php echo base_url('Controller_Orders') ?>"><i class="fa fa-circle-o"></i> Manage Orders</a></li>
                 <?php endif; ?>
-                <li id="quotationViewNav"><a href="<?php echo base_url('orders/quotation_view') ?>"><i class="fa fa-circle-o"></i> Quotation View</a></li>
+
+                <!-- Add Stock Transfer menu item -->
+                <?php if(in_array('createTransfer', $user_permission) || in_array('viewTransfer', $user_permission)): ?>
+                    <li id="stockTransferNav" class="<?php echo ($page == 'transfers') ? 'active' : ''; ?>">
+                        <a href="<?php echo base_url('Controller_Transfers') ?>">
+                            <i class="fa fa-exchange"></i> Stock Transfer
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <li id="quotationViewNav">
+                  <a href="<?php echo base_url('orders/quotation_view') ?>">
+                    <i class="fa fa-circle-o"></i> Quotation View
+                  </a>
+                </li>
               </ul>
             </li>
           <?php endif; ?>

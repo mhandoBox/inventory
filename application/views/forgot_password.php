@@ -75,7 +75,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href=""><b>NMC Inventory Management System</b></a>
+    <a href=""><b>JEMAU INVESTMENT COMPANY LIMITED</b></a>
   </div>
   <div class="login-box-body">
     <p class="login-box-msg">Enter your email to reset your password</p>

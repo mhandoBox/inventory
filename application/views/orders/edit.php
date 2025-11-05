@@ -513,6 +513,87 @@ function toggleAmountPaidField() {
 $(document).ready(function() {
     toggleAmountPaidField();
 });
+
+<script>
+// paste the same subAmount implementation and bindings here (exactly as in create.php)
+window.subAmount = function() {
+    try {
+        var gross = 0;
+        $('input[name="amount_value[]"]').each(function(){
+            var v = parseFloat($(this).val() || 0) || 0;
+            gross += v;
+        });
+        if (gross === 0) {
+            $('input.amount-input').each(function(){
+                var v = parseFloat($(this).val() || 0) || 0;
+                gross += v;
+            });
+        }
+
+        var sRate = parseFloat($('#service_charge_rate').val() || $('#service_charge_rate').text() || 0) || 0;
+        var vRate = parseFloat($('#vat_charge_rate').val() || $('#vat_charge_rate').text() || 0) || 0;
+
+        var service = parseFloat((gross * sRate / 100) || 0);
+        var vat = parseFloat(((gross + service) * vRate / 100) || 0);
+
+        var discount = parseFloat($('#discount').val() || 0) || 0;
+
+        var net = gross + service + vat - discount;
+        if (!isFinite(net)) net = 0;
+
+        $('#gross_amount').val(gross.toFixed(2));
+        $('#gross_amount_value').val(gross.toFixed(2));
+
+        $('#service_charge').val(service.toFixed(2));
+        $('#service_charge_value').val(service.toFixed(2));
+
+        $('#vat_charge').val(vat.toFixed(2));
+        $('#vat_charge_value').val(vat.toFixed(2));
+
+        $('#net_amount').val(net.toFixed(2));
+        $('#net_amount_value').val(net.toFixed(2));
+
+        var paidStatus = String($('[name="paid_status"]').first().val() || '');
+        if (paidStatus === '2') {
+            $('[name="amount_paid"]').first().val(net.toFixed(2));
+            $('[name="amount_paid"]').val(net.toFixed(2));
+        }
+
+    } catch (e) {
+        console.error('subAmount error', e);
+    }
+};
+
+$(document).ready(function(){
+    subAmount();
+    $(document).off('input.subAmount change.subAmount', 'input.amount-input, input[name="amount_value[]"], input.rate-input, input.qty-input, input.price-input, #discount, input[name="rate_value[]"], input[name="rate[]"]').on('input.subAmount change.subAmount', 'input.amount-input, input[name="amount_value[]"], input.rate-input, input.qty-input, input.price-input, #discount, input[name="rate_value[]"], input[name="rate[]"]', function(){
+        var rid = $(this).closest('tr').attr('id')?.split('_')[1];
+        if (rid) {
+            if (!$('#amount_value_' + rid).length) {
+                var v = $('#amount_' + rid).val() || '0';
+                $(this).closest('tr').append('<input type="hidden" name="amount_value[]" id="amount_value_'+rid+'" value="'+parseFloat(v||0).toFixed(2)+'">');
+            } else {
+                if ($('#amount_' + rid).length) {
+                    $('#amount_value_' + rid).val( (parseFloat($('#amount_' + rid).val()||0) || 0).toFixed(2) );
+                }
+            }
+        }
+        subAmount();
+    });
+    $(document).off('click.subAmount', '#add_row, .btn-danger').on('click.subAmount', '#add_row, .btn-danger', function(){ setTimeout(subAmount, 50); });
+    $(document).off('change.subAmount', 'select[name="product[]"]').on('change.subAmount', 'select[name="product[]"]', function(){
+        var rid = $(this).closest('tr').attr('id')?.split('_')[1];
+        if (rid) {
+            setTimeout(function() {
+                if (!$('#amount_value_' + rid).length) {
+                    var v = $('#amount_' + rid).val() || '0';
+                    $('#product_info_table tbody tr#row_'+rid).append('<input type="hidden" name="amount_value[]" id="amount_value_'+rid+'" value="'+parseFloat(v||0).toFixed(2)+'">');
+                }
+                subAmount();
+            }, 50);
+        }
+    });
+});
 </script>
 
 <script type="text/javascript" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>

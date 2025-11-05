@@ -20,12 +20,25 @@
       box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
       padding: 30px 30px 20px 30px;
     }
-    .login-logo a {
-      color: #2575fc;
-      font-size: 28px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      text-shadow: 1px 1px 2px #eee;
+    .login-logo {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .login-logo svg {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 15px;
+    }
+    
+    .login-logo .company-name {
+        color: #2575fc;
+        font-size: 20px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-shadow: 1px 1px 2px #eee;
+        display: block;
+        margin-top: 10px;
     }
     .login-box-body {
       padding: 0;
@@ -82,7 +95,8 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href=""><b>JEMUA INVESTMENT COMPANY LIMITED</b></a>
+    <?php echo file_get_contents(FCPATH . 'JEMAU-loading-animation-md.svg'); ?>
+    <a href="" class="company-name"><b>JEMAU INVESTMENT COMPANY LIMITED</b></a>
   </div>
   <div class="login-box-body">
     <p class="login-box-msg">Log in to start your session</p>

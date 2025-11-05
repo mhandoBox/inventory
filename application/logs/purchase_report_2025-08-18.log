@@ -1,0 +1,288 @@
+Array
+(
+    [time] => 2025-08-18 06:45:33
+    [filters] => Array
+        (
+            [date_from] => 2025-07-19
+            [date_to] => 2025-08-18
+            [product] => 
+            [status] => 
+            [period] => last_30_days
+        )
+
+    [record_count] => 10
+    [sample] => Array
+        (
+            [id] => 7
+            [product_id] => 20
+            [supplier] => Hamis j Hamis
+            [supplier_no] => 
+            [qty] => 10000
+            [unit] => KG
+            [price] => 520.00
+            [total_amount] => 5200000.00
+            [amount_paid] => 5200000.00
+            [status] => Paid
+            [purchase_date] => 2025-07-30 06:46:00
+            [user_id] => 1
+            [store_id] => 7
+        )
+
+    [report] => Array
+        (
+            [error] => Query failed: {"code":1096,"message":"No tables used"}
+            [report] => Array
+                (
+                )
+
+            [summary] => Array
+                (
+                    [total_purchases] => 0
+                    [total_amount] => 0
+                    [total_paid] => 0
+                    [pending_amount] => 0
+                )
+
+        )
+
+)
+Array
+(
+    [time] => 2025-08-18 06:46:03
+    [filters] => Array
+        (
+            [date_from] => 2025-07-19
+            [date_to] => 2025-08-18
+            [product] => 
+            [status] => 
+            [period] => last_30_days
+        )
+
+    [record_count] => 10
+    [sample] => Array
+        (
+            [id] => 7
+            [product_id] => 20
+            [supplier] => Hamis j Hamis
+            [supplier_no] => 
+            [qty] => 10000
+            [unit] => KG
+            [price] => 520.00
+            [total_amount] => 5200000.00
+            [amount_paid] => 5200000.00
+            [status] => Paid
+            [purchase_date] => 2025-07-30 06:46:00
+            [user_id] => 1
+            [store_id] => 7
+        )
+
+    [report] => Array
+        (
+            [error] => Query failed: {"code":1096,"message":"No tables used"}
+            [report] => Array
+                (
+                )
+
+            [summary] => Array
+                (
+                    [total_purchases] => 0
+                    [total_amount] => 0
+                    [total_paid] => 0
+                    [pending_amount] => 0
+                )
+
+        )
+
+)
+Array
+(
+    [time] => 2025-08-18 12:05:25
+    [filters] => Array
+        (
+            [date_from] => 2025-07-19
+            [date_to] => 2025-08-18
+            [product] => 
+            [status] => 
+            [period] => last_30_days
+        )
+
+    [record_count] => 10
+    [sample] => Array
+        (
+            [id] => 7
+            [product_id] => 20
+            [supplier] => Hamis j Hamis
+            [supplier_no] => 
+            [qty] => 10000
+            [unit] => KG
+            [price] => 520.00
+            [total_amount] => 5200000.00
+            [amount_paid] => 5200000.00
+            [status] => Paid
+            [purchase_date] => 2025-07-30 06:46:00
+            [user_id] => 1
+            [store_id] => 7
+        )
+
+    [report] => Array
+        (
+            [error] => Query failed: {"code":1096,"message":"No tables used"}
+            [report] => Array
+                (
+                )
+
+            [summary] => Array
+                (
+                    [total_purchases] => 0
+                    [total_amount] => 0
+                    [total_paid] => 0
+                    [pending_amount] => 0
+                )
+
+        )
+
+)
+Array
+(
+    [time] => 2025-08-18 12:05:39
+    [filters] => Array
+        (
+            [date_from] => 2025-07-19
+            [date_to] => 2025-08-18
+            [product] => 
+            [status] => 
+            [period] => last_30_days
+        )
+
+    [record_count] => 10
+    [sample] => Array
+        (
+            [id] => 7
+            [product_id] => 20
+            [supplier] => Hamis j Hamis
+            [supplier_no] => 
+            [qty] => 10000
+            [unit] => KG
+            [price] => 520.00
+            [total_amount] => 5200000.00
+            [amount_paid] => 5200000.00
+            [status] => Paid
+            [purchase_date] => 2025-07-30 06:46:00
+            [user_id] => 1
+            [store_id] => 7
+        )
+
+    [report] => Array
+        (
+            [error] => Query failed: {"code":1096,"message":"No tables used"}
+            [report] => Array
+                (
+                )
+
+            [summary] => Array
+                (
+                    [total_purchases] => 0
+                    [total_amount] => 0
+                    [total_paid] => 0
+                    [pending_amount] => 0
+                )
+
+        )
+
+)
+Array
+(
+    [time] => 2025-08-18 12:05:52
+    [filters] => Array
+        (
+            [date_from] => 2025-07-19
+            [date_to] => 2025-08-18
+            [product] => 
+            [status] => 
+            [period] => last_30_days
+        )
+
+    [record_count] => 10
+    [sample] => Array
+        (
+            [id] => 7
+            [product_id] => 20
+            [supplier] => Hamis j Hamis
+            [supplier_no] => 
+            [qty] => 10000
+            [unit] => KG
+            [price] => 520.00
+            [total_amount] => 5200000.00
+            [amount_paid] => 5200000.00
+            [status] => Paid
+            [purchase_date] => 2025-07-30 06:46:00
+            [user_id] => 1
+            [store_id] => 7
+        )
+
+    [report] => Array
+        (
+            [error] => Query failed: {"code":1096,"message":"No tables used"}
+            [report] => Array
+                (
+                )
+
+            [summary] => Array
+                (
+                    [total_purchases] => 0
+                    [total_amount] => 0
+                    [total_paid] => 0
+                    [pending_amount] => 0
+                )
+
+        )
+
+)
+Array
+(
+    [time] => 2025-08-18 12:15:52
+    [filters] => Array
+        (
+            [date_from] => 2025-07-19
+            [date_to] => 2025-08-18
+            [product] => 
+            [status] => 
+            [period] => last_30_days
+        )
+
+    [record_count] => 10
+    [sample] => Array
+        (
+            [id] => 7
+            [product_id] => 20
+            [supplier] => Hamis j Hamis
+            [supplier_no] => 
+            [qty] => 10000
+            [unit] => KG
+            [price] => 520.00
+            [total_amount] => 5200000.00
+            [amount_paid] => 5200000.00
+            [status] => Paid
+            [purchase_date] => 2025-07-30 06:46:00
+            [user_id] => 1
+            [store_id] => 7
+        )
+
+    [report] => Array
+        (
+            [error] => Query failed: {"code":1096,"message":"No tables used"}
+            [report] => Array
+                (
+                )
+
+            [summary] => Array
+                (
+                    [total_purchases] => 0
+                    [total_amount] => 0
+                    [total_paid] => 0
+                    [pending_amount] => 0
+                )
+
+        )
+
+)

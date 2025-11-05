@@ -118,22 +118,38 @@ class Auth extends Admin_Controller
 
 	public function forgot_password()
 	{
-	    $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 
-	    if ($this->form_validation->run() == TRUE) {
-	        $email = $this->input->post('email');
-	        $user_exists = $this->model_auth->check_email($email);
+        if ($this->form_validation->run() == TRUE) {
+            $email = $this->input->post('email');
 
-	        if ($user_exists) {
-	            // Here you would generate a reset token and send an email.
-	            // For demo, just show a success message.
-	            $this->data['success'] = 'A password reset link has been sent to your email address.';
-	        } else {
-	            $this->data['errors'] = 'Email address not found.';
-	        }
-	    }
+            if ($this->model_auth->check_email($email)) {
+                // Generate a secure random password (10 chars)
+                try {
+                    $new_password = substr(str_replace(['/', '+', '='], '', base64_encode(random_bytes(8))), 0, 10);
+                } catch (Exception $e) {
+                    // fallback
+                    $new_password = bin2hex(random_bytes(5));
+                }
 
-	    $this->load->view('forgot_password', $this->data ?? []);
-	}
+                // Hash with bcrypt
+                $new_hash = password_hash($new_password, PASSWORD_BCRYPT);
+
+                // Update DB via model
+                $updated = $this->model_auth->update_password_by_email($email, $new_hash);
+
+                if ($updated) {
+                    // For real app: send $new_password by email. Here we show a message for demo.
+                    $this->data['success'] = 'A new password was generated and saved. For demo, your new password is: ' . $new_password;
+                } else {
+                    $this->data['errors'] = 'Failed to update password. Please contact the administrator.';
+                }
+            } else {
+                $this->data['errors'] = 'Email address not found.';
+            }
+        }
+
+        $this->load->view('forgot_password', $this->data ?? []);
+    }
 
 }

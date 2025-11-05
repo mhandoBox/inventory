@@ -407,8 +407,11 @@ $(document).ready(function() {
   $("#mainProductNav").addClass('active');
 
   manageTable = $('#manageTable').DataTable({
-    dom: 'Bfrtip',
+    dom: 'Blfrtip', // added "l" (length menu) so users can change page size; retains buttons and pagination
     buttons: ['copy', 'csv', 'excel', 'print'],
+    paging: true,
+    pagingType: 'simple_numbers', // clearer pagination controls (Prev / page numbers / Next)
+    lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'All']], // page-size options
     ajax: {
       url: base_url + 'Controller_Products/fetchProductData',
       dataSrc: function(json) {

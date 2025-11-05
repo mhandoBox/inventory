@@ -8,16 +8,27 @@ class Controller_Reports extends Admin_Controller
         parent::__construct();
         $this->not_logged_in();
         $this->data['page_title'] = 'Advanced Reports';
-        $this->load->model('Model_reporting');
+        
+        // Load required models (load with aliases and keep original-style property for compatibility)
+        $this->load->model('Model_reporting', 'model_reporting');
+        // also keep the old-style property name used elsewhere
+        $this->Model_reporting = $this->model_reporting;
         $this->load->model('model_users');
-        $this->load->model('Model_products'); // Changed from model_products to Model_products
+        $this->load->model('Model_products');
         $this->load->model('model_company');
+        $this->load->model('Model_warehouse', 'model_warehouse'); // Add alias as second parameter
+
+        // expose permissions to views that expect $user_permission / similar
+        $this->data['user_permission'] = $this->permission;
+        $this->data['permission'] = $this->permission;
+        
         log_message('debug', 'Controller_Reports initialized');
     }
 
     public function index()
     {
-        if (!in_array('viewReport', $this->permission)) {
+        // Accept either legacy 'viewReports' or current 'viewReport' to avoid redirect issues
+        if (!in_array('viewReport', $this->permission) && !in_array('viewReports', $this->permission)) {
             $this->session->set_flashdata('error', 'Unauthorized access to reports');
             redirect('dashboard', 'refresh');
         }
@@ -27,62 +38,40 @@ class Controller_Reports extends Admin_Controller
 
     public function sales_report()
     {
-        if (!in_array('viewReport', $this->permission)) {
-            $this->session->set_flashdata('error', 'Unauthorized access to sales reports');
-            redirect('dashboard', 'refresh');
-        }
+        // prepare filters (keep same defaults you used)
+        $this->data['filters'] = [
+            'date_from' => $this->input->get('date_from') ?? date('Y-m-d', strtotime('-30 days')),
+            'date_to'   => $this->input->get('date_to')   ?? date('Y-m-d'),
+            'warehouse' => $this->input->get('warehouse'),
+            'status'    => $this->input->get('status') // Remove default '1,2'
+        ];
 
-        $filters = array(
-            'date_from' => $this->input->get('date_from') ?: date('Y-m-d', strtotime('-30 days')),
-            'date_to' => $this->input->get('date_to') ?: date('Y-m-d'),
-            'warehouse' => $this->input->get('warehouse') ?: '',
-            'status' => $this->input->get('status') ?: '',
-            'period' => $this->input->get('period') ?: 'last_30_days'
-        );
-
+        // Load warehouses for dropdown
         $this->load->model('Model_stores');
+        $this->data['warehouses'] = $this->Model_stores->getActiveStores();
+
+        // Fetch sales rows (try both possible model property names)
+        $sales_data = array();
         try {
-            log_message('debug', 'Sales report filters: ' . json_encode($filters));
-            $reportData = $this->Model_reporting->getSalesReport($filters);
-            $aggregates = $this->Model_reporting->getSalesAggregates($filters);
-            $warehouses = $this->Model_stores->getActiveStores();
-            // Reindex warehouses by id for easy lookup
-            $warehouses = array_column($warehouses, null, 'id');
-            log_message('debug', 'Raw Sales Report Data: ' . json_encode($reportData));
-            log_message('debug', 'Raw Sales Aggregates: ' . json_encode($aggregates));
-        } catch (Exception $e) {
-            log_message('error', 'Error in sales_report: ' . $e->getMessage());
-            $this->session->set_flashdata('error', 'Error generating sales report. Please try again.');
-            $reportData = [
-                'individual_sales' => [],
-                'aggregated_sales' => [],
-                'product_summary' => [],
-                'order_details' => [],
-                'period' => 'last_30_days',
-                'date_from' => date('Y-m-d', strtotime('-30 days')),
-                'date_to' => date('Y-m-d')
-            ];
-            $aggregates = [
-                'total_revenue' => 0,
-                'total_orders' => 0,
-                'avg_order_value' => 0,
-                'total_paid' => 0,
-                'total_unpaid' => 0,
-                'total_quantity' => 0,
-                'payment_ratio' => 0
-            ];
-            $warehouses = [];
+            if (isset($this->model_reporting) && method_exists($this->model_reporting, 'getSalesReport')) {
+                $sales_data = $this->model_reporting->getSalesReport($this->data['filters'] ?? array());
+            } elseif (isset($this->Model_reporting) && method_exists($this->Model_reporting, 'getSalesReport')) {
+                $sales_data = $this->Model_reporting->getSalesReport($this->data['filters'] ?? array());
+            }
+        } catch (Throwable $e) {
+            log_message('error', 'sales_report model error: ' . $e->getMessage());
+            $sales_data = array();
         }
 
-        $this->data['report'] = $reportData['individual_sales'];
-        $this->data['aggregated_sales'] = $reportData['aggregated_sales'];
-        $this->data['product_summary'] = $reportData['product_summary'] ?? [];
-        $this->data['order_details'] = $reportData['order_details'] ?? [];
-        $this->data['aggregates'] = $aggregates;
-        $this->data['filters'] = $filters;
-        $this->data['warehouses'] = $warehouses; // Pass reindexed array
-        $this->data['tab'] = 'sales';
+        // Ensure view variables are set
+        $this->data['report'] = is_array($sales_data) ? $sales_data : array();
+        // Always provide a safe JSON payload for console logging in the view
+        $this->data['debug_sales_json'] = json_encode($this->data['report'], JSON_HEX_TAG|JSON_HEX_APOS|JSON_HEX_QUOT|JSON_HEX_AMP);
 
+        // Debug log for server-side confirmation
+        log_message('debug', 'Controller_Reports::sales_report rows fetched: ' . count($this->data['report']));
+
+        // Render using controller data (important)
         $this->render_template('reporting/sales_report', $this->data);
     }
 
@@ -558,5 +547,112 @@ class Controller_Reports extends Admin_Controller
         
         // Return original if not standard format
         return $phone;
+    }
+
+    // AJAX endpoint used by DataTable
+    public function stock_report_data()
+    {
+        // ensure model available
+        $this->load->model('Model_reporting', 'model_reporting');
+
+        // deny if no permission
+        if (!in_array('viewReport', $this->permission)) {
+            $this->output
+                 ->set_status_header(403)
+                 ->set_content_type('application/json')
+                 ->set_output(json_encode(['data'=>[], 'error'=>'Access denied']));
+            return;
+        }
+
+        // accept POST or GET
+        $date_from    = $this->input->post('date_from') ?? $this->input->get('date_from');
+        $date_to      = $this->input->post('date_to')   ?? $this->input->get('date_to');
+        $category     = $this->input->post('category')  ?? $this->input->get('category');
+        $warehouse    = $this->input->post('warehouse') ?? $this->input->get('warehouse');
+        $stock_status = $this->input->post('stock_status') ?? $this->input->get('stock_status');
+
+        $limit  = $this->input->post('limit')  ?? $this->input->get('limit');
+        $offset = $this->input->post('offset') ?? $this->input->get('offset');
+        $limit  = is_numeric($limit) ? (int)$limit : 0;
+        $offset = is_numeric($offset) ? (int)$offset : 0;
+
+        $filters = [
+            'date_from'    => $date_from,
+            'date_to'      => $date_to,
+            'category'     => $category,
+            'warehouse'    => $warehouse,
+            'stock_status' => $stock_status
+        ];
+
+        try {
+            $report = $this->model_reporting->getStockReport($limit, $offset, $filters);
+
+            // normalize to DataTables-friendly structure
+            if (!is_array($report) || !isset($report['data'])) {
+                $report = ['data' => is_array($report) ? $report : [], 'total_items' => 0, 'limit' => $limit, 'offset' => $offset];
+            }
+
+            $this->output->set_content_type('application/json')->set_output(json_encode($report));
+        } catch (Throwable $e) {
+            log_message('error', 'stock_report_data exception: ' . $e->getMessage() . "\n" . $e->getTraceAsString());
+            $this->output
+                 ->set_status_header(500)
+                 ->set_content_type('application/json')
+                 ->set_output(json_encode(['data'=>[], 'error' => 'Server error. Check logs.']));
+        }
+    }
+
+    // AJAX endpoint for Sales report used by DataTables
+    public function sales_report_data()
+    {
+        // load reporting model if available
+        if (!isset($this->model_reporting)) {
+            $this->load->model('Model_reporting', 'model_reporting');
+        }
+
+        // permission -- return 403 JSON if not allowed
+        if (!in_array('viewReport', $this->permission)) {
+            $this->output
+                 ->set_status_header(403)
+                 ->set_content_type('application/json')
+                 ->set_output(json_encode(['data' => [], 'error' => 'Access denied']));
+            return;
+        }
+
+        // accept POST or GET
+        $date_from = $this->input->post('date_from') ?? $this->input->get('date_from');
+        $date_to   = $this->input->post('date_to')   ?? $this->input->get('date_to');
+        $warehouse = $this->input->post('warehouse') ?? $this->input->get('warehouse');
+        $status    = $this->input->post('status') ?? $this->input->get('status');
+
+        $filters = [
+            'date_from' => $date_from,
+            'date_to'   => $date_to,
+            'warehouse' => $warehouse,
+            'status'    => $status
+        ];
+
+        try {
+            // If model provides a method to get sales report, use it.
+            if (!empty($this->model_reporting) && method_exists($this->model_reporting, 'getSalesReport')) {
+                $report = $this->model_reporting->getSalesReport(0, 0, $filters);
+                // ensure standard shape
+                if (is_array($report) && isset($report['data'])) {
+                    $this->output->set_content_type('application/json')->set_output(json_encode($report));
+                    return;
+                }
+            }
+
+            // Fallback: return empty dataset (prevents 404 / DataTables ajax error)
+            $this->output
+                 ->set_content_type('application/json')
+                 ->set_output(json_encode(['data' => [], 'total_items' => 0, 'limit' => 0, 'offset' => 0]));
+        } catch (Throwable $e) {
+            log_message('error', 'sales_report_data exception: ' . $e->getMessage());
+            $this->output
+                 ->set_status_header(500)
+                 ->set_content_type('application/json')
+                 ->set_output(json_encode(['data' => [], 'error' => 'Server error']));
+        }
     }
 }

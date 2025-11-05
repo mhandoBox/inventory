@@ -28,7 +28,15 @@ $(function () {
   });
 
   //bootstrap WYSIHTML5 - text editor
-  $(".textarea").wysihtml5();
+  if (typeof $.fn.wysihtml5 !== 'undefined' && $('.textarea').length) {
+    try {
+      $('.textarea').wysihtml5();
+    } catch (e) {
+      console.warn('WYSIHTML5 initialization failed:', e);
+    }
+  } else {
+    console.debug('WYSIHTML5 plugin or textarea not available - skipping initialization');
+  }
 
   $('.daterange').daterangepicker({
     ranges: {
@@ -216,5 +224,15 @@ $(function () {
       return ele;
     }
   });
+
+  // protect sparkline usage if plugin not present
+  if ($.fn && $.fn.sparkline) {
+      $('.sparkline').each(function () {
+          $(this).sparkline('html', {/* options */});
+      });
+  } else {
+      // sparkline plugin missing — skip to avoid console errors
+      console.warn('jQuery.sparkline not found; skipping sparkline init');
+  }
 
 });

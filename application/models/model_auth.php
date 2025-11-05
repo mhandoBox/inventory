@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class Model_auth extends CI_Model
 {
@@ -106,5 +106,17 @@ class Model_auth extends CI_Model
             log_message('error', 'Database error in login: ' . $e->getMessage());
             return false;
         }
+    }
+
+    /**
+     * Update password hash by email
+     * @param string $email
+     * @param string $hash
+     * @return bool
+     */
+    public function update_password_by_email($email, $hash)
+    {
+        $this->db->where('email', $email);
+        return $this->db->update('users', ['password' => $hash]);
     }
 }

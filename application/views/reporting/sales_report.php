@@ -78,23 +78,29 @@
                                 </div>
                                 <div class="form-group" style="margin-right: 10px;">
                                     <label for="warehouse">Warehouse:</label>
-                                    <select class="form-control input-sm" id="warehouse" name="warehouse" onchange="this.form.submit()">
+                                    <select class="form-control input-sm" id="warehouse" name="warehouse">
                                         <option value="">All Warehouses</option>
-                                        <?php if (!empty($warehouses)): ?>
-                                            <?php foreach ($warehouses as $warehouse): ?>
-                                                <option value="<?php echo htmlspecialchars($warehouse['id']); ?>" <?php echo (isset($filters['warehouse']) && $filters['warehouse'] == $warehouse['id'] ? 'selected' : ''); ?>>
-                                                    <?php echo htmlspecialchars($warehouse['name']); ?>
-                                                </option>
-                                            <?php endforeach; ?>
-                                        <?php endif; ?>
+                                        <?php 
+                                        // Ensure $warehouses is properly populated from controller
+                                        if (!empty($warehouses) && is_array($warehouses)): 
+                                            foreach ($warehouses as $w): 
+                                        ?>
+                                            <option value="<?php echo htmlspecialchars($w['id']); ?>" 
+                                                <?php echo (isset($_GET['warehouse']) && $_GET['warehouse'] == $w['id']) ? 'selected' : ''; ?>>
+                                                <?php echo htmlspecialchars($w['name']); ?>
+                                            </option>
+                                        <?php 
+                                            endforeach; 
+                                        endif; 
+                                        ?>
                                     </select>
                                 </div>
                                 <div class="form-group" style="margin-right: 10px;">
                                     <label for="status">Status:</label>
-                                    <select class="form-control input-sm" id="status" name="status" onchange="this.form.submit()">
+                                    <select class="form-control input-sm" id="status" name="status">
                                         <option value="">All Statuses</option>
-                                        <option value="1,2" <?php echo (isset($filters['status']) && $filters['status'] == '1,2' ? 'selected' : ''); ?>>Paid/Partial</option>
-                                        <option value="0" <?php echo (isset($filters['status']) && $filters['status'] == '0' ? 'selected' : ''); ?>>Unpaid</option>
+                                        <option value="1,2" <?php echo (isset($_GET['status']) && $_GET['status'] == '1,2') ? 'selected' : ''; ?>>Paid/Partial</option>
+                                        <option value="0" <?php echo (isset($_GET['status']) && $_GET['status'] == '0') ? 'selected' : ''; ?>>Unpaid</option>
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-sm">Filter</button>
@@ -155,92 +161,97 @@
                         </div>
 
                         <!-- Unified Sales Table -->
-                        <h4>Sales Data</h4>
-                        <table class="table table-bordered table-striped" id="salesTable">
+                        <h4>Product Sales </h4>
+                        <?php
+                        // Build a single-product aggregation from $report (server-side)
+                        $product_totals = [];
+                        if (!empty($report) && is_array($report)) {
+                            foreach ($report as $r) {
+                                $pname = trim($r['product_name'] ?? ($r['name'] ?? 'Unknown'));
+                                $qty = (int)($r['quantity'] ?? $r['qty'] ?? 0);
+                                $amt = (float)preg_replace('/[^\d\.\-]/', '', ($r['amount'] ?? 0));
+                                // accumulate
+                                if (!isset($product_totals[$pname])) {
+                                    $product_totals[$pname] = ['quantity' => 0, 'total' => 0.0];
+                                }
+                                $product_totals[$pname]['quantity'] += $qty;
+                                $product_totals[$pname]['total'] += $amt;
+                            }
+                        }
+                        // overall totals
+                        $overall_qty = array_sum(array_column($product_totals, 'quantity'));
+                        $overall_total = array_sum(array_column($product_totals, 'total'));
+                        ?>
+
+                        <div style="margin-bottom:8px; font-weight:600;">
+                            Overall Total Sales: <span id="overallTotal"><?php echo number_format($overall_total, 2); ?></span>
+                        </div>
+
+                        <table class="table table-bordered table-striped" id="productSalesTable">
                             <thead>
                                 <tr>
                                     <th>S/N</th>
-                                    <th>Product Name</th>
-                                    <th>Qty</th>
-                                    <th>Price</th>
-                                    <th>Total</th>
-                                    <th>Date</th>
-                                    <?php if (!empty($product_summary)): ?>
-                                        <th>Action</th>
-                                    <?php endif; ?>
+                                    <th>Product</th>
+                                    <th class="text-right">Total Qty</th>
+                                    <th class="text-right">Avg. Price</th>
+                                    <th class="text-right">Total Sales</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php 
-                                $data_source = !empty($product_summary) ? $product_summary : $report;
-                                $grouped_data = []; // Initialize grouped_data as an empty array
-                                if (!empty($data_source)):
-                                    // Group and sum data by product name and date
-                                    foreach ($data_source as $item) {
-                                        $is_product_summary = !empty($product_summary) && isset($item['total_quantity']);
-                                        $key = $item['product_name'] . '|' . date('Y-m-d', strtotime($is_product_summary ? $item['latest_date'] : $item['date_time']));
-                                        if (!isset($grouped_data[$key])) {
-                                            $grouped_data[$key] = [
-                                                'product_name' => $item['product_name'],
-                                                'quantity' => 0,
-                                                'price' => $is_product_summary ? $item['avg_price'] : $item['price'],
-                                                'total' => 0,
-                                                'date' => $is_product_summary ? date('Y-m-d', strtotime($item['latest_date'])) : date('Y-m-d', strtotime($item['date_time']))
-                                            ];
-                                        }
-                                        $grouped_data[$key]['quantity'] += $is_product_summary ? $item['total_quantity'] : $item['quantity'];
-                                        $grouped_data[$key]['total'] += $is_product_summary ? $item['total_amount'] : $item['amount'];
-                                    }
-                                    $index = 0;
-                                    foreach ($grouped_data as $item):
-                                        $index++;
-                                ?>
+                                <?php if (!empty($product_totals)): ?>
+                                    <?php $i = 0; foreach ($product_totals as $pname => $vals): $i++; 
+                                        $avg_price = $vals['quantity'] > 0 ? ($vals['total'] / $vals['quantity']) : 0;
+                                    ?>
+                                        <tr>
+                                            <td class="text-center"><?php echo $i; ?></td>
+                                            <td><?php echo htmlspecialchars($pname); ?></td>
+                                            <td class="text-right"><?php echo number_format($vals['quantity']); ?></td>
+                                            <td class="text-right"><?php echo number_format($avg_price, 2); ?></td>
+                                            <td class="text-right amount-cell"><?php echo number_format($vals['total'], 2); ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
                                     <tr>
-                                        <td class="text-center"><?php echo $index; ?></td>
-                                        <td><?php echo htmlspecialchars($item['product_name']); ?></td>
-                                        <td class="text-right"><?php echo number_format($item['quantity'], 0); ?></td>
-                                        <td class="text-right"><?php echo number_format($item['price'], 2); ?></td>
-                                        <td class="text-right"><?php echo number_format($item['total'], 2); ?></td>
-                                        <td><?php echo $item['date']; ?></td>
-                                        <?php if (!empty($product_summary)): ?>
-                                            <td class="text-center">
-                                                <button type="button" class="btn btn-info btn-xs view-orders" 
-                                                        data-product-id="<?php echo $item['product_id']; ?>"
-                                                        data-product-name="<?php echo htmlspecialchars($item['product_name']); ?>">
-                                                    View
-                                                </button>
-                                            </td>
-                                        <?php endif; ?>
+                                        <td colspan="5" class="text-center">No sales data available. Try resetting filters.</td>
                                     </tr>
-                                <?php 
-                                    endforeach;
-                                else: 
-                                ?>
-                                    <tr>
-                                        <td colspan="<?php echo !empty($product_summary) ? '7' : '6'; ?>" class="text-center">
-                                            No sales data available. Try resetting filters.
-                                        </td>
-                                    </tr>
-                                <?php 
-                                endif; 
-                                ?>
+                                <?php endif; ?>
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th colspan="2">Total</th>
-                                    <th class="text-right"><?php 
-                                        $total_quantity = !empty($grouped_data) ? array_sum(array_column($grouped_data, 'quantity')) : 0;
-                                        echo number_format($total_quantity, 0); 
-                                    ?></th>
+                                    <th colspan="2" class="text-right">TOTAL</th>
+                                    <th class="text-right"><?php echo number_format($overall_qty); ?></th>
                                     <th></th>
-                                    <th class="text-right"><?php 
-                                        $total_revenue = !empty($grouped_data) ? array_sum(array_column($grouped_data, 'total')) : 0;
-                                        echo number_format($total_revenue, 2); 
-                                    ?></th>
-                                    <th colspan="<?php echo !empty($product_summary) ? '1' : '0'; ?>"></th>
+                                    <th class="text-right" id="tfoot-overall-total"><?php echo number_format($overall_total, 2); ?></th>
                                 </tr>
                             </tfoot>
                         </table>
+                        <script type="text/javascript">
+                        (function($){
+                            $(function(){
+                                if (typeof $.fn.DataTable === 'undefined') return;
+                                if (!$.fn.DataTable.isDataTable('#productSalesTable')) {
+                                    $('#productSalesTable').DataTable({
+                                        paging: false,
+                                        info: true,
+                                        searching: true,
+                                        dom: 'Bfrtip',
+                                        buttons: [
+                                            { extend: 'copy', footer: true },
+                                            { extend: 'csv', footer: true },
+                                            { extend: 'excel', footer: true },
+                                            { extend: 'pdf', footer: true },
+                                            { extend: 'print', footer: true }
+                                        ],
+                                        order: [[4, 'desc']],
+                                        columnDefs: [{ targets: 0, orderable: false }]
+                                    });
+                                }
+                                // ensure overall display matches footer
+                                var footerTotal = $('#tfoot-overall-total').text();
+                                $('#overallTotal').text(footerTotal);
+                            });
+                        })(jQuery);
+                        </script>
                     </div>
                 </div>
 
@@ -292,56 +303,6 @@
             </div>
         </div>
 
-        <!-- Metrics Modal -->
-        <div class="modal fade" id="metricsModal" tabindex="-1" role="dialog" aria-labelledby="metricsModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="metricsModalLabel">Sale Details</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th>Order ID:</th>
-                                        <td id="modal-order-id"></td>
-                                    </tr>
-                                    <th>Product:</th>
-                                    <td id="modal-product-name"></td>
-                                    </tr>
-                                    <th>Date:</th>
-                                    <td id="modal-date"></td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="col-md-6">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th>Quantity:</th>
-                                        <td id="modal-quantity"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Rate:</th>
-                                        <td id="modal-rate"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Amount:</th>
-                                        <td id="modal-amount"></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <!-- Core JS Files -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -358,292 +319,87 @@
 
         <script type="text/javascript">
         $(document).ready(function() {
-            console.log('Script execution started');
-
+            // Ensure DataTables is loaded
             if (typeof $.fn.DataTable === 'undefined') {
-                console.error('DataTables is not loaded!');
+                console.error('DataTables plugin not loaded');
                 return;
             }
 
-            // Handle quick filters with auto-submit and page reload
-            $('.quick-filter').click(function(e) {
-                e.preventDefault();
-                var period = $(this).data('period');
-                var today = moment();
-                
-                // Update active state
-                $('.quick-filter').removeClass('active');
-                $(this).addClass('active');
-
-                // Set the period in the hidden input
-                $('#period_input').val(period);
-
-                // Set status to Paid/Partial by default
-                $('#status_input').val('1,2');
-
-                // Set date range based on period
-                switch(period) {
-                    case 'today':
-                        $('input[name="date_from"]').val(today.format('YYYY-MM-DD'));
-                        $('input[name="date_to"]').val(today.format('YYYY-MM-DD'));
-                        break;
-                    case 'this_week':
-                        $('input[name="date_from"]').val(today.startOf('week').format('YYYY-MM-DD'));
-                        $('input[name="date_to"]').val(today.endOf('week').format('YYYY-MM-DD'));
-                        break;
-                    case 'this_month':
-                        $('input[name="date_from"]').val(today.startOf('month').format('YYYY-MM-DD'));
-                        $('input[name="date_to"]').val(today.endOf('month').format('YYYY-MM-DD'));
-                        break;
-                    case 'this_quarter':
-                        $('input[name="date_from"]').val(today.startOf('quarter').format('YYYY-MM-DD'));
-                        $('input[name="date_to"]').val(today.endOf('quarter').format('YYYY-MM-DD'));
-                        break;
-                    case 'last_30_days':
-                        $('input[name="date_from"]').val(today.subtract(30, 'days').format('YYYY-MM-DD'));
-                        $('input[name="date_to"]').val(today.add(30, 'days').format('YYYY-MM-DD'));
-                        break;
-                    default:
-                        $('input[name="date_from"]').val('');
-                        $('input[name="date_to"]').val('');
-                        break;
-                }
-
-                // Reload the page with new filters
-                $('#filterForm').submit();
-            });
-
-            // Get the current period and warehouse from URL
-            var currentPeriod = new URLSearchParams(window.location.search).get('period') || 'last_30_days';
-            var currentWarehouse = new URLSearchParams(window.location.search).get('warehouse') || '';
-
-            // Set active state for quick filter buttons on page load
-            $('.quick-filter').removeClass('active');
-            $('.quick-filter[data-period="' + currentPeriod + '"]').addClass('active');
-
-            console.log('Current Warehouse from URL: ' + currentWarehouse);
-
-            // Initialize DataTable for Sales Data without pagination
             try {
+                // Initialize DataTable with minimal configuration
                 var salesTable = $('#salesTable').DataTable({
-                    "fnPreDrawCallback": function(settings) {
-                        if ($('#salesTable tbody tr').length === 1 && $('#salesTable tbody tr td').hasClass('text-center')) {
-                            console.log('No sales data available in table');
-                        }
-                    },
-                    "columnDefs": [{
-                        "targets": 0,
-                        "orderable": false,
-                        "searchable": false
-                    }],
-                    "lengthMenu": [[-1], ["All"]],
-                    "pageLength": -1,
-                    "paging": false,
+                    processing: true,
+                    paging: false,
+                    info: true,
+                    searching: true,
                     dom: 'Bfrtip',
                     buttons: [
-                        { extend: 'copy', text: 'Copy', className: 'dt-button', exportOptions: { columns: ':not(:last-child)' } },
-                        { extend: 'csv', text: 'CSV', title: 'Sales_Report_<?php echo date('Y-m-d'); ?>', className: 'dt-button', exportOptions: { columns: ':not(:last-child)' } },
-                        { extend: 'excel', text: 'Excel', title: 'Sales_Report_<?php echo date('Y-m-d'); ?>', className: 'dt-button', exportOptions: { columns: ':not(:last-child)' } },
-                        {
-                            extend: 'pdf',
-                            text: 'PDF',
-                            title: 'Sales_Report_<?php echo date('Y-m-d'); ?>',
-                            className: 'dt-button',
-                            exportOptions: { columns: ':not(:last-child)' },
-                            customize: function(doc) {
-                                doc.content.splice(0, 0, {
-                                    text: [
-                                        { text: 'Sales Report\n', style: 'header' },
-                                        { text: 'Generated on: <?php echo date('Y-m-d H:i:s'); ?> EAT\n', style: 'subheader' },
-                                        { text: 'Period: <?php echo isset($filters['date_from']) ? htmlspecialchars($filters['date_from']) : 'N/A'; ?> to <?php echo isset($filters['date_to']) ? htmlspecialchars($filters['date_to']) : 'N/A'; ?>\n', style: 'subheader' },
-                                        { text: 'Warehouse: <?php echo isset($filters['warehouse']) && $filters['warehouse'] ? htmlspecialchars($warehouses[$filters['warehouse']]['name'] ?? 'Unknown') : 'All Warehouses'; ?>\n', style: 'subheader' }
-                                    ],
-                                    margin: [0, 0, 0, 12]
-                                });
-                                doc.styles = { header: { fontSize: 18, bold: true }, subheader: { fontSize: 12, bold: false } };
-                                doc.footer = function(currentPage, pageCount) {
-                                    return { text: 'Generated by System - Page ' + currentPage + ' of ' + pageCount, alignment: 'center', margin: [0, 0, 0, 10] };
-                                };
-                            }
-                        },
-                        {
-                            extend: 'print',
-                            text: 'Print',
-                            title: '',
-                            className: 'dt-button',
-                            exportOptions: { columns: ':not(:last-child)' },
-                            customize: function(win) {
-                                $(win.document.body).prepend(
-                                    '<div class="print-header">' +
-                                    '<h1>Sales Report</h1>' +
-                                    '<p>Generated on: <?php echo date('Y-m-d H:i:s'); ?> EAT</p>' +
-                                    '<p>Period: <?php echo isset($filters['date_from']) ? htmlspecialchars($filters['date_from']) : 'N/A'; ?> to ' +
-                                    '<?php echo isset($filters['date_to']) ? htmlspecialchars($filters['date_to']) : 'N/A'; ?></p>' +
-                                    '<p>Warehouse: <?php echo isset($filters['warehouse']) && $filters['warehouse'] ? htmlspecialchars($warehouses[$filters['warehouse']]['name'] ?? 'Unknown') : 'All Warehouses'; ?></p>' +
-                                    '</div>'
-                                );
-                                $(win.document.body).append(
-                                    '<div class="print-footer">Generated by System - Page 1 of 1</div>'
-                                );
-                                $(win.document.body).find('#salesTable').addClass('compact').css({
-                                    'font-size': '12px',
-                                    'border-collapse': 'collapse',
-                                    'width': '100%'
-                                });
-                                $(win.document.body).find('#salesTable th, #salesTable td').css({
-                                    'border': '1px solid #000',
-                                    'padding': '8px'
-                                });
-                            }
-                        }
+                        { extend: 'copy', footer: true },
+                        { extend: 'csv', footer: true },
+                        { extend: 'excel', footer: true },
+                        { extend: 'pdf', footer: true },
+                        { extend: 'print', footer: true }
                     ],
                     order: [[5, 'desc']],
-                    responsive: true,
+                    columnDefs: [
+                        { 
+                            targets: 0,
+                            orderable: false,
+                            searchable: false
+                        }
+                    ],
                     language: {
+                        emptyTable: "No sales data available. Try resetting filters.",
+                        zeroRecords: "No matching records found",
+                        info: "_START_ to _END_ of _TOTAL_ entries",
                         search: "_INPUT_",
-                        searchPlaceholder: "Search...",
-                        lengthMenu: "Show _MENU_ entries",
-                        info: "Showing _START_ to _END_ of _TOTAL_ entries",
-                        infoEmpty: "Showing 0 to 0 of 0 entries",
-                        infoFiltered: "(filtered from _MAX_ total entries)"
-                    },
-                    initComplete: function() {
-                        console.log('Sales DataTable initialized');
-                        console.log('Warehouse filter value: <?php echo isset($_GET['warehouse']) ? htmlspecialchars($_GET['warehouse']) : 'Not set'; ?>');
+                        searchPlaceholder: "Search..."
                     }
-                });
-            } catch(e) {
-                console.error('DataTable initialization failed:', e);
+                );
+
+                // Log successful initialization
+                console.log('Sales table initialized successfully');
+
+            } catch (error) {
+                console.error('DataTable initialization failed:', error);
+                // Provide visual feedback to user
+                $('#salesTable_wrapper').prepend(
+                    '<div class="alert alert-warning">'+
+                    'Table initialization failed. Please try refreshing the page.'+
+                    '</div>'
+                );
             }
-
-            // Handle View Orders button click
-            $('.view-orders').on('click', function() {
-                var productId = $(this).data('product-id');
-                var productName = $(this).data('product-name');
-                var orderDetails = <?php echo json_encode($order_details ?? []); ?>;
-                var productOrders = orderDetails[productId] || [];
-                
-                var html = '';
-                productOrders.forEach(function(order) {
-                    html += '<tr>' +
-                        '<td>' + order.order_id + '</td>' +
-                        '<td class="text-right">' + parseInt(order.qty).toLocaleString() + '</td>' +
-                        '<td>' + (order.customer_name || 'Walk-in Customer') + '</td>' +
-                        '<td>' + (order.email || '-') + '</td>' +
-                        '<td>' + (order.phone || '-') + '</td>' +
-                        '</tr>';
-                });
-
-                if (html === '') {
-                    html = '<tr><td colspan="5" class="text-center">No orders found for this product</td></tr>';
-                }
-
-                $('#orderDetailsModal .modal-title').text('Orders for ' + productName);
-                $('#orderDetailsBody').html(html);
-                $('#orderDetailsModal').modal('show');
-            });
-
-            // Show sale details modal
-            $(document).on('click', '.view-items', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                console.log('View Items button clicked');
-                
-                var orderId = $(this).data('orderid');
-                var items;
-                try {
-                    items = $(this).data('items') || [];
-                    if (typeof items === 'string') {
-                        items = JSON.parse(items);
-                    }
-                } catch (err) {
-                    console.error('Error parsing data-items for order_id ' + orderId + ': ', err);
-                    items = [];
-                }
-                
-                console.log('Order ID:', orderId, 'Items:', items);
-                
-                $('#modalOrderId').text(orderId || 'N/A');
-                
-                var html = '<div class="table-responsive"><table class="table table-bordered">';
-                html += '<thead><tr><th>Item</th><th>Qty</th><th>Unit Price</th><th>Total</th></tr></thead><tbody>';
-                
-                if (Array.isArray(items) && items.length > 0) {
-                    items.forEach(function(item) {
-                        html += '<tr>';
-                        html += '<td>' + (item.name ? $('<div/>').text(item.name).html() : 'N/A') + '</td>';
-                        html += '<td>' + (item.quantity ? parseFloat(item.quantity).toFixed(2) : '0.00') + '</td>';
-                        html += '<td>' + (item.unit_price ? parseFloat(item.unit_price).toFixed(2) : '0.00') + '</td>';
-                        html += '<td>' + (item.total ? parseFloat(item.total).toFixed(2) : '0.00') + '</td>';
-                        html += '</tr>';
-                    });
-                } else {
-                    html += '<tr><td colspan="4" class="text-center">No items found</td></tr>';
-                }
-                
-                html += '</tbody></table></div>';
-                $('#saleDetailsBody').html(html);
-                $('#saleDetailsModal').modal('show');
-            });
-
-            // Handle View Order button click
-            $('.view-order').on('click', function() {
-                var button = $(this);
-                $('#modal-order-id').text(button.data('order-id'));
-                $('#modal-qty').text(button.data('qty'));
-                $('#modal-customer').text(button.data('customer'));
-                $('#orderModal').modal('show');
-            });
-
-            // Handle View Metrics button click
-            $('.view-metrics').on('click', function() {
-                var button = $(this);
-                $('#modal-order-id').text(button.data('order-id'));
-                $('#modal-product-name').text(button.data('product-name'));
-                $('#modal-quantity').text(button.data('quantity'));
-                $('#modal-rate').text(button.data('rate'));
-                $('#modal-amount').text(button.data('amount'));
-                $('#modal-date').text(button.data('date'));
-                $('#metricsModal').modal('show');
-            });
-
-            // Product details modal
-            $(document).on('click', '.view-details', function() {
-                var productId = $(this).data('product-id');
-                var productName = $(this).data('product-name');
-                var sales = <?php echo json_encode($report); ?>;
-                
-                var productSales = sales.filter(function(sale) {
-                    return sale.product_id === productId;
-                });
-
-                var modalContent = '<div class="table-responsive"><table class="table table-bordered table-striped">' +
-                    '<thead><tr>' +
-                    '<th>Date</th>' +
-                    '<th>Order ID</th>' +
-                    '<th>Quantity</th>' +
-                    '<th>Price</th>' +
-                    '<th>Amount</th>' +
-                    '</tr></thead><tbody>';
-
-                productSales.forEach(function(sale) {
-                    modalContent += '<tr>' +
-                        '<td>' + moment(sale.date_time).format('YYYY-MM-DD') + '</td>' +
-                        '<td>' + sale.order_id + '</td>' +
-                        '<td class="text-right">' + parseFloat(sale.quantity).toFixed(2) + '</td>' +
-                        '<td class="text-right">' + parseFloat(sale.price).toFixed(2) + '</td>' +
-                        '<td class="text-right">' + parseFloat(sale.amount).toFixed(2) + '</td>' +
-                        '</tr>';
-                });
-
-                modalContent += '</tbody></table></div>';
-
-                $('#productDetailsModal .modal-title').text('Sales Details - ' + productName);
-                $('#productDetailsModal .modal-body').html(modalContent);
-                $('#productDetailsModal').modal('show');
-            });
         });
         </script>
+
+        <?php if (!empty($debug_sales_json)): ?>
+<script>
+    try {
+        console.log('DEBUG: all sales rows', <?php echo $debug_sales_json; ?>);
+    } catch (e) {
+        console.error('Failed to output sales debug to console', e);
+    }
+</script>
+<?php endif; ?>
     </section>
+
+    <!-- Product Sales summary moved here so filters (server-side) update it on submit -->
+    <?php
+    $product_totals = [];
+    if (!empty($report) && is_array($report)) {
+        foreach ($report as $r) {
+            $pname = trim($r['product_name'] ?? ($r['name'] ?? 'Unknown'));
+            $qty = (int)($r['quantity'] ?? $r['qty'] ?? 0);
+            $amt = (float)preg_replace('/[^\d\.\-]/', '', ($r['amount'] ?? 0));
+            if (!isset($product_totals[$pname])) {
+                $product_totals[$pname] = ['quantity' => 0, 'total' => 0.0];
+            }
+            $product_totals[$pname]['quantity'] += $qty;
+            $product_totals[$pname]['total'] += $amt;
+        }
+    }
+    $overall_qty = array_sum(array_column($product_totals, 'quantity'));
+    $overall_total = array_sum(array_column($product_totals, 'total'));
+    ?>
+
 </div>

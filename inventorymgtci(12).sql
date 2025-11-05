@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 30, 2025 at 07:51 AM
+-- Generation Time: Aug 18, 2025 at 12:43 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -456,7 +456,7 @@ CREATE TABLE `company` (
 --
 
 INSERT INTO `company` (`id`, `company_name`, `logo`, `image`, `registration`, `tin`, `service_charge_value`, `vat_charge_value`, `address`, `phone`, `country`, `message`, `currency`) VALUES
-(1, 'JEMAU INVESTMENT COMPANY LIMITED', 'a12ba40d9f1e7829852a943e9f94a365.png', '426985ffca26297a562d1355f00130dc.png', 186766911, '186-766-911', '0', '0', 'NMC,Industrial Area, Arusha', '0768100089', 'Tanzania', 'You\'re our priority', 'TZS');
+(1, 'JEMAU INVESTMENT COMPANY LIMITED', 'a12ba40d9f1e7829852a943e9f94a365.png', '426985ffca26297a562d1355f00130dc.png', 186766911, '186-766-911', '0', '0', 'NMC,Industrial Area, Arusha', '0764247076', 'Tanzania', 'Trusted by Farmers', 'TZS');
 
 -- --------------------------------------------------------
 
@@ -591,7 +591,13 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`id`, `bill_no`, `customer_name`, `customer_address`, `customer_phone`, `date_time`, `gross_amount`, `service_charge_rate`, `service_charge`, `vat_charge_rate`, `vat_charge`, `net_amount`, `discount`, `paid_status`, `user_id`, `store_id`, `amount_paid`) VALUES
 (1, 'BILPR-ED74', 'Nasara', 'Sinon', '0674162426', '2025-07-30 03:52:20', '580000', '0', '0', '0', '0', '580000', '0', 2, 1, '7', '0.00'),
-(2, 'BILPR-996C', 'Might', 'sokon 1', '0743991025', '2025-07-30 04:22:38', '580000', '0', '0', '0', '0', '580000', '0', 1, 1, '7', '0.00');
+(2, 'BILPR-996C', 'Might', 'sokon 1', '0743991025', '2025-07-30 04:22:38', '580000', '0', '0', '0', '0', '580000', '0', 1, 1, '7', '0.00'),
+(3, 'BILPR-27CA', 'majaribio', 'nmc', '09876543', '2025-08-05 10:15:02', '580', '0', '0', '0', '0', '580', '0', 2, 1, '7', '0.00'),
+(4, 'BILPR-68EF', 'hdh', 'trgh', '98766', '2025-08-06 10:03:39', '522000', '0', '0', '0', '0', '522000', '0', 3, 1, '7', '0.00'),
+(5, 'BILPR-1A3F', 'ten products', 'sinon', '074388173', '2025-08-07 14:37:34', '109620.00', '0', '0', '0', '0', '109620', '0', 1, 1, '7', '0.00'),
+(6, 'BILPR-F7F6', 'sino', 'gfj', '09876543', '2025-08-08 08:08:07', '580.00', '0', '0', '0', '0', '580', '0', 1, 1, '7', '0.00'),
+(9, 'BILPR-5842', 'partia', '', '098765', '2025-08-10 11:23:07', '0.00', '0', '0', '0', '0', '580000.00', '0', 3, 1, '7', '500000.00'),
+(10, 'BILPR-E474', 'Juma Jux', '', '0987654', '2025-08-12 04:34:02', '0.00', '0', '0', '0', '0', '58000.00', '0', 3, 2, '1', '10000.00');
 
 -- --------------------------------------------------------
 
@@ -614,7 +620,23 @@ CREATE TABLE `orders_item` (
 
 INSERT INTO `orders_item` (`id`, `order_id`, `product_id`, `qty`, `rate`, `amount`) VALUES
 (1, 1, 20, 1000, '580', '580000'),
-(2, 2, 20, 1000, '580', '580000');
+(2, 2, 20, 1000, '580', '580000'),
+(3, 3, 20, 1, '580', '580'),
+(4, 4, 20, 900, '580', '522000'),
+(5, 5, 20, 10, '580', '5800'),
+(6, 5, 20, 11, '580', '6380'),
+(7, 5, 20, 12, '580', '6960'),
+(8, 5, 20, 13, '580', '7540'),
+(9, 5, 20, 14, '580', '8120'),
+(10, 5, 20, 15, '580', '8700'),
+(11, 5, 20, 16, '580', '9280'),
+(12, 5, 20, 17, '580', '9860'),
+(13, 5, 20, 81, '580', '46980'),
+(14, 6, 20, 1, '580', '580'),
+(36, 7, 20, 1, '580', '0'),
+(37, 8, 20, 10, '580', '0'),
+(38, 9, 20, 1000, '580', '0'),
+(39, 10, 20, 100, '580', '0');
 
 -- --------------------------------------------------------
 
@@ -727,7 +749,16 @@ CREATE TABLE `purchases` (
 --
 
 INSERT INTO `purchases` (`id`, `product_id`, `supplier`, `supplier_no`, `qty`, `unit`, `price`, `total_amount`, `amount_paid`, `status`, `purchase_date`, `user_id`, `store_id`) VALUES
-(7, 20, 'Hamis j Hamis', '', 10000, 'KG', '520.00', '5200000.00', '5200000.00', 'Paid', '2025-07-30 06:46:00', 1, NULL);
+(7, 20, 'Hamis j Hamis', '', 10000, 'KG', '520.00', '5200000.00', '5200000.00', 'Paid', '2025-07-30 06:46:00', 1, 7),
+(11, 77, 'keen feeder', '087654354', 2000, 'pcs', '2500.00', '5000000.00', '5000000.00', 'Paid', '2025-08-12 08:08:00', 2, 1),
+(13, 20, 'MIMI', '0743991025', 1000, '', '590.00', '590000.00', '590000.00', 'Paid', '2025-08-13 06:52:07', 1, 7),
+(15, 23, 'MAJARIBIO', '067653434', 2000, 'Kg', '750.00', '1500000.00', '1500000.00', 'Paid', '2025-08-13 06:54:00', 1, 7),
+(17, 20, 'kwadelo', '07432728', 340, 'Kg', '580.00', '197200.00', '100000.00', 'Paid', '2025-08-13 07:10:00', 1, 7),
+(18, 20, 'MALINDI', '2557437289121', 1000, 'Kg', '580.00', '580000.00', '500000.00', 'Paid', '2025-08-13 07:44:00', 1, 7),
+(19, 20, 'kiki', '075363567', 20, 'Kg', '580.00', '11600.00', '10000.00', 'Paid', '2025-08-13 08:21:00', 1, 7),
+(20, 20, 'KFJHFH', '0764647', 100, 'Kg', '580.00', '58000.00', '50000.00', 'Paid', '2025-08-13 08:31:00', 1, 7),
+(22, 68, 'IUYT', '09876', 6, 'Kg', '600.00', '3600.00', '3000.00', 'Paid', '2025-08-13 08:35:00', 1, 7),
+(23, 46, 'DFGHJK', '098765', 100, 'Kg', '2000.00', '200000.00', '100000.00', 'Paid', '2025-08-13 08:37:00', 1, 7);
 
 -- --------------------------------------------------------
 
@@ -806,10 +837,11 @@ CREATE TABLE `stores` (
 --
 
 INSERT INTO `stores` (`id`, `name`, `active`) VALUES
+(1, 'NGULELO B', 1),
 (6, 'MAJENGO', 1),
-(7, 'NMC', 1),
+(7, 'NMC-HQ', 1),
 (8, 'ESSO', 1),
-(9, 'NGULELO', 1);
+(9, 'NGULELO A', 1);
 
 -- --------------------------------------------------------
 
@@ -854,15 +886,18 @@ CREATE TABLE `users` (
   `lastname` varchar(255) NOT NULL,
   `phone` varchar(255) NOT NULL,
   `gender` int(11) NOT NULL,
-  `store_id` int(11) NOT NULL
+  `store_id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL DEFAULT '3'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `email`, `firstname`, `lastname`, `phone`, `gender`, `store_id`) VALUES
-(1, 'admin', '$2y$10$7rLSvRVyTQORapkDOqmkhetjF6H9lJHngr4hJMSM2lHObJbW5EQh6', 'admin@gmail.com', 'Liam', 'Moore', '7777777777', 1, 7);
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `firstname`, `lastname`, `phone`, `gender`, `store_id`, `group_id`) VALUES
+(1, 'admin', '$2y$10$7rLSvRVyTQORapkDOqmkhetjF6H9lJHngr4hJMSM2lHObJbW5EQh6', 'mhandoezekiel@gmail.com', 'Ezekiel', 'Mhando', '0743991025', 1, 7, 1),
+(2, 'ruth', '$2y$10$aIpYT4ihld5T.QxVT/TG8uryQExaN4zcxHDAx1V4f2U.EdhCZ5mJy', 'ruth@gmail.com', 'ruth', 'ruth', '09876543', 2, 1, 3),
+(3, 'manager', '$2y$10$7rLSvRVyTQORapkDOqmkhetjF6H9lJHngr4hJMSM2lHObJbW5EQh6', 'manager@example.com', 'Manager', 'User', '123456789', 1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -887,7 +922,8 @@ INSERT INTO `user_group` (`id`, `user_id`, `group_id`) VALUES
 (9, 8, 4),
 (10, 9, 5),
 (11, 10, 5),
-(12, 11, 5);
+(12, 11, 5),
+(13, 2, 3);
 
 --
 -- Indexes for dumped tables
@@ -1004,31 +1040,31 @@ ALTER TABLE `company_expenses`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `orders_item`
 --
 ALTER TABLE `orders_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `purchases`
 --
 ALTER TABLE `purchases`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user_group`
 --
 ALTER TABLE `user_group`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
