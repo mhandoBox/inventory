@@ -4013,3 +4013,104 @@ INFO - 2025-11-05 20:06:52 --> Model Class Initialized
 DEBUG - 2025-11-05 20:06:52 --> Controller_Reports initialized
 INFO - 2025-11-05 20:06:52 --> Final output sent to browser
 DEBUG - 2025-11-05 20:06:52 --> Total execution time: 0.1973
+INFO - 2025-11-05 20:11:39 --> Config Class Initialized
+INFO - 2025-11-05 20:11:39 --> Hooks Class Initialized
+DEBUG - 2025-11-05 20:11:39 --> UTF-8 Support Enabled
+INFO - 2025-11-05 20:11:39 --> Utf8 Class Initialized
+INFO - 2025-11-05 20:11:39 --> URI Class Initialized
+INFO - 2025-11-05 20:11:39 --> Router Class Initialized
+INFO - 2025-11-05 20:11:39 --> Output Class Initialized
+INFO - 2025-11-05 20:11:39 --> Security Class Initialized
+DEBUG - 2025-11-05 20:11:39 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-05 20:11:39 --> Input Class Initialized
+INFO - 2025-11-05 20:11:39 --> Language Class Initialized
+INFO - 2025-11-05 20:11:39 --> Loader Class Initialized
+INFO - 2025-11-05 20:11:39 --> Helper loaded: url_helper
+INFO - 2025-11-05 20:11:39 --> Helper loaded: form_helper
+INFO - 2025-11-05 20:11:39 --> Database Driver Class Initialized
+DEBUG - 2025-11-05 20:11:39 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-05 20:11:39 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-05 20:11:39 --> Form Validation Class Initialized
+INFO - 2025-11-05 20:11:39 --> Controller Class Initialized
+DEBUG - 2025-11-05 20:11:39 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-05 20:11:39 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-05 20:11:39 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-05 20:11:39 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-05 20:11:39 --> Model Class Initialized
+INFO - 2025-11-05 20:11:39 --> Model Class Initialized
+INFO - 2025-11-05 20:11:39 --> Model Class Initialized
+INFO - 2025-11-05 20:11:39 --> Model Class Initialized
+INFO - 2025-11-05 20:11:39 --> Model Class Initialized
+INFO - 2025-11-05 20:11:39 --> Model Class Initialized
+DEBUG - 2025-11-05 20:11:39 --> Controller_Reports initialized
+INFO - 2025-11-05 20:11:39 --> Model Class Initialized
+INFO - 2025-11-05 20:11:39 --> Model Class Initialized
+DEBUG - 2025-11-05 20:11:39 --> === Stock Report Debug ===
+DEBUG - 2025-11-05 20:11:39 --> Filters being applied: {"category":null,"warehouse":null,"stock_status":null,"limit":10,"offset":0}
+DEBUG - 2025-11-05 20:11:39 --> Calling getStockReport with params: {"limit":10,"offset":0,"filters":{"category":null,"warehouse":null,"stock_status":null,"limit":10,"offset":0}}
+ERROR - 2025-11-05 20:11:39 --> Query error: Invalid use of group function - Invalid query: SELECT COUNT(DISTINCT p.id) as total_items, COALESCE(SUM(
+                    CASE 
+                        WHEN (COALESCE(SUM(pu.qty), 0) - COALESCE(SUM(oi.qty), 0)) > 0 
+                        THEN (COALESCE(SUM(pu.qty), 0) - COALESCE(SUM(oi.qty), 0)) * COALESCE(MAX(pu.price), p.price)
+                        ELSE 0 
+                    END
+                ), 0) as total_value, COALESCE(SUM(COALESCE(pu.total_amount, 0)), 0) as total_purchase_value, COUNT(DISTINCT CASE 
+                    WHEN (COALESCE(SUM(pu.qty), 0) - COALESCE(SUM(oi.qty), 0)) > 0 
+                    AND (COALESCE(SUM(pu.qty), 0) - COALESCE(SUM(oi.qty), 0)) <= 10 
+                    THEN p.id 
+                END) as low_stock_items, COUNT(DISTINCT CASE 
+                    WHEN (COALESCE(SUM(pu.qty), 0) - COALESCE(SUM(oi.qty), 0)) <= 0 
+                    THEN p.id 
+                END) as out_of_stock_items
+FROM `products` `p`
+LEFT JOIN `purchases` `pu` ON `pu`.`product_id` = `p`.`id`
+LEFT JOIN `orders_item` `oi` ON `oi`.`product_id` = `p`.`id`
+LEFT JOIN `orders` `o` ON `o`.`id` = `oi`.`order_id` AND `o`.`paid_status` IN (1, 2)
+GROUP BY `p`.`id`, `p`.`price`
+DEBUG - 2025-11-05 20:11:39 --> Report data retrieved: {"has_data":true,"record_count":10,"total_items":59,"aggregates":{"total_items":0,"total_value":0,"total_purchase_value":0,"low_stock_items":0,"out_of_stock_items":0}}
+DEBUG - 2025-11-05 20:11:39 --> Data being sent to view: {"stock_count":10,"aggregate_keys":["total_items","total_value","total_purchase_value","low_stock_items","out_of_stock_items"]}
+INFO - 2025-11-05 20:11:39 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-05 20:11:39 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-05 20:11:39 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-05 20:11:39 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\reporting/stock_report.php
+INFO - 2025-11-05 20:11:39 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-05 20:11:39 --> Final output sent to browser
+DEBUG - 2025-11-05 20:11:39 --> Total execution time: 0.6229
+INFO - 2025-11-05 20:11:40 --> Config Class Initialized
+INFO - 2025-11-05 20:11:40 --> Hooks Class Initialized
+DEBUG - 2025-11-05 20:11:40 --> UTF-8 Support Enabled
+INFO - 2025-11-05 20:11:40 --> Utf8 Class Initialized
+INFO - 2025-11-05 20:11:40 --> URI Class Initialized
+INFO - 2025-11-05 20:11:40 --> Router Class Initialized
+INFO - 2025-11-05 20:11:40 --> Output Class Initialized
+INFO - 2025-11-05 20:11:40 --> Security Class Initialized
+DEBUG - 2025-11-05 20:11:40 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-05 20:11:40 --> Input Class Initialized
+INFO - 2025-11-05 20:11:40 --> Language Class Initialized
+INFO - 2025-11-05 20:11:40 --> Loader Class Initialized
+INFO - 2025-11-05 20:11:40 --> Helper loaded: url_helper
+INFO - 2025-11-05 20:11:40 --> Helper loaded: form_helper
+INFO - 2025-11-05 20:11:40 --> Database Driver Class Initialized
+DEBUG - 2025-11-05 20:11:40 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-05 20:11:40 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-05 20:11:40 --> Form Validation Class Initialized
+INFO - 2025-11-05 20:11:40 --> Controller Class Initialized
+DEBUG - 2025-11-05 20:11:40 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-05 20:11:40 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-05 20:11:40 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-05 20:11:40 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-05 20:11:40 --> Model Class Initialized
+INFO - 2025-11-05 20:11:40 --> Model Class Initialized
+INFO - 2025-11-05 20:11:40 --> Model Class Initialized
+INFO - 2025-11-05 20:11:40 --> Model Class Initialized
+INFO - 2025-11-05 20:11:40 --> Model Class Initialized
+INFO - 2025-11-05 20:11:40 --> Model Class Initialized
+DEBUG - 2025-11-05 20:11:40 --> Controller_Reports initialized
+INFO - 2025-11-05 20:11:40 --> Final output sent to browser
+DEBUG - 2025-11-05 20:11:40 --> Total execution time: 0.2135

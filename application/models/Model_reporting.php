@@ -13,18 +13,18 @@ class Model_reporting extends CI_Model {
      * Get the earliest order date for default filtering
      * @return string
      */
-    private function getEarliestOrderDate() {
-        $this->db->select('MIN(date_time) as earliest_date');
+    public function getEarliestOrderDate()
+    {
+        $this->db->select_min('date_time', 'earliest_date');
         $this->db->from('orders');
         $query = $this->db->get();
-        if ($query === FALSE) {
-            log_message('error', 'Failed to fetch earliest order date: ' . json_encode($this->db->error()));
-            return date('Y-m-d', strtotime('-30 days')); // Fallback to 30 days ago
+        
+        if ($query && $query->num_rows() > 0) {
+            return $query->row()->earliest_date;
         }
-        $result = $query->row_array();
-        $earliest_date = $result['earliest_date'] ? date('Y-m-d', strtotime($result['earliest_date'])) : date('Y-m-d', strtotime('-30 days'));
-        log_message('debug', 'Earliest order date: ' . $earliest_date);
-        return $earliest_date;
+        
+        // Fallback to 1 year ago if no orders found
+        return date('Y-m-d', strtotime('-1 year'));
     }
 
     /**
@@ -781,110 +781,101 @@ public function getSalesReport($filters = array())
 
     public function getPurchaseReport($filters = array()) 
     {
-        $this->db->reset_query();
-
         try {
-            // Base query with all required fields
-            $this->db->select('
-                p.*,
-                COALESCE(pr.name, "Unknown Product") as product_name,
-                COALESCE(pr.unit, p.unit) as unit,
-                COALESCE(st.name, "Unassigned") as warehouse_name
-            ');
+            log_message('debug', 'getPurchaseReport called. Filters: ' . json_encode($filters));
+
+            // detect correct date column in purchases table
+            $candidate_cols = ['purchase_date','date','created_at','date_time'];
+            $date_col = null;
+            foreach ($candidate_cols as $col) {
+                if ($this->db->field_exists($col, 'purchases')) {
+                    $date_col = $col;
+                    break;
+                }
+            }
+            if (!$date_col) {
+                log_message('error', 'getPurchaseReport: no date column found in purchases table. Tried: ' . implode(',', $candidate_cols));
+                return ['data'=>[], 'total_amount'=>0, 'total_paid'=>0, 'total_items'=>0, 'recordsTotal'=>0, 'recordsFiltered'=>0];
+            }
+
+            $this->db->reset_query();
+            $this->db->select('p.*, pr.name as product_name');
             $this->db->from('purchases p');
             $this->db->join('products pr', 'pr.id = p.product_id', 'left');
-            $this->db->join('stores st', 'st.id = p.store_id', 'left');
 
-            // Apply filters with proper date formatting
+            // Apply date filters using detected column
             if (!empty($filters['date_from'])) {
-                $date_from = date('Y-m-d', strtotime($filters['date_from']));
-                $this->db->where('DATE(p.purchase_date) >=', $date_from);
-                log_message('debug', 'Applied date_from filter: ' . $date_from);
+                $this->db->where('DATE(p.'.$date_col.') >=', $filters['date_from']);
             }
-
             if (!empty($filters['date_to'])) {
-                $date_to = date('Y-m-d', strtotime($filters['date_to']));
-                $this->db->where('DATE(p.purchase_date) <=', $date_to);
-                log_message('debug', 'Applied date_to filter: ' . $date_to);
+                $this->db->where('DATE(p.'.$date_col.') <=', $filters['date_to']);
             }
 
-            if (!empty($filters['product'])) {
-                $this->db->where('p.product_id', $filters['product']);
-            }
-
+            // Apply warehouse/store filter
             if (!empty($filters['warehouse'])) {
                 $this->db->where('p.store_id', $filters['warehouse']);
             }
 
-            if (isset($filters['status']) && $filters['status'] !== '') {
-                $this->db->where('p.status', $filters['status']);
-            }
+            // Debug compiled SQL
+            $sql = $this->db->get_compiled_select();
+            log_message('debug', 'getPurchaseReport SQL: ' . $sql);
 
-            // Add ordering
-            $this->db->order_by('p.purchase_date DESC, p.id DESC');
-
-            // Debug log the query before execution
-            $query_str = $this->db->get_compiled_select();
-            log_message('debug', 'Purchase Report Query: ' . $query_str);
-
-            // Execute query
-            $query = $this->db->get();
-            
+            // Execute
+            $query = $this->db->query($sql);
             if ($query === FALSE) {
-                throw new Exception('Query failed: ' . json_encode($this->db->error()));
+                $err = $this->db->error();
+                log_message('error', 'getPurchaseReport DB error: ' . json_encode($err));
+                return ['data'=>[], 'total_amount'=>0, 'total_paid'=>0, 'total_items'=>0, 'recordsTotal'=>0, 'recordsFiltered'=>0];
             }
 
-            $purchases = $query->result_array();
+            $results = $query->result_array();
 
-            // Debug log the results count
-            log_message('debug', sprintf(
-                'Purchase Report Results: Found %d records',
-                count($purchases)
-            ));
-
-            if (empty($purchases)) {
-                // Check if any records exist in the date range
-                $this->db->select('COUNT(*) as count, MIN(purchase_date) as min_date, MAX(purchase_date) as max_date');
-                $this->db->from('purchases');
-                $date_range = $this->db->get()->row();
-
-                if ($date_range->count == 0) {
-                    throw new Exception('No purchase records exist in the database.');
+            // If no rows, log counts for debugging
+            if (empty($results)) {
+                // count all purchases
+                $cntAll = (int)$this->db->select('COUNT(*) AS c')->from('purchases')->get()->row()->c;
+                // count matching date range only (no store filter)
+                $this->db->reset_query();
+                if (!empty($filters['date_from']) || !empty($filters['date_to'])) {
+                    $this->db->select('COUNT(*) AS c')->from('purchases p');
+                    if (!empty($filters['date_from'])) $this->db->where('DATE(p.'.$date_col.') >=', $filters['date_from']);
+                    if (!empty($filters['date_to']))   $this->db->where('DATE(p.'.$date_col.') <=', $filters['date_to']);
+                    $cntRange = (int)$this->db->get()->row()->c;
+                } else {
+                    $cntRange = $cntAll;
                 }
-
-                // Show available date range in the error message
-                throw new Exception(sprintf(
-                    'No purchases found in selected date range. Available data is from %s to %s',
-                    date('Y-m-d', strtotime($date_range->min_date)),
-                    date('Y-m-d', strtotime($date_range->max_date))
-                ));
+                log_message('warning', "getPurchaseReport: query returned 0 rows. total purchases={$cntAll}, in-range={$cntRange}");
             }
 
-            // Calculate summary
-            $summary = [
-                'total_purchases' => count($purchases),
-                'total_amount' => array_sum(array_column($purchases, 'total_amount')),
-                'total_paid' => array_sum(array_column($purchases, 'amount_paid')),
-                'pending_amount' => 0
-            ];
-            $summary['pending_amount'] = $summary['total_amount'] - $summary['total_paid'];
+            // totals
+            $total_amount = 0;
+            $total_paid = 0;
+            $total_items = 0;
+            foreach ($results as $row) {
+                $total_amount += floatval($row['total_amount'] ?? 0);
+                $total_paid   += floatval($row['amount_paid'] ?? 0);
+                $total_items  += floatval($row['qty'] ?? 0);
+            }
 
             return [
-                'report' => $purchases,
-                'summary' => $summary
+                'data' => $results,
+                'total_amount' => $total_amount,
+                'total_paid' => $total_paid,
+                'total_items' => $total_items,
+                'recordsTotal' => count($results),
+                'recordsFiltered' => count($results)
             ];
 
         } catch (Exception $e) {
-            log_message('error', 'Error in getPurchaseReport: ' . $e->getMessage());
+            log_message('error', 'Purchase report error: ' . $e->getMessage());
             return [
-                'error' => $e->getMessage(),
-                'report' => [],
-                'summary' => [
-                    'total_purchases' => 0,
-                    'total_amount' => 0,
-                    'total_paid' => 0,
-                    'pending_amount' => 0
-                ]
+                'data' => [],
+                'total_amount' => 0,
+                'total_paid' => 0,
+                'total_items' => 0,
+                'recordsTotal' => 0,
+                'recordsFiltered' => 0,
+                'error' => $e->getMessage()
             ];
         }
     }
@@ -1004,4 +995,116 @@ public function getSalesReport($filters = array())
         }
     } // Add missing closing brace for getProductList method
 
-} // Add missing closing brace for class Model_reporting
+    public function getGeneralReport($filters = array())
+    {
+        try {
+            // Initialize return structure
+            $report = [
+                'sales' => [
+                    'total' => 0,
+                    'count' => 0,
+                    'average' => 0
+                ],
+                'purchases' => [
+                    'total' => 0,
+                    'count' => 0,
+                    'average' => 0
+                ],
+                'stock' => [
+                    'value' => 0,
+                    'items' => 0,
+                    'low_stock' => 0
+                ],
+                'payments' => [
+                    'paid' => 0,
+                    'unpaid' => 0,
+                    'partial' => 0
+                ]
+            ];
+
+            // Apply date filters if provided
+            $date_condition = '';
+            $purchase_date_condition = '';
+            $params = [];
+
+            if (!empty($filters['date_from'])) {
+                $date_condition .= ' AND DATE(o.date_time) >= ?';
+                $purchase_date_condition .= ' AND DATE(p.purchase_date) >= ?';
+                $params[] = $filters['date_from'];
+            }
+            if (!empty($filters['date_to'])) {
+                $date_condition .= ' AND DATE(o.date_time) <= ?';
+                $purchase_date_condition .= ' AND DATE(p.purchase_date) <= ?';
+                $params[] = $filters['date_to'];
+            }
+
+            // Sales Query
+            $sales_sql = "
+                SELECT 
+                    COUNT(DISTINCT o.id) as order_count,
+                    SUM(o.net_amount) as total_sales,
+                    SUM(CASE 
+                        WHEN o.paid_status = 2 THEN o.net_amount 
+                        WHEN o.paid_status = 3 THEN o.amount_paid
+                        ELSE 0 
+                    END) as paid_amount,
+                    SUM(CASE WHEN o.paid_status = 1 THEN o.net_amount ELSE 0 END) as unpaid_amount,
+                    SUM(CASE WHEN o.paid_status = 3 THEN o.net_amount ELSE 0 END) as partial_amount
+                FROM orders o 
+                WHERE 1=1 " . $date_condition;
+
+            $sales_query = $this->db->query($sales_sql, $params);
+            if ($sales_query && $sales_result = $sales_query->row_array()) {
+                $report['sales']['total'] = floatval($sales_result['total_sales'] ?? 0);
+                $report['sales']['count'] = intval($sales_result['order_count'] ?? 0);
+                $report['sales']['average'] = $report['sales']['count'] > 0 ? 
+                                            $report['sales']['total'] / $report['sales']['count'] : 0;
+                $report['payments']['paid'] = floatval($sales_result['paid_amount'] ?? 0);
+                $report['payments']['unpaid'] = floatval($sales_result['unpaid_amount'] ?? 0);
+                $report['payments']['partial'] = floatval($sales_result['partial_amount'] ?? 0);
+            }
+
+            // Purchases Query
+            $purchases_sql = "
+                SELECT 
+                    COUNT(DISTINCT p.id) as purchase_count,
+                    SUM(p.total_amount) as total_purchases
+                FROM purchases p 
+                WHERE 1=1 " . $purchase_date_condition;
+
+            $purchases_query = $this->db->query($purchases_sql, $params);
+            if ($purchases_query && $purchases_result = $purchases_query->row_array()) {
+                $report['purchases']['total'] = floatval($purchases_result['total_purchases'] ?? 0);
+                $report['purchases']['count'] = intval($purchases_result['purchase_count'] ?? 0);
+                $report['purchases']['average'] = $report['purchases']['count'] > 0 ? 
+                                                $report['purchases']['total'] / $report['purchases']['count'] : 0;
+            }
+
+            // Stock Query
+            $stock_sql = "
+                SELECT 
+                    COUNT(DISTINCT p.id) as total_items,
+                    SUM(p.quantity * p.price) as stock_value,
+                    COUNT(CASE WHEN p.quantity <= 10 THEN 1 END) as low_stock_items
+                FROM products p";
+
+            $stock_query = $this->db->query($stock_sql);
+            if ($stock_query && $stock_result = $stock_query->row_array()) {
+                $report['stock']['value'] = floatval($stock_result['stock_value'] ?? 0);
+                $report['stock']['items'] = intval($stock_result['total_items'] ?? 0);
+                $report['stock']['low_stock'] = intval($stock_result['low_stock_items'] ?? 0);
+            }
+
+            return $report;
+
+        } catch (Exception $e) {
+            log_message('error', 'General report error: ' . $e->getMessage());
+            return [
+                'error' => true,
+                'message' => 'Failed to generate general report',
+                'details' => $e->getMessage()
+            ];
+        }
+    }
+
+}

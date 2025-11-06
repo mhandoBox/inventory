@@ -1,0 +1,3006 @@
+Array
+(
+    [time] => 2025-11-06 17:50:57
+    [filters] => Array
+        (
+            [date_from] => 2025-10-07
+            [date_to] => 2025-11-06
+            [product] => 
+            [status] => 
+            [period] => last_30_days
+        )
+
+    [record_count] => 76
+    [sample] => Array
+        (
+            [id] => 100
+            [product_id] => 79
+            [supplier] => stock-nov-2
+            [supplier_no] => 6756
+            [qty] => 489
+            [unit] => kg
+            [price] => 1000.00
+            [total_amount] => 489100.00
+            [amount_paid] => 489100.00
+            [status] => Paid
+            [purchase_date] => 2025-11-02 00:00:00
+            [user_id] => 1
+            [store_id] => 7
+        )
+
+    [report] => Array
+        (
+            [error] => Query failed: {"code":1096,"message":"No tables used"}
+            [report] => Array
+                (
+                )
+
+            [summary] => Array
+                (
+                    [total_purchases] => 0
+                    [total_amount] => 0
+                    [total_paid] => 0
+                    [pending_amount] => 0
+                )
+
+        )
+
+)
+Array
+(
+    [time] => 2025-11-06 17:53:46
+    [filters] => Array
+        (
+            [date_from] => 2025-10-07
+            [date_to] => 2025-11-06
+            [product] => 
+            [status] => 
+            [period] => last_30_days
+        )
+
+    [record_count] => 76
+    [sample] => Array
+        (
+            [id] => 100
+            [product_id] => 79
+            [supplier] => stock-nov-2
+            [supplier_no] => 6756
+            [qty] => 489
+            [unit] => kg
+            [price] => 1000.00
+            [total_amount] => 489100.00
+            [amount_paid] => 489100.00
+            [status] => Paid
+            [purchase_date] => 2025-11-02 00:00:00
+            [user_id] => 1
+            [store_id] => 7
+        )
+
+    [report] => Array
+        (
+            [data] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 100
+                            [product_id] => 79
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 6756
+                            [qty] => 489
+                            [unit] => kg
+                            [price] => 1000.00
+                            [total_amount] => 489100.00
+                            [amount_paid] => 489100.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => BROILER FINISHER MASH
+                        )
+
+                    [1] => Array
+                        (
+                            [id] => 101
+                            [product_id] => 80
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 786756
+                            [qty] => 164
+                            [unit] => PCS
+                            [price] => 3500.00
+                            [total_amount] => 574000.00
+                            [amount_paid] => 574000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => BROILER PREMIX
+                        )
+
+                    [2] => Array
+                        (
+                            [id] => 102
+                            [product_id] => 81
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 54676
+                            [qty] => 996
+                            [unit] => Kg
+                            [price] => 1000.00
+                            [total_amount] => 996000.00
+                            [amount_paid] => 996000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => BROILER STARTER MASH
+                        )
+
+                    [3] => Array
+                        (
+                            [id] => 103
+                            [product_id] => 84
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 456
+                            [qty] => 189
+                            [unit] => PCS
+                            [price] => 2000.00
+                            [total_amount] => 378000.00
+                            [amount_paid] => 378000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => D.C.P KOPO (1/2)
+                        )
+
+                    [4] => Array
+                        (
+                            [id] => 104
+                            [product_id] => 85
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 5467
+                            [qty] => 137
+                            [unit] => Pcs
+                            [price] => 3000.00
+                            [total_amount] => 411000.00
+                            [amount_paid] => 411000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => D.C.P KOPO 1KG
+                        )
+
+                    [5] => Array
+                        (
+                            [id] => 105
+                            [product_id] => 86
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 34567
+                            [qty] => 384
+                            [unit] => kg
+                            [price] => 2800.00
+                            [total_amount] => 1073800.00
+                            [amount_paid] => 1073800.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => DAGAA KAUZU
+                        )
+
+                    [6] => Array
+                        (
+                            [id] => 106
+                            [product_id] => 87
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 6576
+                            [qty] => 588
+                            [unit] => kg
+                            [price] => 2000.00
+                            [total_amount] => 1766600.00
+                            [amount_paid] => 1766600.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => DAGAA SAGWA
+                        )
+
+                    [7] => Array
+                        (
+                            [id] => 107
+                            [product_id] => 88
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 5467
+                            [qty] => 837
+                            [unit] => kg
+                            [price] => 1500.00
+                            [total_amount] => 1255950.00
+                            [amount_paid] => 1255950.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => DAMU
+                        )
+
+                    [8] => Array
+                        (
+                            [id] => 108
+                            [product_id] => 89
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 5467
+                            [qty] => 114
+                            [unit] => kg
+                            [price] => 1000.00
+                            [total_amount] => 114000.00
+                            [amount_paid] => 114000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => GROWER MASH
+                        )
+
+                    [9] => Array
+                        (
+                            [id] => 109
+                            [product_id] => 90
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 345678
+                            [qty] => 470
+                            [unit] => Kg
+                            [price] => 1500.00
+                            [total_amount] => 705300.00
+                            [amount_paid] => 705300.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => HAMIRA
+                        )
+
+                    [10] => Array
+                        (
+                            [id] => 110
+                            [product_id] => 91
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 34567
+                            [qty] => 26
+                            [unit] => Pcs
+                            [price] => 11000.00
+                            [total_amount] => 286000.00
+                            [amount_paid] => 286000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => JOSERA MADUME
+                        )
+
+                    [11] => Array
+                        (
+                            [id] => 111
+                            [product_id] => 93
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 4657
+                            [qty] => 508
+                            [unit] => Kg
+                            [price] => 700.00
+                            [total_amount] => 355460.00
+                            [amount_paid] => 355460.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => KARANGA
+                        )
+
+                    [12] => Array
+                        (
+                            [id] => 112
+                            [product_id] => 94
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 35467
+                            [qty] => 614
+                            [unit] => Kg
+                            [price] => 4000.00
+                            [total_amount] => 2456000.00
+                            [amount_paid] => 2456000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => KAUDIS NGURUWE
+                        )
+
+                    [13] => Array
+                        (
+                            [id] => 113
+                            [product_id] => 95
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 678
+                            [qty] => 15
+                            [unit] => Kg
+                            [price] => 2000.00
+                            [total_amount] => 29000.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => KAYABO
+                        )
+
+                    [14] => Array
+                        (
+                            [id] => 114
+                            [product_id] => 96
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 86756
+                            [qty] => 1716
+                            [unit] => Kg
+                            [price] => 300.00
+                            [total_amount] => 514740.00
+                            [amount_paid] => 514740.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => KONOKONO
+                        )
+
+                    [15] => Array
+                        (
+                            [id] => 115
+                            [product_id] => 97
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 567
+                            [qty] => 951
+                            [unit] => Kg
+                            [price] => 1000.00
+                            [total_amount] => 801000.00
+                            [amount_paid] => 801000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => LAYERS MASH
+                        )
+
+                    [16] => Array
+                        (
+                            [id] => 116
+                            [product_id] => 98
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 75643
+                            [qty] => 352
+                            [unit] => Pcs
+                            [price] => 3500.00
+                            [total_amount] => 1232000.00
+                            [amount_paid] => 1232000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => LAYERS PREMIX
+                        )
+
+                    [17] => Array
+                        (
+                            [id] => 117
+                            [product_id] => 100
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 657
+                            [qty] => 2267
+                            [unit] => Kg
+                            [price] => 750.00
+                            [total_amount] => 1700250.00
+                            [amount_paid] => 1700250.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MAHINDI
+                        )
+
+                    [18] => Array
+                        (
+                            [id] => 118
+                            [product_id] => 101
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 4546
+                            [qty] => 17
+                            [unit] => Pcs
+                            [price] => 3000.00
+                            [total_amount] => 51000.00
+                            [amount_paid] => 51000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MAZIWA MENGI 2kg
+                        )
+
+                    [19] => Array
+                        (
+                            [id] => 119
+                            [product_id] => 99
+                            [supplier] =>  stock-nov-2
+                            [supplier_no] => 3567
+                            [qty] => 2
+                            [unit] => Pcs
+                            [price] => 5000.00
+                            [total_amount] => 100000.00
+                            [amount_paid] => 100000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MADUME LICK
+                        )
+
+                    [20] => Array
+                        (
+                            [id] => 120
+                            [product_id] => 105
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 5467
+                            [qty] => 358
+                            [unit] => Kg
+                            [price] => 1000.00
+                            [total_amount] => 358400.00
+                            [amount_paid] => 358400.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MTAMA
+                        )
+
+                    [21] => Array
+                        (
+                            [id] => 121
+                            [product_id] => 102
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 867
+                            [qty] => 231
+                            [unit] => Kg
+                            [price] => 400.00
+                            [total_amount] => 92560.00
+                            [amount_paid] => 92560.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:01
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MCHELE LAINI
+                        )
+
+                    [22] => Array
+                        (
+                            [id] => 122
+                            [product_id] => 103
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 24356
+                            [qty] => 2830
+                            [unit] => Kg
+                            [price] => 320.00
+                            [total_amount] => 905696.00
+                            [amount_paid] => 905696.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MCHELE NGUMU
+                        )
+
+                    [23] => Array
+                        (
+                            [id] => 123
+                            [product_id] => 104
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 873546
+                            [qty] => 7500
+                            [unit] => Kg
+                            [price] => 700.00
+                            [total_amount] => 5285630.00
+                            [amount_paid] => 5285630.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MFUPA
+                        )
+
+                    [24] => Array
+                        (
+                            [id] => 124
+                            [product_id] => 106
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 45678
+                            [qty] => 638
+                            [unit] => Kg
+                            [price] => 1000.00
+                            [total_amount] => 638300.00
+                            [amount_paid] => 638300.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => NGANO
+                        )
+
+                    [25] => Array
+                        (
+                            [id] => 125
+                            [product_id] => 107
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 5467
+                            [qty] => 1200
+                            [unit] => Kg
+                            [price] => 600.00
+                            [total_amount] => 720000.00
+                            [amount_paid] => 720000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PUMBA MAHINDI LAINI
+                        )
+
+                    [26] => Array
+                        (
+                            [id] => 126
+                            [product_id] => 108
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 45678
+                            [qty] => 1303
+                            [unit] => Kg
+                            [price] => 1200.00
+                            [total_amount] => 1324080.00
+                            [amount_paid] => 1324080.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PAMBA LAINI
+                        )
+
+                    [27] => Array
+                        (
+                            [id] => 127
+                            [product_id] => 109
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 654
+                            [qty] => 791
+                            [unit] => Kg
+                            [price] => 1200.00
+                            [total_amount] => 949680.00
+                            [amount_paid] => 949680.00
+                            [status] => PAID
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PAMBA NGUMU
+                        )
+
+                    [28] => Array
+                        (
+                            [id] => 128
+                            [product_id] => 110
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 567
+                            [qty] => 261
+                            [unit] => Kg
+                            [price] => 1000.00
+                            [total_amount] => 311000.00
+                            [amount_paid] => 311000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PARAZA
+                        )
+
+                    [29] => Array
+                        (
+                            [id] => 129
+                            [product_id] => 111
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 5467
+                            [qty] => 340
+                            [unit] => Pcs
+                            [price] => 3000.00
+                            [total_amount] => 1020000.00
+                            [amount_paid] => 1020000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PIG BOOSTER
+                        )
+
+                    [30] => Array
+                        (
+                            [id] => 130
+                            [product_id] => 112
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 5467
+                            [qty] => 900
+                            [unit] => Kg
+                            [price] => 1000.00
+                            [total_amount] => 900000.00
+                            [amount_paid] => 900000.00
+                            [status] => paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PIG GROWER
+                        )
+
+                    [31] => Array
+                        (
+                            [id] => 131
+                            [product_id] => 113
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 87675
+                            [qty] => 1241
+                            [unit] => Kg
+                            [price] => 1000.00
+                            [total_amount] => 1241100.00
+                            [amount_paid] => 1241100.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PIG STARTER
+                        )
+
+                    [32] => Array
+                        (
+                            [id] => 132
+                            [product_id] => 114
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 675
+                            [qty] => 422
+                            [unit] => Kg
+                            [price] => 2000.00
+                            [total_amount] => 844000.00
+                            [amount_paid] => 844000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PILLLET GROWER
+                        )
+
+                    [33] => Array
+                        (
+                            [id] => 133
+                            [product_id] => 135
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 7867564
+                            [qty] => 490
+                            [unit] => Kg
+                            [price] => 2000.00
+                            [total_amount] => 980200.00
+                            [amount_paid] => 980200.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PILLET STARTER
+                        )
+
+                    [34] => Array
+                        (
+                            [id] => 134
+                            [product_id] => 115
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 6754
+                            [qty] => 369
+                            [unit] => Kg
+                            [price] => 750.00
+                            [total_amount] => 329475.00
+                            [amount_paid] => 329475.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => POLLARD
+                        )
+
+                    [35] => Array
+                        (
+                            [id] => 135
+                            [product_id] => 116
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 7867
+                            [qty] => 3065
+                            [unit] => Kg
+                            [price] => 600.00
+                            [total_amount] => 1440240.00
+                            [amount_paid] => 1440240.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PUMBA
+                        )
+
+                    [36] => Array
+                        (
+                            [id] => 136
+                            [product_id] => 117
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 5467
+                            [qty] => 1776
+                            [unit] => Kg
+                            [price] => 900.00
+                            [total_amount] => 1643130.00
+                            [amount_paid] => 1643130.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => SHUDU LAINI
+                        )
+
+                    [37] => Array
+                        (
+                            [id] => 137
+                            [product_id] => 120
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 5467
+                            [qty] => 758
+                            [unit] => Kg
+                            [price] => 2000.00
+                            [total_amount] => 1516400.00
+                            [amount_paid] => 1516400.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => SOYA UNGA
+                        )
+
+                    [38] => Array
+                        (
+                            [id] => 138
+                            [product_id] => 121
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 5768
+                            [qty] => 47
+                            [unit] => Kg
+                            [price] => 3000.00
+                            [total_amount] => 141000.00
+                            [amount_paid] => 141000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => SUPER MACLICK
+                        )
+
+                    [39] => Array
+                        (
+                            [id] => 139
+                            [product_id] => 122
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 54678
+                            [qty] => 688
+                            [unit] => Kg
+                            [price] => 700.00
+                            [total_amount] => 481810.00
+                            [amount_paid] => 481810.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => UBUYU
+                        )
+
+                    [40] => Array
+                        (
+                            [id] => 140
+                            [product_id] => 123
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 7865
+                            [qty] => 763
+                            [unit] => Kg
+                            [price] => 3500.00
+                            [total_amount] => 2671200.00
+                            [amount_paid] => 2671200.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => UDUVI
+                        )
+
+                    [41] => Array
+                        (
+                            [id] => 141
+                            [product_id] => 124
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 546789
+                            [qty] => 446
+                            [unit] => Kg
+                            [price] => 650.00
+                            [total_amount] => 289900.00
+                            [amount_paid] => 289900.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => WHEAT
+                        )
+
+                    [42] => Array
+                        (
+                            [id] => 142
+                            [product_id] => 134
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 6756453
+                            [qty] => 604
+                            [unit] => Kg
+                            [price] => 400.00
+                            [total_amount] => 241440.00
+                            [amount_paid] => 241440.00
+                            [status] => paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => KONOKONO NZIMA
+                        )
+
+                    [43] => Array
+                        (
+                            [id] => 143
+                            [product_id] => 132
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 7654
+                            [qty] => 200
+                            [unit] => Kg
+                            [price] => 2000.00
+                            [total_amount] => 400000.00
+                            [amount_paid] => 400000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PELLET FINISHER
+                        )
+
+                    [44] => Array
+                        (
+                            [id] => 144
+                            [product_id] => 137
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 7564
+                            [qty] => 139
+                            [unit] => Pcs
+                            [price] => 1500.00
+                            [total_amount] => 208500.00
+                            [amount_paid] => 208500.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MAZIWA MENGI 1KG
+                        )
+
+                    [45] => Array
+                        (
+                            [id] => 145
+                            [product_id] => 131
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 5456
+                            [qty] => 19
+                            [unit] => Pcs
+                            [price] => 2500.00
+                            [total_amount] => 47500.00
+                            [amount_paid] => 47500.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => LAYERS EXTRA
+                        )
+
+                    [46] => Array
+                        (
+                            [id] => 146
+                            [product_id] => 126
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 6756434
+                            [qty] => 25
+                            [unit] => Pcs
+                            [price] => 2000.00
+                            [total_amount] => 50000.00
+                            [amount_paid] => 50000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => HIPHOS PLUS
+                        )
+
+                    [47] => Array
+                        (
+                            [id] => 147
+                            [product_id] => 138
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 7865
+                            [qty] => 16
+                            [unit] => Pcs
+                            [price] => 2500.00
+                            [total_amount] => 40000.00
+                            [amount_paid] => 40000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => BROILER EXTRA
+                        )
+
+                    [48] => Array
+                        (
+                            [id] => 148
+                            [product_id] => 125
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 786543
+                            [qty] => 228
+                            [unit] => Pcs
+                            [price] => 3000.00
+                            [total_amount] => 684000.00
+                            [amount_paid] => 684000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => NGURUWE MIX
+                        )
+
+                    [49] => Array
+                        (
+                            [id] => 149
+                            [product_id] => 129
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 45678
+                            [qty] => 6
+                            [unit] => KG
+                            [price] => 2000.00
+                            [total_amount] => 12000.00
+                            [amount_paid] => 12000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => SOYA CHENGA
+                        )
+
+                    [50] => Array
+                        (
+                            [id] => 150
+                            [product_id] => 116
+                            [supplier] => Big
+                            [supplier_no] => 35467
+                            [qty] => 12661
+                            [unit] => kg
+                            [price] => 580.00
+                            [total_amount] => 7343380.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-03 08:23:00
+                            [user_id] => 0
+                            [store_id] => 7
+                            [product_name] => PUMBA
+                        )
+
+                    [51] => Array
+                        (
+                            [id] => 151
+                            [product_id] => 118
+                            [supplier] => Big
+                            [supplier_no] => 546
+                            [qty] => 7140
+                            [unit] => kg
+                            [price] => 735.00
+                            [total_amount] => 5247900.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-03 10:03:00
+                            [user_id] => 0
+                            [store_id] => 7
+                            [product_name] => SHUDU NGUMU
+                        )
+
+                    [52] => Array
+                        (
+                            [id] => 152
+                            [product_id] => 116
+                            [supplier] => COSMAS
+                            [supplier_no] => 456789
+                            [qty] => 11280
+                            [unit] => kg
+                            [price] => 570.00
+                            [total_amount] => 6429600.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-04 05:33:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PUMBA
+                        )
+
+                    [53] => Array
+                        (
+                            [id] => 153
+                            [product_id] => 115
+                            [supplier] => KALASINGA
+                            [supplier_no] => 456789
+                            [qty] => 700
+                            [unit] => kg
+                            [price] => 671.00
+                            [total_amount] => 469700.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-04 05:36:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => POLLARD
+                        )
+
+                    [54] => Array
+                        (
+                            [id] => 154
+                            [product_id] => 124
+                            [supplier] => KALASINGA
+                            [supplier_no] => 54678
+                            [qty] => 800
+                            [unit] => kg
+                            [price] => 575.00
+                            [total_amount] => 460000.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-04 05:36:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => WHEAT
+                        )
+
+                    [55] => Array
+                        (
+                            [id] => 155
+                            [product_id] => 116
+                            [supplier] => esso
+                            [supplier_no] => 24567
+                            [qty] => 268
+                            [unit] => kg
+                            [price] => 620.00
+                            [total_amount] => 166160.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-04 05:38:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PUMBA
+                        )
+
+                    [56] => Array
+                        (
+                            [id] => 156
+                            [product_id] => 103
+                            [supplier] => esso
+                            [supplier_no] => 456789
+                            [qty] => 500
+                            [unit] => kg
+                            [price] => 320.00
+                            [total_amount] => 160000.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-04 05:41:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MCHELE NGUMU
+                        )
+
+                    [57] => Array
+                        (
+                            [id] => 157
+                            [product_id] => 116
+                            [supplier] => ngulelo b
+                            [supplier_no] => 546789
+                            [qty] => 1511
+                            [unit] => kg
+                            [price] => 620.00
+                            [total_amount] => 936820.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-04 05:42:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PUMBA
+                        )
+
+                    [58] => Array
+                        (
+                            [id] => 158
+                            [product_id] => 116
+                            [supplier] => YA MASAI ILIKUWA IMEUZWA
+                            [supplier_no] => 34567
+                            [qty] => 650
+                            [unit] => kg
+                            [price] => 580.00
+                            [total_amount] => 377000.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-05 13:14:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PUMBA
+                        )
+
+                    [59] => Array
+                        (
+                            [id] => 159
+                            [product_id] => 102
+                            [supplier] => IMEFAGILIWA
+                            [supplier_no] => 5467
+                            [qty] => 106
+                            [unit] => kg
+                            [price] => 320.00
+                            [total_amount] => 33920.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-05 13:18:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MCHELE LAINI
+                        )
+
+                    [60] => Array
+                        (
+                            [id] => 160
+                            [product_id] => 139
+                            [supplier] => sto
+                            [supplier_no] => 45678
+                            [qty] => 2
+                            [unit] => PCS
+                            [price] => 15000.00
+                            [total_amount] => 30000.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-03 05:59:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => CHIKWIDI
+                        )
+
+                    [61] => Array
+                        (
+                            [id] => 161
+                            [product_id] => 95
+                            [supplier] => M.SWAUMU
+                            [supplier_no] => 5467
+                            [qty] => 170
+                            [unit] => kg
+                            [price] => 1650.00
+                            [total_amount] => 280500.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-05 07:19:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => KAYABO
+                        )
+
+                    [62] => Array
+                        (
+                            [id] => 162
+                            [product_id] => 116
+                            [supplier] => CASH
+                            [supplier_no] => 4657
+                            [qty] => 100
+                            [unit] => kg
+                            [price] => 600.00
+                            [total_amount] => 60000.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-05 07:21:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PUMBA
+                        )
+
+                    [63] => Array
+                        (
+                            [id] => 163
+                            [product_id] => 103
+                            [supplier] => CASH
+                            [supplier_no] => 34545687
+                            [qty] => 1500
+                            [unit] => kg
+                            [price] => 320.00
+                            [total_amount] => 480000.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-05 07:36:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MCHELE NGUMU
+                        )
+
+                    [64] => Array
+                        (
+                            [id] => 164
+                            [product_id] => 100
+                            [supplier] => KTASA
+                            [supplier_no] => 5467
+                            [qty] => 8920
+                            [unit] => kg
+                            [price] => 710.00
+                            [total_amount] => 6333200.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-05 07:37:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MAHINDI
+                        )
+
+                    [65] => Array
+                        (
+                            [id] => 165
+                            [product_id] => 116
+                            [supplier] => CASH
+                            [supplier_no] => 54567
+                            [qty] => 1500
+                            [unit] => kg
+                            [price] => 600.00
+                            [total_amount] => 900000.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-05 07:38:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PUMBA
+                        )
+
+                    [66] => Array
+                        (
+                            [id] => 166
+                            [product_id] => 116
+                            [supplier] => CASH
+                            [supplier_no] => 567
+                            [qty] => 2500
+                            [unit] => kg
+                            [price] => 600.00
+                            [total_amount] => 1500000.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-05 07:39:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PUMBA
+                        )
+
+                    [67] => Array
+                        (
+                            [id] => 167
+                            [product_id] => 116
+                            [supplier] => CASH
+                            [supplier_no] => 546789
+                            [qty] => 300
+                            [unit] => kg
+                            [price] => 600.00
+                            [total_amount] => 180000.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-05 07:40:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PUMBA
+                        )
+
+                    [68] => Array
+                        (
+                            [id] => 168
+                            [product_id] => 96
+                            [supplier] => MWITA
+                            [supplier_no] => 546789
+                            [qty] => 17140
+                            [unit] => kg
+                            [price] => 200.00
+                            [total_amount] => 3428000.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-05 07:41:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => KONOKONO
+                        )
+
+                    [69] => Array
+                        (
+                            [id] => 169
+                            [product_id] => 116
+                            [supplier] => KIWANDANI
+                            [supplier_no] => 45678
+                            [qty] => 403
+                            [unit] => kg
+                            [price] => 0.00
+                            [total_amount] => 0.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-05 07:42:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PUMBA
+                        )
+
+                    [70] => Array
+                        (
+                            [id] => 170
+                            [product_id] => 115
+                            [supplier] => ESSO
+                            [supplier_no] => 34567
+                            [qty] => 140
+                            [unit] => kg
+                            [price] => 685.70
+                            [total_amount] => 95998.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-05 07:43:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => POLLARD
+                        )
+
+                    [71] => Array
+                        (
+                            [id] => 171
+                            [product_id] => 103
+                            [supplier] => KALASINGA
+                            [supplier_no] => 345678
+                            [qty] => 2000
+                            [unit] => kg
+                            [price] => 320.00
+                            [total_amount] => 640000.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-06 16:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MCHELE NGUMU
+                        )
+
+                    [72] => Array
+                        (
+                            [id] => 172
+                            [product_id] => 115
+                            [supplier] => ELIONA
+                            [supplier_no] => 2354678
+                            [qty] => 1050
+                            [unit] => kg
+                            [price] => 671.40
+                            [total_amount] => 704970.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-06 16:01:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => POLLARD
+                        )
+
+                    [73] => Array
+                        (
+                            [id] => 173
+                            [product_id] => 115
+                            [supplier] => ELIONA
+                            [supplier_no] => 54678
+                            [qty] => 1400
+                            [unit] => kg
+                            [price] => 671.50
+                            [total_amount] => 940100.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-06 16:02:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => POLLARD
+                        )
+
+                    [74] => Array
+                        (
+                            [id] => 174
+                            [product_id] => 115
+                            [supplier] => mama
+                            [supplier_no] => 3456789
+                            [qty] => 43
+                            [unit] => kg
+                            [price] => 400.00
+                            [total_amount] => 17200.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-06 16:04:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => POLLARD
+                        )
+
+                    [75] => Array
+                        (
+                            [id] => 175
+                            [product_id] => 102
+                            [supplier] => majengo
+                            [supplier_no] => 2435678
+                            [qty] => 814
+                            [unit] => kg
+                            [price] => 400.00
+                            [total_amount] => 325600.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-06 16:04:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MCHELE LAINI
+                        )
+
+                )
+
+            [total_amount] => 78596489
+            [total_paid] => 41027441
+            [total_items] => 112088
+            [recordsTotal] => 76
+            [recordsFiltered] => 76
+        )
+
+)
+Array
+(
+    [time] => 2025-11-06 19:22:32
+    [filters] => Array
+        (
+            [date_from] => 2025-10-07
+            [date_to] => 2025-11-06
+            [product] => 
+            [status] => 
+            [period] => last_30_days
+        )
+
+    [record_count] => 76
+    [sample] => Array
+        (
+            [id] => 100
+            [product_id] => 79
+            [supplier] => stock-nov-2
+            [supplier_no] => 6756
+            [qty] => 489
+            [unit] => kg
+            [price] => 1000.00
+            [total_amount] => 489100.00
+            [amount_paid] => 489100.00
+            [status] => Paid
+            [purchase_date] => 2025-11-02 00:00:00
+            [user_id] => 1
+            [store_id] => 7
+        )
+
+    [report] => Array
+        (
+            [data] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 100
+                            [product_id] => 79
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 6756
+                            [qty] => 489
+                            [unit] => kg
+                            [price] => 1000.00
+                            [total_amount] => 489100.00
+                            [amount_paid] => 489100.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => BROILER FINISHER MASH
+                        )
+
+                    [1] => Array
+                        (
+                            [id] => 101
+                            [product_id] => 80
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 786756
+                            [qty] => 164
+                            [unit] => PCS
+                            [price] => 3500.00
+                            [total_amount] => 574000.00
+                            [amount_paid] => 574000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => BROILER PREMIX
+                        )
+
+                    [2] => Array
+                        (
+                            [id] => 102
+                            [product_id] => 81
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 54676
+                            [qty] => 996
+                            [unit] => Kg
+                            [price] => 1000.00
+                            [total_amount] => 996000.00
+                            [amount_paid] => 996000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => BROILER STARTER MASH
+                        )
+
+                    [3] => Array
+                        (
+                            [id] => 103
+                            [product_id] => 84
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 456
+                            [qty] => 189
+                            [unit] => PCS
+                            [price] => 2000.00
+                            [total_amount] => 378000.00
+                            [amount_paid] => 378000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => D.C.P KOPO (1/2)
+                        )
+
+                    [4] => Array
+                        (
+                            [id] => 104
+                            [product_id] => 85
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 5467
+                            [qty] => 137
+                            [unit] => Pcs
+                            [price] => 3000.00
+                            [total_amount] => 411000.00
+                            [amount_paid] => 411000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => D.C.P KOPO 1KG
+                        )
+
+                    [5] => Array
+                        (
+                            [id] => 105
+                            [product_id] => 86
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 34567
+                            [qty] => 384
+                            [unit] => kg
+                            [price] => 2800.00
+                            [total_amount] => 1073800.00
+                            [amount_paid] => 1073800.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => DAGAA KAUZU
+                        )
+
+                    [6] => Array
+                        (
+                            [id] => 106
+                            [product_id] => 87
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 6576
+                            [qty] => 588
+                            [unit] => kg
+                            [price] => 2000.00
+                            [total_amount] => 1766600.00
+                            [amount_paid] => 1766600.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => DAGAA SAGWA
+                        )
+
+                    [7] => Array
+                        (
+                            [id] => 107
+                            [product_id] => 88
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 5467
+                            [qty] => 837
+                            [unit] => kg
+                            [price] => 1500.00
+                            [total_amount] => 1255950.00
+                            [amount_paid] => 1255950.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => DAMU
+                        )
+
+                    [8] => Array
+                        (
+                            [id] => 108
+                            [product_id] => 89
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 5467
+                            [qty] => 114
+                            [unit] => kg
+                            [price] => 1000.00
+                            [total_amount] => 114000.00
+                            [amount_paid] => 114000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => GROWER MASH
+                        )
+
+                    [9] => Array
+                        (
+                            [id] => 109
+                            [product_id] => 90
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 345678
+                            [qty] => 470
+                            [unit] => Kg
+                            [price] => 1500.00
+                            [total_amount] => 705300.00
+                            [amount_paid] => 705300.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => HAMIRA
+                        )
+
+                    [10] => Array
+                        (
+                            [id] => 110
+                            [product_id] => 91
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 34567
+                            [qty] => 26
+                            [unit] => Pcs
+                            [price] => 11000.00
+                            [total_amount] => 286000.00
+                            [amount_paid] => 286000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => JOSERA MADUME
+                        )
+
+                    [11] => Array
+                        (
+                            [id] => 111
+                            [product_id] => 93
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 4657
+                            [qty] => 508
+                            [unit] => Kg
+                            [price] => 700.00
+                            [total_amount] => 355460.00
+                            [amount_paid] => 355460.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => KARANGA
+                        )
+
+                    [12] => Array
+                        (
+                            [id] => 112
+                            [product_id] => 94
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 35467
+                            [qty] => 614
+                            [unit] => Kg
+                            [price] => 4000.00
+                            [total_amount] => 2456000.00
+                            [amount_paid] => 2456000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => KAUDIS NGURUWE
+                        )
+
+                    [13] => Array
+                        (
+                            [id] => 113
+                            [product_id] => 95
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 678
+                            [qty] => 15
+                            [unit] => Kg
+                            [price] => 2000.00
+                            [total_amount] => 29000.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => KAYABO
+                        )
+
+                    [14] => Array
+                        (
+                            [id] => 114
+                            [product_id] => 96
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 86756
+                            [qty] => 1716
+                            [unit] => Kg
+                            [price] => 300.00
+                            [total_amount] => 514740.00
+                            [amount_paid] => 514740.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => KONOKONO
+                        )
+
+                    [15] => Array
+                        (
+                            [id] => 115
+                            [product_id] => 97
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 567
+                            [qty] => 951
+                            [unit] => Kg
+                            [price] => 1000.00
+                            [total_amount] => 801000.00
+                            [amount_paid] => 801000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => LAYERS MASH
+                        )
+
+                    [16] => Array
+                        (
+                            [id] => 116
+                            [product_id] => 98
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 75643
+                            [qty] => 352
+                            [unit] => Pcs
+                            [price] => 3500.00
+                            [total_amount] => 1232000.00
+                            [amount_paid] => 1232000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => LAYERS PREMIX
+                        )
+
+                    [17] => Array
+                        (
+                            [id] => 117
+                            [product_id] => 100
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 657
+                            [qty] => 2267
+                            [unit] => Kg
+                            [price] => 750.00
+                            [total_amount] => 1700250.00
+                            [amount_paid] => 1700250.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MAHINDI
+                        )
+
+                    [18] => Array
+                        (
+                            [id] => 118
+                            [product_id] => 101
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 4546
+                            [qty] => 17
+                            [unit] => Pcs
+                            [price] => 3000.00
+                            [total_amount] => 51000.00
+                            [amount_paid] => 51000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MAZIWA MENGI 2kg
+                        )
+
+                    [19] => Array
+                        (
+                            [id] => 119
+                            [product_id] => 99
+                            [supplier] =>  stock-nov-2
+                            [supplier_no] => 3567
+                            [qty] => 2
+                            [unit] => Pcs
+                            [price] => 5000.00
+                            [total_amount] => 100000.00
+                            [amount_paid] => 100000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MADUME LICK
+                        )
+
+                    [20] => Array
+                        (
+                            [id] => 120
+                            [product_id] => 105
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 5467
+                            [qty] => 358
+                            [unit] => Kg
+                            [price] => 1000.00
+                            [total_amount] => 358400.00
+                            [amount_paid] => 358400.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MTAMA
+                        )
+
+                    [21] => Array
+                        (
+                            [id] => 121
+                            [product_id] => 102
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 867
+                            [qty] => 231
+                            [unit] => Kg
+                            [price] => 400.00
+                            [total_amount] => 92560.00
+                            [amount_paid] => 92560.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:01
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MCHELE LAINI
+                        )
+
+                    [22] => Array
+                        (
+                            [id] => 122
+                            [product_id] => 103
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 24356
+                            [qty] => 2830
+                            [unit] => Kg
+                            [price] => 320.00
+                            [total_amount] => 905696.00
+                            [amount_paid] => 905696.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MCHELE NGUMU
+                        )
+
+                    [23] => Array
+                        (
+                            [id] => 123
+                            [product_id] => 104
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 873546
+                            [qty] => 7500
+                            [unit] => Kg
+                            [price] => 700.00
+                            [total_amount] => 5285630.00
+                            [amount_paid] => 5285630.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MFUPA
+                        )
+
+                    [24] => Array
+                        (
+                            [id] => 124
+                            [product_id] => 106
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 45678
+                            [qty] => 638
+                            [unit] => Kg
+                            [price] => 1000.00
+                            [total_amount] => 638300.00
+                            [amount_paid] => 638300.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => NGANO
+                        )
+
+                    [25] => Array
+                        (
+                            [id] => 125
+                            [product_id] => 107
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 5467
+                            [qty] => 1200
+                            [unit] => Kg
+                            [price] => 600.00
+                            [total_amount] => 720000.00
+                            [amount_paid] => 720000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PUMBA MAHINDI LAINI
+                        )
+
+                    [26] => Array
+                        (
+                            [id] => 126
+                            [product_id] => 108
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 45678
+                            [qty] => 1303
+                            [unit] => Kg
+                            [price] => 1200.00
+                            [total_amount] => 1324080.00
+                            [amount_paid] => 1324080.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PAMBA LAINI
+                        )
+
+                    [27] => Array
+                        (
+                            [id] => 127
+                            [product_id] => 109
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 654
+                            [qty] => 791
+                            [unit] => Kg
+                            [price] => 1200.00
+                            [total_amount] => 949680.00
+                            [amount_paid] => 949680.00
+                            [status] => PAID
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PAMBA NGUMU
+                        )
+
+                    [28] => Array
+                        (
+                            [id] => 128
+                            [product_id] => 110
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 567
+                            [qty] => 261
+                            [unit] => Kg
+                            [price] => 1000.00
+                            [total_amount] => 311000.00
+                            [amount_paid] => 311000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PARAZA
+                        )
+
+                    [29] => Array
+                        (
+                            [id] => 129
+                            [product_id] => 111
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 5467
+                            [qty] => 340
+                            [unit] => Pcs
+                            [price] => 3000.00
+                            [total_amount] => 1020000.00
+                            [amount_paid] => 1020000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PIG BOOSTER
+                        )
+
+                    [30] => Array
+                        (
+                            [id] => 130
+                            [product_id] => 112
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 5467
+                            [qty] => 900
+                            [unit] => Kg
+                            [price] => 1000.00
+                            [total_amount] => 900000.00
+                            [amount_paid] => 900000.00
+                            [status] => paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PIG GROWER
+                        )
+
+                    [31] => Array
+                        (
+                            [id] => 131
+                            [product_id] => 113
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 87675
+                            [qty] => 1241
+                            [unit] => Kg
+                            [price] => 1000.00
+                            [total_amount] => 1241100.00
+                            [amount_paid] => 1241100.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PIG STARTER
+                        )
+
+                    [32] => Array
+                        (
+                            [id] => 132
+                            [product_id] => 114
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 675
+                            [qty] => 422
+                            [unit] => Kg
+                            [price] => 2000.00
+                            [total_amount] => 844000.00
+                            [amount_paid] => 844000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PILLLET GROWER
+                        )
+
+                    [33] => Array
+                        (
+                            [id] => 133
+                            [product_id] => 135
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 7867564
+                            [qty] => 490
+                            [unit] => Kg
+                            [price] => 2000.00
+                            [total_amount] => 980200.00
+                            [amount_paid] => 980200.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PILLET STARTER
+                        )
+
+                    [34] => Array
+                        (
+                            [id] => 134
+                            [product_id] => 115
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 6754
+                            [qty] => 369
+                            [unit] => Kg
+                            [price] => 750.00
+                            [total_amount] => 329475.00
+                            [amount_paid] => 329475.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => POLLARD
+                        )
+
+                    [35] => Array
+                        (
+                            [id] => 135
+                            [product_id] => 116
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 7867
+                            [qty] => 3065
+                            [unit] => Kg
+                            [price] => 600.00
+                            [total_amount] => 1440240.00
+                            [amount_paid] => 1440240.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PUMBA
+                        )
+
+                    [36] => Array
+                        (
+                            [id] => 136
+                            [product_id] => 117
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 5467
+                            [qty] => 1776
+                            [unit] => Kg
+                            [price] => 900.00
+                            [total_amount] => 1643130.00
+                            [amount_paid] => 1643130.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => SHUDU LAINI
+                        )
+
+                    [37] => Array
+                        (
+                            [id] => 137
+                            [product_id] => 120
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 5467
+                            [qty] => 758
+                            [unit] => Kg
+                            [price] => 2000.00
+                            [total_amount] => 1516400.00
+                            [amount_paid] => 1516400.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => SOYA UNGA
+                        )
+
+                    [38] => Array
+                        (
+                            [id] => 138
+                            [product_id] => 121
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 5768
+                            [qty] => 47
+                            [unit] => Kg
+                            [price] => 3000.00
+                            [total_amount] => 141000.00
+                            [amount_paid] => 141000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => SUPER MACLICK
+                        )
+
+                    [39] => Array
+                        (
+                            [id] => 139
+                            [product_id] => 122
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 54678
+                            [qty] => 688
+                            [unit] => Kg
+                            [price] => 700.00
+                            [total_amount] => 481810.00
+                            [amount_paid] => 481810.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => UBUYU
+                        )
+
+                    [40] => Array
+                        (
+                            [id] => 140
+                            [product_id] => 123
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 7865
+                            [qty] => 763
+                            [unit] => Kg
+                            [price] => 3500.00
+                            [total_amount] => 2671200.00
+                            [amount_paid] => 2671200.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => UDUVI
+                        )
+
+                    [41] => Array
+                        (
+                            [id] => 141
+                            [product_id] => 124
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 546789
+                            [qty] => 446
+                            [unit] => Kg
+                            [price] => 650.00
+                            [total_amount] => 289900.00
+                            [amount_paid] => 289900.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => WHEAT
+                        )
+
+                    [42] => Array
+                        (
+                            [id] => 142
+                            [product_id] => 134
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 6756453
+                            [qty] => 604
+                            [unit] => Kg
+                            [price] => 400.00
+                            [total_amount] => 241440.00
+                            [amount_paid] => 241440.00
+                            [status] => paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => KONOKONO NZIMA
+                        )
+
+                    [43] => Array
+                        (
+                            [id] => 143
+                            [product_id] => 132
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 7654
+                            [qty] => 200
+                            [unit] => Kg
+                            [price] => 2000.00
+                            [total_amount] => 400000.00
+                            [amount_paid] => 400000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PELLET FINISHER
+                        )
+
+                    [44] => Array
+                        (
+                            [id] => 144
+                            [product_id] => 137
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 7564
+                            [qty] => 139
+                            [unit] => Pcs
+                            [price] => 1500.00
+                            [total_amount] => 208500.00
+                            [amount_paid] => 208500.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MAZIWA MENGI 1KG
+                        )
+
+                    [45] => Array
+                        (
+                            [id] => 145
+                            [product_id] => 131
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 5456
+                            [qty] => 19
+                            [unit] => Pcs
+                            [price] => 2500.00
+                            [total_amount] => 47500.00
+                            [amount_paid] => 47500.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => LAYERS EXTRA
+                        )
+
+                    [46] => Array
+                        (
+                            [id] => 146
+                            [product_id] => 126
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 6756434
+                            [qty] => 25
+                            [unit] => Pcs
+                            [price] => 2000.00
+                            [total_amount] => 50000.00
+                            [amount_paid] => 50000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => HIPHOS PLUS
+                        )
+
+                    [47] => Array
+                        (
+                            [id] => 147
+                            [product_id] => 138
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 7865
+                            [qty] => 16
+                            [unit] => Pcs
+                            [price] => 2500.00
+                            [total_amount] => 40000.00
+                            [amount_paid] => 40000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => BROILER EXTRA
+                        )
+
+                    [48] => Array
+                        (
+                            [id] => 148
+                            [product_id] => 125
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 786543
+                            [qty] => 228
+                            [unit] => Pcs
+                            [price] => 3000.00
+                            [total_amount] => 684000.00
+                            [amount_paid] => 684000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => NGURUWE MIX
+                        )
+
+                    [49] => Array
+                        (
+                            [id] => 149
+                            [product_id] => 129
+                            [supplier] => stock-nov-2
+                            [supplier_no] => 45678
+                            [qty] => 6
+                            [unit] => KG
+                            [price] => 2000.00
+                            [total_amount] => 12000.00
+                            [amount_paid] => 12000.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-02 00:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => SOYA CHENGA
+                        )
+
+                    [50] => Array
+                        (
+                            [id] => 150
+                            [product_id] => 116
+                            [supplier] => Big
+                            [supplier_no] => 35467
+                            [qty] => 12661
+                            [unit] => kg
+                            [price] => 580.00
+                            [total_amount] => 7343380.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-03 08:23:00
+                            [user_id] => 0
+                            [store_id] => 7
+                            [product_name] => PUMBA
+                        )
+
+                    [51] => Array
+                        (
+                            [id] => 151
+                            [product_id] => 118
+                            [supplier] => Big
+                            [supplier_no] => 546
+                            [qty] => 7140
+                            [unit] => kg
+                            [price] => 735.00
+                            [total_amount] => 5247900.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-03 10:03:00
+                            [user_id] => 0
+                            [store_id] => 7
+                            [product_name] => SHUDU NGUMU
+                        )
+
+                    [52] => Array
+                        (
+                            [id] => 152
+                            [product_id] => 116
+                            [supplier] => COSMAS
+                            [supplier_no] => 456789
+                            [qty] => 11280
+                            [unit] => kg
+                            [price] => 570.00
+                            [total_amount] => 6429600.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-04 05:33:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PUMBA
+                        )
+
+                    [53] => Array
+                        (
+                            [id] => 153
+                            [product_id] => 115
+                            [supplier] => KALASINGA
+                            [supplier_no] => 456789
+                            [qty] => 700
+                            [unit] => kg
+                            [price] => 671.00
+                            [total_amount] => 469700.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-04 05:36:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => POLLARD
+                        )
+
+                    [54] => Array
+                        (
+                            [id] => 154
+                            [product_id] => 124
+                            [supplier] => KALASINGA
+                            [supplier_no] => 54678
+                            [qty] => 800
+                            [unit] => kg
+                            [price] => 575.00
+                            [total_amount] => 460000.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-04 05:36:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => WHEAT
+                        )
+
+                    [55] => Array
+                        (
+                            [id] => 155
+                            [product_id] => 116
+                            [supplier] => esso
+                            [supplier_no] => 24567
+                            [qty] => 268
+                            [unit] => kg
+                            [price] => 620.00
+                            [total_amount] => 166160.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-04 05:38:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PUMBA
+                        )
+
+                    [56] => Array
+                        (
+                            [id] => 156
+                            [product_id] => 103
+                            [supplier] => esso
+                            [supplier_no] => 456789
+                            [qty] => 500
+                            [unit] => kg
+                            [price] => 320.00
+                            [total_amount] => 160000.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-04 05:41:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MCHELE NGUMU
+                        )
+
+                    [57] => Array
+                        (
+                            [id] => 157
+                            [product_id] => 116
+                            [supplier] => ngulelo b
+                            [supplier_no] => 546789
+                            [qty] => 1511
+                            [unit] => kg
+                            [price] => 620.00
+                            [total_amount] => 936820.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-04 05:42:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PUMBA
+                        )
+
+                    [58] => Array
+                        (
+                            [id] => 158
+                            [product_id] => 116
+                            [supplier] => YA MASAI ILIKUWA IMEUZWA
+                            [supplier_no] => 34567
+                            [qty] => 650
+                            [unit] => kg
+                            [price] => 580.00
+                            [total_amount] => 377000.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-05 13:14:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PUMBA
+                        )
+
+                    [59] => Array
+                        (
+                            [id] => 159
+                            [product_id] => 102
+                            [supplier] => IMEFAGILIWA
+                            [supplier_no] => 5467
+                            [qty] => 106
+                            [unit] => kg
+                            [price] => 320.00
+                            [total_amount] => 33920.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-05 13:18:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MCHELE LAINI
+                        )
+
+                    [60] => Array
+                        (
+                            [id] => 160
+                            [product_id] => 139
+                            [supplier] => sto
+                            [supplier_no] => 45678
+                            [qty] => 2
+                            [unit] => PCS
+                            [price] => 15000.00
+                            [total_amount] => 30000.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-03 05:59:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => CHIKWIDI
+                        )
+
+                    [61] => Array
+                        (
+                            [id] => 161
+                            [product_id] => 95
+                            [supplier] => M.SWAUMU
+                            [supplier_no] => 5467
+                            [qty] => 170
+                            [unit] => kg
+                            [price] => 1650.00
+                            [total_amount] => 280500.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-05 07:19:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => KAYABO
+                        )
+
+                    [62] => Array
+                        (
+                            [id] => 162
+                            [product_id] => 116
+                            [supplier] => CASH
+                            [supplier_no] => 4657
+                            [qty] => 100
+                            [unit] => kg
+                            [price] => 600.00
+                            [total_amount] => 60000.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-05 07:21:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PUMBA
+                        )
+
+                    [63] => Array
+                        (
+                            [id] => 163
+                            [product_id] => 103
+                            [supplier] => CASH
+                            [supplier_no] => 34545687
+                            [qty] => 1500
+                            [unit] => kg
+                            [price] => 320.00
+                            [total_amount] => 480000.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-05 07:36:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MCHELE NGUMU
+                        )
+
+                    [64] => Array
+                        (
+                            [id] => 164
+                            [product_id] => 100
+                            [supplier] => KTASA
+                            [supplier_no] => 5467
+                            [qty] => 8920
+                            [unit] => kg
+                            [price] => 710.00
+                            [total_amount] => 6333200.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-05 07:37:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MAHINDI
+                        )
+
+                    [65] => Array
+                        (
+                            [id] => 165
+                            [product_id] => 116
+                            [supplier] => CASH
+                            [supplier_no] => 54567
+                            [qty] => 1500
+                            [unit] => kg
+                            [price] => 600.00
+                            [total_amount] => 900000.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-05 07:38:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PUMBA
+                        )
+
+                    [66] => Array
+                        (
+                            [id] => 166
+                            [product_id] => 116
+                            [supplier] => CASH
+                            [supplier_no] => 567
+                            [qty] => 2500
+                            [unit] => kg
+                            [price] => 600.00
+                            [total_amount] => 1500000.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-05 07:39:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PUMBA
+                        )
+
+                    [67] => Array
+                        (
+                            [id] => 167
+                            [product_id] => 116
+                            [supplier] => CASH
+                            [supplier_no] => 546789
+                            [qty] => 300
+                            [unit] => kg
+                            [price] => 600.00
+                            [total_amount] => 180000.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-05 07:40:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PUMBA
+                        )
+
+                    [68] => Array
+                        (
+                            [id] => 168
+                            [product_id] => 96
+                            [supplier] => MWITA
+                            [supplier_no] => 546789
+                            [qty] => 17140
+                            [unit] => kg
+                            [price] => 200.00
+                            [total_amount] => 3428000.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-05 07:41:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => KONOKONO
+                        )
+
+                    [69] => Array
+                        (
+                            [id] => 169
+                            [product_id] => 116
+                            [supplier] => KIWANDANI
+                            [supplier_no] => 45678
+                            [qty] => 403
+                            [unit] => kg
+                            [price] => 0.00
+                            [total_amount] => 0.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-05 07:42:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => PUMBA
+                        )
+
+                    [70] => Array
+                        (
+                            [id] => 170
+                            [product_id] => 115
+                            [supplier] => ESSO
+                            [supplier_no] => 34567
+                            [qty] => 140
+                            [unit] => kg
+                            [price] => 685.70
+                            [total_amount] => 95998.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-05 07:43:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => POLLARD
+                        )
+
+                    [71] => Array
+                        (
+                            [id] => 171
+                            [product_id] => 103
+                            [supplier] => KALASINGA
+                            [supplier_no] => 345678
+                            [qty] => 2000
+                            [unit] => kg
+                            [price] => 320.00
+                            [total_amount] => 640000.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-06 16:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MCHELE NGUMU
+                        )
+
+                    [72] => Array
+                        (
+                            [id] => 172
+                            [product_id] => 115
+                            [supplier] => ELIONA
+                            [supplier_no] => 2354678
+                            [qty] => 1050
+                            [unit] => kg
+                            [price] => 671.40
+                            [total_amount] => 704970.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-06 16:01:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => POLLARD
+                        )
+
+                    [73] => Array
+                        (
+                            [id] => 173
+                            [product_id] => 115
+                            [supplier] => ELIONA
+                            [supplier_no] => 54678
+                            [qty] => 1400
+                            [unit] => kg
+                            [price] => 671.50
+                            [total_amount] => 940100.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-06 16:02:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => POLLARD
+                        )
+
+                    [74] => Array
+                        (
+                            [id] => 174
+                            [product_id] => 115
+                            [supplier] => mama
+                            [supplier_no] => 3456789
+                            [qty] => 43
+                            [unit] => kg
+                            [price] => 400.00
+                            [total_amount] => 17200.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-06 16:04:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => POLLARD
+                        )
+
+                    [75] => Array
+                        (
+                            [id] => 175
+                            [product_id] => 102
+                            [supplier] => majengo
+                            [supplier_no] => 2435678
+                            [qty] => 814
+                            [unit] => kg
+                            [price] => 400.00
+                            [total_amount] => 325600.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-06 16:04:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MCHELE LAINI
+                        )
+
+                )
+
+            [total_amount] => 78596489
+            [total_paid] => 41027441
+            [total_items] => 112088
+            [recordsTotal] => 76
+            [recordsFiltered] => 76
+        )
+
+)
+Array
+(
+    [time] => 2025-11-06 19:22:43
+    [filters] => Array
+        (
+            [date_from] => 2025-11-06
+            [date_to] => 2025-11-06
+            [product] => 
+            [status] => 
+            [period] => today
+        )
+
+    [record_count] => 76
+    [sample] => Array
+        (
+            [id] => 100
+            [product_id] => 79
+            [supplier] => stock-nov-2
+            [supplier_no] => 6756
+            [qty] => 489
+            [unit] => kg
+            [price] => 1000.00
+            [total_amount] => 489100.00
+            [amount_paid] => 489100.00
+            [status] => Paid
+            [purchase_date] => 2025-11-02 00:00:00
+            [user_id] => 1
+            [store_id] => 7
+        )
+
+    [report] => Array
+        (
+            [data] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 171
+                            [product_id] => 103
+                            [supplier] => KALASINGA
+                            [supplier_no] => 345678
+                            [qty] => 2000
+                            [unit] => kg
+                            [price] => 320.00
+                            [total_amount] => 640000.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-06 16:00:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MCHELE NGUMU
+                        )
+
+                    [1] => Array
+                        (
+                            [id] => 172
+                            [product_id] => 115
+                            [supplier] => ELIONA
+                            [supplier_no] => 2354678
+                            [qty] => 1050
+                            [unit] => kg
+                            [price] => 671.40
+                            [total_amount] => 704970.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-06 16:01:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => POLLARD
+                        )
+
+                    [2] => Array
+                        (
+                            [id] => 173
+                            [product_id] => 115
+                            [supplier] => ELIONA
+                            [supplier_no] => 54678
+                            [qty] => 1400
+                            [unit] => kg
+                            [price] => 671.50
+                            [total_amount] => 940100.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-06 16:02:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => POLLARD
+                        )
+
+                    [3] => Array
+                        (
+                            [id] => 174
+                            [product_id] => 115
+                            [supplier] => mama
+                            [supplier_no] => 3456789
+                            [qty] => 43
+                            [unit] => kg
+                            [price] => 400.00
+                            [total_amount] => 17200.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-06 16:04:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => POLLARD
+                        )
+
+                    [4] => Array
+                        (
+                            [id] => 175
+                            [product_id] => 102
+                            [supplier] => majengo
+                            [supplier_no] => 2435678
+                            [qty] => 814
+                            [unit] => kg
+                            [price] => 400.00
+                            [total_amount] => 325600.00
+                            [amount_paid] => 0.00
+                            [status] => Paid
+                            [purchase_date] => 2025-11-06 16:04:00
+                            [user_id] => 1
+                            [store_id] => 7
+                            [product_name] => MCHELE LAINI
+                        )
+
+                )
+
+            [total_amount] => 2627870
+            [total_paid] => 0
+            [total_items] => 5307
+            [recordsTotal] => 5
+            [recordsFiltered] => 5
+        )
+
+)

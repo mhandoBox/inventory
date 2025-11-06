@@ -585,6 +585,85 @@ class Controller_Products extends Admin_Controller
         redirect('Controller_Products/purchases', 'refresh');
     }
 
-    // ...existing methods...
+    public function purchases_data()
+    {
+        $draw  = intval($this->input->post('draw'));
+        $start = intval($this->input->post('start'));
+        $length = intval($this->input->post('length'));
+        $search = $this->input->post('search')['value'] ?? '';
+
+        $date_from = $this->input->post('date_from') ?: null;
+        $date_to   = $this->input->post('date_to') ?: null;
+        $warehouse = $this->input->post('warehouse') ?: null;
+        $status    = $this->input->post('status') ?: null;
+
+        try {
+            // try to use a model if available
+            if (file_exists(APPPATH.'models/Model_purchases.php')) {
+                $this->load->model('Model_purchases');
+                if (method_exists($this->Model_purchases, 'getPurchases')) {
+                    $result = $this->Model_purchases->getPurchases($start, $length, [
+                        'date_from'=>$date_from,'date_to'=>$date_to,
+                        'warehouse'=>$warehouse,'status'=>$status,'search'=>$search
+                    ]);
+                    $data = $result['data'] ?? [];
+                    $recordsTotal = $result['recordsTotal'] ?? 0;
+                    $recordsFiltered = $result['recordsFiltered'] ?? $recordsTotal;
+                } else {
+                    throw new Exception('Model_purchases::getPurchases not found');
+                }
+            } else {
+                // fallback: direct DB query (adjust table/columns if different)
+                $this->db->start_cache();
+                $this->db->from('purchases p');
+                $this->db->select('p.id, p.reference_no, p.date, p.supplier_id, p.total, p.status, p.store_id');
+                $this->db->join('suppliers s','s.id = p.supplier_id','left');
+
+                if ($date_from) $this->db->where('DATE(p.date) >=', $date_from);
+                if ($date_to)   $this->db->where('DATE(p.date) <=', $date_to);
+                if ($warehouse) $this->db->where('p.store_id', $warehouse);
+                if ($status)    $this->db->where('p.status', $status);
+                if ($search) {
+                    $this->db->group_start()
+                             ->like('p.reference_no', $search)
+                             ->or_like('s.name', $search)
+                             ->group_end();
+                }
+
+                // total before limit
+                $recordsTotal = $this->db->count_all_results('', FALSE);
+
+                if ($length > 0) $this->db->limit($length, $start);
+                $this->db->order_by('p.date', 'desc');
+                $query = $this->db->get();
+                $this->db->stop_cache();
+                $this->db->flush_cache();
+
+                if ($query === FALSE) throw new Exception('DB error: '.json_encode($this->db->error()));
+                $data = $query->result_array();
+                $recordsFiltered = $recordsTotal;
+            }
+
+            $response = [
+                'draw' => $draw,
+                'recordsTotal' => intval($recordsTotal),
+                'recordsFiltered' => intval($recordsFiltered),
+                'data' => $data
+            ];
+
+            return $this->output
+                        ->set_content_type('application/json')
+                        ->set_output(json_encode($response));
+        } catch (Exception $e) {
+            log_message('error', 'purchases_data error: '.$e->getMessage());
+            return $this->output
+                        ->set_status_header(500)
+                        ->set_content_type('application/json')
+                        ->set_output(json_encode([
+                            'draw'=>$draw,'recordsTotal'=>0,'recordsFiltered'=>0,'data'=>[],
+                            'error'=>$e->getMessage()
+                        ]));
+        }
+    }
 }
 ?>

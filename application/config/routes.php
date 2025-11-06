@@ -60,6 +60,8 @@ $route['reports/purchases'] = 'Controller_Reports/purchase_report';
 $route['reports/general'] = 'Controller_Reports/general_report';
 $route['reports/export/(:any)/(:any)'] = 'Controller_Reports/export/$1/$2';
 $route['reports/chart_data/(:any)'] = 'Controller_Reports/chart_data/$1';
+$route['Controller_Reports/expense_report'] = 'Controller_Reports/expense_report';
+$route['Controller_Reports/expense_report_data'] = 'Controller_Reports/expense_report_data';
 
 // Accounting Module
 $route['accounting'] = 'Controller_accounting/index';

@@ -434,4 +434,23 @@ class Model_products extends CI_Model {
             return false;
         }
     }
+
+    public function getAll($params = [])
+    {
+        // If a newer method exists, delegate to it for compatibility
+        if (method_exists($this, 'getProducts')) {
+            return $this->getProducts($params);
+        }
+        // Fallback: simple product list
+        $this->db->reset_query();
+        $this->db->select('*')->from('products');
+        if (isset($params['active'])) {
+            $this->db->where('active', $params['active']);
+        }
+        if (!empty($params['order_by'])) {
+            $this->db->order_by($params['order_by']);
+        }
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }

@@ -517,6 +517,81 @@ class Controller_Reports extends Admin_Controller
         }
     }
 
+    public function expense_report()
+    {
+        if (!in_array('viewReport', $this->permission)) {
+            redirect('dashboard', 'refresh');
+        }
+
+        $this->data['page_title'] = 'Expense Report';
+        
+        // Load any required models
+        $this->load->model('model_stores');
+        
+        // Get stores/warehouses for filter dropdown
+        $this->data['stores'] = $this->model_stores->getActiveStores();
+        
+        // Default date range (current month)
+        $this->data['filters'] = array(
+            'date_from' => date('Y-m-01'), // First day of current month
+            'date_to' => date('Y-m-t'),    // Last day of current month
+        );
+
+        $this->render_template('reporting/expense_report', $this->data);
+    }
+
+    public function expense_report_data()
+    {
+        if (!in_array('viewReport', $this->permission)) {
+            return $this->output
+                ->set_content_type('application/json')
+                ->set_status_header(403)
+                ->set_output(json_encode(['error' => 'Access denied']));
+        }
+
+        try {
+            $draw = intval($this->input->post('draw'));
+            $start = intval($this->input->post('start'));
+            $length = intval($this->input->post('length'));
+            
+            $filters = [
+                'date_from' => $this->input->post('date_from'),
+                'date_to' => $this->input->post('date_to'),
+                'store' => $this->input->post('store'),
+                'search' => $this->input->post('search')['value'] ?? ''
+            ];
+
+            // Get expense data (implement in model)
+            $this->load->model('model_expenses');
+            $result = $this->model_expenses->getExpenses($start, $length, $filters);
+            
+            $response = [
+                'draw' => $draw,
+                'recordsTotal' => $result['total'] ?? 0,
+                'recordsFiltered' => $result['filtered'] ?? 0,
+                'data' => $result['data'] ?? [],
+                'totalExpenses' => $result['totalExpenses'] ?? 0
+            ];
+
+            return $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode($response));
+
+        } catch (Exception $e) {
+            log_message('error', 'Expense report error: ' . $e->getMessage());
+            return $this->output
+                ->set_status_header(500)
+                ->set_content_type('application/json')
+                ->set_output(json_encode([
+                    'error' => 'Server error',
+                    'draw' => $draw ?? 1,
+                    'recordsTotal' => 0,
+                    'recordsFiltered' => 0,
+                    'data' => []
+                ]));
+        }
+    }
+
     /**
      * Format phone number for display
      * @param string $phone
@@ -552,53 +627,85 @@ class Controller_Reports extends Admin_Controller
     // AJAX endpoint used by DataTable
     public function stock_report_data()
     {
-        // ensure model available
-        $this->load->model('Model_reporting', 'model_reporting');
-
-        // deny if no permission
         if (!in_array('viewReport', $this->permission)) {
-            $this->output
-                 ->set_status_header(403)
-                 ->set_content_type('application/json')
-                 ->set_output(json_encode(['data'=>[], 'error'=>'Access denied']));
-            return;
+            return $this->output
+                ->set_content_type('application/json')
+                ->set_status_header(403)
+                ->set_output(json_encode(['error' => 'Access denied']));
         }
 
-        // accept POST or GET
-        $date_from    = $this->input->post('date_from') ?? $this->input->get('date_from');
-        $date_to      = $this->input->post('date_to')   ?? $this->input->get('date_to');
-        $category     = $this->input->post('category')  ?? $this->input->get('category');
-        $warehouse    = $this->input->post('warehouse') ?? $this->input->get('warehouse');
-        $stock_status = $this->input->post('stock_status') ?? $this->input->get('stock_status');
-
-        $limit  = $this->input->post('limit')  ?? $this->input->get('limit');
-        $offset = $this->input->post('offset') ?? $this->input->get('offset');
-        $limit  = is_numeric($limit) ? (int)$limit : 0;
-        $offset = is_numeric($offset) ? (int)$offset : 0;
-
-        $filters = [
-            'date_from'    => $date_from,
-            'date_to'      => $date_to,
-            'category'     => $category,
-            'warehouse'    => $warehouse,
-            'stock_status' => $stock_status
-        ];
-
         try {
-            $report = $this->model_reporting->getStockReport($limit, $offset, $filters);
+            $draw = intval($this->input->post('draw'));
+            $start = intval($this->input->post('start'));
+            $length = intval($this->input->post('length'));
+            
+            $filters = [
+                'date_from' => $this->input->post('date_from'),
+                'date_to' => $this->input->post('date_to'),
+                'category' => $this->input->post('category'),
+                'warehouse' => $this->input->post('warehouse'),
+                'stock_status' => $this->input->post('stock_status'),
+                'search' => $this->input->post('search')['value'] ?? ''
+            ];
 
-            // normalize to DataTables-friendly structure
-            if (!is_array($report) || !isset($report['data'])) {
-                $report = ['data' => is_array($report) ? $report : [], 'total_items' => 0, 'limit' => $limit, 'offset' => $offset];
+            // Log the received parameters
+            log_message('debug', 'Stock Report Parameters: ' . json_encode([
+                'draw' => $draw,
+                'start' => $start,
+                'length' => $length,
+                'filters' => $filters
+            ]));
+
+            // Get report data
+            $data = $this->model_reporting->getStockReport($start, $length, $filters);
+            
+            // Ensure data is in the correct format
+            $formatted_data = [];
+            if (!empty($data['data'])) {
+                foreach ($data['data'] as $row) {
+                    $formatted_data[] = [
+                        'name' => $row['name'] ?? '',
+                        'opening_qty' => $row['opening_qty'] ?? 0,
+                        'purchased_in_range' => $row['purchased_in_range'] ?? 0,
+                        'purchased_value_in_range' => $row['purchased_value_in_range'] ?? 0,
+                        'sold_in_range' => $row['sold_in_range'] ?? 0,
+                        'sold_value_in_range' => $row['sold_value_in_range'] ?? 0,
+                        'closing_qty' => $row['closing_qty'] ?? 0,
+                        'current_value' => $row['current_value'] ?? 0
+                    ];
+                }
             }
 
-            $this->output->set_content_type('application/json')->set_output(json_encode($report));
-        } catch (Throwable $e) {
-            log_message('error', 'stock_report_data exception: ' . $e->getMessage() . "\n" . $e->getTraceAsString());
-            $this->output
-                 ->set_status_header(500)
-                 ->set_content_type('application/json')
-                 ->set_output(json_encode(['data'=>[], 'error' => 'Server error. Check logs.']));
+            $response = [
+                'draw' => $draw,
+                'recordsTotal' => $data['total_items'] ?? 0,
+                'recordsFiltered' => $data['total_items'] ?? 0,
+                'data' => $formatted_data,
+                'totalPurchaseValue' => $data['totalPurchaseValue'] ?? 0,
+                'totalSalesValue' => $data['totalSalesValue'] ?? 0,
+                'totalStockValue' => $data['totalStockValue'] ?? 0,
+                'lowStockCount' => $data['lowStockCount'] ?? 0
+            ];
+
+            // Log the response structure
+            log_message('debug', 'Stock Report Response Structure: ' . json_encode(array_keys($response)));
+
+            return $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode($response));
+
+        } catch (Exception $e) {
+            log_message('error', 'Stock report error: ' . $e->getMessage());
+            return $this->output
+                ->set_content_type('application/json')
+                ->set_status_header(500)
+                ->set_output(json_encode([
+                    'draw' => $draw ?? 1,
+                    'recordsTotal' => 0,
+                    'recordsFiltered' => 0,
+                    'data' => [],
+                    'error' => 'Server error'
+                ]));
         }
     }
 
