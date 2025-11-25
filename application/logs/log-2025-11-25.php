@@ -1,0 +1,11527 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+INFO - 2025-11-25 05:54:57 --> Config Class Initialized
+INFO - 2025-11-25 05:54:57 --> Hooks Class Initialized
+DEBUG - 2025-11-25 05:54:58 --> UTF-8 Support Enabled
+INFO - 2025-11-25 05:54:58 --> Utf8 Class Initialized
+INFO - 2025-11-25 05:54:58 --> URI Class Initialized
+INFO - 2025-11-25 05:54:58 --> Router Class Initialized
+INFO - 2025-11-25 05:54:58 --> Output Class Initialized
+INFO - 2025-11-25 05:54:58 --> Security Class Initialized
+DEBUG - 2025-11-25 05:54:58 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 05:54:58 --> Input Class Initialized
+INFO - 2025-11-25 05:54:58 --> Language Class Initialized
+INFO - 2025-11-25 05:54:58 --> Loader Class Initialized
+INFO - 2025-11-25 05:54:58 --> Helper loaded: url_helper
+INFO - 2025-11-25 05:54:58 --> Helper loaded: form_helper
+INFO - 2025-11-25 05:54:58 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 05:54:58 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 05:54:58 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 05:54:58 --> Form Validation Class Initialized
+INFO - 2025-11-25 05:54:58 --> Controller Class Initialized
+DEBUG - 2025-11-25 05:54:58 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 05:54:58 --> MY_Controller - User not logged in
+INFO - 2025-11-25 05:54:58 --> Model Class Initialized
+DEBUG - 2025-11-25 05:54:58 --> Form validation errors: 
+INFO - 2025-11-25 05:54:59 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\login.php
+INFO - 2025-11-25 05:54:59 --> Final output sent to browser
+DEBUG - 2025-11-25 05:54:59 --> Total execution time: 1.2750
+INFO - 2025-11-25 05:55:02 --> Config Class Initialized
+INFO - 2025-11-25 05:55:02 --> Hooks Class Initialized
+DEBUG - 2025-11-25 05:55:02 --> UTF-8 Support Enabled
+INFO - 2025-11-25 05:55:02 --> Utf8 Class Initialized
+INFO - 2025-11-25 05:55:02 --> URI Class Initialized
+INFO - 2025-11-25 05:55:02 --> Router Class Initialized
+INFO - 2025-11-25 05:55:02 --> Output Class Initialized
+INFO - 2025-11-25 05:55:02 --> Security Class Initialized
+DEBUG - 2025-11-25 05:55:02 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 05:55:02 --> Input Class Initialized
+INFO - 2025-11-25 05:55:02 --> Language Class Initialized
+INFO - 2025-11-25 05:55:02 --> Loader Class Initialized
+INFO - 2025-11-25 05:55:02 --> Helper loaded: url_helper
+INFO - 2025-11-25 05:55:02 --> Helper loaded: form_helper
+INFO - 2025-11-25 05:55:02 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 05:55:02 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 05:55:02 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 05:55:02 --> Form Validation Class Initialized
+INFO - 2025-11-25 05:55:02 --> Controller Class Initialized
+DEBUG - 2025-11-25 05:55:02 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 05:55:02 --> MY_Controller - User not logged in
+INFO - 2025-11-25 05:55:02 --> Model Class Initialized
+INFO - 2025-11-25 05:55:02 --> Language file loaded: language/english/form_validation_lang.php
+DEBUG - 2025-11-25 05:55:02 --> Login form submitted - Email: mhandoezekiel@gmail.com
+DEBUG - 2025-11-25 05:55:03 --> Email check for: mhandoezekiel@gmail.com - Result: found
+DEBUG - 2025-11-25 05:55:03 --> Login attempt for email: mhandoezekiel@gmail.com
+DEBUG - 2025-11-25 05:55:03 --> Login query: SELECT `u`.*, `g`.`permission`
+FROM `users` `u`
+JOIN `user_group` `ug` ON `u`.`id` = `ug`.`user_id`
+JOIN `groups` `g` ON `ug`.`group_id` = `g`.`id`
+WHERE `u`.`email` = 'mhandoezekiel@gmail.com'
+DEBUG - 2025-11-25 05:55:03 --> User found: {"id":"1","username":"admin","password":"$2y$10$7j9ACuOyt5ABFQ.u1JpG7ei7Fe\/6QID9EotwhMQlRjXQ.X26aLORK","email":"mhandoezekiel@gmail.com","firstname":"Ezekiel","lastname":"Mhando","phone":"0743991025","gender":"1","store_id":"7","group_id":"1","permission":"a:40:{i:0;s:10:\"createUser\";i:1;s:10:\"updateUser\";i:2;s:8:\"viewUser\";i:3;s:10:\"deleteUser\";i:4;s:11:\"createGroup\";i:5;s:11:\"updateGroup\";i:6;s:9:\"viewGroup\";i:7;s:11:\"deleteGroup\";i:8;s:11:\"createBrand\";i:9;s:11:\"updateBrand\";i:10;s:9:\"viewBrand\";i:11;s:11:\"deleteBrand\";i:12;s:14:\"createCategory\";i:13;s:14:\"updateCategory\";i:14;s:12:\"viewCategory\";i:15;s:14:\"deleteCategory\";i:16;s:11:\"createStore\";i:17;s:11:\"updateStore\";i:18;s:9:\"viewStore\";i:19;s:11:\"deleteStore\";i:20;s:15:\"createAttribute\";i:21;s:15:\"updateAttribute\";i:22;s:13:\"viewAttribute\";i:23;s:15:\"deleteAttribute\";i:24;s:13:\"createProduct\";i:25;s:13:\"updateProduct\";i:26;s:11:\"viewProduct\";i:27;s:13:\"deleteProduct\";i:28;s:11:\"createOrder\";i:29;s:11:\"updateOrder\";i:30;s:9:\"viewOrder\";i:31;s:11:\"deleteOrder\";i:32;s:13:\"updateCompany\";i:33;s:14:\"viewAccounting\";i:34;s:16:\"updateAccounting\";i:35;s:16:\"reportAccounting\";i:36;s:16:\"deleteAccounting\";i:37;s:11:\"viewReports\";i:38;s:11:\"viewProfile\";i:39;s:13:\"updateSetting\";}"}
+DEBUG - 2025-11-25 05:55:03 --> Password verified successfully for user: admin
+DEBUG - 2025-11-25 05:55:03 --> Processed permissions: []
+DEBUG - 2025-11-25 05:55:03 --> Login attempt result: success
+DEBUG - 2025-11-25 05:55:03 --> Role query: SELECT `g`.`group_name` AS `role`, `g`.`permission`
+FROM `users` `u`
+JOIN `user_group` `ug` ON `u`.`id` = `ug`.`user_id`
+JOIN `groups` `g` ON `ug`.`group_id` = `g`.`id`
+WHERE `u`.`id` = '1'
+DEBUG - 2025-11-25 05:55:03 --> Setting session data: Array
+(
+    [id] => 1
+    [username] => admin
+    [email] => mhandoezekiel@gmail.com
+    [role] => Administrator
+    [store_id] => 7
+    [store_name] => NMC-HQ
+    [user_permission] => Array
+        (
+        )
+
+    [logged_in] => 1
+)
+
+DEBUG - 2025-11-25 05:55:03 --> Session set successfully, redirecting to dashboard
+INFO - 2025-11-25 05:55:03 --> Config Class Initialized
+INFO - 2025-11-25 05:55:03 --> Hooks Class Initialized
+DEBUG - 2025-11-25 05:55:03 --> UTF-8 Support Enabled
+INFO - 2025-11-25 05:55:03 --> Utf8 Class Initialized
+INFO - 2025-11-25 05:55:03 --> URI Class Initialized
+INFO - 2025-11-25 05:55:03 --> Router Class Initialized
+INFO - 2025-11-25 05:55:03 --> Output Class Initialized
+INFO - 2025-11-25 05:55:03 --> Security Class Initialized
+DEBUG - 2025-11-25 05:55:03 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 05:55:03 --> Input Class Initialized
+INFO - 2025-11-25 05:55:03 --> Language Class Initialized
+INFO - 2025-11-25 05:55:03 --> Loader Class Initialized
+INFO - 2025-11-25 05:55:03 --> Helper loaded: url_helper
+INFO - 2025-11-25 05:55:03 --> Helper loaded: form_helper
+INFO - 2025-11-25 05:55:03 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 05:55:03 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 05:55:03 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 05:55:03 --> Form Validation Class Initialized
+INFO - 2025-11-25 05:55:03 --> Controller Class Initialized
+DEBUG - 2025-11-25 05:55:03 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 05:55:03 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 05:55:03 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 05:55:03 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 05:55:03 --> Model Class Initialized
+INFO - 2025-11-25 05:55:03 --> Model Class Initialized
+INFO - 2025-11-25 05:55:03 --> Model Class Initialized
+INFO - 2025-11-25 05:55:03 --> Model Class Initialized
+INFO - 2025-11-25 05:55:03 --> Model Class Initialized
+INFO - 2025-11-25 05:55:04 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 05:55:04 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 05:55:04 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+ERROR - 2025-11-25 05:55:05 --> Dashboard Chart Data Error: Unknown column 'quantity' in 'where clause'
+ERROR - 2025-11-25 05:55:05 --> Severity: Warning --> Undefined variable $paid_data C:\xampp\htdocs\Inventory_CI\application\views\dashboard.php 442
+ERROR - 2025-11-25 05:55:05 --> Severity: Warning --> Undefined variable $partial_data C:\xampp\htdocs\Inventory_CI\application\views\dashboard.php 448
+INFO - 2025-11-25 05:55:05 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\dashboard.php
+INFO - 2025-11-25 05:55:05 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 05:55:05 --> Final output sent to browser
+DEBUG - 2025-11-25 05:55:05 --> Total execution time: 1.3753
+INFO - 2025-11-25 05:55:13 --> Config Class Initialized
+INFO - 2025-11-25 05:55:13 --> Hooks Class Initialized
+DEBUG - 2025-11-25 05:55:13 --> UTF-8 Support Enabled
+INFO - 2025-11-25 05:55:13 --> Utf8 Class Initialized
+INFO - 2025-11-25 05:55:13 --> URI Class Initialized
+INFO - 2025-11-25 05:55:13 --> Router Class Initialized
+INFO - 2025-11-25 05:55:13 --> Output Class Initialized
+INFO - 2025-11-25 05:55:13 --> Security Class Initialized
+DEBUG - 2025-11-25 05:55:13 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 05:55:13 --> Input Class Initialized
+INFO - 2025-11-25 05:55:13 --> Language Class Initialized
+INFO - 2025-11-25 05:55:13 --> Loader Class Initialized
+INFO - 2025-11-25 05:55:13 --> Helper loaded: url_helper
+INFO - 2025-11-25 05:55:13 --> Helper loaded: form_helper
+INFO - 2025-11-25 05:55:13 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 05:55:13 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 05:55:13 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 05:55:13 --> Form Validation Class Initialized
+INFO - 2025-11-25 05:55:13 --> Controller Class Initialized
+DEBUG - 2025-11-25 05:55:13 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 05:55:13 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 05:55:13 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 05:55:13 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 05:55:13 --> Model Class Initialized
+INFO - 2025-11-25 05:55:13 --> Model Class Initialized
+INFO - 2025-11-25 05:55:13 --> Model Class Initialized
+INFO - 2025-11-25 05:55:13 --> Model Class Initialized
+INFO - 2025-11-25 05:55:13 --> Model Class Initialized
+INFO - 2025-11-25 05:55:13 --> Model Class Initialized
+DEBUG - 2025-11-25 05:55:13 --> Index loaded - Store: 7, Is Privileged: No
+ERROR - 2025-11-25 05:55:13 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 05:55:13 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 05:55:13 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 05:55:13 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 05:55:13 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/index.php
+INFO - 2025-11-25 05:55:13 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 05:55:13 --> Final output sent to browser
+DEBUG - 2025-11-25 05:55:13 --> Total execution time: 0.2625
+INFO - 2025-11-25 05:55:14 --> Config Class Initialized
+INFO - 2025-11-25 05:55:14 --> Hooks Class Initialized
+DEBUG - 2025-11-25 05:55:14 --> UTF-8 Support Enabled
+INFO - 2025-11-25 05:55:14 --> Utf8 Class Initialized
+INFO - 2025-11-25 05:55:14 --> URI Class Initialized
+INFO - 2025-11-25 05:55:14 --> Router Class Initialized
+INFO - 2025-11-25 05:55:14 --> Output Class Initialized
+INFO - 2025-11-25 05:55:14 --> Security Class Initialized
+DEBUG - 2025-11-25 05:55:14 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 05:55:14 --> Input Class Initialized
+INFO - 2025-11-25 05:55:14 --> Language Class Initialized
+INFO - 2025-11-25 05:55:14 --> Loader Class Initialized
+INFO - 2025-11-25 05:55:14 --> Helper loaded: url_helper
+INFO - 2025-11-25 05:55:14 --> Helper loaded: form_helper
+INFO - 2025-11-25 05:55:14 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 05:55:14 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 05:55:14 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 05:55:14 --> Form Validation Class Initialized
+INFO - 2025-11-25 05:55:14 --> Controller Class Initialized
+DEBUG - 2025-11-25 05:55:14 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 05:55:14 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 05:55:14 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 05:55:14 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 05:55:14 --> Model Class Initialized
+INFO - 2025-11-25 05:55:14 --> Model Class Initialized
+INFO - 2025-11-25 05:55:14 --> Model Class Initialized
+INFO - 2025-11-25 05:55:14 --> Model Class Initialized
+INFO - 2025-11-25 05:55:14 --> Model Class Initialized
+INFO - 2025-11-25 05:55:14 --> Model Class Initialized
+DEBUG - 2025-11-25 05:55:14 --> fetchOrdersData - Store ID: 7, Group ID: , Is Privileged: No
+DEBUG - 2025-11-25 05:55:14 --> Adding store restriction for store_id: 7
+DEBUG - 2025-11-25 05:55:14 --> Executing query: SELECT o.*,
+                    COALESCE(s.name, 'N/A') as store_name,
+                    COALESCE(u.username, 'Unknown') as clerk_name
+                    FROM orders o
+                    LEFT JOIN stores s ON o.store_id = s.id
+                    LEFT JOIN users u ON o.user_id = u.id WHERE o.store_id = '7' ORDER BY o.id DESC
+DEBUG - 2025-11-25 05:55:14 --> Query returned 1106 results
+DEBUG - 2025-11-25 05:55:14 --> Found 1106 orders for user
+INFO - 2025-11-25 05:55:14 --> Final output sent to browser
+DEBUG - 2025-11-25 05:55:14 --> Total execution time: 0.0706
+INFO - 2025-11-25 05:59:11 --> Config Class Initialized
+INFO - 2025-11-25 05:59:11 --> Hooks Class Initialized
+DEBUG - 2025-11-25 05:59:11 --> UTF-8 Support Enabled
+INFO - 2025-11-25 05:59:11 --> Utf8 Class Initialized
+INFO - 2025-11-25 05:59:11 --> URI Class Initialized
+INFO - 2025-11-25 05:59:11 --> Router Class Initialized
+INFO - 2025-11-25 05:59:11 --> Output Class Initialized
+INFO - 2025-11-25 05:59:11 --> Security Class Initialized
+DEBUG - 2025-11-25 05:59:11 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 05:59:11 --> Input Class Initialized
+INFO - 2025-11-25 05:59:11 --> Language Class Initialized
+INFO - 2025-11-25 05:59:11 --> Loader Class Initialized
+INFO - 2025-11-25 05:59:11 --> Helper loaded: url_helper
+INFO - 2025-11-25 05:59:11 --> Helper loaded: form_helper
+INFO - 2025-11-25 05:59:11 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 05:59:11 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 05:59:11 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 05:59:11 --> Form Validation Class Initialized
+INFO - 2025-11-25 05:59:11 --> Controller Class Initialized
+DEBUG - 2025-11-25 05:59:11 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 05:59:11 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 05:59:11 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 05:59:11 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 05:59:11 --> Model Class Initialized
+INFO - 2025-11-25 05:59:11 --> Model Class Initialized
+INFO - 2025-11-25 05:59:11 --> Model Class Initialized
+INFO - 2025-11-25 05:59:11 --> Model Class Initialized
+INFO - 2025-11-25 05:59:11 --> Model Class Initialized
+INFO - 2025-11-25 05:59:11 --> Model Class Initialized
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 78, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 138, purchased: 16, ordered: 0, stock: 16
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 79, purchased: 989, ordered: 23, stock: 966
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 80, purchased: 205, ordered: 57, stock: 148
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 81, purchased: 2046, ordered: 983, stock: 1063
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 139, purchased: 2, ordered: 1, stock: 1
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 82, purchased: 3500, ordered: 8373, stock: 0
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 83, purchased: 0, ordered: 2813, stock: 0
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 84, purchased: 189, ordered: 17, stock: 172
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 85, purchased: 137, ordered: 3, stock: 134
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 127, purchased: 2000, ordered: 378, stock: 1622
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 86, purchased: 384, ordered: 362, stock: 22
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 87, purchased: 588, ordered: 562, stock: 26
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 88, purchased: 837, ordered: 562, stock: 275
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 89, purchased: 2164, ordered: 720, stock: 1444
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 90, purchased: 470, ordered: 362, stock: 108
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 126, purchased: 25, ordered: 0, stock: 25
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 91, purchased: 26, ordered: 0, stock: 26
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 92, purchased: 25, ordered: 24, stock: 1
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 93, purchased: 752, ordered: 854, stock: 0
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 94, purchased: 764, ordered: 634, stock: 130
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 95, purchased: 2263, ordered: 415, stock: 1848
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 96, purchased: 18925, ordered: 3289, stock: 15636
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 134, purchased: 604, ordered: 69, stock: 535
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 130, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 133, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 131, purchased: 19, ordered: 0, stock: 19
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 97, purchased: 6001, ordered: 2323, stock: 3678
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 98, purchased: 442, ordered: 40, stock: 402
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 146, purchased: 200, ordered: 0, stock: 200
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 99, purchased: 2, ordered: 0, stock: 2
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 100, purchased: 34587, ordered: 30162, stock: 4425
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 137, purchased: 189, ordered: 4, stock: 185
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 101, purchased: 107, ordered: 22, stock: 85
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 102, purchased: 11299, ordered: 8396, stock: 2903
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 103, purchased: 29811, ordered: 22760, stock: 7051
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 104, purchased: 7500, ordered: 787, stock: 6713
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 142, purchased: 36, ordered: 0, stock: 36
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 140, purchased: 10, ordered: 1, stock: 9
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 105, purchased: 358, ordered: 201, stock: 157
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 106, purchased: 738, ordered: 645, stock: 93
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 125, purchased: 253, ordered: 0, stock: 253
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 108, purchased: 2503, ordered: 2103, stock: 400
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 109, purchased: 2571, ordered: 661, stock: 1910
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 110, purchased: 4761, ordered: 1596, stock: 3165
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 132, purchased: 200, ordered: 175, stock: 25
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 111, purchased: 406, ordered: 82, stock: 324
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 112, purchased: 1900, ordered: 1323, stock: 577
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 113, purchased: 2241, ordered: 825, stock: 1416
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 135, purchased: 1990, ordered: 654, stock: 1336
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 114, purchased: 922, ordered: 45, stock: 877
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 115, purchased: 13662, ordered: 13879, stock: 0
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 116, purchased: 237414, ordered: 223691, stock: 13723
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 107, purchased: 1200, ordered: 836, stock: 364
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 117, purchased: 9776, ordered: 6021, stock: 3755
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 118, purchased: 24842, ordered: 21106, stock: 3736
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 129, purchased: 1706, ordered: 1560, stock: 146
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 119, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 120, purchased: 1555, ordered: 560, stock: 995
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 121, purchased: 63, ordered: 1, stock: 62
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 122, purchased: 688, ordered: 207, stock: 481
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 123, purchased: 2020, ordered: 1715, stock: 305
+DEBUG - 2025-11-25 05:59:11 --> getProductsWithStock - ID: 124, purchased: 3646, ordered: 4469, stock: 0
+DEBUG - 2025-11-25 05:59:11 --> Prepared products for create view: [{"id":78,"name":"BROILER BOOSTER","price":3000,"current_stock":0,"unit":""},{"id":138,"name":"BROILER EXTRA","price":3000,"current_stock":16,"unit":""},{"id":79,"name":"BROILER FINISHER MASH","price":1000,"current_stock":966,"unit":""},{"id":80,"name":"BROILER PREMIX","price":3000,"current_stock":148,"unit":""},{"id":81,"name":"BROILER STARTER MASH","price":1000,"current_stock":1063,"unit":""},{"id":139,"name":"CHIKWIDI","price":15000,"current_stock":1,"unit":""},{"id":82,"name":"CHOKAA","price":500,"current_stock":0,"unit":""},{"id":83,"name":"CHUMVI","price":500,"current_stock":0,"unit":""},{"id":84,"name":"D.C.P KOPO (1\/2)","price":2000,"current_stock":172,"unit":""},{"id":85,"name":"D.C.P KOPO 1KG","price":3000,"current_stock":134,"unit":""},{"id":127,"name":"D.C.P KUPIMA","price":1500,"current_stock":1622,"unit":""},{"id":86,"name":"DAGAA KAUZU","price":2800,"current_stock":22,"unit":""},{"id":87,"name":"DAGAA SAGWA","price":2000,"current_stock":26,"unit":""},{"id":88,"name":"DAMU","price":1500,"current_stock":275,"unit":""},{"id":89,"name":"GROWER MASH","price":1000,"current_stock":1444,"unit":""},{"id":90,"name":"HAMIRA","price":1500,"current_stock":108,"unit":""},{"id":126,"name":"HIPHOS PLUS","price":5000,"current_stock":25,"unit":""},{"id":91,"name":"JOSERA MADUME","price":11000,"current_stock":26,"unit":""},{"id":92,"name":"JOSERA MAZIWA","price":11000,"current_stock":1,"unit":""},{"id":93,"name":"KARANGA","price":700,"current_stock":0,"unit":""},{"id":94,"name":"KAUDIS NGURUWE","price":4000,"current_stock":130,"unit":""},{"id":95,"name":"KAYABO","price":2000,"current_stock":1848,"unit":""},{"id":96,"name":"KONOKONO","price":350,"current_stock":15636,"unit":""},{"id":134,"name":"KONOKONO NZIMA","price":400,"current_stock":535,"unit":""},{"id":130,"name":"KONOKONO SAGWA","price":470,"current_stock":0,"unit":""},{"id":133,"name":"KONOKONO SAGWA","price":600,"current_stock":0,"unit":""},{"id":131,"name":"LAYERS EXTRA","price":3500,"current_stock":19,"unit":""},{"id":97,"name":"LAYERS MASH","price":1000,"current_stock":3678,"unit":""},{"id":98,"name":"LAYERS PREMIX","price":3500,"current_stock":402,"unit":""},{"id":146,"name":"MABOGA","price":3800,"current_stock":200,"unit":""},{"id":99,"name":"MADUME LICK","price":5000,"current_stock":2,"unit":""},{"id":100,"name":"MAHINDI","price":730,"current_stock":4425,"unit":""},{"id":137,"name":"MAZIWA MENGI 1KG","price":1500,"current_stock":185,"unit":""},{"id":101,"name":"MAZIWA MENGI 2kg","price":3000,"current_stock":85,"unit":""},{"id":102,"name":"MCHELE LAINI","price":400,"current_stock":2903,"unit":""},{"id":103,"name":"MCHELE NGUMU","price":320,"current_stock":7051,"unit":""},{"id":104,"name":"MFUPA","price":700,"current_stock":6713,"unit":""},{"id":142,"name":"MOLLASSES 1LITRE","price":5000,"current_stock":36,"unit":""},{"id":140,"name":"MOLLASSES 5LITRE","price":15000,"current_stock":9,"unit":""},{"id":105,"name":"MTAMA","price":1000,"current_stock":157,"unit":""},{"id":106,"name":"NGANO","price":1000,"current_stock":93,"unit":""},{"id":125,"name":"NGURUWE MIX","price":3500,"current_stock":253,"unit":""},{"id":108,"name":"PAMBA LAINI","price":1200,"current_stock":400,"unit":""},{"id":109,"name":"PAMBA NGUMU","price":1200,"current_stock":1910,"unit":""},{"id":110,"name":"PARAZA","price":1000,"current_stock":3165,"unit":""},{"id":132,"name":"PELLET FINISHER","price":2000,"current_stock":25,"unit":""},{"id":111,"name":"PIG BOOSTER","price":3000,"current_stock":324,"unit":""},{"id":112,"name":"PIG GROWER","price":1000,"current_stock":577,"unit":""},{"id":113,"name":"PIG STARTER","price":1000,"current_stock":1416,"unit":""},{"id":135,"name":"PILLET STARTER","price":2000,"current_stock":1336,"unit":""},{"id":114,"name":"PILLLET GROWER","price":2000,"current_stock":877,"unit":""},{"id":115,"name":"POLLARD","price":750,"current_stock":0,"unit":""},{"id":116,"name":"PUMBA","price":660,"current_stock":13723,"unit":""},{"id":107,"name":"PUMBA MAHINDI LAINI","price":600,"current_stock":364,"unit":""},{"id":117,"name":"SHUDU LAINI","price":900,"current_stock":3755,"unit":""},{"id":118,"name":"SHUDU NGUMU","price":800,"current_stock":3736,"unit":""},{"id":129,"name":"SOYA CHENGA","price":2500,"current_stock":146,"unit":""},{"id":119,"name":"SOYA MAFUTA","price":2500,"current_stock":0,"unit":""},{"id":120,"name":"SOYA UNGA","price":2000,"current_stock":995,"unit":""},{"id":121,"name":"SUPER MACLICK","price":3500,"current_stock":62,"unit":""},{"id":122,"name":"UBUYU","price":700,"current_stock":481,"unit":""},{"id":123,"name":"UDUVI","price":3500,"current_stock":305,"unit":""},{"id":124,"name":"WHEAT","price":650,"current_stock":0,"unit":""}]
+ERROR - 2025-11-25 05:59:11 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 05:59:11 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 05:59:11 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 05:59:11 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 05:59:11 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/create.php
+INFO - 2025-11-25 05:59:11 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 05:59:11 --> Final output sent to browser
+DEBUG - 2025-11-25 05:59:11 --> Total execution time: 0.7391
+INFO - 2025-11-25 05:59:11 --> Config Class Initialized
+INFO - 2025-11-25 05:59:11 --> Hooks Class Initialized
+DEBUG - 2025-11-25 05:59:11 --> UTF-8 Support Enabled
+INFO - 2025-11-25 05:59:11 --> Utf8 Class Initialized
+INFO - 2025-11-25 05:59:11 --> URI Class Initialized
+INFO - 2025-11-25 05:59:11 --> Router Class Initialized
+INFO - 2025-11-25 05:59:11 --> Output Class Initialized
+INFO - 2025-11-25 05:59:11 --> Security Class Initialized
+DEBUG - 2025-11-25 05:59:11 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 05:59:11 --> Input Class Initialized
+INFO - 2025-11-25 05:59:11 --> Language Class Initialized
+ERROR - 2025-11-25 05:59:11 --> 404 Page Not Found: Assets/plugins
+INFO - 2025-11-25 05:59:29 --> Config Class Initialized
+INFO - 2025-11-25 05:59:29 --> Hooks Class Initialized
+DEBUG - 2025-11-25 05:59:29 --> UTF-8 Support Enabled
+INFO - 2025-11-25 05:59:29 --> Utf8 Class Initialized
+INFO - 2025-11-25 05:59:29 --> URI Class Initialized
+INFO - 2025-11-25 05:59:29 --> Router Class Initialized
+INFO - 2025-11-25 05:59:29 --> Output Class Initialized
+INFO - 2025-11-25 05:59:29 --> Security Class Initialized
+DEBUG - 2025-11-25 05:59:29 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 05:59:29 --> Input Class Initialized
+INFO - 2025-11-25 05:59:29 --> Language Class Initialized
+INFO - 2025-11-25 05:59:29 --> Loader Class Initialized
+INFO - 2025-11-25 05:59:29 --> Helper loaded: url_helper
+INFO - 2025-11-25 05:59:29 --> Helper loaded: form_helper
+INFO - 2025-11-25 05:59:29 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 05:59:29 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 05:59:29 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 05:59:29 --> Form Validation Class Initialized
+INFO - 2025-11-25 05:59:29 --> Controller Class Initialized
+DEBUG - 2025-11-25 05:59:29 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 05:59:29 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 05:59:29 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 05:59:29 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 05:59:29 --> Model Class Initialized
+INFO - 2025-11-25 05:59:29 --> Model Class Initialized
+INFO - 2025-11-25 05:59:29 --> Model Class Initialized
+INFO - 2025-11-25 05:59:29 --> Model Class Initialized
+INFO - 2025-11-25 05:59:29 --> Model Class Initialized
+INFO - 2025-11-25 05:59:29 --> Model Class Initialized
+DEBUG - 2025-11-25 05:59:29 --> Index loaded - Store: 7, Is Privileged: No
+ERROR - 2025-11-25 05:59:29 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 05:59:29 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 05:59:29 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 05:59:29 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 05:59:29 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/index.php
+INFO - 2025-11-25 05:59:29 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 05:59:29 --> Final output sent to browser
+DEBUG - 2025-11-25 05:59:29 --> Total execution time: 0.0584
+INFO - 2025-11-25 05:59:29 --> Config Class Initialized
+INFO - 2025-11-25 05:59:29 --> Hooks Class Initialized
+DEBUG - 2025-11-25 05:59:29 --> UTF-8 Support Enabled
+INFO - 2025-11-25 05:59:29 --> Utf8 Class Initialized
+INFO - 2025-11-25 05:59:29 --> URI Class Initialized
+INFO - 2025-11-25 05:59:29 --> Router Class Initialized
+INFO - 2025-11-25 05:59:29 --> Output Class Initialized
+INFO - 2025-11-25 05:59:29 --> Security Class Initialized
+DEBUG - 2025-11-25 05:59:29 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 05:59:29 --> Input Class Initialized
+INFO - 2025-11-25 05:59:29 --> Language Class Initialized
+INFO - 2025-11-25 05:59:29 --> Loader Class Initialized
+INFO - 2025-11-25 05:59:29 --> Helper loaded: url_helper
+INFO - 2025-11-25 05:59:29 --> Helper loaded: form_helper
+INFO - 2025-11-25 05:59:29 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 05:59:29 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 05:59:29 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 05:59:29 --> Form Validation Class Initialized
+INFO - 2025-11-25 05:59:29 --> Controller Class Initialized
+DEBUG - 2025-11-25 05:59:29 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 05:59:29 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 05:59:29 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 05:59:29 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 05:59:29 --> Model Class Initialized
+INFO - 2025-11-25 05:59:29 --> Model Class Initialized
+INFO - 2025-11-25 05:59:29 --> Model Class Initialized
+INFO - 2025-11-25 05:59:29 --> Model Class Initialized
+INFO - 2025-11-25 05:59:29 --> Model Class Initialized
+INFO - 2025-11-25 05:59:29 --> Model Class Initialized
+DEBUG - 2025-11-25 05:59:29 --> fetchOrdersData - Store ID: 7, Group ID: , Is Privileged: No
+DEBUG - 2025-11-25 05:59:29 --> Adding store restriction for store_id: 7
+DEBUG - 2025-11-25 05:59:29 --> Executing query: SELECT o.*,
+                    COALESCE(s.name, 'N/A') as store_name,
+                    COALESCE(u.username, 'Unknown') as clerk_name
+                    FROM orders o
+                    LEFT JOIN stores s ON o.store_id = s.id
+                    LEFT JOIN users u ON o.user_id = u.id WHERE o.store_id = '7' ORDER BY o.id DESC
+DEBUG - 2025-11-25 05:59:29 --> Query returned 1106 results
+DEBUG - 2025-11-25 05:59:29 --> Found 1106 orders for user
+INFO - 2025-11-25 05:59:29 --> Final output sent to browser
+DEBUG - 2025-11-25 05:59:29 --> Total execution time: 0.0647
+INFO - 2025-11-25 05:59:48 --> Config Class Initialized
+INFO - 2025-11-25 05:59:48 --> Hooks Class Initialized
+DEBUG - 2025-11-25 05:59:48 --> UTF-8 Support Enabled
+INFO - 2025-11-25 05:59:48 --> Utf8 Class Initialized
+INFO - 2025-11-25 05:59:48 --> URI Class Initialized
+INFO - 2025-11-25 05:59:48 --> Router Class Initialized
+INFO - 2025-11-25 05:59:48 --> Output Class Initialized
+INFO - 2025-11-25 05:59:48 --> Security Class Initialized
+DEBUG - 2025-11-25 05:59:48 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 05:59:48 --> Input Class Initialized
+INFO - 2025-11-25 05:59:48 --> Language Class Initialized
+INFO - 2025-11-25 05:59:48 --> Loader Class Initialized
+INFO - 2025-11-25 05:59:48 --> Helper loaded: url_helper
+INFO - 2025-11-25 05:59:48 --> Helper loaded: form_helper
+INFO - 2025-11-25 05:59:48 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 05:59:48 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 05:59:48 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 05:59:48 --> Form Validation Class Initialized
+INFO - 2025-11-25 05:59:48 --> Controller Class Initialized
+DEBUG - 2025-11-25 05:59:48 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 05:59:48 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 05:59:48 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 05:59:48 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 05:59:48 --> Model Class Initialized
+INFO - 2025-11-25 05:59:48 --> Model Class Initialized
+INFO - 2025-11-25 05:59:48 --> Model Class Initialized
+INFO - 2025-11-25 05:59:48 --> Model Class Initialized
+INFO - 2025-11-25 05:59:48 --> Model Class Initialized
+INFO - 2025-11-25 05:59:48 --> Model Class Initialized
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 78, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 138, purchased: 16, ordered: 0, stock: 16
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 79, purchased: 989, ordered: 23, stock: 966
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 80, purchased: 205, ordered: 57, stock: 148
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 81, purchased: 2046, ordered: 983, stock: 1063
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 139, purchased: 2, ordered: 1, stock: 1
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 82, purchased: 3500, ordered: 8373, stock: 0
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 83, purchased: 0, ordered: 2813, stock: 0
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 84, purchased: 189, ordered: 17, stock: 172
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 85, purchased: 137, ordered: 3, stock: 134
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 127, purchased: 2000, ordered: 378, stock: 1622
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 86, purchased: 384, ordered: 362, stock: 22
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 87, purchased: 588, ordered: 562, stock: 26
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 88, purchased: 837, ordered: 562, stock: 275
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 89, purchased: 2164, ordered: 720, stock: 1444
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 90, purchased: 470, ordered: 362, stock: 108
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 126, purchased: 25, ordered: 0, stock: 25
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 91, purchased: 26, ordered: 0, stock: 26
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 92, purchased: 25, ordered: 24, stock: 1
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 93, purchased: 752, ordered: 854, stock: 0
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 94, purchased: 764, ordered: 634, stock: 130
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 95, purchased: 2263, ordered: 415, stock: 1848
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 96, purchased: 18925, ordered: 3289, stock: 15636
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 134, purchased: 604, ordered: 69, stock: 535
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 130, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 133, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 131, purchased: 19, ordered: 0, stock: 19
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 97, purchased: 6001, ordered: 2323, stock: 3678
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 98, purchased: 442, ordered: 40, stock: 402
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 146, purchased: 200, ordered: 0, stock: 200
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 99, purchased: 2, ordered: 0, stock: 2
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 100, purchased: 34587, ordered: 30162, stock: 4425
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 137, purchased: 189, ordered: 4, stock: 185
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 101, purchased: 107, ordered: 22, stock: 85
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 102, purchased: 11299, ordered: 8396, stock: 2903
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 103, purchased: 29811, ordered: 22760, stock: 7051
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 104, purchased: 7500, ordered: 787, stock: 6713
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 142, purchased: 36, ordered: 0, stock: 36
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 140, purchased: 10, ordered: 1, stock: 9
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 105, purchased: 358, ordered: 201, stock: 157
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 106, purchased: 738, ordered: 645, stock: 93
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 125, purchased: 253, ordered: 0, stock: 253
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 108, purchased: 2503, ordered: 2103, stock: 400
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 109, purchased: 2571, ordered: 661, stock: 1910
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 110, purchased: 4761, ordered: 1596, stock: 3165
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 132, purchased: 200, ordered: 175, stock: 25
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 111, purchased: 406, ordered: 82, stock: 324
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 112, purchased: 1900, ordered: 1323, stock: 577
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 113, purchased: 2241, ordered: 825, stock: 1416
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 135, purchased: 1990, ordered: 654, stock: 1336
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 114, purchased: 922, ordered: 45, stock: 877
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 115, purchased: 13662, ordered: 13879, stock: 0
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 116, purchased: 237414, ordered: 223691, stock: 13723
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 107, purchased: 1200, ordered: 836, stock: 364
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 117, purchased: 9776, ordered: 6021, stock: 3755
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 118, purchased: 24842, ordered: 21106, stock: 3736
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 129, purchased: 1706, ordered: 1560, stock: 146
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 119, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 120, purchased: 1555, ordered: 560, stock: 995
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 121, purchased: 63, ordered: 1, stock: 62
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 122, purchased: 688, ordered: 207, stock: 481
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 123, purchased: 2020, ordered: 1715, stock: 305
+DEBUG - 2025-11-25 05:59:48 --> getProductsWithStock - ID: 124, purchased: 3646, ordered: 4469, stock: 0
+DEBUG - 2025-11-25 05:59:48 --> Prepared products for create view: [{"id":78,"name":"BROILER BOOSTER","price":3000,"current_stock":0,"unit":""},{"id":138,"name":"BROILER EXTRA","price":3000,"current_stock":16,"unit":""},{"id":79,"name":"BROILER FINISHER MASH","price":1000,"current_stock":966,"unit":""},{"id":80,"name":"BROILER PREMIX","price":3000,"current_stock":148,"unit":""},{"id":81,"name":"BROILER STARTER MASH","price":1000,"current_stock":1063,"unit":""},{"id":139,"name":"CHIKWIDI","price":15000,"current_stock":1,"unit":""},{"id":82,"name":"CHOKAA","price":500,"current_stock":0,"unit":""},{"id":83,"name":"CHUMVI","price":500,"current_stock":0,"unit":""},{"id":84,"name":"D.C.P KOPO (1\/2)","price":2000,"current_stock":172,"unit":""},{"id":85,"name":"D.C.P KOPO 1KG","price":3000,"current_stock":134,"unit":""},{"id":127,"name":"D.C.P KUPIMA","price":1500,"current_stock":1622,"unit":""},{"id":86,"name":"DAGAA KAUZU","price":2800,"current_stock":22,"unit":""},{"id":87,"name":"DAGAA SAGWA","price":2000,"current_stock":26,"unit":""},{"id":88,"name":"DAMU","price":1500,"current_stock":275,"unit":""},{"id":89,"name":"GROWER MASH","price":1000,"current_stock":1444,"unit":""},{"id":90,"name":"HAMIRA","price":1500,"current_stock":108,"unit":""},{"id":126,"name":"HIPHOS PLUS","price":5000,"current_stock":25,"unit":""},{"id":91,"name":"JOSERA MADUME","price":11000,"current_stock":26,"unit":""},{"id":92,"name":"JOSERA MAZIWA","price":11000,"current_stock":1,"unit":""},{"id":93,"name":"KARANGA","price":700,"current_stock":0,"unit":""},{"id":94,"name":"KAUDIS NGURUWE","price":4000,"current_stock":130,"unit":""},{"id":95,"name":"KAYABO","price":2000,"current_stock":1848,"unit":""},{"id":96,"name":"KONOKONO","price":350,"current_stock":15636,"unit":""},{"id":134,"name":"KONOKONO NZIMA","price":400,"current_stock":535,"unit":""},{"id":130,"name":"KONOKONO SAGWA","price":470,"current_stock":0,"unit":""},{"id":133,"name":"KONOKONO SAGWA","price":600,"current_stock":0,"unit":""},{"id":131,"name":"LAYERS EXTRA","price":3500,"current_stock":19,"unit":""},{"id":97,"name":"LAYERS MASH","price":1000,"current_stock":3678,"unit":""},{"id":98,"name":"LAYERS PREMIX","price":3500,"current_stock":402,"unit":""},{"id":146,"name":"MABOGA","price":3800,"current_stock":200,"unit":""},{"id":99,"name":"MADUME LICK","price":5000,"current_stock":2,"unit":""},{"id":100,"name":"MAHINDI","price":730,"current_stock":4425,"unit":""},{"id":137,"name":"MAZIWA MENGI 1KG","price":1500,"current_stock":185,"unit":""},{"id":101,"name":"MAZIWA MENGI 2kg","price":3000,"current_stock":85,"unit":""},{"id":102,"name":"MCHELE LAINI","price":400,"current_stock":2903,"unit":""},{"id":103,"name":"MCHELE NGUMU","price":320,"current_stock":7051,"unit":""},{"id":104,"name":"MFUPA","price":700,"current_stock":6713,"unit":""},{"id":142,"name":"MOLLASSES 1LITRE","price":5000,"current_stock":36,"unit":""},{"id":140,"name":"MOLLASSES 5LITRE","price":15000,"current_stock":9,"unit":""},{"id":105,"name":"MTAMA","price":1000,"current_stock":157,"unit":""},{"id":106,"name":"NGANO","price":1000,"current_stock":93,"unit":""},{"id":125,"name":"NGURUWE MIX","price":3500,"current_stock":253,"unit":""},{"id":108,"name":"PAMBA LAINI","price":1200,"current_stock":400,"unit":""},{"id":109,"name":"PAMBA NGUMU","price":1200,"current_stock":1910,"unit":""},{"id":110,"name":"PARAZA","price":1000,"current_stock":3165,"unit":""},{"id":132,"name":"PELLET FINISHER","price":2000,"current_stock":25,"unit":""},{"id":111,"name":"PIG BOOSTER","price":3000,"current_stock":324,"unit":""},{"id":112,"name":"PIG GROWER","price":1000,"current_stock":577,"unit":""},{"id":113,"name":"PIG STARTER","price":1000,"current_stock":1416,"unit":""},{"id":135,"name":"PILLET STARTER","price":2000,"current_stock":1336,"unit":""},{"id":114,"name":"PILLLET GROWER","price":2000,"current_stock":877,"unit":""},{"id":115,"name":"POLLARD","price":750,"current_stock":0,"unit":""},{"id":116,"name":"PUMBA","price":660,"current_stock":13723,"unit":""},{"id":107,"name":"PUMBA MAHINDI LAINI","price":600,"current_stock":364,"unit":""},{"id":117,"name":"SHUDU LAINI","price":900,"current_stock":3755,"unit":""},{"id":118,"name":"SHUDU NGUMU","price":800,"current_stock":3736,"unit":""},{"id":129,"name":"SOYA CHENGA","price":2500,"current_stock":146,"unit":""},{"id":119,"name":"SOYA MAFUTA","price":2500,"current_stock":0,"unit":""},{"id":120,"name":"SOYA UNGA","price":2000,"current_stock":995,"unit":""},{"id":121,"name":"SUPER MACLICK","price":3500,"current_stock":62,"unit":""},{"id":122,"name":"UBUYU","price":700,"current_stock":481,"unit":""},{"id":123,"name":"UDUVI","price":3500,"current_stock":305,"unit":""},{"id":124,"name":"WHEAT","price":650,"current_stock":0,"unit":""}]
+ERROR - 2025-11-25 05:59:48 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 05:59:48 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 05:59:48 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 05:59:48 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 05:59:48 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/create.php
+INFO - 2025-11-25 05:59:48 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 05:59:48 --> Final output sent to browser
+DEBUG - 2025-11-25 05:59:48 --> Total execution time: 0.1364
+INFO - 2025-11-25 05:59:48 --> Config Class Initialized
+INFO - 2025-11-25 05:59:48 --> Hooks Class Initialized
+DEBUG - 2025-11-25 05:59:48 --> UTF-8 Support Enabled
+INFO - 2025-11-25 05:59:48 --> Utf8 Class Initialized
+INFO - 2025-11-25 05:59:48 --> URI Class Initialized
+INFO - 2025-11-25 05:59:48 --> Router Class Initialized
+INFO - 2025-11-25 05:59:48 --> Output Class Initialized
+INFO - 2025-11-25 05:59:48 --> Security Class Initialized
+DEBUG - 2025-11-25 05:59:48 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 05:59:48 --> Input Class Initialized
+INFO - 2025-11-25 05:59:48 --> Language Class Initialized
+ERROR - 2025-11-25 05:59:48 --> 404 Page Not Found: Assets/plugins
+INFO - 2025-11-25 06:00:57 --> Config Class Initialized
+INFO - 2025-11-25 06:00:57 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:00:57 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:00:57 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:00:57 --> URI Class Initialized
+INFO - 2025-11-25 06:00:57 --> Router Class Initialized
+INFO - 2025-11-25 06:00:57 --> Output Class Initialized
+INFO - 2025-11-25 06:00:57 --> Security Class Initialized
+DEBUG - 2025-11-25 06:00:57 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:00:57 --> Input Class Initialized
+INFO - 2025-11-25 06:00:57 --> Language Class Initialized
+INFO - 2025-11-25 06:00:57 --> Loader Class Initialized
+INFO - 2025-11-25 06:00:57 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:00:57 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:00:57 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:00:57 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:00:57 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:00:57 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:00:57 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:00:57 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:00:57 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:00:57 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:00:57 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:00:57 --> Model Class Initialized
+INFO - 2025-11-25 06:00:57 --> Model Class Initialized
+INFO - 2025-11-25 06:00:57 --> Model Class Initialized
+INFO - 2025-11-25 06:00:57 --> Model Class Initialized
+INFO - 2025-11-25 06:00:57 --> Model Class Initialized
+INFO - 2025-11-25 06:00:57 --> Model Class Initialized
+DEBUG - 2025-11-25 06:00:57 --> Controller_Orders::create POST: {"customer_name":"WILSON","customer_phone":"","customer_address":"","store_id":"7","product":["116","103"],"qty":["23.4","8"],"rate":["640","380"],"rate_value":["640","380"],"amount":["14976.00","3040.00"],"amount_value":["14976.00","3040.00"],"discount":"0","paid_status":"2","amount_paid":"18016.00","gross_amount_value":"18016.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"18016.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:00:57 --> Final output sent to browser
+DEBUG - 2025-11-25 06:00:57 --> Total execution time: 0.1272
+INFO - 2025-11-25 06:01:23 --> Config Class Initialized
+INFO - 2025-11-25 06:01:23 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:01:23 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:01:23 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:01:23 --> URI Class Initialized
+INFO - 2025-11-25 06:01:23 --> Router Class Initialized
+INFO - 2025-11-25 06:01:23 --> Output Class Initialized
+INFO - 2025-11-25 06:01:23 --> Security Class Initialized
+DEBUG - 2025-11-25 06:01:23 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:01:23 --> Input Class Initialized
+INFO - 2025-11-25 06:01:23 --> Language Class Initialized
+INFO - 2025-11-25 06:01:23 --> Loader Class Initialized
+INFO - 2025-11-25 06:01:23 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:01:23 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:01:23 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:01:23 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:01:23 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:01:23 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:01:23 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:01:23 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:01:23 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:01:23 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:01:23 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:01:23 --> Model Class Initialized
+INFO - 2025-11-25 06:01:23 --> Model Class Initialized
+INFO - 2025-11-25 06:01:23 --> Model Class Initialized
+INFO - 2025-11-25 06:01:23 --> Model Class Initialized
+INFO - 2025-11-25 06:01:23 --> Model Class Initialized
+INFO - 2025-11-25 06:01:23 --> Model Class Initialized
+DEBUG - 2025-11-25 06:01:23 --> Controller_Orders::create POST: {"customer_name":"MTEJA","customer_phone":"","customer_address":"","store_id":"7","product":["103"],"qty":["50"],"rate":["380"],"rate_value":["380"],"amount":["19000.00"],"amount_value":["19000.00"],"discount":"0","paid_status":"2","amount_paid":"19000.00","gross_amount_value":"19000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"19000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:01:23 --> Final output sent to browser
+DEBUG - 2025-11-25 06:01:23 --> Total execution time: 0.1715
+INFO - 2025-11-25 06:02:11 --> Config Class Initialized
+INFO - 2025-11-25 06:02:11 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:02:11 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:02:11 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:02:11 --> URI Class Initialized
+INFO - 2025-11-25 06:02:11 --> Router Class Initialized
+INFO - 2025-11-25 06:02:11 --> Output Class Initialized
+INFO - 2025-11-25 06:02:11 --> Security Class Initialized
+DEBUG - 2025-11-25 06:02:11 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:02:11 --> Input Class Initialized
+INFO - 2025-11-25 06:02:11 --> Language Class Initialized
+INFO - 2025-11-25 06:02:11 --> Loader Class Initialized
+INFO - 2025-11-25 06:02:11 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:02:11 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:02:11 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:02:11 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:02:11 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:02:11 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:02:11 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:02:11 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:02:11 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:02:11 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:02:11 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:02:11 --> Model Class Initialized
+INFO - 2025-11-25 06:02:11 --> Model Class Initialized
+INFO - 2025-11-25 06:02:11 --> Model Class Initialized
+INFO - 2025-11-25 06:02:11 --> Model Class Initialized
+INFO - 2025-11-25 06:02:11 --> Model Class Initialized
+INFO - 2025-11-25 06:02:11 --> Model Class Initialized
+DEBUG - 2025-11-25 06:02:11 --> Controller_Orders::create POST: {"customer_name":"HURUMA","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["600"],"rate":["640"],"rate_value":["640"],"amount":["384000.00"],"amount_value":["384000.00"],"discount":"0","paid_status":"2","amount_paid":"384000.00","gross_amount_value":"384000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"384000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:02:11 --> Final output sent to browser
+DEBUG - 2025-11-25 06:02:11 --> Total execution time: 0.1511
+INFO - 2025-11-25 06:02:48 --> Config Class Initialized
+INFO - 2025-11-25 06:02:48 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:02:48 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:02:48 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:02:48 --> URI Class Initialized
+INFO - 2025-11-25 06:02:48 --> Router Class Initialized
+INFO - 2025-11-25 06:02:48 --> Output Class Initialized
+INFO - 2025-11-25 06:02:48 --> Security Class Initialized
+DEBUG - 2025-11-25 06:02:48 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:02:48 --> Input Class Initialized
+INFO - 2025-11-25 06:02:48 --> Language Class Initialized
+INFO - 2025-11-25 06:02:48 --> Loader Class Initialized
+INFO - 2025-11-25 06:02:48 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:02:48 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:02:48 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:02:48 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:02:48 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:02:48 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:02:48 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:02:48 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:02:48 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:02:48 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:02:48 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:02:48 --> Model Class Initialized
+INFO - 2025-11-25 06:02:48 --> Model Class Initialized
+INFO - 2025-11-25 06:02:48 --> Model Class Initialized
+INFO - 2025-11-25 06:02:48 --> Model Class Initialized
+INFO - 2025-11-25 06:02:48 --> Model Class Initialized
+INFO - 2025-11-25 06:02:48 --> Model Class Initialized
+DEBUG - 2025-11-25 06:02:48 --> Controller_Orders::create POST: {"customer_name":"HAMISI","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["450"],"rate":["640"],"rate_value":["640"],"amount":["288000.00"],"amount_value":["288000.00"],"discount":"0","paid_status":"1","amount_paid":"0.00","gross_amount_value":"288000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"288000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:02:48 --> Final output sent to browser
+DEBUG - 2025-11-25 06:02:48 --> Total execution time: 0.1367
+INFO - 2025-11-25 06:03:58 --> Config Class Initialized
+INFO - 2025-11-25 06:03:58 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:03:58 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:03:58 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:03:58 --> URI Class Initialized
+INFO - 2025-11-25 06:03:58 --> Router Class Initialized
+INFO - 2025-11-25 06:03:58 --> Output Class Initialized
+INFO - 2025-11-25 06:03:58 --> Security Class Initialized
+DEBUG - 2025-11-25 06:03:58 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:03:58 --> Input Class Initialized
+INFO - 2025-11-25 06:03:58 --> Language Class Initialized
+INFO - 2025-11-25 06:03:58 --> Loader Class Initialized
+INFO - 2025-11-25 06:03:58 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:03:59 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:03:59 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:03:59 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:03:59 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:03:59 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:03:59 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:03:59 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:03:59 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:03:59 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:03:59 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:03:59 --> Model Class Initialized
+INFO - 2025-11-25 06:03:59 --> Model Class Initialized
+INFO - 2025-11-25 06:03:59 --> Model Class Initialized
+INFO - 2025-11-25 06:03:59 --> Model Class Initialized
+INFO - 2025-11-25 06:03:59 --> Model Class Initialized
+INFO - 2025-11-25 06:03:59 --> Model Class Initialized
+DEBUG - 2025-11-25 06:03:59 --> Controller_Orders::create POST: {"customer_name":"LOTTER","customer_phone":"","customer_address":"","store_id":"7","product":["116","115","118","109"],"qty":["100","30","7","10"],"rate":["650","750.00","800.00","1200.00"],"rate_value":["650","750.00","800.00","1200.00"],"amount":["65000.00","22500.00","5600.00","12000.00"],"amount_value":["65000.00","22500.00","5600.00","12000.00"],"discount":"0","paid_status":"2","amount_paid":"105100.00","gross_amount_value":"105100.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"105100.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:03:59 --> Final output sent to browser
+DEBUG - 2025-11-25 06:03:59 --> Total execution time: 0.1696
+INFO - 2025-11-25 06:06:04 --> Config Class Initialized
+INFO - 2025-11-25 06:06:04 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:06:04 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:06:04 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:06:04 --> URI Class Initialized
+INFO - 2025-11-25 06:06:04 --> Router Class Initialized
+INFO - 2025-11-25 06:06:04 --> Output Class Initialized
+INFO - 2025-11-25 06:06:04 --> Security Class Initialized
+DEBUG - 2025-11-25 06:06:04 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:06:04 --> Input Class Initialized
+INFO - 2025-11-25 06:06:04 --> Language Class Initialized
+INFO - 2025-11-25 06:06:04 --> Loader Class Initialized
+INFO - 2025-11-25 06:06:04 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:06:04 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:06:04 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:06:04 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:06:04 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:06:04 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:06:04 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:06:04 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:06:04 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:06:04 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:06:04 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:06:04 --> Model Class Initialized
+INFO - 2025-11-25 06:06:04 --> Model Class Initialized
+INFO - 2025-11-25 06:06:04 --> Model Class Initialized
+INFO - 2025-11-25 06:06:04 --> Model Class Initialized
+INFO - 2025-11-25 06:06:04 --> Model Class Initialized
+INFO - 2025-11-25 06:06:04 --> Model Class Initialized
+DEBUG - 2025-11-25 06:06:04 --> Controller_Orders::create POST: {"customer_name":"M.HAPPY","customer_phone":"","customer_address":"","store_id":"7","product":["116","116","104","82","88","123"],"qty":["50","30","2","2","3","2"],"rate":["640","640","700.00","500.00","1500.00","3500.00"],"rate_value":["640","640","700.00","500.00","1500.00","3500.00"],"amount":["32000.00","19200.00","1400.00","1000.00","4500.00","7000.00"],"amount_value":["32000.00","19200.00","1400.00","1000.00","4500.00","7000.00"],"discount":"0","paid_status":"2","amount_paid":"65100.00","gross_amount_value":"65100.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"65100.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:06:04 --> Final output sent to browser
+DEBUG - 2025-11-25 06:06:04 --> Total execution time: 0.1493
+INFO - 2025-11-25 06:07:09 --> Config Class Initialized
+INFO - 2025-11-25 06:07:09 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:07:09 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:07:09 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:07:09 --> URI Class Initialized
+INFO - 2025-11-25 06:07:09 --> Router Class Initialized
+INFO - 2025-11-25 06:07:09 --> Output Class Initialized
+INFO - 2025-11-25 06:07:09 --> Security Class Initialized
+DEBUG - 2025-11-25 06:07:09 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:07:09 --> Input Class Initialized
+INFO - 2025-11-25 06:07:09 --> Language Class Initialized
+INFO - 2025-11-25 06:07:09 --> Loader Class Initialized
+INFO - 2025-11-25 06:07:09 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:07:09 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:07:09 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:07:09 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:07:09 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:07:09 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:07:09 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:07:09 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:07:09 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:07:09 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:07:09 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:07:09 --> Model Class Initialized
+INFO - 2025-11-25 06:07:09 --> Model Class Initialized
+INFO - 2025-11-25 06:07:09 --> Model Class Initialized
+INFO - 2025-11-25 06:07:09 --> Model Class Initialized
+INFO - 2025-11-25 06:07:09 --> Model Class Initialized
+INFO - 2025-11-25 06:07:09 --> Model Class Initialized
+DEBUG - 2025-11-25 06:07:09 --> Controller_Orders::create POST: {"customer_name":"BONIFAS","customer_phone":"","customer_address":"","store_id":"7","product":["116","103","118"],"qty":["50","40","12"],"rate":["650","380","800.00"],"rate_value":["650","380","800.00"],"amount":["32500.00","15200.00","9600.00"],"amount_value":["32500.00","15200.00","9600.00"],"discount":"0","paid_status":"2","amount_paid":"57300.00","gross_amount_value":"57300.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"57300.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:07:09 --> Final output sent to browser
+DEBUG - 2025-11-25 06:07:09 --> Total execution time: 0.1328
+INFO - 2025-11-25 06:08:04 --> Config Class Initialized
+INFO - 2025-11-25 06:08:04 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:08:04 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:08:04 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:08:04 --> URI Class Initialized
+INFO - 2025-11-25 06:08:04 --> Router Class Initialized
+INFO - 2025-11-25 06:08:04 --> Output Class Initialized
+INFO - 2025-11-25 06:08:04 --> Security Class Initialized
+DEBUG - 2025-11-25 06:08:04 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:08:04 --> Input Class Initialized
+INFO - 2025-11-25 06:08:04 --> Language Class Initialized
+INFO - 2025-11-25 06:08:04 --> Loader Class Initialized
+INFO - 2025-11-25 06:08:04 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:08:04 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:08:04 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:08:04 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:08:04 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:08:04 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:08:04 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:08:04 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:08:04 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:08:04 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:08:04 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:08:04 --> Model Class Initialized
+INFO - 2025-11-25 06:08:04 --> Model Class Initialized
+INFO - 2025-11-25 06:08:04 --> Model Class Initialized
+INFO - 2025-11-25 06:08:04 --> Model Class Initialized
+INFO - 2025-11-25 06:08:04 --> Model Class Initialized
+INFO - 2025-11-25 06:08:04 --> Model Class Initialized
+DEBUG - 2025-11-25 06:08:04 --> Controller_Orders::create POST: {"customer_name":"ANGEL","customer_phone":"","customer_address":"","store_id":"7","product":["116","94"],"qty":["400","50"],"rate":["640","3000.00"],"rate_value":["640","3000.00"],"amount":["256000.00","150000"],"amount_value":["256000.00","150000"],"discount":"0","paid_status":"2","amount_paid":"406000.00","gross_amount_value":"406000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"406000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:08:04 --> Final output sent to browser
+DEBUG - 2025-11-25 06:08:04 --> Total execution time: 0.2320
+INFO - 2025-11-25 06:08:33 --> Config Class Initialized
+INFO - 2025-11-25 06:08:33 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:08:33 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:08:33 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:08:33 --> URI Class Initialized
+INFO - 2025-11-25 06:08:33 --> Router Class Initialized
+INFO - 2025-11-25 06:08:33 --> Output Class Initialized
+INFO - 2025-11-25 06:08:33 --> Security Class Initialized
+DEBUG - 2025-11-25 06:08:33 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:08:33 --> Input Class Initialized
+INFO - 2025-11-25 06:08:33 --> Language Class Initialized
+INFO - 2025-11-25 06:08:33 --> Loader Class Initialized
+INFO - 2025-11-25 06:08:33 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:08:33 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:08:33 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:08:33 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:08:33 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:08:33 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:08:33 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:08:33 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:08:33 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:08:33 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:08:33 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:08:33 --> Model Class Initialized
+INFO - 2025-11-25 06:08:33 --> Model Class Initialized
+INFO - 2025-11-25 06:08:33 --> Model Class Initialized
+INFO - 2025-11-25 06:08:33 --> Model Class Initialized
+INFO - 2025-11-25 06:08:33 --> Model Class Initialized
+INFO - 2025-11-25 06:08:33 --> Model Class Initialized
+DEBUG - 2025-11-25 06:08:33 --> Controller_Orders::create POST: {"customer_name":"HAJIRA","customer_phone":"","customer_address":"","store_id":"7","product":["115"],"qty":["70"],"rate":["714.29"],"rate_value":["714.29"],"amount":["50000"],"amount_value":["50000"],"discount":"0","paid_status":"2","amount_paid":"50000.00","gross_amount_value":"50000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"50000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:08:33 --> Final output sent to browser
+DEBUG - 2025-11-25 06:08:33 --> Total execution time: 0.1271
+INFO - 2025-11-25 06:09:29 --> Config Class Initialized
+INFO - 2025-11-25 06:09:29 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:09:29 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:09:29 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:09:29 --> URI Class Initialized
+INFO - 2025-11-25 06:09:29 --> Router Class Initialized
+INFO - 2025-11-25 06:09:29 --> Output Class Initialized
+INFO - 2025-11-25 06:09:29 --> Security Class Initialized
+DEBUG - 2025-11-25 06:09:29 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:09:29 --> Input Class Initialized
+INFO - 2025-11-25 06:09:29 --> Language Class Initialized
+INFO - 2025-11-25 06:09:29 --> Loader Class Initialized
+INFO - 2025-11-25 06:09:29 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:09:29 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:09:29 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:09:29 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:09:29 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:09:29 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:09:29 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:09:29 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:09:29 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:09:29 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:09:29 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:09:29 --> Model Class Initialized
+INFO - 2025-11-25 06:09:29 --> Model Class Initialized
+INFO - 2025-11-25 06:09:29 --> Model Class Initialized
+INFO - 2025-11-25 06:09:29 --> Model Class Initialized
+INFO - 2025-11-25 06:09:29 --> Model Class Initialized
+INFO - 2025-11-25 06:09:29 --> Model Class Initialized
+DEBUG - 2025-11-25 06:09:29 --> Controller_Orders::create POST: {"customer_name":"HAPPY","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["28"],"rate":["640"],"rate_value":["640"],"amount":["17920.00"],"amount_value":["17920.00"],"discount":"0","paid_status":"2","amount_paid":"17920.00","gross_amount_value":"17920.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"17920.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:09:29 --> Final output sent to browser
+DEBUG - 2025-11-25 06:09:29 --> Total execution time: 0.1184
+INFO - 2025-11-25 06:10:10 --> Config Class Initialized
+INFO - 2025-11-25 06:10:10 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:10:10 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:10:10 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:10:10 --> URI Class Initialized
+INFO - 2025-11-25 06:10:10 --> Router Class Initialized
+INFO - 2025-11-25 06:10:10 --> Output Class Initialized
+INFO - 2025-11-25 06:10:10 --> Security Class Initialized
+DEBUG - 2025-11-25 06:10:10 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:10:10 --> Input Class Initialized
+INFO - 2025-11-25 06:10:10 --> Language Class Initialized
+INFO - 2025-11-25 06:10:10 --> Loader Class Initialized
+INFO - 2025-11-25 06:10:10 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:10:10 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:10:10 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:10:10 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:10:10 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:10:10 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:10:10 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:10:10 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:10:10 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:10:10 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:10:10 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:10:10 --> Model Class Initialized
+INFO - 2025-11-25 06:10:10 --> Model Class Initialized
+INFO - 2025-11-25 06:10:10 --> Model Class Initialized
+INFO - 2025-11-25 06:10:10 --> Model Class Initialized
+INFO - 2025-11-25 06:10:10 --> Model Class Initialized
+INFO - 2025-11-25 06:10:10 --> Model Class Initialized
+DEBUG - 2025-11-25 06:10:10 --> Controller_Orders::create POST: {"customer_name":"LOLOTE","customer_phone":"","customer_address":"","store_id":"7","product":["115"],"qty":["70"],"rate":["714.29"],"rate_value":["714.29"],"amount":["50000"],"amount_value":["50000"],"discount":"0","paid_status":"2","amount_paid":"50000.00","gross_amount_value":"50000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"50000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:10:10 --> Final output sent to browser
+DEBUG - 2025-11-25 06:10:10 --> Total execution time: 0.1302
+INFO - 2025-11-25 06:10:31 --> Config Class Initialized
+INFO - 2025-11-25 06:10:31 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:10:31 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:10:31 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:10:31 --> URI Class Initialized
+INFO - 2025-11-25 06:10:31 --> Router Class Initialized
+INFO - 2025-11-25 06:10:31 --> Output Class Initialized
+INFO - 2025-11-25 06:10:31 --> Security Class Initialized
+DEBUG - 2025-11-25 06:10:31 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:10:31 --> Input Class Initialized
+INFO - 2025-11-25 06:10:31 --> Language Class Initialized
+INFO - 2025-11-25 06:10:31 --> Loader Class Initialized
+INFO - 2025-11-25 06:10:31 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:10:31 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:10:31 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:10:31 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:10:31 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:10:31 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:10:31 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:10:31 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:10:31 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:10:31 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:10:31 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:10:31 --> Model Class Initialized
+INFO - 2025-11-25 06:10:31 --> Model Class Initialized
+INFO - 2025-11-25 06:10:31 --> Model Class Initialized
+INFO - 2025-11-25 06:10:31 --> Model Class Initialized
+INFO - 2025-11-25 06:10:31 --> Model Class Initialized
+INFO - 2025-11-25 06:10:31 --> Model Class Initialized
+DEBUG - 2025-11-25 06:10:31 --> Controller_Orders::create POST: {"customer_name":"SALALA","customer_phone":"","customer_address":"","store_id":"7","product":["83"],"qty":["50"],"rate":["500.00"],"rate_value":["500.00"],"amount":["25000.00"],"amount_value":["25000.00"],"discount":"0","paid_status":"2","amount_paid":"25000.00","gross_amount_value":"25000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"25000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:10:31 --> Final output sent to browser
+DEBUG - 2025-11-25 06:10:31 --> Total execution time: 0.1320
+INFO - 2025-11-25 06:11:03 --> Config Class Initialized
+INFO - 2025-11-25 06:11:03 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:11:03 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:11:03 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:11:03 --> URI Class Initialized
+INFO - 2025-11-25 06:11:03 --> Router Class Initialized
+INFO - 2025-11-25 06:11:03 --> Output Class Initialized
+INFO - 2025-11-25 06:11:03 --> Security Class Initialized
+DEBUG - 2025-11-25 06:11:03 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:11:03 --> Input Class Initialized
+INFO - 2025-11-25 06:11:03 --> Language Class Initialized
+INFO - 2025-11-25 06:11:03 --> Loader Class Initialized
+INFO - 2025-11-25 06:11:03 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:11:03 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:11:03 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:11:03 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:11:03 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:11:03 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:11:03 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:11:03 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:11:03 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:11:03 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:11:03 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:11:03 --> Model Class Initialized
+INFO - 2025-11-25 06:11:03 --> Model Class Initialized
+INFO - 2025-11-25 06:11:03 --> Model Class Initialized
+INFO - 2025-11-25 06:11:03 --> Model Class Initialized
+INFO - 2025-11-25 06:11:03 --> Model Class Initialized
+INFO - 2025-11-25 06:11:03 --> Model Class Initialized
+DEBUG - 2025-11-25 06:11:03 --> Controller_Orders::create POST: {"customer_name":"AMANI","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["50"],"rate":["650"],"rate_value":["650"],"amount":["32500.00"],"amount_value":["32500.00"],"discount":"0","paid_status":"2","amount_paid":"32500.00","gross_amount_value":"32500.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"32500.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:11:03 --> Final output sent to browser
+DEBUG - 2025-11-25 06:11:03 --> Total execution time: 0.1471
+INFO - 2025-11-25 06:11:52 --> Config Class Initialized
+INFO - 2025-11-25 06:11:52 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:11:52 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:11:52 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:11:52 --> URI Class Initialized
+INFO - 2025-11-25 06:11:52 --> Router Class Initialized
+INFO - 2025-11-25 06:11:52 --> Output Class Initialized
+INFO - 2025-11-25 06:11:52 --> Security Class Initialized
+DEBUG - 2025-11-25 06:11:52 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:11:52 --> Input Class Initialized
+INFO - 2025-11-25 06:11:52 --> Language Class Initialized
+INFO - 2025-11-25 06:11:52 --> Loader Class Initialized
+INFO - 2025-11-25 06:11:52 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:11:52 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:11:52 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:11:52 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:11:52 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:11:52 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:11:52 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:11:52 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:11:52 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:11:52 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:11:52 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:11:52 --> Model Class Initialized
+INFO - 2025-11-25 06:11:52 --> Model Class Initialized
+INFO - 2025-11-25 06:11:52 --> Model Class Initialized
+INFO - 2025-11-25 06:11:52 --> Model Class Initialized
+INFO - 2025-11-25 06:11:52 --> Model Class Initialized
+INFO - 2025-11-25 06:11:52 --> Model Class Initialized
+DEBUG - 2025-11-25 06:11:52 --> Controller_Orders::create POST: {"customer_name":"M.NDOSA","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["55.8"],"rate":["640"],"rate_value":["640"],"amount":["35712.00"],"amount_value":["35712.00"],"discount":"0","paid_status":"2","amount_paid":"35712.00","gross_amount_value":"35712.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"35712.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:11:53 --> Final output sent to browser
+DEBUG - 2025-11-25 06:11:53 --> Total execution time: 0.1385
+INFO - 2025-11-25 06:12:23 --> Config Class Initialized
+INFO - 2025-11-25 06:12:23 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:12:23 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:12:23 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:12:23 --> URI Class Initialized
+INFO - 2025-11-25 06:12:23 --> Router Class Initialized
+INFO - 2025-11-25 06:12:23 --> Output Class Initialized
+INFO - 2025-11-25 06:12:23 --> Security Class Initialized
+DEBUG - 2025-11-25 06:12:23 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:12:23 --> Input Class Initialized
+INFO - 2025-11-25 06:12:23 --> Language Class Initialized
+INFO - 2025-11-25 06:12:23 --> Loader Class Initialized
+INFO - 2025-11-25 06:12:23 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:12:23 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:12:23 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:12:23 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:12:23 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:12:23 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:12:23 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:12:23 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:12:23 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:12:23 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:12:23 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:12:23 --> Model Class Initialized
+INFO - 2025-11-25 06:12:23 --> Model Class Initialized
+INFO - 2025-11-25 06:12:23 --> Model Class Initialized
+INFO - 2025-11-25 06:12:23 --> Model Class Initialized
+INFO - 2025-11-25 06:12:23 --> Model Class Initialized
+INFO - 2025-11-25 06:12:23 --> Model Class Initialized
+DEBUG - 2025-11-25 06:12:23 --> Controller_Orders::create POST: {"customer_name":"BENSON","customer_phone":"","customer_address":"","store_id":"7","product":["115"],"qty":["70"],"rate":["714.29"],"rate_value":["714.29"],"amount":["50000"],"amount_value":["50000"],"discount":"0","paid_status":"2","amount_paid":"50000.00","gross_amount_value":"50000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"50000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:12:23 --> Final output sent to browser
+DEBUG - 2025-11-25 06:12:23 --> Total execution time: 0.1660
+INFO - 2025-11-25 06:12:50 --> Config Class Initialized
+INFO - 2025-11-25 06:12:50 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:12:50 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:12:50 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:12:50 --> URI Class Initialized
+INFO - 2025-11-25 06:12:50 --> Router Class Initialized
+INFO - 2025-11-25 06:12:50 --> Output Class Initialized
+INFO - 2025-11-25 06:12:50 --> Security Class Initialized
+DEBUG - 2025-11-25 06:12:50 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:12:50 --> Input Class Initialized
+INFO - 2025-11-25 06:12:50 --> Language Class Initialized
+INFO - 2025-11-25 06:12:50 --> Loader Class Initialized
+INFO - 2025-11-25 06:12:50 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:12:50 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:12:50 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:12:50 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:12:50 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:12:50 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:12:50 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:12:50 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:12:50 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:12:50 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:12:50 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:12:50 --> Model Class Initialized
+INFO - 2025-11-25 06:12:50 --> Model Class Initialized
+INFO - 2025-11-25 06:12:50 --> Model Class Initialized
+INFO - 2025-11-25 06:12:50 --> Model Class Initialized
+INFO - 2025-11-25 06:12:50 --> Model Class Initialized
+INFO - 2025-11-25 06:12:50 --> Model Class Initialized
+DEBUG - 2025-11-25 06:12:50 --> Controller_Orders::create POST: {"customer_name":"KILUSU","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["50"],"rate":["640"],"rate_value":["640"],"amount":["32000.00"],"amount_value":["32000.00"],"discount":"0","paid_status":"2","amount_paid":"32000.00","gross_amount_value":"32000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"32000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:12:50 --> Final output sent to browser
+DEBUG - 2025-11-25 06:12:50 --> Total execution time: 0.1596
+INFO - 2025-11-25 06:13:25 --> Config Class Initialized
+INFO - 2025-11-25 06:13:25 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:13:25 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:13:25 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:13:25 --> URI Class Initialized
+INFO - 2025-11-25 06:13:25 --> Router Class Initialized
+INFO - 2025-11-25 06:13:25 --> Output Class Initialized
+INFO - 2025-11-25 06:13:25 --> Security Class Initialized
+DEBUG - 2025-11-25 06:13:25 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:13:25 --> Input Class Initialized
+INFO - 2025-11-25 06:13:25 --> Language Class Initialized
+INFO - 2025-11-25 06:13:26 --> Loader Class Initialized
+INFO - 2025-11-25 06:13:26 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:13:26 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:13:26 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:13:26 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:13:26 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:13:26 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:13:26 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:13:26 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:13:26 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:13:26 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:13:26 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:13:26 --> Model Class Initialized
+INFO - 2025-11-25 06:13:26 --> Model Class Initialized
+INFO - 2025-11-25 06:13:26 --> Model Class Initialized
+INFO - 2025-11-25 06:13:26 --> Model Class Initialized
+INFO - 2025-11-25 06:13:26 --> Model Class Initialized
+INFO - 2025-11-25 06:13:26 --> Model Class Initialized
+DEBUG - 2025-11-25 06:13:26 --> Controller_Orders::create POST: {"customer_name":"M.REGAN","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["252.1"],"rate":["640"],"rate_value":["640"],"amount":["161344.00"],"amount_value":["161344.00"],"discount":"0","paid_status":"2","amount_paid":"161344.00","gross_amount_value":"161344.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"161344.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:13:26 --> Final output sent to browser
+DEBUG - 2025-11-25 06:13:26 --> Total execution time: 0.1149
+INFO - 2025-11-25 06:14:14 --> Config Class Initialized
+INFO - 2025-11-25 06:14:14 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:14:14 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:14:14 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:14:14 --> URI Class Initialized
+INFO - 2025-11-25 06:14:14 --> Router Class Initialized
+INFO - 2025-11-25 06:14:14 --> Output Class Initialized
+INFO - 2025-11-25 06:14:14 --> Security Class Initialized
+DEBUG - 2025-11-25 06:14:14 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:14:14 --> Input Class Initialized
+INFO - 2025-11-25 06:14:14 --> Language Class Initialized
+INFO - 2025-11-25 06:14:14 --> Loader Class Initialized
+INFO - 2025-11-25 06:14:14 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:14:14 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:14:14 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:14:14 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:14:14 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:14:14 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:14:14 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:14:14 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:14:14 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:14:14 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:14:14 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:14:14 --> Model Class Initialized
+INFO - 2025-11-25 06:14:14 --> Model Class Initialized
+INFO - 2025-11-25 06:14:14 --> Model Class Initialized
+INFO - 2025-11-25 06:14:14 --> Model Class Initialized
+INFO - 2025-11-25 06:14:14 --> Model Class Initialized
+INFO - 2025-11-25 06:14:14 --> Model Class Initialized
+DEBUG - 2025-11-25 06:14:14 --> Controller_Orders::create POST: {"customer_name":"KAFURIA","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["307.6"],"rate":["650.20"],"rate_value":["650.20"],"amount":["200000"],"amount_value":["200000"],"discount":"0","paid_status":"2","amount_paid":"200000.00","gross_amount_value":"200000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"200000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:14:14 --> Final output sent to browser
+DEBUG - 2025-11-25 06:14:14 --> Total execution time: 0.1719
+INFO - 2025-11-25 06:15:34 --> Config Class Initialized
+INFO - 2025-11-25 06:15:34 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:15:34 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:15:34 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:15:34 --> URI Class Initialized
+INFO - 2025-11-25 06:15:34 --> Router Class Initialized
+INFO - 2025-11-25 06:15:34 --> Output Class Initialized
+INFO - 2025-11-25 06:15:34 --> Security Class Initialized
+DEBUG - 2025-11-25 06:15:34 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:15:34 --> Input Class Initialized
+INFO - 2025-11-25 06:15:34 --> Language Class Initialized
+INFO - 2025-11-25 06:15:34 --> Loader Class Initialized
+INFO - 2025-11-25 06:15:34 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:15:34 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:15:34 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:15:34 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:15:34 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:15:34 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:15:34 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:15:34 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:15:34 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:15:34 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:15:34 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:15:34 --> Model Class Initialized
+INFO - 2025-11-25 06:15:34 --> Model Class Initialized
+INFO - 2025-11-25 06:15:34 --> Model Class Initialized
+INFO - 2025-11-25 06:15:34 --> Model Class Initialized
+INFO - 2025-11-25 06:15:34 --> Model Class Initialized
+INFO - 2025-11-25 06:15:34 --> Model Class Initialized
+DEBUG - 2025-11-25 06:15:34 --> Controller_Orders::create POST: {"customer_name":"BENSON","customer_phone":"","customer_address":"","store_id":"7","product":["101","116","108","118"],"qty":["1","30","10","5"],"rate":["3000.00","650","1200.00","800.00"],"rate_value":["3000.00","650","1200.00","800.00"],"amount":["3000.00","19500.00","12000.00","4000.00"],"amount_value":["3000.00","19500.00","12000.00","4000.00"],"discount":"0","paid_status":"2","amount_paid":"38500.00","gross_amount_value":"38500.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"38500.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:15:34 --> Final output sent to browser
+DEBUG - 2025-11-25 06:15:34 --> Total execution time: 0.2872
+INFO - 2025-11-25 06:16:38 --> Config Class Initialized
+INFO - 2025-11-25 06:16:38 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:16:38 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:16:38 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:16:38 --> URI Class Initialized
+INFO - 2025-11-25 06:16:38 --> Router Class Initialized
+INFO - 2025-11-25 06:16:38 --> Output Class Initialized
+INFO - 2025-11-25 06:16:38 --> Security Class Initialized
+DEBUG - 2025-11-25 06:16:38 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:16:38 --> Input Class Initialized
+INFO - 2025-11-25 06:16:38 --> Language Class Initialized
+INFO - 2025-11-25 06:16:38 --> Loader Class Initialized
+INFO - 2025-11-25 06:16:38 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:16:38 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:16:38 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:16:38 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:16:38 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:16:38 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:16:38 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:16:38 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:16:38 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:16:38 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:16:38 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:16:38 --> Model Class Initialized
+INFO - 2025-11-25 06:16:38 --> Model Class Initialized
+INFO - 2025-11-25 06:16:38 --> Model Class Initialized
+INFO - 2025-11-25 06:16:38 --> Model Class Initialized
+INFO - 2025-11-25 06:16:38 --> Model Class Initialized
+INFO - 2025-11-25 06:16:38 --> Model Class Initialized
+DEBUG - 2025-11-25 06:16:38 --> Controller_Orders::create POST: {"customer_name":"AMANI","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["50"],"rate":["650"],"rate_value":["650"],"amount":["32500.00"],"amount_value":["32500.00"],"discount":"0","paid_status":"2","amount_paid":"32500.00","gross_amount_value":"32500.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"32500.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:16:38 --> Final output sent to browser
+DEBUG - 2025-11-25 06:16:38 --> Total execution time: 0.1451
+INFO - 2025-11-25 06:17:04 --> Config Class Initialized
+INFO - 2025-11-25 06:17:04 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:17:04 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:17:04 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:17:04 --> URI Class Initialized
+INFO - 2025-11-25 06:17:04 --> Router Class Initialized
+INFO - 2025-11-25 06:17:04 --> Output Class Initialized
+INFO - 2025-11-25 06:17:04 --> Security Class Initialized
+DEBUG - 2025-11-25 06:17:04 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:17:04 --> Input Class Initialized
+INFO - 2025-11-25 06:17:04 --> Language Class Initialized
+INFO - 2025-11-25 06:17:04 --> Loader Class Initialized
+INFO - 2025-11-25 06:17:04 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:17:04 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:17:04 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:17:04 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:17:04 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:17:04 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:17:04 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:17:04 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:17:04 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:17:04 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:17:04 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:17:04 --> Model Class Initialized
+INFO - 2025-11-25 06:17:04 --> Model Class Initialized
+INFO - 2025-11-25 06:17:04 --> Model Class Initialized
+INFO - 2025-11-25 06:17:04 --> Model Class Initialized
+INFO - 2025-11-25 06:17:04 --> Model Class Initialized
+INFO - 2025-11-25 06:17:04 --> Model Class Initialized
+DEBUG - 2025-11-25 06:17:04 --> Controller_Orders::create POST: {"customer_name":"HERMAN","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["50"],"rate":["650"],"rate_value":["650"],"amount":["32500.00"],"amount_value":["32500.00"],"discount":"0","paid_status":"2","amount_paid":"32500.00","gross_amount_value":"32500.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"32500.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:17:04 --> Final output sent to browser
+DEBUG - 2025-11-25 06:17:04 --> Total execution time: 0.1264
+INFO - 2025-11-25 06:19:17 --> Config Class Initialized
+INFO - 2025-11-25 06:19:17 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:19:17 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:19:17 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:19:17 --> URI Class Initialized
+INFO - 2025-11-25 06:19:17 --> Router Class Initialized
+INFO - 2025-11-25 06:19:17 --> Output Class Initialized
+INFO - 2025-11-25 06:19:17 --> Security Class Initialized
+DEBUG - 2025-11-25 06:19:17 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:19:17 --> Input Class Initialized
+INFO - 2025-11-25 06:19:17 --> Language Class Initialized
+INFO - 2025-11-25 06:19:17 --> Loader Class Initialized
+INFO - 2025-11-25 06:19:17 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:19:17 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:19:17 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:19:17 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:19:17 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:19:17 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:19:17 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:19:17 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:19:17 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:19:17 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:19:17 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:19:17 --> Model Class Initialized
+INFO - 2025-11-25 06:19:17 --> Model Class Initialized
+INFO - 2025-11-25 06:19:17 --> Model Class Initialized
+INFO - 2025-11-25 06:19:17 --> Model Class Initialized
+INFO - 2025-11-25 06:19:17 --> Model Class Initialized
+INFO - 2025-11-25 06:19:17 --> Model Class Initialized
+DEBUG - 2025-11-25 06:19:17 --> Controller_Orders::create POST: {"customer_name":"JOHN","customer_phone":"","customer_address":"","store_id":"7","product":["116","95","88","116"],"qty":["96","45","24","3"],"rate":["640","2000.00","1400","640"],"rate_value":["640","2000.00","1400","640"],"amount":["61440.00","90000.00","33600.00","1920.00"],"amount_value":["61440.00","90000.00","33600.00","1920.00"],"discount":"0","paid_status":"2","amount_paid":"186960.00","gross_amount_value":"186960.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"186960.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:19:18 --> Final output sent to browser
+DEBUG - 2025-11-25 06:19:18 --> Total execution time: 0.1816
+INFO - 2025-11-25 06:19:40 --> Config Class Initialized
+INFO - 2025-11-25 06:19:40 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:19:40 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:19:40 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:19:40 --> URI Class Initialized
+INFO - 2025-11-25 06:19:40 --> Router Class Initialized
+INFO - 2025-11-25 06:19:40 --> Output Class Initialized
+INFO - 2025-11-25 06:19:40 --> Security Class Initialized
+DEBUG - 2025-11-25 06:19:40 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:19:40 --> Input Class Initialized
+INFO - 2025-11-25 06:19:40 --> Language Class Initialized
+INFO - 2025-11-25 06:19:40 --> Loader Class Initialized
+INFO - 2025-11-25 06:19:40 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:19:40 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:19:40 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:19:40 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:19:40 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:19:40 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:19:40 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:19:40 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:19:40 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:19:40 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:19:40 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:19:40 --> Model Class Initialized
+INFO - 2025-11-25 06:19:40 --> Model Class Initialized
+INFO - 2025-11-25 06:19:40 --> Model Class Initialized
+INFO - 2025-11-25 06:19:40 --> Model Class Initialized
+INFO - 2025-11-25 06:19:40 --> Model Class Initialized
+INFO - 2025-11-25 06:19:40 --> Model Class Initialized
+DEBUG - 2025-11-25 06:19:40 --> Controller_Orders::create POST: {"customer_name":"JULIUS","customer_phone":"","customer_address":"","store_id":"7","product":["115"],"qty":["70"],"rate":["714.29"],"rate_value":["714.29"],"amount":["50000"],"amount_value":["50000"],"discount":"0","paid_status":"2","amount_paid":"50000.00","gross_amount_value":"50000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"50000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:19:40 --> Final output sent to browser
+DEBUG - 2025-11-25 06:19:40 --> Total execution time: 0.1677
+INFO - 2025-11-25 06:20:36 --> Config Class Initialized
+INFO - 2025-11-25 06:20:36 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:20:36 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:20:36 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:20:36 --> URI Class Initialized
+INFO - 2025-11-25 06:20:36 --> Router Class Initialized
+INFO - 2025-11-25 06:20:36 --> Output Class Initialized
+INFO - 2025-11-25 06:20:36 --> Security Class Initialized
+DEBUG - 2025-11-25 06:20:36 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:20:36 --> Input Class Initialized
+INFO - 2025-11-25 06:20:36 --> Language Class Initialized
+INFO - 2025-11-25 06:20:36 --> Loader Class Initialized
+INFO - 2025-11-25 06:20:36 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:20:36 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:20:36 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:20:36 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:20:36 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:20:36 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:20:36 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:20:36 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:20:36 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:20:36 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:20:36 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:20:36 --> Model Class Initialized
+INFO - 2025-11-25 06:20:36 --> Model Class Initialized
+INFO - 2025-11-25 06:20:36 --> Model Class Initialized
+INFO - 2025-11-25 06:20:36 --> Model Class Initialized
+INFO - 2025-11-25 06:20:36 --> Model Class Initialized
+INFO - 2025-11-25 06:20:36 --> Model Class Initialized
+DEBUG - 2025-11-25 06:20:36 --> Controller_Orders::create POST: {"customer_name":"WILSON","customer_phone":"","customer_address":"","store_id":"7","product":["118","108","82"],"qty":["42","15","3"],"rate":["770","1200.00","500.00"],"rate_value":["770","1200.00","500.00"],"amount":["32340.00","18000.00","1500.00"],"amount_value":["32340.00","18000.00","1500.00"],"discount":"0","paid_status":"2","amount_paid":"51840.00","gross_amount_value":"51840.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"51840.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:20:36 --> Final output sent to browser
+DEBUG - 2025-11-25 06:20:36 --> Total execution time: 0.1509
+INFO - 2025-11-25 06:24:11 --> Config Class Initialized
+INFO - 2025-11-25 06:24:11 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:24:11 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:24:11 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:24:11 --> URI Class Initialized
+INFO - 2025-11-25 06:24:11 --> Router Class Initialized
+INFO - 2025-11-25 06:24:11 --> Output Class Initialized
+INFO - 2025-11-25 06:24:11 --> Security Class Initialized
+DEBUG - 2025-11-25 06:24:11 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:24:11 --> Input Class Initialized
+INFO - 2025-11-25 06:24:11 --> Language Class Initialized
+INFO - 2025-11-25 06:24:11 --> Loader Class Initialized
+INFO - 2025-11-25 06:24:11 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:24:11 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:24:11 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:24:11 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:24:11 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:24:11 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:24:11 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:24:11 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:24:11 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:24:11 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:24:11 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:24:11 --> Model Class Initialized
+INFO - 2025-11-25 06:24:11 --> Model Class Initialized
+INFO - 2025-11-25 06:24:11 --> Model Class Initialized
+INFO - 2025-11-25 06:24:11 --> Model Class Initialized
+INFO - 2025-11-25 06:24:11 --> Model Class Initialized
+INFO - 2025-11-25 06:24:11 --> Model Class Initialized
+DEBUG - 2025-11-25 06:24:11 --> Controller_Orders::create POST: {"customer_name":"LOWASA","customer_phone":"","customer_address":"","store_id":"7","product":["116","115","108","92"],"qty":["600","210","50","5"],"rate":["640","692.86","1200.00","10500.00"],"rate_value":["640","692.86","1200.00","10500.00"],"amount":["384000.00","145500","60000.00","52500"],"amount_value":["384000.00","145500","60000.00","52500"],"discount":"0","paid_status":"2","amount_paid":"642000.00","gross_amount_value":"642000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"642000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:24:11 --> Final output sent to browser
+DEBUG - 2025-11-25 06:24:11 --> Total execution time: 0.1379
+INFO - 2025-11-25 06:24:40 --> Config Class Initialized
+INFO - 2025-11-25 06:24:40 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:24:40 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:24:40 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:24:40 --> URI Class Initialized
+INFO - 2025-11-25 06:24:40 --> Router Class Initialized
+INFO - 2025-11-25 06:24:40 --> Output Class Initialized
+INFO - 2025-11-25 06:24:40 --> Security Class Initialized
+DEBUG - 2025-11-25 06:24:40 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:24:40 --> Input Class Initialized
+INFO - 2025-11-25 06:24:40 --> Language Class Initialized
+INFO - 2025-11-25 06:24:40 --> Loader Class Initialized
+INFO - 2025-11-25 06:24:40 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:24:40 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:24:40 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:24:40 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:24:40 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:24:40 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:24:40 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:24:40 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:24:40 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:24:40 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:24:40 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:24:40 --> Model Class Initialized
+INFO - 2025-11-25 06:24:40 --> Model Class Initialized
+INFO - 2025-11-25 06:24:40 --> Model Class Initialized
+INFO - 2025-11-25 06:24:40 --> Model Class Initialized
+INFO - 2025-11-25 06:24:40 --> Model Class Initialized
+INFO - 2025-11-25 06:24:40 --> Model Class Initialized
+DEBUG - 2025-11-25 06:24:40 --> Controller_Orders::create POST: {"customer_name":"LEMURAT","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["200"],"rate":["650"],"rate_value":["650"],"amount":["130000.00"],"amount_value":["130000.00"],"discount":"0","paid_status":"2","amount_paid":"130000.00","gross_amount_value":"130000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"130000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:24:40 --> Final output sent to browser
+DEBUG - 2025-11-25 06:24:40 --> Total execution time: 0.1223
+INFO - 2025-11-25 06:25:49 --> Config Class Initialized
+INFO - 2025-11-25 06:25:49 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:25:49 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:25:49 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:25:49 --> URI Class Initialized
+INFO - 2025-11-25 06:25:49 --> Router Class Initialized
+INFO - 2025-11-25 06:25:49 --> Output Class Initialized
+INFO - 2025-11-25 06:25:49 --> Security Class Initialized
+DEBUG - 2025-11-25 06:25:49 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:25:49 --> Input Class Initialized
+INFO - 2025-11-25 06:25:49 --> Language Class Initialized
+INFO - 2025-11-25 06:25:49 --> Loader Class Initialized
+INFO - 2025-11-25 06:25:49 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:25:49 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:25:49 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:25:49 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:25:49 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:25:49 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:25:49 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:25:49 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:25:49 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:25:49 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:25:49 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:25:49 --> Model Class Initialized
+INFO - 2025-11-25 06:25:49 --> Model Class Initialized
+INFO - 2025-11-25 06:25:49 --> Model Class Initialized
+INFO - 2025-11-25 06:25:49 --> Model Class Initialized
+INFO - 2025-11-25 06:25:49 --> Model Class Initialized
+INFO - 2025-11-25 06:25:49 --> Model Class Initialized
+DEBUG - 2025-11-25 06:25:49 --> Controller_Orders::create POST: {"customer_name":"NIKO","customer_phone":"","customer_address":"","store_id":"7","product":["116","110","108"],"qty":["100","15","10"],"rate":["640","900","1200.00"],"rate_value":["640","900","1200.00"],"amount":["64000.00","13500.00","12000.00"],"amount_value":["64000.00","13500.00","12000.00"],"discount":"0","paid_status":"2","amount_paid":"89500.00","gross_amount_value":"89500.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"89500.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:25:49 --> Final output sent to browser
+DEBUG - 2025-11-25 06:25:49 --> Total execution time: 0.1372
+INFO - 2025-11-25 06:26:09 --> Config Class Initialized
+INFO - 2025-11-25 06:26:09 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:26:09 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:26:09 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:26:09 --> URI Class Initialized
+INFO - 2025-11-25 06:26:09 --> Router Class Initialized
+INFO - 2025-11-25 06:26:09 --> Output Class Initialized
+INFO - 2025-11-25 06:26:09 --> Security Class Initialized
+DEBUG - 2025-11-25 06:26:09 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:26:09 --> Input Class Initialized
+INFO - 2025-11-25 06:26:09 --> Language Class Initialized
+INFO - 2025-11-25 06:26:09 --> Loader Class Initialized
+INFO - 2025-11-25 06:26:09 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:26:09 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:26:09 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:26:09 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:26:09 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:26:09 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:26:09 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:26:09 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:26:09 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:26:09 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:26:09 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:26:09 --> Model Class Initialized
+INFO - 2025-11-25 06:26:09 --> Model Class Initialized
+INFO - 2025-11-25 06:26:09 --> Model Class Initialized
+INFO - 2025-11-25 06:26:09 --> Model Class Initialized
+INFO - 2025-11-25 06:26:09 --> Model Class Initialized
+INFO - 2025-11-25 06:26:09 --> Model Class Initialized
+DEBUG - 2025-11-25 06:26:09 --> Controller_Orders::create POST: {"customer_name":"BABU","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["10"],"rate":["650"],"rate_value":["650"],"amount":["6500.00"],"amount_value":["6500.00"],"discount":"0","paid_status":"2","amount_paid":"6500.00","gross_amount_value":"6500.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"6500.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:26:09 --> Final output sent to browser
+DEBUG - 2025-11-25 06:26:09 --> Total execution time: 0.1329
+INFO - 2025-11-25 06:26:37 --> Config Class Initialized
+INFO - 2025-11-25 06:26:37 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:26:37 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:26:37 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:26:37 --> URI Class Initialized
+INFO - 2025-11-25 06:26:37 --> Router Class Initialized
+INFO - 2025-11-25 06:26:37 --> Output Class Initialized
+INFO - 2025-11-25 06:26:37 --> Security Class Initialized
+DEBUG - 2025-11-25 06:26:37 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:26:37 --> Input Class Initialized
+INFO - 2025-11-25 06:26:37 --> Language Class Initialized
+INFO - 2025-11-25 06:26:37 --> Loader Class Initialized
+INFO - 2025-11-25 06:26:37 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:26:37 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:26:37 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:26:37 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:26:37 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:26:37 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:26:37 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:26:37 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:26:37 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:26:37 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:26:37 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:26:37 --> Model Class Initialized
+INFO - 2025-11-25 06:26:37 --> Model Class Initialized
+INFO - 2025-11-25 06:26:37 --> Model Class Initialized
+INFO - 2025-11-25 06:26:37 --> Model Class Initialized
+INFO - 2025-11-25 06:26:37 --> Model Class Initialized
+INFO - 2025-11-25 06:26:37 --> Model Class Initialized
+DEBUG - 2025-11-25 06:26:37 --> Controller_Orders::create POST: {"customer_name":"IBRAHIM","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["70"],"rate":["650"],"rate_value":["650"],"amount":["45500.00"],"amount_value":["45500.00"],"discount":"0","paid_status":"2","amount_paid":"45500.00","gross_amount_value":"45500.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"45500.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:26:37 --> Final output sent to browser
+DEBUG - 2025-11-25 06:26:37 --> Total execution time: 0.1757
+INFO - 2025-11-25 06:27:05 --> Config Class Initialized
+INFO - 2025-11-25 06:27:05 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:27:05 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:27:05 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:27:05 --> URI Class Initialized
+INFO - 2025-11-25 06:27:05 --> Router Class Initialized
+INFO - 2025-11-25 06:27:05 --> Output Class Initialized
+INFO - 2025-11-25 06:27:05 --> Security Class Initialized
+DEBUG - 2025-11-25 06:27:05 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:27:05 --> Input Class Initialized
+INFO - 2025-11-25 06:27:05 --> Language Class Initialized
+INFO - 2025-11-25 06:27:05 --> Loader Class Initialized
+INFO - 2025-11-25 06:27:05 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:27:05 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:27:05 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:27:05 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:27:05 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:27:05 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:27:05 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:27:05 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:27:05 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:27:05 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:27:05 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:27:05 --> Model Class Initialized
+INFO - 2025-11-25 06:27:05 --> Model Class Initialized
+INFO - 2025-11-25 06:27:05 --> Model Class Initialized
+INFO - 2025-11-25 06:27:05 --> Model Class Initialized
+INFO - 2025-11-25 06:27:05 --> Model Class Initialized
+INFO - 2025-11-25 06:27:05 --> Model Class Initialized
+DEBUG - 2025-11-25 06:27:05 --> Controller_Orders::create POST: {"customer_name":"PASTOR","customer_phone":"","customer_address":"","store_id":"7","product":["118"],"qty":["400"],"rate":["770"],"rate_value":["770"],"amount":["308000.00"],"amount_value":["308000.00"],"discount":"0","paid_status":"2","amount_paid":"308000.00","gross_amount_value":"308000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"308000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:27:05 --> Final output sent to browser
+DEBUG - 2025-11-25 06:27:05 --> Total execution time: 0.1278
+INFO - 2025-11-25 06:27:40 --> Config Class Initialized
+INFO - 2025-11-25 06:27:40 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:27:40 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:27:40 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:27:40 --> URI Class Initialized
+INFO - 2025-11-25 06:27:40 --> Router Class Initialized
+INFO - 2025-11-25 06:27:40 --> Output Class Initialized
+INFO - 2025-11-25 06:27:40 --> Security Class Initialized
+DEBUG - 2025-11-25 06:27:40 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:27:40 --> Input Class Initialized
+INFO - 2025-11-25 06:27:40 --> Language Class Initialized
+INFO - 2025-11-25 06:27:40 --> Loader Class Initialized
+INFO - 2025-11-25 06:27:40 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:27:40 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:27:40 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:27:40 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:27:40 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:27:40 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:27:40 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:27:40 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:27:40 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:27:40 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:27:40 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:27:40 --> Model Class Initialized
+INFO - 2025-11-25 06:27:40 --> Model Class Initialized
+INFO - 2025-11-25 06:27:40 --> Model Class Initialized
+INFO - 2025-11-25 06:27:40 --> Model Class Initialized
+INFO - 2025-11-25 06:27:40 --> Model Class Initialized
+INFO - 2025-11-25 06:27:40 --> Model Class Initialized
+DEBUG - 2025-11-25 06:27:40 --> Controller_Orders::create POST: {"customer_name":"LAMECK","customer_phone":"","customer_address":"","store_id":"7","product":["97"],"qty":["10"],"rate":["1000.00"],"rate_value":["1000.00"],"amount":["10000.00"],"amount_value":["10000.00"],"discount":"0","paid_status":"2","amount_paid":"10000.00","gross_amount_value":"10000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"10000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:27:40 --> Final output sent to browser
+DEBUG - 2025-11-25 06:27:40 --> Total execution time: 0.1250
+INFO - 2025-11-25 06:27:46 --> Config Class Initialized
+INFO - 2025-11-25 06:27:46 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:27:46 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:27:46 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:27:46 --> URI Class Initialized
+INFO - 2025-11-25 06:27:46 --> Router Class Initialized
+INFO - 2025-11-25 06:27:46 --> Output Class Initialized
+INFO - 2025-11-25 06:27:46 --> Security Class Initialized
+DEBUG - 2025-11-25 06:27:46 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:27:46 --> Input Class Initialized
+INFO - 2025-11-25 06:27:46 --> Language Class Initialized
+INFO - 2025-11-25 06:27:46 --> Loader Class Initialized
+INFO - 2025-11-25 06:27:46 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:27:46 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:27:46 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:27:46 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:27:46 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:27:46 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:27:46 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:27:46 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:27:46 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:27:46 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:27:46 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:27:46 --> Model Class Initialized
+INFO - 2025-11-25 06:27:46 --> Model Class Initialized
+INFO - 2025-11-25 06:27:46 --> Model Class Initialized
+INFO - 2025-11-25 06:27:46 --> Model Class Initialized
+INFO - 2025-11-25 06:27:46 --> Model Class Initialized
+INFO - 2025-11-25 06:27:46 --> Model Class Initialized
+DEBUG - 2025-11-25 06:27:46 --> Index loaded - Store: 7, Is Privileged: No
+ERROR - 2025-11-25 06:27:46 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 06:27:46 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 06:27:46 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 06:27:46 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 06:27:46 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/index.php
+INFO - 2025-11-25 06:27:46 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 06:27:46 --> Final output sent to browser
+DEBUG - 2025-11-25 06:27:46 --> Total execution time: 0.0573
+INFO - 2025-11-25 06:27:46 --> Config Class Initialized
+INFO - 2025-11-25 06:27:46 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:27:46 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:27:46 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:27:46 --> URI Class Initialized
+INFO - 2025-11-25 06:27:46 --> Router Class Initialized
+INFO - 2025-11-25 06:27:46 --> Output Class Initialized
+INFO - 2025-11-25 06:27:46 --> Security Class Initialized
+DEBUG - 2025-11-25 06:27:46 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:27:46 --> Input Class Initialized
+INFO - 2025-11-25 06:27:46 --> Language Class Initialized
+INFO - 2025-11-25 06:27:46 --> Loader Class Initialized
+INFO - 2025-11-25 06:27:46 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:27:46 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:27:46 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:27:46 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:27:46 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:27:46 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:27:46 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:27:46 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:27:46 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:27:46 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:27:46 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:27:46 --> Model Class Initialized
+INFO - 2025-11-25 06:27:46 --> Model Class Initialized
+INFO - 2025-11-25 06:27:46 --> Model Class Initialized
+INFO - 2025-11-25 06:27:46 --> Model Class Initialized
+INFO - 2025-11-25 06:27:46 --> Model Class Initialized
+INFO - 2025-11-25 06:27:46 --> Model Class Initialized
+DEBUG - 2025-11-25 06:27:46 --> fetchOrdersData - Store ID: 7, Group ID: , Is Privileged: No
+DEBUG - 2025-11-25 06:27:46 --> Adding store restriction for store_id: 7
+DEBUG - 2025-11-25 06:27:46 --> Executing query: SELECT o.*,
+                    COALESCE(s.name, 'N/A') as store_name,
+                    COALESCE(u.username, 'Unknown') as clerk_name
+                    FROM orders o
+                    LEFT JOIN stores s ON o.store_id = s.id
+                    LEFT JOIN users u ON o.user_id = u.id WHERE o.store_id = '7' ORDER BY o.id DESC
+DEBUG - 2025-11-25 06:27:46 --> Query returned 1137 results
+DEBUG - 2025-11-25 06:27:46 --> Found 1137 orders for user
+INFO - 2025-11-25 06:27:46 --> Final output sent to browser
+DEBUG - 2025-11-25 06:27:46 --> Total execution time: 0.0720
+INFO - 2025-11-25 06:43:00 --> Config Class Initialized
+INFO - 2025-11-25 06:43:00 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:43:00 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:43:00 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:43:00 --> URI Class Initialized
+INFO - 2025-11-25 06:43:00 --> Router Class Initialized
+INFO - 2025-11-25 06:43:00 --> Output Class Initialized
+INFO - 2025-11-25 06:43:00 --> Security Class Initialized
+DEBUG - 2025-11-25 06:43:00 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:43:00 --> Input Class Initialized
+INFO - 2025-11-25 06:43:00 --> Language Class Initialized
+INFO - 2025-11-25 06:43:00 --> Loader Class Initialized
+INFO - 2025-11-25 06:43:00 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:43:00 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:43:00 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:43:00 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:43:00 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:43:00 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:43:00 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:43:00 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:43:00 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:43:00 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:43:00 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:43:00 --> Model Class Initialized
+INFO - 2025-11-25 06:43:00 --> Model Class Initialized
+INFO - 2025-11-25 06:43:00 --> Model Class Initialized
+INFO - 2025-11-25 06:43:00 --> Model Class Initialized
+INFO - 2025-11-25 06:43:00 --> Model Class Initialized
+INFO - 2025-11-25 06:43:00 --> Model Class Initialized
+DEBUG - 2025-11-25 06:43:00 --> User Info - Store ID: 7, Group ID: , Is Privileged: No
+DEBUG - 2025-11-25 06:43:00 --> Single order query: SELECT o.*,
+                        COALESCE(s.name, 'N/A') as store_name,
+                        COALESCE(u.username, 'Unknown') as clerk_name
+                        FROM orders o
+                        LEFT JOIN stores s ON o.store_id = s.id
+                        LEFT JOIN users u ON o.user_id = u.id
+                        WHERE o.id = '1293' AND o.store_id = '7'
+INFO - 2025-11-25 06:43:00 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 06:43:00 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 06:43:00 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 06:43:01 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/edit.php
+INFO - 2025-11-25 06:43:01 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 06:43:01 --> Final output sent to browser
+DEBUG - 2025-11-25 06:43:01 --> Total execution time: 0.3305
+INFO - 2025-11-25 06:43:21 --> Config Class Initialized
+INFO - 2025-11-25 06:43:21 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:43:21 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:43:21 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:43:21 --> URI Class Initialized
+INFO - 2025-11-25 06:43:21 --> Router Class Initialized
+INFO - 2025-11-25 06:43:21 --> Output Class Initialized
+INFO - 2025-11-25 06:43:21 --> Security Class Initialized
+DEBUG - 2025-11-25 06:43:21 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:43:21 --> Input Class Initialized
+INFO - 2025-11-25 06:43:21 --> Language Class Initialized
+INFO - 2025-11-25 06:43:21 --> Loader Class Initialized
+INFO - 2025-11-25 06:43:21 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:43:21 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:43:21 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:43:21 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:43:21 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:43:21 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:43:21 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:43:21 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:43:21 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:43:21 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:43:21 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:43:21 --> Model Class Initialized
+INFO - 2025-11-25 06:43:21 --> Model Class Initialized
+INFO - 2025-11-25 06:43:21 --> Model Class Initialized
+INFO - 2025-11-25 06:43:21 --> Model Class Initialized
+INFO - 2025-11-25 06:43:21 --> Model Class Initialized
+INFO - 2025-11-25 06:43:21 --> Model Class Initialized
+DEBUG - 2025-11-25 06:43:21 --> Index loaded - Store: 7, Is Privileged: No
+ERROR - 2025-11-25 06:43:21 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 06:43:21 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 06:43:21 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 06:43:21 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 06:43:21 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/index.php
+INFO - 2025-11-25 06:43:21 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 06:43:21 --> Final output sent to browser
+DEBUG - 2025-11-25 06:43:21 --> Total execution time: 0.0582
+INFO - 2025-11-25 06:43:21 --> Config Class Initialized
+INFO - 2025-11-25 06:43:21 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:43:21 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:43:21 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:43:21 --> URI Class Initialized
+INFO - 2025-11-25 06:43:21 --> Router Class Initialized
+INFO - 2025-11-25 06:43:21 --> Output Class Initialized
+INFO - 2025-11-25 06:43:21 --> Security Class Initialized
+DEBUG - 2025-11-25 06:43:21 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:43:21 --> Input Class Initialized
+INFO - 2025-11-25 06:43:21 --> Language Class Initialized
+INFO - 2025-11-25 06:43:21 --> Loader Class Initialized
+INFO - 2025-11-25 06:43:21 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:43:21 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:43:21 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:43:21 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:43:21 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:43:21 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:43:21 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:43:21 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:43:21 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:43:21 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:43:21 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:43:21 --> Model Class Initialized
+INFO - 2025-11-25 06:43:22 --> Model Class Initialized
+INFO - 2025-11-25 06:43:22 --> Model Class Initialized
+INFO - 2025-11-25 06:43:22 --> Model Class Initialized
+INFO - 2025-11-25 06:43:22 --> Model Class Initialized
+INFO - 2025-11-25 06:43:22 --> Model Class Initialized
+DEBUG - 2025-11-25 06:43:22 --> fetchOrdersData - Store ID: 7, Group ID: , Is Privileged: No
+DEBUG - 2025-11-25 06:43:22 --> Adding store restriction for store_id: 7
+DEBUG - 2025-11-25 06:43:22 --> Executing query: SELECT o.*,
+                    COALESCE(s.name, 'N/A') as store_name,
+                    COALESCE(u.username, 'Unknown') as clerk_name
+                    FROM orders o
+                    LEFT JOIN stores s ON o.store_id = s.id
+                    LEFT JOIN users u ON o.user_id = u.id WHERE o.store_id = '7' ORDER BY o.id DESC
+DEBUG - 2025-11-25 06:43:22 --> Query returned 1137 results
+DEBUG - 2025-11-25 06:43:22 --> Found 1137 orders for user
+INFO - 2025-11-25 06:43:22 --> Final output sent to browser
+DEBUG - 2025-11-25 06:43:22 --> Total execution time: 0.0683
+INFO - 2025-11-25 06:43:46 --> Config Class Initialized
+INFO - 2025-11-25 06:43:46 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:43:46 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:43:46 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:43:46 --> URI Class Initialized
+INFO - 2025-11-25 06:43:46 --> Router Class Initialized
+INFO - 2025-11-25 06:43:46 --> Output Class Initialized
+INFO - 2025-11-25 06:43:46 --> Security Class Initialized
+DEBUG - 2025-11-25 06:43:46 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:43:46 --> Input Class Initialized
+INFO - 2025-11-25 06:43:46 --> Language Class Initialized
+INFO - 2025-11-25 06:43:46 --> Loader Class Initialized
+INFO - 2025-11-25 06:43:46 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:43:46 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:43:46 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:43:46 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:43:46 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:43:46 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:43:46 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:43:46 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:43:46 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:43:46 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:43:46 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:43:46 --> Model Class Initialized
+INFO - 2025-11-25 06:43:46 --> Model Class Initialized
+INFO - 2025-11-25 06:43:46 --> Model Class Initialized
+INFO - 2025-11-25 06:43:46 --> Model Class Initialized
+INFO - 2025-11-25 06:43:46 --> Model Class Initialized
+INFO - 2025-11-25 06:43:46 --> Model Class Initialized
+DEBUG - 2025-11-25 06:43:46 --> User Info - Store ID: 7, Group ID: , Is Privileged: No
+DEBUG - 2025-11-25 06:43:46 --> Single order query: SELECT o.*,
+                        COALESCE(s.name, 'N/A') as store_name,
+                        COALESCE(u.username, 'Unknown') as clerk_name
+                        FROM orders o
+                        LEFT JOIN stores s ON o.store_id = s.id
+                        LEFT JOIN users u ON o.user_id = u.id
+                        WHERE o.id = '1290' AND o.store_id = '7'
+INFO - 2025-11-25 06:43:46 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 06:43:46 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 06:43:46 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 06:43:46 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/edit.php
+INFO - 2025-11-25 06:43:46 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 06:43:46 --> Final output sent to browser
+DEBUG - 2025-11-25 06:43:46 --> Total execution time: 0.0580
+INFO - 2025-11-25 06:43:59 --> Config Class Initialized
+INFO - 2025-11-25 06:43:59 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:43:59 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:43:59 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:43:59 --> URI Class Initialized
+INFO - 2025-11-25 06:43:59 --> Router Class Initialized
+INFO - 2025-11-25 06:43:59 --> Output Class Initialized
+INFO - 2025-11-25 06:43:59 --> Security Class Initialized
+DEBUG - 2025-11-25 06:43:59 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:43:59 --> Input Class Initialized
+INFO - 2025-11-25 06:43:59 --> Language Class Initialized
+INFO - 2025-11-25 06:43:59 --> Loader Class Initialized
+INFO - 2025-11-25 06:43:59 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:43:59 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:43:59 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:43:59 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:43:59 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:43:59 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:43:59 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:43:59 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:43:59 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:43:59 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:43:59 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:43:59 --> Model Class Initialized
+INFO - 2025-11-25 06:43:59 --> Model Class Initialized
+INFO - 2025-11-25 06:43:59 --> Model Class Initialized
+INFO - 2025-11-25 06:43:59 --> Model Class Initialized
+INFO - 2025-11-25 06:43:59 --> Model Class Initialized
+INFO - 2025-11-25 06:43:59 --> Model Class Initialized
+DEBUG - 2025-11-25 06:43:59 --> Index loaded - Store: 7, Is Privileged: No
+ERROR - 2025-11-25 06:43:59 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 06:43:59 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 06:43:59 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 06:43:59 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 06:43:59 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/index.php
+INFO - 2025-11-25 06:43:59 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 06:43:59 --> Final output sent to browser
+DEBUG - 2025-11-25 06:43:59 --> Total execution time: 0.0557
+INFO - 2025-11-25 06:43:59 --> Config Class Initialized
+INFO - 2025-11-25 06:43:59 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:43:59 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:43:59 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:43:59 --> URI Class Initialized
+INFO - 2025-11-25 06:43:59 --> Router Class Initialized
+INFO - 2025-11-25 06:43:59 --> Output Class Initialized
+INFO - 2025-11-25 06:43:59 --> Security Class Initialized
+DEBUG - 2025-11-25 06:43:59 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:43:59 --> Input Class Initialized
+INFO - 2025-11-25 06:43:59 --> Language Class Initialized
+INFO - 2025-11-25 06:43:59 --> Loader Class Initialized
+INFO - 2025-11-25 06:43:59 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:43:59 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:43:59 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:43:59 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:43:59 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:43:59 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:43:59 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:43:59 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:43:59 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:43:59 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:43:59 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:43:59 --> Model Class Initialized
+INFO - 2025-11-25 06:43:59 --> Model Class Initialized
+INFO - 2025-11-25 06:43:59 --> Model Class Initialized
+INFO - 2025-11-25 06:43:59 --> Model Class Initialized
+INFO - 2025-11-25 06:43:59 --> Model Class Initialized
+INFO - 2025-11-25 06:43:59 --> Model Class Initialized
+DEBUG - 2025-11-25 06:43:59 --> fetchOrdersData - Store ID: 7, Group ID: , Is Privileged: No
+DEBUG - 2025-11-25 06:43:59 --> Adding store restriction for store_id: 7
+DEBUG - 2025-11-25 06:43:59 --> Executing query: SELECT o.*,
+                    COALESCE(s.name, 'N/A') as store_name,
+                    COALESCE(u.username, 'Unknown') as clerk_name
+                    FROM orders o
+                    LEFT JOIN stores s ON o.store_id = s.id
+                    LEFT JOIN users u ON o.user_id = u.id WHERE o.store_id = '7' ORDER BY o.id DESC
+DEBUG - 2025-11-25 06:43:59 --> Query returned 1137 results
+DEBUG - 2025-11-25 06:43:59 --> Found 1137 orders for user
+INFO - 2025-11-25 06:43:59 --> Final output sent to browser
+DEBUG - 2025-11-25 06:43:59 --> Total execution time: 0.0772
+INFO - 2025-11-25 06:44:08 --> Config Class Initialized
+INFO - 2025-11-25 06:44:08 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:44:08 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:44:08 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:44:08 --> URI Class Initialized
+INFO - 2025-11-25 06:44:08 --> Router Class Initialized
+INFO - 2025-11-25 06:44:08 --> Output Class Initialized
+INFO - 2025-11-25 06:44:08 --> Security Class Initialized
+DEBUG - 2025-11-25 06:44:08 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:44:08 --> Input Class Initialized
+INFO - 2025-11-25 06:44:08 --> Language Class Initialized
+INFO - 2025-11-25 06:44:08 --> Loader Class Initialized
+INFO - 2025-11-25 06:44:08 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:44:08 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:44:08 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:44:08 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:44:08 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:44:08 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:44:08 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:44:08 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:44:08 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:44:08 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:44:08 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:44:08 --> Model Class Initialized
+INFO - 2025-11-25 06:44:08 --> Model Class Initialized
+INFO - 2025-11-25 06:44:08 --> Model Class Initialized
+INFO - 2025-11-25 06:44:08 --> Model Class Initialized
+INFO - 2025-11-25 06:44:08 --> Model Class Initialized
+INFO - 2025-11-25 06:44:08 --> Model Class Initialized
+DEBUG - 2025-11-25 06:44:08 --> User Info - Store ID: 7, Group ID: , Is Privileged: No
+DEBUG - 2025-11-25 06:44:08 --> Single order query: SELECT o.*,
+                        COALESCE(s.name, 'N/A') as store_name,
+                        COALESCE(u.username, 'Unknown') as clerk_name
+                        FROM orders o
+                        LEFT JOIN stores s ON o.store_id = s.id
+                        LEFT JOIN users u ON o.user_id = u.id
+                        WHERE o.id = '1293' AND o.store_id = '7'
+INFO - 2025-11-25 06:44:08 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 06:44:08 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 06:44:08 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 06:44:08 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/edit.php
+INFO - 2025-11-25 06:44:08 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 06:44:08 --> Final output sent to browser
+DEBUG - 2025-11-25 06:44:08 --> Total execution time: 0.0571
+INFO - 2025-11-25 06:44:40 --> Config Class Initialized
+INFO - 2025-11-25 06:44:40 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:44:40 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:44:40 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:44:40 --> URI Class Initialized
+INFO - 2025-11-25 06:44:40 --> Router Class Initialized
+INFO - 2025-11-25 06:44:40 --> Output Class Initialized
+INFO - 2025-11-25 06:44:40 --> Security Class Initialized
+DEBUG - 2025-11-25 06:44:40 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:44:40 --> Input Class Initialized
+INFO - 2025-11-25 06:44:40 --> Language Class Initialized
+INFO - 2025-11-25 06:44:40 --> Loader Class Initialized
+INFO - 2025-11-25 06:44:40 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:44:40 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:44:40 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:44:40 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:44:40 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:44:40 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:44:40 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:44:40 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:44:40 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:44:40 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:44:40 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:44:40 --> Model Class Initialized
+INFO - 2025-11-25 06:44:40 --> Model Class Initialized
+INFO - 2025-11-25 06:44:40 --> Model Class Initialized
+INFO - 2025-11-25 06:44:40 --> Model Class Initialized
+INFO - 2025-11-25 06:44:40 --> Model Class Initialized
+INFO - 2025-11-25 06:44:40 --> Model Class Initialized
+DEBUG - 2025-11-25 06:44:40 --> Index loaded - Store: 7, Is Privileged: No
+ERROR - 2025-11-25 06:44:40 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 06:44:40 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 06:44:40 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 06:44:40 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 06:44:40 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/index.php
+INFO - 2025-11-25 06:44:40 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 06:44:40 --> Final output sent to browser
+DEBUG - 2025-11-25 06:44:40 --> Total execution time: 0.0546
+INFO - 2025-11-25 06:44:40 --> Config Class Initialized
+INFO - 2025-11-25 06:44:40 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:44:40 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:44:40 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:44:40 --> URI Class Initialized
+INFO - 2025-11-25 06:44:40 --> Router Class Initialized
+INFO - 2025-11-25 06:44:40 --> Output Class Initialized
+INFO - 2025-11-25 06:44:40 --> Security Class Initialized
+DEBUG - 2025-11-25 06:44:40 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:44:40 --> Input Class Initialized
+INFO - 2025-11-25 06:44:40 --> Language Class Initialized
+INFO - 2025-11-25 06:44:40 --> Loader Class Initialized
+INFO - 2025-11-25 06:44:40 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:44:40 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:44:40 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:44:40 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:44:40 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:44:40 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:44:40 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:44:40 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:44:40 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:44:40 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:44:40 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:44:40 --> Model Class Initialized
+INFO - 2025-11-25 06:44:40 --> Model Class Initialized
+INFO - 2025-11-25 06:44:40 --> Model Class Initialized
+INFO - 2025-11-25 06:44:40 --> Model Class Initialized
+INFO - 2025-11-25 06:44:40 --> Model Class Initialized
+INFO - 2025-11-25 06:44:40 --> Model Class Initialized
+DEBUG - 2025-11-25 06:44:40 --> fetchOrdersData - Store ID: 7, Group ID: , Is Privileged: No
+DEBUG - 2025-11-25 06:44:40 --> Adding store restriction for store_id: 7
+DEBUG - 2025-11-25 06:44:40 --> Executing query: SELECT o.*,
+                    COALESCE(s.name, 'N/A') as store_name,
+                    COALESCE(u.username, 'Unknown') as clerk_name
+                    FROM orders o
+                    LEFT JOIN stores s ON o.store_id = s.id
+                    LEFT JOIN users u ON o.user_id = u.id WHERE o.store_id = '7' ORDER BY o.id DESC
+DEBUG - 2025-11-25 06:44:40 --> Query returned 1137 results
+DEBUG - 2025-11-25 06:44:40 --> Found 1137 orders for user
+INFO - 2025-11-25 06:44:40 --> Final output sent to browser
+DEBUG - 2025-11-25 06:44:40 --> Total execution time: 0.0657
+INFO - 2025-11-25 06:45:23 --> Config Class Initialized
+INFO - 2025-11-25 06:45:23 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:45:23 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:45:23 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:45:23 --> URI Class Initialized
+INFO - 2025-11-25 06:45:23 --> Router Class Initialized
+INFO - 2025-11-25 06:45:23 --> Output Class Initialized
+INFO - 2025-11-25 06:45:23 --> Security Class Initialized
+DEBUG - 2025-11-25 06:45:23 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:45:23 --> Input Class Initialized
+INFO - 2025-11-25 06:45:23 --> Language Class Initialized
+INFO - 2025-11-25 06:45:23 --> Loader Class Initialized
+INFO - 2025-11-25 06:45:23 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:45:23 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:45:23 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:45:23 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:45:23 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:45:23 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:45:23 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:45:23 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:45:23 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:45:23 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:45:23 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:45:23 --> Model Class Initialized
+INFO - 2025-11-25 06:45:23 --> Model Class Initialized
+INFO - 2025-11-25 06:45:23 --> Model Class Initialized
+INFO - 2025-11-25 06:45:23 --> Model Class Initialized
+INFO - 2025-11-25 06:45:23 --> Model Class Initialized
+INFO - 2025-11-25 06:45:23 --> Model Class Initialized
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 78, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 138, purchased: 16, ordered: 0, stock: 16
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 79, purchased: 989, ordered: 23, stock: 966
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 80, purchased: 205, ordered: 57, stock: 148
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 81, purchased: 2046, ordered: 983, stock: 1063
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 139, purchased: 2, ordered: 1, stock: 1
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 82, purchased: 3500, ordered: 8378, stock: 0
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 83, purchased: 0, ordered: 2863, stock: 0
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 84, purchased: 189, ordered: 17, stock: 172
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 85, purchased: 137, ordered: 3, stock: 134
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 127, purchased: 2000, ordered: 378, stock: 1622
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 86, purchased: 384, ordered: 362, stock: 22
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 87, purchased: 588, ordered: 562, stock: 26
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 88, purchased: 837, ordered: 589, stock: 248
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 89, purchased: 2164, ordered: 720, stock: 1444
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 90, purchased: 470, ordered: 362, stock: 108
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 126, purchased: 25, ordered: 0, stock: 25
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 91, purchased: 26, ordered: 0, stock: 26
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 92, purchased: 25, ordered: 29, stock: 0
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 93, purchased: 752, ordered: 854, stock: 0
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 94, purchased: 764, ordered: 684, stock: 80
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 95, purchased: 2263, ordered: 460, stock: 1803
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 96, purchased: 18925, ordered: 3289, stock: 15636
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 134, purchased: 604, ordered: 69, stock: 535
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 130, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 133, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 131, purchased: 19, ordered: 0, stock: 19
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 97, purchased: 6001, ordered: 2333, stock: 3668
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 98, purchased: 442, ordered: 40, stock: 402
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 146, purchased: 200, ordered: 0, stock: 200
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 99, purchased: 2, ordered: 0, stock: 2
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 100, purchased: 34587, ordered: 30162, stock: 4425
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 137, purchased: 189, ordered: 4, stock: 185
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 101, purchased: 107, ordered: 23, stock: 84
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 102, purchased: 11299, ordered: 8396, stock: 2903
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 103, purchased: 29811, ordered: 22858, stock: 6953
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 104, purchased: 7500, ordered: 789, stock: 6711
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 142, purchased: 36, ordered: 0, stock: 36
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 140, purchased: 10, ordered: 1, stock: 9
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 105, purchased: 358, ordered: 201, stock: 157
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 106, purchased: 738, ordered: 645, stock: 93
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 125, purchased: 253, ordered: 0, stock: 253
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 108, purchased: 2503, ordered: 2188, stock: 315
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 109, purchased: 2571, ordered: 671, stock: 1900
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 110, purchased: 4761, ordered: 1611, stock: 3150
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 132, purchased: 200, ordered: 175, stock: 25
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 111, purchased: 406, ordered: 82, stock: 324
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 112, purchased: 1900, ordered: 1323, stock: 577
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 113, purchased: 2241, ordered: 825, stock: 1416
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 135, purchased: 1990, ordered: 654, stock: 1336
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 114, purchased: 922, ordered: 45, stock: 877
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 115, purchased: 13662, ordered: 14399, stock: 0
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 116, purchased: 237414, ordered: 227345, stock: 10069
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 107, purchased: 1200, ordered: 836, stock: 364
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 117, purchased: 9776, ordered: 6021, stock: 3755
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 118, purchased: 24842, ordered: 21572, stock: 3270
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 129, purchased: 1706, ordered: 1560, stock: 146
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 119, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 120, purchased: 1555, ordered: 560, stock: 995
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 121, purchased: 63, ordered: 1, stock: 62
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 122, purchased: 688, ordered: 207, stock: 481
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 123, purchased: 2020, ordered: 1717, stock: 303
+DEBUG - 2025-11-25 06:45:23 --> getProductsWithStock - ID: 124, purchased: 3646, ordered: 4469, stock: 0
+DEBUG - 2025-11-25 06:45:23 --> Prepared products for create view: [{"id":78,"name":"BROILER BOOSTER","price":3000,"current_stock":0,"unit":""},{"id":138,"name":"BROILER EXTRA","price":3000,"current_stock":16,"unit":""},{"id":79,"name":"BROILER FINISHER MASH","price":1000,"current_stock":966,"unit":""},{"id":80,"name":"BROILER PREMIX","price":3000,"current_stock":148,"unit":""},{"id":81,"name":"BROILER STARTER MASH","price":1000,"current_stock":1063,"unit":""},{"id":139,"name":"CHIKWIDI","price":15000,"current_stock":1,"unit":""},{"id":82,"name":"CHOKAA","price":500,"current_stock":0,"unit":""},{"id":83,"name":"CHUMVI","price":500,"current_stock":0,"unit":""},{"id":84,"name":"D.C.P KOPO (1\/2)","price":2000,"current_stock":172,"unit":""},{"id":85,"name":"D.C.P KOPO 1KG","price":3000,"current_stock":134,"unit":""},{"id":127,"name":"D.C.P KUPIMA","price":1500,"current_stock":1622,"unit":""},{"id":86,"name":"DAGAA KAUZU","price":2800,"current_stock":22,"unit":""},{"id":87,"name":"DAGAA SAGWA","price":2000,"current_stock":26,"unit":""},{"id":88,"name":"DAMU","price":1500,"current_stock":248,"unit":""},{"id":89,"name":"GROWER MASH","price":1000,"current_stock":1444,"unit":""},{"id":90,"name":"HAMIRA","price":1500,"current_stock":108,"unit":""},{"id":126,"name":"HIPHOS PLUS","price":5000,"current_stock":25,"unit":""},{"id":91,"name":"JOSERA MADUME","price":11000,"current_stock":26,"unit":""},{"id":92,"name":"JOSERA MAZIWA","price":11000,"current_stock":0,"unit":""},{"id":93,"name":"KARANGA","price":700,"current_stock":0,"unit":""},{"id":94,"name":"KAUDIS NGURUWE","price":4000,"current_stock":80,"unit":""},{"id":95,"name":"KAYABO","price":2000,"current_stock":1803,"unit":""},{"id":96,"name":"KONOKONO","price":350,"current_stock":15636,"unit":""},{"id":134,"name":"KONOKONO NZIMA","price":400,"current_stock":535,"unit":""},{"id":130,"name":"KONOKONO SAGWA","price":470,"current_stock":0,"unit":""},{"id":133,"name":"KONOKONO SAGWA","price":600,"current_stock":0,"unit":""},{"id":131,"name":"LAYERS EXTRA","price":3500,"current_stock":19,"unit":""},{"id":97,"name":"LAYERS MASH","price":1000,"current_stock":3668,"unit":""},{"id":98,"name":"LAYERS PREMIX","price":3500,"current_stock":402,"unit":""},{"id":146,"name":"MABOGA","price":3800,"current_stock":200,"unit":""},{"id":99,"name":"MADUME LICK","price":5000,"current_stock":2,"unit":""},{"id":100,"name":"MAHINDI","price":730,"current_stock":4425,"unit":""},{"id":137,"name":"MAZIWA MENGI 1KG","price":1500,"current_stock":185,"unit":""},{"id":101,"name":"MAZIWA MENGI 2kg","price":3000,"current_stock":84,"unit":""},{"id":102,"name":"MCHELE LAINI","price":400,"current_stock":2903,"unit":""},{"id":103,"name":"MCHELE NGUMU","price":320,"current_stock":6953,"unit":""},{"id":104,"name":"MFUPA","price":700,"current_stock":6711,"unit":""},{"id":142,"name":"MOLLASSES 1LITRE","price":5000,"current_stock":36,"unit":""},{"id":140,"name":"MOLLASSES 5LITRE","price":15000,"current_stock":9,"unit":""},{"id":105,"name":"MTAMA","price":1000,"current_stock":157,"unit":""},{"id":106,"name":"NGANO","price":1000,"current_stock":93,"unit":""},{"id":125,"name":"NGURUWE MIX","price":3500,"current_stock":253,"unit":""},{"id":108,"name":"PAMBA LAINI","price":1200,"current_stock":315,"unit":""},{"id":109,"name":"PAMBA NGUMU","price":1200,"current_stock":1900,"unit":""},{"id":110,"name":"PARAZA","price":1000,"current_stock":3150,"unit":""},{"id":132,"name":"PELLET FINISHER","price":2000,"current_stock":25,"unit":""},{"id":111,"name":"PIG BOOSTER","price":3000,"current_stock":324,"unit":""},{"id":112,"name":"PIG GROWER","price":1000,"current_stock":577,"unit":""},{"id":113,"name":"PIG STARTER","price":1000,"current_stock":1416,"unit":""},{"id":135,"name":"PILLET STARTER","price":2000,"current_stock":1336,"unit":""},{"id":114,"name":"PILLLET GROWER","price":2000,"current_stock":877,"unit":""},{"id":115,"name":"POLLARD","price":750,"current_stock":0,"unit":""},{"id":116,"name":"PUMBA","price":660,"current_stock":10069,"unit":""},{"id":107,"name":"PUMBA MAHINDI LAINI","price":600,"current_stock":364,"unit":""},{"id":117,"name":"SHUDU LAINI","price":900,"current_stock":3755,"unit":""},{"id":118,"name":"SHUDU NGUMU","price":800,"current_stock":3270,"unit":""},{"id":129,"name":"SOYA CHENGA","price":2500,"current_stock":146,"unit":""},{"id":119,"name":"SOYA MAFUTA","price":2500,"current_stock":0,"unit":""},{"id":120,"name":"SOYA UNGA","price":2000,"current_stock":995,"unit":""},{"id":121,"name":"SUPER MACLICK","price":3500,"current_stock":62,"unit":""},{"id":122,"name":"UBUYU","price":700,"current_stock":481,"unit":""},{"id":123,"name":"UDUVI","price":3500,"current_stock":303,"unit":""},{"id":124,"name":"WHEAT","price":650,"current_stock":0,"unit":""}]
+ERROR - 2025-11-25 06:45:23 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 06:45:23 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 06:45:23 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 06:45:23 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 06:45:23 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/create.php
+INFO - 2025-11-25 06:45:23 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 06:45:23 --> Final output sent to browser
+DEBUG - 2025-11-25 06:45:23 --> Total execution time: 0.1339
+INFO - 2025-11-25 06:45:23 --> Config Class Initialized
+INFO - 2025-11-25 06:45:23 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:45:23 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:45:23 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:45:23 --> URI Class Initialized
+INFO - 2025-11-25 06:45:23 --> Router Class Initialized
+INFO - 2025-11-25 06:45:23 --> Output Class Initialized
+INFO - 2025-11-25 06:45:23 --> Security Class Initialized
+DEBUG - 2025-11-25 06:45:23 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:45:23 --> Input Class Initialized
+INFO - 2025-11-25 06:45:23 --> Language Class Initialized
+ERROR - 2025-11-25 06:45:23 --> 404 Page Not Found: Assets/plugins
+INFO - 2025-11-25 06:45:58 --> Config Class Initialized
+INFO - 2025-11-25 06:45:58 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:45:58 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:45:58 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:45:58 --> URI Class Initialized
+INFO - 2025-11-25 06:45:58 --> Router Class Initialized
+INFO - 2025-11-25 06:45:58 --> Output Class Initialized
+INFO - 2025-11-25 06:45:58 --> Security Class Initialized
+DEBUG - 2025-11-25 06:45:58 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:45:58 --> Input Class Initialized
+INFO - 2025-11-25 06:45:58 --> Language Class Initialized
+INFO - 2025-11-25 06:45:58 --> Loader Class Initialized
+INFO - 2025-11-25 06:45:58 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:45:58 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:45:58 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:45:58 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:45:58 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:45:58 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:45:58 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:45:58 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:45:58 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:45:58 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:45:58 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:45:58 --> Model Class Initialized
+INFO - 2025-11-25 06:45:58 --> Model Class Initialized
+INFO - 2025-11-25 06:45:58 --> Model Class Initialized
+INFO - 2025-11-25 06:45:58 --> Model Class Initialized
+INFO - 2025-11-25 06:45:58 --> Model Class Initialized
+INFO - 2025-11-25 06:45:58 --> Model Class Initialized
+DEBUG - 2025-11-25 06:45:58 --> Controller_Orders::create POST: {"customer_name":"SAYUNI","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["10"],"rate":["650"],"rate_value":["650"],"amount":["6500.00"],"amount_value":["6500.00"],"discount":"0","paid_status":"2","amount_paid":"6500.00","gross_amount_value":"6500.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"6500.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:45:58 --> Final output sent to browser
+DEBUG - 2025-11-25 06:45:58 --> Total execution time: 0.1801
+INFO - 2025-11-25 06:46:31 --> Config Class Initialized
+INFO - 2025-11-25 06:46:31 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:46:31 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:46:31 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:46:31 --> URI Class Initialized
+INFO - 2025-11-25 06:46:31 --> Router Class Initialized
+INFO - 2025-11-25 06:46:31 --> Output Class Initialized
+INFO - 2025-11-25 06:46:31 --> Security Class Initialized
+DEBUG - 2025-11-25 06:46:31 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:46:31 --> Input Class Initialized
+INFO - 2025-11-25 06:46:31 --> Language Class Initialized
+INFO - 2025-11-25 06:46:31 --> Loader Class Initialized
+INFO - 2025-11-25 06:46:31 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:46:31 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:46:31 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:46:31 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:46:31 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:46:31 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:46:31 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:46:31 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:46:31 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:46:31 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:46:31 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:46:31 --> Model Class Initialized
+INFO - 2025-11-25 06:46:31 --> Model Class Initialized
+INFO - 2025-11-25 06:46:31 --> Model Class Initialized
+INFO - 2025-11-25 06:46:31 --> Model Class Initialized
+INFO - 2025-11-25 06:46:31 --> Model Class Initialized
+INFO - 2025-11-25 06:46:31 --> Model Class Initialized
+DEBUG - 2025-11-25 06:46:31 --> Controller_Orders::create POST: {"customer_name":"NIKO","customer_phone":"","customer_address":"","store_id":"7","product":["115"],"qty":["140"],"rate":["700.00"],"rate_value":["700.00"],"amount":["98000"],"amount_value":["98000"],"discount":"0","paid_status":"2","amount_paid":"98000.00","gross_amount_value":"98000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"98000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:46:31 --> Final output sent to browser
+DEBUG - 2025-11-25 06:46:31 --> Total execution time: 0.1366
+INFO - 2025-11-25 06:47:00 --> Config Class Initialized
+INFO - 2025-11-25 06:47:00 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:47:00 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:47:00 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:47:00 --> URI Class Initialized
+INFO - 2025-11-25 06:47:00 --> Router Class Initialized
+INFO - 2025-11-25 06:47:00 --> Output Class Initialized
+INFO - 2025-11-25 06:47:00 --> Security Class Initialized
+DEBUG - 2025-11-25 06:47:00 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:47:00 --> Input Class Initialized
+INFO - 2025-11-25 06:47:00 --> Language Class Initialized
+INFO - 2025-11-25 06:47:00 --> Loader Class Initialized
+INFO - 2025-11-25 06:47:00 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:47:01 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:47:01 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:47:01 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:47:01 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:47:01 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:47:01 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:47:01 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:47:01 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:47:01 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:47:01 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:47:01 --> Model Class Initialized
+INFO - 2025-11-25 06:47:01 --> Model Class Initialized
+INFO - 2025-11-25 06:47:01 --> Model Class Initialized
+INFO - 2025-11-25 06:47:01 --> Model Class Initialized
+INFO - 2025-11-25 06:47:01 --> Model Class Initialized
+INFO - 2025-11-25 06:47:01 --> Model Class Initialized
+DEBUG - 2025-11-25 06:47:01 --> Controller_Orders::create POST: {"customer_name":"RODGERS","customer_phone":"","customer_address":"","store_id":"7","product":["115"],"qty":["70"],"rate":["714.29"],"rate_value":["714.29"],"amount":["50000"],"amount_value":["50000"],"discount":"0","paid_status":"2","amount_paid":"50000.00","gross_amount_value":"50000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"50000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:47:01 --> Final output sent to browser
+DEBUG - 2025-11-25 06:47:01 --> Total execution time: 0.1143
+INFO - 2025-11-25 06:48:30 --> Config Class Initialized
+INFO - 2025-11-25 06:48:30 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:48:30 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:48:30 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:48:30 --> URI Class Initialized
+INFO - 2025-11-25 06:48:30 --> Router Class Initialized
+INFO - 2025-11-25 06:48:30 --> Output Class Initialized
+INFO - 2025-11-25 06:48:30 --> Security Class Initialized
+DEBUG - 2025-11-25 06:48:30 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:48:30 --> Input Class Initialized
+INFO - 2025-11-25 06:48:30 --> Language Class Initialized
+INFO - 2025-11-25 06:48:30 --> Loader Class Initialized
+INFO - 2025-11-25 06:48:30 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:48:30 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:48:30 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:48:30 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:48:30 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:48:30 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:48:30 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:48:30 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:48:30 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:48:30 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:48:30 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:48:30 --> Model Class Initialized
+INFO - 2025-11-25 06:48:30 --> Model Class Initialized
+INFO - 2025-11-25 06:48:30 --> Model Class Initialized
+INFO - 2025-11-25 06:48:30 --> Model Class Initialized
+INFO - 2025-11-25 06:48:30 --> Model Class Initialized
+INFO - 2025-11-25 06:48:30 --> Model Class Initialized
+DEBUG - 2025-11-25 06:48:30 --> Controller_Orders::create POST: {"customer_name":"SAMWELI","customer_phone":"","customer_address":"","store_id":"7","product":["116","96","116"],"qty":["102.7","100","147.9"],"rate":["630","250","630"],"rate_value":["630","250","630"],"amount":["64701.00","25000.00","93177.00"],"amount_value":["64701.00","25000.00","93177.00"],"discount":"0","paid_status":"3","amount_paid":"157500","gross_amount_value":"182878.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"182878.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:48:30 --> Final output sent to browser
+DEBUG - 2025-11-25 06:48:30 --> Total execution time: 0.1479
+INFO - 2025-11-25 06:51:49 --> Config Class Initialized
+INFO - 2025-11-25 06:51:49 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:51:49 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:51:49 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:51:49 --> URI Class Initialized
+INFO - 2025-11-25 06:51:49 --> Router Class Initialized
+INFO - 2025-11-25 06:51:49 --> Output Class Initialized
+INFO - 2025-11-25 06:51:49 --> Security Class Initialized
+DEBUG - 2025-11-25 06:51:49 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:51:49 --> Input Class Initialized
+INFO - 2025-11-25 06:51:49 --> Language Class Initialized
+INFO - 2025-11-25 06:51:49 --> Loader Class Initialized
+INFO - 2025-11-25 06:51:49 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:51:49 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:51:49 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:51:49 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:51:49 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:51:49 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:51:49 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:51:49 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:51:49 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:51:49 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:51:49 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:51:49 --> Model Class Initialized
+INFO - 2025-11-25 06:51:49 --> Model Class Initialized
+INFO - 2025-11-25 06:51:49 --> Model Class Initialized
+INFO - 2025-11-25 06:51:49 --> Model Class Initialized
+INFO - 2025-11-25 06:51:49 --> Model Class Initialized
+INFO - 2025-11-25 06:51:49 --> Model Class Initialized
+DEBUG - 2025-11-25 06:51:49 --> Controller_Orders::create POST: {"customer_name":"LILIAN","customer_phone":"","customer_address":"","store_id":"7","product":["123","82","104","117","88"],"qty":["6","2","4","6","4"],"rate":["3500.00","500.00","650","900.00","1400.00"],"rate_value":["3500.00","500.00","650","900.00","1400.00"],"amount":["21000.00","1000.00","2600.00","5400.00","5600"],"amount_value":["21000.00","1000.00","2600.00","5400.00","5600"],"discount":"0","paid_status":"2","amount_paid":"35600.00","gross_amount_value":"35600.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"35600.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:51:49 --> Final output sent to browser
+DEBUG - 2025-11-25 06:51:49 --> Total execution time: 0.1333
+INFO - 2025-11-25 06:52:20 --> Config Class Initialized
+INFO - 2025-11-25 06:52:20 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:52:20 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:52:20 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:52:20 --> URI Class Initialized
+INFO - 2025-11-25 06:52:20 --> Router Class Initialized
+INFO - 2025-11-25 06:52:20 --> Output Class Initialized
+INFO - 2025-11-25 06:52:20 --> Security Class Initialized
+DEBUG - 2025-11-25 06:52:20 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:52:20 --> Input Class Initialized
+INFO - 2025-11-25 06:52:20 --> Language Class Initialized
+INFO - 2025-11-25 06:52:20 --> Loader Class Initialized
+INFO - 2025-11-25 06:52:20 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:52:20 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:52:20 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:52:20 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:52:20 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:52:20 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:52:20 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:52:20 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:52:20 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:52:20 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:52:20 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:52:20 --> Model Class Initialized
+INFO - 2025-11-25 06:52:20 --> Model Class Initialized
+INFO - 2025-11-25 06:52:20 --> Model Class Initialized
+INFO - 2025-11-25 06:52:20 --> Model Class Initialized
+INFO - 2025-11-25 06:52:20 --> Model Class Initialized
+INFO - 2025-11-25 06:52:20 --> Model Class Initialized
+DEBUG - 2025-11-25 06:52:20 --> Controller_Orders::create POST: {"customer_name":"LOLOTEN","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["60"],"rate":["650"],"rate_value":["650"],"amount":["39000.00"],"amount_value":["39000.00"],"discount":"0","paid_status":"2","amount_paid":"39000.00","gross_amount_value":"39000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"39000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:52:21 --> Final output sent to browser
+DEBUG - 2025-11-25 06:52:21 --> Total execution time: 0.1575
+INFO - 2025-11-25 06:53:09 --> Config Class Initialized
+INFO - 2025-11-25 06:53:09 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:53:09 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:53:09 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:53:09 --> URI Class Initialized
+INFO - 2025-11-25 06:53:09 --> Router Class Initialized
+INFO - 2025-11-25 06:53:09 --> Output Class Initialized
+INFO - 2025-11-25 06:53:09 --> Security Class Initialized
+DEBUG - 2025-11-25 06:53:09 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:53:09 --> Input Class Initialized
+INFO - 2025-11-25 06:53:09 --> Language Class Initialized
+INFO - 2025-11-25 06:53:09 --> Loader Class Initialized
+INFO - 2025-11-25 06:53:09 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:53:09 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:53:09 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:53:09 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:53:09 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:53:09 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:53:09 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:53:09 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:53:09 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:53:09 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:53:09 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:53:09 --> Model Class Initialized
+INFO - 2025-11-25 06:53:09 --> Model Class Initialized
+INFO - 2025-11-25 06:53:09 --> Model Class Initialized
+INFO - 2025-11-25 06:53:09 --> Model Class Initialized
+INFO - 2025-11-25 06:53:09 --> Model Class Initialized
+INFO - 2025-11-25 06:53:09 --> Model Class Initialized
+DEBUG - 2025-11-25 06:53:09 --> Controller_Orders::create POST: {"customer_name":"JOSIA","customer_phone":"","customer_address":"","store_id":"7","product":["117","108"],"qty":["5","3"],"rate":["1000.00","1200.00"],"rate_value":["1000.00","1200.00"],"amount":["5000","3600.00"],"amount_value":["5000","3600.00"],"discount":"0","paid_status":"2","amount_paid":"8600.00","gross_amount_value":"8600.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"8600.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:53:09 --> Final output sent to browser
+DEBUG - 2025-11-25 06:53:09 --> Total execution time: 0.1203
+INFO - 2025-11-25 06:53:34 --> Config Class Initialized
+INFO - 2025-11-25 06:53:34 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:53:34 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:53:34 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:53:34 --> URI Class Initialized
+INFO - 2025-11-25 06:53:34 --> Router Class Initialized
+INFO - 2025-11-25 06:53:34 --> Output Class Initialized
+INFO - 2025-11-25 06:53:34 --> Security Class Initialized
+DEBUG - 2025-11-25 06:53:34 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:53:34 --> Input Class Initialized
+INFO - 2025-11-25 06:53:34 --> Language Class Initialized
+INFO - 2025-11-25 06:53:34 --> Loader Class Initialized
+INFO - 2025-11-25 06:53:34 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:53:34 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:53:34 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:53:34 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:53:34 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:53:34 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:53:34 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:53:34 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:53:34 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:53:34 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:53:34 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:53:34 --> Model Class Initialized
+INFO - 2025-11-25 06:53:34 --> Model Class Initialized
+INFO - 2025-11-25 06:53:34 --> Model Class Initialized
+INFO - 2025-11-25 06:53:34 --> Model Class Initialized
+INFO - 2025-11-25 06:53:34 --> Model Class Initialized
+INFO - 2025-11-25 06:53:34 --> Model Class Initialized
+DEBUG - 2025-11-25 06:53:34 --> Controller_Orders::create POST: {"customer_name":"MREME","customer_phone":"","customer_address":"","store_id":"7","product":["115"],"qty":["70"],"rate":["714.29"],"rate_value":["714.29"],"amount":["50000"],"amount_value":["50000"],"discount":"0","paid_status":"2","amount_paid":"50000.00","gross_amount_value":"50000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"50000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:53:35 --> Final output sent to browser
+DEBUG - 2025-11-25 06:53:35 --> Total execution time: 0.1401
+INFO - 2025-11-25 06:55:22 --> Config Class Initialized
+INFO - 2025-11-25 06:55:22 --> Hooks Class Initialized
+DEBUG - 2025-11-25 06:55:22 --> UTF-8 Support Enabled
+INFO - 2025-11-25 06:55:22 --> Utf8 Class Initialized
+INFO - 2025-11-25 06:55:22 --> URI Class Initialized
+INFO - 2025-11-25 06:55:22 --> Router Class Initialized
+INFO - 2025-11-25 06:55:22 --> Output Class Initialized
+INFO - 2025-11-25 06:55:22 --> Security Class Initialized
+DEBUG - 2025-11-25 06:55:22 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 06:55:22 --> Input Class Initialized
+INFO - 2025-11-25 06:55:22 --> Language Class Initialized
+INFO - 2025-11-25 06:55:22 --> Loader Class Initialized
+INFO - 2025-11-25 06:55:22 --> Helper loaded: url_helper
+INFO - 2025-11-25 06:55:22 --> Helper loaded: form_helper
+INFO - 2025-11-25 06:55:22 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 06:55:22 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 06:55:22 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 06:55:22 --> Form Validation Class Initialized
+INFO - 2025-11-25 06:55:22 --> Controller Class Initialized
+DEBUG - 2025-11-25 06:55:22 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 06:55:22 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 06:55:22 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 06:55:22 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 06:55:22 --> Model Class Initialized
+INFO - 2025-11-25 06:55:22 --> Model Class Initialized
+INFO - 2025-11-25 06:55:22 --> Model Class Initialized
+INFO - 2025-11-25 06:55:22 --> Model Class Initialized
+INFO - 2025-11-25 06:55:22 --> Model Class Initialized
+INFO - 2025-11-25 06:55:22 --> Model Class Initialized
+DEBUG - 2025-11-25 06:55:22 --> Controller_Orders::create POST: {"customer_name":"JULIUS","customer_phone":"","customer_address":"","store_id":"7","product":["116","123","117","104","82","110"],"qty":["20","1","2","1","0.5","0.5"],"rate":["660.00","3500.00","900.00","700.00","600.00","1000.00"],"rate_value":["660.00","3500.00","900.00","700.00","600.00","1000.00"],"amount":["13200.00","3500.00","1800.00","700.00","300","500.00"],"amount_value":["13200.00","3500.00","1800.00","700.00","300","500.00"],"discount":"0","paid_status":"2","amount_paid":"20000.00","gross_amount_value":"20000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"20000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 06:55:23 --> Final output sent to browser
+DEBUG - 2025-11-25 06:55:23 --> Total execution time: 0.4763
+INFO - 2025-11-25 07:03:24 --> Config Class Initialized
+INFO - 2025-11-25 07:03:24 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:03:24 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:03:24 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:03:24 --> URI Class Initialized
+INFO - 2025-11-25 07:03:24 --> Router Class Initialized
+INFO - 2025-11-25 07:03:24 --> Output Class Initialized
+INFO - 2025-11-25 07:03:24 --> Security Class Initialized
+DEBUG - 2025-11-25 07:03:24 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:03:24 --> Input Class Initialized
+INFO - 2025-11-25 07:03:24 --> Language Class Initialized
+INFO - 2025-11-25 07:03:24 --> Loader Class Initialized
+INFO - 2025-11-25 07:03:24 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:03:24 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:03:25 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:03:25 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:03:25 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:03:25 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:03:25 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:03:25 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:03:25 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:03:25 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:03:25 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:03:25 --> Model Class Initialized
+INFO - 2025-11-25 07:03:25 --> Model Class Initialized
+INFO - 2025-11-25 07:03:25 --> Model Class Initialized
+INFO - 2025-11-25 07:03:25 --> Model Class Initialized
+INFO - 2025-11-25 07:03:25 --> Model Class Initialized
+INFO - 2025-11-25 07:03:25 --> Model Class Initialized
+DEBUG - 2025-11-25 07:03:25 --> Controller_Orders::create POST: {"customer_name":"SWAHBU","customer_phone":"","customer_address":"","store_id":"7","product":["110","116","87","120","117","82","104","127","104"],"qty":["25","10","5","5","1.5","1.5","2","1","0.5"],"rate":["1000.00","650","2000.00","2000.00","1000.00","833.33","700.00","1500.00","700.00"],"rate_value":["1000.00","650","2000.00","2000.00","1000.00","833.33","700.00","1500.00","700.00"],"amount":["25000.00","6500.00","10000.00","10000.00","1500","1250","1400.00","1500.00","350.00"],"amount_value":["25000.00","6500.00","10000.00","10000.00","1500","1250","1400.00","1500.00","350.00"],"discount":"0","paid_status":"2","amount_paid":"57500.00","gross_amount_value":"57500.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"57500.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 07:03:25 --> Final output sent to browser
+DEBUG - 2025-11-25 07:03:25 --> Total execution time: 0.1532
+INFO - 2025-11-25 07:06:24 --> Config Class Initialized
+INFO - 2025-11-25 07:06:24 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:06:24 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:06:24 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:06:24 --> URI Class Initialized
+INFO - 2025-11-25 07:06:24 --> Router Class Initialized
+INFO - 2025-11-25 07:06:24 --> Output Class Initialized
+INFO - 2025-11-25 07:06:24 --> Security Class Initialized
+DEBUG - 2025-11-25 07:06:24 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:06:24 --> Input Class Initialized
+INFO - 2025-11-25 07:06:24 --> Language Class Initialized
+INFO - 2025-11-25 07:06:24 --> Loader Class Initialized
+INFO - 2025-11-25 07:06:24 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:06:24 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:06:24 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:06:24 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:06:24 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:06:24 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:06:24 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:06:24 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:06:24 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:06:24 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:06:24 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:06:24 --> Model Class Initialized
+INFO - 2025-11-25 07:06:24 --> Model Class Initialized
+INFO - 2025-11-25 07:06:24 --> Model Class Initialized
+INFO - 2025-11-25 07:06:24 --> Model Class Initialized
+INFO - 2025-11-25 07:06:24 --> Model Class Initialized
+INFO - 2025-11-25 07:06:24 --> Model Class Initialized
+DEBUG - 2025-11-25 07:06:24 --> Controller_Orders::create POST: {"customer_name":"LILIAN","customer_phone":"","customer_address":"","store_id":"7","product":["115"],"qty":["280"],"rate":["700.00"],"rate_value":["700.00"],"amount":["196000"],"amount_value":["196000"],"discount":"0","paid_status":"2","amount_paid":"196000.00","gross_amount_value":"196000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"196000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 07:06:24 --> Final output sent to browser
+DEBUG - 2025-11-25 07:06:24 --> Total execution time: 0.1425
+INFO - 2025-11-25 07:11:19 --> Config Class Initialized
+INFO - 2025-11-25 07:11:19 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:11:19 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:11:19 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:11:19 --> URI Class Initialized
+INFO - 2025-11-25 07:11:19 --> Router Class Initialized
+INFO - 2025-11-25 07:11:19 --> Output Class Initialized
+INFO - 2025-11-25 07:11:19 --> Security Class Initialized
+DEBUG - 2025-11-25 07:11:19 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:11:19 --> Input Class Initialized
+INFO - 2025-11-25 07:11:19 --> Language Class Initialized
+INFO - 2025-11-25 07:11:19 --> Loader Class Initialized
+INFO - 2025-11-25 07:11:19 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:11:19 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:11:19 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:11:19 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:11:19 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:11:19 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:11:19 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:11:19 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:11:19 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:11:19 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:11:19 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:11:19 --> Model Class Initialized
+INFO - 2025-11-25 07:11:19 --> Model Class Initialized
+INFO - 2025-11-25 07:11:19 --> Model Class Initialized
+INFO - 2025-11-25 07:11:19 --> Model Class Initialized
+INFO - 2025-11-25 07:11:19 --> Model Class Initialized
+INFO - 2025-11-25 07:11:19 --> Model Class Initialized
+DEBUG - 2025-11-25 07:11:19 --> Controller_Orders::create POST: {"customer_name":"MIRAJI","customer_phone":"","customer_address":"","store_id":"7","product":["116","123","110","82","110"],"qty":["15","1","0.5","0.5","0.5"],"rate":["650","3500.00","1000.00","500.00","1000.00"],"rate_value":["650","3500.00","1000.00","500.00","1000.00"],"amount":["9750.00","3500.00","500.00","250.00","500.00"],"amount_value":["9750.00","3500.00","500.00","250.00","500.00"],"discount":"0","paid_status":"2","amount_paid":"14500.00","gross_amount_value":"14500.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"14500.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 07:11:19 --> Final output sent to browser
+DEBUG - 2025-11-25 07:11:19 --> Total execution time: 0.1339
+INFO - 2025-11-25 07:13:32 --> Config Class Initialized
+INFO - 2025-11-25 07:13:32 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:13:32 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:13:32 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:13:32 --> URI Class Initialized
+INFO - 2025-11-25 07:13:32 --> Router Class Initialized
+INFO - 2025-11-25 07:13:32 --> Output Class Initialized
+INFO - 2025-11-25 07:13:32 --> Security Class Initialized
+DEBUG - 2025-11-25 07:13:32 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:13:32 --> Input Class Initialized
+INFO - 2025-11-25 07:13:32 --> Language Class Initialized
+INFO - 2025-11-25 07:13:32 --> Loader Class Initialized
+INFO - 2025-11-25 07:13:32 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:13:32 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:13:32 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:13:32 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:13:32 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:13:32 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:13:32 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:13:32 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:13:32 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:13:32 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:13:32 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:13:32 --> Model Class Initialized
+INFO - 2025-11-25 07:13:32 --> Model Class Initialized
+INFO - 2025-11-25 07:13:32 --> Model Class Initialized
+INFO - 2025-11-25 07:13:32 --> Model Class Initialized
+INFO - 2025-11-25 07:13:32 --> Model Class Initialized
+INFO - 2025-11-25 07:13:32 --> Model Class Initialized
+DEBUG - 2025-11-25 07:13:32 --> Controller_Orders::create POST: {"customer_name":"TNAC","customer_phone":"","customer_address":"","store_id":"7","product":["94","102","115","90","81"],"qty":["1","50","10","2","7"],"rate":["4000.00","450.00","750.00","1500.00","1000.00"],"rate_value":["4000.00","450.00","750.00","1500.00","1000.00"],"amount":["4000.00","22500","7500.00","3000.00","7000.00"],"amount_value":["4000.00","22500","7500.00","3000.00","7000.00"],"discount":"0","paid_status":"2","amount_paid":"44000.00","gross_amount_value":"44000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"44000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 07:13:32 --> Final output sent to browser
+DEBUG - 2025-11-25 07:13:32 --> Total execution time: 0.1410
+INFO - 2025-11-25 07:14:07 --> Config Class Initialized
+INFO - 2025-11-25 07:14:07 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:14:07 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:14:07 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:14:07 --> URI Class Initialized
+INFO - 2025-11-25 07:14:07 --> Router Class Initialized
+INFO - 2025-11-25 07:14:07 --> Output Class Initialized
+INFO - 2025-11-25 07:14:07 --> Security Class Initialized
+DEBUG - 2025-11-25 07:14:07 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:14:07 --> Input Class Initialized
+INFO - 2025-11-25 07:14:07 --> Language Class Initialized
+INFO - 2025-11-25 07:14:07 --> Loader Class Initialized
+INFO - 2025-11-25 07:14:07 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:14:07 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:14:07 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:14:07 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:14:07 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:14:07 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:14:07 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:14:07 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:14:07 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:14:07 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:14:07 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:14:07 --> Model Class Initialized
+INFO - 2025-11-25 07:14:07 --> Model Class Initialized
+INFO - 2025-11-25 07:14:07 --> Model Class Initialized
+INFO - 2025-11-25 07:14:07 --> Model Class Initialized
+INFO - 2025-11-25 07:14:07 --> Model Class Initialized
+INFO - 2025-11-25 07:14:07 --> Model Class Initialized
+DEBUG - 2025-11-25 07:14:07 --> Controller_Orders::create POST: {"customer_name":"SARAH","customer_phone":"","customer_address":"","store_id":"7","product":["82"],"qty":["150"],"rate":["250.00"],"rate_value":["250.00"],"amount":["37500"],"amount_value":["37500"],"discount":"0","paid_status":"2","amount_paid":"37500.00","gross_amount_value":"37500.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"37500.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 07:14:07 --> Final output sent to browser
+DEBUG - 2025-11-25 07:14:07 --> Total execution time: 0.1587
+INFO - 2025-11-25 07:20:47 --> Config Class Initialized
+INFO - 2025-11-25 07:20:47 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:20:47 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:20:47 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:20:47 --> URI Class Initialized
+INFO - 2025-11-25 07:20:47 --> Router Class Initialized
+INFO - 2025-11-25 07:20:47 --> Output Class Initialized
+INFO - 2025-11-25 07:20:47 --> Security Class Initialized
+DEBUG - 2025-11-25 07:20:47 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:20:47 --> Input Class Initialized
+INFO - 2025-11-25 07:20:47 --> Language Class Initialized
+INFO - 2025-11-25 07:20:47 --> Loader Class Initialized
+INFO - 2025-11-25 07:20:47 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:20:47 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:20:47 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:20:47 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:20:47 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:20:47 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:20:47 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:20:47 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:20:47 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:20:47 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:20:47 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:20:47 --> Model Class Initialized
+INFO - 2025-11-25 07:20:47 --> Model Class Initialized
+INFO - 2025-11-25 07:20:47 --> Model Class Initialized
+INFO - 2025-11-25 07:20:47 --> Model Class Initialized
+INFO - 2025-11-25 07:20:47 --> Model Class Initialized
+INFO - 2025-11-25 07:20:47 --> Model Class Initialized
+DEBUG - 2025-11-25 07:20:47 --> Controller_Orders::create POST: {"customer_name":"FLORA","customer_phone":"","customer_address":"","store_id":"7","product":["117","87","82","96","98","88","90","83","105"],"qty":["4","5","2","2","2","2","1","0.5","2"],"rate":["1000","2000.00","500.00","350.00","3500.00","1500.00","1500.00","500.00","900.00"],"rate_value":["1000","2000.00","500.00","350.00","3500.00","1500.00","1500.00","500.00","900.00"],"amount":["4000.00","10000.00","1000.00","700.00","7000.00","3000.00","1500.00","250.00","1800"],"amount_value":["4000.00","10000.00","1000.00","700.00","7000.00","3000.00","1500.00","250.00","1800"],"discount":"0","paid_status":"2","amount_paid":"29250.00","gross_amount_value":"29250.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"29250.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 07:20:47 --> Final output sent to browser
+DEBUG - 2025-11-25 07:20:47 --> Total execution time: 0.3505
+INFO - 2025-11-25 07:22:49 --> Config Class Initialized
+INFO - 2025-11-25 07:22:49 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:22:49 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:22:49 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:22:49 --> URI Class Initialized
+INFO - 2025-11-25 07:22:49 --> Router Class Initialized
+INFO - 2025-11-25 07:22:49 --> Output Class Initialized
+INFO - 2025-11-25 07:22:49 --> Security Class Initialized
+DEBUG - 2025-11-25 07:22:49 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:22:49 --> Input Class Initialized
+INFO - 2025-11-25 07:22:49 --> Language Class Initialized
+INFO - 2025-11-25 07:22:49 --> Loader Class Initialized
+INFO - 2025-11-25 07:22:49 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:22:49 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:22:49 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:22:49 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:22:49 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:22:49 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:22:49 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:22:49 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:22:49 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:22:49 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:22:49 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:22:49 --> Model Class Initialized
+INFO - 2025-11-25 07:22:49 --> Model Class Initialized
+INFO - 2025-11-25 07:22:49 --> Model Class Initialized
+INFO - 2025-11-25 07:22:49 --> Model Class Initialized
+INFO - 2025-11-25 07:22:49 --> Model Class Initialized
+INFO - 2025-11-25 07:22:49 --> Model Class Initialized
+DEBUG - 2025-11-25 07:22:49 --> Controller_Orders::create POST: {"customer_name":"RAHEL","customer_phone":"","customer_address":"","store_id":"7","product":["116","117","123","104","83","82"],"qty":["18","1","0.25","1","0.25","0.25"],"rate":["650","900.00","3500.00","700.00","500.00","500.00"],"rate_value":["650","900.00","3500.00","700.00","500.00","500.00"],"amount":["11700.00","900.00","875.00","700.00","125.00","125.00"],"amount_value":["11700.00","900.00","875.00","700.00","125.00","125.00"],"discount":"0","paid_status":"2","amount_paid":"14425.00","gross_amount_value":"14425.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"14425.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 07:22:50 --> Final output sent to browser
+DEBUG - 2025-11-25 07:22:50 --> Total execution time: 0.1301
+INFO - 2025-11-25 07:23:18 --> Config Class Initialized
+INFO - 2025-11-25 07:23:18 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:23:18 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:23:18 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:23:18 --> URI Class Initialized
+INFO - 2025-11-25 07:23:18 --> Router Class Initialized
+INFO - 2025-11-25 07:23:18 --> Output Class Initialized
+INFO - 2025-11-25 07:23:18 --> Security Class Initialized
+DEBUG - 2025-11-25 07:23:18 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:23:18 --> Input Class Initialized
+INFO - 2025-11-25 07:23:18 --> Language Class Initialized
+INFO - 2025-11-25 07:23:18 --> Loader Class Initialized
+INFO - 2025-11-25 07:23:18 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:23:18 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:23:18 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:23:18 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:23:18 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:23:18 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:23:18 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:23:18 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:23:18 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:23:18 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:23:18 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:23:18 --> Model Class Initialized
+INFO - 2025-11-25 07:23:18 --> Model Class Initialized
+INFO - 2025-11-25 07:23:18 --> Model Class Initialized
+INFO - 2025-11-25 07:23:18 --> Model Class Initialized
+INFO - 2025-11-25 07:23:18 --> Model Class Initialized
+INFO - 2025-11-25 07:23:18 --> Model Class Initialized
+DEBUG - 2025-11-25 07:23:18 --> Controller_Orders::create POST: {"customer_name":"KIDEVU","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["80"],"rate":["650"],"rate_value":["650"],"amount":["52000.00"],"amount_value":["52000.00"],"discount":"0","paid_status":"2","amount_paid":"52000.00","gross_amount_value":"52000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"52000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 07:23:18 --> Final output sent to browser
+DEBUG - 2025-11-25 07:23:18 --> Total execution time: 0.1604
+INFO - 2025-11-25 07:23:47 --> Config Class Initialized
+INFO - 2025-11-25 07:23:47 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:23:47 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:23:47 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:23:47 --> URI Class Initialized
+INFO - 2025-11-25 07:23:47 --> Router Class Initialized
+INFO - 2025-11-25 07:23:47 --> Output Class Initialized
+INFO - 2025-11-25 07:23:47 --> Security Class Initialized
+DEBUG - 2025-11-25 07:23:47 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:23:47 --> Input Class Initialized
+INFO - 2025-11-25 07:23:47 --> Language Class Initialized
+INFO - 2025-11-25 07:23:47 --> Loader Class Initialized
+INFO - 2025-11-25 07:23:47 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:23:47 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:23:47 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:23:47 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:23:47 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:23:47 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:23:47 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:23:47 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:23:47 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:23:47 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:23:47 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:23:47 --> Model Class Initialized
+INFO - 2025-11-25 07:23:47 --> Model Class Initialized
+INFO - 2025-11-25 07:23:47 --> Model Class Initialized
+INFO - 2025-11-25 07:23:47 --> Model Class Initialized
+INFO - 2025-11-25 07:23:47 --> Model Class Initialized
+INFO - 2025-11-25 07:23:47 --> Model Class Initialized
+DEBUG - 2025-11-25 07:23:47 --> Controller_Orders::create POST: {"customer_name":"STEVEN","customer_phone":"","customer_address":"","store_id":"7","product":["115"],"qty":["70"],"rate":["714.29"],"rate_value":["714.29"],"amount":["50000"],"amount_value":["50000"],"discount":"0","paid_status":"2","amount_paid":"50000.00","gross_amount_value":"50000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"50000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 07:23:47 --> Final output sent to browser
+DEBUG - 2025-11-25 07:23:47 --> Total execution time: 0.2500
+INFO - 2025-11-25 07:25:05 --> Config Class Initialized
+INFO - 2025-11-25 07:25:05 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:25:05 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:25:05 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:25:05 --> URI Class Initialized
+INFO - 2025-11-25 07:25:05 --> Router Class Initialized
+INFO - 2025-11-25 07:25:05 --> Output Class Initialized
+INFO - 2025-11-25 07:25:05 --> Security Class Initialized
+DEBUG - 2025-11-25 07:25:05 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:25:05 --> Input Class Initialized
+INFO - 2025-11-25 07:25:05 --> Language Class Initialized
+INFO - 2025-11-25 07:25:05 --> Loader Class Initialized
+INFO - 2025-11-25 07:25:05 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:25:05 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:25:05 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:25:05 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:25:05 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:25:05 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:25:05 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:25:05 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:25:05 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:25:05 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:25:05 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:25:05 --> Model Class Initialized
+INFO - 2025-11-25 07:25:05 --> Model Class Initialized
+INFO - 2025-11-25 07:25:05 --> Model Class Initialized
+INFO - 2025-11-25 07:25:05 --> Model Class Initialized
+INFO - 2025-11-25 07:25:05 --> Model Class Initialized
+INFO - 2025-11-25 07:25:05 --> Model Class Initialized
+DEBUG - 2025-11-25 07:25:05 --> Controller_Orders::create POST: {"customer_name":"MAHINGA","customer_phone":"","customer_address":"","store_id":"7","product":["115","118","104"],"qty":["70","50","5"],"rate":["714.29","800.00","700.00"],"rate_value":["714.29","800.00","700.00"],"amount":["50000","40000.00","3500.00"],"amount_value":["50000","40000.00","3500.00"],"discount":"0","paid_status":"2","amount_paid":"93500.00","gross_amount_value":"93500.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"93500.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 07:25:05 --> Final output sent to browser
+DEBUG - 2025-11-25 07:25:05 --> Total execution time: 0.1340
+INFO - 2025-11-25 07:25:33 --> Config Class Initialized
+INFO - 2025-11-25 07:25:33 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:25:33 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:25:33 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:25:33 --> URI Class Initialized
+INFO - 2025-11-25 07:25:33 --> Router Class Initialized
+INFO - 2025-11-25 07:25:33 --> Output Class Initialized
+INFO - 2025-11-25 07:25:33 --> Security Class Initialized
+DEBUG - 2025-11-25 07:25:33 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:25:33 --> Input Class Initialized
+INFO - 2025-11-25 07:25:33 --> Language Class Initialized
+INFO - 2025-11-25 07:25:33 --> Loader Class Initialized
+INFO - 2025-11-25 07:25:33 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:25:33 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:25:33 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:25:33 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:25:33 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:25:33 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:25:33 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:25:33 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:25:33 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:25:33 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:25:33 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:25:33 --> Model Class Initialized
+INFO - 2025-11-25 07:25:33 --> Model Class Initialized
+INFO - 2025-11-25 07:25:33 --> Model Class Initialized
+INFO - 2025-11-25 07:25:33 --> Model Class Initialized
+INFO - 2025-11-25 07:25:33 --> Model Class Initialized
+INFO - 2025-11-25 07:25:33 --> Model Class Initialized
+DEBUG - 2025-11-25 07:25:33 --> Controller_Orders::create POST: {"customer_name":"MTEJA","customer_phone":"","customer_address":"","store_id":"7","product":["115"],"qty":["70"],"rate":["714.29"],"rate_value":["714.29"],"amount":["50000"],"amount_value":["50000"],"discount":"0","paid_status":"2","amount_paid":"50000.00","gross_amount_value":"50000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"50000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 07:25:33 --> Final output sent to browser
+DEBUG - 2025-11-25 07:25:33 --> Total execution time: 0.1414
+INFO - 2025-11-25 07:25:42 --> Config Class Initialized
+INFO - 2025-11-25 07:25:42 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:25:42 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:25:42 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:25:42 --> URI Class Initialized
+INFO - 2025-11-25 07:25:42 --> Router Class Initialized
+INFO - 2025-11-25 07:25:42 --> Output Class Initialized
+INFO - 2025-11-25 07:25:42 --> Security Class Initialized
+DEBUG - 2025-11-25 07:25:42 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:25:42 --> Input Class Initialized
+INFO - 2025-11-25 07:25:42 --> Language Class Initialized
+INFO - 2025-11-25 07:25:42 --> Loader Class Initialized
+INFO - 2025-11-25 07:25:42 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:25:42 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:25:42 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:25:42 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:25:42 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:25:42 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:25:42 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:25:42 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:25:42 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:25:42 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:25:42 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:25:42 --> Model Class Initialized
+INFO - 2025-11-25 07:25:42 --> Model Class Initialized
+INFO - 2025-11-25 07:25:42 --> Model Class Initialized
+INFO - 2025-11-25 07:25:42 --> Model Class Initialized
+INFO - 2025-11-25 07:25:42 --> Model Class Initialized
+INFO - 2025-11-25 07:25:42 --> Model Class Initialized
+DEBUG - 2025-11-25 07:25:42 --> Index loaded - Store: 7, Is Privileged: No
+ERROR - 2025-11-25 07:25:42 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 07:25:42 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 07:25:42 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 07:25:42 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 07:25:42 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/index.php
+INFO - 2025-11-25 07:25:42 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 07:25:42 --> Final output sent to browser
+DEBUG - 2025-11-25 07:25:42 --> Total execution time: 0.0627
+INFO - 2025-11-25 07:25:43 --> Config Class Initialized
+INFO - 2025-11-25 07:25:43 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:25:43 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:25:43 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:25:43 --> URI Class Initialized
+INFO - 2025-11-25 07:25:43 --> Router Class Initialized
+INFO - 2025-11-25 07:25:43 --> Output Class Initialized
+INFO - 2025-11-25 07:25:43 --> Security Class Initialized
+DEBUG - 2025-11-25 07:25:43 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:25:43 --> Input Class Initialized
+INFO - 2025-11-25 07:25:43 --> Language Class Initialized
+INFO - 2025-11-25 07:25:43 --> Loader Class Initialized
+INFO - 2025-11-25 07:25:43 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:25:43 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:25:43 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:25:43 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:25:43 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:25:43 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:25:43 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:25:43 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:25:43 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:25:43 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:25:43 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:25:43 --> Model Class Initialized
+INFO - 2025-11-25 07:25:43 --> Model Class Initialized
+INFO - 2025-11-25 07:25:43 --> Model Class Initialized
+INFO - 2025-11-25 07:25:43 --> Model Class Initialized
+INFO - 2025-11-25 07:25:43 --> Model Class Initialized
+INFO - 2025-11-25 07:25:43 --> Model Class Initialized
+DEBUG - 2025-11-25 07:25:43 --> fetchOrdersData - Store ID: 7, Group ID: , Is Privileged: No
+DEBUG - 2025-11-25 07:25:43 --> Adding store restriction for store_id: 7
+DEBUG - 2025-11-25 07:25:43 --> Executing query: SELECT o.*,
+                    COALESCE(s.name, 'N/A') as store_name,
+                    COALESCE(u.username, 'Unknown') as clerk_name
+                    FROM orders o
+                    LEFT JOIN stores s ON o.store_id = s.id
+                    LEFT JOIN users u ON o.user_id = u.id WHERE o.store_id = '7' ORDER BY o.id DESC
+DEBUG - 2025-11-25 07:25:43 --> Query returned 1157 results
+DEBUG - 2025-11-25 07:25:43 --> Found 1157 orders for user
+INFO - 2025-11-25 07:25:43 --> Final output sent to browser
+DEBUG - 2025-11-25 07:25:43 --> Total execution time: 0.0712
+INFO - 2025-11-25 07:25:45 --> Config Class Initialized
+INFO - 2025-11-25 07:25:45 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:25:45 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:25:45 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:25:45 --> URI Class Initialized
+INFO - 2025-11-25 07:25:45 --> Router Class Initialized
+INFO - 2025-11-25 07:25:45 --> Output Class Initialized
+INFO - 2025-11-25 07:25:45 --> Security Class Initialized
+DEBUG - 2025-11-25 07:25:45 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:25:45 --> Input Class Initialized
+INFO - 2025-11-25 07:25:45 --> Language Class Initialized
+INFO - 2025-11-25 07:25:45 --> Loader Class Initialized
+INFO - 2025-11-25 07:25:45 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:25:45 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:25:45 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:25:45 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:25:45 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:25:45 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:25:45 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:25:45 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:25:45 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:25:45 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:25:45 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:25:45 --> Model Class Initialized
+INFO - 2025-11-25 07:25:45 --> Model Class Initialized
+INFO - 2025-11-25 07:25:45 --> Model Class Initialized
+INFO - 2025-11-25 07:25:45 --> Model Class Initialized
+INFO - 2025-11-25 07:25:45 --> Model Class Initialized
+INFO - 2025-11-25 07:25:45 --> Model Class Initialized
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 78, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 138, purchased: 16, ordered: 0, stock: 16
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 79, purchased: 989, ordered: 23, stock: 966
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 80, purchased: 205, ordered: 57, stock: 148
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 81, purchased: 2046, ordered: 990, stock: 1056
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 139, purchased: 2, ordered: 1, stock: 1
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 82, purchased: 3500, ordered: 8533, stock: 0
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 83, purchased: 0, ordered: 2863, stock: 0
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 84, purchased: 189, ordered: 17, stock: 172
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 85, purchased: 137, ordered: 3, stock: 134
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 127, purchased: 2000, ordered: 379, stock: 1621
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 86, purchased: 384, ordered: 362, stock: 22
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 87, purchased: 588, ordered: 572, stock: 16
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 88, purchased: 837, ordered: 595, stock: 242
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 89, purchased: 2164, ordered: 720, stock: 1444
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 90, purchased: 470, ordered: 365, stock: 105
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 126, purchased: 25, ordered: 0, stock: 25
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 91, purchased: 26, ordered: 0, stock: 26
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 92, purchased: 25, ordered: 29, stock: 0
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 93, purchased: 752, ordered: 854, stock: 0
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 94, purchased: 764, ordered: 685, stock: 79
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 95, purchased: 2263, ordered: 460, stock: 1803
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 96, purchased: 18925, ordered: 3391, stock: 15534
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 134, purchased: 604, ordered: 69, stock: 535
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 130, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 133, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 131, purchased: 19, ordered: 0, stock: 19
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 97, purchased: 6001, ordered: 2333, stock: 3668
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 98, purchased: 442, ordered: 42, stock: 400
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 146, purchased: 200, ordered: 0, stock: 200
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 99, purchased: 2, ordered: 0, stock: 2
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 100, purchased: 34587, ordered: 30162, stock: 4425
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 137, purchased: 189, ordered: 4, stock: 185
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 101, purchased: 107, ordered: 23, stock: 84
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 102, purchased: 11299, ordered: 8446, stock: 2853
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 103, purchased: 29811, ordered: 22858, stock: 6953
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 104, purchased: 7500, ordered: 802, stock: 6698
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 142, purchased: 36, ordered: 0, stock: 36
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 140, purchased: 10, ordered: 1, stock: 9
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 105, purchased: 358, ordered: 203, stock: 155
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 106, purchased: 738, ordered: 645, stock: 93
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 125, purchased: 253, ordered: 0, stock: 253
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 108, purchased: 2503, ordered: 2191, stock: 312
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 109, purchased: 2571, ordered: 671, stock: 1900
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 110, purchased: 4761, ordered: 1636, stock: 3125
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 132, purchased: 200, ordered: 175, stock: 25
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 111, purchased: 406, ordered: 82, stock: 324
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 112, purchased: 1900, ordered: 1323, stock: 577
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 113, purchased: 2241, ordered: 825, stock: 1416
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 135, purchased: 1990, ordered: 654, stock: 1336
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 114, purchased: 922, ordered: 45, stock: 877
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 115, purchased: 13662, ordered: 15179, stock: 0
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 116, purchased: 237414, ordered: 227807, stock: 9607
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 107, purchased: 1200, ordered: 836, stock: 364
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 117, purchased: 9776, ordered: 6040, stock: 3736
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 118, purchased: 24842, ordered: 21622, stock: 3220
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 129, purchased: 1706, ordered: 1560, stock: 146
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 119, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 120, purchased: 1555, ordered: 565, stock: 990
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 121, purchased: 63, ordered: 1, stock: 62
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 122, purchased: 688, ordered: 207, stock: 481
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 123, purchased: 2020, ordered: 1725, stock: 295
+DEBUG - 2025-11-25 07:25:45 --> getProductsWithStock - ID: 124, purchased: 3646, ordered: 4469, stock: 0
+DEBUG - 2025-11-25 07:25:45 --> Prepared products for create view: [{"id":78,"name":"BROILER BOOSTER","price":3000,"current_stock":0,"unit":""},{"id":138,"name":"BROILER EXTRA","price":3000,"current_stock":16,"unit":""},{"id":79,"name":"BROILER FINISHER MASH","price":1000,"current_stock":966,"unit":""},{"id":80,"name":"BROILER PREMIX","price":3000,"current_stock":148,"unit":""},{"id":81,"name":"BROILER STARTER MASH","price":1000,"current_stock":1056,"unit":""},{"id":139,"name":"CHIKWIDI","price":15000,"current_stock":1,"unit":""},{"id":82,"name":"CHOKAA","price":500,"current_stock":0,"unit":""},{"id":83,"name":"CHUMVI","price":500,"current_stock":0,"unit":""},{"id":84,"name":"D.C.P KOPO (1\/2)","price":2000,"current_stock":172,"unit":""},{"id":85,"name":"D.C.P KOPO 1KG","price":3000,"current_stock":134,"unit":""},{"id":127,"name":"D.C.P KUPIMA","price":1500,"current_stock":1621,"unit":""},{"id":86,"name":"DAGAA KAUZU","price":2800,"current_stock":22,"unit":""},{"id":87,"name":"DAGAA SAGWA","price":2000,"current_stock":16,"unit":""},{"id":88,"name":"DAMU","price":1500,"current_stock":242,"unit":""},{"id":89,"name":"GROWER MASH","price":1000,"current_stock":1444,"unit":""},{"id":90,"name":"HAMIRA","price":1500,"current_stock":105,"unit":""},{"id":126,"name":"HIPHOS PLUS","price":5000,"current_stock":25,"unit":""},{"id":91,"name":"JOSERA MADUME","price":11000,"current_stock":26,"unit":""},{"id":92,"name":"JOSERA MAZIWA","price":11000,"current_stock":0,"unit":""},{"id":93,"name":"KARANGA","price":700,"current_stock":0,"unit":""},{"id":94,"name":"KAUDIS NGURUWE","price":4000,"current_stock":79,"unit":""},{"id":95,"name":"KAYABO","price":2000,"current_stock":1803,"unit":""},{"id":96,"name":"KONOKONO","price":350,"current_stock":15534,"unit":""},{"id":134,"name":"KONOKONO NZIMA","price":400,"current_stock":535,"unit":""},{"id":130,"name":"KONOKONO SAGWA","price":470,"current_stock":0,"unit":""},{"id":133,"name":"KONOKONO SAGWA","price":600,"current_stock":0,"unit":""},{"id":131,"name":"LAYERS EXTRA","price":3500,"current_stock":19,"unit":""},{"id":97,"name":"LAYERS MASH","price":1000,"current_stock":3668,"unit":""},{"id":98,"name":"LAYERS PREMIX","price":3500,"current_stock":400,"unit":""},{"id":146,"name":"MABOGA","price":3800,"current_stock":200,"unit":""},{"id":99,"name":"MADUME LICK","price":5000,"current_stock":2,"unit":""},{"id":100,"name":"MAHINDI","price":730,"current_stock":4425,"unit":""},{"id":137,"name":"MAZIWA MENGI 1KG","price":1500,"current_stock":185,"unit":""},{"id":101,"name":"MAZIWA MENGI 2kg","price":3000,"current_stock":84,"unit":""},{"id":102,"name":"MCHELE LAINI","price":400,"current_stock":2853,"unit":""},{"id":103,"name":"MCHELE NGUMU","price":320,"current_stock":6953,"unit":""},{"id":104,"name":"MFUPA","price":700,"current_stock":6698,"unit":""},{"id":142,"name":"MOLLASSES 1LITRE","price":5000,"current_stock":36,"unit":""},{"id":140,"name":"MOLLASSES 5LITRE","price":15000,"current_stock":9,"unit":""},{"id":105,"name":"MTAMA","price":1000,"current_stock":155,"unit":""},{"id":106,"name":"NGANO","price":1000,"current_stock":93,"unit":""},{"id":125,"name":"NGURUWE MIX","price":3500,"current_stock":253,"unit":""},{"id":108,"name":"PAMBA LAINI","price":1200,"current_stock":312,"unit":""},{"id":109,"name":"PAMBA NGUMU","price":1200,"current_stock":1900,"unit":""},{"id":110,"name":"PARAZA","price":1000,"current_stock":3125,"unit":""},{"id":132,"name":"PELLET FINISHER","price":2000,"current_stock":25,"unit":""},{"id":111,"name":"PIG BOOSTER","price":3000,"current_stock":324,"unit":""},{"id":112,"name":"PIG GROWER","price":1000,"current_stock":577,"unit":""},{"id":113,"name":"PIG STARTER","price":1000,"current_stock":1416,"unit":""},{"id":135,"name":"PILLET STARTER","price":2000,"current_stock":1336,"unit":""},{"id":114,"name":"PILLLET GROWER","price":2000,"current_stock":877,"unit":""},{"id":115,"name":"POLLARD","price":750,"current_stock":0,"unit":""},{"id":116,"name":"PUMBA","price":660,"current_stock":9607,"unit":""},{"id":107,"name":"PUMBA MAHINDI LAINI","price":600,"current_stock":364,"unit":""},{"id":117,"name":"SHUDU LAINI","price":900,"current_stock":3736,"unit":""},{"id":118,"name":"SHUDU NGUMU","price":800,"current_stock":3220,"unit":""},{"id":129,"name":"SOYA CHENGA","price":2500,"current_stock":146,"unit":""},{"id":119,"name":"SOYA MAFUTA","price":2500,"current_stock":0,"unit":""},{"id":120,"name":"SOYA UNGA","price":2000,"current_stock":990,"unit":""},{"id":121,"name":"SUPER MACLICK","price":3500,"current_stock":62,"unit":""},{"id":122,"name":"UBUYU","price":700,"current_stock":481,"unit":""},{"id":123,"name":"UDUVI","price":3500,"current_stock":295,"unit":""},{"id":124,"name":"WHEAT","price":650,"current_stock":0,"unit":""}]
+ERROR - 2025-11-25 07:25:45 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 07:25:45 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 07:25:45 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 07:25:45 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 07:25:45 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/create.php
+INFO - 2025-11-25 07:25:45 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 07:25:45 --> Final output sent to browser
+DEBUG - 2025-11-25 07:25:45 --> Total execution time: 0.1252
+INFO - 2025-11-25 07:25:45 --> Config Class Initialized
+INFO - 2025-11-25 07:25:45 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:25:45 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:25:45 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:25:45 --> URI Class Initialized
+INFO - 2025-11-25 07:25:45 --> Router Class Initialized
+INFO - 2025-11-25 07:25:45 --> Output Class Initialized
+INFO - 2025-11-25 07:25:45 --> Security Class Initialized
+DEBUG - 2025-11-25 07:25:45 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:25:45 --> Input Class Initialized
+INFO - 2025-11-25 07:25:45 --> Language Class Initialized
+ERROR - 2025-11-25 07:25:45 --> 404 Page Not Found: Assets/plugins
+INFO - 2025-11-25 07:26:45 --> Config Class Initialized
+INFO - 2025-11-25 07:26:45 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:26:45 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:26:45 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:26:45 --> URI Class Initialized
+INFO - 2025-11-25 07:26:45 --> Router Class Initialized
+INFO - 2025-11-25 07:26:45 --> Output Class Initialized
+INFO - 2025-11-25 07:26:45 --> Security Class Initialized
+DEBUG - 2025-11-25 07:26:45 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:26:45 --> Input Class Initialized
+INFO - 2025-11-25 07:26:45 --> Language Class Initialized
+INFO - 2025-11-25 07:26:45 --> Loader Class Initialized
+INFO - 2025-11-25 07:26:45 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:26:45 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:26:45 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:26:45 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:26:45 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:26:45 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:26:45 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:26:45 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:26:45 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:26:45 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:26:45 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:26:45 --> Model Class Initialized
+INFO - 2025-11-25 07:26:45 --> Model Class Initialized
+INFO - 2025-11-25 07:26:45 --> Model Class Initialized
+INFO - 2025-11-25 07:26:45 --> Model Class Initialized
+INFO - 2025-11-25 07:26:45 --> Model Class Initialized
+INFO - 2025-11-25 07:26:45 --> Model Class Initialized
+DEBUG - 2025-11-25 07:26:45 --> Controller_Orders::create POST: {"customer_name":"RAMA","customer_phone":"","customer_address":"","store_id":"7","product":["116","87","100"],"qty":["30","3","10"],"rate":["650","2000.00","750"],"rate_value":["650","2000.00","750"],"amount":["19500.00","6000.00","7500.00"],"amount_value":["19500.00","6000.00","7500.00"],"discount":"0","paid_status":"2","amount_paid":"33000.00","gross_amount_value":"33000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"33000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 07:26:45 --> Final output sent to browser
+DEBUG - 2025-11-25 07:26:45 --> Total execution time: 0.1215
+INFO - 2025-11-25 07:27:17 --> Config Class Initialized
+INFO - 2025-11-25 07:27:17 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:27:17 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:27:17 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:27:17 --> URI Class Initialized
+INFO - 2025-11-25 07:27:17 --> Router Class Initialized
+INFO - 2025-11-25 07:27:17 --> Output Class Initialized
+INFO - 2025-11-25 07:27:17 --> Security Class Initialized
+DEBUG - 2025-11-25 07:27:17 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:27:17 --> Input Class Initialized
+INFO - 2025-11-25 07:27:17 --> Language Class Initialized
+INFO - 2025-11-25 07:27:17 --> Loader Class Initialized
+INFO - 2025-11-25 07:27:17 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:27:17 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:27:17 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:27:17 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:27:17 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:27:17 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:27:17 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:27:17 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:27:17 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:27:17 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:27:17 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:27:17 --> Model Class Initialized
+INFO - 2025-11-25 07:27:17 --> Model Class Initialized
+INFO - 2025-11-25 07:27:17 --> Model Class Initialized
+INFO - 2025-11-25 07:27:17 --> Model Class Initialized
+INFO - 2025-11-25 07:27:17 --> Model Class Initialized
+INFO - 2025-11-25 07:27:17 --> Model Class Initialized
+DEBUG - 2025-11-25 07:27:17 --> Controller_Orders::create POST: {"customer_name":"MASAI","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["862.9"],"rate":["630"],"rate_value":["630"],"amount":["543627.00"],"amount_value":["543627.00"],"discount":"0","paid_status":"2","amount_paid":"543627.00","gross_amount_value":"543627.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"543627.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 07:27:17 --> Final output sent to browser
+DEBUG - 2025-11-25 07:27:17 --> Total execution time: 0.1235
+INFO - 2025-11-25 07:27:51 --> Config Class Initialized
+INFO - 2025-11-25 07:27:51 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:27:51 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:27:51 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:27:51 --> URI Class Initialized
+INFO - 2025-11-25 07:27:51 --> Router Class Initialized
+INFO - 2025-11-25 07:27:51 --> Output Class Initialized
+INFO - 2025-11-25 07:27:51 --> Security Class Initialized
+DEBUG - 2025-11-25 07:27:51 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:27:51 --> Input Class Initialized
+INFO - 2025-11-25 07:27:51 --> Language Class Initialized
+INFO - 2025-11-25 07:27:51 --> Loader Class Initialized
+INFO - 2025-11-25 07:27:51 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:27:51 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:27:51 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:27:51 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:27:51 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:27:51 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:27:51 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:27:51 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:27:51 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:27:51 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:27:51 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:27:51 --> Model Class Initialized
+INFO - 2025-11-25 07:27:51 --> Model Class Initialized
+INFO - 2025-11-25 07:27:51 --> Model Class Initialized
+INFO - 2025-11-25 07:27:51 --> Model Class Initialized
+INFO - 2025-11-25 07:27:51 --> Model Class Initialized
+INFO - 2025-11-25 07:27:51 --> Model Class Initialized
+DEBUG - 2025-11-25 07:27:51 --> Controller_Orders::create POST: {"customer_name":"MODESTER","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["113.6"],"rate":["650"],"rate_value":["650"],"amount":["73840.00"],"amount_value":["73840.00"],"discount":"0","paid_status":"2","amount_paid":"73840.00","gross_amount_value":"73840.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"73840.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 07:27:51 --> Final output sent to browser
+DEBUG - 2025-11-25 07:27:51 --> Total execution time: 0.1257
+INFO - 2025-11-25 07:29:23 --> Config Class Initialized
+INFO - 2025-11-25 07:29:23 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:29:23 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:29:23 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:29:23 --> URI Class Initialized
+INFO - 2025-11-25 07:29:23 --> Router Class Initialized
+INFO - 2025-11-25 07:29:23 --> Output Class Initialized
+INFO - 2025-11-25 07:29:23 --> Security Class Initialized
+DEBUG - 2025-11-25 07:29:23 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:29:23 --> Input Class Initialized
+INFO - 2025-11-25 07:29:24 --> Language Class Initialized
+INFO - 2025-11-25 07:29:24 --> Loader Class Initialized
+INFO - 2025-11-25 07:29:24 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:29:24 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:29:24 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:29:24 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:29:24 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:29:24 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:29:24 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:29:24 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:29:24 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:29:24 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:29:24 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:29:24 --> Model Class Initialized
+INFO - 2025-11-25 07:29:24 --> Model Class Initialized
+INFO - 2025-11-25 07:29:24 --> Model Class Initialized
+INFO - 2025-11-25 07:29:24 --> Model Class Initialized
+INFO - 2025-11-25 07:29:24 --> Model Class Initialized
+INFO - 2025-11-25 07:29:24 --> Model Class Initialized
+DEBUG - 2025-11-25 07:29:24 --> Controller_Orders::create POST: {"customer_name":"B.MDOGO","customer_phone":"","customer_address":"","store_id":"7","product":["116","115","97","82"],"qty":["300","140","25","50"],"rate":["650","714.29","960.00","250.00"],"rate_value":["650","714.29","960.00","250.00"],"amount":["195000.00","100000","24000","12500"],"amount_value":["195000.00","100000","24000","12500"],"discount":"0","paid_status":"2","amount_paid":"331500.00","gross_amount_value":"331500.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"331500.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 07:29:24 --> Final output sent to browser
+DEBUG - 2025-11-25 07:29:24 --> Total execution time: 0.1418
+INFO - 2025-11-25 07:30:44 --> Config Class Initialized
+INFO - 2025-11-25 07:30:44 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:30:44 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:30:44 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:30:44 --> URI Class Initialized
+INFO - 2025-11-25 07:30:44 --> Router Class Initialized
+INFO - 2025-11-25 07:30:44 --> Output Class Initialized
+INFO - 2025-11-25 07:30:44 --> Security Class Initialized
+DEBUG - 2025-11-25 07:30:44 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:30:44 --> Input Class Initialized
+INFO - 2025-11-25 07:30:44 --> Language Class Initialized
+INFO - 2025-11-25 07:30:44 --> Loader Class Initialized
+INFO - 2025-11-25 07:30:44 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:30:44 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:30:44 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:30:44 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:30:44 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:30:44 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:30:44 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:30:44 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:30:44 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:30:44 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:30:44 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:30:44 --> Model Class Initialized
+INFO - 2025-11-25 07:30:44 --> Model Class Initialized
+INFO - 2025-11-25 07:30:44 --> Model Class Initialized
+INFO - 2025-11-25 07:30:44 --> Model Class Initialized
+INFO - 2025-11-25 07:30:44 --> Model Class Initialized
+INFO - 2025-11-25 07:30:44 --> Model Class Initialized
+DEBUG - 2025-11-25 07:30:44 --> Controller_Orders::create POST: {"customer_name":"JOAKIM","customer_phone":"","customer_address":"","store_id":"7","product":["116","123","117","87"],"qty":["25","1","3","1"],"rate":["650","3500.00","900.00","2000.00"],"rate_value":["650","3500.00","900.00","2000.00"],"amount":["16250.00","3500.00","2700.00","2000.00"],"amount_value":["16250.00","3500.00","2700.00","2000.00"],"discount":"0","paid_status":"2","amount_paid":"24450.00","gross_amount_value":"24450.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"24450.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 07:30:44 --> Final output sent to browser
+DEBUG - 2025-11-25 07:30:44 --> Total execution time: 0.1464
+INFO - 2025-11-25 07:31:26 --> Config Class Initialized
+INFO - 2025-11-25 07:31:26 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:31:26 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:31:26 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:31:26 --> URI Class Initialized
+INFO - 2025-11-25 07:31:26 --> Router Class Initialized
+INFO - 2025-11-25 07:31:26 --> Output Class Initialized
+INFO - 2025-11-25 07:31:26 --> Security Class Initialized
+DEBUG - 2025-11-25 07:31:26 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:31:26 --> Input Class Initialized
+INFO - 2025-11-25 07:31:26 --> Language Class Initialized
+INFO - 2025-11-25 07:31:26 --> Loader Class Initialized
+INFO - 2025-11-25 07:31:26 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:31:26 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:31:26 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:31:26 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:31:26 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:31:26 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:31:26 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:31:26 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:31:26 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:31:26 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:31:26 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:31:26 --> Model Class Initialized
+INFO - 2025-11-25 07:31:26 --> Model Class Initialized
+INFO - 2025-11-25 07:31:26 --> Model Class Initialized
+INFO - 2025-11-25 07:31:26 --> Model Class Initialized
+INFO - 2025-11-25 07:31:26 --> Model Class Initialized
+INFO - 2025-11-25 07:31:26 --> Model Class Initialized
+DEBUG - 2025-11-25 07:31:26 --> Controller_Orders::create POST: {"customer_name":"HAMISI","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["1000"],"rate":["640"],"rate_value":["640"],"amount":["640000.00"],"amount_value":["640000.00"],"discount":"0","paid_status":"1","amount_paid":"0.00","gross_amount_value":"640000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"640000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 07:31:26 --> Final output sent to browser
+DEBUG - 2025-11-25 07:31:26 --> Total execution time: 0.1382
+INFO - 2025-11-25 07:32:28 --> Config Class Initialized
+INFO - 2025-11-25 07:32:28 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:32:28 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:32:28 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:32:28 --> URI Class Initialized
+INFO - 2025-11-25 07:32:28 --> Router Class Initialized
+INFO - 2025-11-25 07:32:28 --> Output Class Initialized
+INFO - 2025-11-25 07:32:28 --> Security Class Initialized
+DEBUG - 2025-11-25 07:32:28 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:32:28 --> Input Class Initialized
+INFO - 2025-11-25 07:32:28 --> Language Class Initialized
+INFO - 2025-11-25 07:32:28 --> Loader Class Initialized
+INFO - 2025-11-25 07:32:28 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:32:28 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:32:28 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:32:29 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:32:29 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:32:29 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:32:29 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:32:29 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:32:29 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:32:29 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:32:29 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:32:29 --> Model Class Initialized
+INFO - 2025-11-25 07:32:29 --> Model Class Initialized
+INFO - 2025-11-25 07:32:29 --> Model Class Initialized
+INFO - 2025-11-25 07:32:29 --> Model Class Initialized
+INFO - 2025-11-25 07:32:29 --> Model Class Initialized
+INFO - 2025-11-25 07:32:29 --> Model Class Initialized
+DEBUG - 2025-11-25 07:32:29 --> Controller_Orders::create POST: {"customer_name":"BABU","customer_phone":"","customer_address":"","store_id":"7","product":["116","121","108"],"qty":["50","1","5"],"rate":["640.00","3000.00","1200.00"],"rate_value":["640.00","3000.00","1200.00"],"amount":["32000","3000","6000.00"],"amount_value":["32000","3000","6000.00"],"discount":"0","paid_status":"2","amount_paid":"41000.00","gross_amount_value":"41000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"41000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 07:32:29 --> Final output sent to browser
+DEBUG - 2025-11-25 07:32:29 --> Total execution time: 0.2147
+INFO - 2025-11-25 07:33:43 --> Config Class Initialized
+INFO - 2025-11-25 07:33:43 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:33:43 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:33:43 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:33:43 --> URI Class Initialized
+INFO - 2025-11-25 07:33:43 --> Router Class Initialized
+INFO - 2025-11-25 07:33:43 --> Output Class Initialized
+INFO - 2025-11-25 07:33:43 --> Security Class Initialized
+DEBUG - 2025-11-25 07:33:43 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:33:43 --> Input Class Initialized
+INFO - 2025-11-25 07:33:43 --> Language Class Initialized
+INFO - 2025-11-25 07:33:43 --> Loader Class Initialized
+INFO - 2025-11-25 07:33:43 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:33:43 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:33:43 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:33:43 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:33:43 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:33:43 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:33:43 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:33:43 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:33:43 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:33:43 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:33:43 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:33:43 --> Model Class Initialized
+INFO - 2025-11-25 07:33:43 --> Model Class Initialized
+INFO - 2025-11-25 07:33:43 --> Model Class Initialized
+INFO - 2025-11-25 07:33:43 --> Model Class Initialized
+INFO - 2025-11-25 07:33:43 --> Model Class Initialized
+INFO - 2025-11-25 07:33:43 --> Model Class Initialized
+DEBUG - 2025-11-25 07:33:43 --> Controller_Orders::create POST: {"customer_name":"FEDRICK","customer_phone":"","customer_address":"","store_id":"7","product":["115","116"],"qty":["280","500"],"rate":["714.29","650"],"rate_value":["714.29","650"],"amount":["200000","325000.00"],"amount_value":["200000","325000.00"],"discount":"0","paid_status":"2","amount_paid":"525000.00","gross_amount_value":"525000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"525000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 07:33:43 --> Final output sent to browser
+DEBUG - 2025-11-25 07:33:43 --> Total execution time: 0.1715
+INFO - 2025-11-25 07:37:02 --> Config Class Initialized
+INFO - 2025-11-25 07:37:02 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:37:02 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:37:02 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:37:02 --> URI Class Initialized
+INFO - 2025-11-25 07:37:02 --> Router Class Initialized
+INFO - 2025-11-25 07:37:02 --> Output Class Initialized
+INFO - 2025-11-25 07:37:02 --> Security Class Initialized
+DEBUG - 2025-11-25 07:37:02 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:37:02 --> Input Class Initialized
+INFO - 2025-11-25 07:37:02 --> Language Class Initialized
+INFO - 2025-11-25 07:37:02 --> Loader Class Initialized
+INFO - 2025-11-25 07:37:02 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:37:02 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:37:02 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:37:02 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:37:02 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:37:02 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:37:02 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:37:02 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:37:02 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:37:02 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:37:02 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:37:02 --> Model Class Initialized
+INFO - 2025-11-25 07:37:02 --> Model Class Initialized
+INFO - 2025-11-25 07:37:02 --> Model Class Initialized
+INFO - 2025-11-25 07:37:02 --> Model Class Initialized
+INFO - 2025-11-25 07:37:02 --> Model Class Initialized
+INFO - 2025-11-25 07:37:02 --> Model Class Initialized
+DEBUG - 2025-11-25 07:37:02 --> Controller_Orders::create POST: {"customer_name":"M.MCHANGA","customer_phone":"","customer_address":"","store_id":"7","product":["116","116","118","90","87","82","83","111",""],"qty":["400","100","70","10","30","10","1","3","1"],"rate":["640","640","750","1400","2000.00","500.00","500.00","3500","15000.00"],"rate_value":["640","640","750","1400","2000.00","500.00","500.00","3500","15000.00"],"amount":["256000.00","64000.00","52500.00","14000.00","60000.00","5000.00","500.00","10500.00","15000"],"amount_value":["256000.00","64000.00","52500.00","14000.00","60000.00","5000.00","500.00","10500.00","15000"],"discount":"0","paid_status":"2","amount_paid":"477500.00","gross_amount_value":"477500.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"477500.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 07:37:02 --> Final output sent to browser
+DEBUG - 2025-11-25 07:37:02 --> Total execution time: 0.1207
+INFO - 2025-11-25 07:42:39 --> Config Class Initialized
+INFO - 2025-11-25 07:42:39 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:42:39 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:42:39 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:42:39 --> URI Class Initialized
+INFO - 2025-11-25 07:42:39 --> Router Class Initialized
+INFO - 2025-11-25 07:42:39 --> Output Class Initialized
+INFO - 2025-11-25 07:42:39 --> Security Class Initialized
+DEBUG - 2025-11-25 07:42:39 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:42:39 --> Input Class Initialized
+INFO - 2025-11-25 07:42:39 --> Language Class Initialized
+INFO - 2025-11-25 07:42:39 --> Loader Class Initialized
+INFO - 2025-11-25 07:42:39 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:42:39 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:42:39 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:42:39 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:42:39 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:42:39 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:42:39 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:42:39 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:42:39 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:42:39 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:42:39 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:42:39 --> Model Class Initialized
+INFO - 2025-11-25 07:42:39 --> Model Class Initialized
+INFO - 2025-11-25 07:42:39 --> Model Class Initialized
+INFO - 2025-11-25 07:42:39 --> Model Class Initialized
+INFO - 2025-11-25 07:42:39 --> Model Class Initialized
+INFO - 2025-11-25 07:42:39 --> Model Class Initialized
+DEBUG - 2025-11-25 07:42:39 --> Controller_Orders::create POST: {"customer_name":"GETRUDE","customer_phone":"","customer_address":"","store_id":"7","product":["116","110","117","104","96","82","83","88","98","123","87","110","123","104"],"qty":["50","15","10","3","3","2","1","5","1","3","5","5","1","1"],"rate":["650","900","900.00","700.00","400.00","500.00","500.00","1500.00","3500.00","3500.00","2000.00","900.00","3500.00","700.00"],"rate_value":["650","900","900.00","700.00","400.00","500.00","500.00","1500.00","3500.00","3500.00","2000.00","900.00","3500.00","700.00"],"amount":["32500.00","13500.00","9000.00","2100.00","1200","1000.00","500.00","7500.00","3500.00","10500.00","10000.00","4500","3500.00","700.00"],"amount_value":["32500.00","13500.00","9000.00","2100.00","1200","1000.00","500.00","7500.00","3500.00","10500.00","10000.00","4500","3500.00","700.00"],"discount":"0","paid_status":"2","amount_paid":"100000.00","gross_amount_value":"100000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"100000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 07:42:39 --> Final output sent to browser
+DEBUG - 2025-11-25 07:42:39 --> Total execution time: 0.1392
+INFO - 2025-11-25 07:43:16 --> Config Class Initialized
+INFO - 2025-11-25 07:43:16 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:43:16 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:43:16 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:43:16 --> URI Class Initialized
+INFO - 2025-11-25 07:43:16 --> Router Class Initialized
+INFO - 2025-11-25 07:43:16 --> Output Class Initialized
+INFO - 2025-11-25 07:43:16 --> Security Class Initialized
+DEBUG - 2025-11-25 07:43:16 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:43:16 --> Input Class Initialized
+INFO - 2025-11-25 07:43:16 --> Language Class Initialized
+INFO - 2025-11-25 07:43:16 --> Loader Class Initialized
+INFO - 2025-11-25 07:43:16 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:43:16 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:43:16 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:43:16 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:43:16 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:43:16 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:43:16 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:43:16 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:43:16 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:43:16 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:43:16 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:43:16 --> Model Class Initialized
+INFO - 2025-11-25 07:43:16 --> Model Class Initialized
+INFO - 2025-11-25 07:43:16 --> Model Class Initialized
+INFO - 2025-11-25 07:43:16 --> Model Class Initialized
+INFO - 2025-11-25 07:43:16 --> Model Class Initialized
+INFO - 2025-11-25 07:43:16 --> Model Class Initialized
+DEBUG - 2025-11-25 07:43:16 --> Controller_Orders::create POST: {"customer_name":"OLOTWU","customer_phone":"","customer_address":"","store_id":"7","product":["116","82"],"qty":["50","1"],"rate":["630","500.00"],"rate_value":["630","500.00"],"amount":["31500.00","500.00"],"amount_value":["31500.00","500.00"],"discount":"0","paid_status":"2","amount_paid":"32000.00","gross_amount_value":"32000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"32000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 07:43:16 --> Final output sent to browser
+DEBUG - 2025-11-25 07:43:16 --> Total execution time: 0.1393
+INFO - 2025-11-25 07:45:46 --> Config Class Initialized
+INFO - 2025-11-25 07:45:46 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:45:46 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:45:46 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:45:46 --> URI Class Initialized
+INFO - 2025-11-25 07:45:46 --> Router Class Initialized
+INFO - 2025-11-25 07:45:46 --> Output Class Initialized
+INFO - 2025-11-25 07:45:46 --> Security Class Initialized
+DEBUG - 2025-11-25 07:45:46 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:45:46 --> Input Class Initialized
+INFO - 2025-11-25 07:45:46 --> Language Class Initialized
+INFO - 2025-11-25 07:45:46 --> Loader Class Initialized
+INFO - 2025-11-25 07:45:46 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:45:46 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:45:46 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:45:46 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:45:46 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:45:46 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:45:46 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:45:46 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:45:46 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:45:46 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:45:46 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:45:46 --> Model Class Initialized
+INFO - 2025-11-25 07:45:46 --> Model Class Initialized
+INFO - 2025-11-25 07:45:46 --> Model Class Initialized
+INFO - 2025-11-25 07:45:46 --> Model Class Initialized
+INFO - 2025-11-25 07:45:46 --> Model Class Initialized
+INFO - 2025-11-25 07:45:46 --> Model Class Initialized
+DEBUG - 2025-11-25 07:45:46 --> Controller_Orders::create POST: {"customer_name":"HAPPY","customer_phone":"","customer_address":"","store_id":"7","product":["116","115","118","118","115"],"qty":["250","70","100","50","70"],"rate":["630","714.29","800.00","800.00","714.29"],"rate_value":["630","714.29","800.00","800.00","714.29"],"amount":["157500.00","50000","80000.00","40000.00","50000"],"amount_value":["157500.00","50000","80000.00","40000.00","50000"],"discount":"0","paid_status":"2","amount_paid":"377500.00","gross_amount_value":"377500.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"377500.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 07:45:46 --> Final output sent to browser
+DEBUG - 2025-11-25 07:45:46 --> Total execution time: 0.2823
+INFO - 2025-11-25 07:46:19 --> Config Class Initialized
+INFO - 2025-11-25 07:46:19 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:46:19 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:46:19 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:46:19 --> URI Class Initialized
+INFO - 2025-11-25 07:46:19 --> Router Class Initialized
+INFO - 2025-11-25 07:46:19 --> Output Class Initialized
+INFO - 2025-11-25 07:46:19 --> Security Class Initialized
+DEBUG - 2025-11-25 07:46:19 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:46:19 --> Input Class Initialized
+INFO - 2025-11-25 07:46:19 --> Language Class Initialized
+INFO - 2025-11-25 07:46:19 --> Loader Class Initialized
+INFO - 2025-11-25 07:46:19 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:46:19 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:46:19 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:46:19 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:46:19 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:46:19 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:46:19 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:46:19 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:46:19 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:46:19 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:46:19 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:46:19 --> Model Class Initialized
+INFO - 2025-11-25 07:46:19 --> Model Class Initialized
+INFO - 2025-11-25 07:46:19 --> Model Class Initialized
+INFO - 2025-11-25 07:46:19 --> Model Class Initialized
+INFO - 2025-11-25 07:46:19 --> Model Class Initialized
+INFO - 2025-11-25 07:46:19 --> Model Class Initialized
+DEBUG - 2025-11-25 07:46:19 --> Controller_Orders::create POST: {"customer_name":"ROBERT","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["4"],"rate":["650"],"rate_value":["650"],"amount":["2600.00"],"amount_value":["2600.00"],"discount":"0","paid_status":"2","amount_paid":"2600.00","gross_amount_value":"2600.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"2600.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 07:46:19 --> Final output sent to browser
+DEBUG - 2025-11-25 07:46:19 --> Total execution time: 0.1395
+INFO - 2025-11-25 07:47:53 --> Config Class Initialized
+INFO - 2025-11-25 07:47:53 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:47:53 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:47:53 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:47:53 --> URI Class Initialized
+INFO - 2025-11-25 07:47:53 --> Router Class Initialized
+INFO - 2025-11-25 07:47:53 --> Output Class Initialized
+INFO - 2025-11-25 07:47:53 --> Security Class Initialized
+DEBUG - 2025-11-25 07:47:53 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:47:53 --> Input Class Initialized
+INFO - 2025-11-25 07:47:53 --> Language Class Initialized
+INFO - 2025-11-25 07:47:53 --> Loader Class Initialized
+INFO - 2025-11-25 07:47:53 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:47:53 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:47:53 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:47:53 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:47:53 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:47:53 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:47:53 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:47:53 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:47:53 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:47:53 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:47:53 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:47:53 --> Model Class Initialized
+INFO - 2025-11-25 07:47:53 --> Model Class Initialized
+INFO - 2025-11-25 07:47:53 --> Model Class Initialized
+INFO - 2025-11-25 07:47:53 --> Model Class Initialized
+INFO - 2025-11-25 07:47:53 --> Model Class Initialized
+INFO - 2025-11-25 07:47:53 --> Model Class Initialized
+DEBUG - 2025-11-25 07:47:53 --> Controller_Orders::create POST: {"customer_name":"PETER","customer_phone":"","customer_address":"","store_id":"7","product":["103","87","115","83"],"qty":["50","25","70","10"],"rate":["380","2000.00","714.29","500.00"],"rate_value":["380","2000.00","714.29","500.00"],"amount":["19000.00","50000.00","50000","5000.00"],"amount_value":["19000.00","50000.00","50000","5000.00"],"discount":"0","paid_status":"2","amount_paid":"124000.00","gross_amount_value":"124000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"124000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 07:47:53 --> Final output sent to browser
+DEBUG - 2025-11-25 07:47:53 --> Total execution time: 0.2158
+INFO - 2025-11-25 07:54:33 --> Config Class Initialized
+INFO - 2025-11-25 07:54:33 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:54:33 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:54:33 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:54:33 --> URI Class Initialized
+INFO - 2025-11-25 07:54:33 --> Router Class Initialized
+INFO - 2025-11-25 07:54:33 --> Output Class Initialized
+INFO - 2025-11-25 07:54:33 --> Security Class Initialized
+DEBUG - 2025-11-25 07:54:33 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:54:33 --> Input Class Initialized
+INFO - 2025-11-25 07:54:33 --> Language Class Initialized
+INFO - 2025-11-25 07:54:33 --> Loader Class Initialized
+INFO - 2025-11-25 07:54:33 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:54:33 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:54:33 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:54:33 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:54:33 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:54:33 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:54:33 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:54:33 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:54:33 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:54:33 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:54:33 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:54:33 --> Model Class Initialized
+INFO - 2025-11-25 07:54:33 --> Model Class Initialized
+INFO - 2025-11-25 07:54:33 --> Model Class Initialized
+INFO - 2025-11-25 07:54:33 --> Model Class Initialized
+INFO - 2025-11-25 07:54:33 --> Model Class Initialized
+INFO - 2025-11-25 07:54:33 --> Model Class Initialized
+DEBUG - 2025-11-25 07:54:33 --> Index loaded - Store: 7, Is Privileged: No
+ERROR - 2025-11-25 07:54:33 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 07:54:33 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 07:54:33 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 07:54:33 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 07:54:33 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/index.php
+INFO - 2025-11-25 07:54:33 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 07:54:33 --> Final output sent to browser
+DEBUG - 2025-11-25 07:54:33 --> Total execution time: 0.0563
+INFO - 2025-11-25 07:54:33 --> Config Class Initialized
+INFO - 2025-11-25 07:54:33 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:54:33 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:54:33 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:54:33 --> URI Class Initialized
+INFO - 2025-11-25 07:54:33 --> Router Class Initialized
+INFO - 2025-11-25 07:54:33 --> Output Class Initialized
+INFO - 2025-11-25 07:54:33 --> Security Class Initialized
+DEBUG - 2025-11-25 07:54:33 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:54:33 --> Input Class Initialized
+INFO - 2025-11-25 07:54:33 --> Language Class Initialized
+INFO - 2025-11-25 07:54:33 --> Loader Class Initialized
+INFO - 2025-11-25 07:54:33 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:54:33 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:54:33 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:54:33 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:54:33 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:54:33 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:54:33 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:54:33 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:54:33 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:54:33 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:54:33 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:54:33 --> Model Class Initialized
+INFO - 2025-11-25 07:54:33 --> Model Class Initialized
+INFO - 2025-11-25 07:54:33 --> Model Class Initialized
+INFO - 2025-11-25 07:54:33 --> Model Class Initialized
+INFO - 2025-11-25 07:54:33 --> Model Class Initialized
+INFO - 2025-11-25 07:54:33 --> Model Class Initialized
+DEBUG - 2025-11-25 07:54:33 --> fetchOrdersData - Store ID: 7, Group ID: , Is Privileged: No
+DEBUG - 2025-11-25 07:54:33 --> Adding store restriction for store_id: 7
+DEBUG - 2025-11-25 07:54:33 --> Executing query: SELECT o.*,
+                    COALESCE(s.name, 'N/A') as store_name,
+                    COALESCE(u.username, 'Unknown') as clerk_name
+                    FROM orders o
+                    LEFT JOIN stores s ON o.store_id = s.id
+                    LEFT JOIN users u ON o.user_id = u.id WHERE o.store_id = '7' ORDER BY o.id DESC
+DEBUG - 2025-11-25 07:54:33 --> Query returned 1171 results
+DEBUG - 2025-11-25 07:54:33 --> Found 1171 orders for user
+INFO - 2025-11-25 07:54:33 --> Final output sent to browser
+DEBUG - 2025-11-25 07:54:33 --> Total execution time: 0.0902
+INFO - 2025-11-25 07:54:49 --> Config Class Initialized
+INFO - 2025-11-25 07:54:49 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:54:49 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:54:49 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:54:49 --> URI Class Initialized
+INFO - 2025-11-25 07:54:49 --> Router Class Initialized
+INFO - 2025-11-25 07:54:49 --> Output Class Initialized
+INFO - 2025-11-25 07:54:49 --> Security Class Initialized
+DEBUG - 2025-11-25 07:54:49 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:54:49 --> Input Class Initialized
+INFO - 2025-11-25 07:54:49 --> Language Class Initialized
+INFO - 2025-11-25 07:54:49 --> Loader Class Initialized
+INFO - 2025-11-25 07:54:49 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:54:49 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:54:49 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:54:49 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:54:49 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:54:49 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:54:49 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:54:49 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:54:49 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:54:49 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:54:49 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:54:49 --> Model Class Initialized
+INFO - 2025-11-25 07:54:49 --> Model Class Initialized
+INFO - 2025-11-25 07:54:49 --> Model Class Initialized
+INFO - 2025-11-25 07:54:49 --> Model Class Initialized
+INFO - 2025-11-25 07:54:49 --> Model Class Initialized
+INFO - 2025-11-25 07:54:49 --> Model Class Initialized
+DEBUG - 2025-11-25 07:54:49 --> Controller_Reports initialized
+INFO - 2025-11-25 07:54:49 --> Model Class Initialized
+DEBUG - 2025-11-25 07:54:49 --> === SALES REPORT DEBUG START ===
+DEBUG - 2025-11-25 07:54:49 --> Filters received: {"date_from":"2025-10-26","date_to":"2025-11-25","warehouse":null,"status":null}
+DEBUG - 2025-11-25 07:54:49 --> date_from: 2025-10-26
+DEBUG - 2025-11-25 07:54:49 --> date_to: 2025-11-25
+DEBUG - 2025-11-25 07:54:49 --> warehouse: not set
+DEBUG - 2025-11-25 07:54:49 --> status: not set
+DEBUG - 2025-11-25 07:54:49 --> Applied date_from: 2025-10-26
+DEBUG - 2025-11-25 07:54:49 --> Applied date_to: 2025-11-25
+DEBUG - 2025-11-25 07:54:49 --> Generated SQL: SELECT `o`.`store_id`, `o`.`id` AS `order_id`, `o`.`date_time`, `o`.`amount_paid`, `o`.`paid_status`, `oi`.`qty` AS `quantity`, `oi`.`rate` AS `price`, `oi`.`amount` AS `amount`, `p`.`name` AS `product_name`, `p`.`id` AS `product_id`, COALESCE(o.customer_name, "Walk-in") AS customer_name
+FROM `orders` `o`
+INNER JOIN `orders_item` `oi` ON `o`.`id` = `oi`.`order_id`
+LEFT JOIN `products` `p` ON `oi`.`product_id` = `p`.`id`
+WHERE DATE(o.date_time) >= '2025-10-26'
+AND DATE(o.date_time) <= '2025-11-25'
+DEBUG - 2025-11-25 07:54:49 --> Query returned 3089 rows
+DEBUG - 2025-11-25 07:54:49 --> === SALES REPORT DEBUG END ===
+DEBUG - 2025-11-25 07:54:49 --> Controller_Reports::sales_report rows fetched: 3089
+INFO - 2025-11-25 07:54:49 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 07:54:49 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 07:54:49 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 07:54:49 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\reporting/sales_report.php
+INFO - 2025-11-25 07:54:49 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 07:54:49 --> Final output sent to browser
+DEBUG - 2025-11-25 07:54:49 --> Total execution time: 0.7206
+INFO - 2025-11-25 07:54:59 --> Config Class Initialized
+INFO - 2025-11-25 07:54:59 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:54:59 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:54:59 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:54:59 --> URI Class Initialized
+INFO - 2025-11-25 07:54:59 --> Router Class Initialized
+INFO - 2025-11-25 07:54:59 --> Output Class Initialized
+INFO - 2025-11-25 07:54:59 --> Security Class Initialized
+DEBUG - 2025-11-25 07:54:59 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:54:59 --> Input Class Initialized
+INFO - 2025-11-25 07:54:59 --> Language Class Initialized
+INFO - 2025-11-25 07:54:59 --> Loader Class Initialized
+INFO - 2025-11-25 07:54:59 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:54:59 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:54:59 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:54:59 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:54:59 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:54:59 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:54:59 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:54:59 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:54:59 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:54:59 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:54:59 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:54:59 --> Model Class Initialized
+INFO - 2025-11-25 07:55:00 --> Model Class Initialized
+INFO - 2025-11-25 07:55:00 --> Model Class Initialized
+INFO - 2025-11-25 07:55:00 --> Model Class Initialized
+INFO - 2025-11-25 07:55:00 --> Model Class Initialized
+INFO - 2025-11-25 07:55:00 --> Model Class Initialized
+DEBUG - 2025-11-25 07:55:00 --> Controller_Reports initialized
+INFO - 2025-11-25 07:55:00 --> Model Class Initialized
+DEBUG - 2025-11-25 07:55:00 --> === SALES REPORT DEBUG START ===
+DEBUG - 2025-11-25 07:55:00 --> Filters received: {"date_from":"2025-11-25","date_to":"2025-11-25","warehouse":"","status":""}
+DEBUG - 2025-11-25 07:55:00 --> date_from: 2025-11-25
+DEBUG - 2025-11-25 07:55:00 --> date_to: 2025-11-25
+DEBUG - 2025-11-25 07:55:00 --> warehouse: 
+DEBUG - 2025-11-25 07:55:00 --> status: 
+DEBUG - 2025-11-25 07:55:00 --> Applied date_from: 2025-11-25
+DEBUG - 2025-11-25 07:55:00 --> Applied date_to: 2025-11-25
+DEBUG - 2025-11-25 07:55:00 --> Generated SQL: SELECT `o`.`store_id`, `o`.`id` AS `order_id`, `o`.`date_time`, `o`.`amount_paid`, `o`.`paid_status`, `oi`.`qty` AS `quantity`, `oi`.`rate` AS `price`, `oi`.`amount` AS `amount`, `p`.`name` AS `product_name`, `p`.`id` AS `product_id`, COALESCE(o.customer_name, "Walk-in") AS customer_name
+FROM `orders` `o`
+INNER JOIN `orders_item` `oi` ON `o`.`id` = `oi`.`order_id`
+LEFT JOIN `products` `p` ON `oi`.`product_id` = `p`.`id`
+WHERE DATE(o.date_time) >= '2025-11-25'
+AND DATE(o.date_time) <= '2025-11-25'
+DEBUG - 2025-11-25 07:55:00 --> Query returned 0 rows
+DEBUG - 2025-11-25 07:55:00 --> Total orders in DB: 1176
+DEBUG - 2025-11-25 07:55:00 --> Total order items in DB: 3089
+DEBUG - 2025-11-25 07:55:00 --> === SALES REPORT DEBUG END ===
+DEBUG - 2025-11-25 07:55:00 --> Controller_Reports::sales_report rows fetched: 0
+INFO - 2025-11-25 07:55:00 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 07:55:00 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 07:55:00 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 07:55:00 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\reporting/sales_report.php
+INFO - 2025-11-25 07:55:00 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 07:55:00 --> Final output sent to browser
+DEBUG - 2025-11-25 07:55:00 --> Total execution time: 0.0702
+INFO - 2025-11-25 07:55:34 --> Config Class Initialized
+INFO - 2025-11-25 07:55:34 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:55:34 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:55:34 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:55:34 --> URI Class Initialized
+INFO - 2025-11-25 07:55:34 --> Router Class Initialized
+INFO - 2025-11-25 07:55:34 --> Output Class Initialized
+INFO - 2025-11-25 07:55:34 --> Security Class Initialized
+DEBUG - 2025-11-25 07:55:34 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:55:34 --> Input Class Initialized
+INFO - 2025-11-25 07:55:34 --> Language Class Initialized
+INFO - 2025-11-25 07:55:34 --> Loader Class Initialized
+INFO - 2025-11-25 07:55:34 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:55:34 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:55:34 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:55:34 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:55:34 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:55:34 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:55:34 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:55:34 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:55:34 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:55:34 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:55:34 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:55:34 --> Model Class Initialized
+INFO - 2025-11-25 07:55:34 --> Model Class Initialized
+INFO - 2025-11-25 07:55:34 --> Model Class Initialized
+INFO - 2025-11-25 07:55:34 --> Model Class Initialized
+INFO - 2025-11-25 07:55:34 --> Model Class Initialized
+INFO - 2025-11-25 07:55:34 --> Model Class Initialized
+DEBUG - 2025-11-25 07:55:34 --> Controller_Reports initialized
+INFO - 2025-11-25 07:55:34 --> Model Class Initialized
+DEBUG - 2025-11-25 07:55:34 --> === SALES REPORT DEBUG START ===
+DEBUG - 2025-11-25 07:55:34 --> Filters received: {"date_from":"2025-11-24","date_to":"2025-11-24","warehouse":"","status":""}
+DEBUG - 2025-11-25 07:55:34 --> date_from: 2025-11-24
+DEBUG - 2025-11-25 07:55:34 --> date_to: 2025-11-24
+DEBUG - 2025-11-25 07:55:34 --> warehouse: 
+DEBUG - 2025-11-25 07:55:34 --> status: 
+DEBUG - 2025-11-25 07:55:34 --> Applied date_from: 2025-11-24
+DEBUG - 2025-11-25 07:55:34 --> Applied date_to: 2025-11-24
+DEBUG - 2025-11-25 07:55:34 --> Generated SQL: SELECT `o`.`store_id`, `o`.`id` AS `order_id`, `o`.`date_time`, `o`.`amount_paid`, `o`.`paid_status`, `oi`.`qty` AS `quantity`, `oi`.`rate` AS `price`, `oi`.`amount` AS `amount`, `p`.`name` AS `product_name`, `p`.`id` AS `product_id`, COALESCE(o.customer_name, "Walk-in") AS customer_name
+FROM `orders` `o`
+INNER JOIN `orders_item` `oi` ON `o`.`id` = `oi`.`order_id`
+LEFT JOIN `products` `p` ON `oi`.`product_id` = `p`.`id`
+WHERE DATE(o.date_time) >= '2025-11-24'
+AND DATE(o.date_time) <= '2025-11-24'
+DEBUG - 2025-11-25 07:55:34 --> Query returned 193 rows
+DEBUG - 2025-11-25 07:55:34 --> === SALES REPORT DEBUG END ===
+DEBUG - 2025-11-25 07:55:34 --> Controller_Reports::sales_report rows fetched: 193
+INFO - 2025-11-25 07:55:34 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 07:55:34 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 07:55:34 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 07:55:34 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\reporting/sales_report.php
+INFO - 2025-11-25 07:55:34 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 07:55:34 --> Final output sent to browser
+DEBUG - 2025-11-25 07:55:34 --> Total execution time: 0.0614
+INFO - 2025-11-25 07:58:22 --> Config Class Initialized
+INFO - 2025-11-25 07:58:22 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:58:22 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:58:22 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:58:22 --> URI Class Initialized
+INFO - 2025-11-25 07:58:22 --> Router Class Initialized
+INFO - 2025-11-25 07:58:22 --> Output Class Initialized
+INFO - 2025-11-25 07:58:22 --> Security Class Initialized
+DEBUG - 2025-11-25 07:58:22 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:58:22 --> Input Class Initialized
+INFO - 2025-11-25 07:58:22 --> Language Class Initialized
+INFO - 2025-11-25 07:58:22 --> Loader Class Initialized
+INFO - 2025-11-25 07:58:22 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:58:22 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:58:22 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:58:22 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:58:22 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:58:22 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:58:22 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:58:22 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:58:22 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:58:22 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:58:22 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:58:22 --> Model Class Initialized
+INFO - 2025-11-25 07:58:22 --> Model Class Initialized
+INFO - 2025-11-25 07:58:22 --> Model Class Initialized
+INFO - 2025-11-25 07:58:22 --> Model Class Initialized
+INFO - 2025-11-25 07:58:22 --> Model Class Initialized
+INFO - 2025-11-25 07:58:22 --> Model Class Initialized
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 78, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 138, purchased: 16, ordered: 0, stock: 16
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 79, purchased: 989, ordered: 23, stock: 966
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 80, purchased: 205, ordered: 57, stock: 148
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 81, purchased: 2046, ordered: 990, stock: 1056
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 139, purchased: 2, ordered: 1, stock: 1
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 82, purchased: 3500, ordered: 8596, stock: 0
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 83, purchased: 0, ordered: 2875, stock: 0
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 84, purchased: 189, ordered: 17, stock: 172
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 85, purchased: 137, ordered: 3, stock: 134
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 127, purchased: 2000, ordered: 379, stock: 1621
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 86, purchased: 384, ordered: 362, stock: 22
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 87, purchased: 588, ordered: 636, stock: 0
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 88, purchased: 837, ordered: 600, stock: 237
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 89, purchased: 2164, ordered: 720, stock: 1444
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 90, purchased: 470, ordered: 375, stock: 95
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 126, purchased: 25, ordered: 0, stock: 25
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 91, purchased: 26, ordered: 0, stock: 26
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 92, purchased: 25, ordered: 29, stock: 0
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 93, purchased: 752, ordered: 854, stock: 0
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 94, purchased: 764, ordered: 685, stock: 79
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 95, purchased: 2263, ordered: 460, stock: 1803
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 96, purchased: 18925, ordered: 3394, stock: 15531
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 134, purchased: 604, ordered: 69, stock: 535
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 130, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 133, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 131, purchased: 19, ordered: 0, stock: 19
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 97, purchased: 6001, ordered: 2358, stock: 3643
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 98, purchased: 442, ordered: 43, stock: 399
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 146, purchased: 200, ordered: 0, stock: 200
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 99, purchased: 2, ordered: 0, stock: 2
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 100, purchased: 34587, ordered: 30172, stock: 4415
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 137, purchased: 189, ordered: 4, stock: 185
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 101, purchased: 107, ordered: 23, stock: 84
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 102, purchased: 11299, ordered: 8446, stock: 2853
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 103, purchased: 29811, ordered: 22908, stock: 6903
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 104, purchased: 7500, ordered: 806, stock: 6694
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 142, purchased: 36, ordered: 0, stock: 36
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 140, purchased: 10, ordered: 1, stock: 9
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 105, purchased: 358, ordered: 203, stock: 155
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 106, purchased: 738, ordered: 645, stock: 93
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 125, purchased: 253, ordered: 0, stock: 253
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 108, purchased: 2503, ordered: 2196, stock: 307
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 109, purchased: 2571, ordered: 671, stock: 1900
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 110, purchased: 4761, ordered: 1656, stock: 3105
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 132, purchased: 200, ordered: 175, stock: 25
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 111, purchased: 406, ordered: 85, stock: 321
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 112, purchased: 1900, ordered: 1323, stock: 577
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 113, purchased: 2241, ordered: 825, stock: 1416
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 135, purchased: 1990, ordered: 654, stock: 1336
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 114, purchased: 922, ordered: 45, stock: 877
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 115, purchased: 13662, ordered: 15809, stock: 0
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 116, purchased: 237414, ordered: 231541, stock: 5873
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 107, purchased: 1200, ordered: 836, stock: 364
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 117, purchased: 9776, ordered: 6053, stock: 3723
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 118, purchased: 24842, ordered: 21842, stock: 3000
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 129, purchased: 1706, ordered: 1560, stock: 146
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 119, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 120, purchased: 1555, ordered: 565, stock: 990
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 121, purchased: 63, ordered: 2, stock: 61
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 122, purchased: 688, ordered: 207, stock: 481
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 123, purchased: 2020, ordered: 1730, stock: 290
+DEBUG - 2025-11-25 07:58:23 --> getProductsWithStock - ID: 124, purchased: 3646, ordered: 4469, stock: 0
+DEBUG - 2025-11-25 07:58:23 --> Prepared products for create view: [{"id":78,"name":"BROILER BOOSTER","price":3000,"current_stock":0,"unit":""},{"id":138,"name":"BROILER EXTRA","price":3000,"current_stock":16,"unit":""},{"id":79,"name":"BROILER FINISHER MASH","price":1000,"current_stock":966,"unit":""},{"id":80,"name":"BROILER PREMIX","price":3000,"current_stock":148,"unit":""},{"id":81,"name":"BROILER STARTER MASH","price":1000,"current_stock":1056,"unit":""},{"id":139,"name":"CHIKWIDI","price":15000,"current_stock":1,"unit":""},{"id":82,"name":"CHOKAA","price":500,"current_stock":0,"unit":""},{"id":83,"name":"CHUMVI","price":500,"current_stock":0,"unit":""},{"id":84,"name":"D.C.P KOPO (1\/2)","price":2000,"current_stock":172,"unit":""},{"id":85,"name":"D.C.P KOPO 1KG","price":3000,"current_stock":134,"unit":""},{"id":127,"name":"D.C.P KUPIMA","price":1500,"current_stock":1621,"unit":""},{"id":86,"name":"DAGAA KAUZU","price":2800,"current_stock":22,"unit":""},{"id":87,"name":"DAGAA SAGWA","price":2000,"current_stock":0,"unit":""},{"id":88,"name":"DAMU","price":1500,"current_stock":237,"unit":""},{"id":89,"name":"GROWER MASH","price":1000,"current_stock":1444,"unit":""},{"id":90,"name":"HAMIRA","price":1500,"current_stock":95,"unit":""},{"id":126,"name":"HIPHOS PLUS","price":5000,"current_stock":25,"unit":""},{"id":91,"name":"JOSERA MADUME","price":11000,"current_stock":26,"unit":""},{"id":92,"name":"JOSERA MAZIWA","price":11000,"current_stock":0,"unit":""},{"id":93,"name":"KARANGA","price":700,"current_stock":0,"unit":""},{"id":94,"name":"KAUDIS NGURUWE","price":4000,"current_stock":79,"unit":""},{"id":95,"name":"KAYABO","price":2000,"current_stock":1803,"unit":""},{"id":96,"name":"KONOKONO","price":350,"current_stock":15531,"unit":""},{"id":134,"name":"KONOKONO NZIMA","price":400,"current_stock":535,"unit":""},{"id":130,"name":"KONOKONO SAGWA","price":470,"current_stock":0,"unit":""},{"id":133,"name":"KONOKONO SAGWA","price":600,"current_stock":0,"unit":""},{"id":131,"name":"LAYERS EXTRA","price":3500,"current_stock":19,"unit":""},{"id":97,"name":"LAYERS MASH","price":1000,"current_stock":3643,"unit":""},{"id":98,"name":"LAYERS PREMIX","price":3500,"current_stock":399,"unit":""},{"id":146,"name":"MABOGA","price":3800,"current_stock":200,"unit":""},{"id":99,"name":"MADUME LICK","price":5000,"current_stock":2,"unit":""},{"id":100,"name":"MAHINDI","price":730,"current_stock":4415,"unit":""},{"id":137,"name":"MAZIWA MENGI 1KG","price":1500,"current_stock":185,"unit":""},{"id":101,"name":"MAZIWA MENGI 2kg","price":3000,"current_stock":84,"unit":""},{"id":102,"name":"MCHELE LAINI","price":400,"current_stock":2853,"unit":""},{"id":103,"name":"MCHELE NGUMU","price":320,"current_stock":6903,"unit":""},{"id":104,"name":"MFUPA","price":700,"current_stock":6694,"unit":""},{"id":142,"name":"MOLLASSES 1LITRE","price":5000,"current_stock":36,"unit":""},{"id":140,"name":"MOLLASSES 5LITRE","price":15000,"current_stock":9,"unit":""},{"id":105,"name":"MTAMA","price":1000,"current_stock":155,"unit":""},{"id":106,"name":"NGANO","price":1000,"current_stock":93,"unit":""},{"id":125,"name":"NGURUWE MIX","price":3500,"current_stock":253,"unit":""},{"id":108,"name":"PAMBA LAINI","price":1200,"current_stock":307,"unit":""},{"id":109,"name":"PAMBA NGUMU","price":1200,"current_stock":1900,"unit":""},{"id":110,"name":"PARAZA","price":1000,"current_stock":3105,"unit":""},{"id":132,"name":"PELLET FINISHER","price":2000,"current_stock":25,"unit":""},{"id":111,"name":"PIG BOOSTER","price":3000,"current_stock":321,"unit":""},{"id":112,"name":"PIG GROWER","price":1000,"current_stock":577,"unit":""},{"id":113,"name":"PIG STARTER","price":1000,"current_stock":1416,"unit":""},{"id":135,"name":"PILLET STARTER","price":2000,"current_stock":1336,"unit":""},{"id":114,"name":"PILLLET GROWER","price":2000,"current_stock":877,"unit":""},{"id":115,"name":"POLLARD","price":750,"current_stock":0,"unit":""},{"id":116,"name":"PUMBA","price":660,"current_stock":5873,"unit":""},{"id":107,"name":"PUMBA MAHINDI LAINI","price":600,"current_stock":364,"unit":""},{"id":117,"name":"SHUDU LAINI","price":900,"current_stock":3723,"unit":""},{"id":118,"name":"SHUDU NGUMU","price":800,"current_stock":3000,"unit":""},{"id":129,"name":"SOYA CHENGA","price":2500,"current_stock":146,"unit":""},{"id":119,"name":"SOYA MAFUTA","price":2500,"current_stock":0,"unit":""},{"id":120,"name":"SOYA UNGA","price":2000,"current_stock":990,"unit":""},{"id":121,"name":"SUPER MACLICK","price":3500,"current_stock":61,"unit":""},{"id":122,"name":"UBUYU","price":700,"current_stock":481,"unit":""},{"id":123,"name":"UDUVI","price":3500,"current_stock":290,"unit":""},{"id":124,"name":"WHEAT","price":650,"current_stock":0,"unit":""}]
+ERROR - 2025-11-25 07:58:23 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 07:58:23 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 07:58:23 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 07:58:23 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 07:58:23 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/create.php
+INFO - 2025-11-25 07:58:23 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 07:58:23 --> Final output sent to browser
+DEBUG - 2025-11-25 07:58:23 --> Total execution time: 0.1524
+INFO - 2025-11-25 07:58:23 --> Config Class Initialized
+INFO - 2025-11-25 07:58:23 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:58:23 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:58:23 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:58:23 --> URI Class Initialized
+INFO - 2025-11-25 07:58:23 --> Router Class Initialized
+INFO - 2025-11-25 07:58:23 --> Output Class Initialized
+INFO - 2025-11-25 07:58:23 --> Security Class Initialized
+DEBUG - 2025-11-25 07:58:23 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:58:23 --> Input Class Initialized
+INFO - 2025-11-25 07:58:23 --> Language Class Initialized
+ERROR - 2025-11-25 07:58:23 --> 404 Page Not Found: Assets/plugins
+INFO - 2025-11-25 07:59:07 --> Config Class Initialized
+INFO - 2025-11-25 07:59:07 --> Hooks Class Initialized
+DEBUG - 2025-11-25 07:59:07 --> UTF-8 Support Enabled
+INFO - 2025-11-25 07:59:07 --> Utf8 Class Initialized
+INFO - 2025-11-25 07:59:07 --> URI Class Initialized
+INFO - 2025-11-25 07:59:07 --> Router Class Initialized
+INFO - 2025-11-25 07:59:07 --> Output Class Initialized
+INFO - 2025-11-25 07:59:07 --> Security Class Initialized
+DEBUG - 2025-11-25 07:59:07 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 07:59:07 --> Input Class Initialized
+INFO - 2025-11-25 07:59:07 --> Language Class Initialized
+INFO - 2025-11-25 07:59:07 --> Loader Class Initialized
+INFO - 2025-11-25 07:59:07 --> Helper loaded: url_helper
+INFO - 2025-11-25 07:59:07 --> Helper loaded: form_helper
+INFO - 2025-11-25 07:59:07 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 07:59:07 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 07:59:07 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 07:59:07 --> Form Validation Class Initialized
+INFO - 2025-11-25 07:59:07 --> Controller Class Initialized
+DEBUG - 2025-11-25 07:59:07 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 07:59:07 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 07:59:07 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 07:59:07 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 07:59:07 --> Model Class Initialized
+INFO - 2025-11-25 07:59:07 --> Model Class Initialized
+INFO - 2025-11-25 07:59:07 --> Model Class Initialized
+INFO - 2025-11-25 07:59:07 --> Model Class Initialized
+INFO - 2025-11-25 07:59:07 --> Model Class Initialized
+INFO - 2025-11-25 07:59:07 --> Model Class Initialized
+DEBUG - 2025-11-25 07:59:07 --> Controller_Orders::create POST: {"customer_name":"NMC B","customer_phone":"","customer_address":"","store_id":"7","product":["115"],"qty":["350"],"rate":["714.29"],"rate_value":["714.29"],"amount":["250000"],"amount_value":["250000"],"discount":"0","paid_status":"1","amount_paid":"0.00","gross_amount_value":"250000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"250000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 07:59:08 --> Final output sent to browser
+DEBUG - 2025-11-25 07:59:08 --> Total execution time: 0.1855
+INFO - 2025-11-25 08:00:45 --> Config Class Initialized
+INFO - 2025-11-25 08:00:45 --> Hooks Class Initialized
+DEBUG - 2025-11-25 08:00:45 --> UTF-8 Support Enabled
+INFO - 2025-11-25 08:00:45 --> Utf8 Class Initialized
+INFO - 2025-11-25 08:00:45 --> URI Class Initialized
+INFO - 2025-11-25 08:00:45 --> Router Class Initialized
+INFO - 2025-11-25 08:00:45 --> Output Class Initialized
+INFO - 2025-11-25 08:00:45 --> Security Class Initialized
+DEBUG - 2025-11-25 08:00:45 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 08:00:45 --> Input Class Initialized
+INFO - 2025-11-25 08:00:45 --> Language Class Initialized
+INFO - 2025-11-25 08:00:45 --> Loader Class Initialized
+INFO - 2025-11-25 08:00:45 --> Helper loaded: url_helper
+INFO - 2025-11-25 08:00:45 --> Helper loaded: form_helper
+INFO - 2025-11-25 08:00:45 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 08:00:45 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 08:00:45 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 08:00:45 --> Form Validation Class Initialized
+INFO - 2025-11-25 08:00:45 --> Controller Class Initialized
+DEBUG - 2025-11-25 08:00:45 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 08:00:45 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 08:00:45 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 08:00:45 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 08:00:45 --> Model Class Initialized
+INFO - 2025-11-25 08:00:45 --> Model Class Initialized
+INFO - 2025-11-25 08:00:45 --> Model Class Initialized
+INFO - 2025-11-25 08:00:45 --> Model Class Initialized
+INFO - 2025-11-25 08:00:45 --> Model Class Initialized
+INFO - 2025-11-25 08:00:45 --> Model Class Initialized
+DEBUG - 2025-11-25 08:00:45 --> Controller_Orders::create POST: {"customer_name":"ESSO","customer_phone":"","customer_address":"","store_id":"7","product":["115"],"qty":["560"],"rate":["714.29"],"rate_value":["714.29"],"amount":["400000"],"amount_value":["400000"],"discount":"0","paid_status":"1","amount_paid":"0.00","gross_amount_value":"400000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"400000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 08:00:45 --> Final output sent to browser
+DEBUG - 2025-11-25 08:00:45 --> Total execution time: 0.1238
+INFO - 2025-11-25 08:01:54 --> Config Class Initialized
+INFO - 2025-11-25 08:01:54 --> Hooks Class Initialized
+DEBUG - 2025-11-25 08:01:54 --> UTF-8 Support Enabled
+INFO - 2025-11-25 08:01:54 --> Utf8 Class Initialized
+INFO - 2025-11-25 08:01:54 --> URI Class Initialized
+INFO - 2025-11-25 08:01:54 --> Router Class Initialized
+INFO - 2025-11-25 08:01:54 --> Output Class Initialized
+INFO - 2025-11-25 08:01:54 --> Security Class Initialized
+DEBUG - 2025-11-25 08:01:54 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 08:01:54 --> Input Class Initialized
+INFO - 2025-11-25 08:01:54 --> Language Class Initialized
+INFO - 2025-11-25 08:01:54 --> Loader Class Initialized
+INFO - 2025-11-25 08:01:54 --> Helper loaded: url_helper
+INFO - 2025-11-25 08:01:54 --> Helper loaded: form_helper
+INFO - 2025-11-25 08:01:54 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 08:01:54 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 08:01:54 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 08:01:54 --> Form Validation Class Initialized
+INFO - 2025-11-25 08:01:54 --> Controller Class Initialized
+DEBUG - 2025-11-25 08:01:54 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 08:01:54 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 08:01:54 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 08:01:54 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 08:01:54 --> Model Class Initialized
+INFO - 2025-11-25 08:01:54 --> Model Class Initialized
+INFO - 2025-11-25 08:01:54 --> Model Class Initialized
+INFO - 2025-11-25 08:01:54 --> Model Class Initialized
+INFO - 2025-11-25 08:01:54 --> Model Class Initialized
+INFO - 2025-11-25 08:01:54 --> Model Class Initialized
+DEBUG - 2025-11-25 08:01:54 --> Controller_Orders::create POST: {"customer_name":"NASSARA","customer_phone":"","customer_address":"","store_id":"7","product":["116","103"],"qty":["2000","500"],"rate":["650","370.00"],"rate_value":["650","370.00"],"amount":["1300000.00","185000"],"amount_value":["1300000.00","185000"],"discount":"0","paid_status":"1","amount_paid":"0.00","gross_amount_value":"1485000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"1485000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 08:01:54 --> Final output sent to browser
+DEBUG - 2025-11-25 08:01:54 --> Total execution time: 0.1240
+INFO - 2025-11-25 08:02:48 --> Config Class Initialized
+INFO - 2025-11-25 08:02:48 --> Hooks Class Initialized
+DEBUG - 2025-11-25 08:02:48 --> UTF-8 Support Enabled
+INFO - 2025-11-25 08:02:48 --> Utf8 Class Initialized
+INFO - 2025-11-25 08:02:48 --> URI Class Initialized
+INFO - 2025-11-25 08:02:48 --> Router Class Initialized
+INFO - 2025-11-25 08:02:48 --> Output Class Initialized
+INFO - 2025-11-25 08:02:48 --> Security Class Initialized
+DEBUG - 2025-11-25 08:02:48 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 08:02:48 --> Input Class Initialized
+INFO - 2025-11-25 08:02:48 --> Language Class Initialized
+INFO - 2025-11-25 08:02:48 --> Loader Class Initialized
+INFO - 2025-11-25 08:02:48 --> Helper loaded: url_helper
+INFO - 2025-11-25 08:02:48 --> Helper loaded: form_helper
+INFO - 2025-11-25 08:02:48 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 08:02:48 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 08:02:48 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 08:02:48 --> Form Validation Class Initialized
+INFO - 2025-11-25 08:02:48 --> Controller Class Initialized
+DEBUG - 2025-11-25 08:02:48 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 08:02:48 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 08:02:48 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 08:02:48 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 08:02:48 --> Model Class Initialized
+INFO - 2025-11-25 08:02:48 --> Model Class Initialized
+INFO - 2025-11-25 08:02:48 --> Model Class Initialized
+INFO - 2025-11-25 08:02:48 --> Model Class Initialized
+INFO - 2025-11-25 08:02:48 --> Model Class Initialized
+INFO - 2025-11-25 08:02:48 --> Model Class Initialized
+DEBUG - 2025-11-25 08:02:48 --> Controller_Reports initialized
+INFO - 2025-11-25 08:02:48 --> Model Class Initialized
+DEBUG - 2025-11-25 08:02:48 --> === SALES REPORT DEBUG START ===
+DEBUG - 2025-11-25 08:02:48 --> Filters received: {"date_from":"2025-10-26","date_to":"2025-11-25","warehouse":null,"status":null}
+DEBUG - 2025-11-25 08:02:48 --> date_from: 2025-10-26
+DEBUG - 2025-11-25 08:02:48 --> date_to: 2025-11-25
+DEBUG - 2025-11-25 08:02:48 --> warehouse: not set
+DEBUG - 2025-11-25 08:02:48 --> status: not set
+DEBUG - 2025-11-25 08:02:48 --> Applied date_from: 2025-10-26
+DEBUG - 2025-11-25 08:02:48 --> Applied date_to: 2025-11-25
+DEBUG - 2025-11-25 08:02:48 --> Generated SQL: SELECT `o`.`store_id`, `o`.`id` AS `order_id`, `o`.`date_time`, `o`.`amount_paid`, `o`.`paid_status`, `oi`.`qty` AS `quantity`, `oi`.`rate` AS `price`, `oi`.`amount` AS `amount`, `p`.`name` AS `product_name`, `p`.`id` AS `product_id`, COALESCE(o.customer_name, "Walk-in") AS customer_name
+FROM `orders` `o`
+INNER JOIN `orders_item` `oi` ON `o`.`id` = `oi`.`order_id`
+LEFT JOIN `products` `p` ON `oi`.`product_id` = `p`.`id`
+WHERE DATE(o.date_time) >= '2025-10-26'
+AND DATE(o.date_time) <= '2025-11-25'
+DEBUG - 2025-11-25 08:02:48 --> Query returned 3093 rows
+DEBUG - 2025-11-25 08:02:48 --> === SALES REPORT DEBUG END ===
+DEBUG - 2025-11-25 08:02:48 --> Controller_Reports::sales_report rows fetched: 3093
+INFO - 2025-11-25 08:02:48 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 08:02:48 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 08:02:48 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 08:02:48 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\reporting/sales_report.php
+INFO - 2025-11-25 08:02:48 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 08:02:48 --> Final output sent to browser
+DEBUG - 2025-11-25 08:02:48 --> Total execution time: 0.0973
+INFO - 2025-11-25 08:02:51 --> Config Class Initialized
+INFO - 2025-11-25 08:02:51 --> Hooks Class Initialized
+DEBUG - 2025-11-25 08:02:51 --> UTF-8 Support Enabled
+INFO - 2025-11-25 08:02:51 --> Utf8 Class Initialized
+INFO - 2025-11-25 08:02:51 --> URI Class Initialized
+INFO - 2025-11-25 08:02:51 --> Router Class Initialized
+INFO - 2025-11-25 08:02:51 --> Output Class Initialized
+INFO - 2025-11-25 08:02:51 --> Security Class Initialized
+DEBUG - 2025-11-25 08:02:51 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 08:02:51 --> Input Class Initialized
+INFO - 2025-11-25 08:02:51 --> Language Class Initialized
+INFO - 2025-11-25 08:02:51 --> Loader Class Initialized
+INFO - 2025-11-25 08:02:51 --> Helper loaded: url_helper
+INFO - 2025-11-25 08:02:51 --> Helper loaded: form_helper
+INFO - 2025-11-25 08:02:51 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 08:02:51 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 08:02:51 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 08:02:51 --> Form Validation Class Initialized
+INFO - 2025-11-25 08:02:51 --> Controller Class Initialized
+DEBUG - 2025-11-25 08:02:51 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 08:02:51 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 08:02:51 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 08:02:51 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 08:02:51 --> Model Class Initialized
+INFO - 2025-11-25 08:02:51 --> Model Class Initialized
+INFO - 2025-11-25 08:02:51 --> Model Class Initialized
+INFO - 2025-11-25 08:02:51 --> Model Class Initialized
+INFO - 2025-11-25 08:02:51 --> Model Class Initialized
+INFO - 2025-11-25 08:02:51 --> Model Class Initialized
+DEBUG - 2025-11-25 08:02:51 --> Controller_Reports initialized
+INFO - 2025-11-25 08:02:51 --> Model Class Initialized
+DEBUG - 2025-11-25 08:02:51 --> === SALES REPORT DEBUG START ===
+DEBUG - 2025-11-25 08:02:51 --> Filters received: {"date_from":"2025-10-26","date_to":"2025-11-25","warehouse":null,"status":null}
+DEBUG - 2025-11-25 08:02:51 --> date_from: 2025-10-26
+DEBUG - 2025-11-25 08:02:51 --> date_to: 2025-11-25
+DEBUG - 2025-11-25 08:02:51 --> warehouse: not set
+DEBUG - 2025-11-25 08:02:51 --> status: not set
+DEBUG - 2025-11-25 08:02:51 --> Applied date_from: 2025-10-26
+DEBUG - 2025-11-25 08:02:51 --> Applied date_to: 2025-11-25
+DEBUG - 2025-11-25 08:02:51 --> Generated SQL: SELECT `o`.`store_id`, `o`.`id` AS `order_id`, `o`.`date_time`, `o`.`amount_paid`, `o`.`paid_status`, `oi`.`qty` AS `quantity`, `oi`.`rate` AS `price`, `oi`.`amount` AS `amount`, `p`.`name` AS `product_name`, `p`.`id` AS `product_id`, COALESCE(o.customer_name, "Walk-in") AS customer_name
+FROM `orders` `o`
+INNER JOIN `orders_item` `oi` ON `o`.`id` = `oi`.`order_id`
+LEFT JOIN `products` `p` ON `oi`.`product_id` = `p`.`id`
+WHERE DATE(o.date_time) >= '2025-10-26'
+AND DATE(o.date_time) <= '2025-11-25'
+DEBUG - 2025-11-25 08:02:51 --> Query returned 3093 rows
+DEBUG - 2025-11-25 08:02:51 --> === SALES REPORT DEBUG END ===
+DEBUG - 2025-11-25 08:02:51 --> Controller_Reports::sales_report rows fetched: 3093
+INFO - 2025-11-25 08:02:51 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 08:02:51 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 08:02:51 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 08:02:51 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\reporting/sales_report.php
+INFO - 2025-11-25 08:02:51 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 08:02:51 --> Final output sent to browser
+DEBUG - 2025-11-25 08:02:51 --> Total execution time: 0.0875
+INFO - 2025-11-25 08:03:03 --> Config Class Initialized
+INFO - 2025-11-25 08:03:03 --> Hooks Class Initialized
+DEBUG - 2025-11-25 08:03:03 --> UTF-8 Support Enabled
+INFO - 2025-11-25 08:03:03 --> Utf8 Class Initialized
+INFO - 2025-11-25 08:03:03 --> URI Class Initialized
+INFO - 2025-11-25 08:03:03 --> Router Class Initialized
+INFO - 2025-11-25 08:03:03 --> Output Class Initialized
+INFO - 2025-11-25 08:03:03 --> Security Class Initialized
+DEBUG - 2025-11-25 08:03:03 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 08:03:03 --> Input Class Initialized
+INFO - 2025-11-25 08:03:03 --> Language Class Initialized
+INFO - 2025-11-25 08:03:03 --> Loader Class Initialized
+INFO - 2025-11-25 08:03:03 --> Helper loaded: url_helper
+INFO - 2025-11-25 08:03:03 --> Helper loaded: form_helper
+INFO - 2025-11-25 08:03:03 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 08:03:03 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 08:03:03 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 08:03:03 --> Form Validation Class Initialized
+INFO - 2025-11-25 08:03:03 --> Controller Class Initialized
+DEBUG - 2025-11-25 08:03:03 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 08:03:03 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 08:03:03 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 08:03:03 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 08:03:03 --> Model Class Initialized
+INFO - 2025-11-25 08:03:03 --> Model Class Initialized
+INFO - 2025-11-25 08:03:03 --> Model Class Initialized
+INFO - 2025-11-25 08:03:03 --> Model Class Initialized
+INFO - 2025-11-25 08:03:03 --> Model Class Initialized
+INFO - 2025-11-25 08:03:03 --> Model Class Initialized
+DEBUG - 2025-11-25 08:03:03 --> Controller_Reports initialized
+INFO - 2025-11-25 08:03:03 --> Model Class Initialized
+DEBUG - 2025-11-25 08:03:03 --> === SALES REPORT DEBUG START ===
+DEBUG - 2025-11-25 08:03:03 --> Filters received: {"date_from":"2025-11-24","date_to":"2025-11-24","warehouse":"","status":""}
+DEBUG - 2025-11-25 08:03:03 --> date_from: 2025-11-24
+DEBUG - 2025-11-25 08:03:03 --> date_to: 2025-11-24
+DEBUG - 2025-11-25 08:03:03 --> warehouse: 
+DEBUG - 2025-11-25 08:03:03 --> status: 
+DEBUG - 2025-11-25 08:03:03 --> Applied date_from: 2025-11-24
+DEBUG - 2025-11-25 08:03:03 --> Applied date_to: 2025-11-24
+DEBUG - 2025-11-25 08:03:03 --> Generated SQL: SELECT `o`.`store_id`, `o`.`id` AS `order_id`, `o`.`date_time`, `o`.`amount_paid`, `o`.`paid_status`, `oi`.`qty` AS `quantity`, `oi`.`rate` AS `price`, `oi`.`amount` AS `amount`, `p`.`name` AS `product_name`, `p`.`id` AS `product_id`, COALESCE(o.customer_name, "Walk-in") AS customer_name
+FROM `orders` `o`
+INNER JOIN `orders_item` `oi` ON `o`.`id` = `oi`.`order_id`
+LEFT JOIN `products` `p` ON `oi`.`product_id` = `p`.`id`
+WHERE DATE(o.date_time) >= '2025-11-24'
+AND DATE(o.date_time) <= '2025-11-24'
+DEBUG - 2025-11-25 08:03:03 --> Query returned 197 rows
+DEBUG - 2025-11-25 08:03:03 --> === SALES REPORT DEBUG END ===
+DEBUG - 2025-11-25 08:03:03 --> Controller_Reports::sales_report rows fetched: 197
+INFO - 2025-11-25 08:03:03 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 08:03:03 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 08:03:03 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 08:03:03 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\reporting/sales_report.php
+INFO - 2025-11-25 08:03:03 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 08:03:03 --> Final output sent to browser
+DEBUG - 2025-11-25 08:03:03 --> Total execution time: 0.0658
+INFO - 2025-11-25 08:03:17 --> Config Class Initialized
+INFO - 2025-11-25 08:03:17 --> Hooks Class Initialized
+DEBUG - 2025-11-25 08:03:17 --> UTF-8 Support Enabled
+INFO - 2025-11-25 08:03:17 --> Utf8 Class Initialized
+INFO - 2025-11-25 08:03:17 --> URI Class Initialized
+INFO - 2025-11-25 08:03:17 --> Router Class Initialized
+INFO - 2025-11-25 08:03:17 --> Output Class Initialized
+INFO - 2025-11-25 08:03:17 --> Security Class Initialized
+DEBUG - 2025-11-25 08:03:17 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 08:03:17 --> Input Class Initialized
+INFO - 2025-11-25 08:03:17 --> Language Class Initialized
+INFO - 2025-11-25 08:03:17 --> Loader Class Initialized
+INFO - 2025-11-25 08:03:17 --> Helper loaded: url_helper
+INFO - 2025-11-25 08:03:17 --> Helper loaded: form_helper
+INFO - 2025-11-25 08:03:17 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 08:03:17 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 08:03:17 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 08:03:17 --> Form Validation Class Initialized
+INFO - 2025-11-25 08:03:17 --> Controller Class Initialized
+DEBUG - 2025-11-25 08:03:17 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 08:03:17 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 08:03:17 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 08:03:17 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 08:03:17 --> Model Class Initialized
+INFO - 2025-11-25 08:03:17 --> Model Class Initialized
+INFO - 2025-11-25 08:03:17 --> Model Class Initialized
+INFO - 2025-11-25 08:03:17 --> Model Class Initialized
+INFO - 2025-11-25 08:03:17 --> Model Class Initialized
+INFO - 2025-11-25 08:03:17 --> Model Class Initialized
+DEBUG - 2025-11-25 08:03:17 --> Index loaded - Store: 7, Is Privileged: No
+ERROR - 2025-11-25 08:03:17 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 08:03:17 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 08:03:17 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 08:03:17 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 08:03:17 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/index.php
+INFO - 2025-11-25 08:03:17 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 08:03:17 --> Final output sent to browser
+DEBUG - 2025-11-25 08:03:17 --> Total execution time: 0.0567
+INFO - 2025-11-25 08:03:17 --> Config Class Initialized
+INFO - 2025-11-25 08:03:17 --> Hooks Class Initialized
+DEBUG - 2025-11-25 08:03:17 --> UTF-8 Support Enabled
+INFO - 2025-11-25 08:03:17 --> Utf8 Class Initialized
+INFO - 2025-11-25 08:03:17 --> URI Class Initialized
+INFO - 2025-11-25 08:03:17 --> Router Class Initialized
+INFO - 2025-11-25 08:03:17 --> Output Class Initialized
+INFO - 2025-11-25 08:03:17 --> Security Class Initialized
+DEBUG - 2025-11-25 08:03:17 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 08:03:17 --> Input Class Initialized
+INFO - 2025-11-25 08:03:17 --> Language Class Initialized
+INFO - 2025-11-25 08:03:17 --> Loader Class Initialized
+INFO - 2025-11-25 08:03:17 --> Helper loaded: url_helper
+INFO - 2025-11-25 08:03:17 --> Helper loaded: form_helper
+INFO - 2025-11-25 08:03:17 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 08:03:17 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 08:03:17 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 08:03:17 --> Form Validation Class Initialized
+INFO - 2025-11-25 08:03:17 --> Controller Class Initialized
+DEBUG - 2025-11-25 08:03:17 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 08:03:17 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 08:03:17 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 08:03:17 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 08:03:17 --> Model Class Initialized
+INFO - 2025-11-25 08:03:17 --> Model Class Initialized
+INFO - 2025-11-25 08:03:17 --> Model Class Initialized
+INFO - 2025-11-25 08:03:17 --> Model Class Initialized
+INFO - 2025-11-25 08:03:17 --> Model Class Initialized
+INFO - 2025-11-25 08:03:17 --> Model Class Initialized
+DEBUG - 2025-11-25 08:03:17 --> fetchOrdersData - Store ID: 7, Group ID: , Is Privileged: No
+DEBUG - 2025-11-25 08:03:17 --> Adding store restriction for store_id: 7
+DEBUG - 2025-11-25 08:03:17 --> Executing query: SELECT o.*,
+                    COALESCE(s.name, 'N/A') as store_name,
+                    COALESCE(u.username, 'Unknown') as clerk_name
+                    FROM orders o
+                    LEFT JOIN stores s ON o.store_id = s.id
+                    LEFT JOIN users u ON o.user_id = u.id WHERE o.store_id = '7' ORDER BY o.id DESC
+DEBUG - 2025-11-25 08:03:17 --> Query returned 1174 results
+DEBUG - 2025-11-25 08:03:17 --> Found 1174 orders for user
+INFO - 2025-11-25 08:03:17 --> Final output sent to browser
+DEBUG - 2025-11-25 08:03:17 --> Total execution time: 0.0689
+INFO - 2025-11-25 08:03:29 --> Config Class Initialized
+INFO - 2025-11-25 08:03:29 --> Hooks Class Initialized
+DEBUG - 2025-11-25 08:03:29 --> UTF-8 Support Enabled
+INFO - 2025-11-25 08:03:29 --> Utf8 Class Initialized
+INFO - 2025-11-25 08:03:29 --> URI Class Initialized
+INFO - 2025-11-25 08:03:29 --> Router Class Initialized
+INFO - 2025-11-25 08:03:29 --> Output Class Initialized
+INFO - 2025-11-25 08:03:29 --> Security Class Initialized
+DEBUG - 2025-11-25 08:03:29 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 08:03:29 --> Input Class Initialized
+INFO - 2025-11-25 08:03:29 --> Language Class Initialized
+INFO - 2025-11-25 08:03:29 --> Loader Class Initialized
+INFO - 2025-11-25 08:03:29 --> Helper loaded: url_helper
+INFO - 2025-11-25 08:03:29 --> Helper loaded: form_helper
+INFO - 2025-11-25 08:03:29 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 08:03:29 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 08:03:29 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 08:03:29 --> Form Validation Class Initialized
+INFO - 2025-11-25 08:03:29 --> Controller Class Initialized
+DEBUG - 2025-11-25 08:03:29 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 08:03:29 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 08:03:29 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 08:03:29 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 08:03:29 --> Model Class Initialized
+INFO - 2025-11-25 08:03:29 --> Model Class Initialized
+INFO - 2025-11-25 08:03:29 --> Model Class Initialized
+INFO - 2025-11-25 08:03:29 --> Model Class Initialized
+INFO - 2025-11-25 08:03:29 --> Model Class Initialized
+INFO - 2025-11-25 08:03:29 --> Model Class Initialized
+DEBUG - 2025-11-25 08:03:29 --> User Info - Store ID: 7, Group ID: , Is Privileged: No
+DEBUG - 2025-11-25 08:03:29 --> Single order query: SELECT o.*,
+                        COALESCE(s.name, 'N/A') as store_name,
+                        COALESCE(u.username, 'Unknown') as clerk_name
+                        FROM orders o
+                        LEFT JOIN stores s ON o.store_id = s.id
+                        LEFT JOIN users u ON o.user_id = u.id
+                        WHERE o.id = '1290' AND o.store_id = '7'
+INFO - 2025-11-25 08:03:29 --> Final output sent to browser
+DEBUG - 2025-11-25 08:03:29 --> Total execution time: 0.1110
+INFO - 2025-11-25 08:03:29 --> Config Class Initialized
+INFO - 2025-11-25 08:03:29 --> Hooks Class Initialized
+DEBUG - 2025-11-25 08:03:29 --> UTF-8 Support Enabled
+INFO - 2025-11-25 08:03:29 --> Utf8 Class Initialized
+INFO - 2025-11-25 08:03:29 --> URI Class Initialized
+INFO - 2025-11-25 08:03:29 --> Router Class Initialized
+INFO - 2025-11-25 08:03:29 --> Output Class Initialized
+INFO - 2025-11-25 08:03:29 --> Security Class Initialized
+DEBUG - 2025-11-25 08:03:29 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 08:03:29 --> Input Class Initialized
+INFO - 2025-11-25 08:03:29 --> Language Class Initialized
+INFO - 2025-11-25 08:03:29 --> Loader Class Initialized
+INFO - 2025-11-25 08:03:29 --> Helper loaded: url_helper
+INFO - 2025-11-25 08:03:29 --> Helper loaded: form_helper
+INFO - 2025-11-25 08:03:29 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 08:03:29 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 08:03:29 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 08:03:29 --> Form Validation Class Initialized
+INFO - 2025-11-25 08:03:29 --> Controller Class Initialized
+DEBUG - 2025-11-25 08:03:29 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 08:03:29 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 08:03:29 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 08:03:29 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 08:03:29 --> Model Class Initialized
+INFO - 2025-11-25 08:03:29 --> Model Class Initialized
+INFO - 2025-11-25 08:03:29 --> Model Class Initialized
+INFO - 2025-11-25 08:03:29 --> Model Class Initialized
+INFO - 2025-11-25 08:03:29 --> Model Class Initialized
+INFO - 2025-11-25 08:03:29 --> Model Class Initialized
+DEBUG - 2025-11-25 08:03:29 --> fetchOrdersData - Store ID: 7, Group ID: , Is Privileged: No
+DEBUG - 2025-11-25 08:03:29 --> Adding store restriction for store_id: 7
+DEBUG - 2025-11-25 08:03:29 --> Executing query: SELECT o.*,
+                    COALESCE(s.name, 'N/A') as store_name,
+                    COALESCE(u.username, 'Unknown') as clerk_name
+                    FROM orders o
+                    LEFT JOIN stores s ON o.store_id = s.id
+                    LEFT JOIN users u ON o.user_id = u.id WHERE o.store_id = '7' ORDER BY o.id DESC
+DEBUG - 2025-11-25 08:03:29 --> Query returned 1173 results
+DEBUG - 2025-11-25 08:03:29 --> Found 1173 orders for user
+INFO - 2025-11-25 08:03:29 --> Final output sent to browser
+DEBUG - 2025-11-25 08:03:29 --> Total execution time: 0.0581
+INFO - 2025-11-25 08:07:48 --> Config Class Initialized
+INFO - 2025-11-25 08:07:48 --> Hooks Class Initialized
+DEBUG - 2025-11-25 08:07:48 --> UTF-8 Support Enabled
+INFO - 2025-11-25 08:07:48 --> Utf8 Class Initialized
+INFO - 2025-11-25 08:07:48 --> URI Class Initialized
+INFO - 2025-11-25 08:07:48 --> Router Class Initialized
+INFO - 2025-11-25 08:07:48 --> Output Class Initialized
+INFO - 2025-11-25 08:07:48 --> Security Class Initialized
+DEBUG - 2025-11-25 08:07:48 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 08:07:48 --> Input Class Initialized
+INFO - 2025-11-25 08:07:48 --> Language Class Initialized
+INFO - 2025-11-25 08:07:48 --> Loader Class Initialized
+INFO - 2025-11-25 08:07:48 --> Helper loaded: url_helper
+INFO - 2025-11-25 08:07:48 --> Helper loaded: form_helper
+INFO - 2025-11-25 08:07:48 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 08:07:48 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 08:07:48 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 08:07:48 --> Form Validation Class Initialized
+INFO - 2025-11-25 08:07:48 --> Controller Class Initialized
+DEBUG - 2025-11-25 08:07:48 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 08:07:48 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 08:07:48 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 08:07:48 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 08:07:48 --> Model Class Initialized
+INFO - 2025-11-25 08:07:48 --> Model Class Initialized
+INFO - 2025-11-25 08:07:48 --> Model Class Initialized
+INFO - 2025-11-25 08:07:48 --> Model Class Initialized
+INFO - 2025-11-25 08:07:48 --> Model Class Initialized
+INFO - 2025-11-25 08:07:48 --> Model Class Initialized
+DEBUG - 2025-11-25 08:07:48 --> Controller_Reports initialized
+INFO - 2025-11-25 08:07:48 --> Model Class Initialized
+DEBUG - 2025-11-25 08:07:48 --> === SALES REPORT DEBUG START ===
+DEBUG - 2025-11-25 08:07:48 --> Filters received: {"date_from":"2025-10-26","date_to":"2025-11-25","warehouse":null,"status":null}
+DEBUG - 2025-11-25 08:07:48 --> date_from: 2025-10-26
+DEBUG - 2025-11-25 08:07:48 --> date_to: 2025-11-25
+DEBUG - 2025-11-25 08:07:48 --> warehouse: not set
+DEBUG - 2025-11-25 08:07:48 --> status: not set
+DEBUG - 2025-11-25 08:07:48 --> Applied date_from: 2025-10-26
+DEBUG - 2025-11-25 08:07:48 --> Applied date_to: 2025-11-25
+DEBUG - 2025-11-25 08:07:48 --> Generated SQL: SELECT `o`.`store_id`, `o`.`id` AS `order_id`, `o`.`date_time`, `o`.`amount_paid`, `o`.`paid_status`, `oi`.`qty` AS `quantity`, `oi`.`rate` AS `price`, `oi`.`amount` AS `amount`, `p`.`name` AS `product_name`, `p`.`id` AS `product_id`, COALESCE(o.customer_name, "Walk-in") AS customer_name
+FROM `orders` `o`
+INNER JOIN `orders_item` `oi` ON `o`.`id` = `oi`.`order_id`
+LEFT JOIN `products` `p` ON `oi`.`product_id` = `p`.`id`
+WHERE DATE(o.date_time) >= '2025-10-26'
+AND DATE(o.date_time) <= '2025-11-25'
+DEBUG - 2025-11-25 08:07:48 --> Query returned 3092 rows
+DEBUG - 2025-11-25 08:07:48 --> === SALES REPORT DEBUG END ===
+DEBUG - 2025-11-25 08:07:48 --> Controller_Reports::sales_report rows fetched: 3092
+INFO - 2025-11-25 08:07:48 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 08:07:48 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 08:07:48 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 08:07:48 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\reporting/sales_report.php
+INFO - 2025-11-25 08:07:48 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 08:07:48 --> Final output sent to browser
+DEBUG - 2025-11-25 08:07:48 --> Total execution time: 0.0917
+INFO - 2025-11-25 08:08:00 --> Config Class Initialized
+INFO - 2025-11-25 08:08:00 --> Hooks Class Initialized
+DEBUG - 2025-11-25 08:08:00 --> UTF-8 Support Enabled
+INFO - 2025-11-25 08:08:00 --> Utf8 Class Initialized
+INFO - 2025-11-25 08:08:00 --> URI Class Initialized
+INFO - 2025-11-25 08:08:00 --> Router Class Initialized
+INFO - 2025-11-25 08:08:00 --> Output Class Initialized
+INFO - 2025-11-25 08:08:00 --> Security Class Initialized
+DEBUG - 2025-11-25 08:08:00 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 08:08:00 --> Input Class Initialized
+INFO - 2025-11-25 08:08:00 --> Language Class Initialized
+INFO - 2025-11-25 08:08:00 --> Loader Class Initialized
+INFO - 2025-11-25 08:08:00 --> Helper loaded: url_helper
+INFO - 2025-11-25 08:08:00 --> Helper loaded: form_helper
+INFO - 2025-11-25 08:08:00 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 08:08:00 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 08:08:00 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 08:08:00 --> Form Validation Class Initialized
+INFO - 2025-11-25 08:08:00 --> Controller Class Initialized
+DEBUG - 2025-11-25 08:08:00 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 08:08:00 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 08:08:00 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 08:08:00 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 08:08:00 --> Model Class Initialized
+INFO - 2025-11-25 08:08:00 --> Model Class Initialized
+INFO - 2025-11-25 08:08:00 --> Model Class Initialized
+INFO - 2025-11-25 08:08:00 --> Model Class Initialized
+INFO - 2025-11-25 08:08:00 --> Model Class Initialized
+INFO - 2025-11-25 08:08:00 --> Model Class Initialized
+DEBUG - 2025-11-25 08:08:00 --> Controller_Reports initialized
+INFO - 2025-11-25 08:08:00 --> Model Class Initialized
+DEBUG - 2025-11-25 08:08:00 --> === SALES REPORT DEBUG START ===
+DEBUG - 2025-11-25 08:08:00 --> Filters received: {"date_from":"2025-11-24","date_to":"2025-11-24","warehouse":"","status":""}
+DEBUG - 2025-11-25 08:08:00 --> date_from: 2025-11-24
+DEBUG - 2025-11-25 08:08:00 --> date_to: 2025-11-24
+DEBUG - 2025-11-25 08:08:00 --> warehouse: 
+DEBUG - 2025-11-25 08:08:00 --> status: 
+DEBUG - 2025-11-25 08:08:00 --> Applied date_from: 2025-11-24
+DEBUG - 2025-11-25 08:08:00 --> Applied date_to: 2025-11-24
+DEBUG - 2025-11-25 08:08:00 --> Generated SQL: SELECT `o`.`store_id`, `o`.`id` AS `order_id`, `o`.`date_time`, `o`.`amount_paid`, `o`.`paid_status`, `oi`.`qty` AS `quantity`, `oi`.`rate` AS `price`, `oi`.`amount` AS `amount`, `p`.`name` AS `product_name`, `p`.`id` AS `product_id`, COALESCE(o.customer_name, "Walk-in") AS customer_name
+FROM `orders` `o`
+INNER JOIN `orders_item` `oi` ON `o`.`id` = `oi`.`order_id`
+LEFT JOIN `products` `p` ON `oi`.`product_id` = `p`.`id`
+WHERE DATE(o.date_time) >= '2025-11-24'
+AND DATE(o.date_time) <= '2025-11-24'
+DEBUG - 2025-11-25 08:08:00 --> Query returned 196 rows
+DEBUG - 2025-11-25 08:08:00 --> === SALES REPORT DEBUG END ===
+DEBUG - 2025-11-25 08:08:00 --> Controller_Reports::sales_report rows fetched: 196
+INFO - 2025-11-25 08:08:00 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 08:08:00 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 08:08:00 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 08:08:00 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\reporting/sales_report.php
+INFO - 2025-11-25 08:08:00 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 08:08:00 --> Final output sent to browser
+DEBUG - 2025-11-25 08:08:00 --> Total execution time: 0.0690
+INFO - 2025-11-25 08:15:19 --> Config Class Initialized
+INFO - 2025-11-25 08:15:19 --> Hooks Class Initialized
+DEBUG - 2025-11-25 08:15:19 --> UTF-8 Support Enabled
+INFO - 2025-11-25 08:15:19 --> Utf8 Class Initialized
+INFO - 2025-11-25 08:15:19 --> URI Class Initialized
+INFO - 2025-11-25 08:15:19 --> Router Class Initialized
+INFO - 2025-11-25 08:15:19 --> Output Class Initialized
+INFO - 2025-11-25 08:15:19 --> Security Class Initialized
+DEBUG - 2025-11-25 08:15:19 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 08:15:19 --> Input Class Initialized
+INFO - 2025-11-25 08:15:19 --> Language Class Initialized
+INFO - 2025-11-25 08:15:19 --> Loader Class Initialized
+INFO - 2025-11-25 08:15:19 --> Helper loaded: url_helper
+INFO - 2025-11-25 08:15:19 --> Helper loaded: form_helper
+INFO - 2025-11-25 08:15:19 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 08:15:19 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 08:15:19 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 08:15:19 --> Form Validation Class Initialized
+INFO - 2025-11-25 08:15:19 --> Controller Class Initialized
+DEBUG - 2025-11-25 08:15:19 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 08:15:19 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 08:15:19 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 08:15:19 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 08:15:19 --> Model Class Initialized
+INFO - 2025-11-25 08:15:19 --> Model Class Initialized
+INFO - 2025-11-25 08:15:19 --> Model Class Initialized
+INFO - 2025-11-25 08:15:19 --> Model Class Initialized
+INFO - 2025-11-25 08:15:19 --> Model Class Initialized
+INFO - 2025-11-25 08:15:19 --> Model Class Initialized
+DEBUG - 2025-11-25 08:15:19 --> Controller_Reports initialized
+INFO - 2025-11-25 08:15:19 --> Model Class Initialized
+INFO - 2025-11-25 08:15:19 --> Model Class Initialized
+DEBUG - 2025-11-25 08:15:19 --> === Stock Report Debug ===
+DEBUG - 2025-11-25 08:15:19 --> Filters being applied: {"category":null,"warehouse":null,"stock_status":null,"limit":10,"offset":0}
+DEBUG - 2025-11-25 08:15:19 --> Calling getStockReport with params: {"limit":10,"offset":0,"filters":{"category":null,"warehouse":null,"stock_status":null,"limit":10,"offset":0}}
+DEBUG - 2025-11-25 08:15:19 --> Report data retrieved: {"has_data":true,"record_count":10,"total_items":65,"aggregates":{"total_items":0,"total_value":0,"total_purchase_value":0,"low_stock_items":0,"out_of_stock_items":0}}
+DEBUG - 2025-11-25 08:15:19 --> Data being sent to view: {"stock_count":10,"aggregate_keys":["total_items","total_value","total_purchase_value","low_stock_items","out_of_stock_items"]}
+INFO - 2025-11-25 08:15:19 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 08:15:19 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 08:15:19 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 08:15:19 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\reporting/stock_report.php
+INFO - 2025-11-25 08:15:19 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 08:15:19 --> Final output sent to browser
+DEBUG - 2025-11-25 08:15:19 --> Total execution time: 0.3351
+INFO - 2025-11-25 08:15:19 --> Config Class Initialized
+INFO - 2025-11-25 08:15:19 --> Hooks Class Initialized
+DEBUG - 2025-11-25 08:15:19 --> UTF-8 Support Enabled
+INFO - 2025-11-25 08:15:19 --> Utf8 Class Initialized
+INFO - 2025-11-25 08:15:19 --> URI Class Initialized
+INFO - 2025-11-25 08:15:19 --> Router Class Initialized
+INFO - 2025-11-25 08:15:19 --> Output Class Initialized
+INFO - 2025-11-25 08:15:19 --> Security Class Initialized
+DEBUG - 2025-11-25 08:15:19 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 08:15:19 --> Input Class Initialized
+INFO - 2025-11-25 08:15:19 --> Language Class Initialized
+INFO - 2025-11-25 08:15:19 --> Loader Class Initialized
+INFO - 2025-11-25 08:15:19 --> Helper loaded: url_helper
+INFO - 2025-11-25 08:15:19 --> Helper loaded: form_helper
+INFO - 2025-11-25 08:15:19 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 08:15:19 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 08:15:19 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 08:15:19 --> Form Validation Class Initialized
+INFO - 2025-11-25 08:15:19 --> Controller Class Initialized
+DEBUG - 2025-11-25 08:15:19 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 08:15:19 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 08:15:19 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 08:15:19 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 08:15:19 --> Model Class Initialized
+INFO - 2025-11-25 08:15:19 --> Model Class Initialized
+INFO - 2025-11-25 08:15:19 --> Model Class Initialized
+INFO - 2025-11-25 08:15:19 --> Model Class Initialized
+INFO - 2025-11-25 08:15:19 --> Model Class Initialized
+INFO - 2025-11-25 08:15:19 --> Model Class Initialized
+DEBUG - 2025-11-25 08:15:19 --> Controller_Reports initialized
+DEBUG - 2025-11-25 08:15:19 --> Stock Report Parameters: {"draw":1,"start":0,"length":25,"filters":{"date_from":"","date_to":"","category":"","warehouse":"","stock_status":"","search":""}}
+DEBUG - 2025-11-25 08:15:19 --> Stock Report Response Structure: ["draw","recordsTotal","recordsFiltered","data","totalPurchaseValue","totalSalesValue","totalStockValue","lowStockCount"]
+INFO - 2025-11-25 08:15:19 --> Final output sent to browser
+DEBUG - 2025-11-25 08:15:19 --> Total execution time: 0.1286
+INFO - 2025-11-25 08:15:25 --> Config Class Initialized
+INFO - 2025-11-25 08:15:25 --> Hooks Class Initialized
+DEBUG - 2025-11-25 08:15:25 --> UTF-8 Support Enabled
+INFO - 2025-11-25 08:15:25 --> Utf8 Class Initialized
+INFO - 2025-11-25 08:15:25 --> URI Class Initialized
+INFO - 2025-11-25 08:15:25 --> Router Class Initialized
+INFO - 2025-11-25 08:15:25 --> Output Class Initialized
+INFO - 2025-11-25 08:15:25 --> Security Class Initialized
+DEBUG - 2025-11-25 08:15:25 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 08:15:25 --> Input Class Initialized
+INFO - 2025-11-25 08:15:25 --> Language Class Initialized
+INFO - 2025-11-25 08:15:25 --> Loader Class Initialized
+INFO - 2025-11-25 08:15:25 --> Helper loaded: url_helper
+INFO - 2025-11-25 08:15:25 --> Helper loaded: form_helper
+INFO - 2025-11-25 08:15:25 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 08:15:25 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 08:15:25 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 08:15:25 --> Form Validation Class Initialized
+INFO - 2025-11-25 08:15:25 --> Controller Class Initialized
+DEBUG - 2025-11-25 08:15:25 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 08:15:25 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 08:15:25 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 08:15:25 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 08:15:25 --> Model Class Initialized
+INFO - 2025-11-25 08:15:25 --> Model Class Initialized
+INFO - 2025-11-25 08:15:25 --> Model Class Initialized
+INFO - 2025-11-25 08:15:25 --> Model Class Initialized
+INFO - 2025-11-25 08:15:25 --> Model Class Initialized
+INFO - 2025-11-25 08:15:25 --> Model Class Initialized
+DEBUG - 2025-11-25 08:15:25 --> Controller_Reports initialized
+DEBUG - 2025-11-25 08:15:25 --> Stock Report Parameters: {"draw":2,"start":0,"length":100,"filters":{"date_from":"","date_to":"","category":"","warehouse":"","stock_status":"","search":""}}
+DEBUG - 2025-11-25 08:15:25 --> Stock Report Response Structure: ["draw","recordsTotal","recordsFiltered","data","totalPurchaseValue","totalSalesValue","totalStockValue","lowStockCount"]
+INFO - 2025-11-25 08:15:25 --> Final output sent to browser
+DEBUG - 2025-11-25 08:15:25 --> Total execution time: 0.1106
+INFO - 2025-11-25 08:15:35 --> Config Class Initialized
+INFO - 2025-11-25 08:15:35 --> Hooks Class Initialized
+DEBUG - 2025-11-25 08:15:35 --> UTF-8 Support Enabled
+INFO - 2025-11-25 08:15:35 --> Utf8 Class Initialized
+INFO - 2025-11-25 08:15:35 --> URI Class Initialized
+INFO - 2025-11-25 08:15:35 --> Router Class Initialized
+INFO - 2025-11-25 08:15:35 --> Output Class Initialized
+INFO - 2025-11-25 08:15:35 --> Security Class Initialized
+DEBUG - 2025-11-25 08:15:35 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 08:15:35 --> Input Class Initialized
+INFO - 2025-11-25 08:15:35 --> Language Class Initialized
+INFO - 2025-11-25 08:15:35 --> Loader Class Initialized
+INFO - 2025-11-25 08:15:35 --> Helper loaded: url_helper
+INFO - 2025-11-25 08:15:35 --> Helper loaded: form_helper
+INFO - 2025-11-25 08:15:35 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 08:15:35 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 08:15:35 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 08:15:35 --> Form Validation Class Initialized
+INFO - 2025-11-25 08:15:35 --> Controller Class Initialized
+DEBUG - 2025-11-25 08:15:35 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 08:15:35 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 08:15:35 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 08:15:35 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 08:15:35 --> Model Class Initialized
+INFO - 2025-11-25 08:15:35 --> Model Class Initialized
+INFO - 2025-11-25 08:15:35 --> Model Class Initialized
+ERROR - 2025-11-25 08:15:35 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 08:15:35 --> Model Class Initialized
+INFO - 2025-11-25 08:15:35 --> Model Class Initialized
+INFO - 2025-11-25 08:15:35 --> Model Class Initialized
+INFO - 2025-11-25 08:15:35 --> Model Class Initialized
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 78 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 138 in store 7: Purchased=16, Sold=0, Available=16
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 79 in store 7: Purchased=989, Sold=23, Available=966
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 80 in store 7: Purchased=205, Sold=57, Available=148
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 81 in store 7: Purchased=2046, Sold=990, Available=1056
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 145 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 139 in store 7: Purchased=2, Sold=1, Available=1
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 82 in store 7: Purchased=3500, Sold=8596, Available=0
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 83 in store 7: Purchased=0, Sold=2875, Available=0
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 84 in store 7: Purchased=189, Sold=17, Available=172
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 85 in store 7: Purchased=137, Sold=3, Available=134
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 127 in store 7: Purchased=2000, Sold=379, Available=1621
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 86 in store 7: Purchased=384, Sold=362, Available=22
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 87 in store 7: Purchased=588, Sold=636, Available=0
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 88 in store 7: Purchased=837, Sold=600, Available=237
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 89 in store 7: Purchased=2164, Sold=720, Available=1444
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 90 in store 7: Purchased=470, Sold=375, Available=95
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 126 in store 7: Purchased=25, Sold=0, Available=25
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 91 in store 7: Purchased=26, Sold=0, Available=26
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 92 in store 7: Purchased=25, Sold=29, Available=0
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 93 in store 7: Purchased=752, Sold=854, Available=0
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 94 in store 7: Purchased=764, Sold=685, Available=79
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 95 in store 7: Purchased=2263, Sold=460, Available=1803
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 96 in store 7: Purchased=18925, Sold=3394, Available=15531
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 134 in store 7: Purchased=604, Sold=69, Available=535
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 130 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 133 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 131 in store 7: Purchased=19, Sold=0, Available=19
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 97 in store 7: Purchased=6001, Sold=2358, Available=3643
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 98 in store 7: Purchased=442, Sold=43, Available=399
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 146 in store 7: Purchased=200, Sold=0, Available=200
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 99 in store 7: Purchased=2, Sold=0, Available=2
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 100 in store 7: Purchased=34587, Sold=30172, Available=4415
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 137 in store 7: Purchased=189, Sold=4, Available=185
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 101 in store 7: Purchased=107, Sold=23, Available=84
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 102 in store 7: Purchased=11299, Sold=8446, Available=2853
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 103 in store 7: Purchased=29811, Sold=23408, Available=6403
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 104 in store 7: Purchased=7500, Sold=806, Available=6694
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 142 in store 7: Purchased=36, Sold=0, Available=36
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 140 in store 7: Purchased=10, Sold=1, Available=9
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 105 in store 7: Purchased=358, Sold=203, Available=155
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 106 in store 7: Purchased=738, Sold=645, Available=93
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 125 in store 7: Purchased=253, Sold=0, Available=253
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 108 in store 7: Purchased=2503, Sold=2196, Available=307
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 109 in store 7: Purchased=2571, Sold=671, Available=1900
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 110 in store 7: Purchased=4761, Sold=1656, Available=3105
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 132 in store 7: Purchased=200, Sold=175, Available=25
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 111 in store 7: Purchased=406, Sold=85, Available=321
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 112 in store 7: Purchased=1900, Sold=1323, Available=577
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 113 in store 7: Purchased=2241, Sold=825, Available=1416
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 135 in store 7: Purchased=1990, Sold=654, Available=1336
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 114 in store 7: Purchased=922, Sold=45, Available=877
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 115 in store 7: Purchased=13662, Sold=16719, Available=0
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 116 in store 7: Purchased=237414, Sold=233541, Available=3873
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 107 in store 7: Purchased=1200, Sold=836, Available=364
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 117 in store 7: Purchased=9776, Sold=6053, Available=3723
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 118 in store 7: Purchased=24842, Sold=21792, Available=3050
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 144 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 129 in store 7: Purchased=1706, Sold=1560, Available=146
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 119 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 120 in store 7: Purchased=1555, Sold=565, Available=990
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 121 in store 7: Purchased=63, Sold=2, Available=61
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 122 in store 7: Purchased=688, Sold=207, Available=481
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 123 in store 7: Purchased=2020, Sold=1730, Available=290
+DEBUG - 2025-11-25 08:15:35 --> Stock calculation for product 124 in store 7: Purchased=3646, Sold=4469, Available=0
+DEBUG - 2025-11-25 08:15:35 --> Purchases view loaded - Store ID: 7, Is Admin: No, Products Count: 65
+INFO - 2025-11-25 08:15:35 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 08:15:35 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 08:15:35 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 08:15:35 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\products/purchases.php
+INFO - 2025-11-25 08:15:35 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 08:15:35 --> Final output sent to browser
+DEBUG - 2025-11-25 08:15:35 --> Total execution time: 0.2787
+INFO - 2025-11-25 08:15:36 --> Config Class Initialized
+INFO - 2025-11-25 08:15:36 --> Hooks Class Initialized
+DEBUG - 2025-11-25 08:15:36 --> UTF-8 Support Enabled
+INFO - 2025-11-25 08:15:36 --> Utf8 Class Initialized
+INFO - 2025-11-25 08:15:36 --> URI Class Initialized
+INFO - 2025-11-25 08:15:36 --> Router Class Initialized
+INFO - 2025-11-25 08:15:36 --> Output Class Initialized
+INFO - 2025-11-25 08:15:36 --> Security Class Initialized
+DEBUG - 2025-11-25 08:15:36 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 08:15:36 --> Input Class Initialized
+INFO - 2025-11-25 08:15:36 --> Language Class Initialized
+INFO - 2025-11-25 08:15:36 --> Loader Class Initialized
+INFO - 2025-11-25 08:15:36 --> Helper loaded: url_helper
+INFO - 2025-11-25 08:15:36 --> Helper loaded: form_helper
+INFO - 2025-11-25 08:15:36 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 08:15:36 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 08:15:36 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 08:15:36 --> Form Validation Class Initialized
+INFO - 2025-11-25 08:15:36 --> Controller Class Initialized
+DEBUG - 2025-11-25 08:15:36 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 08:15:36 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 08:15:36 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 08:15:36 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 08:15:36 --> Model Class Initialized
+INFO - 2025-11-25 08:15:36 --> Model Class Initialized
+INFO - 2025-11-25 08:15:36 --> Model Class Initialized
+ERROR - 2025-11-25 08:15:36 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 08:15:36 --> Model Class Initialized
+INFO - 2025-11-25 08:15:36 --> Model Class Initialized
+INFO - 2025-11-25 08:15:36 --> Model Class Initialized
+INFO - 2025-11-25 08:15:36 --> Model Class Initialized
+DEBUG - 2025-11-25 08:15:36 --> getPurchasesData SQL: SELECT `purchases`.*, `products`.`name` as `product_name`, `products`.`unit`, `stores`.`name` as `store_name`, `users`.`username` as `created_by_name`
+FROM `purchases`
+JOIN `products` ON `products`.`id` = `purchases`.`product_id`
+JOIN `stores` ON `stores`.`id` = `purchases`.`store_id`
+LEFT JOIN `users` ON `users`.`id` = `purchases`.`user_id`
+WHERE `purchases`.`store_id` = '7'
+ORDER BY `purchases`.`purchase_date` DESC
+INFO - 2025-11-25 08:15:36 --> Final output sent to browser
+DEBUG - 2025-11-25 08:15:36 --> Total execution time: 0.0733
+INFO - 2025-11-25 08:18:41 --> Config Class Initialized
+INFO - 2025-11-25 08:18:41 --> Hooks Class Initialized
+DEBUG - 2025-11-25 08:18:41 --> UTF-8 Support Enabled
+INFO - 2025-11-25 08:18:41 --> Utf8 Class Initialized
+INFO - 2025-11-25 08:18:41 --> URI Class Initialized
+INFO - 2025-11-25 08:18:41 --> Router Class Initialized
+INFO - 2025-11-25 08:18:41 --> Output Class Initialized
+INFO - 2025-11-25 08:18:41 --> Security Class Initialized
+DEBUG - 2025-11-25 08:18:41 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 08:18:41 --> Input Class Initialized
+INFO - 2025-11-25 08:18:41 --> Language Class Initialized
+INFO - 2025-11-25 08:18:41 --> Loader Class Initialized
+INFO - 2025-11-25 08:18:41 --> Helper loaded: url_helper
+INFO - 2025-11-25 08:18:41 --> Helper loaded: form_helper
+INFO - 2025-11-25 08:18:41 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 08:18:41 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 08:18:41 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 08:18:41 --> Form Validation Class Initialized
+INFO - 2025-11-25 08:18:41 --> Controller Class Initialized
+DEBUG - 2025-11-25 08:18:41 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 08:18:41 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 08:18:41 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 08:18:41 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 08:18:41 --> Model Class Initialized
+INFO - 2025-11-25 08:18:41 --> Model Class Initialized
+INFO - 2025-11-25 08:18:41 --> Model Class Initialized
+INFO - 2025-11-25 08:18:41 --> Model Class Initialized
+INFO - 2025-11-25 08:18:41 --> Model Class Initialized
+INFO - 2025-11-25 08:18:41 --> Model Class Initialized
+DEBUG - 2025-11-25 08:18:41 --> Controller_Reports initialized
+INFO - 2025-11-25 08:18:41 --> Model Class Initialized
+INFO - 2025-11-25 08:18:41 --> Model Class Initialized
+DEBUG - 2025-11-25 08:18:41 --> === Stock Report Debug ===
+DEBUG - 2025-11-25 08:18:41 --> Filters being applied: {"category":null,"warehouse":null,"stock_status":null,"limit":10,"offset":0}
+DEBUG - 2025-11-25 08:18:41 --> Calling getStockReport with params: {"limit":10,"offset":0,"filters":{"category":null,"warehouse":null,"stock_status":null,"limit":10,"offset":0}}
+DEBUG - 2025-11-25 08:18:41 --> Report data retrieved: {"has_data":true,"record_count":10,"total_items":65,"aggregates":{"total_items":0,"total_value":0,"total_purchase_value":0,"low_stock_items":0,"out_of_stock_items":0}}
+DEBUG - 2025-11-25 08:18:41 --> Data being sent to view: {"stock_count":10,"aggregate_keys":["total_items","total_value","total_purchase_value","low_stock_items","out_of_stock_items"]}
+INFO - 2025-11-25 08:18:41 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 08:18:41 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 08:18:41 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 08:18:41 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\reporting/stock_report.php
+INFO - 2025-11-25 08:18:41 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 08:18:41 --> Final output sent to browser
+DEBUG - 2025-11-25 08:18:41 --> Total execution time: 0.1240
+INFO - 2025-11-25 08:18:41 --> Config Class Initialized
+INFO - 2025-11-25 08:18:41 --> Hooks Class Initialized
+DEBUG - 2025-11-25 08:18:41 --> UTF-8 Support Enabled
+INFO - 2025-11-25 08:18:41 --> Utf8 Class Initialized
+INFO - 2025-11-25 08:18:41 --> URI Class Initialized
+INFO - 2025-11-25 08:18:41 --> Router Class Initialized
+INFO - 2025-11-25 08:18:41 --> Output Class Initialized
+INFO - 2025-11-25 08:18:41 --> Security Class Initialized
+DEBUG - 2025-11-25 08:18:41 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 08:18:41 --> Input Class Initialized
+INFO - 2025-11-25 08:18:41 --> Language Class Initialized
+INFO - 2025-11-25 08:18:41 --> Loader Class Initialized
+INFO - 2025-11-25 08:18:41 --> Helper loaded: url_helper
+INFO - 2025-11-25 08:18:41 --> Helper loaded: form_helper
+INFO - 2025-11-25 08:18:41 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 08:18:41 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 08:18:41 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 08:18:41 --> Form Validation Class Initialized
+INFO - 2025-11-25 08:18:41 --> Controller Class Initialized
+DEBUG - 2025-11-25 08:18:41 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 08:18:41 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 08:18:41 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 08:18:41 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 08:18:41 --> Model Class Initialized
+INFO - 2025-11-25 08:18:41 --> Model Class Initialized
+INFO - 2025-11-25 08:18:41 --> Model Class Initialized
+INFO - 2025-11-25 08:18:41 --> Model Class Initialized
+INFO - 2025-11-25 08:18:41 --> Model Class Initialized
+INFO - 2025-11-25 08:18:41 --> Model Class Initialized
+DEBUG - 2025-11-25 08:18:41 --> Controller_Reports initialized
+DEBUG - 2025-11-25 08:18:41 --> Stock Report Parameters: {"draw":1,"start":0,"length":25,"filters":{"date_from":"","date_to":"","category":"","warehouse":"","stock_status":"","search":""}}
+DEBUG - 2025-11-25 08:18:41 --> Stock Report Response Structure: ["draw","recordsTotal","recordsFiltered","data","totalPurchaseValue","totalSalesValue","totalStockValue","lowStockCount"]
+INFO - 2025-11-25 08:18:41 --> Final output sent to browser
+DEBUG - 2025-11-25 08:18:41 --> Total execution time: 0.1207
+INFO - 2025-11-25 08:18:49 --> Config Class Initialized
+INFO - 2025-11-25 08:18:49 --> Hooks Class Initialized
+DEBUG - 2025-11-25 08:18:49 --> UTF-8 Support Enabled
+INFO - 2025-11-25 08:18:49 --> Utf8 Class Initialized
+INFO - 2025-11-25 08:18:49 --> URI Class Initialized
+INFO - 2025-11-25 08:18:49 --> Router Class Initialized
+INFO - 2025-11-25 08:18:49 --> Output Class Initialized
+INFO - 2025-11-25 08:18:49 --> Security Class Initialized
+DEBUG - 2025-11-25 08:18:49 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 08:18:49 --> Input Class Initialized
+INFO - 2025-11-25 08:18:49 --> Language Class Initialized
+INFO - 2025-11-25 08:18:49 --> Loader Class Initialized
+INFO - 2025-11-25 08:18:49 --> Helper loaded: url_helper
+INFO - 2025-11-25 08:18:49 --> Helper loaded: form_helper
+INFO - 2025-11-25 08:18:49 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 08:18:49 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 08:18:49 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 08:18:49 --> Form Validation Class Initialized
+INFO - 2025-11-25 08:18:49 --> Controller Class Initialized
+DEBUG - 2025-11-25 08:18:49 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 08:18:49 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 08:18:49 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 08:18:49 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 08:18:49 --> Model Class Initialized
+INFO - 2025-11-25 08:18:49 --> Model Class Initialized
+INFO - 2025-11-25 08:18:49 --> Model Class Initialized
+INFO - 2025-11-25 08:18:49 --> Model Class Initialized
+INFO - 2025-11-25 08:18:49 --> Model Class Initialized
+INFO - 2025-11-25 08:18:49 --> Model Class Initialized
+DEBUG - 2025-11-25 08:18:49 --> Controller_Reports initialized
+DEBUG - 2025-11-25 08:18:49 --> Stock Report Parameters: {"draw":2,"start":0,"length":25,"filters":{"date_from":"2025-11-24","date_to":"2025-11-24","category":"","warehouse":"","stock_status":"","search":""}}
+DEBUG - 2025-11-25 08:18:49 --> Stock Report Response Structure: ["draw","recordsTotal","recordsFiltered","data","totalPurchaseValue","totalSalesValue","totalStockValue","lowStockCount"]
+INFO - 2025-11-25 08:18:49 --> Final output sent to browser
+DEBUG - 2025-11-25 08:18:49 --> Total execution time: 0.1124
+INFO - 2025-11-25 08:19:35 --> Config Class Initialized
+INFO - 2025-11-25 08:19:35 --> Hooks Class Initialized
+DEBUG - 2025-11-25 08:19:35 --> UTF-8 Support Enabled
+INFO - 2025-11-25 08:19:35 --> Utf8 Class Initialized
+INFO - 2025-11-25 08:19:35 --> URI Class Initialized
+INFO - 2025-11-25 08:19:35 --> Router Class Initialized
+INFO - 2025-11-25 08:19:35 --> Output Class Initialized
+INFO - 2025-11-25 08:19:35 --> Security Class Initialized
+DEBUG - 2025-11-25 08:19:35 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 08:19:35 --> Input Class Initialized
+INFO - 2025-11-25 08:19:35 --> Language Class Initialized
+INFO - 2025-11-25 08:19:35 --> Loader Class Initialized
+INFO - 2025-11-25 08:19:35 --> Helper loaded: url_helper
+INFO - 2025-11-25 08:19:35 --> Helper loaded: form_helper
+INFO - 2025-11-25 08:19:35 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 08:19:35 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 08:19:35 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 08:19:35 --> Form Validation Class Initialized
+INFO - 2025-11-25 08:19:35 --> Controller Class Initialized
+DEBUG - 2025-11-25 08:19:35 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 08:19:35 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 08:19:35 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 08:19:35 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 08:19:35 --> Model Class Initialized
+INFO - 2025-11-25 08:19:35 --> Model Class Initialized
+INFO - 2025-11-25 08:19:35 --> Model Class Initialized
+INFO - 2025-11-25 08:19:35 --> Model Class Initialized
+INFO - 2025-11-25 08:19:35 --> Model Class Initialized
+INFO - 2025-11-25 08:19:35 --> Model Class Initialized
+DEBUG - 2025-11-25 08:19:35 --> Controller_Reports initialized
+DEBUG - 2025-11-25 08:19:35 --> Stock Report Parameters: {"draw":3,"start":0,"length":25,"filters":{"date_from":"2025-11-24","date_to":"2025-11-24","category":"","warehouse":"7","stock_status":"","search":""}}
+DEBUG - 2025-11-25 08:19:35 --> Stock Report Response Structure: ["draw","recordsTotal","recordsFiltered","data","totalPurchaseValue","totalSalesValue","totalStockValue","lowStockCount"]
+INFO - 2025-11-25 08:19:35 --> Final output sent to browser
+DEBUG - 2025-11-25 08:19:35 --> Total execution time: 0.1068
+INFO - 2025-11-25 10:23:43 --> Config Class Initialized
+INFO - 2025-11-25 10:23:43 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:23:43 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:23:43 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:23:43 --> URI Class Initialized
+INFO - 2025-11-25 10:23:43 --> Router Class Initialized
+INFO - 2025-11-25 10:23:43 --> Output Class Initialized
+INFO - 2025-11-25 10:23:43 --> Security Class Initialized
+DEBUG - 2025-11-25 10:23:43 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:23:43 --> Input Class Initialized
+INFO - 2025-11-25 10:23:43 --> Language Class Initialized
+INFO - 2025-11-25 10:23:43 --> Loader Class Initialized
+INFO - 2025-11-25 10:23:43 --> Helper loaded: url_helper
+INFO - 2025-11-25 10:23:43 --> Helper loaded: form_helper
+INFO - 2025-11-25 10:23:43 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 10:23:43 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 10:23:43 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 10:23:43 --> Form Validation Class Initialized
+INFO - 2025-11-25 10:23:43 --> Controller Class Initialized
+DEBUG - 2025-11-25 10:23:43 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 10:23:43 --> MY_Controller - User not logged in
+INFO - 2025-11-25 10:23:43 --> Model Class Initialized
+INFO - 2025-11-25 10:23:43 --> Model Class Initialized
+ERROR - 2025-11-25 10:23:43 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 10:23:43 --> Config Class Initialized
+INFO - 2025-11-25 10:23:43 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:23:43 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:23:43 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:23:43 --> URI Class Initialized
+INFO - 2025-11-25 10:23:43 --> Router Class Initialized
+INFO - 2025-11-25 10:23:43 --> Output Class Initialized
+INFO - 2025-11-25 10:23:43 --> Security Class Initialized
+DEBUG - 2025-11-25 10:23:43 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:23:43 --> Input Class Initialized
+INFO - 2025-11-25 10:23:43 --> Language Class Initialized
+INFO - 2025-11-25 10:23:43 --> Loader Class Initialized
+INFO - 2025-11-25 10:23:43 --> Helper loaded: url_helper
+INFO - 2025-11-25 10:23:43 --> Helper loaded: form_helper
+INFO - 2025-11-25 10:23:43 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 10:23:43 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 10:23:43 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 10:23:43 --> Form Validation Class Initialized
+INFO - 2025-11-25 10:23:43 --> Controller Class Initialized
+DEBUG - 2025-11-25 10:23:43 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 10:23:43 --> MY_Controller - User not logged in
+INFO - 2025-11-25 10:23:43 --> Model Class Initialized
+DEBUG - 2025-11-25 10:23:43 --> Form validation errors: 
+INFO - 2025-11-25 10:23:43 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\login.php
+INFO - 2025-11-25 10:23:43 --> Final output sent to browser
+DEBUG - 2025-11-25 10:23:43 --> Total execution time: 0.0357
+INFO - 2025-11-25 10:23:44 --> Config Class Initialized
+INFO - 2025-11-25 10:23:44 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:23:44 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:23:44 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:23:44 --> URI Class Initialized
+INFO - 2025-11-25 10:23:44 --> Router Class Initialized
+INFO - 2025-11-25 10:23:44 --> Output Class Initialized
+INFO - 2025-11-25 10:23:44 --> Security Class Initialized
+DEBUG - 2025-11-25 10:23:44 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:23:44 --> Input Class Initialized
+INFO - 2025-11-25 10:23:44 --> Language Class Initialized
+INFO - 2025-11-25 10:23:44 --> Loader Class Initialized
+INFO - 2025-11-25 10:23:44 --> Helper loaded: url_helper
+INFO - 2025-11-25 10:23:44 --> Helper loaded: form_helper
+INFO - 2025-11-25 10:23:44 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 10:23:44 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 10:23:44 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 10:23:44 --> Form Validation Class Initialized
+INFO - 2025-11-25 10:23:44 --> Controller Class Initialized
+DEBUG - 2025-11-25 10:23:44 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 10:23:44 --> MY_Controller - User not logged in
+INFO - 2025-11-25 10:23:44 --> Model Class Initialized
+INFO - 2025-11-25 10:23:44 --> Language file loaded: language/english/form_validation_lang.php
+DEBUG - 2025-11-25 10:23:44 --> Login form submitted - Email: mhandoezekiel@gmail.com
+DEBUG - 2025-11-25 10:23:44 --> Email check for: mhandoezekiel@gmail.com - Result: found
+DEBUG - 2025-11-25 10:23:44 --> Login attempt for email: mhandoezekiel@gmail.com
+DEBUG - 2025-11-25 10:23:44 --> Login query: SELECT `u`.*, `g`.`permission`
+FROM `users` `u`
+JOIN `user_group` `ug` ON `u`.`id` = `ug`.`user_id`
+JOIN `groups` `g` ON `ug`.`group_id` = `g`.`id`
+WHERE `u`.`email` = 'mhandoezekiel@gmail.com'
+DEBUG - 2025-11-25 10:23:44 --> User found: {"id":"1","username":"admin","password":"$2y$10$7j9ACuOyt5ABFQ.u1JpG7ei7Fe\/6QID9EotwhMQlRjXQ.X26aLORK","email":"mhandoezekiel@gmail.com","firstname":"Ezekiel","lastname":"Mhando","phone":"0743991025","gender":"1","store_id":"7","group_id":"1","permission":"a:40:{i:0;s:10:\"createUser\";i:1;s:10:\"updateUser\";i:2;s:8:\"viewUser\";i:3;s:10:\"deleteUser\";i:4;s:11:\"createGroup\";i:5;s:11:\"updateGroup\";i:6;s:9:\"viewGroup\";i:7;s:11:\"deleteGroup\";i:8;s:11:\"createBrand\";i:9;s:11:\"updateBrand\";i:10;s:9:\"viewBrand\";i:11;s:11:\"deleteBrand\";i:12;s:14:\"createCategory\";i:13;s:14:\"updateCategory\";i:14;s:12:\"viewCategory\";i:15;s:14:\"deleteCategory\";i:16;s:11:\"createStore\";i:17;s:11:\"updateStore\";i:18;s:9:\"viewStore\";i:19;s:11:\"deleteStore\";i:20;s:15:\"createAttribute\";i:21;s:15:\"updateAttribute\";i:22;s:13:\"viewAttribute\";i:23;s:15:\"deleteAttribute\";i:24;s:13:\"createProduct\";i:25;s:13:\"updateProduct\";i:26;s:11:\"viewProduct\";i:27;s:13:\"deleteProduct\";i:28;s:11:\"createOrder\";i:29;s:11:\"updateOrder\";i:30;s:9:\"viewOrder\";i:31;s:11:\"deleteOrder\";i:32;s:13:\"updateCompany\";i:33;s:14:\"viewAccounting\";i:34;s:16:\"updateAccounting\";i:35;s:16:\"reportAccounting\";i:36;s:16:\"deleteAccounting\";i:37;s:11:\"viewReports\";i:38;s:11:\"viewProfile\";i:39;s:13:\"updateSetting\";}"}
+DEBUG - 2025-11-25 10:23:45 --> Password verified successfully for user: admin
+DEBUG - 2025-11-25 10:23:45 --> Processed permissions: []
+DEBUG - 2025-11-25 10:23:45 --> Login attempt result: success
+DEBUG - 2025-11-25 10:23:45 --> Role query: SELECT `g`.`group_name` AS `role`, `g`.`permission`
+FROM `users` `u`
+JOIN `user_group` `ug` ON `u`.`id` = `ug`.`user_id`
+JOIN `groups` `g` ON `ug`.`group_id` = `g`.`id`
+WHERE `u`.`id` = '1'
+DEBUG - 2025-11-25 10:23:45 --> Setting session data: Array
+(
+    [id] => 1
+    [username] => admin
+    [email] => mhandoezekiel@gmail.com
+    [role] => Administrator
+    [store_id] => 7
+    [store_name] => NMC-HQ
+    [user_permission] => Array
+        (
+        )
+
+    [logged_in] => 1
+)
+
+DEBUG - 2025-11-25 10:23:45 --> Session set successfully, redirecting to dashboard
+INFO - 2025-11-25 10:23:45 --> Config Class Initialized
+INFO - 2025-11-25 10:23:45 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:23:45 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:23:45 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:23:45 --> URI Class Initialized
+INFO - 2025-11-25 10:23:45 --> Router Class Initialized
+INFO - 2025-11-25 10:23:45 --> Output Class Initialized
+INFO - 2025-11-25 10:23:45 --> Security Class Initialized
+DEBUG - 2025-11-25 10:23:45 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:23:45 --> Input Class Initialized
+INFO - 2025-11-25 10:23:45 --> Language Class Initialized
+INFO - 2025-11-25 10:23:45 --> Loader Class Initialized
+INFO - 2025-11-25 10:23:45 --> Helper loaded: url_helper
+INFO - 2025-11-25 10:23:45 --> Helper loaded: form_helper
+INFO - 2025-11-25 10:23:45 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 10:23:45 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 10:23:45 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 10:23:45 --> Form Validation Class Initialized
+INFO - 2025-11-25 10:23:45 --> Controller Class Initialized
+DEBUG - 2025-11-25 10:23:45 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 10:23:45 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 10:23:45 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 10:23:45 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 10:23:45 --> Model Class Initialized
+INFO - 2025-11-25 10:23:45 --> Model Class Initialized
+INFO - 2025-11-25 10:23:45 --> Model Class Initialized
+INFO - 2025-11-25 10:23:45 --> Model Class Initialized
+INFO - 2025-11-25 10:23:45 --> Model Class Initialized
+INFO - 2025-11-25 10:23:45 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 10:23:45 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 10:23:45 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+ERROR - 2025-11-25 10:23:45 --> Dashboard Chart Data Error: Unknown column 'quantity' in 'where clause'
+ERROR - 2025-11-25 10:23:45 --> Severity: Warning --> Undefined variable $paid_data C:\xampp\htdocs\Inventory_CI\application\views\dashboard.php 442
+ERROR - 2025-11-25 10:23:45 --> Severity: Warning --> Undefined variable $partial_data C:\xampp\htdocs\Inventory_CI\application\views\dashboard.php 448
+INFO - 2025-11-25 10:23:45 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\dashboard.php
+INFO - 2025-11-25 10:23:45 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 10:23:45 --> Final output sent to browser
+DEBUG - 2025-11-25 10:23:45 --> Total execution time: 0.0702
+INFO - 2025-11-25 10:23:54 --> Config Class Initialized
+INFO - 2025-11-25 10:23:54 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:23:54 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:23:54 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:23:54 --> URI Class Initialized
+INFO - 2025-11-25 10:23:54 --> Router Class Initialized
+INFO - 2025-11-25 10:23:54 --> Output Class Initialized
+INFO - 2025-11-25 10:23:54 --> Security Class Initialized
+DEBUG - 2025-11-25 10:23:54 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:23:54 --> Input Class Initialized
+INFO - 2025-11-25 10:23:54 --> Language Class Initialized
+INFO - 2025-11-25 10:23:54 --> Loader Class Initialized
+INFO - 2025-11-25 10:23:54 --> Helper loaded: url_helper
+INFO - 2025-11-25 10:23:54 --> Helper loaded: form_helper
+INFO - 2025-11-25 10:23:54 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 10:23:54 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 10:23:54 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 10:23:54 --> Form Validation Class Initialized
+INFO - 2025-11-25 10:23:54 --> Controller Class Initialized
+DEBUG - 2025-11-25 10:23:54 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 10:23:54 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 10:23:54 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 10:23:54 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 10:23:54 --> Model Class Initialized
+INFO - 2025-11-25 10:23:54 --> Model Class Initialized
+INFO - 2025-11-25 10:23:54 --> Model Class Initialized
+ERROR - 2025-11-25 10:23:54 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 10:23:54 --> Model Class Initialized
+INFO - 2025-11-25 10:23:54 --> Model Class Initialized
+INFO - 2025-11-25 10:23:54 --> Model Class Initialized
+INFO - 2025-11-25 10:23:54 --> Model Class Initialized
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 78 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 138 in store 7: Purchased=16, Sold=0, Available=16
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 79 in store 7: Purchased=989, Sold=23, Available=966
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 80 in store 7: Purchased=205, Sold=57, Available=148
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 81 in store 7: Purchased=2046, Sold=990, Available=1056
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 145 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 139 in store 7: Purchased=2, Sold=1, Available=1
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 82 in store 7: Purchased=3500, Sold=8596, Available=0
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 83 in store 7: Purchased=0, Sold=2875, Available=0
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 84 in store 7: Purchased=189, Sold=17, Available=172
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 85 in store 7: Purchased=137, Sold=3, Available=134
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 127 in store 7: Purchased=2000, Sold=379, Available=1621
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 86 in store 7: Purchased=384, Sold=362, Available=22
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 87 in store 7: Purchased=588, Sold=636, Available=0
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 88 in store 7: Purchased=837, Sold=600, Available=237
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 89 in store 7: Purchased=2164, Sold=720, Available=1444
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 90 in store 7: Purchased=470, Sold=375, Available=95
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 126 in store 7: Purchased=25, Sold=0, Available=25
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 91 in store 7: Purchased=26, Sold=0, Available=26
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 92 in store 7: Purchased=25, Sold=29, Available=0
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 93 in store 7: Purchased=752, Sold=854, Available=0
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 94 in store 7: Purchased=764, Sold=685, Available=79
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 95 in store 7: Purchased=2263, Sold=460, Available=1803
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 96 in store 7: Purchased=18925, Sold=3394, Available=15531
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 134 in store 7: Purchased=604, Sold=69, Available=535
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 130 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 133 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 131 in store 7: Purchased=19, Sold=0, Available=19
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 97 in store 7: Purchased=6001, Sold=2358, Available=3643
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 98 in store 7: Purchased=442, Sold=43, Available=399
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 146 in store 7: Purchased=200, Sold=0, Available=200
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 99 in store 7: Purchased=2, Sold=0, Available=2
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 100 in store 7: Purchased=34587, Sold=30172, Available=4415
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 137 in store 7: Purchased=189, Sold=4, Available=185
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 101 in store 7: Purchased=107, Sold=23, Available=84
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 102 in store 7: Purchased=11299, Sold=8446, Available=2853
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 103 in store 7: Purchased=29811, Sold=23408, Available=6403
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 104 in store 7: Purchased=7500, Sold=806, Available=6694
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 142 in store 7: Purchased=36, Sold=0, Available=36
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 140 in store 7: Purchased=10, Sold=1, Available=9
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 105 in store 7: Purchased=358, Sold=203, Available=155
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 106 in store 7: Purchased=738, Sold=645, Available=93
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 125 in store 7: Purchased=253, Sold=0, Available=253
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 108 in store 7: Purchased=2503, Sold=2196, Available=307
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 109 in store 7: Purchased=2571, Sold=671, Available=1900
+DEBUG - 2025-11-25 10:23:54 --> Stock calculation for product 110 in store 7: Purchased=4761, Sold=1656, Available=3105
+DEBUG - 2025-11-25 10:23:55 --> Stock calculation for product 132 in store 7: Purchased=200, Sold=175, Available=25
+DEBUG - 2025-11-25 10:23:55 --> Stock calculation for product 111 in store 7: Purchased=406, Sold=85, Available=321
+DEBUG - 2025-11-25 10:23:55 --> Stock calculation for product 112 in store 7: Purchased=1900, Sold=1323, Available=577
+DEBUG - 2025-11-25 10:23:55 --> Stock calculation for product 113 in store 7: Purchased=2241, Sold=825, Available=1416
+DEBUG - 2025-11-25 10:23:55 --> Stock calculation for product 135 in store 7: Purchased=1990, Sold=654, Available=1336
+DEBUG - 2025-11-25 10:23:55 --> Stock calculation for product 114 in store 7: Purchased=922, Sold=45, Available=877
+DEBUG - 2025-11-25 10:23:55 --> Stock calculation for product 115 in store 7: Purchased=13662, Sold=16719, Available=0
+DEBUG - 2025-11-25 10:23:55 --> Stock calculation for product 116 in store 7: Purchased=237414, Sold=233541, Available=3873
+DEBUG - 2025-11-25 10:23:55 --> Stock calculation for product 107 in store 7: Purchased=1200, Sold=836, Available=364
+DEBUG - 2025-11-25 10:23:55 --> Stock calculation for product 117 in store 7: Purchased=9776, Sold=6053, Available=3723
+DEBUG - 2025-11-25 10:23:55 --> Stock calculation for product 118 in store 7: Purchased=24842, Sold=21792, Available=3050
+DEBUG - 2025-11-25 10:23:55 --> Stock calculation for product 144 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 10:23:55 --> Stock calculation for product 129 in store 7: Purchased=1706, Sold=1560, Available=146
+DEBUG - 2025-11-25 10:23:55 --> Stock calculation for product 119 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 10:23:55 --> Stock calculation for product 120 in store 7: Purchased=1555, Sold=565, Available=990
+DEBUG - 2025-11-25 10:23:55 --> Stock calculation for product 121 in store 7: Purchased=63, Sold=2, Available=61
+DEBUG - 2025-11-25 10:23:55 --> Stock calculation for product 122 in store 7: Purchased=688, Sold=207, Available=481
+DEBUG - 2025-11-25 10:23:55 --> Stock calculation for product 123 in store 7: Purchased=2020, Sold=1730, Available=290
+DEBUG - 2025-11-25 10:23:55 --> Stock calculation for product 124 in store 7: Purchased=3646, Sold=4469, Available=0
+DEBUG - 2025-11-25 10:23:55 --> Purchases view loaded - Store ID: 7, Is Admin: No, Products Count: 65
+INFO - 2025-11-25 10:23:55 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 10:23:55 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 10:23:55 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 10:23:55 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\products/purchases.php
+INFO - 2025-11-25 10:23:55 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 10:23:55 --> Final output sent to browser
+DEBUG - 2025-11-25 10:23:55 --> Total execution time: 0.2938
+INFO - 2025-11-25 10:23:55 --> Config Class Initialized
+INFO - 2025-11-25 10:23:55 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:23:55 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:23:55 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:23:55 --> URI Class Initialized
+INFO - 2025-11-25 10:23:55 --> Router Class Initialized
+INFO - 2025-11-25 10:23:55 --> Output Class Initialized
+INFO - 2025-11-25 10:23:55 --> Security Class Initialized
+DEBUG - 2025-11-25 10:23:55 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:23:55 --> Input Class Initialized
+INFO - 2025-11-25 10:23:55 --> Language Class Initialized
+INFO - 2025-11-25 10:23:55 --> Loader Class Initialized
+INFO - 2025-11-25 10:23:55 --> Helper loaded: url_helper
+INFO - 2025-11-25 10:23:55 --> Helper loaded: form_helper
+INFO - 2025-11-25 10:23:55 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 10:23:55 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 10:23:55 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 10:23:55 --> Form Validation Class Initialized
+INFO - 2025-11-25 10:23:55 --> Controller Class Initialized
+DEBUG - 2025-11-25 10:23:55 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 10:23:55 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 10:23:55 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 10:23:55 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 10:23:55 --> Model Class Initialized
+INFO - 2025-11-25 10:23:55 --> Model Class Initialized
+INFO - 2025-11-25 10:23:55 --> Model Class Initialized
+ERROR - 2025-11-25 10:23:55 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 10:23:55 --> Model Class Initialized
+INFO - 2025-11-25 10:23:55 --> Model Class Initialized
+INFO - 2025-11-25 10:23:55 --> Model Class Initialized
+INFO - 2025-11-25 10:23:55 --> Model Class Initialized
+DEBUG - 2025-11-25 10:23:55 --> getPurchasesData SQL: SELECT `purchases`.*, `products`.`name` as `product_name`, `products`.`unit`, `stores`.`name` as `store_name`, `users`.`username` as `created_by_name`
+FROM `purchases`
+JOIN `products` ON `products`.`id` = `purchases`.`product_id`
+JOIN `stores` ON `stores`.`id` = `purchases`.`store_id`
+LEFT JOIN `users` ON `users`.`id` = `purchases`.`user_id`
+WHERE `purchases`.`store_id` = '7'
+ORDER BY `purchases`.`purchase_date` DESC
+INFO - 2025-11-25 10:23:55 --> Final output sent to browser
+DEBUG - 2025-11-25 10:23:55 --> Total execution time: 0.0707
+INFO - 2025-11-25 10:24:09 --> Config Class Initialized
+INFO - 2025-11-25 10:24:09 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:24:09 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:24:09 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:24:09 --> URI Class Initialized
+INFO - 2025-11-25 10:24:09 --> Router Class Initialized
+INFO - 2025-11-25 10:24:09 --> Output Class Initialized
+INFO - 2025-11-25 10:24:09 --> Security Class Initialized
+DEBUG - 2025-11-25 10:24:09 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:24:09 --> Input Class Initialized
+INFO - 2025-11-25 10:24:09 --> Language Class Initialized
+INFO - 2025-11-25 10:24:09 --> Loader Class Initialized
+INFO - 2025-11-25 10:24:09 --> Helper loaded: url_helper
+INFO - 2025-11-25 10:24:09 --> Helper loaded: form_helper
+INFO - 2025-11-25 10:24:09 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 10:24:09 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 10:24:09 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 10:24:09 --> Form Validation Class Initialized
+INFO - 2025-11-25 10:24:09 --> Controller Class Initialized
+DEBUG - 2025-11-25 10:24:09 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 10:24:09 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 10:24:09 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 10:24:09 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 10:24:09 --> Model Class Initialized
+INFO - 2025-11-25 10:24:09 --> Model Class Initialized
+INFO - 2025-11-25 10:24:09 --> Model Class Initialized
+INFO - 2025-11-25 10:24:09 --> Model Class Initialized
+INFO - 2025-11-25 10:24:09 --> Model Class Initialized
+INFO - 2025-11-25 10:24:09 --> Model Class Initialized
+DEBUG - 2025-11-25 10:24:09 --> Index loaded - Store: 7, Is Privileged: No
+ERROR - 2025-11-25 10:24:09 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 10:24:09 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 10:24:09 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 10:24:09 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 10:24:09 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/index.php
+INFO - 2025-11-25 10:24:09 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 10:24:09 --> Final output sent to browser
+DEBUG - 2025-11-25 10:24:09 --> Total execution time: 0.1117
+INFO - 2025-11-25 10:24:09 --> Config Class Initialized
+INFO - 2025-11-25 10:24:09 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:24:09 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:24:09 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:24:09 --> URI Class Initialized
+INFO - 2025-11-25 10:24:09 --> Router Class Initialized
+INFO - 2025-11-25 10:24:09 --> Output Class Initialized
+INFO - 2025-11-25 10:24:09 --> Security Class Initialized
+DEBUG - 2025-11-25 10:24:09 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:24:09 --> Input Class Initialized
+INFO - 2025-11-25 10:24:09 --> Language Class Initialized
+INFO - 2025-11-25 10:24:09 --> Loader Class Initialized
+INFO - 2025-11-25 10:24:09 --> Helper loaded: url_helper
+INFO - 2025-11-25 10:24:09 --> Helper loaded: form_helper
+INFO - 2025-11-25 10:24:09 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 10:24:09 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 10:24:09 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 10:24:09 --> Form Validation Class Initialized
+INFO - 2025-11-25 10:24:09 --> Controller Class Initialized
+DEBUG - 2025-11-25 10:24:09 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 10:24:09 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 10:24:09 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 10:24:09 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 10:24:09 --> Model Class Initialized
+INFO - 2025-11-25 10:24:09 --> Model Class Initialized
+INFO - 2025-11-25 10:24:09 --> Model Class Initialized
+INFO - 2025-11-25 10:24:09 --> Model Class Initialized
+INFO - 2025-11-25 10:24:09 --> Model Class Initialized
+INFO - 2025-11-25 10:24:09 --> Model Class Initialized
+DEBUG - 2025-11-25 10:24:09 --> fetchOrdersData - Store ID: 7, Group ID: , Is Privileged: No
+DEBUG - 2025-11-25 10:24:09 --> Adding store restriction for store_id: 7
+DEBUG - 2025-11-25 10:24:09 --> Executing query: SELECT o.*,
+                    COALESCE(s.name, 'N/A') as store_name,
+                    COALESCE(u.username, 'Unknown') as clerk_name
+                    FROM orders o
+                    LEFT JOIN stores s ON o.store_id = s.id
+                    LEFT JOIN users u ON o.user_id = u.id WHERE o.store_id = '7' ORDER BY o.id DESC
+DEBUG - 2025-11-25 10:24:09 --> Query returned 1173 results
+DEBUG - 2025-11-25 10:24:09 --> Found 1173 orders for user
+INFO - 2025-11-25 10:24:09 --> Final output sent to browser
+DEBUG - 2025-11-25 10:24:09 --> Total execution time: 0.0804
+INFO - 2025-11-25 10:25:07 --> Config Class Initialized
+INFO - 2025-11-25 10:25:07 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:25:07 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:25:07 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:25:07 --> URI Class Initialized
+INFO - 2025-11-25 10:25:07 --> Router Class Initialized
+INFO - 2025-11-25 10:25:07 --> Output Class Initialized
+INFO - 2025-11-25 10:25:07 --> Security Class Initialized
+DEBUG - 2025-11-25 10:25:07 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:25:07 --> Input Class Initialized
+INFO - 2025-11-25 10:25:07 --> Language Class Initialized
+INFO - 2025-11-25 10:25:07 --> Loader Class Initialized
+INFO - 2025-11-25 10:25:07 --> Helper loaded: url_helper
+INFO - 2025-11-25 10:25:07 --> Helper loaded: form_helper
+INFO - 2025-11-25 10:25:07 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 10:25:07 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 10:25:07 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 10:25:07 --> Form Validation Class Initialized
+INFO - 2025-11-25 10:25:07 --> Controller Class Initialized
+DEBUG - 2025-11-25 10:25:07 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 10:25:07 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 10:25:07 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 10:25:07 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 10:25:07 --> Model Class Initialized
+INFO - 2025-11-25 10:25:07 --> Model Class Initialized
+INFO - 2025-11-25 10:25:07 --> Model Class Initialized
+INFO - 2025-11-25 10:25:07 --> Model Class Initialized
+INFO - 2025-11-25 10:25:07 --> Model Class Initialized
+INFO - 2025-11-25 10:25:07 --> Model Class Initialized
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 78, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 138, purchased: 16, ordered: 0, stock: 16
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 79, purchased: 989, ordered: 23, stock: 966
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 80, purchased: 205, ordered: 57, stock: 148
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 81, purchased: 2046, ordered: 990, stock: 1056
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 139, purchased: 2, ordered: 1, stock: 1
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 82, purchased: 3500, ordered: 8596, stock: 0
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 83, purchased: 0, ordered: 2875, stock: 0
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 84, purchased: 189, ordered: 17, stock: 172
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 85, purchased: 137, ordered: 3, stock: 134
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 127, purchased: 2000, ordered: 379, stock: 1621
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 86, purchased: 384, ordered: 362, stock: 22
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 87, purchased: 588, ordered: 636, stock: 0
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 88, purchased: 837, ordered: 600, stock: 237
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 89, purchased: 2164, ordered: 720, stock: 1444
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 90, purchased: 470, ordered: 375, stock: 95
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 126, purchased: 25, ordered: 0, stock: 25
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 91, purchased: 26, ordered: 0, stock: 26
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 92, purchased: 25, ordered: 29, stock: 0
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 93, purchased: 752, ordered: 854, stock: 0
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 94, purchased: 764, ordered: 685, stock: 79
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 95, purchased: 2263, ordered: 460, stock: 1803
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 96, purchased: 18925, ordered: 3394, stock: 15531
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 134, purchased: 604, ordered: 69, stock: 535
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 130, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 133, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 131, purchased: 19, ordered: 0, stock: 19
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 97, purchased: 6001, ordered: 2358, stock: 3643
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 98, purchased: 442, ordered: 43, stock: 399
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 146, purchased: 200, ordered: 0, stock: 200
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 99, purchased: 2, ordered: 0, stock: 2
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 100, purchased: 34587, ordered: 30172, stock: 4415
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 137, purchased: 189, ordered: 4, stock: 185
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 101, purchased: 107, ordered: 23, stock: 84
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 102, purchased: 11299, ordered: 8446, stock: 2853
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 103, purchased: 29811, ordered: 23408, stock: 6403
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 104, purchased: 7500, ordered: 806, stock: 6694
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 142, purchased: 36, ordered: 0, stock: 36
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 140, purchased: 10, ordered: 1, stock: 9
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 105, purchased: 358, ordered: 203, stock: 155
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 106, purchased: 738, ordered: 645, stock: 93
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 125, purchased: 253, ordered: 0, stock: 253
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 108, purchased: 2503, ordered: 2196, stock: 307
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 109, purchased: 2571, ordered: 671, stock: 1900
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 110, purchased: 4761, ordered: 1656, stock: 3105
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 132, purchased: 200, ordered: 175, stock: 25
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 111, purchased: 406, ordered: 85, stock: 321
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 112, purchased: 1900, ordered: 1323, stock: 577
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 113, purchased: 2241, ordered: 825, stock: 1416
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 135, purchased: 1990, ordered: 654, stock: 1336
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 114, purchased: 922, ordered: 45, stock: 877
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 115, purchased: 13662, ordered: 16719, stock: 0
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 116, purchased: 237414, ordered: 233541, stock: 3873
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 107, purchased: 1200, ordered: 836, stock: 364
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 117, purchased: 9776, ordered: 6053, stock: 3723
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 118, purchased: 24842, ordered: 21792, stock: 3050
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 129, purchased: 1706, ordered: 1560, stock: 146
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 119, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 120, purchased: 1555, ordered: 565, stock: 990
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 121, purchased: 63, ordered: 2, stock: 61
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 122, purchased: 688, ordered: 207, stock: 481
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 123, purchased: 2020, ordered: 1730, stock: 290
+DEBUG - 2025-11-25 10:25:07 --> getProductsWithStock - ID: 124, purchased: 3646, ordered: 4469, stock: 0
+DEBUG - 2025-11-25 10:25:07 --> Prepared products for create view: [{"id":78,"name":"BROILER BOOSTER","price":3000,"current_stock":0,"unit":""},{"id":138,"name":"BROILER EXTRA","price":3000,"current_stock":16,"unit":""},{"id":79,"name":"BROILER FINISHER MASH","price":1000,"current_stock":966,"unit":""},{"id":80,"name":"BROILER PREMIX","price":3000,"current_stock":148,"unit":""},{"id":81,"name":"BROILER STARTER MASH","price":1000,"current_stock":1056,"unit":""},{"id":139,"name":"CHIKWIDI","price":15000,"current_stock":1,"unit":""},{"id":82,"name":"CHOKAA","price":500,"current_stock":0,"unit":""},{"id":83,"name":"CHUMVI","price":500,"current_stock":0,"unit":""},{"id":84,"name":"D.C.P KOPO (1\/2)","price":2000,"current_stock":172,"unit":""},{"id":85,"name":"D.C.P KOPO 1KG","price":3000,"current_stock":134,"unit":""},{"id":127,"name":"D.C.P KUPIMA","price":1500,"current_stock":1621,"unit":""},{"id":86,"name":"DAGAA KAUZU","price":2800,"current_stock":22,"unit":""},{"id":87,"name":"DAGAA SAGWA","price":2000,"current_stock":0,"unit":""},{"id":88,"name":"DAMU","price":1500,"current_stock":237,"unit":""},{"id":89,"name":"GROWER MASH","price":1000,"current_stock":1444,"unit":""},{"id":90,"name":"HAMIRA","price":1500,"current_stock":95,"unit":""},{"id":126,"name":"HIPHOS PLUS","price":5000,"current_stock":25,"unit":""},{"id":91,"name":"JOSERA MADUME","price":11000,"current_stock":26,"unit":""},{"id":92,"name":"JOSERA MAZIWA","price":11000,"current_stock":0,"unit":""},{"id":93,"name":"KARANGA","price":700,"current_stock":0,"unit":""},{"id":94,"name":"KAUDIS NGURUWE","price":4000,"current_stock":79,"unit":""},{"id":95,"name":"KAYABO","price":2000,"current_stock":1803,"unit":""},{"id":96,"name":"KONOKONO","price":350,"current_stock":15531,"unit":""},{"id":134,"name":"KONOKONO NZIMA","price":400,"current_stock":535,"unit":""},{"id":130,"name":"KONOKONO SAGWA","price":470,"current_stock":0,"unit":""},{"id":133,"name":"KONOKONO SAGWA","price":600,"current_stock":0,"unit":""},{"id":131,"name":"LAYERS EXTRA","price":3500,"current_stock":19,"unit":""},{"id":97,"name":"LAYERS MASH","price":1000,"current_stock":3643,"unit":""},{"id":98,"name":"LAYERS PREMIX","price":3500,"current_stock":399,"unit":""},{"id":146,"name":"MABOGA","price":3800,"current_stock":200,"unit":""},{"id":99,"name":"MADUME LICK","price":5000,"current_stock":2,"unit":""},{"id":100,"name":"MAHINDI","price":730,"current_stock":4415,"unit":""},{"id":137,"name":"MAZIWA MENGI 1KG","price":1500,"current_stock":185,"unit":""},{"id":101,"name":"MAZIWA MENGI 2kg","price":3000,"current_stock":84,"unit":""},{"id":102,"name":"MCHELE LAINI","price":400,"current_stock":2853,"unit":""},{"id":103,"name":"MCHELE NGUMU","price":320,"current_stock":6403,"unit":""},{"id":104,"name":"MFUPA","price":700,"current_stock":6694,"unit":""},{"id":142,"name":"MOLLASSES 1LITRE","price":5000,"current_stock":36,"unit":""},{"id":140,"name":"MOLLASSES 5LITRE","price":15000,"current_stock":9,"unit":""},{"id":105,"name":"MTAMA","price":1000,"current_stock":155,"unit":""},{"id":106,"name":"NGANO","price":1000,"current_stock":93,"unit":""},{"id":125,"name":"NGURUWE MIX","price":3500,"current_stock":253,"unit":""},{"id":108,"name":"PAMBA LAINI","price":1200,"current_stock":307,"unit":""},{"id":109,"name":"PAMBA NGUMU","price":1200,"current_stock":1900,"unit":""},{"id":110,"name":"PARAZA","price":1000,"current_stock":3105,"unit":""},{"id":132,"name":"PELLET FINISHER","price":2000,"current_stock":25,"unit":""},{"id":111,"name":"PIG BOOSTER","price":3000,"current_stock":321,"unit":""},{"id":112,"name":"PIG GROWER","price":1000,"current_stock":577,"unit":""},{"id":113,"name":"PIG STARTER","price":1000,"current_stock":1416,"unit":""},{"id":135,"name":"PILLET STARTER","price":2000,"current_stock":1336,"unit":""},{"id":114,"name":"PILLLET GROWER","price":2000,"current_stock":877,"unit":""},{"id":115,"name":"POLLARD","price":750,"current_stock":0,"unit":""},{"id":116,"name":"PUMBA","price":660,"current_stock":3873,"unit":""},{"id":107,"name":"PUMBA MAHINDI LAINI","price":600,"current_stock":364,"unit":""},{"id":117,"name":"SHUDU LAINI","price":900,"current_stock":3723,"unit":""},{"id":118,"name":"SHUDU NGUMU","price":800,"current_stock":3050,"unit":""},{"id":129,"name":"SOYA CHENGA","price":2500,"current_stock":146,"unit":""},{"id":119,"name":"SOYA MAFUTA","price":2500,"current_stock":0,"unit":""},{"id":120,"name":"SOYA UNGA","price":2000,"current_stock":990,"unit":""},{"id":121,"name":"SUPER MACLICK","price":3500,"current_stock":61,"unit":""},{"id":122,"name":"UBUYU","price":700,"current_stock":481,"unit":""},{"id":123,"name":"UDUVI","price":3500,"current_stock":290,"unit":""},{"id":124,"name":"WHEAT","price":650,"current_stock":0,"unit":""}]
+ERROR - 2025-11-25 10:25:07 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 10:25:07 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 10:25:07 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 10:25:07 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 10:25:07 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/create.php
+INFO - 2025-11-25 10:25:07 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 10:25:07 --> Final output sent to browser
+DEBUG - 2025-11-25 10:25:07 --> Total execution time: 0.1349
+INFO - 2025-11-25 10:25:07 --> Config Class Initialized
+INFO - 2025-11-25 10:25:07 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:25:07 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:25:07 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:25:07 --> URI Class Initialized
+INFO - 2025-11-25 10:25:07 --> Router Class Initialized
+INFO - 2025-11-25 10:25:07 --> Output Class Initialized
+INFO - 2025-11-25 10:25:07 --> Security Class Initialized
+DEBUG - 2025-11-25 10:25:07 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:25:07 --> Input Class Initialized
+INFO - 2025-11-25 10:25:07 --> Language Class Initialized
+ERROR - 2025-11-25 10:25:07 --> 404 Page Not Found: Assets/plugins
+INFO - 2025-11-25 10:29:39 --> Config Class Initialized
+INFO - 2025-11-25 10:29:39 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:29:39 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:29:39 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:29:39 --> URI Class Initialized
+INFO - 2025-11-25 10:29:39 --> Router Class Initialized
+INFO - 2025-11-25 10:29:39 --> Output Class Initialized
+INFO - 2025-11-25 10:29:39 --> Security Class Initialized
+DEBUG - 2025-11-25 10:29:39 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:29:39 --> Input Class Initialized
+INFO - 2025-11-25 10:29:39 --> Language Class Initialized
+INFO - 2025-11-25 10:29:39 --> Loader Class Initialized
+INFO - 2025-11-25 10:29:39 --> Helper loaded: url_helper
+INFO - 2025-11-25 10:29:39 --> Helper loaded: form_helper
+INFO - 2025-11-25 10:29:39 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 10:29:39 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 10:29:39 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 10:29:39 --> Form Validation Class Initialized
+INFO - 2025-11-25 10:29:39 --> Controller Class Initialized
+DEBUG - 2025-11-25 10:29:39 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 10:29:39 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 10:29:39 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 10:29:39 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 10:29:39 --> Model Class Initialized
+INFO - 2025-11-25 10:29:39 --> Model Class Initialized
+INFO - 2025-11-25 10:29:39 --> Model Class Initialized
+INFO - 2025-11-25 10:29:39 --> Model Class Initialized
+INFO - 2025-11-25 10:29:39 --> Model Class Initialized
+INFO - 2025-11-25 10:29:39 --> Model Class Initialized
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 78, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 138, purchased: 16, ordered: 0, stock: 16
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 79, purchased: 989, ordered: 23, stock: 966
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 80, purchased: 205, ordered: 57, stock: 148
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 81, purchased: 2046, ordered: 990, stock: 1056
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 139, purchased: 2, ordered: 1, stock: 1
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 82, purchased: 3500, ordered: 8596, stock: 0
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 83, purchased: 0, ordered: 2875, stock: 0
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 84, purchased: 189, ordered: 17, stock: 172
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 85, purchased: 137, ordered: 3, stock: 134
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 127, purchased: 2000, ordered: 379, stock: 1621
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 86, purchased: 384, ordered: 362, stock: 22
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 87, purchased: 588, ordered: 636, stock: 0
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 88, purchased: 837, ordered: 600, stock: 237
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 89, purchased: 2164, ordered: 720, stock: 1444
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 90, purchased: 470, ordered: 375, stock: 95
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 126, purchased: 25, ordered: 0, stock: 25
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 91, purchased: 26, ordered: 0, stock: 26
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 92, purchased: 25, ordered: 29, stock: 0
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 93, purchased: 752, ordered: 854, stock: 0
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 94, purchased: 764, ordered: 685, stock: 79
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 95, purchased: 2263, ordered: 460, stock: 1803
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 96, purchased: 18925, ordered: 3394, stock: 15531
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 134, purchased: 604, ordered: 69, stock: 535
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 130, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 133, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 131, purchased: 19, ordered: 0, stock: 19
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 97, purchased: 6001, ordered: 2358, stock: 3643
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 98, purchased: 442, ordered: 43, stock: 399
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 146, purchased: 200, ordered: 0, stock: 200
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 99, purchased: 2, ordered: 0, stock: 2
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 100, purchased: 34587, ordered: 30172, stock: 4415
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 137, purchased: 189, ordered: 4, stock: 185
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 101, purchased: 107, ordered: 23, stock: 84
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 102, purchased: 11299, ordered: 8446, stock: 2853
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 103, purchased: 29811, ordered: 23408, stock: 6403
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 104, purchased: 7500, ordered: 806, stock: 6694
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 142, purchased: 36, ordered: 0, stock: 36
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 140, purchased: 10, ordered: 1, stock: 9
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 105, purchased: 358, ordered: 203, stock: 155
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 106, purchased: 738, ordered: 645, stock: 93
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 125, purchased: 253, ordered: 0, stock: 253
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 108, purchased: 2503, ordered: 2196, stock: 307
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 109, purchased: 2571, ordered: 671, stock: 1900
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 110, purchased: 4761, ordered: 1656, stock: 3105
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 132, purchased: 200, ordered: 175, stock: 25
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 111, purchased: 406, ordered: 85, stock: 321
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 112, purchased: 1900, ordered: 1323, stock: 577
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 113, purchased: 2241, ordered: 825, stock: 1416
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 135, purchased: 1990, ordered: 654, stock: 1336
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 114, purchased: 922, ordered: 45, stock: 877
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 115, purchased: 13662, ordered: 16719, stock: 0
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 116, purchased: 237414, ordered: 233541, stock: 3873
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 107, purchased: 1200, ordered: 836, stock: 364
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 117, purchased: 9776, ordered: 6053, stock: 3723
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 118, purchased: 24842, ordered: 21792, stock: 3050
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 129, purchased: 1706, ordered: 1560, stock: 146
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 119, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 120, purchased: 1555, ordered: 565, stock: 990
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 121, purchased: 63, ordered: 2, stock: 61
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 122, purchased: 688, ordered: 207, stock: 481
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 123, purchased: 2020, ordered: 1730, stock: 290
+DEBUG - 2025-11-25 10:29:39 --> getProductsWithStock - ID: 124, purchased: 3646, ordered: 4469, stock: 0
+DEBUG - 2025-11-25 10:29:39 --> Prepared products for create view: [{"id":78,"name":"BROILER BOOSTER","price":3000,"current_stock":0,"unit":""},{"id":138,"name":"BROILER EXTRA","price":3000,"current_stock":16,"unit":""},{"id":79,"name":"BROILER FINISHER MASH","price":1000,"current_stock":966,"unit":""},{"id":80,"name":"BROILER PREMIX","price":3000,"current_stock":148,"unit":""},{"id":81,"name":"BROILER STARTER MASH","price":1000,"current_stock":1056,"unit":""},{"id":139,"name":"CHIKWIDI","price":15000,"current_stock":1,"unit":""},{"id":82,"name":"CHOKAA","price":500,"current_stock":0,"unit":""},{"id":83,"name":"CHUMVI","price":500,"current_stock":0,"unit":""},{"id":84,"name":"D.C.P KOPO (1\/2)","price":2000,"current_stock":172,"unit":""},{"id":85,"name":"D.C.P KOPO 1KG","price":3000,"current_stock":134,"unit":""},{"id":127,"name":"D.C.P KUPIMA","price":1500,"current_stock":1621,"unit":""},{"id":86,"name":"DAGAA KAUZU","price":2800,"current_stock":22,"unit":""},{"id":87,"name":"DAGAA SAGWA","price":2000,"current_stock":0,"unit":""},{"id":88,"name":"DAMU","price":1500,"current_stock":237,"unit":""},{"id":89,"name":"GROWER MASH","price":1000,"current_stock":1444,"unit":""},{"id":90,"name":"HAMIRA","price":1500,"current_stock":95,"unit":""},{"id":126,"name":"HIPHOS PLUS","price":5000,"current_stock":25,"unit":""},{"id":91,"name":"JOSERA MADUME","price":11000,"current_stock":26,"unit":""},{"id":92,"name":"JOSERA MAZIWA","price":11000,"current_stock":0,"unit":""},{"id":93,"name":"KARANGA","price":700,"current_stock":0,"unit":""},{"id":94,"name":"KAUDIS NGURUWE","price":4000,"current_stock":79,"unit":""},{"id":95,"name":"KAYABO","price":2000,"current_stock":1803,"unit":""},{"id":96,"name":"KONOKONO","price":350,"current_stock":15531,"unit":""},{"id":134,"name":"KONOKONO NZIMA","price":400,"current_stock":535,"unit":""},{"id":130,"name":"KONOKONO SAGWA","price":470,"current_stock":0,"unit":""},{"id":133,"name":"KONOKONO SAGWA","price":600,"current_stock":0,"unit":""},{"id":131,"name":"LAYERS EXTRA","price":3500,"current_stock":19,"unit":""},{"id":97,"name":"LAYERS MASH","price":1000,"current_stock":3643,"unit":""},{"id":98,"name":"LAYERS PREMIX","price":3500,"current_stock":399,"unit":""},{"id":146,"name":"MABOGA","price":3800,"current_stock":200,"unit":""},{"id":99,"name":"MADUME LICK","price":5000,"current_stock":2,"unit":""},{"id":100,"name":"MAHINDI","price":730,"current_stock":4415,"unit":""},{"id":137,"name":"MAZIWA MENGI 1KG","price":1500,"current_stock":185,"unit":""},{"id":101,"name":"MAZIWA MENGI 2kg","price":3000,"current_stock":84,"unit":""},{"id":102,"name":"MCHELE LAINI","price":400,"current_stock":2853,"unit":""},{"id":103,"name":"MCHELE NGUMU","price":320,"current_stock":6403,"unit":""},{"id":104,"name":"MFUPA","price":700,"current_stock":6694,"unit":""},{"id":142,"name":"MOLLASSES 1LITRE","price":5000,"current_stock":36,"unit":""},{"id":140,"name":"MOLLASSES 5LITRE","price":15000,"current_stock":9,"unit":""},{"id":105,"name":"MTAMA","price":1000,"current_stock":155,"unit":""},{"id":106,"name":"NGANO","price":1000,"current_stock":93,"unit":""},{"id":125,"name":"NGURUWE MIX","price":3500,"current_stock":253,"unit":""},{"id":108,"name":"PAMBA LAINI","price":1200,"current_stock":307,"unit":""},{"id":109,"name":"PAMBA NGUMU","price":1200,"current_stock":1900,"unit":""},{"id":110,"name":"PARAZA","price":1000,"current_stock":3105,"unit":""},{"id":132,"name":"PELLET FINISHER","price":2000,"current_stock":25,"unit":""},{"id":111,"name":"PIG BOOSTER","price":3000,"current_stock":321,"unit":""},{"id":112,"name":"PIG GROWER","price":1000,"current_stock":577,"unit":""},{"id":113,"name":"PIG STARTER","price":1000,"current_stock":1416,"unit":""},{"id":135,"name":"PILLET STARTER","price":2000,"current_stock":1336,"unit":""},{"id":114,"name":"PILLLET GROWER","price":2000,"current_stock":877,"unit":""},{"id":115,"name":"POLLARD","price":750,"current_stock":0,"unit":""},{"id":116,"name":"PUMBA","price":660,"current_stock":3873,"unit":""},{"id":107,"name":"PUMBA MAHINDI LAINI","price":600,"current_stock":364,"unit":""},{"id":117,"name":"SHUDU LAINI","price":900,"current_stock":3723,"unit":""},{"id":118,"name":"SHUDU NGUMU","price":800,"current_stock":3050,"unit":""},{"id":129,"name":"SOYA CHENGA","price":2500,"current_stock":146,"unit":""},{"id":119,"name":"SOYA MAFUTA","price":2500,"current_stock":0,"unit":""},{"id":120,"name":"SOYA UNGA","price":2000,"current_stock":990,"unit":""},{"id":121,"name":"SUPER MACLICK","price":3500,"current_stock":61,"unit":""},{"id":122,"name":"UBUYU","price":700,"current_stock":481,"unit":""},{"id":123,"name":"UDUVI","price":3500,"current_stock":290,"unit":""},{"id":124,"name":"WHEAT","price":650,"current_stock":0,"unit":""}]
+ERROR - 2025-11-25 10:29:39 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 10:29:39 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 10:29:39 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 10:29:39 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 10:29:39 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/create.php
+INFO - 2025-11-25 10:29:39 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 10:29:39 --> Final output sent to browser
+DEBUG - 2025-11-25 10:29:39 --> Total execution time: 0.1289
+INFO - 2025-11-25 10:29:39 --> Config Class Initialized
+INFO - 2025-11-25 10:29:39 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:29:39 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:29:39 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:29:39 --> URI Class Initialized
+INFO - 2025-11-25 10:29:39 --> Router Class Initialized
+INFO - 2025-11-25 10:29:39 --> Output Class Initialized
+INFO - 2025-11-25 10:29:39 --> Security Class Initialized
+DEBUG - 2025-11-25 10:29:39 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:29:39 --> Input Class Initialized
+INFO - 2025-11-25 10:29:39 --> Language Class Initialized
+ERROR - 2025-11-25 10:29:39 --> 404 Page Not Found: Assets/plugins
+INFO - 2025-11-25 10:31:25 --> Config Class Initialized
+INFO - 2025-11-25 10:31:25 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:31:25 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:31:25 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:31:25 --> URI Class Initialized
+INFO - 2025-11-25 10:31:25 --> Router Class Initialized
+INFO - 2025-11-25 10:31:25 --> Output Class Initialized
+INFO - 2025-11-25 10:31:25 --> Security Class Initialized
+DEBUG - 2025-11-25 10:31:25 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:31:25 --> Input Class Initialized
+INFO - 2025-11-25 10:31:25 --> Language Class Initialized
+INFO - 2025-11-25 10:31:25 --> Loader Class Initialized
+INFO - 2025-11-25 10:31:25 --> Helper loaded: url_helper
+INFO - 2025-11-25 10:31:25 --> Helper loaded: form_helper
+INFO - 2025-11-25 10:31:25 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 10:31:25 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 10:31:25 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 10:31:25 --> Form Validation Class Initialized
+INFO - 2025-11-25 10:31:25 --> Controller Class Initialized
+DEBUG - 2025-11-25 10:31:25 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 10:31:25 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 10:31:25 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 10:31:25 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 10:31:25 --> Model Class Initialized
+INFO - 2025-11-25 10:31:25 --> Model Class Initialized
+INFO - 2025-11-25 10:31:25 --> Model Class Initialized
+INFO - 2025-11-25 10:31:25 --> Model Class Initialized
+INFO - 2025-11-25 10:31:25 --> Model Class Initialized
+INFO - 2025-11-25 10:31:25 --> Model Class Initialized
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 78, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 138, purchased: 16, ordered: 0, stock: 16
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 79, purchased: 989, ordered: 23, stock: 966
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 80, purchased: 205, ordered: 57, stock: 148
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 81, purchased: 2046, ordered: 990, stock: 1056
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 139, purchased: 2, ordered: 1, stock: 1
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 82, purchased: 3500, ordered: 8596, stock: 0
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 83, purchased: 0, ordered: 2875, stock: 0
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 84, purchased: 189, ordered: 17, stock: 172
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 85, purchased: 137, ordered: 3, stock: 134
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 127, purchased: 2000, ordered: 379, stock: 1621
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 86, purchased: 384, ordered: 362, stock: 22
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 87, purchased: 588, ordered: 636, stock: 0
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 88, purchased: 837, ordered: 600, stock: 237
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 89, purchased: 2164, ordered: 720, stock: 1444
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 90, purchased: 470, ordered: 375, stock: 95
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 126, purchased: 25, ordered: 0, stock: 25
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 91, purchased: 26, ordered: 0, stock: 26
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 92, purchased: 25, ordered: 29, stock: 0
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 93, purchased: 752, ordered: 854, stock: 0
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 94, purchased: 764, ordered: 685, stock: 79
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 95, purchased: 2263, ordered: 460, stock: 1803
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 96, purchased: 18925, ordered: 3394, stock: 15531
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 134, purchased: 604, ordered: 69, stock: 535
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 130, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 133, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 131, purchased: 19, ordered: 0, stock: 19
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 97, purchased: 6001, ordered: 2358, stock: 3643
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 98, purchased: 442, ordered: 43, stock: 399
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 146, purchased: 200, ordered: 0, stock: 200
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 99, purchased: 2, ordered: 0, stock: 2
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 100, purchased: 34587, ordered: 30172, stock: 4415
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 137, purchased: 189, ordered: 4, stock: 185
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 101, purchased: 107, ordered: 23, stock: 84
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 102, purchased: 11299, ordered: 8446, stock: 2853
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 103, purchased: 29811, ordered: 23408, stock: 6403
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 104, purchased: 7500, ordered: 806, stock: 6694
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 142, purchased: 36, ordered: 0, stock: 36
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 140, purchased: 10, ordered: 1, stock: 9
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 105, purchased: 358, ordered: 203, stock: 155
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 106, purchased: 738, ordered: 645, stock: 93
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 125, purchased: 253, ordered: 0, stock: 253
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 108, purchased: 2503, ordered: 2196, stock: 307
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 109, purchased: 2571, ordered: 671, stock: 1900
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 110, purchased: 4761, ordered: 1656, stock: 3105
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 132, purchased: 200, ordered: 175, stock: 25
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 111, purchased: 406, ordered: 85, stock: 321
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 112, purchased: 1900, ordered: 1323, stock: 577
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 113, purchased: 2241, ordered: 825, stock: 1416
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 135, purchased: 1990, ordered: 654, stock: 1336
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 114, purchased: 922, ordered: 45, stock: 877
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 115, purchased: 13662, ordered: 16719, stock: 0
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 116, purchased: 237414, ordered: 233541, stock: 3873
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 107, purchased: 1200, ordered: 836, stock: 364
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 117, purchased: 9776, ordered: 6053, stock: 3723
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 118, purchased: 24842, ordered: 21792, stock: 3050
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 129, purchased: 1706, ordered: 1560, stock: 146
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 119, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 120, purchased: 1555, ordered: 565, stock: 990
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 121, purchased: 63, ordered: 2, stock: 61
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 122, purchased: 688, ordered: 207, stock: 481
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 123, purchased: 2020, ordered: 1730, stock: 290
+DEBUG - 2025-11-25 10:31:25 --> getProductsWithStock - ID: 124, purchased: 3646, ordered: 4469, stock: 0
+DEBUG - 2025-11-25 10:31:25 --> Prepared products for create view: [{"id":78,"name":"BROILER BOOSTER","price":3000,"current_stock":0,"unit":""},{"id":138,"name":"BROILER EXTRA","price":3000,"current_stock":16,"unit":""},{"id":79,"name":"BROILER FINISHER MASH","price":1000,"current_stock":966,"unit":""},{"id":80,"name":"BROILER PREMIX","price":3000,"current_stock":148,"unit":""},{"id":81,"name":"BROILER STARTER MASH","price":1000,"current_stock":1056,"unit":""},{"id":139,"name":"CHIKWIDI","price":15000,"current_stock":1,"unit":""},{"id":82,"name":"CHOKAA","price":500,"current_stock":0,"unit":""},{"id":83,"name":"CHUMVI","price":500,"current_stock":0,"unit":""},{"id":84,"name":"D.C.P KOPO (1\/2)","price":2000,"current_stock":172,"unit":""},{"id":85,"name":"D.C.P KOPO 1KG","price":3000,"current_stock":134,"unit":""},{"id":127,"name":"D.C.P KUPIMA","price":1500,"current_stock":1621,"unit":""},{"id":86,"name":"DAGAA KAUZU","price":2800,"current_stock":22,"unit":""},{"id":87,"name":"DAGAA SAGWA","price":2000,"current_stock":0,"unit":""},{"id":88,"name":"DAMU","price":1500,"current_stock":237,"unit":""},{"id":89,"name":"GROWER MASH","price":1000,"current_stock":1444,"unit":""},{"id":90,"name":"HAMIRA","price":1500,"current_stock":95,"unit":""},{"id":126,"name":"HIPHOS PLUS","price":5000,"current_stock":25,"unit":""},{"id":91,"name":"JOSERA MADUME","price":11000,"current_stock":26,"unit":""},{"id":92,"name":"JOSERA MAZIWA","price":11000,"current_stock":0,"unit":""},{"id":93,"name":"KARANGA","price":700,"current_stock":0,"unit":""},{"id":94,"name":"KAUDIS NGURUWE","price":4000,"current_stock":79,"unit":""},{"id":95,"name":"KAYABO","price":2000,"current_stock":1803,"unit":""},{"id":96,"name":"KONOKONO","price":350,"current_stock":15531,"unit":""},{"id":134,"name":"KONOKONO NZIMA","price":400,"current_stock":535,"unit":""},{"id":130,"name":"KONOKONO SAGWA","price":470,"current_stock":0,"unit":""},{"id":133,"name":"KONOKONO SAGWA","price":600,"current_stock":0,"unit":""},{"id":131,"name":"LAYERS EXTRA","price":3500,"current_stock":19,"unit":""},{"id":97,"name":"LAYERS MASH","price":1000,"current_stock":3643,"unit":""},{"id":98,"name":"LAYERS PREMIX","price":3500,"current_stock":399,"unit":""},{"id":146,"name":"MABOGA","price":3800,"current_stock":200,"unit":""},{"id":99,"name":"MADUME LICK","price":5000,"current_stock":2,"unit":""},{"id":100,"name":"MAHINDI","price":730,"current_stock":4415,"unit":""},{"id":137,"name":"MAZIWA MENGI 1KG","price":1500,"current_stock":185,"unit":""},{"id":101,"name":"MAZIWA MENGI 2kg","price":3000,"current_stock":84,"unit":""},{"id":102,"name":"MCHELE LAINI","price":400,"current_stock":2853,"unit":""},{"id":103,"name":"MCHELE NGUMU","price":320,"current_stock":6403,"unit":""},{"id":104,"name":"MFUPA","price":700,"current_stock":6694,"unit":""},{"id":142,"name":"MOLLASSES 1LITRE","price":5000,"current_stock":36,"unit":""},{"id":140,"name":"MOLLASSES 5LITRE","price":15000,"current_stock":9,"unit":""},{"id":105,"name":"MTAMA","price":1000,"current_stock":155,"unit":""},{"id":106,"name":"NGANO","price":1000,"current_stock":93,"unit":""},{"id":125,"name":"NGURUWE MIX","price":3500,"current_stock":253,"unit":""},{"id":108,"name":"PAMBA LAINI","price":1200,"current_stock":307,"unit":""},{"id":109,"name":"PAMBA NGUMU","price":1200,"current_stock":1900,"unit":""},{"id":110,"name":"PARAZA","price":1000,"current_stock":3105,"unit":""},{"id":132,"name":"PELLET FINISHER","price":2000,"current_stock":25,"unit":""},{"id":111,"name":"PIG BOOSTER","price":3000,"current_stock":321,"unit":""},{"id":112,"name":"PIG GROWER","price":1000,"current_stock":577,"unit":""},{"id":113,"name":"PIG STARTER","price":1000,"current_stock":1416,"unit":""},{"id":135,"name":"PILLET STARTER","price":2000,"current_stock":1336,"unit":""},{"id":114,"name":"PILLLET GROWER","price":2000,"current_stock":877,"unit":""},{"id":115,"name":"POLLARD","price":750,"current_stock":0,"unit":""},{"id":116,"name":"PUMBA","price":660,"current_stock":3873,"unit":""},{"id":107,"name":"PUMBA MAHINDI LAINI","price":600,"current_stock":364,"unit":""},{"id":117,"name":"SHUDU LAINI","price":900,"current_stock":3723,"unit":""},{"id":118,"name":"SHUDU NGUMU","price":800,"current_stock":3050,"unit":""},{"id":129,"name":"SOYA CHENGA","price":2500,"current_stock":146,"unit":""},{"id":119,"name":"SOYA MAFUTA","price":2500,"current_stock":0,"unit":""},{"id":120,"name":"SOYA UNGA","price":2000,"current_stock":990,"unit":""},{"id":121,"name":"SUPER MACLICK","price":3500,"current_stock":61,"unit":""},{"id":122,"name":"UBUYU","price":700,"current_stock":481,"unit":""},{"id":123,"name":"UDUVI","price":3500,"current_stock":290,"unit":""},{"id":124,"name":"WHEAT","price":650,"current_stock":0,"unit":""}]
+ERROR - 2025-11-25 10:31:25 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 10:31:25 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 10:31:25 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 10:31:25 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 10:31:25 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/create.php
+INFO - 2025-11-25 10:31:25 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 10:31:25 --> Final output sent to browser
+DEBUG - 2025-11-25 10:31:25 --> Total execution time: 0.5359
+INFO - 2025-11-25 10:31:25 --> Config Class Initialized
+INFO - 2025-11-25 10:31:25 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:31:25 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:31:25 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:31:25 --> URI Class Initialized
+INFO - 2025-11-25 10:31:25 --> Router Class Initialized
+INFO - 2025-11-25 10:31:25 --> Output Class Initialized
+INFO - 2025-11-25 10:31:25 --> Security Class Initialized
+DEBUG - 2025-11-25 10:31:25 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:31:25 --> Input Class Initialized
+INFO - 2025-11-25 10:31:25 --> Language Class Initialized
+ERROR - 2025-11-25 10:31:25 --> 404 Page Not Found: Assets/plugins
+INFO - 2025-11-25 10:31:30 --> Config Class Initialized
+INFO - 2025-11-25 10:31:30 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:31:30 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:31:30 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:31:30 --> URI Class Initialized
+INFO - 2025-11-25 10:31:30 --> Router Class Initialized
+INFO - 2025-11-25 10:31:30 --> Output Class Initialized
+INFO - 2025-11-25 10:31:30 --> Security Class Initialized
+DEBUG - 2025-11-25 10:31:30 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:31:30 --> Input Class Initialized
+INFO - 2025-11-25 10:31:30 --> Language Class Initialized
+ERROR - 2025-11-25 10:31:30 --> 404 Page Not Found: Assets/bower_components
+INFO - 2025-11-25 10:32:06 --> Config Class Initialized
+INFO - 2025-11-25 10:32:06 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:32:06 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:32:06 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:32:06 --> URI Class Initialized
+INFO - 2025-11-25 10:32:06 --> Router Class Initialized
+INFO - 2025-11-25 10:32:06 --> Output Class Initialized
+INFO - 2025-11-25 10:32:06 --> Security Class Initialized
+DEBUG - 2025-11-25 10:32:06 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:32:06 --> Input Class Initialized
+INFO - 2025-11-25 10:32:06 --> Language Class Initialized
+INFO - 2025-11-25 10:32:06 --> Loader Class Initialized
+INFO - 2025-11-25 10:32:06 --> Helper loaded: url_helper
+INFO - 2025-11-25 10:32:06 --> Helper loaded: form_helper
+INFO - 2025-11-25 10:32:06 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 10:32:06 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 10:32:06 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 10:32:06 --> Form Validation Class Initialized
+INFO - 2025-11-25 10:32:06 --> Controller Class Initialized
+DEBUG - 2025-11-25 10:32:06 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 10:32:06 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 10:32:06 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 10:32:06 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 10:32:06 --> Model Class Initialized
+INFO - 2025-11-25 10:32:06 --> Model Class Initialized
+INFO - 2025-11-25 10:32:06 --> Config Class Initialized
+INFO - 2025-11-25 10:32:06 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:32:06 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:32:06 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:32:06 --> URI Class Initialized
+INFO - 2025-11-25 10:32:06 --> Router Class Initialized
+INFO - 2025-11-25 10:32:06 --> Output Class Initialized
+INFO - 2025-11-25 10:32:06 --> Security Class Initialized
+DEBUG - 2025-11-25 10:32:06 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:32:06 --> Input Class Initialized
+INFO - 2025-11-25 10:32:06 --> Language Class Initialized
+INFO - 2025-11-25 10:32:06 --> Loader Class Initialized
+INFO - 2025-11-25 10:32:06 --> Helper loaded: url_helper
+INFO - 2025-11-25 10:32:06 --> Helper loaded: form_helper
+INFO - 2025-11-25 10:32:06 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 10:32:06 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 10:32:06 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 10:32:06 --> Form Validation Class Initialized
+INFO - 2025-11-25 10:32:06 --> Controller Class Initialized
+DEBUG - 2025-11-25 10:32:06 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 10:32:06 --> MY_Controller - User not logged in
+INFO - 2025-11-25 10:32:06 --> Model Class Initialized
+DEBUG - 2025-11-25 10:32:06 --> Form validation errors: 
+INFO - 2025-11-25 10:32:06 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\login.php
+INFO - 2025-11-25 10:32:06 --> Final output sent to browser
+DEBUG - 2025-11-25 10:32:06 --> Total execution time: 0.0360
+INFO - 2025-11-25 10:32:08 --> Config Class Initialized
+INFO - 2025-11-25 10:32:08 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:32:08 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:32:08 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:32:08 --> URI Class Initialized
+INFO - 2025-11-25 10:32:08 --> Router Class Initialized
+INFO - 2025-11-25 10:32:08 --> Output Class Initialized
+INFO - 2025-11-25 10:32:08 --> Security Class Initialized
+DEBUG - 2025-11-25 10:32:08 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:32:08 --> Input Class Initialized
+INFO - 2025-11-25 10:32:08 --> Language Class Initialized
+INFO - 2025-11-25 10:32:08 --> Loader Class Initialized
+INFO - 2025-11-25 10:32:08 --> Helper loaded: url_helper
+INFO - 2025-11-25 10:32:08 --> Helper loaded: form_helper
+INFO - 2025-11-25 10:32:08 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 10:32:08 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 10:32:08 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 10:32:08 --> Form Validation Class Initialized
+INFO - 2025-11-25 10:32:08 --> Controller Class Initialized
+DEBUG - 2025-11-25 10:32:08 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 10:32:08 --> MY_Controller - User not logged in
+INFO - 2025-11-25 10:32:08 --> Model Class Initialized
+INFO - 2025-11-25 10:32:08 --> Language file loaded: language/english/form_validation_lang.php
+DEBUG - 2025-11-25 10:32:08 --> Login form submitted - Email: mhandoezekiel@gmail.com
+DEBUG - 2025-11-25 10:32:08 --> Email check for: mhandoezekiel@gmail.com - Result: found
+DEBUG - 2025-11-25 10:32:08 --> Login attempt for email: mhandoezekiel@gmail.com
+DEBUG - 2025-11-25 10:32:08 --> Login query: SELECT `u`.*, `g`.`permission`
+FROM `users` `u`
+JOIN `user_group` `ug` ON `u`.`id` = `ug`.`user_id`
+JOIN `groups` `g` ON `ug`.`group_id` = `g`.`id`
+WHERE `u`.`email` = 'mhandoezekiel@gmail.com'
+DEBUG - 2025-11-25 10:32:08 --> User found: {"id":"1","username":"admin","password":"$2y$10$7j9ACuOyt5ABFQ.u1JpG7ei7Fe\/6QID9EotwhMQlRjXQ.X26aLORK","email":"mhandoezekiel@gmail.com","firstname":"Ezekiel","lastname":"Mhando","phone":"0743991025","gender":"1","store_id":"7","group_id":"1","permission":"a:40:{i:0;s:10:\"createUser\";i:1;s:10:\"updateUser\";i:2;s:8:\"viewUser\";i:3;s:10:\"deleteUser\";i:4;s:11:\"createGroup\";i:5;s:11:\"updateGroup\";i:6;s:9:\"viewGroup\";i:7;s:11:\"deleteGroup\";i:8;s:11:\"createBrand\";i:9;s:11:\"updateBrand\";i:10;s:9:\"viewBrand\";i:11;s:11:\"deleteBrand\";i:12;s:14:\"createCategory\";i:13;s:14:\"updateCategory\";i:14;s:12:\"viewCategory\";i:15;s:14:\"deleteCategory\";i:16;s:11:\"createStore\";i:17;s:11:\"updateStore\";i:18;s:9:\"viewStore\";i:19;s:11:\"deleteStore\";i:20;s:15:\"createAttribute\";i:21;s:15:\"updateAttribute\";i:22;s:13:\"viewAttribute\";i:23;s:15:\"deleteAttribute\";i:24;s:13:\"createProduct\";i:25;s:13:\"updateProduct\";i:26;s:11:\"viewProduct\";i:27;s:13:\"deleteProduct\";i:28;s:11:\"createOrder\";i:29;s:11:\"updateOrder\";i:30;s:9:\"viewOrder\";i:31;s:11:\"deleteOrder\";i:32;s:13:\"updateCompany\";i:33;s:14:\"viewAccounting\";i:34;s:16:\"updateAccounting\";i:35;s:16:\"reportAccounting\";i:36;s:16:\"deleteAccounting\";i:37;s:11:\"viewReports\";i:38;s:11:\"viewProfile\";i:39;s:13:\"updateSetting\";}"}
+DEBUG - 2025-11-25 10:32:08 --> Password verified successfully for user: admin
+DEBUG - 2025-11-25 10:32:08 --> Processed permissions: []
+DEBUG - 2025-11-25 10:32:08 --> Login attempt result: success
+DEBUG - 2025-11-25 10:32:08 --> Role query: SELECT `g`.`group_name` AS `role`, `g`.`permission`
+FROM `users` `u`
+JOIN `user_group` `ug` ON `u`.`id` = `ug`.`user_id`
+JOIN `groups` `g` ON `ug`.`group_id` = `g`.`id`
+WHERE `u`.`id` = '1'
+DEBUG - 2025-11-25 10:32:08 --> Setting session data: Array
+(
+    [id] => 1
+    [username] => admin
+    [email] => mhandoezekiel@gmail.com
+    [role] => Administrator
+    [store_id] => 7
+    [store_name] => NMC-HQ
+    [user_permission] => Array
+        (
+        )
+
+    [logged_in] => 1
+)
+
+DEBUG - 2025-11-25 10:32:08 --> Session set successfully, redirecting to dashboard
+INFO - 2025-11-25 10:32:08 --> Config Class Initialized
+INFO - 2025-11-25 10:32:08 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:32:08 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:32:08 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:32:08 --> URI Class Initialized
+INFO - 2025-11-25 10:32:08 --> Router Class Initialized
+INFO - 2025-11-25 10:32:08 --> Output Class Initialized
+INFO - 2025-11-25 10:32:08 --> Security Class Initialized
+DEBUG - 2025-11-25 10:32:08 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:32:08 --> Input Class Initialized
+INFO - 2025-11-25 10:32:08 --> Language Class Initialized
+INFO - 2025-11-25 10:32:08 --> Loader Class Initialized
+INFO - 2025-11-25 10:32:08 --> Helper loaded: url_helper
+INFO - 2025-11-25 10:32:08 --> Helper loaded: form_helper
+INFO - 2025-11-25 10:32:08 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 10:32:08 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 10:32:08 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 10:32:08 --> Form Validation Class Initialized
+INFO - 2025-11-25 10:32:08 --> Controller Class Initialized
+DEBUG - 2025-11-25 10:32:08 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 10:32:08 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 10:32:08 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 10:32:08 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 10:32:08 --> Model Class Initialized
+INFO - 2025-11-25 10:32:08 --> Model Class Initialized
+INFO - 2025-11-25 10:32:08 --> Model Class Initialized
+INFO - 2025-11-25 10:32:08 --> Model Class Initialized
+INFO - 2025-11-25 10:32:08 --> Model Class Initialized
+INFO - 2025-11-25 10:32:08 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 10:32:08 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 10:32:08 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+ERROR - 2025-11-25 10:32:08 --> Dashboard Chart Data Error: Unknown column 'quantity' in 'where clause'
+ERROR - 2025-11-25 10:32:08 --> Severity: Warning --> Undefined variable $paid_data C:\xampp\htdocs\Inventory_CI\application\views\dashboard.php 442
+ERROR - 2025-11-25 10:32:08 --> Severity: Warning --> Undefined variable $partial_data C:\xampp\htdocs\Inventory_CI\application\views\dashboard.php 448
+INFO - 2025-11-25 10:32:08 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\dashboard.php
+INFO - 2025-11-25 10:32:08 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 10:32:08 --> Final output sent to browser
+DEBUG - 2025-11-25 10:32:08 --> Total execution time: 0.0717
+INFO - 2025-11-25 10:32:12 --> Config Class Initialized
+INFO - 2025-11-25 10:32:12 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:32:12 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:32:12 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:32:12 --> URI Class Initialized
+INFO - 2025-11-25 10:32:12 --> Router Class Initialized
+INFO - 2025-11-25 10:32:12 --> Output Class Initialized
+INFO - 2025-11-25 10:32:12 --> Security Class Initialized
+DEBUG - 2025-11-25 10:32:12 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:32:12 --> Input Class Initialized
+INFO - 2025-11-25 10:32:12 --> Language Class Initialized
+INFO - 2025-11-25 10:32:12 --> Loader Class Initialized
+INFO - 2025-11-25 10:32:12 --> Helper loaded: url_helper
+INFO - 2025-11-25 10:32:12 --> Helper loaded: form_helper
+INFO - 2025-11-25 10:32:12 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 10:32:12 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 10:32:12 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 10:32:12 --> Form Validation Class Initialized
+INFO - 2025-11-25 10:32:12 --> Controller Class Initialized
+DEBUG - 2025-11-25 10:32:12 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 10:32:12 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 10:32:12 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 10:32:12 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 10:32:12 --> Model Class Initialized
+INFO - 2025-11-25 10:32:12 --> Model Class Initialized
+INFO - 2025-11-25 10:32:12 --> Model Class Initialized
+ERROR - 2025-11-25 10:32:12 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 10:32:12 --> Model Class Initialized
+INFO - 2025-11-25 10:32:12 --> Model Class Initialized
+INFO - 2025-11-25 10:32:12 --> Model Class Initialized
+INFO - 2025-11-25 10:32:12 --> Model Class Initialized
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 78 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 138 in store 7: Purchased=16, Sold=0, Available=16
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 79 in store 7: Purchased=989, Sold=23, Available=966
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 80 in store 7: Purchased=205, Sold=57, Available=148
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 81 in store 7: Purchased=2046, Sold=990, Available=1056
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 145 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 139 in store 7: Purchased=2, Sold=1, Available=1
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 82 in store 7: Purchased=3500, Sold=8596, Available=0
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 83 in store 7: Purchased=0, Sold=2875, Available=0
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 84 in store 7: Purchased=189, Sold=17, Available=172
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 85 in store 7: Purchased=137, Sold=3, Available=134
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 127 in store 7: Purchased=2000, Sold=379, Available=1621
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 86 in store 7: Purchased=384, Sold=362, Available=22
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 87 in store 7: Purchased=588, Sold=636, Available=0
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 88 in store 7: Purchased=837, Sold=600, Available=237
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 89 in store 7: Purchased=2164, Sold=720, Available=1444
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 90 in store 7: Purchased=470, Sold=375, Available=95
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 126 in store 7: Purchased=25, Sold=0, Available=25
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 91 in store 7: Purchased=26, Sold=0, Available=26
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 92 in store 7: Purchased=25, Sold=29, Available=0
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 93 in store 7: Purchased=752, Sold=854, Available=0
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 94 in store 7: Purchased=764, Sold=685, Available=79
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 95 in store 7: Purchased=2263, Sold=460, Available=1803
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 96 in store 7: Purchased=18925, Sold=3394, Available=15531
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 134 in store 7: Purchased=604, Sold=69, Available=535
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 130 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 133 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 131 in store 7: Purchased=19, Sold=0, Available=19
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 97 in store 7: Purchased=6001, Sold=2358, Available=3643
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 98 in store 7: Purchased=442, Sold=43, Available=399
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 146 in store 7: Purchased=200, Sold=0, Available=200
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 99 in store 7: Purchased=2, Sold=0, Available=2
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 100 in store 7: Purchased=34587, Sold=30172, Available=4415
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 137 in store 7: Purchased=189, Sold=4, Available=185
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 101 in store 7: Purchased=107, Sold=23, Available=84
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 102 in store 7: Purchased=11299, Sold=8446, Available=2853
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 103 in store 7: Purchased=29811, Sold=23408, Available=6403
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 104 in store 7: Purchased=7500, Sold=806, Available=6694
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 142 in store 7: Purchased=36, Sold=0, Available=36
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 140 in store 7: Purchased=10, Sold=1, Available=9
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 105 in store 7: Purchased=358, Sold=203, Available=155
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 106 in store 7: Purchased=738, Sold=645, Available=93
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 125 in store 7: Purchased=253, Sold=0, Available=253
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 108 in store 7: Purchased=2503, Sold=2196, Available=307
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 109 in store 7: Purchased=2571, Sold=671, Available=1900
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 110 in store 7: Purchased=4761, Sold=1656, Available=3105
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 132 in store 7: Purchased=200, Sold=175, Available=25
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 111 in store 7: Purchased=406, Sold=85, Available=321
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 112 in store 7: Purchased=1900, Sold=1323, Available=577
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 113 in store 7: Purchased=2241, Sold=825, Available=1416
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 135 in store 7: Purchased=1990, Sold=654, Available=1336
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 114 in store 7: Purchased=922, Sold=45, Available=877
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 115 in store 7: Purchased=13662, Sold=16719, Available=0
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 116 in store 7: Purchased=237414, Sold=233541, Available=3873
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 107 in store 7: Purchased=1200, Sold=836, Available=364
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 117 in store 7: Purchased=9776, Sold=6053, Available=3723
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 118 in store 7: Purchased=24842, Sold=21792, Available=3050
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 144 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 129 in store 7: Purchased=1706, Sold=1560, Available=146
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 119 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 120 in store 7: Purchased=1555, Sold=565, Available=990
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 121 in store 7: Purchased=63, Sold=2, Available=61
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 122 in store 7: Purchased=688, Sold=207, Available=481
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 123 in store 7: Purchased=2020, Sold=1730, Available=290
+DEBUG - 2025-11-25 10:32:12 --> Stock calculation for product 124 in store 7: Purchased=3646, Sold=4469, Available=0
+DEBUG - 2025-11-25 10:32:12 --> Purchases view loaded - Store ID: 7, Is Admin: No, Products Count: 65
+INFO - 2025-11-25 10:32:12 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 10:32:12 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 10:32:12 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 10:32:12 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\products/purchases.php
+INFO - 2025-11-25 10:32:12 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 10:32:12 --> Final output sent to browser
+DEBUG - 2025-11-25 10:32:12 --> Total execution time: 0.1974
+INFO - 2025-11-25 10:32:12 --> Config Class Initialized
+INFO - 2025-11-25 10:32:12 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:32:12 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:32:12 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:32:12 --> URI Class Initialized
+INFO - 2025-11-25 10:32:12 --> Router Class Initialized
+INFO - 2025-11-25 10:32:12 --> Output Class Initialized
+INFO - 2025-11-25 10:32:12 --> Security Class Initialized
+DEBUG - 2025-11-25 10:32:12 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:32:12 --> Input Class Initialized
+INFO - 2025-11-25 10:32:12 --> Language Class Initialized
+INFO - 2025-11-25 10:32:12 --> Loader Class Initialized
+INFO - 2025-11-25 10:32:12 --> Helper loaded: url_helper
+INFO - 2025-11-25 10:32:12 --> Helper loaded: form_helper
+INFO - 2025-11-25 10:32:12 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 10:32:12 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 10:32:12 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 10:32:12 --> Form Validation Class Initialized
+INFO - 2025-11-25 10:32:12 --> Controller Class Initialized
+DEBUG - 2025-11-25 10:32:12 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 10:32:12 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 10:32:12 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 10:32:12 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 10:32:12 --> Model Class Initialized
+INFO - 2025-11-25 10:32:12 --> Model Class Initialized
+INFO - 2025-11-25 10:32:12 --> Model Class Initialized
+ERROR - 2025-11-25 10:32:12 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 10:32:12 --> Model Class Initialized
+INFO - 2025-11-25 10:32:12 --> Model Class Initialized
+INFO - 2025-11-25 10:32:12 --> Model Class Initialized
+INFO - 2025-11-25 10:32:12 --> Model Class Initialized
+DEBUG - 2025-11-25 10:32:12 --> getPurchasesData SQL: SELECT `purchases`.*, `products`.`name` as `product_name`, `products`.`unit`, `stores`.`name` as `store_name`, `users`.`username` as `created_by_name`
+FROM `purchases`
+JOIN `products` ON `products`.`id` = `purchases`.`product_id`
+JOIN `stores` ON `stores`.`id` = `purchases`.`store_id`
+LEFT JOIN `users` ON `users`.`id` = `purchases`.`user_id`
+WHERE `purchases`.`store_id` = '7'
+ORDER BY `purchases`.`purchase_date` DESC
+INFO - 2025-11-25 10:32:12 --> Final output sent to browser
+DEBUG - 2025-11-25 10:32:12 --> Total execution time: 0.0571
+INFO - 2025-11-25 10:32:18 --> Config Class Initialized
+INFO - 2025-11-25 10:32:18 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:32:18 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:32:19 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:32:19 --> URI Class Initialized
+INFO - 2025-11-25 10:32:19 --> Router Class Initialized
+INFO - 2025-11-25 10:32:19 --> Output Class Initialized
+INFO - 2025-11-25 10:32:19 --> Security Class Initialized
+DEBUG - 2025-11-25 10:32:19 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:32:19 --> Input Class Initialized
+INFO - 2025-11-25 10:32:19 --> Language Class Initialized
+INFO - 2025-11-25 10:32:19 --> Loader Class Initialized
+INFO - 2025-11-25 10:32:19 --> Helper loaded: url_helper
+INFO - 2025-11-25 10:32:19 --> Helper loaded: form_helper
+INFO - 2025-11-25 10:32:19 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 10:32:19 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 10:32:19 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 10:32:19 --> Form Validation Class Initialized
+INFO - 2025-11-25 10:32:19 --> Controller Class Initialized
+DEBUG - 2025-11-25 10:32:19 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 10:32:19 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 10:32:19 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 10:32:19 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 10:32:19 --> Model Class Initialized
+INFO - 2025-11-25 10:32:19 --> Model Class Initialized
+INFO - 2025-11-25 10:32:19 --> Model Class Initialized
+INFO - 2025-11-25 10:32:19 --> Model Class Initialized
+INFO - 2025-11-25 10:32:19 --> Model Class Initialized
+INFO - 2025-11-25 10:32:19 --> Model Class Initialized
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 78, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 138, purchased: 16, ordered: 0, stock: 16
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 79, purchased: 989, ordered: 23, stock: 966
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 80, purchased: 205, ordered: 57, stock: 148
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 81, purchased: 2046, ordered: 990, stock: 1056
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 139, purchased: 2, ordered: 1, stock: 1
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 82, purchased: 3500, ordered: 8596, stock: 0
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 83, purchased: 0, ordered: 2875, stock: 0
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 84, purchased: 189, ordered: 17, stock: 172
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 85, purchased: 137, ordered: 3, stock: 134
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 127, purchased: 2000, ordered: 379, stock: 1621
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 86, purchased: 384, ordered: 362, stock: 22
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 87, purchased: 588, ordered: 636, stock: 0
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 88, purchased: 837, ordered: 600, stock: 237
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 89, purchased: 2164, ordered: 720, stock: 1444
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 90, purchased: 470, ordered: 375, stock: 95
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 126, purchased: 25, ordered: 0, stock: 25
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 91, purchased: 26, ordered: 0, stock: 26
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 92, purchased: 25, ordered: 29, stock: 0
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 93, purchased: 752, ordered: 854, stock: 0
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 94, purchased: 764, ordered: 685, stock: 79
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 95, purchased: 2263, ordered: 460, stock: 1803
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 96, purchased: 18925, ordered: 3394, stock: 15531
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 134, purchased: 604, ordered: 69, stock: 535
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 130, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 133, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 131, purchased: 19, ordered: 0, stock: 19
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 97, purchased: 6001, ordered: 2358, stock: 3643
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 98, purchased: 442, ordered: 43, stock: 399
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 146, purchased: 200, ordered: 0, stock: 200
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 99, purchased: 2, ordered: 0, stock: 2
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 100, purchased: 34587, ordered: 30172, stock: 4415
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 137, purchased: 189, ordered: 4, stock: 185
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 101, purchased: 107, ordered: 23, stock: 84
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 102, purchased: 11299, ordered: 8446, stock: 2853
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 103, purchased: 29811, ordered: 23408, stock: 6403
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 104, purchased: 7500, ordered: 806, stock: 6694
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 142, purchased: 36, ordered: 0, stock: 36
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 140, purchased: 10, ordered: 1, stock: 9
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 105, purchased: 358, ordered: 203, stock: 155
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 106, purchased: 738, ordered: 645, stock: 93
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 125, purchased: 253, ordered: 0, stock: 253
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 108, purchased: 2503, ordered: 2196, stock: 307
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 109, purchased: 2571, ordered: 671, stock: 1900
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 110, purchased: 4761, ordered: 1656, stock: 3105
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 132, purchased: 200, ordered: 175, stock: 25
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 111, purchased: 406, ordered: 85, stock: 321
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 112, purchased: 1900, ordered: 1323, stock: 577
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 113, purchased: 2241, ordered: 825, stock: 1416
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 135, purchased: 1990, ordered: 654, stock: 1336
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 114, purchased: 922, ordered: 45, stock: 877
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 115, purchased: 13662, ordered: 16719, stock: 0
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 116, purchased: 237414, ordered: 233541, stock: 3873
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 107, purchased: 1200, ordered: 836, stock: 364
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 117, purchased: 9776, ordered: 6053, stock: 3723
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 118, purchased: 24842, ordered: 21792, stock: 3050
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 129, purchased: 1706, ordered: 1560, stock: 146
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 119, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 120, purchased: 1555, ordered: 565, stock: 990
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 121, purchased: 63, ordered: 2, stock: 61
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 122, purchased: 688, ordered: 207, stock: 481
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 123, purchased: 2020, ordered: 1730, stock: 290
+DEBUG - 2025-11-25 10:32:19 --> getProductsWithStock - ID: 124, purchased: 3646, ordered: 4469, stock: 0
+DEBUG - 2025-11-25 10:32:19 --> Prepared products for create view: [{"id":78,"name":"BROILER BOOSTER","price":3000,"current_stock":0,"unit":""},{"id":138,"name":"BROILER EXTRA","price":3000,"current_stock":16,"unit":""},{"id":79,"name":"BROILER FINISHER MASH","price":1000,"current_stock":966,"unit":""},{"id":80,"name":"BROILER PREMIX","price":3000,"current_stock":148,"unit":""},{"id":81,"name":"BROILER STARTER MASH","price":1000,"current_stock":1056,"unit":""},{"id":139,"name":"CHIKWIDI","price":15000,"current_stock":1,"unit":""},{"id":82,"name":"CHOKAA","price":500,"current_stock":0,"unit":""},{"id":83,"name":"CHUMVI","price":500,"current_stock":0,"unit":""},{"id":84,"name":"D.C.P KOPO (1\/2)","price":2000,"current_stock":172,"unit":""},{"id":85,"name":"D.C.P KOPO 1KG","price":3000,"current_stock":134,"unit":""},{"id":127,"name":"D.C.P KUPIMA","price":1500,"current_stock":1621,"unit":""},{"id":86,"name":"DAGAA KAUZU","price":2800,"current_stock":22,"unit":""},{"id":87,"name":"DAGAA SAGWA","price":2000,"current_stock":0,"unit":""},{"id":88,"name":"DAMU","price":1500,"current_stock":237,"unit":""},{"id":89,"name":"GROWER MASH","price":1000,"current_stock":1444,"unit":""},{"id":90,"name":"HAMIRA","price":1500,"current_stock":95,"unit":""},{"id":126,"name":"HIPHOS PLUS","price":5000,"current_stock":25,"unit":""},{"id":91,"name":"JOSERA MADUME","price":11000,"current_stock":26,"unit":""},{"id":92,"name":"JOSERA MAZIWA","price":11000,"current_stock":0,"unit":""},{"id":93,"name":"KARANGA","price":700,"current_stock":0,"unit":""},{"id":94,"name":"KAUDIS NGURUWE","price":4000,"current_stock":79,"unit":""},{"id":95,"name":"KAYABO","price":2000,"current_stock":1803,"unit":""},{"id":96,"name":"KONOKONO","price":350,"current_stock":15531,"unit":""},{"id":134,"name":"KONOKONO NZIMA","price":400,"current_stock":535,"unit":""},{"id":130,"name":"KONOKONO SAGWA","price":470,"current_stock":0,"unit":""},{"id":133,"name":"KONOKONO SAGWA","price":600,"current_stock":0,"unit":""},{"id":131,"name":"LAYERS EXTRA","price":3500,"current_stock":19,"unit":""},{"id":97,"name":"LAYERS MASH","price":1000,"current_stock":3643,"unit":""},{"id":98,"name":"LAYERS PREMIX","price":3500,"current_stock":399,"unit":""},{"id":146,"name":"MABOGA","price":3800,"current_stock":200,"unit":""},{"id":99,"name":"MADUME LICK","price":5000,"current_stock":2,"unit":""},{"id":100,"name":"MAHINDI","price":730,"current_stock":4415,"unit":""},{"id":137,"name":"MAZIWA MENGI 1KG","price":1500,"current_stock":185,"unit":""},{"id":101,"name":"MAZIWA MENGI 2kg","price":3000,"current_stock":84,"unit":""},{"id":102,"name":"MCHELE LAINI","price":400,"current_stock":2853,"unit":""},{"id":103,"name":"MCHELE NGUMU","price":320,"current_stock":6403,"unit":""},{"id":104,"name":"MFUPA","price":700,"current_stock":6694,"unit":""},{"id":142,"name":"MOLLASSES 1LITRE","price":5000,"current_stock":36,"unit":""},{"id":140,"name":"MOLLASSES 5LITRE","price":15000,"current_stock":9,"unit":""},{"id":105,"name":"MTAMA","price":1000,"current_stock":155,"unit":""},{"id":106,"name":"NGANO","price":1000,"current_stock":93,"unit":""},{"id":125,"name":"NGURUWE MIX","price":3500,"current_stock":253,"unit":""},{"id":108,"name":"PAMBA LAINI","price":1200,"current_stock":307,"unit":""},{"id":109,"name":"PAMBA NGUMU","price":1200,"current_stock":1900,"unit":""},{"id":110,"name":"PARAZA","price":1000,"current_stock":3105,"unit":""},{"id":132,"name":"PELLET FINISHER","price":2000,"current_stock":25,"unit":""},{"id":111,"name":"PIG BOOSTER","price":3000,"current_stock":321,"unit":""},{"id":112,"name":"PIG GROWER","price":1000,"current_stock":577,"unit":""},{"id":113,"name":"PIG STARTER","price":1000,"current_stock":1416,"unit":""},{"id":135,"name":"PILLET STARTER","price":2000,"current_stock":1336,"unit":""},{"id":114,"name":"PILLLET GROWER","price":2000,"current_stock":877,"unit":""},{"id":115,"name":"POLLARD","price":750,"current_stock":0,"unit":""},{"id":116,"name":"PUMBA","price":660,"current_stock":3873,"unit":""},{"id":107,"name":"PUMBA MAHINDI LAINI","price":600,"current_stock":364,"unit":""},{"id":117,"name":"SHUDU LAINI","price":900,"current_stock":3723,"unit":""},{"id":118,"name":"SHUDU NGUMU","price":800,"current_stock":3050,"unit":""},{"id":129,"name":"SOYA CHENGA","price":2500,"current_stock":146,"unit":""},{"id":119,"name":"SOYA MAFUTA","price":2500,"current_stock":0,"unit":""},{"id":120,"name":"SOYA UNGA","price":2000,"current_stock":990,"unit":""},{"id":121,"name":"SUPER MACLICK","price":3500,"current_stock":61,"unit":""},{"id":122,"name":"UBUYU","price":700,"current_stock":481,"unit":""},{"id":123,"name":"UDUVI","price":3500,"current_stock":290,"unit":""},{"id":124,"name":"WHEAT","price":650,"current_stock":0,"unit":""}]
+ERROR - 2025-11-25 10:32:19 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 10:32:19 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 10:32:19 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 10:32:19 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 10:32:19 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/create.php
+INFO - 2025-11-25 10:32:19 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 10:32:19 --> Final output sent to browser
+DEBUG - 2025-11-25 10:32:19 --> Total execution time: 0.1309
+INFO - 2025-11-25 10:32:19 --> Config Class Initialized
+INFO - 2025-11-25 10:32:19 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:32:19 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:32:19 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:32:19 --> URI Class Initialized
+INFO - 2025-11-25 10:32:19 --> Router Class Initialized
+INFO - 2025-11-25 10:32:19 --> Output Class Initialized
+INFO - 2025-11-25 10:32:19 --> Security Class Initialized
+DEBUG - 2025-11-25 10:32:19 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:32:19 --> Input Class Initialized
+INFO - 2025-11-25 10:32:19 --> Language Class Initialized
+ERROR - 2025-11-25 10:32:19 --> 404 Page Not Found: Assets/plugins
+INFO - 2025-11-25 10:33:43 --> Config Class Initialized
+INFO - 2025-11-25 10:33:43 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:33:43 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:33:43 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:33:43 --> URI Class Initialized
+INFO - 2025-11-25 10:33:43 --> Router Class Initialized
+INFO - 2025-11-25 10:33:43 --> Output Class Initialized
+INFO - 2025-11-25 10:33:43 --> Security Class Initialized
+DEBUG - 2025-11-25 10:33:43 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:33:43 --> Input Class Initialized
+INFO - 2025-11-25 10:33:43 --> Language Class Initialized
+INFO - 2025-11-25 10:33:43 --> Loader Class Initialized
+INFO - 2025-11-25 10:33:43 --> Helper loaded: url_helper
+INFO - 2025-11-25 10:33:43 --> Helper loaded: form_helper
+INFO - 2025-11-25 10:33:43 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 10:33:43 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 10:33:43 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 10:33:43 --> Form Validation Class Initialized
+INFO - 2025-11-25 10:33:43 --> Controller Class Initialized
+DEBUG - 2025-11-25 10:33:43 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 10:33:43 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 10:33:43 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 10:33:43 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 10:33:43 --> Model Class Initialized
+INFO - 2025-11-25 10:33:43 --> Model Class Initialized
+INFO - 2025-11-25 10:33:43 --> Model Class Initialized
+INFO - 2025-11-25 10:33:43 --> Model Class Initialized
+INFO - 2025-11-25 10:33:43 --> Model Class Initialized
+INFO - 2025-11-25 10:33:43 --> Model Class Initialized
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 78, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 138, purchased: 16, ordered: 0, stock: 16
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 79, purchased: 989, ordered: 23, stock: 966
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 80, purchased: 205, ordered: 57, stock: 148
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 81, purchased: 2046, ordered: 990, stock: 1056
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 139, purchased: 2, ordered: 1, stock: 1
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 82, purchased: 3500, ordered: 8596, stock: 0
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 83, purchased: 0, ordered: 2875, stock: 0
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 84, purchased: 189, ordered: 17, stock: 172
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 85, purchased: 137, ordered: 3, stock: 134
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 127, purchased: 2000, ordered: 379, stock: 1621
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 86, purchased: 384, ordered: 362, stock: 22
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 87, purchased: 588, ordered: 636, stock: 0
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 88, purchased: 837, ordered: 600, stock: 237
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 89, purchased: 2164, ordered: 720, stock: 1444
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 90, purchased: 470, ordered: 375, stock: 95
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 126, purchased: 25, ordered: 0, stock: 25
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 91, purchased: 26, ordered: 0, stock: 26
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 92, purchased: 25, ordered: 29, stock: 0
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 93, purchased: 752, ordered: 854, stock: 0
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 94, purchased: 764, ordered: 685, stock: 79
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 95, purchased: 2263, ordered: 460, stock: 1803
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 96, purchased: 18925, ordered: 3394, stock: 15531
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 134, purchased: 604, ordered: 69, stock: 535
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 130, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 133, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 131, purchased: 19, ordered: 0, stock: 19
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 97, purchased: 6001, ordered: 2358, stock: 3643
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 98, purchased: 442, ordered: 43, stock: 399
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 146, purchased: 200, ordered: 0, stock: 200
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 99, purchased: 2, ordered: 0, stock: 2
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 100, purchased: 34587, ordered: 30172, stock: 4415
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 137, purchased: 189, ordered: 4, stock: 185
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 101, purchased: 107, ordered: 23, stock: 84
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 102, purchased: 11299, ordered: 8446, stock: 2853
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 103, purchased: 29811, ordered: 23408, stock: 6403
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 104, purchased: 7500, ordered: 806, stock: 6694
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 142, purchased: 36, ordered: 0, stock: 36
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 140, purchased: 10, ordered: 1, stock: 9
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 105, purchased: 358, ordered: 203, stock: 155
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 106, purchased: 738, ordered: 645, stock: 93
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 125, purchased: 253, ordered: 0, stock: 253
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 108, purchased: 2503, ordered: 2196, stock: 307
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 109, purchased: 2571, ordered: 671, stock: 1900
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 110, purchased: 4761, ordered: 1656, stock: 3105
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 132, purchased: 200, ordered: 175, stock: 25
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 111, purchased: 406, ordered: 85, stock: 321
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 112, purchased: 1900, ordered: 1323, stock: 577
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 113, purchased: 2241, ordered: 825, stock: 1416
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 135, purchased: 1990, ordered: 654, stock: 1336
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 114, purchased: 922, ordered: 45, stock: 877
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 115, purchased: 13662, ordered: 16719, stock: 0
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 116, purchased: 237414, ordered: 233541, stock: 3873
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 107, purchased: 1200, ordered: 836, stock: 364
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 117, purchased: 9776, ordered: 6053, stock: 3723
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 118, purchased: 24842, ordered: 21792, stock: 3050
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 129, purchased: 1706, ordered: 1560, stock: 146
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 119, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 120, purchased: 1555, ordered: 565, stock: 990
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 121, purchased: 63, ordered: 2, stock: 61
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 122, purchased: 688, ordered: 207, stock: 481
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 123, purchased: 2020, ordered: 1730, stock: 290
+DEBUG - 2025-11-25 10:33:44 --> getProductsWithStock - ID: 124, purchased: 3646, ordered: 4469, stock: 0
+DEBUG - 2025-11-25 10:33:44 --> Prepared products for create view: [{"id":78,"name":"BROILER BOOSTER","price":3000,"current_stock":0,"unit":""},{"id":138,"name":"BROILER EXTRA","price":3000,"current_stock":16,"unit":""},{"id":79,"name":"BROILER FINISHER MASH","price":1000,"current_stock":966,"unit":""},{"id":80,"name":"BROILER PREMIX","price":3000,"current_stock":148,"unit":""},{"id":81,"name":"BROILER STARTER MASH","price":1000,"current_stock":1056,"unit":""},{"id":139,"name":"CHIKWIDI","price":15000,"current_stock":1,"unit":""},{"id":82,"name":"CHOKAA","price":500,"current_stock":0,"unit":""},{"id":83,"name":"CHUMVI","price":500,"current_stock":0,"unit":""},{"id":84,"name":"D.C.P KOPO (1\/2)","price":2000,"current_stock":172,"unit":""},{"id":85,"name":"D.C.P KOPO 1KG","price":3000,"current_stock":134,"unit":""},{"id":127,"name":"D.C.P KUPIMA","price":1500,"current_stock":1621,"unit":""},{"id":86,"name":"DAGAA KAUZU","price":2800,"current_stock":22,"unit":""},{"id":87,"name":"DAGAA SAGWA","price":2000,"current_stock":0,"unit":""},{"id":88,"name":"DAMU","price":1500,"current_stock":237,"unit":""},{"id":89,"name":"GROWER MASH","price":1000,"current_stock":1444,"unit":""},{"id":90,"name":"HAMIRA","price":1500,"current_stock":95,"unit":""},{"id":126,"name":"HIPHOS PLUS","price":5000,"current_stock":25,"unit":""},{"id":91,"name":"JOSERA MADUME","price":11000,"current_stock":26,"unit":""},{"id":92,"name":"JOSERA MAZIWA","price":11000,"current_stock":0,"unit":""},{"id":93,"name":"KARANGA","price":700,"current_stock":0,"unit":""},{"id":94,"name":"KAUDIS NGURUWE","price":4000,"current_stock":79,"unit":""},{"id":95,"name":"KAYABO","price":2000,"current_stock":1803,"unit":""},{"id":96,"name":"KONOKONO","price":350,"current_stock":15531,"unit":""},{"id":134,"name":"KONOKONO NZIMA","price":400,"current_stock":535,"unit":""},{"id":130,"name":"KONOKONO SAGWA","price":470,"current_stock":0,"unit":""},{"id":133,"name":"KONOKONO SAGWA","price":600,"current_stock":0,"unit":""},{"id":131,"name":"LAYERS EXTRA","price":3500,"current_stock":19,"unit":""},{"id":97,"name":"LAYERS MASH","price":1000,"current_stock":3643,"unit":""},{"id":98,"name":"LAYERS PREMIX","price":3500,"current_stock":399,"unit":""},{"id":146,"name":"MABOGA","price":3800,"current_stock":200,"unit":""},{"id":99,"name":"MADUME LICK","price":5000,"current_stock":2,"unit":""},{"id":100,"name":"MAHINDI","price":730,"current_stock":4415,"unit":""},{"id":137,"name":"MAZIWA MENGI 1KG","price":1500,"current_stock":185,"unit":""},{"id":101,"name":"MAZIWA MENGI 2kg","price":3000,"current_stock":84,"unit":""},{"id":102,"name":"MCHELE LAINI","price":400,"current_stock":2853,"unit":""},{"id":103,"name":"MCHELE NGUMU","price":320,"current_stock":6403,"unit":""},{"id":104,"name":"MFUPA","price":700,"current_stock":6694,"unit":""},{"id":142,"name":"MOLLASSES 1LITRE","price":5000,"current_stock":36,"unit":""},{"id":140,"name":"MOLLASSES 5LITRE","price":15000,"current_stock":9,"unit":""},{"id":105,"name":"MTAMA","price":1000,"current_stock":155,"unit":""},{"id":106,"name":"NGANO","price":1000,"current_stock":93,"unit":""},{"id":125,"name":"NGURUWE MIX","price":3500,"current_stock":253,"unit":""},{"id":108,"name":"PAMBA LAINI","price":1200,"current_stock":307,"unit":""},{"id":109,"name":"PAMBA NGUMU","price":1200,"current_stock":1900,"unit":""},{"id":110,"name":"PARAZA","price":1000,"current_stock":3105,"unit":""},{"id":132,"name":"PELLET FINISHER","price":2000,"current_stock":25,"unit":""},{"id":111,"name":"PIG BOOSTER","price":3000,"current_stock":321,"unit":""},{"id":112,"name":"PIG GROWER","price":1000,"current_stock":577,"unit":""},{"id":113,"name":"PIG STARTER","price":1000,"current_stock":1416,"unit":""},{"id":135,"name":"PILLET STARTER","price":2000,"current_stock":1336,"unit":""},{"id":114,"name":"PILLLET GROWER","price":2000,"current_stock":877,"unit":""},{"id":115,"name":"POLLARD","price":750,"current_stock":0,"unit":""},{"id":116,"name":"PUMBA","price":660,"current_stock":3873,"unit":""},{"id":107,"name":"PUMBA MAHINDI LAINI","price":600,"current_stock":364,"unit":""},{"id":117,"name":"SHUDU LAINI","price":900,"current_stock":3723,"unit":""},{"id":118,"name":"SHUDU NGUMU","price":800,"current_stock":3050,"unit":""},{"id":129,"name":"SOYA CHENGA","price":2500,"current_stock":146,"unit":""},{"id":119,"name":"SOYA MAFUTA","price":2500,"current_stock":0,"unit":""},{"id":120,"name":"SOYA UNGA","price":2000,"current_stock":990,"unit":""},{"id":121,"name":"SUPER MACLICK","price":3500,"current_stock":61,"unit":""},{"id":122,"name":"UBUYU","price":700,"current_stock":481,"unit":""},{"id":123,"name":"UDUVI","price":3500,"current_stock":290,"unit":""},{"id":124,"name":"WHEAT","price":650,"current_stock":0,"unit":""}]
+ERROR - 2025-11-25 10:33:44 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 10:33:44 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 10:33:44 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 10:33:44 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 10:33:44 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/create.php
+INFO - 2025-11-25 10:33:44 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 10:33:44 --> Final output sent to browser
+DEBUG - 2025-11-25 10:33:44 --> Total execution time: 0.5048
+INFO - 2025-11-25 10:33:44 --> Config Class Initialized
+INFO - 2025-11-25 10:33:44 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:33:44 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:33:44 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:33:44 --> URI Class Initialized
+INFO - 2025-11-25 10:33:44 --> Router Class Initialized
+INFO - 2025-11-25 10:33:44 --> Output Class Initialized
+INFO - 2025-11-25 10:33:44 --> Security Class Initialized
+DEBUG - 2025-11-25 10:33:44 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:33:44 --> Input Class Initialized
+INFO - 2025-11-25 10:33:44 --> Language Class Initialized
+ERROR - 2025-11-25 10:33:44 --> 404 Page Not Found: Assets/plugins
+INFO - 2025-11-25 10:36:30 --> Config Class Initialized
+INFO - 2025-11-25 10:36:30 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:36:30 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:36:30 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:36:30 --> URI Class Initialized
+INFO - 2025-11-25 10:36:30 --> Router Class Initialized
+INFO - 2025-11-25 10:36:30 --> Output Class Initialized
+INFO - 2025-11-25 10:36:30 --> Security Class Initialized
+DEBUG - 2025-11-25 10:36:30 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:36:30 --> Input Class Initialized
+INFO - 2025-11-25 10:36:30 --> Language Class Initialized
+INFO - 2025-11-25 10:36:30 --> Loader Class Initialized
+INFO - 2025-11-25 10:36:30 --> Helper loaded: url_helper
+INFO - 2025-11-25 10:36:30 --> Helper loaded: form_helper
+INFO - 2025-11-25 10:36:30 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 10:36:30 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 10:36:30 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 10:36:30 --> Form Validation Class Initialized
+INFO - 2025-11-25 10:36:30 --> Controller Class Initialized
+DEBUG - 2025-11-25 10:36:30 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 10:36:30 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 10:36:30 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 10:36:30 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 10:36:30 --> Model Class Initialized
+INFO - 2025-11-25 10:36:30 --> Model Class Initialized
+INFO - 2025-11-25 10:36:30 --> Model Class Initialized
+INFO - 2025-11-25 10:36:30 --> Model Class Initialized
+INFO - 2025-11-25 10:36:30 --> Model Class Initialized
+INFO - 2025-11-25 10:36:30 --> Model Class Initialized
+DEBUG - 2025-11-25 10:36:30 --> Controller_Orders::create POST: {"customer_name":"NMC B","customer_phone":"","customer_address":"","store_id":"1","product":["93","106","135","116","123"],"qty":["0.75","0.5","1","1129","0.5"],"rate":["700.00","1000.00","2000.00","650.00","3500.00"],"rate_value":["700.00","1000.00","2000.00","650.00","3500.00"],"amount":["525.00","500.00","2000.00","733850","1750.00"],"amount_value":["525.00","500.00","2000.00","733850","1750.00"],"discount":"0","paid_status":"2","amount_paid":"738625.00","gross_amount_value":"738625.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"738625.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 10:36:30 --> Final output sent to browser
+DEBUG - 2025-11-25 10:36:30 --> Total execution time: 0.1689
+INFO - 2025-11-25 10:36:53 --> Config Class Initialized
+INFO - 2025-11-25 10:36:53 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:36:53 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:36:53 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:36:53 --> URI Class Initialized
+INFO - 2025-11-25 10:36:53 --> Router Class Initialized
+INFO - 2025-11-25 10:36:53 --> Output Class Initialized
+INFO - 2025-11-25 10:36:53 --> Security Class Initialized
+DEBUG - 2025-11-25 10:36:53 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:36:53 --> Input Class Initialized
+INFO - 2025-11-25 10:36:53 --> Language Class Initialized
+INFO - 2025-11-25 10:36:53 --> Loader Class Initialized
+INFO - 2025-11-25 10:36:53 --> Helper loaded: url_helper
+INFO - 2025-11-25 10:36:53 --> Helper loaded: form_helper
+INFO - 2025-11-25 10:36:53 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 10:36:53 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 10:36:53 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 10:36:53 --> Form Validation Class Initialized
+INFO - 2025-11-25 10:36:53 --> Controller Class Initialized
+DEBUG - 2025-11-25 10:36:53 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 10:36:53 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 10:36:53 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 10:36:53 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 10:36:53 --> Model Class Initialized
+INFO - 2025-11-25 10:36:53 --> Model Class Initialized
+INFO - 2025-11-25 10:36:53 --> Model Class Initialized
+INFO - 2025-11-25 10:36:53 --> Model Class Initialized
+INFO - 2025-11-25 10:36:53 --> Model Class Initialized
+INFO - 2025-11-25 10:36:53 --> Model Class Initialized
+DEBUG - 2025-11-25 10:36:53 --> Index loaded - Store: 7, Is Privileged: No
+ERROR - 2025-11-25 10:36:53 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 10:36:53 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 10:36:53 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 10:36:53 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 10:36:53 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/index.php
+INFO - 2025-11-25 10:36:53 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 10:36:53 --> Final output sent to browser
+DEBUG - 2025-11-25 10:36:53 --> Total execution time: 0.0604
+INFO - 2025-11-25 10:36:53 --> Config Class Initialized
+INFO - 2025-11-25 10:36:53 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:36:53 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:36:53 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:36:54 --> URI Class Initialized
+INFO - 2025-11-25 10:36:54 --> Router Class Initialized
+INFO - 2025-11-25 10:36:54 --> Output Class Initialized
+INFO - 2025-11-25 10:36:54 --> Security Class Initialized
+DEBUG - 2025-11-25 10:36:54 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:36:54 --> Input Class Initialized
+INFO - 2025-11-25 10:36:54 --> Language Class Initialized
+INFO - 2025-11-25 10:36:54 --> Loader Class Initialized
+INFO - 2025-11-25 10:36:54 --> Helper loaded: url_helper
+INFO - 2025-11-25 10:36:54 --> Helper loaded: form_helper
+INFO - 2025-11-25 10:36:54 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 10:36:54 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 10:36:54 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 10:36:54 --> Form Validation Class Initialized
+INFO - 2025-11-25 10:36:54 --> Controller Class Initialized
+DEBUG - 2025-11-25 10:36:54 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 10:36:54 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 10:36:54 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 10:36:54 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 10:36:54 --> Model Class Initialized
+INFO - 2025-11-25 10:36:54 --> Model Class Initialized
+INFO - 2025-11-25 10:36:54 --> Model Class Initialized
+INFO - 2025-11-25 10:36:54 --> Model Class Initialized
+INFO - 2025-11-25 10:36:54 --> Model Class Initialized
+INFO - 2025-11-25 10:36:54 --> Model Class Initialized
+DEBUG - 2025-11-25 10:36:54 --> fetchOrdersData - Store ID: 7, Group ID: , Is Privileged: No
+DEBUG - 2025-11-25 10:36:54 --> Adding store restriction for store_id: 7
+DEBUG - 2025-11-25 10:36:54 --> Executing query: SELECT o.*,
+                    COALESCE(s.name, 'N/A') as store_name,
+                    COALESCE(u.username, 'Unknown') as clerk_name
+                    FROM orders o
+                    LEFT JOIN stores s ON o.store_id = s.id
+                    LEFT JOIN users u ON o.user_id = u.id WHERE o.store_id = '7' ORDER BY o.id DESC
+DEBUG - 2025-11-25 10:36:54 --> Query returned 1173 results
+DEBUG - 2025-11-25 10:36:54 --> Found 1173 orders for user
+INFO - 2025-11-25 10:36:54 --> Final output sent to browser
+DEBUG - 2025-11-25 10:36:54 --> Total execution time: 0.0716
+INFO - 2025-11-25 10:38:30 --> Config Class Initialized
+INFO - 2025-11-25 10:38:30 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:38:30 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:38:30 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:38:30 --> URI Class Initialized
+INFO - 2025-11-25 10:38:30 --> Router Class Initialized
+INFO - 2025-11-25 10:38:30 --> Output Class Initialized
+INFO - 2025-11-25 10:38:30 --> Security Class Initialized
+DEBUG - 2025-11-25 10:38:30 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:38:30 --> Input Class Initialized
+INFO - 2025-11-25 10:38:30 --> Language Class Initialized
+INFO - 2025-11-25 10:38:30 --> Loader Class Initialized
+INFO - 2025-11-25 10:38:30 --> Helper loaded: url_helper
+INFO - 2025-11-25 10:38:30 --> Helper loaded: form_helper
+INFO - 2025-11-25 10:38:30 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 10:38:30 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 10:38:30 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 10:38:30 --> Form Validation Class Initialized
+INFO - 2025-11-25 10:38:30 --> Controller Class Initialized
+DEBUG - 2025-11-25 10:38:30 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 10:38:30 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 10:38:30 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 10:38:30 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 10:38:30 --> Model Class Initialized
+INFO - 2025-11-25 10:38:30 --> Model Class Initialized
+INFO - 2025-11-25 10:38:30 --> Model Class Initialized
+INFO - 2025-11-25 10:38:30 --> Model Class Initialized
+INFO - 2025-11-25 10:38:30 --> Model Class Initialized
+INFO - 2025-11-25 10:38:30 --> Model Class Initialized
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 78, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 138, purchased: 16, ordered: 0, stock: 16
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 79, purchased: 989, ordered: 23, stock: 966
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 80, purchased: 205, ordered: 57, stock: 148
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 81, purchased: 2046, ordered: 990, stock: 1056
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 139, purchased: 2, ordered: 1, stock: 1
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 82, purchased: 3500, ordered: 8596, stock: 0
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 83, purchased: 0, ordered: 2875, stock: 0
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 84, purchased: 189, ordered: 17, stock: 172
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 85, purchased: 137, ordered: 3, stock: 134
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 127, purchased: 2000, ordered: 379, stock: 1621
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 86, purchased: 384, ordered: 362, stock: 22
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 87, purchased: 588, ordered: 636, stock: 0
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 88, purchased: 837, ordered: 600, stock: 237
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 89, purchased: 2164, ordered: 720, stock: 1444
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 90, purchased: 470, ordered: 375, stock: 95
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 126, purchased: 25, ordered: 0, stock: 25
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 91, purchased: 26, ordered: 0, stock: 26
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 92, purchased: 25, ordered: 29, stock: 0
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 93, purchased: 752, ordered: 854, stock: 0
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 94, purchased: 764, ordered: 685, stock: 79
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 95, purchased: 2263, ordered: 460, stock: 1803
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 96, purchased: 18925, ordered: 3394, stock: 15531
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 134, purchased: 604, ordered: 69, stock: 535
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 130, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 133, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 131, purchased: 19, ordered: 0, stock: 19
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 97, purchased: 6001, ordered: 2358, stock: 3643
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 98, purchased: 442, ordered: 43, stock: 399
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 146, purchased: 200, ordered: 0, stock: 200
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 99, purchased: 2, ordered: 0, stock: 2
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 100, purchased: 34587, ordered: 30172, stock: 4415
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 137, purchased: 189, ordered: 4, stock: 185
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 101, purchased: 107, ordered: 23, stock: 84
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 102, purchased: 11299, ordered: 8446, stock: 2853
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 103, purchased: 29811, ordered: 23408, stock: 6403
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 104, purchased: 7500, ordered: 806, stock: 6694
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 142, purchased: 36, ordered: 0, stock: 36
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 140, purchased: 10, ordered: 1, stock: 9
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 105, purchased: 358, ordered: 203, stock: 155
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 106, purchased: 738, ordered: 645, stock: 93
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 125, purchased: 253, ordered: 0, stock: 253
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 108, purchased: 2503, ordered: 2196, stock: 307
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 109, purchased: 2571, ordered: 671, stock: 1900
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 110, purchased: 4761, ordered: 1656, stock: 3105
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 132, purchased: 200, ordered: 175, stock: 25
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 111, purchased: 406, ordered: 85, stock: 321
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 112, purchased: 1900, ordered: 1323, stock: 577
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 113, purchased: 2241, ordered: 825, stock: 1416
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 135, purchased: 1990, ordered: 654, stock: 1336
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 114, purchased: 922, ordered: 45, stock: 877
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 115, purchased: 13662, ordered: 16719, stock: 0
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 116, purchased: 237414, ordered: 233541, stock: 3873
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 107, purchased: 1200, ordered: 836, stock: 364
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 117, purchased: 9776, ordered: 6053, stock: 3723
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 118, purchased: 24842, ordered: 21792, stock: 3050
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 129, purchased: 1706, ordered: 1560, stock: 146
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 119, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 120, purchased: 1555, ordered: 565, stock: 990
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 121, purchased: 63, ordered: 2, stock: 61
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 122, purchased: 688, ordered: 207, stock: 481
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 123, purchased: 2020, ordered: 1730, stock: 290
+DEBUG - 2025-11-25 10:38:30 --> getProductsWithStock - ID: 124, purchased: 3646, ordered: 4469, stock: 0
+DEBUG - 2025-11-25 10:38:30 --> Prepared products for create view: [{"id":78,"name":"BROILER BOOSTER","price":3000,"current_stock":0,"unit":""},{"id":138,"name":"BROILER EXTRA","price":3000,"current_stock":16,"unit":""},{"id":79,"name":"BROILER FINISHER MASH","price":1000,"current_stock":966,"unit":""},{"id":80,"name":"BROILER PREMIX","price":3000,"current_stock":148,"unit":""},{"id":81,"name":"BROILER STARTER MASH","price":1000,"current_stock":1056,"unit":""},{"id":139,"name":"CHIKWIDI","price":15000,"current_stock":1,"unit":""},{"id":82,"name":"CHOKAA","price":500,"current_stock":0,"unit":""},{"id":83,"name":"CHUMVI","price":500,"current_stock":0,"unit":""},{"id":84,"name":"D.C.P KOPO (1\/2)","price":2000,"current_stock":172,"unit":""},{"id":85,"name":"D.C.P KOPO 1KG","price":3000,"current_stock":134,"unit":""},{"id":127,"name":"D.C.P KUPIMA","price":1500,"current_stock":1621,"unit":""},{"id":86,"name":"DAGAA KAUZU","price":2800,"current_stock":22,"unit":""},{"id":87,"name":"DAGAA SAGWA","price":2000,"current_stock":0,"unit":""},{"id":88,"name":"DAMU","price":1500,"current_stock":237,"unit":""},{"id":89,"name":"GROWER MASH","price":1000,"current_stock":1444,"unit":""},{"id":90,"name":"HAMIRA","price":1500,"current_stock":95,"unit":""},{"id":126,"name":"HIPHOS PLUS","price":5000,"current_stock":25,"unit":""},{"id":91,"name":"JOSERA MADUME","price":11000,"current_stock":26,"unit":""},{"id":92,"name":"JOSERA MAZIWA","price":11000,"current_stock":0,"unit":""},{"id":93,"name":"KARANGA","price":700,"current_stock":0,"unit":""},{"id":94,"name":"KAUDIS NGURUWE","price":4000,"current_stock":79,"unit":""},{"id":95,"name":"KAYABO","price":2000,"current_stock":1803,"unit":""},{"id":96,"name":"KONOKONO","price":350,"current_stock":15531,"unit":""},{"id":134,"name":"KONOKONO NZIMA","price":400,"current_stock":535,"unit":""},{"id":130,"name":"KONOKONO SAGWA","price":470,"current_stock":0,"unit":""},{"id":133,"name":"KONOKONO SAGWA","price":600,"current_stock":0,"unit":""},{"id":131,"name":"LAYERS EXTRA","price":3500,"current_stock":19,"unit":""},{"id":97,"name":"LAYERS MASH","price":1000,"current_stock":3643,"unit":""},{"id":98,"name":"LAYERS PREMIX","price":3500,"current_stock":399,"unit":""},{"id":146,"name":"MABOGA","price":3800,"current_stock":200,"unit":""},{"id":99,"name":"MADUME LICK","price":5000,"current_stock":2,"unit":""},{"id":100,"name":"MAHINDI","price":730,"current_stock":4415,"unit":""},{"id":137,"name":"MAZIWA MENGI 1KG","price":1500,"current_stock":185,"unit":""},{"id":101,"name":"MAZIWA MENGI 2kg","price":3000,"current_stock":84,"unit":""},{"id":102,"name":"MCHELE LAINI","price":400,"current_stock":2853,"unit":""},{"id":103,"name":"MCHELE NGUMU","price":320,"current_stock":6403,"unit":""},{"id":104,"name":"MFUPA","price":700,"current_stock":6694,"unit":""},{"id":142,"name":"MOLLASSES 1LITRE","price":5000,"current_stock":36,"unit":""},{"id":140,"name":"MOLLASSES 5LITRE","price":15000,"current_stock":9,"unit":""},{"id":105,"name":"MTAMA","price":1000,"current_stock":155,"unit":""},{"id":106,"name":"NGANO","price":1000,"current_stock":93,"unit":""},{"id":125,"name":"NGURUWE MIX","price":3500,"current_stock":253,"unit":""},{"id":108,"name":"PAMBA LAINI","price":1200,"current_stock":307,"unit":""},{"id":109,"name":"PAMBA NGUMU","price":1200,"current_stock":1900,"unit":""},{"id":110,"name":"PARAZA","price":1000,"current_stock":3105,"unit":""},{"id":132,"name":"PELLET FINISHER","price":2000,"current_stock":25,"unit":""},{"id":111,"name":"PIG BOOSTER","price":3000,"current_stock":321,"unit":""},{"id":112,"name":"PIG GROWER","price":1000,"current_stock":577,"unit":""},{"id":113,"name":"PIG STARTER","price":1000,"current_stock":1416,"unit":""},{"id":135,"name":"PILLET STARTER","price":2000,"current_stock":1336,"unit":""},{"id":114,"name":"PILLLET GROWER","price":2000,"current_stock":877,"unit":""},{"id":115,"name":"POLLARD","price":750,"current_stock":0,"unit":""},{"id":116,"name":"PUMBA","price":660,"current_stock":3873,"unit":""},{"id":107,"name":"PUMBA MAHINDI LAINI","price":600,"current_stock":364,"unit":""},{"id":117,"name":"SHUDU LAINI","price":900,"current_stock":3723,"unit":""},{"id":118,"name":"SHUDU NGUMU","price":800,"current_stock":3050,"unit":""},{"id":129,"name":"SOYA CHENGA","price":2500,"current_stock":146,"unit":""},{"id":119,"name":"SOYA MAFUTA","price":2500,"current_stock":0,"unit":""},{"id":120,"name":"SOYA UNGA","price":2000,"current_stock":990,"unit":""},{"id":121,"name":"SUPER MACLICK","price":3500,"current_stock":61,"unit":""},{"id":122,"name":"UBUYU","price":700,"current_stock":481,"unit":""},{"id":123,"name":"UDUVI","price":3500,"current_stock":290,"unit":""},{"id":124,"name":"WHEAT","price":650,"current_stock":0,"unit":""}]
+ERROR - 2025-11-25 10:38:30 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 10:38:30 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 10:38:30 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 10:38:30 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 10:38:30 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/create.php
+INFO - 2025-11-25 10:38:30 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 10:38:30 --> Final output sent to browser
+DEBUG - 2025-11-25 10:38:30 --> Total execution time: 0.1481
+INFO - 2025-11-25 10:38:30 --> Config Class Initialized
+INFO - 2025-11-25 10:38:30 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:38:30 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:38:30 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:38:30 --> URI Class Initialized
+INFO - 2025-11-25 10:38:30 --> Router Class Initialized
+INFO - 2025-11-25 10:38:30 --> Output Class Initialized
+INFO - 2025-11-25 10:38:30 --> Security Class Initialized
+DEBUG - 2025-11-25 10:38:30 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:38:30 --> Input Class Initialized
+INFO - 2025-11-25 10:38:30 --> Language Class Initialized
+ERROR - 2025-11-25 10:38:30 --> 404 Page Not Found: Assets/plugins
+INFO - 2025-11-25 10:41:11 --> Config Class Initialized
+INFO - 2025-11-25 10:41:11 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:41:11 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:41:11 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:41:11 --> URI Class Initialized
+INFO - 2025-11-25 10:41:11 --> Router Class Initialized
+INFO - 2025-11-25 10:41:11 --> Output Class Initialized
+INFO - 2025-11-25 10:41:11 --> Security Class Initialized
+DEBUG - 2025-11-25 10:41:11 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:41:11 --> Input Class Initialized
+INFO - 2025-11-25 10:41:11 --> Language Class Initialized
+INFO - 2025-11-25 10:41:11 --> Loader Class Initialized
+INFO - 2025-11-25 10:41:11 --> Helper loaded: url_helper
+INFO - 2025-11-25 10:41:11 --> Helper loaded: form_helper
+INFO - 2025-11-25 10:41:11 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 10:41:11 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 10:41:11 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 10:41:11 --> Form Validation Class Initialized
+INFO - 2025-11-25 10:41:11 --> Controller Class Initialized
+DEBUG - 2025-11-25 10:41:11 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 10:41:11 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 10:41:11 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 10:41:11 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 10:41:11 --> Model Class Initialized
+INFO - 2025-11-25 10:41:11 --> Model Class Initialized
+INFO - 2025-11-25 10:41:11 --> Model Class Initialized
+INFO - 2025-11-25 10:41:11 --> Model Class Initialized
+INFO - 2025-11-25 10:41:11 --> Model Class Initialized
+INFO - 2025-11-25 10:41:11 --> Model Class Initialized
+DEBUG - 2025-11-25 10:41:11 --> Controller_Orders::create POST: {"customer_name":"NMC B","customer_phone":"","customer_address":"","store_id":"1","product":["83","106","110","116","129","123"],"qty":["2","5","7","1084","7","7.5"],"rate":["500.00","1000.00","1000.00","640.00","2200.00","3500.00"],"rate_value":["500.00","1000.00","1000.00","640.00","2200.00","3500.00"],"amount":["1000.00","5000.00","7000.00","693760","15400","26250"],"amount_value":["1000.00","5000.00","7000.00","693760","15400","26250"],"discount":"0","paid_status":"2","amount_paid":"748410.00","gross_amount_value":"748410.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"748410.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 10:41:11 --> Final output sent to browser
+DEBUG - 2025-11-25 10:41:11 --> Total execution time: 0.1742
+INFO - 2025-11-25 10:48:35 --> Config Class Initialized
+INFO - 2025-11-25 10:48:35 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:48:35 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:48:35 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:48:35 --> URI Class Initialized
+INFO - 2025-11-25 10:48:35 --> Router Class Initialized
+INFO - 2025-11-25 10:48:35 --> Output Class Initialized
+INFO - 2025-11-25 10:48:35 --> Security Class Initialized
+DEBUG - 2025-11-25 10:48:35 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:48:35 --> Input Class Initialized
+INFO - 2025-11-25 10:48:35 --> Language Class Initialized
+INFO - 2025-11-25 10:48:35 --> Loader Class Initialized
+INFO - 2025-11-25 10:48:35 --> Helper loaded: url_helper
+INFO - 2025-11-25 10:48:35 --> Helper loaded: form_helper
+INFO - 2025-11-25 10:48:35 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 10:48:35 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 10:48:35 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 10:48:35 --> Form Validation Class Initialized
+INFO - 2025-11-25 10:48:35 --> Controller Class Initialized
+DEBUG - 2025-11-25 10:48:35 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 10:48:35 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 10:48:35 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 10:48:35 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 10:48:35 --> Model Class Initialized
+INFO - 2025-11-25 10:48:35 --> Model Class Initialized
+INFO - 2025-11-25 10:48:35 --> Model Class Initialized
+INFO - 2025-11-25 10:48:35 --> Model Class Initialized
+INFO - 2025-11-25 10:48:35 --> Model Class Initialized
+INFO - 2025-11-25 10:48:35 --> Model Class Initialized
+DEBUG - 2025-11-25 10:48:35 --> Controller_Orders::create POST: {"customer_name":"NMC B","customer_phone":"","customer_address":"","store_id":"1","product":["127","93","97","103","114","135","115","116","118","123"],"qty":["1","3","51","623.8","1","0.5","280","3804","50","28"],"rate":["1500.00","800.00","960.78","380.00","2000.00","2000.00","714.29","640","900.00","3160.71"],"rate_value":["1500.00","800.00","960.78","380.00","2000.00","2000.00","714.29","640","900.00","3160.71"],"amount":["1500.00","2400","49000","237044","2000.00","1000.00","200000","2434560.00","45000","88500"],"amount_value":["1500.00","2400","49000","237044","2000.00","1000.00","200000","2434560.00","45000","88500"],"discount":"0","paid_status":"2","amount_paid":"3061004.00","gross_amount_value":"3061004.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"3061004.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 10:48:35 --> Final output sent to browser
+DEBUG - 2025-11-25 10:48:35 --> Total execution time: 0.1446
+INFO - 2025-11-25 10:54:45 --> Config Class Initialized
+INFO - 2025-11-25 10:54:45 --> Hooks Class Initialized
+DEBUG - 2025-11-25 10:54:45 --> UTF-8 Support Enabled
+INFO - 2025-11-25 10:54:45 --> Utf8 Class Initialized
+INFO - 2025-11-25 10:54:45 --> URI Class Initialized
+INFO - 2025-11-25 10:54:45 --> Router Class Initialized
+INFO - 2025-11-25 10:54:45 --> Output Class Initialized
+INFO - 2025-11-25 10:54:45 --> Security Class Initialized
+DEBUG - 2025-11-25 10:54:45 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 10:54:45 --> Input Class Initialized
+INFO - 2025-11-25 10:54:45 --> Language Class Initialized
+INFO - 2025-11-25 10:54:45 --> Loader Class Initialized
+INFO - 2025-11-25 10:54:45 --> Helper loaded: url_helper
+INFO - 2025-11-25 10:54:45 --> Helper loaded: form_helper
+INFO - 2025-11-25 10:54:45 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 10:54:45 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 10:54:45 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 10:54:45 --> Form Validation Class Initialized
+INFO - 2025-11-25 10:54:45 --> Controller Class Initialized
+DEBUG - 2025-11-25 10:54:45 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 10:54:45 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 10:54:45 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 10:54:45 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 10:54:45 --> Model Class Initialized
+INFO - 2025-11-25 10:54:45 --> Model Class Initialized
+INFO - 2025-11-25 10:54:45 --> Model Class Initialized
+INFO - 2025-11-25 10:54:45 --> Model Class Initialized
+INFO - 2025-11-25 10:54:45 --> Model Class Initialized
+INFO - 2025-11-25 10:54:45 --> Model Class Initialized
+DEBUG - 2025-11-25 10:54:45 --> Controller_Orders::create POST: {"customer_name":"NMC B","customer_phone":"","customer_address":"","store_id":"1","product":["82","83","127","103","104","108","111","116","117","118","123"],"qty":["1","25.5","2","150","1","5","2","220","50","4","5"],"rate":["500.00","500.00","1500.00","380","700.00","1200.00","3000.00","640","900.00","800.00","3500.00"],"rate_value":["500.00","500.00","1500.00","380","700.00","1200.00","3000.00","640","900.00","800.00","3500.00"],"amount":["500.00","12750.00","3000.00","57000.00","700.00","6000.00","6000.00","140800.00","45000.00","3200.00","17500.00"],"amount_value":["500.00","12750.00","3000.00","57000.00","700.00","6000.00","6000.00","140800.00","45000.00","3200.00","17500.00"],"discount":"0","paid_status":"2","amount_paid":"292450.00","gross_amount_value":"292450.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"292450.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 10:54:45 --> Final output sent to browser
+DEBUG - 2025-11-25 10:54:45 --> Total execution time: 0.1384
+INFO - 2025-11-25 11:06:44 --> Config Class Initialized
+INFO - 2025-11-25 11:06:44 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:06:44 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:06:44 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:06:44 --> URI Class Initialized
+INFO - 2025-11-25 11:06:44 --> Router Class Initialized
+INFO - 2025-11-25 11:06:44 --> Output Class Initialized
+INFO - 2025-11-25 11:06:44 --> Security Class Initialized
+DEBUG - 2025-11-25 11:06:44 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:06:44 --> Input Class Initialized
+INFO - 2025-11-25 11:06:44 --> Language Class Initialized
+INFO - 2025-11-25 11:06:44 --> Loader Class Initialized
+INFO - 2025-11-25 11:06:44 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:06:44 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:06:44 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:06:44 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:06:44 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:06:44 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:06:44 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:06:44 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:06:44 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:06:44 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:06:44 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:06:44 --> Model Class Initialized
+INFO - 2025-11-25 11:06:44 --> Model Class Initialized
+INFO - 2025-11-25 11:06:44 --> Model Class Initialized
+INFO - 2025-11-25 11:06:44 --> Model Class Initialized
+INFO - 2025-11-25 11:06:44 --> Model Class Initialized
+INFO - 2025-11-25 11:06:44 --> Model Class Initialized
+DEBUG - 2025-11-25 11:06:44 --> Controller_Orders::create POST: {"customer_name":"NMC B","customer_phone":"","customer_address":"","store_id":"1","product":["82","87","88","92","97","103","106","110","115","116","117","118","123"],"qty":["150","2","60","3","0.5","100","1","71.5","35","525.7","25","158.75","0.25"],"rate":["251.67","2000.00","1500.00","12000.00","1000.00","380.00","1000.00","900","714.29","640","900.00","800.00","3500.00"],"rate_value":["251.67","2000.00","1500.00","12000.00","1000.00","380.00","1000.00","900","714.29","640","900.00","800.00","3500.00"],"amount":["37750","4000.00","90000.00","36000","500.00","38000","1000.00","64350.00","25000","336448.00","22500.00","127000.00","875.00"],"amount_value":["37750","4000.00","90000.00","36000","500.00","38000","1000.00","64350.00","25000","336448.00","22500.00","127000.00","875.00"],"discount":"0","paid_status":"2","amount_paid":"783423.00","gross_amount_value":"783423.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"783423.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 11:06:44 --> Final output sent to browser
+DEBUG - 2025-11-25 11:06:44 --> Total execution time: 0.1556
+INFO - 2025-11-25 11:15:56 --> Config Class Initialized
+INFO - 2025-11-25 11:15:56 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:15:56 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:15:56 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:15:56 --> URI Class Initialized
+INFO - 2025-11-25 11:15:56 --> Router Class Initialized
+INFO - 2025-11-25 11:15:56 --> Output Class Initialized
+INFO - 2025-11-25 11:15:56 --> Security Class Initialized
+DEBUG - 2025-11-25 11:15:56 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:15:56 --> Input Class Initialized
+INFO - 2025-11-25 11:15:56 --> Language Class Initialized
+INFO - 2025-11-25 11:15:56 --> Loader Class Initialized
+INFO - 2025-11-25 11:15:56 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:15:56 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:15:56 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:15:56 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:15:56 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:15:56 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:15:56 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:15:56 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:15:56 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:15:56 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:15:56 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:15:56 --> Model Class Initialized
+INFO - 2025-11-25 11:15:56 --> Model Class Initialized
+INFO - 2025-11-25 11:15:56 --> Model Class Initialized
+INFO - 2025-11-25 11:15:56 --> Model Class Initialized
+INFO - 2025-11-25 11:15:56 --> Model Class Initialized
+INFO - 2025-11-25 11:15:56 --> Model Class Initialized
+DEBUG - 2025-11-25 11:15:56 --> Controller_Orders::create POST: {"customer_name":"MR PONDO","customer_phone":"","customer_address":"","store_id":"7","product":["110","116","102","117","108","87","88","82","127","83"],"qty":["25","30","20","10","6","3","2","2","0.5","0.5"],"rate":["1000.00","633.33","450.00","900.00","1200.00","2000.00","1500.00","500.00","1500.00","500.00"],"rate_value":["1000.00","633.33","450.00","900.00","1200.00","2000.00","1500.00","500.00","1500.00","500.00"],"amount":["25000.00","19000","9000","9000.00","7200.00","6000.00","3000.00","1000.00","750.00","250.00"],"amount_value":["25000.00","19000","9000","9000.00","7200.00","6000.00","3000.00","1000.00","750.00","250.00"],"discount":"0","paid_status":"2","amount_paid":"80200.00","gross_amount_value":"80200.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"80200.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 11:15:56 --> Final output sent to browser
+DEBUG - 2025-11-25 11:15:56 --> Total execution time: 0.1473
+INFO - 2025-11-25 11:21:06 --> Config Class Initialized
+INFO - 2025-11-25 11:21:06 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:21:06 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:21:06 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:21:06 --> URI Class Initialized
+INFO - 2025-11-25 11:21:06 --> Router Class Initialized
+INFO - 2025-11-25 11:21:06 --> Output Class Initialized
+INFO - 2025-11-25 11:21:06 --> Security Class Initialized
+DEBUG - 2025-11-25 11:21:06 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:21:06 --> Input Class Initialized
+INFO - 2025-11-25 11:21:06 --> Language Class Initialized
+INFO - 2025-11-25 11:21:06 --> Loader Class Initialized
+INFO - 2025-11-25 11:21:06 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:21:06 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:21:06 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:21:06 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:21:06 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:21:06 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:21:06 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:21:06 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:21:06 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:21:06 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:21:06 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:21:06 --> Model Class Initialized
+INFO - 2025-11-25 11:21:06 --> Model Class Initialized
+INFO - 2025-11-25 11:21:06 --> Model Class Initialized
+INFO - 2025-11-25 11:21:06 --> Model Class Initialized
+INFO - 2025-11-25 11:21:06 --> Model Class Initialized
+INFO - 2025-11-25 11:21:06 --> Model Class Initialized
+DEBUG - 2025-11-25 11:21:06 --> Controller_Orders::create POST: {"customer_name":"M.LAIRA","customer_phone":"","customer_address":"","store_id":"7","product":["95","116","","","82","83","80","83"],"qty":["162","200","0","0","50","3","3","2"],"rate":["2000.00","640","637500.00","350000.00","240.00","500.00","3000.00","500.00"],"rate_value":["2000.00","640","637500.00","350000.00","240.00","500.00","3000.00","500.00"],"amount":["324000.00","128000.00","637500","350000","12000","1500.00","9000.00","1000.00"],"amount_value":["324000.00","128000.00","637500","350000","12000","1500.00","9000.00","1000.00"],"discount":"0","paid_status":"2","amount_paid":"1463000.00","gross_amount_value":"1463000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"1463000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 11:21:06 --> Final output sent to browser
+DEBUG - 2025-11-25 11:21:06 --> Total execution time: 0.1485
+INFO - 2025-11-25 11:21:43 --> Config Class Initialized
+INFO - 2025-11-25 11:21:43 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:21:43 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:21:43 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:21:43 --> URI Class Initialized
+INFO - 2025-11-25 11:21:43 --> Router Class Initialized
+INFO - 2025-11-25 11:21:43 --> Output Class Initialized
+INFO - 2025-11-25 11:21:43 --> Security Class Initialized
+DEBUG - 2025-11-25 11:21:43 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:21:43 --> Input Class Initialized
+INFO - 2025-11-25 11:21:43 --> Language Class Initialized
+INFO - 2025-11-25 11:21:43 --> Loader Class Initialized
+INFO - 2025-11-25 11:21:43 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:21:43 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:21:43 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:21:43 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:21:43 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:21:43 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:21:43 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:21:43 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:21:43 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:21:43 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:21:43 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:21:43 --> Model Class Initialized
+INFO - 2025-11-25 11:21:43 --> Model Class Initialized
+INFO - 2025-11-25 11:21:43 --> Model Class Initialized
+INFO - 2025-11-25 11:21:43 --> Model Class Initialized
+INFO - 2025-11-25 11:21:43 --> Model Class Initialized
+INFO - 2025-11-25 11:21:43 --> Model Class Initialized
+DEBUG - 2025-11-25 11:21:43 --> Controller_Orders::create POST: {"customer_name":"M.DORCAS","customer_phone":"","customer_address":"","store_id":"7","product":["96","117"],"qty":["2","1"],"rate":["400","1000"],"rate_value":["400","1000"],"amount":["800.00","1000.00"],"amount_value":["800.00","1000.00"],"discount":"0","paid_status":"2","amount_paid":"1800.00","gross_amount_value":"1800.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"1800.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 11:21:43 --> Final output sent to browser
+DEBUG - 2025-11-25 11:21:43 --> Total execution time: 0.1487
+INFO - 2025-11-25 11:22:18 --> Config Class Initialized
+INFO - 2025-11-25 11:22:18 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:22:18 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:22:18 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:22:18 --> URI Class Initialized
+INFO - 2025-11-25 11:22:18 --> Router Class Initialized
+INFO - 2025-11-25 11:22:18 --> Output Class Initialized
+INFO - 2025-11-25 11:22:18 --> Security Class Initialized
+DEBUG - 2025-11-25 11:22:18 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:22:18 --> Input Class Initialized
+INFO - 2025-11-25 11:22:18 --> Language Class Initialized
+INFO - 2025-11-25 11:22:18 --> Loader Class Initialized
+INFO - 2025-11-25 11:22:18 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:22:18 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:22:18 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:22:18 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:22:18 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:22:18 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:22:18 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:22:18 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:22:18 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:22:18 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:22:18 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:22:18 --> Model Class Initialized
+INFO - 2025-11-25 11:22:18 --> Model Class Initialized
+INFO - 2025-11-25 11:22:18 --> Model Class Initialized
+INFO - 2025-11-25 11:22:18 --> Model Class Initialized
+INFO - 2025-11-25 11:22:18 --> Model Class Initialized
+INFO - 2025-11-25 11:22:18 --> Model Class Initialized
+DEBUG - 2025-11-25 11:22:18 --> Controller_Orders::create POST: {"customer_name":"HASSAN","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["500"],"rate":["650"],"rate_value":["650"],"amount":["325000.00"],"amount_value":["325000.00"],"discount":"0","paid_status":"2","amount_paid":"325000.00","gross_amount_value":"325000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"325000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 11:22:18 --> Final output sent to browser
+DEBUG - 2025-11-25 11:22:18 --> Total execution time: 0.1419
+INFO - 2025-11-25 11:27:10 --> Config Class Initialized
+INFO - 2025-11-25 11:27:10 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:27:10 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:27:10 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:27:10 --> URI Class Initialized
+INFO - 2025-11-25 11:27:10 --> Router Class Initialized
+INFO - 2025-11-25 11:27:10 --> Output Class Initialized
+INFO - 2025-11-25 11:27:10 --> Security Class Initialized
+DEBUG - 2025-11-25 11:27:10 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:27:10 --> Input Class Initialized
+INFO - 2025-11-25 11:27:10 --> Language Class Initialized
+INFO - 2025-11-25 11:27:10 --> Loader Class Initialized
+INFO - 2025-11-25 11:27:10 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:27:10 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:27:10 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:27:10 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:27:10 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:27:10 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:27:10 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:27:10 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:27:10 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:27:10 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:27:10 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:27:10 --> Model Class Initialized
+INFO - 2025-11-25 11:27:10 --> Model Class Initialized
+INFO - 2025-11-25 11:27:10 --> Model Class Initialized
+INFO - 2025-11-25 11:27:10 --> Model Class Initialized
+INFO - 2025-11-25 11:27:10 --> Model Class Initialized
+INFO - 2025-11-25 11:27:10 --> Model Class Initialized
+DEBUG - 2025-11-25 11:27:10 --> Controller_Orders::create POST: {"customer_name":"ALFA","customer_phone":"","customer_address":"","store_id":"7","product":["103","83"],"qty":["200","8"],"rate":["320.00","500.00"],"rate_value":["320.00","500.00"],"amount":["64000.00","4000.00"],"amount_value":["64000.00","4000.00"],"discount":"0","paid_status":"2","amount_paid":"68000.00","gross_amount_value":"68000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"68000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 11:27:10 --> Final output sent to browser
+DEBUG - 2025-11-25 11:27:10 --> Total execution time: 0.1557
+INFO - 2025-11-25 11:27:16 --> Config Class Initialized
+INFO - 2025-11-25 11:27:16 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:27:16 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:27:16 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:27:16 --> URI Class Initialized
+INFO - 2025-11-25 11:27:16 --> Router Class Initialized
+INFO - 2025-11-25 11:27:16 --> Output Class Initialized
+INFO - 2025-11-25 11:27:16 --> Security Class Initialized
+DEBUG - 2025-11-25 11:27:16 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:27:16 --> Input Class Initialized
+INFO - 2025-11-25 11:27:16 --> Language Class Initialized
+INFO - 2025-11-25 11:27:16 --> Loader Class Initialized
+INFO - 2025-11-25 11:27:16 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:27:16 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:27:16 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:27:16 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:27:16 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:27:16 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:27:16 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:27:16 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:27:16 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:27:16 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:27:16 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:27:16 --> Model Class Initialized
+INFO - 2025-11-25 11:27:16 --> Model Class Initialized
+INFO - 2025-11-25 11:27:16 --> Model Class Initialized
+INFO - 2025-11-25 11:27:16 --> Model Class Initialized
+INFO - 2025-11-25 11:27:16 --> Model Class Initialized
+INFO - 2025-11-25 11:27:16 --> Model Class Initialized
+DEBUG - 2025-11-25 11:27:16 --> Index loaded - Store: 7, Is Privileged: No
+ERROR - 2025-11-25 11:27:16 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 11:27:16 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 11:27:16 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 11:27:16 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 11:27:16 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/index.php
+INFO - 2025-11-25 11:27:16 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 11:27:16 --> Final output sent to browser
+DEBUG - 2025-11-25 11:27:16 --> Total execution time: 0.0717
+INFO - 2025-11-25 11:27:16 --> Config Class Initialized
+INFO - 2025-11-25 11:27:16 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:27:16 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:27:16 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:27:16 --> URI Class Initialized
+INFO - 2025-11-25 11:27:16 --> Router Class Initialized
+INFO - 2025-11-25 11:27:16 --> Output Class Initialized
+INFO - 2025-11-25 11:27:16 --> Security Class Initialized
+DEBUG - 2025-11-25 11:27:16 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:27:16 --> Input Class Initialized
+INFO - 2025-11-25 11:27:16 --> Language Class Initialized
+INFO - 2025-11-25 11:27:16 --> Loader Class Initialized
+INFO - 2025-11-25 11:27:16 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:27:16 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:27:16 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:27:16 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:27:16 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:27:16 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:27:16 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:27:16 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:27:16 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:27:16 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:27:16 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:27:16 --> Model Class Initialized
+INFO - 2025-11-25 11:27:16 --> Model Class Initialized
+INFO - 2025-11-25 11:27:16 --> Model Class Initialized
+INFO - 2025-11-25 11:27:16 --> Model Class Initialized
+INFO - 2025-11-25 11:27:16 --> Model Class Initialized
+INFO - 2025-11-25 11:27:16 --> Model Class Initialized
+DEBUG - 2025-11-25 11:27:16 --> fetchOrdersData - Store ID: 7, Group ID: , Is Privileged: No
+DEBUG - 2025-11-25 11:27:16 --> Adding store restriction for store_id: 7
+DEBUG - 2025-11-25 11:27:16 --> Executing query: SELECT o.*,
+                    COALESCE(s.name, 'N/A') as store_name,
+                    COALESCE(u.username, 'Unknown') as clerk_name
+                    FROM orders o
+                    LEFT JOIN stores s ON o.store_id = s.id
+                    LEFT JOIN users u ON o.user_id = u.id WHERE o.store_id = '7' ORDER BY o.id DESC
+DEBUG - 2025-11-25 11:27:16 --> Query returned 1178 results
+DEBUG - 2025-11-25 11:27:16 --> Found 1178 orders for user
+INFO - 2025-11-25 11:27:16 --> Final output sent to browser
+DEBUG - 2025-11-25 11:27:16 --> Total execution time: 0.0677
+INFO - 2025-11-25 11:27:23 --> Config Class Initialized
+INFO - 2025-11-25 11:27:23 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:27:23 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:27:23 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:27:23 --> URI Class Initialized
+INFO - 2025-11-25 11:27:23 --> Router Class Initialized
+INFO - 2025-11-25 11:27:23 --> Output Class Initialized
+INFO - 2025-11-25 11:27:23 --> Security Class Initialized
+DEBUG - 2025-11-25 11:27:23 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:27:23 --> Input Class Initialized
+INFO - 2025-11-25 11:27:23 --> Language Class Initialized
+INFO - 2025-11-25 11:27:23 --> Loader Class Initialized
+INFO - 2025-11-25 11:27:23 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:27:23 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:27:23 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:27:23 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:27:23 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:27:23 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:27:23 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:27:23 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:27:23 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:27:23 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:27:23 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:27:23 --> Model Class Initialized
+INFO - 2025-11-25 11:27:23 --> Model Class Initialized
+INFO - 2025-11-25 11:27:23 --> Model Class Initialized
+INFO - 2025-11-25 11:27:23 --> Model Class Initialized
+INFO - 2025-11-25 11:27:23 --> Model Class Initialized
+INFO - 2025-11-25 11:27:23 --> Model Class Initialized
+DEBUG - 2025-11-25 11:27:23 --> User Info - Store ID: 7, Group ID: , Is Privileged: No
+DEBUG - 2025-11-25 11:27:23 --> Single order query: SELECT o.*,
+                        COALESCE(s.name, 'N/A') as store_name,
+                        COALESCE(u.username, 'Unknown') as clerk_name
+                        FROM orders o
+                        LEFT JOIN stores s ON o.store_id = s.id
+                        LEFT JOIN users u ON o.user_id = u.id
+                        WHERE o.id = '1371' AND o.store_id = '7'
+INFO - 2025-11-25 11:27:23 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 11:27:23 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 11:27:23 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 11:27:23 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/edit.php
+INFO - 2025-11-25 11:27:23 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 11:27:23 --> Final output sent to browser
+DEBUG - 2025-11-25 11:27:23 --> Total execution time: 0.0590
+INFO - 2025-11-25 11:27:30 --> Config Class Initialized
+INFO - 2025-11-25 11:27:30 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:27:30 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:27:30 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:27:30 --> URI Class Initialized
+INFO - 2025-11-25 11:27:30 --> Router Class Initialized
+INFO - 2025-11-25 11:27:30 --> Output Class Initialized
+INFO - 2025-11-25 11:27:30 --> Security Class Initialized
+DEBUG - 2025-11-25 11:27:30 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:27:30 --> Input Class Initialized
+INFO - 2025-11-25 11:27:30 --> Language Class Initialized
+INFO - 2025-11-25 11:27:30 --> Loader Class Initialized
+INFO - 2025-11-25 11:27:30 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:27:30 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:27:30 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:27:30 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:27:30 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:27:30 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:27:30 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:27:30 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:27:30 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:27:30 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:27:30 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:27:30 --> Model Class Initialized
+INFO - 2025-11-25 11:27:30 --> Model Class Initialized
+INFO - 2025-11-25 11:27:30 --> Model Class Initialized
+INFO - 2025-11-25 11:27:30 --> Model Class Initialized
+INFO - 2025-11-25 11:27:30 --> Model Class Initialized
+INFO - 2025-11-25 11:27:30 --> Model Class Initialized
+DEBUG - 2025-11-25 11:27:30 --> Index loaded - Store: 7, Is Privileged: No
+ERROR - 2025-11-25 11:27:30 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 11:27:30 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 11:27:30 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 11:27:30 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 11:27:30 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/index.php
+INFO - 2025-11-25 11:27:30 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 11:27:30 --> Final output sent to browser
+DEBUG - 2025-11-25 11:27:30 --> Total execution time: 0.0555
+INFO - 2025-11-25 11:27:30 --> Config Class Initialized
+INFO - 2025-11-25 11:27:30 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:27:30 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:27:30 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:27:30 --> URI Class Initialized
+INFO - 2025-11-25 11:27:30 --> Router Class Initialized
+INFO - 2025-11-25 11:27:30 --> Output Class Initialized
+INFO - 2025-11-25 11:27:30 --> Security Class Initialized
+DEBUG - 2025-11-25 11:27:30 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:27:30 --> Input Class Initialized
+INFO - 2025-11-25 11:27:30 --> Language Class Initialized
+INFO - 2025-11-25 11:27:30 --> Loader Class Initialized
+INFO - 2025-11-25 11:27:30 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:27:30 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:27:30 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:27:30 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:27:30 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:27:30 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:27:30 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:27:30 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:27:30 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:27:30 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:27:30 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:27:30 --> Model Class Initialized
+INFO - 2025-11-25 11:27:30 --> Model Class Initialized
+INFO - 2025-11-25 11:27:30 --> Model Class Initialized
+INFO - 2025-11-25 11:27:30 --> Model Class Initialized
+INFO - 2025-11-25 11:27:30 --> Model Class Initialized
+INFO - 2025-11-25 11:27:30 --> Model Class Initialized
+DEBUG - 2025-11-25 11:27:30 --> fetchOrdersData - Store ID: 7, Group ID: , Is Privileged: No
+DEBUG - 2025-11-25 11:27:30 --> Adding store restriction for store_id: 7
+DEBUG - 2025-11-25 11:27:30 --> Executing query: SELECT o.*,
+                    COALESCE(s.name, 'N/A') as store_name,
+                    COALESCE(u.username, 'Unknown') as clerk_name
+                    FROM orders o
+                    LEFT JOIN stores s ON o.store_id = s.id
+                    LEFT JOIN users u ON o.user_id = u.id WHERE o.store_id = '7' ORDER BY o.id DESC
+DEBUG - 2025-11-25 11:27:30 --> Query returned 1178 results
+DEBUG - 2025-11-25 11:27:30 --> Found 1178 orders for user
+INFO - 2025-11-25 11:27:30 --> Final output sent to browser
+DEBUG - 2025-11-25 11:27:30 --> Total execution time: 0.0697
+INFO - 2025-11-25 11:27:34 --> Config Class Initialized
+INFO - 2025-11-25 11:27:34 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:27:34 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:27:34 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:27:34 --> URI Class Initialized
+INFO - 2025-11-25 11:27:34 --> Router Class Initialized
+INFO - 2025-11-25 11:27:34 --> Output Class Initialized
+INFO - 2025-11-25 11:27:34 --> Security Class Initialized
+DEBUG - 2025-11-25 11:27:34 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:27:34 --> Input Class Initialized
+INFO - 2025-11-25 11:27:34 --> Language Class Initialized
+INFO - 2025-11-25 11:27:34 --> Loader Class Initialized
+INFO - 2025-11-25 11:27:34 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:27:34 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:27:34 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:27:34 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:27:34 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:27:34 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:27:34 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:27:34 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:27:34 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:27:34 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:27:34 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:27:34 --> Model Class Initialized
+INFO - 2025-11-25 11:27:34 --> Model Class Initialized
+INFO - 2025-11-25 11:27:34 --> Model Class Initialized
+INFO - 2025-11-25 11:27:34 --> Model Class Initialized
+INFO - 2025-11-25 11:27:34 --> Model Class Initialized
+INFO - 2025-11-25 11:27:34 --> Model Class Initialized
+DEBUG - 2025-11-25 11:27:34 --> User Info - Store ID: 7, Group ID: , Is Privileged: No
+DEBUG - 2025-11-25 11:27:34 --> Single order query: SELECT o.*,
+                        COALESCE(s.name, 'N/A') as store_name,
+                        COALESCE(u.username, 'Unknown') as clerk_name
+                        FROM orders o
+                        LEFT JOIN stores s ON o.store_id = s.id
+                        LEFT JOIN users u ON o.user_id = u.id
+                        WHERE o.id = '1371' AND o.store_id = '7'
+INFO - 2025-11-25 11:27:34 --> Final output sent to browser
+DEBUG - 2025-11-25 11:27:34 --> Total execution time: 0.0902
+INFO - 2025-11-25 11:27:34 --> Config Class Initialized
+INFO - 2025-11-25 11:27:34 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:27:34 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:27:34 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:27:34 --> URI Class Initialized
+INFO - 2025-11-25 11:27:34 --> Router Class Initialized
+INFO - 2025-11-25 11:27:34 --> Output Class Initialized
+INFO - 2025-11-25 11:27:34 --> Security Class Initialized
+DEBUG - 2025-11-25 11:27:34 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:27:34 --> Input Class Initialized
+INFO - 2025-11-25 11:27:34 --> Language Class Initialized
+INFO - 2025-11-25 11:27:34 --> Loader Class Initialized
+INFO - 2025-11-25 11:27:34 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:27:34 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:27:34 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:27:34 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:27:34 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:27:34 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:27:34 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:27:34 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:27:34 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:27:34 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:27:34 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:27:34 --> Model Class Initialized
+INFO - 2025-11-25 11:27:34 --> Model Class Initialized
+INFO - 2025-11-25 11:27:34 --> Model Class Initialized
+INFO - 2025-11-25 11:27:34 --> Model Class Initialized
+INFO - 2025-11-25 11:27:34 --> Model Class Initialized
+INFO - 2025-11-25 11:27:34 --> Model Class Initialized
+DEBUG - 2025-11-25 11:27:34 --> fetchOrdersData - Store ID: 7, Group ID: , Is Privileged: No
+DEBUG - 2025-11-25 11:27:34 --> Adding store restriction for store_id: 7
+DEBUG - 2025-11-25 11:27:34 --> Executing query: SELECT o.*,
+                    COALESCE(s.name, 'N/A') as store_name,
+                    COALESCE(u.username, 'Unknown') as clerk_name
+                    FROM orders o
+                    LEFT JOIN stores s ON o.store_id = s.id
+                    LEFT JOIN users u ON o.user_id = u.id WHERE o.store_id = '7' ORDER BY o.id DESC
+DEBUG - 2025-11-25 11:27:35 --> Query returned 1177 results
+DEBUG - 2025-11-25 11:27:35 --> Found 1177 orders for user
+INFO - 2025-11-25 11:27:35 --> Final output sent to browser
+DEBUG - 2025-11-25 11:27:35 --> Total execution time: 0.0588
+INFO - 2025-11-25 11:27:37 --> Config Class Initialized
+INFO - 2025-11-25 11:27:37 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:27:37 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:27:37 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:27:37 --> URI Class Initialized
+INFO - 2025-11-25 11:27:37 --> Router Class Initialized
+INFO - 2025-11-25 11:27:37 --> Output Class Initialized
+INFO - 2025-11-25 11:27:37 --> Security Class Initialized
+DEBUG - 2025-11-25 11:27:37 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:27:37 --> Input Class Initialized
+INFO - 2025-11-25 11:27:37 --> Language Class Initialized
+INFO - 2025-11-25 11:27:37 --> Loader Class Initialized
+INFO - 2025-11-25 11:27:37 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:27:37 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:27:37 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:27:37 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:27:37 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:27:37 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:27:37 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:27:37 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:27:37 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:27:37 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:27:37 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:27:37 --> Model Class Initialized
+INFO - 2025-11-25 11:27:37 --> Model Class Initialized
+INFO - 2025-11-25 11:27:37 --> Model Class Initialized
+INFO - 2025-11-25 11:27:37 --> Model Class Initialized
+INFO - 2025-11-25 11:27:37 --> Model Class Initialized
+INFO - 2025-11-25 11:27:37 --> Model Class Initialized
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 78, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 138, purchased: 16, ordered: 0, stock: 16
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 79, purchased: 989, ordered: 23, stock: 966
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 80, purchased: 205, ordered: 60, stock: 145
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 81, purchased: 2046, ordered: 990, stock: 1056
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 139, purchased: 2, ordered: 1, stock: 1
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 82, purchased: 3500, ordered: 8648, stock: 0
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 83, purchased: 0, ordered: 2880, stock: 0
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 84, purchased: 189, ordered: 17, stock: 172
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 85, purchased: 137, ordered: 3, stock: 134
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 127, purchased: 2000, ordered: 379, stock: 1621
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 86, purchased: 384, ordered: 362, stock: 22
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 87, purchased: 588, ordered: 639, stock: 0
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 88, purchased: 837, ordered: 602, stock: 235
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 89, purchased: 2164, ordered: 720, stock: 1444
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 90, purchased: 470, ordered: 375, stock: 95
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 126, purchased: 25, ordered: 0, stock: 25
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 91, purchased: 26, ordered: 0, stock: 26
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 92, purchased: 25, ordered: 29, stock: 0
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 93, purchased: 752, ordered: 854, stock: 0
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 94, purchased: 764, ordered: 685, stock: 79
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 95, purchased: 2263, ordered: 622, stock: 1641
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 96, purchased: 18925, ordered: 3396, stock: 15529
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 134, purchased: 604, ordered: 69, stock: 535
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 130, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 133, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 131, purchased: 19, ordered: 0, stock: 19
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 97, purchased: 6001, ordered: 2358, stock: 3643
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 98, purchased: 442, ordered: 43, stock: 399
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 146, purchased: 200, ordered: 0, stock: 200
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 99, purchased: 2, ordered: 0, stock: 2
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 100, purchased: 34587, ordered: 30172, stock: 4415
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 137, purchased: 189, ordered: 4, stock: 185
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 101, purchased: 107, ordered: 23, stock: 84
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 102, purchased: 11299, ordered: 8466, stock: 2833
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 103, purchased: 29811, ordered: 23408, stock: 6403
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 104, purchased: 7500, ordered: 806, stock: 6694
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 142, purchased: 36, ordered: 0, stock: 36
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 140, purchased: 10, ordered: 1, stock: 9
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 105, purchased: 358, ordered: 203, stock: 155
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 106, purchased: 738, ordered: 645, stock: 93
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 125, purchased: 253, ordered: 0, stock: 253
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 108, purchased: 2503, ordered: 2202, stock: 301
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 109, purchased: 2571, ordered: 671, stock: 1900
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 110, purchased: 4761, ordered: 1681, stock: 3080
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 132, purchased: 200, ordered: 175, stock: 25
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 111, purchased: 406, ordered: 85, stock: 321
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 112, purchased: 1900, ordered: 1323, stock: 577
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 113, purchased: 2241, ordered: 825, stock: 1416
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 135, purchased: 1990, ordered: 654, stock: 1336
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 114, purchased: 922, ordered: 45, stock: 877
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 115, purchased: 13662, ordered: 16719, stock: 0
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 116, purchased: 237414, ordered: 234271, stock: 3143
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 107, purchased: 1200, ordered: 836, stock: 364
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 117, purchased: 9776, ordered: 6064, stock: 3712
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 118, purchased: 24842, ordered: 21792, stock: 3050
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 129, purchased: 1706, ordered: 1560, stock: 146
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 119, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 120, purchased: 1555, ordered: 565, stock: 990
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 121, purchased: 63, ordered: 2, stock: 61
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 122, purchased: 688, ordered: 207, stock: 481
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 123, purchased: 2020, ordered: 1730, stock: 290
+DEBUG - 2025-11-25 11:27:37 --> getProductsWithStock - ID: 124, purchased: 3646, ordered: 4469, stock: 0
+DEBUG - 2025-11-25 11:27:37 --> Prepared products for create view: [{"id":78,"name":"BROILER BOOSTER","price":3000,"current_stock":0,"unit":""},{"id":138,"name":"BROILER EXTRA","price":3000,"current_stock":16,"unit":""},{"id":79,"name":"BROILER FINISHER MASH","price":1000,"current_stock":966,"unit":""},{"id":80,"name":"BROILER PREMIX","price":3000,"current_stock":145,"unit":""},{"id":81,"name":"BROILER STARTER MASH","price":1000,"current_stock":1056,"unit":""},{"id":139,"name":"CHIKWIDI","price":15000,"current_stock":1,"unit":""},{"id":82,"name":"CHOKAA","price":500,"current_stock":0,"unit":""},{"id":83,"name":"CHUMVI","price":500,"current_stock":0,"unit":""},{"id":84,"name":"D.C.P KOPO (1\/2)","price":2000,"current_stock":172,"unit":""},{"id":85,"name":"D.C.P KOPO 1KG","price":3000,"current_stock":134,"unit":""},{"id":127,"name":"D.C.P KUPIMA","price":1500,"current_stock":1621,"unit":""},{"id":86,"name":"DAGAA KAUZU","price":2800,"current_stock":22,"unit":""},{"id":87,"name":"DAGAA SAGWA","price":2000,"current_stock":0,"unit":""},{"id":88,"name":"DAMU","price":1500,"current_stock":235,"unit":""},{"id":89,"name":"GROWER MASH","price":1000,"current_stock":1444,"unit":""},{"id":90,"name":"HAMIRA","price":1500,"current_stock":95,"unit":""},{"id":126,"name":"HIPHOS PLUS","price":5000,"current_stock":25,"unit":""},{"id":91,"name":"JOSERA MADUME","price":11000,"current_stock":26,"unit":""},{"id":92,"name":"JOSERA MAZIWA","price":11000,"current_stock":0,"unit":""},{"id":93,"name":"KARANGA","price":700,"current_stock":0,"unit":""},{"id":94,"name":"KAUDIS NGURUWE","price":4000,"current_stock":79,"unit":""},{"id":95,"name":"KAYABO","price":2000,"current_stock":1641,"unit":""},{"id":96,"name":"KONOKONO","price":350,"current_stock":15529,"unit":""},{"id":134,"name":"KONOKONO NZIMA","price":400,"current_stock":535,"unit":""},{"id":130,"name":"KONOKONO SAGWA","price":470,"current_stock":0,"unit":""},{"id":133,"name":"KONOKONO SAGWA","price":600,"current_stock":0,"unit":""},{"id":131,"name":"LAYERS EXTRA","price":3500,"current_stock":19,"unit":""},{"id":97,"name":"LAYERS MASH","price":1000,"current_stock":3643,"unit":""},{"id":98,"name":"LAYERS PREMIX","price":3500,"current_stock":399,"unit":""},{"id":146,"name":"MABOGA","price":3800,"current_stock":200,"unit":""},{"id":99,"name":"MADUME LICK","price":5000,"current_stock":2,"unit":""},{"id":100,"name":"MAHINDI","price":730,"current_stock":4415,"unit":""},{"id":137,"name":"MAZIWA MENGI 1KG","price":1500,"current_stock":185,"unit":""},{"id":101,"name":"MAZIWA MENGI 2kg","price":3000,"current_stock":84,"unit":""},{"id":102,"name":"MCHELE LAINI","price":400,"current_stock":2833,"unit":""},{"id":103,"name":"MCHELE NGUMU","price":320,"current_stock":6403,"unit":""},{"id":104,"name":"MFUPA","price":700,"current_stock":6694,"unit":""},{"id":142,"name":"MOLLASSES 1LITRE","price":5000,"current_stock":36,"unit":""},{"id":140,"name":"MOLLASSES 5LITRE","price":15000,"current_stock":9,"unit":""},{"id":105,"name":"MTAMA","price":1000,"current_stock":155,"unit":""},{"id":106,"name":"NGANO","price":1000,"current_stock":93,"unit":""},{"id":125,"name":"NGURUWE MIX","price":3500,"current_stock":253,"unit":""},{"id":108,"name":"PAMBA LAINI","price":1200,"current_stock":301,"unit":""},{"id":109,"name":"PAMBA NGUMU","price":1200,"current_stock":1900,"unit":""},{"id":110,"name":"PARAZA","price":1000,"current_stock":3080,"unit":""},{"id":132,"name":"PELLET FINISHER","price":2000,"current_stock":25,"unit":""},{"id":111,"name":"PIG BOOSTER","price":3000,"current_stock":321,"unit":""},{"id":112,"name":"PIG GROWER","price":1000,"current_stock":577,"unit":""},{"id":113,"name":"PIG STARTER","price":1000,"current_stock":1416,"unit":""},{"id":135,"name":"PILLET STARTER","price":2000,"current_stock":1336,"unit":""},{"id":114,"name":"PILLLET GROWER","price":2000,"current_stock":877,"unit":""},{"id":115,"name":"POLLARD","price":750,"current_stock":0,"unit":""},{"id":116,"name":"PUMBA","price":660,"current_stock":3143,"unit":""},{"id":107,"name":"PUMBA MAHINDI LAINI","price":600,"current_stock":364,"unit":""},{"id":117,"name":"SHUDU LAINI","price":900,"current_stock":3712,"unit":""},{"id":118,"name":"SHUDU NGUMU","price":800,"current_stock":3050,"unit":""},{"id":129,"name":"SOYA CHENGA","price":2500,"current_stock":146,"unit":""},{"id":119,"name":"SOYA MAFUTA","price":2500,"current_stock":0,"unit":""},{"id":120,"name":"SOYA UNGA","price":2000,"current_stock":990,"unit":""},{"id":121,"name":"SUPER MACLICK","price":3500,"current_stock":61,"unit":""},{"id":122,"name":"UBUYU","price":700,"current_stock":481,"unit":""},{"id":123,"name":"UDUVI","price":3500,"current_stock":290,"unit":""},{"id":124,"name":"WHEAT","price":650,"current_stock":0,"unit":""}]
+ERROR - 2025-11-25 11:27:37 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 11:27:37 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 11:27:37 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 11:27:37 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 11:27:37 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/create.php
+INFO - 2025-11-25 11:27:37 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 11:27:37 --> Final output sent to browser
+DEBUG - 2025-11-25 11:27:37 --> Total execution time: 0.1347
+INFO - 2025-11-25 11:27:37 --> Config Class Initialized
+INFO - 2025-11-25 11:27:37 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:27:37 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:27:37 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:27:37 --> URI Class Initialized
+INFO - 2025-11-25 11:27:37 --> Router Class Initialized
+INFO - 2025-11-25 11:27:37 --> Output Class Initialized
+INFO - 2025-11-25 11:27:37 --> Security Class Initialized
+DEBUG - 2025-11-25 11:27:37 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:27:37 --> Input Class Initialized
+INFO - 2025-11-25 11:27:37 --> Language Class Initialized
+ERROR - 2025-11-25 11:27:37 --> 404 Page Not Found: Assets/plugins
+INFO - 2025-11-25 11:28:16 --> Config Class Initialized
+INFO - 2025-11-25 11:28:16 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:28:16 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:28:16 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:28:16 --> URI Class Initialized
+INFO - 2025-11-25 11:28:16 --> Router Class Initialized
+INFO - 2025-11-25 11:28:16 --> Output Class Initialized
+INFO - 2025-11-25 11:28:16 --> Security Class Initialized
+DEBUG - 2025-11-25 11:28:16 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:28:16 --> Input Class Initialized
+INFO - 2025-11-25 11:28:16 --> Language Class Initialized
+INFO - 2025-11-25 11:28:16 --> Loader Class Initialized
+INFO - 2025-11-25 11:28:16 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:28:16 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:28:16 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:28:16 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:28:16 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:28:16 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:28:16 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:28:16 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:28:16 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:28:16 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:28:16 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:28:16 --> Model Class Initialized
+INFO - 2025-11-25 11:28:16 --> Model Class Initialized
+INFO - 2025-11-25 11:28:16 --> Model Class Initialized
+INFO - 2025-11-25 11:28:16 --> Model Class Initialized
+INFO - 2025-11-25 11:28:16 --> Model Class Initialized
+INFO - 2025-11-25 11:28:16 --> Model Class Initialized
+DEBUG - 2025-11-25 11:28:16 --> Controller_Orders::create POST: {"customer_name":"ALFA","customer_phone":"","customer_address":"","store_id":"7","product":["103","83"],"qty":["200","8"],"rate":["380","500.00"],"rate_value":["380","500.00"],"amount":["76000.00","4000.00"],"amount_value":["76000.00","4000.00"],"discount":"0","paid_status":"2","amount_paid":"80000.00","gross_amount_value":"80000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"80000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 11:28:16 --> Final output sent to browser
+DEBUG - 2025-11-25 11:28:16 --> Total execution time: 0.1568
+INFO - 2025-11-25 11:28:40 --> Config Class Initialized
+INFO - 2025-11-25 11:28:40 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:28:40 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:28:40 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:28:40 --> URI Class Initialized
+INFO - 2025-11-25 11:28:40 --> Router Class Initialized
+INFO - 2025-11-25 11:28:40 --> Output Class Initialized
+INFO - 2025-11-25 11:28:40 --> Security Class Initialized
+DEBUG - 2025-11-25 11:28:40 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:28:40 --> Input Class Initialized
+INFO - 2025-11-25 11:28:40 --> Language Class Initialized
+INFO - 2025-11-25 11:28:40 --> Loader Class Initialized
+INFO - 2025-11-25 11:28:40 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:28:40 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:28:40 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:28:40 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:28:40 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:28:40 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:28:40 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:28:40 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:28:40 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:28:40 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:28:40 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:28:40 --> Model Class Initialized
+INFO - 2025-11-25 11:28:40 --> Model Class Initialized
+INFO - 2025-11-25 11:28:40 --> Model Class Initialized
+INFO - 2025-11-25 11:28:40 --> Model Class Initialized
+INFO - 2025-11-25 11:28:40 --> Model Class Initialized
+INFO - 2025-11-25 11:28:40 --> Model Class Initialized
+DEBUG - 2025-11-25 11:28:40 --> Controller_Orders::create POST: {"customer_name":"JACKLINE","customer_phone":"","customer_address":"","store_id":"7","product":["97"],"qty":["6"],"rate":["1000.00"],"rate_value":["1000.00"],"amount":["6000.00"],"amount_value":["6000.00"],"discount":"0","paid_status":"2","amount_paid":"6000.00","gross_amount_value":"6000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"6000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 11:28:41 --> Final output sent to browser
+DEBUG - 2025-11-25 11:28:41 --> Total execution time: 0.1414
+INFO - 2025-11-25 11:29:16 --> Config Class Initialized
+INFO - 2025-11-25 11:29:16 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:29:16 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:29:16 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:29:16 --> URI Class Initialized
+INFO - 2025-11-25 11:29:16 --> Router Class Initialized
+INFO - 2025-11-25 11:29:16 --> Output Class Initialized
+INFO - 2025-11-25 11:29:16 --> Security Class Initialized
+DEBUG - 2025-11-25 11:29:16 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:29:16 --> Input Class Initialized
+INFO - 2025-11-25 11:29:16 --> Language Class Initialized
+INFO - 2025-11-25 11:29:16 --> Loader Class Initialized
+INFO - 2025-11-25 11:29:16 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:29:16 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:29:16 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:29:16 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:29:16 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:29:16 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:29:16 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:29:16 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:29:16 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:29:16 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:29:16 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:29:16 --> Model Class Initialized
+INFO - 2025-11-25 11:29:16 --> Model Class Initialized
+INFO - 2025-11-25 11:29:16 --> Model Class Initialized
+INFO - 2025-11-25 11:29:16 --> Model Class Initialized
+INFO - 2025-11-25 11:29:16 --> Model Class Initialized
+INFO - 2025-11-25 11:29:16 --> Model Class Initialized
+DEBUG - 2025-11-25 11:29:16 --> Controller_Orders::create POST: {"customer_name":"M.FLORA","customer_phone":"","customer_address":"","store_id":"7","product":["110","90"],"qty":["2","1"],"rate":["1000.00","1500.00"],"rate_value":["1000.00","1500.00"],"amount":["2000.00","1500.00"],"amount_value":["2000.00","1500.00"],"discount":"0","paid_status":"2","amount_paid":"3500.00","gross_amount_value":"3500.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"3500.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 11:29:16 --> Final output sent to browser
+DEBUG - 2025-11-25 11:29:16 --> Total execution time: 0.1296
+INFO - 2025-11-25 11:29:43 --> Config Class Initialized
+INFO - 2025-11-25 11:29:43 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:29:43 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:29:43 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:29:43 --> URI Class Initialized
+INFO - 2025-11-25 11:29:43 --> Router Class Initialized
+INFO - 2025-11-25 11:29:43 --> Output Class Initialized
+INFO - 2025-11-25 11:29:43 --> Security Class Initialized
+DEBUG - 2025-11-25 11:29:43 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:29:43 --> Input Class Initialized
+INFO - 2025-11-25 11:29:43 --> Language Class Initialized
+INFO - 2025-11-25 11:29:43 --> Loader Class Initialized
+INFO - 2025-11-25 11:29:43 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:29:43 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:29:43 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:29:43 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:29:43 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:29:43 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:29:43 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:29:43 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:29:43 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:29:43 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:29:43 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:29:43 --> Model Class Initialized
+INFO - 2025-11-25 11:29:43 --> Model Class Initialized
+INFO - 2025-11-25 11:29:43 --> Model Class Initialized
+INFO - 2025-11-25 11:29:43 --> Model Class Initialized
+INFO - 2025-11-25 11:29:43 --> Model Class Initialized
+INFO - 2025-11-25 11:29:43 --> Model Class Initialized
+DEBUG - 2025-11-25 11:29:43 --> Controller_Orders::create POST: {"customer_name":"M.SIKIRU","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["2"],"rate":["650"],"rate_value":["650"],"amount":["1300.00"],"amount_value":["1300.00"],"discount":"0","paid_status":"2","amount_paid":"1300.00","gross_amount_value":"1300.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"1300.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 11:29:43 --> Final output sent to browser
+DEBUG - 2025-11-25 11:29:43 --> Total execution time: 0.2199
+INFO - 2025-11-25 11:30:23 --> Config Class Initialized
+INFO - 2025-11-25 11:30:23 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:30:23 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:30:23 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:30:23 --> URI Class Initialized
+INFO - 2025-11-25 11:30:23 --> Router Class Initialized
+INFO - 2025-11-25 11:30:23 --> Output Class Initialized
+INFO - 2025-11-25 11:30:23 --> Security Class Initialized
+DEBUG - 2025-11-25 11:30:23 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:30:23 --> Input Class Initialized
+INFO - 2025-11-25 11:30:23 --> Language Class Initialized
+INFO - 2025-11-25 11:30:23 --> Loader Class Initialized
+INFO - 2025-11-25 11:30:23 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:30:23 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:30:23 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:30:23 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:30:23 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:30:23 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:30:23 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:30:23 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:30:23 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:30:23 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:30:23 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:30:23 --> Model Class Initialized
+INFO - 2025-11-25 11:30:23 --> Model Class Initialized
+INFO - 2025-11-25 11:30:23 --> Model Class Initialized
+INFO - 2025-11-25 11:30:23 --> Model Class Initialized
+INFO - 2025-11-25 11:30:23 --> Model Class Initialized
+INFO - 2025-11-25 11:30:23 --> Model Class Initialized
+DEBUG - 2025-11-25 11:30:23 --> Controller_Orders::create POST: {"customer_name":"M.FLORA","customer_phone":"","customer_address":"","store_id":"7","product":["116","117"],"qty":["10","1"],"rate":["650","1000"],"rate_value":["650","1000"],"amount":["6500.00","1000.00"],"amount_value":["6500.00","1000.00"],"discount":"0","paid_status":"2","amount_paid":"7500.00","gross_amount_value":"7500.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"7500.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 11:30:23 --> Final output sent to browser
+DEBUG - 2025-11-25 11:30:23 --> Total execution time: 0.1664
+INFO - 2025-11-25 11:30:46 --> Config Class Initialized
+INFO - 2025-11-25 11:30:46 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:30:46 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:30:46 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:30:46 --> URI Class Initialized
+INFO - 2025-11-25 11:30:46 --> Router Class Initialized
+INFO - 2025-11-25 11:30:46 --> Output Class Initialized
+INFO - 2025-11-25 11:30:46 --> Security Class Initialized
+DEBUG - 2025-11-25 11:30:46 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:30:46 --> Input Class Initialized
+INFO - 2025-11-25 11:30:46 --> Language Class Initialized
+INFO - 2025-11-25 11:30:46 --> Loader Class Initialized
+INFO - 2025-11-25 11:30:46 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:30:46 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:30:46 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:30:46 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:30:46 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:30:46 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:30:46 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:30:46 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:30:46 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:30:46 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:30:46 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:30:46 --> Model Class Initialized
+INFO - 2025-11-25 11:30:46 --> Model Class Initialized
+INFO - 2025-11-25 11:30:46 --> Model Class Initialized
+INFO - 2025-11-25 11:30:46 --> Model Class Initialized
+INFO - 2025-11-25 11:30:46 --> Model Class Initialized
+INFO - 2025-11-25 11:30:46 --> Model Class Initialized
+DEBUG - 2025-11-25 11:30:46 --> Controller_Orders::create POST: {"customer_name":"JOHN","customer_phone":"","customer_address":"","store_id":"7","product":["115"],"qty":["40"],"rate":["750.00"],"rate_value":["750.00"],"amount":["30000.00"],"amount_value":["30000.00"],"discount":"0","paid_status":"2","amount_paid":"30000.00","gross_amount_value":"30000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"30000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 11:30:46 --> Final output sent to browser
+DEBUG - 2025-11-25 11:30:46 --> Total execution time: 0.2076
+INFO - 2025-11-25 11:31:23 --> Config Class Initialized
+INFO - 2025-11-25 11:31:23 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:31:23 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:31:23 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:31:23 --> URI Class Initialized
+INFO - 2025-11-25 11:31:23 --> Router Class Initialized
+INFO - 2025-11-25 11:31:23 --> Output Class Initialized
+INFO - 2025-11-25 11:31:23 --> Security Class Initialized
+DEBUG - 2025-11-25 11:31:23 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:31:23 --> Input Class Initialized
+INFO - 2025-11-25 11:31:23 --> Language Class Initialized
+INFO - 2025-11-25 11:31:23 --> Loader Class Initialized
+INFO - 2025-11-25 11:31:23 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:31:23 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:31:23 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:31:23 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:31:23 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:31:23 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:31:23 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:31:23 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:31:23 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:31:23 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:31:23 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:31:23 --> Model Class Initialized
+INFO - 2025-11-25 11:31:23 --> Model Class Initialized
+INFO - 2025-11-25 11:31:23 --> Model Class Initialized
+INFO - 2025-11-25 11:31:23 --> Model Class Initialized
+INFO - 2025-11-25 11:31:23 --> Model Class Initialized
+INFO - 2025-11-25 11:31:23 --> Model Class Initialized
+DEBUG - 2025-11-25 11:31:23 --> Controller_Orders::create POST: {"customer_name":"URIO","customer_phone":"","customer_address":"","store_id":"7","product":["116","118"],"qty":["30","8"],"rate":["650","800.00"],"rate_value":["650","800.00"],"amount":["19500.00","6400.00"],"amount_value":["19500.00","6400.00"],"discount":"0","paid_status":"2","amount_paid":"25900.00","gross_amount_value":"25900.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"25900.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 11:31:23 --> Final output sent to browser
+DEBUG - 2025-11-25 11:31:23 --> Total execution time: 0.1624
+INFO - 2025-11-25 11:31:45 --> Config Class Initialized
+INFO - 2025-11-25 11:31:45 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:31:45 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:31:45 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:31:45 --> URI Class Initialized
+INFO - 2025-11-25 11:31:45 --> Router Class Initialized
+INFO - 2025-11-25 11:31:45 --> Output Class Initialized
+INFO - 2025-11-25 11:31:45 --> Security Class Initialized
+DEBUG - 2025-11-25 11:31:45 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:31:45 --> Input Class Initialized
+INFO - 2025-11-25 11:31:45 --> Language Class Initialized
+INFO - 2025-11-25 11:31:45 --> Loader Class Initialized
+INFO - 2025-11-25 11:31:45 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:31:45 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:31:45 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:31:45 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:31:45 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:31:45 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:31:45 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:31:45 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:31:45 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:31:45 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:31:45 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:31:45 --> Model Class Initialized
+INFO - 2025-11-25 11:31:45 --> Model Class Initialized
+INFO - 2025-11-25 11:31:45 --> Model Class Initialized
+INFO - 2025-11-25 11:31:45 --> Model Class Initialized
+INFO - 2025-11-25 11:31:45 --> Model Class Initialized
+INFO - 2025-11-25 11:31:45 --> Model Class Initialized
+DEBUG - 2025-11-25 11:31:45 --> Controller_Orders::create POST: {"customer_name":"JOSE","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["18"],"rate":["650"],"rate_value":["650"],"amount":["11700.00"],"amount_value":["11700.00"],"discount":"0","paid_status":"2","amount_paid":"11700.00","gross_amount_value":"11700.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"11700.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 11:31:45 --> Final output sent to browser
+DEBUG - 2025-11-25 11:31:45 --> Total execution time: 0.1478
+INFO - 2025-11-25 11:32:16 --> Config Class Initialized
+INFO - 2025-11-25 11:32:16 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:32:16 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:32:16 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:32:16 --> URI Class Initialized
+INFO - 2025-11-25 11:32:16 --> Router Class Initialized
+INFO - 2025-11-25 11:32:16 --> Output Class Initialized
+INFO - 2025-11-25 11:32:16 --> Security Class Initialized
+DEBUG - 2025-11-25 11:32:16 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:32:16 --> Input Class Initialized
+INFO - 2025-11-25 11:32:16 --> Language Class Initialized
+INFO - 2025-11-25 11:32:16 --> Loader Class Initialized
+INFO - 2025-11-25 11:32:16 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:32:16 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:32:16 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:32:16 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:32:16 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:32:16 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:32:16 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:32:16 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:32:16 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:32:16 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:32:16 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:32:16 --> Model Class Initialized
+INFO - 2025-11-25 11:32:16 --> Model Class Initialized
+INFO - 2025-11-25 11:32:16 --> Model Class Initialized
+INFO - 2025-11-25 11:32:16 --> Model Class Initialized
+INFO - 2025-11-25 11:32:16 --> Model Class Initialized
+INFO - 2025-11-25 11:32:16 --> Model Class Initialized
+DEBUG - 2025-11-25 11:32:16 --> Controller_Orders::create POST: {"customer_name":"MAU","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["31"],"rate":["650"],"rate_value":["650"],"amount":["20150.00"],"amount_value":["20150.00"],"discount":"0","paid_status":"2","amount_paid":"20150.00","gross_amount_value":"20150.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"20150.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 11:32:16 --> Final output sent to browser
+DEBUG - 2025-11-25 11:32:16 --> Total execution time: 0.1588
+INFO - 2025-11-25 11:51:25 --> Config Class Initialized
+INFO - 2025-11-25 11:51:25 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:51:25 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:51:25 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:51:25 --> URI Class Initialized
+INFO - 2025-11-25 11:51:25 --> Router Class Initialized
+INFO - 2025-11-25 11:51:25 --> Output Class Initialized
+INFO - 2025-11-25 11:51:25 --> Security Class Initialized
+DEBUG - 2025-11-25 11:51:25 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:51:25 --> Input Class Initialized
+INFO - 2025-11-25 11:51:25 --> Language Class Initialized
+INFO - 2025-11-25 11:51:25 --> Loader Class Initialized
+INFO - 2025-11-25 11:51:25 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:51:25 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:51:26 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:51:26 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:51:26 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:51:26 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:51:26 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:51:26 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:51:26 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:51:26 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:51:26 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:51:26 --> Model Class Initialized
+INFO - 2025-11-25 11:51:26 --> Model Class Initialized
+INFO - 2025-11-25 11:51:26 --> Model Class Initialized
+INFO - 2025-11-25 11:51:26 --> Model Class Initialized
+INFO - 2025-11-25 11:51:26 --> Model Class Initialized
+INFO - 2025-11-25 11:51:26 --> Model Class Initialized
+DEBUG - 2025-11-25 11:51:26 --> Controller_Orders::create POST: {"customer_name":"HASSAN","customer_phone":"","customer_address":"","store_id":"7","product":["115"],"qty":["29.3"],"rate":["750.85"],"rate_value":["750.85"],"amount":["22000"],"amount_value":["22000"],"discount":"0","paid_status":"2","amount_paid":"22000.00","gross_amount_value":"22000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"22000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 11:51:26 --> Final output sent to browser
+DEBUG - 2025-11-25 11:51:26 --> Total execution time: 1.1743
+INFO - 2025-11-25 11:52:23 --> Config Class Initialized
+INFO - 2025-11-25 11:52:23 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:52:23 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:52:23 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:52:23 --> URI Class Initialized
+INFO - 2025-11-25 11:52:23 --> Router Class Initialized
+INFO - 2025-11-25 11:52:23 --> Output Class Initialized
+INFO - 2025-11-25 11:52:23 --> Security Class Initialized
+DEBUG - 2025-11-25 11:52:23 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:52:23 --> Input Class Initialized
+INFO - 2025-11-25 11:52:23 --> Language Class Initialized
+INFO - 2025-11-25 11:52:23 --> Loader Class Initialized
+INFO - 2025-11-25 11:52:23 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:52:23 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:52:23 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:52:23 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:52:23 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:52:23 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:52:23 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:52:23 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:52:23 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:52:23 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:52:23 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:52:23 --> Model Class Initialized
+INFO - 2025-11-25 11:52:23 --> Model Class Initialized
+INFO - 2025-11-25 11:52:23 --> Model Class Initialized
+INFO - 2025-11-25 11:52:23 --> Model Class Initialized
+INFO - 2025-11-25 11:52:23 --> Model Class Initialized
+INFO - 2025-11-25 11:52:23 --> Model Class Initialized
+DEBUG - 2025-11-25 11:52:23 --> Controller_Orders::create POST: {"customer_name":"WILSON","customer_phone":"","customer_address":"","store_id":"7","product":["102","116"],"qty":["6.6","18.7"],"rate":["450","640"],"rate_value":["450","640"],"amount":["2970.00","11968.00"],"amount_value":["2970.00","11968.00"],"discount":"0","paid_status":"2","amount_paid":"14938.00","gross_amount_value":"14938.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"14938.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 11:52:23 --> Final output sent to browser
+DEBUG - 2025-11-25 11:52:23 --> Total execution time: 0.1556
+INFO - 2025-11-25 11:52:54 --> Config Class Initialized
+INFO - 2025-11-25 11:52:54 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:52:54 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:52:54 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:52:54 --> URI Class Initialized
+INFO - 2025-11-25 11:52:54 --> Router Class Initialized
+INFO - 2025-11-25 11:52:54 --> Output Class Initialized
+INFO - 2025-11-25 11:52:54 --> Security Class Initialized
+DEBUG - 2025-11-25 11:52:54 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:52:54 --> Input Class Initialized
+INFO - 2025-11-25 11:52:54 --> Language Class Initialized
+INFO - 2025-11-25 11:52:54 --> Loader Class Initialized
+INFO - 2025-11-25 11:52:54 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:52:54 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:52:54 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:52:54 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:52:54 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:52:54 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:52:54 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:52:54 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:52:54 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:52:54 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:52:54 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:52:54 --> Model Class Initialized
+INFO - 2025-11-25 11:52:54 --> Model Class Initialized
+INFO - 2025-11-25 11:52:54 --> Model Class Initialized
+INFO - 2025-11-25 11:52:54 --> Model Class Initialized
+INFO - 2025-11-25 11:52:54 --> Model Class Initialized
+INFO - 2025-11-25 11:52:54 --> Model Class Initialized
+DEBUG - 2025-11-25 11:52:54 --> Controller_Orders::create POST: {"customer_name":"SALM","customer_phone":"","customer_address":"","store_id":"7","product":["116","115"],"qty":["2","2"],"rate":["650","750.00"],"rate_value":["650","750.00"],"amount":["1300.00","1500.00"],"amount_value":["1300.00","1500.00"],"discount":"0","paid_status":"2","amount_paid":"2800.00","gross_amount_value":"2800.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"2800.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 11:52:55 --> Final output sent to browser
+DEBUG - 2025-11-25 11:52:55 --> Total execution time: 0.1380
+INFO - 2025-11-25 11:53:23 --> Config Class Initialized
+INFO - 2025-11-25 11:53:23 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:53:23 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:53:23 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:53:23 --> URI Class Initialized
+INFO - 2025-11-25 11:53:23 --> Router Class Initialized
+INFO - 2025-11-25 11:53:23 --> Output Class Initialized
+INFO - 2025-11-25 11:53:23 --> Security Class Initialized
+DEBUG - 2025-11-25 11:53:23 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:53:23 --> Input Class Initialized
+INFO - 2025-11-25 11:53:23 --> Language Class Initialized
+INFO - 2025-11-25 11:53:23 --> Loader Class Initialized
+INFO - 2025-11-25 11:53:23 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:53:23 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:53:23 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:53:23 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:53:23 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:53:23 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:53:23 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:53:23 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:53:23 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:53:23 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:53:23 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:53:23 --> Model Class Initialized
+INFO - 2025-11-25 11:53:23 --> Model Class Initialized
+INFO - 2025-11-25 11:53:23 --> Model Class Initialized
+INFO - 2025-11-25 11:53:23 --> Model Class Initialized
+INFO - 2025-11-25 11:53:23 --> Model Class Initialized
+INFO - 2025-11-25 11:53:23 --> Model Class Initialized
+DEBUG - 2025-11-25 11:53:23 --> Controller_Orders::create POST: {"customer_name":"HASSANI","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["101.6"],"rate":["650"],"rate_value":["650"],"amount":["66040.00"],"amount_value":["66040.00"],"discount":"0","paid_status":"2","amount_paid":"66040.00","gross_amount_value":"66040.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"66040.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 11:53:24 --> Final output sent to browser
+DEBUG - 2025-11-25 11:53:24 --> Total execution time: 0.1390
+INFO - 2025-11-25 11:53:53 --> Config Class Initialized
+INFO - 2025-11-25 11:53:53 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:53:53 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:53:53 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:53:53 --> URI Class Initialized
+INFO - 2025-11-25 11:53:53 --> Router Class Initialized
+INFO - 2025-11-25 11:53:53 --> Output Class Initialized
+INFO - 2025-11-25 11:53:53 --> Security Class Initialized
+DEBUG - 2025-11-25 11:53:53 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:53:53 --> Input Class Initialized
+INFO - 2025-11-25 11:53:53 --> Language Class Initialized
+INFO - 2025-11-25 11:53:53 --> Loader Class Initialized
+INFO - 2025-11-25 11:53:53 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:53:53 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:53:53 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:53:53 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:53:53 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:53:53 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:53:53 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:53:53 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:53:53 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:53:53 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:53:53 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:53:53 --> Model Class Initialized
+INFO - 2025-11-25 11:53:53 --> Model Class Initialized
+INFO - 2025-11-25 11:53:53 --> Model Class Initialized
+INFO - 2025-11-25 11:53:53 --> Model Class Initialized
+INFO - 2025-11-25 11:53:53 --> Model Class Initialized
+INFO - 2025-11-25 11:53:53 --> Model Class Initialized
+DEBUG - 2025-11-25 11:53:53 --> Controller_Orders::create POST: {"customer_name":"MTEJA","customer_phone":"","customer_address":"","store_id":"7","product":["96"],"qty":["20"],"rate":["400"],"rate_value":["400"],"amount":["8000.00"],"amount_value":["8000.00"],"discount":"0","paid_status":"2","amount_paid":"8000.00","gross_amount_value":"8000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"8000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 11:53:53 --> Final output sent to browser
+DEBUG - 2025-11-25 11:53:53 --> Total execution time: 0.1508
+INFO - 2025-11-25 11:57:18 --> Config Class Initialized
+INFO - 2025-11-25 11:57:18 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:57:18 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:57:18 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:57:18 --> URI Class Initialized
+INFO - 2025-11-25 11:57:18 --> Router Class Initialized
+INFO - 2025-11-25 11:57:18 --> Output Class Initialized
+INFO - 2025-11-25 11:57:18 --> Security Class Initialized
+DEBUG - 2025-11-25 11:57:18 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:57:18 --> Input Class Initialized
+INFO - 2025-11-25 11:57:18 --> Language Class Initialized
+INFO - 2025-11-25 11:57:18 --> Loader Class Initialized
+INFO - 2025-11-25 11:57:18 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:57:18 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:57:18 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:57:18 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:57:18 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:57:18 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:57:18 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:57:18 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:57:18 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:57:18 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:57:18 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:57:18 --> Model Class Initialized
+INFO - 2025-11-25 11:57:18 --> Model Class Initialized
+INFO - 2025-11-25 11:57:18 --> Model Class Initialized
+INFO - 2025-11-25 11:57:18 --> Model Class Initialized
+INFO - 2025-11-25 11:57:18 --> Model Class Initialized
+INFO - 2025-11-25 11:57:18 --> Model Class Initialized
+DEBUG - 2025-11-25 11:57:18 --> Controller_Orders::create POST: {"customer_name":"BUTCHER","customer_phone":"","customer_address":"","store_id":"7","product":["116","115","108"],"qty":["240","70","30"],"rate":["650.00","714.29","1200.00"],"rate_value":["650.00","714.29","1200.00"],"amount":["156000","50000","36000.00"],"amount_value":["156000","50000","36000.00"],"discount":"0","paid_status":"2","amount_paid":"242000.00","gross_amount_value":"242000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"242000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 11:57:18 --> Final output sent to browser
+DEBUG - 2025-11-25 11:57:18 --> Total execution time: 0.2051
+INFO - 2025-11-25 11:57:41 --> Config Class Initialized
+INFO - 2025-11-25 11:57:41 --> Hooks Class Initialized
+DEBUG - 2025-11-25 11:57:41 --> UTF-8 Support Enabled
+INFO - 2025-11-25 11:57:41 --> Utf8 Class Initialized
+INFO - 2025-11-25 11:57:41 --> URI Class Initialized
+INFO - 2025-11-25 11:57:41 --> Router Class Initialized
+INFO - 2025-11-25 11:57:41 --> Output Class Initialized
+INFO - 2025-11-25 11:57:41 --> Security Class Initialized
+DEBUG - 2025-11-25 11:57:41 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 11:57:41 --> Input Class Initialized
+INFO - 2025-11-25 11:57:41 --> Language Class Initialized
+INFO - 2025-11-25 11:57:41 --> Loader Class Initialized
+INFO - 2025-11-25 11:57:41 --> Helper loaded: url_helper
+INFO - 2025-11-25 11:57:41 --> Helper loaded: form_helper
+INFO - 2025-11-25 11:57:41 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 11:57:41 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 11:57:41 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 11:57:41 --> Form Validation Class Initialized
+INFO - 2025-11-25 11:57:41 --> Controller Class Initialized
+DEBUG - 2025-11-25 11:57:41 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 11:57:41 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 11:57:41 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 11:57:41 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 11:57:41 --> Model Class Initialized
+INFO - 2025-11-25 11:57:41 --> Model Class Initialized
+INFO - 2025-11-25 11:57:41 --> Model Class Initialized
+INFO - 2025-11-25 11:57:41 --> Model Class Initialized
+INFO - 2025-11-25 11:57:41 --> Model Class Initialized
+INFO - 2025-11-25 11:57:41 --> Model Class Initialized
+DEBUG - 2025-11-25 11:57:41 --> Controller_Orders::create POST: {"customer_name":"WILSON","customer_phone":"","customer_address":"","store_id":"7","product":["103"],"qty":["21"],"rate":["380"],"rate_value":["380"],"amount":["7980.00"],"amount_value":["7980.00"],"discount":"0","paid_status":"2","amount_paid":"7980.00","gross_amount_value":"7980.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"7980.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 11:57:41 --> Final output sent to browser
+DEBUG - 2025-11-25 11:57:41 --> Total execution time: 0.1531
+INFO - 2025-11-25 12:05:18 --> Config Class Initialized
+INFO - 2025-11-25 12:05:18 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:05:18 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:05:18 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:05:18 --> URI Class Initialized
+INFO - 2025-11-25 12:05:18 --> Router Class Initialized
+INFO - 2025-11-25 12:05:18 --> Output Class Initialized
+INFO - 2025-11-25 12:05:18 --> Security Class Initialized
+DEBUG - 2025-11-25 12:05:18 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:05:18 --> Input Class Initialized
+INFO - 2025-11-25 12:05:18 --> Language Class Initialized
+INFO - 2025-11-25 12:05:18 --> Loader Class Initialized
+INFO - 2025-11-25 12:05:18 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:05:18 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:05:18 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:05:18 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:05:18 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:05:18 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:05:18 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:05:18 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:05:18 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:05:18 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:05:18 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:05:18 --> Model Class Initialized
+INFO - 2025-11-25 12:05:18 --> Model Class Initialized
+INFO - 2025-11-25 12:05:18 --> Model Class Initialized
+INFO - 2025-11-25 12:05:18 --> Model Class Initialized
+INFO - 2025-11-25 12:05:18 --> Model Class Initialized
+INFO - 2025-11-25 12:05:18 --> Model Class Initialized
+DEBUG - 2025-11-25 12:05:18 --> Controller_Orders::create POST: {"customer_name":"MR.PONDO","customer_phone":"","customer_address":"","store_id":"7","product":["110","116","102","108","87","88","82","83","127"],"qty":["12.5","15","10","3","1.5","1","0.5","0.5","0.5"],"rate":["1000.00","650","450.00","1200.00","2000.00","1500.00","500.00","500.00","1500.00"],"rate_value":["1000.00","650","450.00","1200.00","2000.00","1500.00","500.00","500.00","1500.00"],"amount":["12500.00","9750.00","4500","3600.00","3000.00","1500.00","250.00","250.00","750.00"],"amount_value":["12500.00","9750.00","4500","3600.00","3000.00","1500.00","250.00","250.00","750.00"],"discount":"0","paid_status":"2","amount_paid":"36100.00","gross_amount_value":"36100.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"36100.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 12:05:18 --> Final output sent to browser
+DEBUG - 2025-11-25 12:05:18 --> Total execution time: 0.1966
+INFO - 2025-11-25 12:05:21 --> Config Class Initialized
+INFO - 2025-11-25 12:05:21 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:05:21 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:05:21 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:05:21 --> URI Class Initialized
+INFO - 2025-11-25 12:05:21 --> Router Class Initialized
+INFO - 2025-11-25 12:05:21 --> Output Class Initialized
+INFO - 2025-11-25 12:05:21 --> Security Class Initialized
+DEBUG - 2025-11-25 12:05:21 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:05:21 --> Input Class Initialized
+INFO - 2025-11-25 12:05:21 --> Language Class Initialized
+INFO - 2025-11-25 12:05:21 --> Loader Class Initialized
+INFO - 2025-11-25 12:05:21 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:05:21 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:05:21 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:05:21 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:05:21 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:05:21 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:05:21 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:05:21 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:05:21 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:05:21 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:05:21 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:05:21 --> Model Class Initialized
+INFO - 2025-11-25 12:05:21 --> Model Class Initialized
+INFO - 2025-11-25 12:05:21 --> Model Class Initialized
+INFO - 2025-11-25 12:05:21 --> Model Class Initialized
+INFO - 2025-11-25 12:05:21 --> Model Class Initialized
+INFO - 2025-11-25 12:05:21 --> Model Class Initialized
+DEBUG - 2025-11-25 12:05:21 --> Index loaded - Store: 7, Is Privileged: No
+ERROR - 2025-11-25 12:05:21 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 12:05:21 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 12:05:21 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 12:05:21 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 12:05:21 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/index.php
+INFO - 2025-11-25 12:05:21 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 12:05:21 --> Final output sent to browser
+DEBUG - 2025-11-25 12:05:21 --> Total execution time: 0.6044
+INFO - 2025-11-25 12:05:22 --> Config Class Initialized
+INFO - 2025-11-25 12:05:22 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:05:22 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:05:22 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:05:22 --> URI Class Initialized
+INFO - 2025-11-25 12:05:22 --> Router Class Initialized
+INFO - 2025-11-25 12:05:22 --> Output Class Initialized
+INFO - 2025-11-25 12:05:22 --> Security Class Initialized
+DEBUG - 2025-11-25 12:05:22 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:05:22 --> Input Class Initialized
+INFO - 2025-11-25 12:05:22 --> Language Class Initialized
+INFO - 2025-11-25 12:05:22 --> Loader Class Initialized
+INFO - 2025-11-25 12:05:22 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:05:22 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:05:22 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:05:22 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:05:22 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:05:22 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:05:22 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:05:22 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:05:22 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:05:22 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:05:22 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:05:22 --> Model Class Initialized
+INFO - 2025-11-25 12:05:22 --> Model Class Initialized
+INFO - 2025-11-25 12:05:22 --> Model Class Initialized
+INFO - 2025-11-25 12:05:22 --> Model Class Initialized
+INFO - 2025-11-25 12:05:22 --> Model Class Initialized
+INFO - 2025-11-25 12:05:22 --> Model Class Initialized
+DEBUG - 2025-11-25 12:05:22 --> fetchOrdersData - Store ID: 7, Group ID: , Is Privileged: No
+DEBUG - 2025-11-25 12:05:22 --> Adding store restriction for store_id: 7
+DEBUG - 2025-11-25 12:05:22 --> Executing query: SELECT o.*,
+                    COALESCE(s.name, 'N/A') as store_name,
+                    COALESCE(u.username, 'Unknown') as clerk_name
+                    FROM orders o
+                    LEFT JOIN stores s ON o.store_id = s.id
+                    LEFT JOIN users u ON o.user_id = u.id WHERE o.store_id = '7' ORDER BY o.id DESC
+DEBUG - 2025-11-25 12:05:22 --> Query returned 1194 results
+DEBUG - 2025-11-25 12:05:22 --> Found 1194 orders for user
+INFO - 2025-11-25 12:05:22 --> Final output sent to browser
+DEBUG - 2025-11-25 12:05:22 --> Total execution time: 0.0669
+INFO - 2025-11-25 12:05:25 --> Config Class Initialized
+INFO - 2025-11-25 12:05:25 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:05:25 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:05:25 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:05:25 --> URI Class Initialized
+INFO - 2025-11-25 12:05:25 --> Router Class Initialized
+INFO - 2025-11-25 12:05:25 --> Output Class Initialized
+INFO - 2025-11-25 12:05:25 --> Security Class Initialized
+DEBUG - 2025-11-25 12:05:25 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:05:25 --> Input Class Initialized
+INFO - 2025-11-25 12:05:25 --> Language Class Initialized
+INFO - 2025-11-25 12:05:25 --> Loader Class Initialized
+INFO - 2025-11-25 12:05:25 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:05:25 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:05:25 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:05:25 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:05:25 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:05:25 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:05:25 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:05:25 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:05:25 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:05:25 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:05:25 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:05:25 --> Model Class Initialized
+INFO - 2025-11-25 12:05:25 --> Model Class Initialized
+INFO - 2025-11-25 12:05:25 --> Model Class Initialized
+INFO - 2025-11-25 12:05:25 --> Model Class Initialized
+INFO - 2025-11-25 12:05:25 --> Model Class Initialized
+INFO - 2025-11-25 12:05:25 --> Model Class Initialized
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 78, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 138, purchased: 16, ordered: 0, stock: 16
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 79, purchased: 989, ordered: 23, stock: 966
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 80, purchased: 205, ordered: 60, stock: 145
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 81, purchased: 2046, ordered: 990, stock: 1056
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 139, purchased: 2, ordered: 1, stock: 1
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 82, purchased: 3500, ordered: 8648, stock: 0
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 83, purchased: 0, ordered: 2888, stock: 0
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 84, purchased: 189, ordered: 17, stock: 172
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 85, purchased: 137, ordered: 3, stock: 134
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 127, purchased: 2000, ordered: 379, stock: 1621
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 86, purchased: 384, ordered: 362, stock: 22
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 87, purchased: 588, ordered: 640, stock: 0
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 88, purchased: 837, ordered: 603, stock: 234
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 89, purchased: 2164, ordered: 720, stock: 1444
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 90, purchased: 470, ordered: 376, stock: 94
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 126, purchased: 25, ordered: 0, stock: 25
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 91, purchased: 26, ordered: 0, stock: 26
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 92, purchased: 25, ordered: 29, stock: 0
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 93, purchased: 752, ordered: 854, stock: 0
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 94, purchased: 764, ordered: 685, stock: 79
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 95, purchased: 2263, ordered: 622, stock: 1641
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 96, purchased: 18925, ordered: 3416, stock: 15509
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 134, purchased: 604, ordered: 69, stock: 535
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 130, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 133, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 131, purchased: 19, ordered: 0, stock: 19
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 97, purchased: 6001, ordered: 2364, stock: 3637
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 98, purchased: 442, ordered: 43, stock: 399
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 146, purchased: 200, ordered: 0, stock: 200
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 99, purchased: 2, ordered: 0, stock: 2
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 100, purchased: 34587, ordered: 30172, stock: 4415
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 137, purchased: 189, ordered: 4, stock: 185
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 101, purchased: 107, ordered: 23, stock: 84
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 102, purchased: 11299, ordered: 8482, stock: 2817
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 103, purchased: 29811, ordered: 23629, stock: 6182
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 104, purchased: 7500, ordered: 806, stock: 6694
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 142, purchased: 36, ordered: 0, stock: 36
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 140, purchased: 10, ordered: 1, stock: 9
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 105, purchased: 358, ordered: 203, stock: 155
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 106, purchased: 738, ordered: 645, stock: 93
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 125, purchased: 253, ordered: 0, stock: 253
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 108, purchased: 2503, ordered: 2235, stock: 268
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 109, purchased: 2571, ordered: 671, stock: 1900
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 110, purchased: 4761, ordered: 1695, stock: 3066
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 132, purchased: 200, ordered: 175, stock: 25
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 111, purchased: 406, ordered: 85, stock: 321
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 112, purchased: 1900, ordered: 1323, stock: 577
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 113, purchased: 2241, ordered: 825, stock: 1416
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 135, purchased: 1990, ordered: 654, stock: 1336
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 114, purchased: 922, ordered: 45, stock: 877
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 115, purchased: 13662, ordered: 16860, stock: 0
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 116, purchased: 237414, ordered: 234738, stock: 2676
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 107, purchased: 1200, ordered: 836, stock: 364
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 117, purchased: 9776, ordered: 6065, stock: 3711
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 118, purchased: 24842, ordered: 21800, stock: 3042
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 129, purchased: 1706, ordered: 1560, stock: 146
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 119, purchased: 0, ordered: 0, stock: 0
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 120, purchased: 1555, ordered: 565, stock: 990
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 121, purchased: 63, ordered: 2, stock: 61
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 122, purchased: 688, ordered: 207, stock: 481
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 123, purchased: 2020, ordered: 1730, stock: 290
+DEBUG - 2025-11-25 12:05:25 --> getProductsWithStock - ID: 124, purchased: 3646, ordered: 4469, stock: 0
+DEBUG - 2025-11-25 12:05:25 --> Prepared products for create view: [{"id":78,"name":"BROILER BOOSTER","price":3000,"current_stock":0,"unit":""},{"id":138,"name":"BROILER EXTRA","price":3000,"current_stock":16,"unit":""},{"id":79,"name":"BROILER FINISHER MASH","price":1000,"current_stock":966,"unit":""},{"id":80,"name":"BROILER PREMIX","price":3000,"current_stock":145,"unit":""},{"id":81,"name":"BROILER STARTER MASH","price":1000,"current_stock":1056,"unit":""},{"id":139,"name":"CHIKWIDI","price":15000,"current_stock":1,"unit":""},{"id":82,"name":"CHOKAA","price":500,"current_stock":0,"unit":""},{"id":83,"name":"CHUMVI","price":500,"current_stock":0,"unit":""},{"id":84,"name":"D.C.P KOPO (1\/2)","price":2000,"current_stock":172,"unit":""},{"id":85,"name":"D.C.P KOPO 1KG","price":3000,"current_stock":134,"unit":""},{"id":127,"name":"D.C.P KUPIMA","price":1500,"current_stock":1621,"unit":""},{"id":86,"name":"DAGAA KAUZU","price":2800,"current_stock":22,"unit":""},{"id":87,"name":"DAGAA SAGWA","price":2000,"current_stock":0,"unit":""},{"id":88,"name":"DAMU","price":1500,"current_stock":234,"unit":""},{"id":89,"name":"GROWER MASH","price":1000,"current_stock":1444,"unit":""},{"id":90,"name":"HAMIRA","price":1500,"current_stock":94,"unit":""},{"id":126,"name":"HIPHOS PLUS","price":5000,"current_stock":25,"unit":""},{"id":91,"name":"JOSERA MADUME","price":11000,"current_stock":26,"unit":""},{"id":92,"name":"JOSERA MAZIWA","price":11000,"current_stock":0,"unit":""},{"id":93,"name":"KARANGA","price":700,"current_stock":0,"unit":""},{"id":94,"name":"KAUDIS NGURUWE","price":4000,"current_stock":79,"unit":""},{"id":95,"name":"KAYABO","price":2000,"current_stock":1641,"unit":""},{"id":96,"name":"KONOKONO","price":350,"current_stock":15509,"unit":""},{"id":134,"name":"KONOKONO NZIMA","price":400,"current_stock":535,"unit":""},{"id":130,"name":"KONOKONO SAGWA","price":470,"current_stock":0,"unit":""},{"id":133,"name":"KONOKONO SAGWA","price":600,"current_stock":0,"unit":""},{"id":131,"name":"LAYERS EXTRA","price":3500,"current_stock":19,"unit":""},{"id":97,"name":"LAYERS MASH","price":1000,"current_stock":3637,"unit":""},{"id":98,"name":"LAYERS PREMIX","price":3500,"current_stock":399,"unit":""},{"id":146,"name":"MABOGA","price":3800,"current_stock":200,"unit":""},{"id":99,"name":"MADUME LICK","price":5000,"current_stock":2,"unit":""},{"id":100,"name":"MAHINDI","price":730,"current_stock":4415,"unit":""},{"id":137,"name":"MAZIWA MENGI 1KG","price":1500,"current_stock":185,"unit":""},{"id":101,"name":"MAZIWA MENGI 2kg","price":3000,"current_stock":84,"unit":""},{"id":102,"name":"MCHELE LAINI","price":400,"current_stock":2817,"unit":""},{"id":103,"name":"MCHELE NGUMU","price":320,"current_stock":6182,"unit":""},{"id":104,"name":"MFUPA","price":700,"current_stock":6694,"unit":""},{"id":142,"name":"MOLLASSES 1LITRE","price":5000,"current_stock":36,"unit":""},{"id":140,"name":"MOLLASSES 5LITRE","price":15000,"current_stock":9,"unit":""},{"id":105,"name":"MTAMA","price":1000,"current_stock":155,"unit":""},{"id":106,"name":"NGANO","price":1000,"current_stock":93,"unit":""},{"id":125,"name":"NGURUWE MIX","price":3500,"current_stock":253,"unit":""},{"id":108,"name":"PAMBA LAINI","price":1200,"current_stock":268,"unit":""},{"id":109,"name":"PAMBA NGUMU","price":1200,"current_stock":1900,"unit":""},{"id":110,"name":"PARAZA","price":1000,"current_stock":3066,"unit":""},{"id":132,"name":"PELLET FINISHER","price":2000,"current_stock":25,"unit":""},{"id":111,"name":"PIG BOOSTER","price":3000,"current_stock":321,"unit":""},{"id":112,"name":"PIG GROWER","price":1000,"current_stock":577,"unit":""},{"id":113,"name":"PIG STARTER","price":1000,"current_stock":1416,"unit":""},{"id":135,"name":"PILLET STARTER","price":2000,"current_stock":1336,"unit":""},{"id":114,"name":"PILLLET GROWER","price":2000,"current_stock":877,"unit":""},{"id":115,"name":"POLLARD","price":750,"current_stock":0,"unit":""},{"id":116,"name":"PUMBA","price":660,"current_stock":2676,"unit":""},{"id":107,"name":"PUMBA MAHINDI LAINI","price":600,"current_stock":364,"unit":""},{"id":117,"name":"SHUDU LAINI","price":900,"current_stock":3711,"unit":""},{"id":118,"name":"SHUDU NGUMU","price":800,"current_stock":3042,"unit":""},{"id":129,"name":"SOYA CHENGA","price":2500,"current_stock":146,"unit":""},{"id":119,"name":"SOYA MAFUTA","price":2500,"current_stock":0,"unit":""},{"id":120,"name":"SOYA UNGA","price":2000,"current_stock":990,"unit":""},{"id":121,"name":"SUPER MACLICK","price":3500,"current_stock":61,"unit":""},{"id":122,"name":"UBUYU","price":700,"current_stock":481,"unit":""},{"id":123,"name":"UDUVI","price":3500,"current_stock":290,"unit":""},{"id":124,"name":"WHEAT","price":650,"current_stock":0,"unit":""}]
+ERROR - 2025-11-25 12:05:25 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 12:05:25 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 12:05:25 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 12:05:25 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 12:05:26 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/create.php
+INFO - 2025-11-25 12:05:26 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 12:05:26 --> Final output sent to browser
+DEBUG - 2025-11-25 12:05:26 --> Total execution time: 0.5013
+INFO - 2025-11-25 12:05:26 --> Config Class Initialized
+INFO - 2025-11-25 12:05:26 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:05:26 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:05:26 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:05:26 --> URI Class Initialized
+INFO - 2025-11-25 12:05:26 --> Router Class Initialized
+INFO - 2025-11-25 12:05:26 --> Output Class Initialized
+INFO - 2025-11-25 12:05:26 --> Security Class Initialized
+DEBUG - 2025-11-25 12:05:26 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:05:26 --> Input Class Initialized
+INFO - 2025-11-25 12:05:26 --> Language Class Initialized
+ERROR - 2025-11-25 12:05:26 --> 404 Page Not Found: Assets/plugins
+INFO - 2025-11-25 12:07:24 --> Config Class Initialized
+INFO - 2025-11-25 12:07:24 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:07:25 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:07:25 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:07:25 --> URI Class Initialized
+INFO - 2025-11-25 12:07:25 --> Router Class Initialized
+INFO - 2025-11-25 12:07:25 --> Output Class Initialized
+INFO - 2025-11-25 12:07:25 --> Security Class Initialized
+DEBUG - 2025-11-25 12:07:25 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:07:25 --> Input Class Initialized
+INFO - 2025-11-25 12:07:25 --> Language Class Initialized
+INFO - 2025-11-25 12:07:25 --> Loader Class Initialized
+INFO - 2025-11-25 12:07:25 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:07:25 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:07:25 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:07:25 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:07:25 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:07:25 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:07:25 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:07:25 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:07:25 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:07:25 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:07:25 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:07:25 --> Model Class Initialized
+INFO - 2025-11-25 12:07:25 --> Model Class Initialized
+INFO - 2025-11-25 12:07:25 --> Model Class Initialized
+INFO - 2025-11-25 12:07:25 --> Model Class Initialized
+INFO - 2025-11-25 12:07:25 --> Model Class Initialized
+INFO - 2025-11-25 12:07:25 --> Model Class Initialized
+DEBUG - 2025-11-25 12:07:25 --> Controller_Orders::create POST: {"customer_name":"M.EVA","customer_phone":"","customer_address":"","store_id":"7","product":["115","116","118"],"qty":["15","20","5"],"rate":["750.00","650","800.00"],"rate_value":["750.00","650","800.00"],"amount":["11250.00","13000.00","4000.00"],"amount_value":["11250.00","13000.00","4000.00"],"discount":"0","paid_status":"2","amount_paid":"28250.00","gross_amount_value":"28250.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"28250.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 12:07:25 --> Final output sent to browser
+DEBUG - 2025-11-25 12:07:25 --> Total execution time: 0.4141
+INFO - 2025-11-25 12:10:47 --> Config Class Initialized
+INFO - 2025-11-25 12:10:47 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:10:47 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:10:47 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:10:47 --> URI Class Initialized
+INFO - 2025-11-25 12:10:47 --> Router Class Initialized
+INFO - 2025-11-25 12:10:47 --> Output Class Initialized
+INFO - 2025-11-25 12:10:47 --> Security Class Initialized
+DEBUG - 2025-11-25 12:10:47 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:10:47 --> Input Class Initialized
+INFO - 2025-11-25 12:10:47 --> Language Class Initialized
+INFO - 2025-11-25 12:10:47 --> Loader Class Initialized
+INFO - 2025-11-25 12:10:47 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:10:47 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:10:47 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:10:47 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:10:47 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:10:47 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:10:47 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:10:47 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:10:47 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:10:47 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:10:47 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:10:47 --> Model Class Initialized
+INFO - 2025-11-25 12:10:47 --> Model Class Initialized
+INFO - 2025-11-25 12:10:47 --> Model Class Initialized
+INFO - 2025-11-25 12:10:47 --> Model Class Initialized
+INFO - 2025-11-25 12:10:47 --> Model Class Initialized
+INFO - 2025-11-25 12:10:47 --> Model Class Initialized
+DEBUG - 2025-11-25 12:10:47 --> Controller_Orders::create POST: {"customer_name":"FROM BOSS","customer_phone":"","customer_address":"","store_id":"7","product":["","120","115","88","96","82","83"],"qty":["0","50","210","50","50","50","50"],"rate":["60000.00","2000.00","692.86","1400.00","300.00","240.00","440.00"],"rate_value":["60000.00","2000.00","692.86","1400.00","300.00","240.00","440.00"],"amount":["60000","100000.00","145500","70000","15000","12000","22000"],"amount_value":["60000","100000.00","145500","70000","15000","12000","22000"],"discount":"0","paid_status":"2","amount_paid":"424500.00","gross_amount_value":"424500.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"424500.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 12:10:47 --> Final output sent to browser
+DEBUG - 2025-11-25 12:10:47 --> Total execution time: 0.1552
+INFO - 2025-11-25 12:11:38 --> Config Class Initialized
+INFO - 2025-11-25 12:11:38 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:11:38 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:11:38 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:11:38 --> URI Class Initialized
+INFO - 2025-11-25 12:11:38 --> Router Class Initialized
+INFO - 2025-11-25 12:11:38 --> Output Class Initialized
+INFO - 2025-11-25 12:11:38 --> Security Class Initialized
+DEBUG - 2025-11-25 12:11:38 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:11:38 --> Input Class Initialized
+INFO - 2025-11-25 12:11:38 --> Language Class Initialized
+INFO - 2025-11-25 12:11:38 --> Loader Class Initialized
+INFO - 2025-11-25 12:11:38 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:11:38 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:11:38 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:11:38 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:11:38 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:11:38 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:11:38 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:11:38 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:11:38 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:11:38 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:11:38 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:11:38 --> Model Class Initialized
+INFO - 2025-11-25 12:11:38 --> Model Class Initialized
+INFO - 2025-11-25 12:11:38 --> Model Class Initialized
+INFO - 2025-11-25 12:11:38 --> Model Class Initialized
+INFO - 2025-11-25 12:11:38 --> Model Class Initialized
+INFO - 2025-11-25 12:11:38 --> Model Class Initialized
+DEBUG - 2025-11-25 12:11:38 --> Controller_Orders::create POST: {"customer_name":"MAZUNDE","customer_phone":"","customer_address":"","store_id":"7","product":["116","96"],"qty":["500","866"],"rate":["640","300.23"],"rate_value":["640","300.23"],"amount":["320000.00","260000"],"amount_value":["320000.00","260000"],"discount":"0","paid_status":"2","amount_paid":"580000.00","gross_amount_value":"580000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"580000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 12:11:38 --> Final output sent to browser
+DEBUG - 2025-11-25 12:11:38 --> Total execution time: 0.1709
+INFO - 2025-11-25 12:12:14 --> Config Class Initialized
+INFO - 2025-11-25 12:12:14 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:12:14 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:12:14 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:12:14 --> URI Class Initialized
+INFO - 2025-11-25 12:12:14 --> Router Class Initialized
+INFO - 2025-11-25 12:12:14 --> Output Class Initialized
+INFO - 2025-11-25 12:12:14 --> Security Class Initialized
+DEBUG - 2025-11-25 12:12:14 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:12:14 --> Input Class Initialized
+INFO - 2025-11-25 12:12:14 --> Language Class Initialized
+INFO - 2025-11-25 12:12:14 --> Loader Class Initialized
+INFO - 2025-11-25 12:12:15 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:12:15 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:12:15 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:12:15 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:12:15 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:12:15 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:12:15 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:12:15 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:12:15 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:12:15 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:12:15 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:12:15 --> Model Class Initialized
+INFO - 2025-11-25 12:12:15 --> Model Class Initialized
+INFO - 2025-11-25 12:12:15 --> Model Class Initialized
+INFO - 2025-11-25 12:12:15 --> Model Class Initialized
+INFO - 2025-11-25 12:12:15 --> Model Class Initialized
+INFO - 2025-11-25 12:12:15 --> Model Class Initialized
+DEBUG - 2025-11-25 12:12:15 --> Controller_Orders::create POST: {"customer_name":"PASTOR","customer_phone":"","customer_address":"","store_id":"7","product":["118"],"qty":["400"],"rate":["770"],"rate_value":["770"],"amount":["308000.00"],"amount_value":["308000.00"],"discount":"0","paid_status":"2","amount_paid":"308000.00","gross_amount_value":"308000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"308000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 12:12:15 --> Final output sent to browser
+DEBUG - 2025-11-25 12:12:15 --> Total execution time: 0.1600
+INFO - 2025-11-25 12:12:43 --> Config Class Initialized
+INFO - 2025-11-25 12:12:43 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:12:43 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:12:43 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:12:43 --> URI Class Initialized
+INFO - 2025-11-25 12:12:43 --> Router Class Initialized
+INFO - 2025-11-25 12:12:43 --> Output Class Initialized
+INFO - 2025-11-25 12:12:43 --> Security Class Initialized
+DEBUG - 2025-11-25 12:12:43 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:12:43 --> Input Class Initialized
+INFO - 2025-11-25 12:12:43 --> Language Class Initialized
+INFO - 2025-11-25 12:12:43 --> Loader Class Initialized
+INFO - 2025-11-25 12:12:43 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:12:43 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:12:43 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:12:43 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:12:43 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:12:43 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:12:43 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:12:43 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:12:43 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:12:43 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:12:43 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:12:43 --> Model Class Initialized
+INFO - 2025-11-25 12:12:43 --> Model Class Initialized
+INFO - 2025-11-25 12:12:43 --> Model Class Initialized
+INFO - 2025-11-25 12:12:43 --> Model Class Initialized
+INFO - 2025-11-25 12:12:43 --> Model Class Initialized
+INFO - 2025-11-25 12:12:43 --> Model Class Initialized
+DEBUG - 2025-11-25 12:12:43 --> Controller_Orders::create POST: {"customer_name":"WILSON","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["25"],"rate":["640"],"rate_value":["640"],"amount":["16000.00"],"amount_value":["16000.00"],"discount":"0","paid_status":"2","amount_paid":"16000.00","gross_amount_value":"16000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"16000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 12:12:43 --> Final output sent to browser
+DEBUG - 2025-11-25 12:12:43 --> Total execution time: 0.1336
+INFO - 2025-11-25 12:16:55 --> Config Class Initialized
+INFO - 2025-11-25 12:16:55 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:16:55 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:16:55 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:16:55 --> URI Class Initialized
+INFO - 2025-11-25 12:16:55 --> Router Class Initialized
+INFO - 2025-11-25 12:16:55 --> Output Class Initialized
+INFO - 2025-11-25 12:16:55 --> Security Class Initialized
+DEBUG - 2025-11-25 12:16:55 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:16:55 --> Input Class Initialized
+INFO - 2025-11-25 12:16:55 --> Language Class Initialized
+INFO - 2025-11-25 12:16:55 --> Loader Class Initialized
+INFO - 2025-11-25 12:16:55 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:16:55 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:16:55 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:16:55 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:16:55 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:16:55 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:16:55 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:16:55 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:16:55 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:16:55 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:16:55 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:16:55 --> Model Class Initialized
+INFO - 2025-11-25 12:16:55 --> Model Class Initialized
+INFO - 2025-11-25 12:16:55 --> Model Class Initialized
+INFO - 2025-11-25 12:16:55 --> Model Class Initialized
+INFO - 2025-11-25 12:16:55 --> Model Class Initialized
+INFO - 2025-11-25 12:16:55 --> Model Class Initialized
+DEBUG - 2025-11-25 12:16:55 --> Controller_Orders::create POST: {"customer_name":"M.BRENDA","customer_phone":"","customer_address":"","store_id":"7","product":["89","117","110","123","104","105","87","88","127","82","83","98","96"],"qty":["50","20","10","3","3","10","10","2","1","1","1","1","3"],"rate":["960.00","1000","1000.00","3500.00","700.00","900","2000.00","1500.00","1500.00","500.00","500.00","3500.00","400"],"rate_value":["960.00","1000","1000.00","3500.00","700.00","900","2000.00","1500.00","1500.00","500.00","500.00","3500.00","400"],"amount":["48000","20000.00","10000.00","10500.00","2100.00","9000.00","20000.00","3000.00","1500.00","500.00","500.00","3500.00","1200.00"],"amount_value":["48000","20000.00","10000.00","10500.00","2100.00","9000.00","20000.00","3000.00","1500.00","500.00","500.00","3500.00","1200.00"],"discount":"0","paid_status":"2","amount_paid":"129800.00","gross_amount_value":"129800.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"129800.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 12:16:55 --> Final output sent to browser
+DEBUG - 2025-11-25 12:16:55 --> Total execution time: 0.1361
+INFO - 2025-11-25 12:17:37 --> Config Class Initialized
+INFO - 2025-11-25 12:17:37 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:17:37 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:17:37 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:17:37 --> URI Class Initialized
+INFO - 2025-11-25 12:17:37 --> Router Class Initialized
+INFO - 2025-11-25 12:17:37 --> Output Class Initialized
+INFO - 2025-11-25 12:17:37 --> Security Class Initialized
+DEBUG - 2025-11-25 12:17:37 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:17:37 --> Input Class Initialized
+INFO - 2025-11-25 12:17:37 --> Language Class Initialized
+INFO - 2025-11-25 12:17:37 --> Loader Class Initialized
+INFO - 2025-11-25 12:17:37 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:17:37 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:17:37 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:17:37 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:17:37 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:17:37 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:17:37 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:17:37 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:17:37 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:17:37 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:17:37 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:17:37 --> Model Class Initialized
+INFO - 2025-11-25 12:17:37 --> Model Class Initialized
+INFO - 2025-11-25 12:17:37 --> Model Class Initialized
+INFO - 2025-11-25 12:17:37 --> Model Class Initialized
+INFO - 2025-11-25 12:17:37 --> Model Class Initialized
+INFO - 2025-11-25 12:17:37 --> Model Class Initialized
+DEBUG - 2025-11-25 12:17:37 --> Controller_Orders::create POST: {"customer_name":"COSMAS","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["50.8"],"rate":["649.61"],"rate_value":["649.61"],"amount":["33000"],"amount_value":["33000"],"discount":"0","paid_status":"2","amount_paid":"33000.00","gross_amount_value":"33000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"33000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 12:17:37 --> Final output sent to browser
+DEBUG - 2025-11-25 12:17:37 --> Total execution time: 0.1392
+INFO - 2025-11-25 12:18:46 --> Config Class Initialized
+INFO - 2025-11-25 12:18:46 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:18:46 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:18:46 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:18:46 --> URI Class Initialized
+INFO - 2025-11-25 12:18:46 --> Router Class Initialized
+INFO - 2025-11-25 12:18:46 --> Output Class Initialized
+INFO - 2025-11-25 12:18:46 --> Security Class Initialized
+DEBUG - 2025-11-25 12:18:46 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:18:46 --> Input Class Initialized
+INFO - 2025-11-25 12:18:46 --> Language Class Initialized
+INFO - 2025-11-25 12:18:46 --> Loader Class Initialized
+INFO - 2025-11-25 12:18:46 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:18:46 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:18:46 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:18:46 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:18:46 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:18:46 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:18:46 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:18:46 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:18:46 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:18:46 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:18:46 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:18:46 --> Model Class Initialized
+INFO - 2025-11-25 12:18:46 --> Model Class Initialized
+INFO - 2025-11-25 12:18:46 --> Model Class Initialized
+INFO - 2025-11-25 12:18:46 --> Model Class Initialized
+INFO - 2025-11-25 12:18:46 --> Model Class Initialized
+INFO - 2025-11-25 12:18:46 --> Model Class Initialized
+DEBUG - 2025-11-25 12:18:46 --> Controller_Orders::create POST: {"customer_name":"KISIMA","customer_phone":"","customer_address":"","store_id":"7","product":["115","101"],"qty":["210","11"],"rate":["714.29","2700.00"],"rate_value":["714.29","2700.00"],"amount":["150000","29700.00"],"amount_value":["150000","29700.00"],"discount":"0","paid_status":"2","amount_paid":"179700.00","gross_amount_value":"179700.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"179700.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 12:18:46 --> Final output sent to browser
+DEBUG - 2025-11-25 12:18:46 --> Total execution time: 0.1331
+INFO - 2025-11-25 12:20:00 --> Config Class Initialized
+INFO - 2025-11-25 12:20:00 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:20:00 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:20:00 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:20:00 --> URI Class Initialized
+INFO - 2025-11-25 12:20:00 --> Router Class Initialized
+INFO - 2025-11-25 12:20:00 --> Output Class Initialized
+INFO - 2025-11-25 12:20:00 --> Security Class Initialized
+DEBUG - 2025-11-25 12:20:00 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:20:00 --> Input Class Initialized
+INFO - 2025-11-25 12:20:00 --> Language Class Initialized
+INFO - 2025-11-25 12:20:00 --> Loader Class Initialized
+INFO - 2025-11-25 12:20:00 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:20:00 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:20:00 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:20:00 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:20:00 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:20:00 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:20:00 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:20:00 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:20:00 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:20:00 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:20:00 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:20:00 --> Model Class Initialized
+INFO - 2025-11-25 12:20:00 --> Model Class Initialized
+INFO - 2025-11-25 12:20:00 --> Model Class Initialized
+INFO - 2025-11-25 12:20:00 --> Model Class Initialized
+INFO - 2025-11-25 12:20:00 --> Model Class Initialized
+INFO - 2025-11-25 12:20:00 --> Model Class Initialized
+DEBUG - 2025-11-25 12:20:00 --> Controller_Orders::create POST: {"customer_name":"BEN","customer_phone":"","customer_address":"","store_id":"7","product":["116","103","111"],"qty":["300","150","4"],"rate":["650","380","3500.00"],"rate_value":["650","380","3500.00"],"amount":["195000.00","57000.00","14000"],"amount_value":["195000.00","57000.00","14000"],"discount":"0","paid_status":"2","amount_paid":"266000.00","gross_amount_value":"266000.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"266000.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 12:20:00 --> Final output sent to browser
+DEBUG - 2025-11-25 12:20:00 --> Total execution time: 0.1334
+INFO - 2025-11-25 12:20:28 --> Config Class Initialized
+INFO - 2025-11-25 12:20:28 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:20:28 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:20:28 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:20:28 --> URI Class Initialized
+INFO - 2025-11-25 12:20:28 --> Router Class Initialized
+INFO - 2025-11-25 12:20:28 --> Output Class Initialized
+INFO - 2025-11-25 12:20:28 --> Security Class Initialized
+DEBUG - 2025-11-25 12:20:28 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:20:28 --> Input Class Initialized
+INFO - 2025-11-25 12:20:28 --> Language Class Initialized
+INFO - 2025-11-25 12:20:28 --> Loader Class Initialized
+INFO - 2025-11-25 12:20:28 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:20:28 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:20:28 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:20:28 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:20:28 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:20:28 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:20:28 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:20:28 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:20:28 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:20:28 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:20:28 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:20:28 --> Model Class Initialized
+INFO - 2025-11-25 12:20:28 --> Model Class Initialized
+INFO - 2025-11-25 12:20:28 --> Model Class Initialized
+INFO - 2025-11-25 12:20:28 --> Model Class Initialized
+INFO - 2025-11-25 12:20:28 --> Model Class Initialized
+INFO - 2025-11-25 12:20:28 --> Model Class Initialized
+DEBUG - 2025-11-25 12:20:28 --> Controller_Orders::create POST: {"customer_name":"KIDEVU","customer_phone":"","customer_address":"","store_id":"7","product":["116"],"qty":["50"],"rate":["650"],"rate_value":["650"],"amount":["32500.00"],"amount_value":["32500.00"],"discount":"0","paid_status":"2","amount_paid":"32500.00","gross_amount_value":"32500.00","service_charge_value":"0.00","vat_charge_value":"0.00","net_amount_value":"32500.00","service_charge_rate":"0","vat_charge_rate":"0"}
+INFO - 2025-11-25 12:20:28 --> Final output sent to browser
+DEBUG - 2025-11-25 12:20:28 --> Total execution time: 0.1537
+INFO - 2025-11-25 12:20:30 --> Config Class Initialized
+INFO - 2025-11-25 12:20:30 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:20:30 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:20:30 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:20:30 --> URI Class Initialized
+INFO - 2025-11-25 12:20:30 --> Router Class Initialized
+INFO - 2025-11-25 12:20:30 --> Output Class Initialized
+INFO - 2025-11-25 12:20:30 --> Security Class Initialized
+DEBUG - 2025-11-25 12:20:30 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:20:30 --> Input Class Initialized
+INFO - 2025-11-25 12:20:30 --> Language Class Initialized
+INFO - 2025-11-25 12:20:30 --> Loader Class Initialized
+INFO - 2025-11-25 12:20:30 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:20:30 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:20:30 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:20:30 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:20:30 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:20:30 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:20:30 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:20:30 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:20:30 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:20:30 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:20:30 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:20:30 --> Model Class Initialized
+INFO - 2025-11-25 12:20:30 --> Model Class Initialized
+INFO - 2025-11-25 12:20:30 --> Model Class Initialized
+INFO - 2025-11-25 12:20:30 --> Model Class Initialized
+INFO - 2025-11-25 12:20:30 --> Model Class Initialized
+INFO - 2025-11-25 12:20:30 --> Model Class Initialized
+DEBUG - 2025-11-25 12:20:30 --> Index loaded - Store: 7, Is Privileged: No
+ERROR - 2025-11-25 12:20:30 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 12:20:30 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 12:20:30 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 12:20:30 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 12:20:30 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/index.php
+INFO - 2025-11-25 12:20:30 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 12:20:30 --> Final output sent to browser
+DEBUG - 2025-11-25 12:20:30 --> Total execution time: 0.0592
+INFO - 2025-11-25 12:20:31 --> Config Class Initialized
+INFO - 2025-11-25 12:20:31 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:20:31 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:20:31 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:20:31 --> URI Class Initialized
+INFO - 2025-11-25 12:20:31 --> Router Class Initialized
+INFO - 2025-11-25 12:20:31 --> Output Class Initialized
+INFO - 2025-11-25 12:20:31 --> Security Class Initialized
+DEBUG - 2025-11-25 12:20:31 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:20:31 --> Input Class Initialized
+INFO - 2025-11-25 12:20:31 --> Language Class Initialized
+INFO - 2025-11-25 12:20:31 --> Loader Class Initialized
+INFO - 2025-11-25 12:20:31 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:20:31 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:20:31 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:20:31 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:20:31 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:20:31 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:20:31 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:20:31 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:20:31 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:20:31 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:20:31 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:20:31 --> Model Class Initialized
+INFO - 2025-11-25 12:20:31 --> Model Class Initialized
+INFO - 2025-11-25 12:20:31 --> Model Class Initialized
+INFO - 2025-11-25 12:20:31 --> Model Class Initialized
+INFO - 2025-11-25 12:20:31 --> Model Class Initialized
+INFO - 2025-11-25 12:20:31 --> Model Class Initialized
+DEBUG - 2025-11-25 12:20:31 --> fetchOrdersData - Store ID: 7, Group ID: , Is Privileged: No
+DEBUG - 2025-11-25 12:20:31 --> Adding store restriction for store_id: 7
+DEBUG - 2025-11-25 12:20:31 --> Executing query: SELECT o.*,
+                    COALESCE(s.name, 'N/A') as store_name,
+                    COALESCE(u.username, 'Unknown') as clerk_name
+                    FROM orders o
+                    LEFT JOIN stores s ON o.store_id = s.id
+                    LEFT JOIN users u ON o.user_id = u.id WHERE o.store_id = '7' ORDER BY o.id DESC
+DEBUG - 2025-11-25 12:20:31 --> Query returned 1204 results
+DEBUG - 2025-11-25 12:20:31 --> Found 1204 orders for user
+INFO - 2025-11-25 12:20:31 --> Final output sent to browser
+DEBUG - 2025-11-25 12:20:31 --> Total execution time: 0.0898
+INFO - 2025-11-25 12:21:28 --> Config Class Initialized
+INFO - 2025-11-25 12:21:28 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:21:28 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:21:28 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:21:28 --> URI Class Initialized
+INFO - 2025-11-25 12:21:28 --> Router Class Initialized
+INFO - 2025-11-25 12:21:28 --> Output Class Initialized
+INFO - 2025-11-25 12:21:28 --> Security Class Initialized
+DEBUG - 2025-11-25 12:21:28 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:21:28 --> Input Class Initialized
+INFO - 2025-11-25 12:21:28 --> Language Class Initialized
+INFO - 2025-11-25 12:21:28 --> Loader Class Initialized
+INFO - 2025-11-25 12:21:28 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:21:28 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:21:28 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:21:28 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:21:28 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:21:28 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:21:28 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:21:28 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:21:28 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:21:28 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:21:28 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:21:28 --> Model Class Initialized
+INFO - 2025-11-25 12:21:28 --> Model Class Initialized
+INFO - 2025-11-25 12:21:28 --> Model Class Initialized
+INFO - 2025-11-25 12:21:28 --> Model Class Initialized
+INFO - 2025-11-25 12:21:28 --> Model Class Initialized
+INFO - 2025-11-25 12:21:28 --> Model Class Initialized
+DEBUG - 2025-11-25 12:21:28 --> User Info - Store ID: 7, Group ID: , Is Privileged: No
+DEBUG - 2025-11-25 12:21:28 --> Single order query: SELECT o.*,
+                        COALESCE(s.name, 'N/A') as store_name,
+                        COALESCE(u.username, 'Unknown') as clerk_name
+                        FROM orders o
+                        LEFT JOIN stores s ON o.store_id = s.id
+                        LEFT JOIN users u ON o.user_id = u.id
+                        WHERE o.id = '1318' AND o.store_id = '7'
+INFO - 2025-11-25 12:21:28 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 12:21:28 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 12:21:28 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 12:21:28 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/edit.php
+INFO - 2025-11-25 12:21:28 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 12:21:28 --> Final output sent to browser
+DEBUG - 2025-11-25 12:21:28 --> Total execution time: 0.3467
+INFO - 2025-11-25 12:21:35 --> Config Class Initialized
+INFO - 2025-11-25 12:21:35 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:21:35 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:21:35 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:21:35 --> URI Class Initialized
+INFO - 2025-11-25 12:21:35 --> Router Class Initialized
+INFO - 2025-11-25 12:21:35 --> Output Class Initialized
+INFO - 2025-11-25 12:21:35 --> Security Class Initialized
+DEBUG - 2025-11-25 12:21:35 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:21:35 --> Input Class Initialized
+INFO - 2025-11-25 12:21:35 --> Language Class Initialized
+INFO - 2025-11-25 12:21:35 --> Loader Class Initialized
+INFO - 2025-11-25 12:21:35 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:21:35 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:21:35 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:21:35 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:21:35 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:21:35 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:21:35 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:21:35 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:21:35 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:21:35 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:21:35 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:21:35 --> Model Class Initialized
+INFO - 2025-11-25 12:21:35 --> Model Class Initialized
+INFO - 2025-11-25 12:21:35 --> Model Class Initialized
+INFO - 2025-11-25 12:21:35 --> Model Class Initialized
+INFO - 2025-11-25 12:21:35 --> Model Class Initialized
+INFO - 2025-11-25 12:21:35 --> Model Class Initialized
+DEBUG - 2025-11-25 12:21:35 --> Index loaded - Store: 7, Is Privileged: No
+ERROR - 2025-11-25 12:21:35 --> Severity: Warning --> Undefined variable $page_title C:\xampp\htdocs\Inventory_CI\application\views\templates\header.php 7
+INFO - 2025-11-25 12:21:35 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 12:21:35 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 12:21:35 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 12:21:35 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\orders/index.php
+INFO - 2025-11-25 12:21:35 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 12:21:35 --> Final output sent to browser
+DEBUG - 2025-11-25 12:21:35 --> Total execution time: 0.0570
+INFO - 2025-11-25 12:21:35 --> Config Class Initialized
+INFO - 2025-11-25 12:21:35 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:21:35 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:21:35 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:21:35 --> URI Class Initialized
+INFO - 2025-11-25 12:21:35 --> Router Class Initialized
+INFO - 2025-11-25 12:21:35 --> Output Class Initialized
+INFO - 2025-11-25 12:21:35 --> Security Class Initialized
+DEBUG - 2025-11-25 12:21:35 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:21:35 --> Input Class Initialized
+INFO - 2025-11-25 12:21:35 --> Language Class Initialized
+INFO - 2025-11-25 12:21:35 --> Loader Class Initialized
+INFO - 2025-11-25 12:21:35 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:21:35 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:21:35 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:21:35 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:21:35 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:21:35 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:21:35 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:21:35 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:21:35 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:21:35 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:21:35 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:21:35 --> Model Class Initialized
+INFO - 2025-11-25 12:21:35 --> Model Class Initialized
+INFO - 2025-11-25 12:21:35 --> Model Class Initialized
+INFO - 2025-11-25 12:21:35 --> Model Class Initialized
+INFO - 2025-11-25 12:21:35 --> Model Class Initialized
+INFO - 2025-11-25 12:21:35 --> Model Class Initialized
+DEBUG - 2025-11-25 12:21:35 --> fetchOrdersData - Store ID: 7, Group ID: , Is Privileged: No
+DEBUG - 2025-11-25 12:21:35 --> Adding store restriction for store_id: 7
+DEBUG - 2025-11-25 12:21:35 --> Executing query: SELECT o.*,
+                    COALESCE(s.name, 'N/A') as store_name,
+                    COALESCE(u.username, 'Unknown') as clerk_name
+                    FROM orders o
+                    LEFT JOIN stores s ON o.store_id = s.id
+                    LEFT JOIN users u ON o.user_id = u.id WHERE o.store_id = '7' ORDER BY o.id DESC
+DEBUG - 2025-11-25 12:21:35 --> Query returned 1204 results
+DEBUG - 2025-11-25 12:21:35 --> Found 1204 orders for user
+INFO - 2025-11-25 12:21:35 --> Final output sent to browser
+DEBUG - 2025-11-25 12:21:35 --> Total execution time: 0.0675
+INFO - 2025-11-25 12:22:30 --> Config Class Initialized
+INFO - 2025-11-25 12:22:30 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:22:30 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:22:30 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:22:30 --> URI Class Initialized
+INFO - 2025-11-25 12:22:30 --> Router Class Initialized
+INFO - 2025-11-25 12:22:30 --> Output Class Initialized
+INFO - 2025-11-25 12:22:30 --> Security Class Initialized
+DEBUG - 2025-11-25 12:22:30 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:22:30 --> Input Class Initialized
+INFO - 2025-11-25 12:22:30 --> Language Class Initialized
+INFO - 2025-11-25 12:22:30 --> Loader Class Initialized
+INFO - 2025-11-25 12:22:30 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:22:30 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:22:30 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:22:30 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:22:30 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:22:30 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:22:30 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:22:30 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:22:30 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:22:30 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:22:30 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:22:30 --> Model Class Initialized
+INFO - 2025-11-25 12:22:30 --> Model Class Initialized
+INFO - 2025-11-25 12:22:30 --> Model Class Initialized
+ERROR - 2025-11-25 12:22:30 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:22:30 --> Model Class Initialized
+INFO - 2025-11-25 12:22:30 --> Model Class Initialized
+INFO - 2025-11-25 12:22:30 --> Model Class Initialized
+INFO - 2025-11-25 12:22:30 --> Model Class Initialized
+DEBUG - 2025-11-25 12:22:30 --> Stock calculation for product 78 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:22:30 --> Stock calculation for product 138 in store 7: Purchased=16, Sold=0, Available=16
+DEBUG - 2025-11-25 12:22:30 --> Stock calculation for product 79 in store 7: Purchased=989, Sold=23, Available=966
+DEBUG - 2025-11-25 12:22:30 --> Stock calculation for product 80 in store 7: Purchased=205, Sold=60, Available=145
+DEBUG - 2025-11-25 12:22:30 --> Stock calculation for product 81 in store 7: Purchased=2046, Sold=990, Available=1056
+DEBUG - 2025-11-25 12:22:30 --> Stock calculation for product 145 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:22:30 --> Stock calculation for product 139 in store 7: Purchased=2, Sold=1, Available=1
+DEBUG - 2025-11-25 12:22:30 --> Stock calculation for product 82 in store 7: Purchased=3500, Sold=8699, Available=0
+DEBUG - 2025-11-25 12:22:30 --> Stock calculation for product 83 in store 7: Purchased=0, Sold=2939, Available=0
+DEBUG - 2025-11-25 12:22:30 --> Stock calculation for product 84 in store 7: Purchased=189, Sold=17, Available=172
+DEBUG - 2025-11-25 12:22:30 --> Stock calculation for product 85 in store 7: Purchased=137, Sold=3, Available=134
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 127 in store 7: Purchased=2000, Sold=380, Available=1620
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 86 in store 7: Purchased=384, Sold=362, Available=22
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 87 in store 7: Purchased=588, Sold=650, Available=0
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 88 in store 7: Purchased=837, Sold=655, Available=182
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 89 in store 7: Purchased=2164, Sold=770, Available=1394
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 90 in store 7: Purchased=470, Sold=376, Available=94
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 126 in store 7: Purchased=25, Sold=0, Available=25
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 91 in store 7: Purchased=26, Sold=0, Available=26
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 92 in store 7: Purchased=25, Sold=29, Available=0
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 93 in store 7: Purchased=752, Sold=854, Available=0
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 94 in store 7: Purchased=764, Sold=685, Available=79
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 95 in store 7: Purchased=2263, Sold=622, Available=1641
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 96 in store 7: Purchased=18925, Sold=4335, Available=14590
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 134 in store 7: Purchased=604, Sold=69, Available=535
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 130 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 133 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 131 in store 7: Purchased=19, Sold=0, Available=19
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 97 in store 7: Purchased=6001, Sold=2364, Available=3637
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 98 in store 7: Purchased=442, Sold=44, Available=398
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 146 in store 7: Purchased=200, Sold=0, Available=200
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 99 in store 7: Purchased=2, Sold=0, Available=2
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 100 in store 7: Purchased=34587, Sold=30172, Available=4415
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 137 in store 7: Purchased=189, Sold=4, Available=185
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 101 in store 7: Purchased=107, Sold=34, Available=73
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 102 in store 7: Purchased=11299, Sold=8482, Available=2817
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 103 in store 7: Purchased=29811, Sold=23779, Available=6032
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 104 in store 7: Purchased=7500, Sold=809, Available=6691
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 142 in store 7: Purchased=36, Sold=0, Available=36
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 140 in store 7: Purchased=10, Sold=1, Available=9
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 105 in store 7: Purchased=358, Sold=213, Available=145
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 106 in store 7: Purchased=738, Sold=645, Available=93
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 125 in store 7: Purchased=253, Sold=0, Available=253
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 108 in store 7: Purchased=2503, Sold=2235, Available=268
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 109 in store 7: Purchased=2571, Sold=671, Available=1900
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 110 in store 7: Purchased=4761, Sold=1705, Available=3056
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 132 in store 7: Purchased=200, Sold=175, Available=25
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 111 in store 7: Purchased=406, Sold=89, Available=317
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 112 in store 7: Purchased=1900, Sold=1323, Available=577
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 113 in store 7: Purchased=2241, Sold=825, Available=1416
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 135 in store 7: Purchased=1990, Sold=654, Available=1336
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 114 in store 7: Purchased=922, Sold=45, Available=877
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 115 in store 7: Purchased=13662, Sold=17295, Available=0
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 116 in store 7: Purchased=237414, Sold=235683, Available=1731
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 107 in store 7: Purchased=1200, Sold=836, Available=364
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 117 in store 7: Purchased=9776, Sold=6085, Available=3691
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 118 in store 7: Purchased=24842, Sold=22205, Available=2637
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 144 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 129 in store 7: Purchased=1706, Sold=1560, Available=146
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 119 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 120 in store 7: Purchased=1555, Sold=615, Available=940
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 121 in store 7: Purchased=63, Sold=2, Available=61
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 122 in store 7: Purchased=688, Sold=207, Available=481
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 123 in store 7: Purchased=2020, Sold=1733, Available=287
+DEBUG - 2025-11-25 12:22:31 --> Stock calculation for product 124 in store 7: Purchased=3646, Sold=4469, Available=0
+DEBUG - 2025-11-25 12:22:31 --> Purchases view loaded - Store ID: 7, Is Admin: No, Products Count: 65
+INFO - 2025-11-25 12:22:31 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 12:22:31 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 12:22:31 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 12:22:31 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\products/purchases.php
+INFO - 2025-11-25 12:22:31 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 12:22:31 --> Final output sent to browser
+DEBUG - 2025-11-25 12:22:31 --> Total execution time: 0.4997
+INFO - 2025-11-25 12:22:31 --> Config Class Initialized
+INFO - 2025-11-25 12:22:31 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:22:31 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:22:31 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:22:31 --> URI Class Initialized
+INFO - 2025-11-25 12:22:31 --> Router Class Initialized
+INFO - 2025-11-25 12:22:31 --> Output Class Initialized
+INFO - 2025-11-25 12:22:31 --> Security Class Initialized
+DEBUG - 2025-11-25 12:22:31 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:22:31 --> Input Class Initialized
+INFO - 2025-11-25 12:22:31 --> Language Class Initialized
+INFO - 2025-11-25 12:22:31 --> Loader Class Initialized
+INFO - 2025-11-25 12:22:31 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:22:31 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:22:31 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:22:31 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:22:31 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:22:31 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:22:31 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:22:31 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:22:31 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:22:31 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:22:31 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:22:31 --> Model Class Initialized
+INFO - 2025-11-25 12:22:31 --> Model Class Initialized
+INFO - 2025-11-25 12:22:31 --> Model Class Initialized
+ERROR - 2025-11-25 12:22:31 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:22:31 --> Model Class Initialized
+INFO - 2025-11-25 12:22:31 --> Model Class Initialized
+INFO - 2025-11-25 12:22:31 --> Model Class Initialized
+INFO - 2025-11-25 12:22:31 --> Model Class Initialized
+DEBUG - 2025-11-25 12:22:31 --> getPurchasesData SQL: SELECT `purchases`.*, `products`.`name` as `product_name`, `products`.`unit`, `stores`.`name` as `store_name`, `users`.`username` as `created_by_name`
+FROM `purchases`
+JOIN `products` ON `products`.`id` = `purchases`.`product_id`
+JOIN `stores` ON `stores`.`id` = `purchases`.`store_id`
+LEFT JOIN `users` ON `users`.`id` = `purchases`.`user_id`
+WHERE `purchases`.`store_id` = '7'
+ORDER BY `purchases`.`purchase_date` DESC
+INFO - 2025-11-25 12:22:31 --> Final output sent to browser
+DEBUG - 2025-11-25 12:22:31 --> Total execution time: 0.0537
+INFO - 2025-11-25 12:27:49 --> Config Class Initialized
+INFO - 2025-11-25 12:27:49 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:27:49 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:27:49 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:27:49 --> URI Class Initialized
+INFO - 2025-11-25 12:27:49 --> Router Class Initialized
+INFO - 2025-11-25 12:27:49 --> Output Class Initialized
+INFO - 2025-11-25 12:27:49 --> Security Class Initialized
+DEBUG - 2025-11-25 12:27:49 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:27:49 --> Input Class Initialized
+INFO - 2025-11-25 12:27:49 --> Language Class Initialized
+INFO - 2025-11-25 12:27:49 --> Loader Class Initialized
+INFO - 2025-11-25 12:27:49 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:27:49 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:27:49 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:27:49 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:27:49 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:27:49 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:27:49 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:27:49 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:27:49 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:27:49 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:27:49 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:27:49 --> Model Class Initialized
+INFO - 2025-11-25 12:27:49 --> Model Class Initialized
+INFO - 2025-11-25 12:27:49 --> Model Class Initialized
+ERROR - 2025-11-25 12:27:49 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:27:49 --> Model Class Initialized
+INFO - 2025-11-25 12:27:49 --> Model Class Initialized
+INFO - 2025-11-25 12:27:49 --> Model Class Initialized
+INFO - 2025-11-25 12:27:49 --> Model Class Initialized
+INFO - 2025-11-25 12:27:49 --> Config Class Initialized
+INFO - 2025-11-25 12:27:49 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:27:49 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:27:49 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:27:49 --> URI Class Initialized
+INFO - 2025-11-25 12:27:49 --> Router Class Initialized
+INFO - 2025-11-25 12:27:49 --> Output Class Initialized
+INFO - 2025-11-25 12:27:49 --> Security Class Initialized
+DEBUG - 2025-11-25 12:27:49 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:27:49 --> Input Class Initialized
+INFO - 2025-11-25 12:27:49 --> Language Class Initialized
+INFO - 2025-11-25 12:27:49 --> Loader Class Initialized
+INFO - 2025-11-25 12:27:49 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:27:49 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:27:49 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:27:49 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:27:49 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:27:49 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:27:49 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:27:49 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:27:49 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:27:49 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:27:49 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:27:49 --> Model Class Initialized
+INFO - 2025-11-25 12:27:49 --> Model Class Initialized
+INFO - 2025-11-25 12:27:49 --> Model Class Initialized
+ERROR - 2025-11-25 12:27:49 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:27:49 --> Model Class Initialized
+INFO - 2025-11-25 12:27:49 --> Model Class Initialized
+INFO - 2025-11-25 12:27:49 --> Model Class Initialized
+INFO - 2025-11-25 12:27:49 --> Model Class Initialized
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 78 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 138 in store 7: Purchased=16, Sold=0, Available=16
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 79 in store 7: Purchased=989, Sold=23, Available=966
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 80 in store 7: Purchased=205, Sold=60, Available=145
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 81 in store 7: Purchased=2046, Sold=990, Available=1056
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 145 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 139 in store 7: Purchased=2, Sold=1, Available=1
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 82 in store 7: Purchased=3500, Sold=8699, Available=0
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 83 in store 7: Purchased=0, Sold=2939, Available=0
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 84 in store 7: Purchased=189, Sold=17, Available=172
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 85 in store 7: Purchased=137, Sold=3, Available=134
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 127 in store 7: Purchased=2000, Sold=380, Available=1620
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 86 in store 7: Purchased=384, Sold=362, Available=22
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 87 in store 7: Purchased=588, Sold=650, Available=0
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 88 in store 7: Purchased=937, Sold=655, Available=282
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 89 in store 7: Purchased=2164, Sold=770, Available=1394
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 90 in store 7: Purchased=470, Sold=376, Available=94
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 126 in store 7: Purchased=25, Sold=0, Available=25
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 91 in store 7: Purchased=26, Sold=0, Available=26
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 92 in store 7: Purchased=30, Sold=29, Available=1
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 93 in store 7: Purchased=752, Sold=854, Available=0
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 94 in store 7: Purchased=764, Sold=685, Available=79
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 95 in store 7: Purchased=2263, Sold=622, Available=1641
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 96 in store 7: Purchased=18925, Sold=4335, Available=14590
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 134 in store 7: Purchased=604, Sold=69, Available=535
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 130 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 133 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 131 in store 7: Purchased=19, Sold=0, Available=19
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 97 in store 7: Purchased=6001, Sold=2364, Available=3637
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 98 in store 7: Purchased=442, Sold=44, Available=398
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 146 in store 7: Purchased=200, Sold=0, Available=200
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 99 in store 7: Purchased=2, Sold=0, Available=2
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 100 in store 7: Purchased=34587, Sold=30172, Available=4415
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 137 in store 7: Purchased=189, Sold=4, Available=185
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 101 in store 7: Purchased=107, Sold=34, Available=73
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 102 in store 7: Purchased=11299, Sold=8482, Available=2817
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 103 in store 7: Purchased=29811, Sold=23779, Available=6032
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 104 in store 7: Purchased=7500, Sold=809, Available=6691
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 142 in store 7: Purchased=36, Sold=0, Available=36
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 140 in store 7: Purchased=10, Sold=1, Available=9
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 105 in store 7: Purchased=358, Sold=213, Available=145
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 106 in store 7: Purchased=738, Sold=645, Available=93
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 125 in store 7: Purchased=253, Sold=0, Available=253
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 108 in store 7: Purchased=2503, Sold=2235, Available=268
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 109 in store 7: Purchased=2571, Sold=671, Available=1900
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 110 in store 7: Purchased=4761, Sold=1705, Available=3056
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 132 in store 7: Purchased=200, Sold=175, Available=25
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 111 in store 7: Purchased=406, Sold=89, Available=317
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 112 in store 7: Purchased=1900, Sold=1323, Available=577
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 113 in store 7: Purchased=2241, Sold=825, Available=1416
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 135 in store 7: Purchased=1990, Sold=654, Available=1336
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 114 in store 7: Purchased=922, Sold=45, Available=877
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 115 in store 7: Purchased=16812, Sold=17295, Available=0
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 116 in store 7: Purchased=246594, Sold=235683, Available=10911
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 107 in store 7: Purchased=1200, Sold=836, Available=364
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 117 in store 7: Purchased=9776, Sold=6085, Available=3691
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 118 in store 7: Purchased=24842, Sold=22205, Available=2637
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 144 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 129 in store 7: Purchased=1706, Sold=1560, Available=146
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 119 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 120 in store 7: Purchased=1555, Sold=615, Available=940
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 121 in store 7: Purchased=63, Sold=2, Available=61
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 122 in store 7: Purchased=688, Sold=207, Available=481
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 123 in store 7: Purchased=2020, Sold=1733, Available=287
+DEBUG - 2025-11-25 12:27:49 --> Stock calculation for product 124 in store 7: Purchased=3646, Sold=4469, Available=0
+DEBUG - 2025-11-25 12:27:49 --> Purchases view loaded - Store ID: 7, Is Admin: No, Products Count: 65
+INFO - 2025-11-25 12:27:49 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 12:27:49 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 12:27:49 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 12:27:49 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\products/purchases.php
+INFO - 2025-11-25 12:27:49 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 12:27:49 --> Final output sent to browser
+DEBUG - 2025-11-25 12:27:49 --> Total execution time: 0.1706
+INFO - 2025-11-25 12:27:49 --> Config Class Initialized
+INFO - 2025-11-25 12:27:49 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:27:49 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:27:49 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:27:49 --> URI Class Initialized
+INFO - 2025-11-25 12:27:49 --> Router Class Initialized
+INFO - 2025-11-25 12:27:49 --> Output Class Initialized
+INFO - 2025-11-25 12:27:49 --> Security Class Initialized
+DEBUG - 2025-11-25 12:27:49 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:27:49 --> Input Class Initialized
+INFO - 2025-11-25 12:27:49 --> Language Class Initialized
+INFO - 2025-11-25 12:27:49 --> Loader Class Initialized
+INFO - 2025-11-25 12:27:49 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:27:49 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:27:49 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:27:49 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:27:49 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:27:49 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:27:49 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:27:49 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:27:49 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:27:49 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:27:49 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:27:49 --> Model Class Initialized
+INFO - 2025-11-25 12:27:49 --> Model Class Initialized
+INFO - 2025-11-25 12:27:49 --> Model Class Initialized
+ERROR - 2025-11-25 12:27:49 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:27:49 --> Model Class Initialized
+INFO - 2025-11-25 12:27:49 --> Model Class Initialized
+INFO - 2025-11-25 12:27:49 --> Model Class Initialized
+INFO - 2025-11-25 12:27:49 --> Model Class Initialized
+DEBUG - 2025-11-25 12:27:49 --> getPurchasesData SQL: SELECT `purchases`.*, `products`.`name` as `product_name`, `products`.`unit`, `stores`.`name` as `store_name`, `users`.`username` as `created_by_name`
+FROM `purchases`
+JOIN `products` ON `products`.`id` = `purchases`.`product_id`
+JOIN `stores` ON `stores`.`id` = `purchases`.`store_id`
+LEFT JOIN `users` ON `users`.`id` = `purchases`.`user_id`
+WHERE `purchases`.`store_id` = '7'
+ORDER BY `purchases`.`purchase_date` DESC
+INFO - 2025-11-25 12:27:49 --> Final output sent to browser
+DEBUG - 2025-11-25 12:27:49 --> Total execution time: 0.0600
+INFO - 2025-11-25 12:33:21 --> Config Class Initialized
+INFO - 2025-11-25 12:33:21 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:33:21 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:33:21 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:33:21 --> URI Class Initialized
+INFO - 2025-11-25 12:33:21 --> Router Class Initialized
+INFO - 2025-11-25 12:33:21 --> Output Class Initialized
+INFO - 2025-11-25 12:33:21 --> Security Class Initialized
+DEBUG - 2025-11-25 12:33:21 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:33:21 --> Input Class Initialized
+INFO - 2025-11-25 12:33:21 --> Language Class Initialized
+INFO - 2025-11-25 12:33:21 --> Loader Class Initialized
+INFO - 2025-11-25 12:33:21 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:33:21 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:33:21 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:33:21 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:33:21 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:33:21 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:33:21 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:33:21 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:33:21 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:33:21 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:33:21 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:33:21 --> Model Class Initialized
+INFO - 2025-11-25 12:33:21 --> Model Class Initialized
+INFO - 2025-11-25 12:33:21 --> Model Class Initialized
+ERROR - 2025-11-25 12:33:21 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:33:21 --> Model Class Initialized
+INFO - 2025-11-25 12:33:21 --> Model Class Initialized
+INFO - 2025-11-25 12:33:21 --> Model Class Initialized
+INFO - 2025-11-25 12:33:21 --> Model Class Initialized
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 78 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 138 in store 7: Purchased=16, Sold=0, Available=16
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 79 in store 7: Purchased=989, Sold=23, Available=966
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 80 in store 7: Purchased=205, Sold=60, Available=145
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 81 in store 7: Purchased=2046, Sold=990, Available=1056
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 145 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 139 in store 7: Purchased=2, Sold=1, Available=1
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 82 in store 7: Purchased=3500, Sold=8699, Available=0
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 83 in store 7: Purchased=0, Sold=2939, Available=0
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 84 in store 7: Purchased=189, Sold=17, Available=172
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 85 in store 7: Purchased=137, Sold=3, Available=134
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 127 in store 7: Purchased=2000, Sold=380, Available=1620
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 86 in store 7: Purchased=384, Sold=362, Available=22
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 87 in store 7: Purchased=588, Sold=650, Available=0
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 88 in store 7: Purchased=937, Sold=655, Available=282
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 89 in store 7: Purchased=2164, Sold=770, Available=1394
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 90 in store 7: Purchased=470, Sold=376, Available=94
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 126 in store 7: Purchased=25, Sold=0, Available=25
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 91 in store 7: Purchased=26, Sold=0, Available=26
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 92 in store 7: Purchased=30, Sold=29, Available=1
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 93 in store 7: Purchased=752, Sold=854, Available=0
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 94 in store 7: Purchased=764, Sold=685, Available=79
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 95 in store 7: Purchased=2263, Sold=622, Available=1641
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 96 in store 7: Purchased=18925, Sold=4335, Available=14590
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 134 in store 7: Purchased=604, Sold=69, Available=535
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 130 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 133 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 131 in store 7: Purchased=19, Sold=0, Available=19
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 97 in store 7: Purchased=6001, Sold=2364, Available=3637
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 98 in store 7: Purchased=442, Sold=44, Available=398
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 146 in store 7: Purchased=200, Sold=0, Available=200
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 99 in store 7: Purchased=2, Sold=0, Available=2
+DEBUG - 2025-11-25 12:33:21 --> Stock calculation for product 100 in store 7: Purchased=34587, Sold=30172, Available=4415
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 137 in store 7: Purchased=189, Sold=4, Available=185
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 101 in store 7: Purchased=107, Sold=34, Available=73
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 102 in store 7: Purchased=11299, Sold=8482, Available=2817
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 103 in store 7: Purchased=29811, Sold=23779, Available=6032
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 104 in store 7: Purchased=7500, Sold=809, Available=6691
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 142 in store 7: Purchased=36, Sold=0, Available=36
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 140 in store 7: Purchased=10, Sold=1, Available=9
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 105 in store 7: Purchased=358, Sold=213, Available=145
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 106 in store 7: Purchased=738, Sold=645, Available=93
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 125 in store 7: Purchased=253, Sold=0, Available=253
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 108 in store 7: Purchased=2503, Sold=2235, Available=268
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 109 in store 7: Purchased=2571, Sold=671, Available=1900
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 110 in store 7: Purchased=4761, Sold=1705, Available=3056
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 132 in store 7: Purchased=200, Sold=175, Available=25
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 111 in store 7: Purchased=406, Sold=89, Available=317
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 112 in store 7: Purchased=1900, Sold=1323, Available=577
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 113 in store 7: Purchased=2241, Sold=825, Available=1416
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 135 in store 7: Purchased=1990, Sold=654, Available=1336
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 114 in store 7: Purchased=922, Sold=45, Available=877
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 115 in store 7: Purchased=16812, Sold=17295, Available=0
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 116 in store 7: Purchased=246594, Sold=235683, Available=10911
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 107 in store 7: Purchased=1200, Sold=836, Available=364
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 117 in store 7: Purchased=9776, Sold=6085, Available=3691
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 118 in store 7: Purchased=24842, Sold=22205, Available=2637
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 144 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 129 in store 7: Purchased=1706, Sold=1560, Available=146
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 119 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 120 in store 7: Purchased=1555, Sold=615, Available=940
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 121 in store 7: Purchased=63, Sold=2, Available=61
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 122 in store 7: Purchased=688, Sold=207, Available=481
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 123 in store 7: Purchased=2020, Sold=1733, Available=287
+DEBUG - 2025-11-25 12:33:22 --> Stock calculation for product 124 in store 7: Purchased=3646, Sold=4469, Available=0
+DEBUG - 2025-11-25 12:33:22 --> Purchases view loaded - Store ID: 7, Is Admin: No, Products Count: 65
+INFO - 2025-11-25 12:33:22 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 12:33:22 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 12:33:22 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 12:33:22 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\products/purchases.php
+INFO - 2025-11-25 12:33:22 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 12:33:22 --> Final output sent to browser
+DEBUG - 2025-11-25 12:33:22 --> Total execution time: 0.2948
+INFO - 2025-11-25 12:33:22 --> Config Class Initialized
+INFO - 2025-11-25 12:33:22 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:33:22 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:33:22 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:33:22 --> URI Class Initialized
+INFO - 2025-11-25 12:33:22 --> Router Class Initialized
+INFO - 2025-11-25 12:33:22 --> Output Class Initialized
+INFO - 2025-11-25 12:33:22 --> Security Class Initialized
+DEBUG - 2025-11-25 12:33:22 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:33:22 --> Input Class Initialized
+INFO - 2025-11-25 12:33:22 --> Language Class Initialized
+INFO - 2025-11-25 12:33:22 --> Loader Class Initialized
+INFO - 2025-11-25 12:33:22 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:33:22 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:33:22 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:33:22 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:33:22 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:33:22 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:33:22 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:33:22 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:33:22 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:33:22 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:33:22 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:33:22 --> Model Class Initialized
+INFO - 2025-11-25 12:33:22 --> Model Class Initialized
+INFO - 2025-11-25 12:33:22 --> Model Class Initialized
+ERROR - 2025-11-25 12:33:22 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:33:22 --> Model Class Initialized
+INFO - 2025-11-25 12:33:22 --> Model Class Initialized
+INFO - 2025-11-25 12:33:22 --> Model Class Initialized
+INFO - 2025-11-25 12:33:22 --> Model Class Initialized
+DEBUG - 2025-11-25 12:33:22 --> getPurchasesData SQL: SELECT `purchases`.*, `products`.`name` as `product_name`, `products`.`unit`, `stores`.`name` as `store_name`, `users`.`username` as `created_by_name`
+FROM `purchases`
+JOIN `products` ON `products`.`id` = `purchases`.`product_id`
+JOIN `stores` ON `stores`.`id` = `purchases`.`store_id`
+LEFT JOIN `users` ON `users`.`id` = `purchases`.`user_id`
+WHERE `purchases`.`store_id` = '7'
+ORDER BY `purchases`.`purchase_date` DESC
+INFO - 2025-11-25 12:33:22 --> Final output sent to browser
+DEBUG - 2025-11-25 12:33:22 --> Total execution time: 0.0564
+INFO - 2025-11-25 12:42:54 --> Config Class Initialized
+INFO - 2025-11-25 12:42:54 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:42:54 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:42:54 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:42:54 --> URI Class Initialized
+INFO - 2025-11-25 12:42:55 --> Router Class Initialized
+INFO - 2025-11-25 12:42:55 --> Output Class Initialized
+INFO - 2025-11-25 12:42:55 --> Security Class Initialized
+DEBUG - 2025-11-25 12:42:55 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:42:55 --> Input Class Initialized
+INFO - 2025-11-25 12:42:55 --> Language Class Initialized
+INFO - 2025-11-25 12:42:55 --> Loader Class Initialized
+INFO - 2025-11-25 12:42:55 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:42:55 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:42:55 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:42:55 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:42:55 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:42:55 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:42:55 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:42:55 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:42:55 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:42:55 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:42:55 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:42:55 --> Model Class Initialized
+INFO - 2025-11-25 12:42:55 --> Model Class Initialized
+INFO - 2025-11-25 12:42:55 --> Model Class Initialized
+ERROR - 2025-11-25 12:42:55 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:42:55 --> Model Class Initialized
+INFO - 2025-11-25 12:42:55 --> Model Class Initialized
+INFO - 2025-11-25 12:42:55 --> Model Class Initialized
+INFO - 2025-11-25 12:42:56 --> Model Class Initialized
+INFO - 2025-11-25 12:42:56 --> Config Class Initialized
+INFO - 2025-11-25 12:42:56 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:42:56 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:42:56 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:42:56 --> URI Class Initialized
+INFO - 2025-11-25 12:42:56 --> Router Class Initialized
+INFO - 2025-11-25 12:42:56 --> Output Class Initialized
+INFO - 2025-11-25 12:42:56 --> Security Class Initialized
+DEBUG - 2025-11-25 12:42:56 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:42:56 --> Input Class Initialized
+INFO - 2025-11-25 12:42:56 --> Language Class Initialized
+INFO - 2025-11-25 12:42:56 --> Loader Class Initialized
+INFO - 2025-11-25 12:42:56 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:42:56 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:42:56 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:42:56 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:42:56 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:42:56 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:42:56 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:42:56 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:42:56 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:42:56 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:42:56 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:42:56 --> Model Class Initialized
+INFO - 2025-11-25 12:42:56 --> Model Class Initialized
+INFO - 2025-11-25 12:42:56 --> Model Class Initialized
+ERROR - 2025-11-25 12:42:56 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:42:56 --> Model Class Initialized
+INFO - 2025-11-25 12:42:56 --> Model Class Initialized
+INFO - 2025-11-25 12:42:56 --> Model Class Initialized
+INFO - 2025-11-25 12:42:56 --> Model Class Initialized
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 78 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 138 in store 7: Purchased=17, Sold=0, Available=17
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 79 in store 7: Purchased=989, Sold=23, Available=966
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 80 in store 7: Purchased=205, Sold=60, Available=145
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 81 in store 7: Purchased=2046, Sold=990, Available=1056
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 145 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 139 in store 7: Purchased=2, Sold=1, Available=1
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 82 in store 7: Purchased=3500, Sold=8699, Available=0
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 83 in store 7: Purchased=0, Sold=2939, Available=0
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 84 in store 7: Purchased=189, Sold=17, Available=172
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 85 in store 7: Purchased=137, Sold=3, Available=134
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 127 in store 7: Purchased=2000, Sold=380, Available=1620
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 86 in store 7: Purchased=384, Sold=362, Available=22
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 87 in store 7: Purchased=588, Sold=650, Available=0
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 88 in store 7: Purchased=937, Sold=655, Available=282
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 89 in store 7: Purchased=2164, Sold=770, Available=1394
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 90 in store 7: Purchased=470, Sold=376, Available=94
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 126 in store 7: Purchased=25, Sold=0, Available=25
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 91 in store 7: Purchased=26, Sold=0, Available=26
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 92 in store 7: Purchased=30, Sold=29, Available=1
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 93 in store 7: Purchased=752, Sold=854, Available=0
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 94 in store 7: Purchased=764, Sold=685, Available=79
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 95 in store 7: Purchased=2263, Sold=622, Available=1641
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 96 in store 7: Purchased=18925, Sold=4335, Available=14590
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 134 in store 7: Purchased=604, Sold=69, Available=535
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 130 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 133 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 131 in store 7: Purchased=19, Sold=0, Available=19
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 97 in store 7: Purchased=6001, Sold=2364, Available=3637
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 98 in store 7: Purchased=442, Sold=44, Available=398
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 146 in store 7: Purchased=200, Sold=0, Available=200
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 99 in store 7: Purchased=2, Sold=0, Available=2
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 100 in store 7: Purchased=34587, Sold=30172, Available=4415
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 137 in store 7: Purchased=189, Sold=4, Available=185
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 101 in store 7: Purchased=107, Sold=34, Available=73
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 102 in store 7: Purchased=11299, Sold=8482, Available=2817
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 103 in store 7: Purchased=29811, Sold=23779, Available=6032
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 104 in store 7: Purchased=7500, Sold=809, Available=6691
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 142 in store 7: Purchased=36, Sold=0, Available=36
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 140 in store 7: Purchased=10, Sold=1, Available=9
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 105 in store 7: Purchased=358, Sold=213, Available=145
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 106 in store 7: Purchased=738, Sold=645, Available=93
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 125 in store 7: Purchased=253, Sold=0, Available=253
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 108 in store 7: Purchased=2503, Sold=2235, Available=268
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 109 in store 7: Purchased=2571, Sold=671, Available=1900
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 110 in store 7: Purchased=4761, Sold=1705, Available=3056
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 132 in store 7: Purchased=200, Sold=175, Available=25
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 111 in store 7: Purchased=406, Sold=89, Available=317
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 112 in store 7: Purchased=1900, Sold=1323, Available=577
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 113 in store 7: Purchased=2241, Sold=825, Available=1416
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 135 in store 7: Purchased=1990, Sold=654, Available=1336
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 114 in store 7: Purchased=922, Sold=45, Available=877
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 115 in store 7: Purchased=16812, Sold=17295, Available=0
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 116 in store 7: Purchased=246594, Sold=235683, Available=10911
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 107 in store 7: Purchased=1200, Sold=836, Available=364
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 117 in store 7: Purchased=9776, Sold=6085, Available=3691
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 118 in store 7: Purchased=24842, Sold=22205, Available=2637
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 144 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 129 in store 7: Purchased=1706, Sold=1560, Available=146
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 119 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 120 in store 7: Purchased=1555, Sold=615, Available=940
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 121 in store 7: Purchased=63, Sold=2, Available=61
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 122 in store 7: Purchased=688, Sold=207, Available=481
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 123 in store 7: Purchased=2020, Sold=1733, Available=287
+DEBUG - 2025-11-25 12:42:56 --> Stock calculation for product 124 in store 7: Purchased=3646, Sold=4469, Available=0
+DEBUG - 2025-11-25 12:42:56 --> Purchases view loaded - Store ID: 7, Is Admin: No, Products Count: 65
+INFO - 2025-11-25 12:42:56 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 12:42:56 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 12:42:56 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 12:42:56 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\products/purchases.php
+INFO - 2025-11-25 12:42:56 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 12:42:56 --> Final output sent to browser
+DEBUG - 2025-11-25 12:42:56 --> Total execution time: 0.8567
+INFO - 2025-11-25 12:42:57 --> Config Class Initialized
+INFO - 2025-11-25 12:42:57 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:42:57 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:42:57 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:42:57 --> URI Class Initialized
+INFO - 2025-11-25 12:42:57 --> Router Class Initialized
+INFO - 2025-11-25 12:42:57 --> Output Class Initialized
+INFO - 2025-11-25 12:42:57 --> Security Class Initialized
+DEBUG - 2025-11-25 12:42:57 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:42:57 --> Input Class Initialized
+INFO - 2025-11-25 12:42:57 --> Language Class Initialized
+INFO - 2025-11-25 12:42:57 --> Loader Class Initialized
+INFO - 2025-11-25 12:42:57 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:42:57 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:42:57 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:42:57 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:42:57 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:42:57 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:42:57 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:42:57 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:42:57 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:42:57 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:42:57 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:42:57 --> Model Class Initialized
+INFO - 2025-11-25 12:42:57 --> Model Class Initialized
+INFO - 2025-11-25 12:42:57 --> Model Class Initialized
+ERROR - 2025-11-25 12:42:57 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:42:57 --> Model Class Initialized
+INFO - 2025-11-25 12:42:57 --> Model Class Initialized
+INFO - 2025-11-25 12:42:57 --> Model Class Initialized
+INFO - 2025-11-25 12:42:57 --> Model Class Initialized
+DEBUG - 2025-11-25 12:42:57 --> getPurchasesData SQL: SELECT `purchases`.*, `products`.`name` as `product_name`, `products`.`unit`, `stores`.`name` as `store_name`, `users`.`username` as `created_by_name`
+FROM `purchases`
+JOIN `products` ON `products`.`id` = `purchases`.`product_id`
+JOIN `stores` ON `stores`.`id` = `purchases`.`store_id`
+LEFT JOIN `users` ON `users`.`id` = `purchases`.`user_id`
+WHERE `purchases`.`store_id` = '7'
+ORDER BY `purchases`.`purchase_date` DESC
+INFO - 2025-11-25 12:42:57 --> Final output sent to browser
+DEBUG - 2025-11-25 12:42:57 --> Total execution time: 0.0445
+INFO - 2025-11-25 12:43:13 --> Config Class Initialized
+INFO - 2025-11-25 12:43:13 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:43:13 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:43:13 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:43:13 --> URI Class Initialized
+INFO - 2025-11-25 12:43:13 --> Router Class Initialized
+INFO - 2025-11-25 12:43:13 --> Output Class Initialized
+INFO - 2025-11-25 12:43:13 --> Security Class Initialized
+DEBUG - 2025-11-25 12:43:13 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:43:13 --> Input Class Initialized
+INFO - 2025-11-25 12:43:13 --> Language Class Initialized
+INFO - 2025-11-25 12:43:13 --> Loader Class Initialized
+INFO - 2025-11-25 12:43:13 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:43:13 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:43:13 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:43:13 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:43:13 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:43:13 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:43:13 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:43:13 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:43:13 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:43:13 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:43:13 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:43:13 --> Model Class Initialized
+INFO - 2025-11-25 12:43:13 --> Model Class Initialized
+INFO - 2025-11-25 12:43:13 --> Model Class Initialized
+ERROR - 2025-11-25 12:43:13 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:43:13 --> Model Class Initialized
+INFO - 2025-11-25 12:43:13 --> Model Class Initialized
+INFO - 2025-11-25 12:43:13 --> Model Class Initialized
+INFO - 2025-11-25 12:43:13 --> Model Class Initialized
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 78 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 138 in store 7: Purchased=17, Sold=0, Available=17
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 79 in store 7: Purchased=989, Sold=23, Available=966
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 80 in store 7: Purchased=205, Sold=60, Available=145
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 81 in store 7: Purchased=2046, Sold=990, Available=1056
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 145 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 139 in store 7: Purchased=2, Sold=1, Available=1
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 82 in store 7: Purchased=3500, Sold=8699, Available=0
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 83 in store 7: Purchased=0, Sold=2939, Available=0
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 84 in store 7: Purchased=189, Sold=17, Available=172
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 85 in store 7: Purchased=137, Sold=3, Available=134
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 127 in store 7: Purchased=2000, Sold=380, Available=1620
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 86 in store 7: Purchased=384, Sold=362, Available=22
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 87 in store 7: Purchased=588, Sold=650, Available=0
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 88 in store 7: Purchased=937, Sold=655, Available=282
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 89 in store 7: Purchased=2164, Sold=770, Available=1394
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 90 in store 7: Purchased=470, Sold=376, Available=94
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 126 in store 7: Purchased=25, Sold=0, Available=25
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 91 in store 7: Purchased=26, Sold=0, Available=26
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 92 in store 7: Purchased=30, Sold=29, Available=1
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 93 in store 7: Purchased=752, Sold=854, Available=0
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 94 in store 7: Purchased=764, Sold=685, Available=79
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 95 in store 7: Purchased=2263, Sold=622, Available=1641
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 96 in store 7: Purchased=18925, Sold=4335, Available=14590
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 134 in store 7: Purchased=604, Sold=69, Available=535
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 130 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 133 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 131 in store 7: Purchased=19, Sold=0, Available=19
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 97 in store 7: Purchased=6001, Sold=2364, Available=3637
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 98 in store 7: Purchased=442, Sold=44, Available=398
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 146 in store 7: Purchased=200, Sold=0, Available=200
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 99 in store 7: Purchased=2, Sold=0, Available=2
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 100 in store 7: Purchased=34587, Sold=30172, Available=4415
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 137 in store 7: Purchased=189, Sold=4, Available=185
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 101 in store 7: Purchased=107, Sold=34, Available=73
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 102 in store 7: Purchased=11299, Sold=8482, Available=2817
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 103 in store 7: Purchased=29811, Sold=23779, Available=6032
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 104 in store 7: Purchased=7500, Sold=809, Available=6691
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 142 in store 7: Purchased=36, Sold=0, Available=36
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 140 in store 7: Purchased=10, Sold=1, Available=9
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 105 in store 7: Purchased=358, Sold=213, Available=145
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 106 in store 7: Purchased=738, Sold=645, Available=93
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 125 in store 7: Purchased=253, Sold=0, Available=253
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 108 in store 7: Purchased=2503, Sold=2235, Available=268
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 109 in store 7: Purchased=2571, Sold=671, Available=1900
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 110 in store 7: Purchased=4761, Sold=1705, Available=3056
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 132 in store 7: Purchased=200, Sold=175, Available=25
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 111 in store 7: Purchased=406, Sold=89, Available=317
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 112 in store 7: Purchased=1900, Sold=1323, Available=577
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 113 in store 7: Purchased=2241, Sold=825, Available=1416
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 135 in store 7: Purchased=1990, Sold=654, Available=1336
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 114 in store 7: Purchased=922, Sold=45, Available=877
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 115 in store 7: Purchased=16812, Sold=17295, Available=0
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 116 in store 7: Purchased=246594, Sold=235683, Available=10911
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 107 in store 7: Purchased=1200, Sold=836, Available=364
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 117 in store 7: Purchased=9776, Sold=6085, Available=3691
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 118 in store 7: Purchased=24842, Sold=22205, Available=2637
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 144 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 129 in store 7: Purchased=1706, Sold=1560, Available=146
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 119 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 120 in store 7: Purchased=1555, Sold=615, Available=940
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 121 in store 7: Purchased=63, Sold=2, Available=61
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 122 in store 7: Purchased=688, Sold=207, Available=481
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 123 in store 7: Purchased=2020, Sold=1733, Available=287
+DEBUG - 2025-11-25 12:43:13 --> Stock calculation for product 124 in store 7: Purchased=3646, Sold=4469, Available=0
+DEBUG - 2025-11-25 12:43:13 --> Purchases view loaded - Store ID: 7, Is Admin: No, Products Count: 65
+INFO - 2025-11-25 12:43:13 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 12:43:13 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 12:43:13 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 12:43:13 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\products/purchases.php
+INFO - 2025-11-25 12:43:13 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 12:43:13 --> Final output sent to browser
+DEBUG - 2025-11-25 12:43:13 --> Total execution time: 0.2170
+INFO - 2025-11-25 12:43:14 --> Config Class Initialized
+INFO - 2025-11-25 12:43:14 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:43:14 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:43:14 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:43:14 --> URI Class Initialized
+INFO - 2025-11-25 12:43:14 --> Router Class Initialized
+INFO - 2025-11-25 12:43:14 --> Output Class Initialized
+INFO - 2025-11-25 12:43:14 --> Security Class Initialized
+DEBUG - 2025-11-25 12:43:14 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:43:14 --> Input Class Initialized
+INFO - 2025-11-25 12:43:14 --> Language Class Initialized
+INFO - 2025-11-25 12:43:14 --> Loader Class Initialized
+INFO - 2025-11-25 12:43:14 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:43:14 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:43:14 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:43:14 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:43:14 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:43:14 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:43:14 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:43:14 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:43:14 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:43:14 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:43:14 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:43:14 --> Model Class Initialized
+INFO - 2025-11-25 12:43:14 --> Model Class Initialized
+INFO - 2025-11-25 12:43:14 --> Model Class Initialized
+ERROR - 2025-11-25 12:43:14 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:43:14 --> Model Class Initialized
+INFO - 2025-11-25 12:43:14 --> Model Class Initialized
+INFO - 2025-11-25 12:43:14 --> Model Class Initialized
+INFO - 2025-11-25 12:43:14 --> Model Class Initialized
+DEBUG - 2025-11-25 12:43:14 --> getPurchasesData SQL: SELECT `purchases`.*, `products`.`name` as `product_name`, `products`.`unit`, `stores`.`name` as `store_name`, `users`.`username` as `created_by_name`
+FROM `purchases`
+JOIN `products` ON `products`.`id` = `purchases`.`product_id`
+JOIN `stores` ON `stores`.`id` = `purchases`.`store_id`
+LEFT JOIN `users` ON `users`.`id` = `purchases`.`user_id`
+WHERE `purchases`.`store_id` = '7'
+ORDER BY `purchases`.`purchase_date` DESC
+INFO - 2025-11-25 12:43:14 --> Final output sent to browser
+DEBUG - 2025-11-25 12:43:14 --> Total execution time: 0.0616
+INFO - 2025-11-25 12:43:36 --> Config Class Initialized
+INFO - 2025-11-25 12:43:36 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:43:36 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:43:36 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:43:36 --> URI Class Initialized
+INFO - 2025-11-25 12:43:36 --> Router Class Initialized
+INFO - 2025-11-25 12:43:36 --> Output Class Initialized
+INFO - 2025-11-25 12:43:36 --> Security Class Initialized
+DEBUG - 2025-11-25 12:43:36 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:43:36 --> Input Class Initialized
+INFO - 2025-11-25 12:43:36 --> Language Class Initialized
+INFO - 2025-11-25 12:43:36 --> Loader Class Initialized
+INFO - 2025-11-25 12:43:36 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:43:36 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:43:36 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:43:36 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:43:36 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:43:36 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:43:36 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:43:36 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:43:36 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:43:36 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:43:36 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:43:36 --> Model Class Initialized
+INFO - 2025-11-25 12:43:36 --> Model Class Initialized
+INFO - 2025-11-25 12:43:36 --> Model Class Initialized
+ERROR - 2025-11-25 12:43:36 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:43:36 --> Model Class Initialized
+INFO - 2025-11-25 12:43:36 --> Model Class Initialized
+INFO - 2025-11-25 12:43:36 --> Model Class Initialized
+INFO - 2025-11-25 12:43:36 --> Model Class Initialized
+INFO - 2025-11-25 12:43:36 --> Config Class Initialized
+INFO - 2025-11-25 12:43:36 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:43:36 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:43:36 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:43:36 --> URI Class Initialized
+INFO - 2025-11-25 12:43:36 --> Router Class Initialized
+INFO - 2025-11-25 12:43:36 --> Output Class Initialized
+INFO - 2025-11-25 12:43:36 --> Security Class Initialized
+DEBUG - 2025-11-25 12:43:36 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:43:36 --> Input Class Initialized
+INFO - 2025-11-25 12:43:36 --> Language Class Initialized
+INFO - 2025-11-25 12:43:36 --> Loader Class Initialized
+INFO - 2025-11-25 12:43:36 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:43:36 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:43:36 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:43:36 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:43:36 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:43:36 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:43:36 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:43:36 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:43:36 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:43:36 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:43:36 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:43:36 --> Model Class Initialized
+INFO - 2025-11-25 12:43:36 --> Model Class Initialized
+INFO - 2025-11-25 12:43:36 --> Model Class Initialized
+ERROR - 2025-11-25 12:43:36 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:43:36 --> Model Class Initialized
+INFO - 2025-11-25 12:43:36 --> Model Class Initialized
+INFO - 2025-11-25 12:43:36 --> Model Class Initialized
+INFO - 2025-11-25 12:43:36 --> Model Class Initialized
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 78 in store 7: Purchased=1, Sold=0, Available=1
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 138 in store 7: Purchased=16, Sold=0, Available=16
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 79 in store 7: Purchased=989, Sold=23, Available=966
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 80 in store 7: Purchased=205, Sold=60, Available=145
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 81 in store 7: Purchased=2046, Sold=990, Available=1056
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 145 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 139 in store 7: Purchased=2, Sold=1, Available=1
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 82 in store 7: Purchased=3500, Sold=8699, Available=0
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 83 in store 7: Purchased=0, Sold=2939, Available=0
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 84 in store 7: Purchased=189, Sold=17, Available=172
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 85 in store 7: Purchased=137, Sold=3, Available=134
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 127 in store 7: Purchased=2000, Sold=380, Available=1620
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 86 in store 7: Purchased=384, Sold=362, Available=22
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 87 in store 7: Purchased=588, Sold=650, Available=0
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 88 in store 7: Purchased=937, Sold=655, Available=282
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 89 in store 7: Purchased=2164, Sold=770, Available=1394
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 90 in store 7: Purchased=470, Sold=376, Available=94
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 126 in store 7: Purchased=25, Sold=0, Available=25
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 91 in store 7: Purchased=26, Sold=0, Available=26
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 92 in store 7: Purchased=30, Sold=29, Available=1
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 93 in store 7: Purchased=752, Sold=854, Available=0
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 94 in store 7: Purchased=764, Sold=685, Available=79
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 95 in store 7: Purchased=2263, Sold=622, Available=1641
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 96 in store 7: Purchased=18925, Sold=4335, Available=14590
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 134 in store 7: Purchased=604, Sold=69, Available=535
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 130 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 133 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 131 in store 7: Purchased=19, Sold=0, Available=19
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 97 in store 7: Purchased=6001, Sold=2364, Available=3637
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 98 in store 7: Purchased=442, Sold=44, Available=398
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 146 in store 7: Purchased=200, Sold=0, Available=200
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 99 in store 7: Purchased=2, Sold=0, Available=2
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 100 in store 7: Purchased=34587, Sold=30172, Available=4415
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 137 in store 7: Purchased=189, Sold=4, Available=185
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 101 in store 7: Purchased=107, Sold=34, Available=73
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 102 in store 7: Purchased=11299, Sold=8482, Available=2817
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 103 in store 7: Purchased=29811, Sold=23779, Available=6032
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 104 in store 7: Purchased=7500, Sold=809, Available=6691
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 142 in store 7: Purchased=36, Sold=0, Available=36
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 140 in store 7: Purchased=10, Sold=1, Available=9
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 105 in store 7: Purchased=358, Sold=213, Available=145
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 106 in store 7: Purchased=738, Sold=645, Available=93
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 125 in store 7: Purchased=253, Sold=0, Available=253
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 108 in store 7: Purchased=2503, Sold=2235, Available=268
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 109 in store 7: Purchased=2571, Sold=671, Available=1900
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 110 in store 7: Purchased=4761, Sold=1705, Available=3056
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 132 in store 7: Purchased=200, Sold=175, Available=25
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 111 in store 7: Purchased=406, Sold=89, Available=317
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 112 in store 7: Purchased=1900, Sold=1323, Available=577
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 113 in store 7: Purchased=2241, Sold=825, Available=1416
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 135 in store 7: Purchased=1990, Sold=654, Available=1336
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 114 in store 7: Purchased=922, Sold=45, Available=877
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 115 in store 7: Purchased=16812, Sold=17295, Available=0
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 116 in store 7: Purchased=246594, Sold=235683, Available=10911
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 107 in store 7: Purchased=1200, Sold=836, Available=364
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 117 in store 7: Purchased=9776, Sold=6085, Available=3691
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 118 in store 7: Purchased=24842, Sold=22205, Available=2637
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 144 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 129 in store 7: Purchased=1706, Sold=1560, Available=146
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 119 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 120 in store 7: Purchased=1555, Sold=615, Available=940
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 121 in store 7: Purchased=63, Sold=2, Available=61
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 122 in store 7: Purchased=688, Sold=207, Available=481
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 123 in store 7: Purchased=2020, Sold=1733, Available=287
+DEBUG - 2025-11-25 12:43:36 --> Stock calculation for product 124 in store 7: Purchased=3646, Sold=4469, Available=0
+DEBUG - 2025-11-25 12:43:36 --> Purchases view loaded - Store ID: 7, Is Admin: No, Products Count: 65
+INFO - 2025-11-25 12:43:36 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 12:43:36 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 12:43:36 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 12:43:36 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\products/purchases.php
+INFO - 2025-11-25 12:43:36 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 12:43:36 --> Final output sent to browser
+DEBUG - 2025-11-25 12:43:36 --> Total execution time: 0.1764
+INFO - 2025-11-25 12:43:36 --> Config Class Initialized
+INFO - 2025-11-25 12:43:36 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:43:36 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:43:36 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:43:36 --> URI Class Initialized
+INFO - 2025-11-25 12:43:36 --> Router Class Initialized
+INFO - 2025-11-25 12:43:36 --> Output Class Initialized
+INFO - 2025-11-25 12:43:36 --> Security Class Initialized
+DEBUG - 2025-11-25 12:43:36 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:43:36 --> Input Class Initialized
+INFO - 2025-11-25 12:43:36 --> Language Class Initialized
+INFO - 2025-11-25 12:43:36 --> Loader Class Initialized
+INFO - 2025-11-25 12:43:36 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:43:36 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:43:36 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:43:36 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:43:36 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:43:36 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:43:36 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:43:36 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:43:36 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:43:36 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:43:36 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:43:36 --> Model Class Initialized
+INFO - 2025-11-25 12:43:36 --> Model Class Initialized
+INFO - 2025-11-25 12:43:36 --> Model Class Initialized
+ERROR - 2025-11-25 12:43:36 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:43:36 --> Model Class Initialized
+INFO - 2025-11-25 12:43:36 --> Model Class Initialized
+INFO - 2025-11-25 12:43:36 --> Model Class Initialized
+INFO - 2025-11-25 12:43:36 --> Model Class Initialized
+DEBUG - 2025-11-25 12:43:36 --> getPurchasesData SQL: SELECT `purchases`.*, `products`.`name` as `product_name`, `products`.`unit`, `stores`.`name` as `store_name`, `users`.`username` as `created_by_name`
+FROM `purchases`
+JOIN `products` ON `products`.`id` = `purchases`.`product_id`
+JOIN `stores` ON `stores`.`id` = `purchases`.`store_id`
+LEFT JOIN `users` ON `users`.`id` = `purchases`.`user_id`
+WHERE `purchases`.`store_id` = '7'
+ORDER BY `purchases`.`purchase_date` DESC
+INFO - 2025-11-25 12:43:36 --> Final output sent to browser
+DEBUG - 2025-11-25 12:43:36 --> Total execution time: 0.0604
+INFO - 2025-11-25 12:43:46 --> Config Class Initialized
+INFO - 2025-11-25 12:43:46 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:43:46 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:43:46 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:43:46 --> URI Class Initialized
+INFO - 2025-11-25 12:43:46 --> Router Class Initialized
+INFO - 2025-11-25 12:43:46 --> Output Class Initialized
+INFO - 2025-11-25 12:43:46 --> Security Class Initialized
+DEBUG - 2025-11-25 12:43:46 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:43:46 --> Input Class Initialized
+INFO - 2025-11-25 12:43:46 --> Language Class Initialized
+INFO - 2025-11-25 12:43:46 --> Loader Class Initialized
+INFO - 2025-11-25 12:43:46 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:43:46 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:43:46 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:43:46 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:43:46 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:43:46 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:43:46 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:43:46 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:43:46 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:43:46 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:43:46 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:43:46 --> Model Class Initialized
+INFO - 2025-11-25 12:43:46 --> Model Class Initialized
+INFO - 2025-11-25 12:43:46 --> Model Class Initialized
+ERROR - 2025-11-25 12:43:46 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:43:46 --> Model Class Initialized
+INFO - 2025-11-25 12:43:46 --> Model Class Initialized
+INFO - 2025-11-25 12:43:46 --> Model Class Initialized
+INFO - 2025-11-25 12:43:46 --> Model Class Initialized
+INFO - 2025-11-25 12:43:46 --> Final output sent to browser
+DEBUG - 2025-11-25 12:43:46 --> Total execution time: 0.1051
+INFO - 2025-11-25 12:43:46 --> Config Class Initialized
+INFO - 2025-11-25 12:43:46 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:43:46 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:43:46 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:43:46 --> URI Class Initialized
+INFO - 2025-11-25 12:43:46 --> Router Class Initialized
+INFO - 2025-11-25 12:43:46 --> Output Class Initialized
+INFO - 2025-11-25 12:43:46 --> Security Class Initialized
+DEBUG - 2025-11-25 12:43:46 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:43:46 --> Input Class Initialized
+INFO - 2025-11-25 12:43:46 --> Language Class Initialized
+INFO - 2025-11-25 12:43:46 --> Loader Class Initialized
+INFO - 2025-11-25 12:43:46 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:43:46 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:43:46 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:43:46 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:43:46 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:43:46 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:43:46 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:43:46 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:43:46 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:43:46 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:43:46 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:43:46 --> Model Class Initialized
+INFO - 2025-11-25 12:43:46 --> Model Class Initialized
+INFO - 2025-11-25 12:43:46 --> Model Class Initialized
+ERROR - 2025-11-25 12:43:46 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:43:46 --> Model Class Initialized
+INFO - 2025-11-25 12:43:46 --> Model Class Initialized
+INFO - 2025-11-25 12:43:46 --> Model Class Initialized
+INFO - 2025-11-25 12:43:46 --> Model Class Initialized
+DEBUG - 2025-11-25 12:43:46 --> getPurchasesData SQL: SELECT `purchases`.*, `products`.`name` as `product_name`, `products`.`unit`, `stores`.`name` as `store_name`, `users`.`username` as `created_by_name`
+FROM `purchases`
+JOIN `products` ON `products`.`id` = `purchases`.`product_id`
+JOIN `stores` ON `stores`.`id` = `purchases`.`store_id`
+LEFT JOIN `users` ON `users`.`id` = `purchases`.`user_id`
+WHERE `purchases`.`store_id` = '7'
+ORDER BY `purchases`.`purchase_date` DESC
+INFO - 2025-11-25 12:43:46 --> Final output sent to browser
+DEBUG - 2025-11-25 12:43:46 --> Total execution time: 0.0495
+INFO - 2025-11-25 12:46:56 --> Config Class Initialized
+INFO - 2025-11-25 12:46:56 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:46:56 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:46:56 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:46:56 --> URI Class Initialized
+INFO - 2025-11-25 12:46:56 --> Router Class Initialized
+INFO - 2025-11-25 12:46:56 --> Output Class Initialized
+INFO - 2025-11-25 12:46:56 --> Security Class Initialized
+DEBUG - 2025-11-25 12:46:56 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:46:56 --> Input Class Initialized
+INFO - 2025-11-25 12:46:56 --> Language Class Initialized
+INFO - 2025-11-25 12:46:56 --> Loader Class Initialized
+INFO - 2025-11-25 12:46:56 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:46:56 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:46:56 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:46:56 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:46:56 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:46:56 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:46:56 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:46:56 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:46:56 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:46:56 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:46:56 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:46:56 --> Model Class Initialized
+INFO - 2025-11-25 12:46:56 --> Model Class Initialized
+INFO - 2025-11-25 12:46:56 --> Model Class Initialized
+ERROR - 2025-11-25 12:46:56 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:46:56 --> Model Class Initialized
+INFO - 2025-11-25 12:46:56 --> Model Class Initialized
+INFO - 2025-11-25 12:46:56 --> Model Class Initialized
+INFO - 2025-11-25 12:46:56 --> Model Class Initialized
+INFO - 2025-11-25 12:46:56 --> Config Class Initialized
+INFO - 2025-11-25 12:46:56 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:46:56 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:46:56 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:46:56 --> URI Class Initialized
+INFO - 2025-11-25 12:46:56 --> Router Class Initialized
+INFO - 2025-11-25 12:46:56 --> Output Class Initialized
+INFO - 2025-11-25 12:46:56 --> Security Class Initialized
+DEBUG - 2025-11-25 12:46:56 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:46:56 --> Input Class Initialized
+INFO - 2025-11-25 12:46:56 --> Language Class Initialized
+INFO - 2025-11-25 12:46:56 --> Loader Class Initialized
+INFO - 2025-11-25 12:46:56 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:46:56 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:46:56 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:46:56 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:46:56 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:46:56 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:46:56 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:46:56 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:46:56 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:46:56 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:46:56 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:46:56 --> Model Class Initialized
+INFO - 2025-11-25 12:46:56 --> Model Class Initialized
+INFO - 2025-11-25 12:46:56 --> Model Class Initialized
+ERROR - 2025-11-25 12:46:56 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:46:56 --> Model Class Initialized
+INFO - 2025-11-25 12:46:56 --> Model Class Initialized
+INFO - 2025-11-25 12:46:56 --> Model Class Initialized
+INFO - 2025-11-25 12:46:56 --> Model Class Initialized
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 78 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 138 in store 7: Purchased=16, Sold=0, Available=16
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 79 in store 7: Purchased=989, Sold=23, Available=966
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 80 in store 7: Purchased=205, Sold=60, Available=145
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 81 in store 7: Purchased=2046, Sold=990, Available=1056
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 145 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 139 in store 7: Purchased=2, Sold=1, Available=1
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 82 in store 7: Purchased=3500, Sold=8699, Available=0
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 83 in store 7: Purchased=0, Sold=2939, Available=0
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 84 in store 7: Purchased=189, Sold=17, Available=172
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 85 in store 7: Purchased=137, Sold=3, Available=134
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 127 in store 7: Purchased=2000, Sold=380, Available=1620
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 86 in store 7: Purchased=384, Sold=362, Available=22
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 87 in store 7: Purchased=588, Sold=650, Available=0
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 88 in store 7: Purchased=937, Sold=655, Available=282
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 89 in store 7: Purchased=2164, Sold=770, Available=1394
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 90 in store 7: Purchased=470, Sold=376, Available=94
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 126 in store 7: Purchased=25, Sold=0, Available=25
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 91 in store 7: Purchased=26, Sold=0, Available=26
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 92 in store 7: Purchased=30, Sold=29, Available=1
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 93 in store 7: Purchased=752, Sold=854, Available=0
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 94 in store 7: Purchased=764, Sold=685, Available=79
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 95 in store 7: Purchased=2263, Sold=622, Available=1641
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 96 in store 7: Purchased=18925, Sold=4335, Available=14590
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 134 in store 7: Purchased=604, Sold=69, Available=535
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 130 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 133 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 131 in store 7: Purchased=19, Sold=0, Available=19
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 97 in store 7: Purchased=6001, Sold=2364, Available=3637
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 98 in store 7: Purchased=442, Sold=44, Available=398
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 146 in store 7: Purchased=200, Sold=0, Available=200
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 99 in store 7: Purchased=2, Sold=0, Available=2
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 100 in store 7: Purchased=34587, Sold=30172, Available=4415
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 137 in store 7: Purchased=189, Sold=4, Available=185
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 101 in store 7: Purchased=107, Sold=34, Available=73
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 102 in store 7: Purchased=11299, Sold=8482, Available=2817
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 103 in store 7: Purchased=29811, Sold=23779, Available=6032
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 104 in store 7: Purchased=7500, Sold=809, Available=6691
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 142 in store 7: Purchased=36, Sold=0, Available=36
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 140 in store 7: Purchased=10, Sold=1, Available=9
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 105 in store 7: Purchased=358, Sold=213, Available=145
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 106 in store 7: Purchased=738, Sold=645, Available=93
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 125 in store 7: Purchased=253, Sold=0, Available=253
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 108 in store 7: Purchased=2503, Sold=2235, Available=268
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 109 in store 7: Purchased=2571, Sold=671, Available=1900
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 110 in store 7: Purchased=4761, Sold=1705, Available=3056
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 132 in store 7: Purchased=200, Sold=175, Available=25
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 111 in store 7: Purchased=406, Sold=89, Available=317
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 112 in store 7: Purchased=1900, Sold=1323, Available=577
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 113 in store 7: Purchased=2241, Sold=825, Available=1416
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 135 in store 7: Purchased=1990, Sold=654, Available=1336
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 114 in store 7: Purchased=922, Sold=45, Available=877
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 115 in store 7: Purchased=16812, Sold=17295, Available=0
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 116 in store 7: Purchased=247094, Sold=235683, Available=11411
+DEBUG - 2025-11-25 12:46:56 --> Stock calculation for product 107 in store 7: Purchased=1200, Sold=836, Available=364
+DEBUG - 2025-11-25 12:46:57 --> Stock calculation for product 117 in store 7: Purchased=9776, Sold=6085, Available=3691
+DEBUG - 2025-11-25 12:46:57 --> Stock calculation for product 118 in store 7: Purchased=24842, Sold=22205, Available=2637
+DEBUG - 2025-11-25 12:46:57 --> Stock calculation for product 144 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:46:57 --> Stock calculation for product 129 in store 7: Purchased=1706, Sold=1560, Available=146
+DEBUG - 2025-11-25 12:46:57 --> Stock calculation for product 119 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:46:57 --> Stock calculation for product 120 in store 7: Purchased=1605, Sold=615, Available=990
+DEBUG - 2025-11-25 12:46:57 --> Stock calculation for product 121 in store 7: Purchased=63, Sold=2, Available=61
+DEBUG - 2025-11-25 12:46:57 --> Stock calculation for product 122 in store 7: Purchased=688, Sold=207, Available=481
+DEBUG - 2025-11-25 12:46:57 --> Stock calculation for product 123 in store 7: Purchased=2020, Sold=1733, Available=287
+DEBUG - 2025-11-25 12:46:57 --> Stock calculation for product 124 in store 7: Purchased=3646, Sold=4469, Available=0
+DEBUG - 2025-11-25 12:46:57 --> Purchases view loaded - Store ID: 7, Is Admin: No, Products Count: 65
+INFO - 2025-11-25 12:46:57 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 12:46:57 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 12:46:57 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 12:46:57 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\products/purchases.php
+INFO - 2025-11-25 12:46:57 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 12:46:57 --> Final output sent to browser
+DEBUG - 2025-11-25 12:46:57 --> Total execution time: 0.5729
+INFO - 2025-11-25 12:46:57 --> Config Class Initialized
+INFO - 2025-11-25 12:46:57 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:46:57 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:46:57 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:46:57 --> URI Class Initialized
+INFO - 2025-11-25 12:46:57 --> Router Class Initialized
+INFO - 2025-11-25 12:46:57 --> Output Class Initialized
+INFO - 2025-11-25 12:46:57 --> Security Class Initialized
+DEBUG - 2025-11-25 12:46:57 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:46:57 --> Input Class Initialized
+INFO - 2025-11-25 12:46:57 --> Language Class Initialized
+INFO - 2025-11-25 12:46:57 --> Loader Class Initialized
+INFO - 2025-11-25 12:46:57 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:46:57 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:46:57 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:46:57 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:46:57 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:46:57 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:46:57 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:46:57 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:46:57 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:46:57 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:46:57 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:46:57 --> Model Class Initialized
+INFO - 2025-11-25 12:46:57 --> Model Class Initialized
+INFO - 2025-11-25 12:46:57 --> Model Class Initialized
+ERROR - 2025-11-25 12:46:57 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:46:57 --> Model Class Initialized
+INFO - 2025-11-25 12:46:57 --> Model Class Initialized
+INFO - 2025-11-25 12:46:57 --> Model Class Initialized
+INFO - 2025-11-25 12:46:57 --> Model Class Initialized
+DEBUG - 2025-11-25 12:46:57 --> getPurchasesData SQL: SELECT `purchases`.*, `products`.`name` as `product_name`, `products`.`unit`, `stores`.`name` as `store_name`, `users`.`username` as `created_by_name`
+FROM `purchases`
+JOIN `products` ON `products`.`id` = `purchases`.`product_id`
+JOIN `stores` ON `stores`.`id` = `purchases`.`store_id`
+LEFT JOIN `users` ON `users`.`id` = `purchases`.`user_id`
+WHERE `purchases`.`store_id` = '7'
+ORDER BY `purchases`.`purchase_date` DESC
+INFO - 2025-11-25 12:46:57 --> Final output sent to browser
+DEBUG - 2025-11-25 12:46:57 --> Total execution time: 0.1171
+INFO - 2025-11-25 12:49:53 --> Config Class Initialized
+INFO - 2025-11-25 12:49:53 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:49:53 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:49:53 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:49:53 --> URI Class Initialized
+INFO - 2025-11-25 12:49:53 --> Router Class Initialized
+INFO - 2025-11-25 12:49:53 --> Output Class Initialized
+INFO - 2025-11-25 12:49:53 --> Security Class Initialized
+DEBUG - 2025-11-25 12:49:53 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:49:53 --> Input Class Initialized
+INFO - 2025-11-25 12:49:53 --> Language Class Initialized
+INFO - 2025-11-25 12:49:53 --> Loader Class Initialized
+INFO - 2025-11-25 12:49:53 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:49:53 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:49:53 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:49:53 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:49:53 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:49:53 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:49:53 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:49:53 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:49:53 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:49:53 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:49:53 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:49:53 --> Model Class Initialized
+INFO - 2025-11-25 12:49:53 --> Model Class Initialized
+INFO - 2025-11-25 12:49:53 --> Model Class Initialized
+ERROR - 2025-11-25 12:49:53 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:49:53 --> Model Class Initialized
+INFO - 2025-11-25 12:49:53 --> Model Class Initialized
+INFO - 2025-11-25 12:49:53 --> Model Class Initialized
+INFO - 2025-11-25 12:49:53 --> Model Class Initialized
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 78 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 138 in store 7: Purchased=16, Sold=0, Available=16
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 79 in store 7: Purchased=989, Sold=23, Available=966
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 80 in store 7: Purchased=205, Sold=60, Available=145
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 81 in store 7: Purchased=2046, Sold=990, Available=1056
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 145 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 139 in store 7: Purchased=2, Sold=1, Available=1
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 82 in store 7: Purchased=3500, Sold=8699, Available=0
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 83 in store 7: Purchased=0, Sold=2939, Available=0
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 84 in store 7: Purchased=189, Sold=17, Available=172
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 85 in store 7: Purchased=137, Sold=3, Available=134
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 127 in store 7: Purchased=2000, Sold=380, Available=1620
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 86 in store 7: Purchased=384, Sold=362, Available=22
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 87 in store 7: Purchased=588, Sold=650, Available=0
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 88 in store 7: Purchased=937, Sold=655, Available=282
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 89 in store 7: Purchased=2164, Sold=770, Available=1394
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 90 in store 7: Purchased=470, Sold=376, Available=94
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 126 in store 7: Purchased=25, Sold=0, Available=25
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 91 in store 7: Purchased=26, Sold=0, Available=26
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 92 in store 7: Purchased=30, Sold=29, Available=1
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 93 in store 7: Purchased=752, Sold=854, Available=0
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 94 in store 7: Purchased=764, Sold=685, Available=79
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 95 in store 7: Purchased=2263, Sold=622, Available=1641
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 96 in store 7: Purchased=18925, Sold=4335, Available=14590
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 134 in store 7: Purchased=604, Sold=69, Available=535
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 130 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 133 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 131 in store 7: Purchased=19, Sold=0, Available=19
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 97 in store 7: Purchased=6001, Sold=2364, Available=3637
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 98 in store 7: Purchased=442, Sold=44, Available=398
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 146 in store 7: Purchased=200, Sold=0, Available=200
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 99 in store 7: Purchased=2, Sold=0, Available=2
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 100 in store 7: Purchased=34587, Sold=30172, Available=4415
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 137 in store 7: Purchased=189, Sold=4, Available=185
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 101 in store 7: Purchased=107, Sold=34, Available=73
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 102 in store 7: Purchased=11299, Sold=8482, Available=2817
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 103 in store 7: Purchased=29811, Sold=23779, Available=6032
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 104 in store 7: Purchased=7500, Sold=809, Available=6691
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 142 in store 7: Purchased=36, Sold=0, Available=36
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 140 in store 7: Purchased=10, Sold=1, Available=9
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 105 in store 7: Purchased=358, Sold=213, Available=145
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 106 in store 7: Purchased=738, Sold=645, Available=93
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 125 in store 7: Purchased=253, Sold=0, Available=253
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 108 in store 7: Purchased=2503, Sold=2235, Available=268
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 109 in store 7: Purchased=2571, Sold=671, Available=1900
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 110 in store 7: Purchased=4761, Sold=1705, Available=3056
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 132 in store 7: Purchased=200, Sold=175, Available=25
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 111 in store 7: Purchased=406, Sold=89, Available=317
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 112 in store 7: Purchased=1900, Sold=1323, Available=577
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 113 in store 7: Purchased=2241, Sold=825, Available=1416
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 135 in store 7: Purchased=1990, Sold=654, Available=1336
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 114 in store 7: Purchased=922, Sold=45, Available=877
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 115 in store 7: Purchased=16812, Sold=17295, Available=0
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 116 in store 7: Purchased=247094, Sold=235683, Available=11411
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 107 in store 7: Purchased=1200, Sold=836, Available=364
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 117 in store 7: Purchased=9776, Sold=6085, Available=3691
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 118 in store 7: Purchased=24842, Sold=22205, Available=2637
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 144 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 129 in store 7: Purchased=1706, Sold=1560, Available=146
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 119 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 120 in store 7: Purchased=1605, Sold=615, Available=990
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 121 in store 7: Purchased=63, Sold=2, Available=61
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 122 in store 7: Purchased=688, Sold=207, Available=481
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 123 in store 7: Purchased=2020, Sold=1733, Available=287
+DEBUG - 2025-11-25 12:49:53 --> Stock calculation for product 124 in store 7: Purchased=3646, Sold=4469, Available=0
+DEBUG - 2025-11-25 12:49:53 --> Purchases view loaded - Store ID: 7, Is Admin: No, Products Count: 65
+INFO - 2025-11-25 12:49:53 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 12:49:53 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 12:49:53 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 12:49:53 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\products/purchases.php
+INFO - 2025-11-25 12:49:53 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 12:49:53 --> Final output sent to browser
+DEBUG - 2025-11-25 12:49:53 --> Total execution time: 0.4034
+INFO - 2025-11-25 12:49:53 --> Config Class Initialized
+INFO - 2025-11-25 12:49:53 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:49:53 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:49:53 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:49:53 --> URI Class Initialized
+INFO - 2025-11-25 12:49:53 --> Router Class Initialized
+INFO - 2025-11-25 12:49:53 --> Output Class Initialized
+INFO - 2025-11-25 12:49:53 --> Security Class Initialized
+DEBUG - 2025-11-25 12:49:53 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:49:53 --> Input Class Initialized
+INFO - 2025-11-25 12:49:53 --> Language Class Initialized
+INFO - 2025-11-25 12:49:53 --> Loader Class Initialized
+INFO - 2025-11-25 12:49:53 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:49:53 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:49:53 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:49:53 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:49:53 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:49:53 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:49:53 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:49:53 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:49:53 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:49:53 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:49:53 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:49:53 --> Model Class Initialized
+INFO - 2025-11-25 12:49:53 --> Model Class Initialized
+INFO - 2025-11-25 12:49:53 --> Model Class Initialized
+ERROR - 2025-11-25 12:49:53 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:49:53 --> Model Class Initialized
+INFO - 2025-11-25 12:49:53 --> Model Class Initialized
+INFO - 2025-11-25 12:49:53 --> Model Class Initialized
+INFO - 2025-11-25 12:49:53 --> Model Class Initialized
+DEBUG - 2025-11-25 12:49:53 --> getPurchasesData SQL: SELECT `purchases`.*, `products`.`name` as `product_name`, `products`.`unit`, `stores`.`name` as `store_name`, `users`.`username` as `created_by_name`
+FROM `purchases`
+JOIN `products` ON `products`.`id` = `purchases`.`product_id`
+JOIN `stores` ON `stores`.`id` = `purchases`.`store_id`
+LEFT JOIN `users` ON `users`.`id` = `purchases`.`user_id`
+WHERE `purchases`.`store_id` = '7'
+ORDER BY `purchases`.`purchase_date` DESC
+INFO - 2025-11-25 12:49:53 --> Final output sent to browser
+DEBUG - 2025-11-25 12:49:53 --> Total execution time: 0.0760
+INFO - 2025-11-25 12:51:00 --> Config Class Initialized
+INFO - 2025-11-25 12:51:00 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:51:00 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:51:00 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:51:00 --> URI Class Initialized
+INFO - 2025-11-25 12:51:00 --> Router Class Initialized
+INFO - 2025-11-25 12:51:00 --> Output Class Initialized
+INFO - 2025-11-25 12:51:00 --> Security Class Initialized
+DEBUG - 2025-11-25 12:51:00 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:51:00 --> Input Class Initialized
+INFO - 2025-11-25 12:51:00 --> Language Class Initialized
+INFO - 2025-11-25 12:51:00 --> Loader Class Initialized
+INFO - 2025-11-25 12:51:00 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:51:00 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:51:00 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:51:00 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:51:00 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:51:00 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:51:00 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:51:00 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:51:00 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:51:00 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:51:00 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:51:00 --> Model Class Initialized
+INFO - 2025-11-25 12:51:00 --> Model Class Initialized
+INFO - 2025-11-25 12:51:00 --> Model Class Initialized
+ERROR - 2025-11-25 12:51:00 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:51:00 --> Model Class Initialized
+INFO - 2025-11-25 12:51:00 --> Model Class Initialized
+INFO - 2025-11-25 12:51:00 --> Model Class Initialized
+INFO - 2025-11-25 12:51:00 --> Model Class Initialized
+INFO - 2025-11-25 12:51:01 --> Final output sent to browser
+DEBUG - 2025-11-25 12:51:01 --> Total execution time: 0.1009
+INFO - 2025-11-25 12:51:03 --> Config Class Initialized
+INFO - 2025-11-25 12:51:03 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:51:03 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:51:03 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:51:03 --> URI Class Initialized
+INFO - 2025-11-25 12:51:03 --> Router Class Initialized
+INFO - 2025-11-25 12:51:03 --> Output Class Initialized
+INFO - 2025-11-25 12:51:03 --> Security Class Initialized
+DEBUG - 2025-11-25 12:51:03 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:51:03 --> Input Class Initialized
+INFO - 2025-11-25 12:51:03 --> Language Class Initialized
+INFO - 2025-11-25 12:51:03 --> Loader Class Initialized
+INFO - 2025-11-25 12:51:03 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:51:03 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:51:03 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:51:03 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:51:03 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:51:03 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:51:03 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:51:03 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:51:03 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:51:03 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:51:03 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:51:03 --> Model Class Initialized
+INFO - 2025-11-25 12:51:03 --> Model Class Initialized
+INFO - 2025-11-25 12:51:03 --> Model Class Initialized
+ERROR - 2025-11-25 12:51:03 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:51:03 --> Model Class Initialized
+INFO - 2025-11-25 12:51:03 --> Model Class Initialized
+INFO - 2025-11-25 12:51:03 --> Model Class Initialized
+INFO - 2025-11-25 12:51:03 --> Model Class Initialized
+DEBUG - 2025-11-25 12:51:03 --> getPurchasesData SQL: SELECT `purchases`.*, `products`.`name` as `product_name`, `products`.`unit`, `stores`.`name` as `store_name`, `users`.`username` as `created_by_name`
+FROM `purchases`
+JOIN `products` ON `products`.`id` = `purchases`.`product_id`
+JOIN `stores` ON `stores`.`id` = `purchases`.`store_id`
+LEFT JOIN `users` ON `users`.`id` = `purchases`.`user_id`
+WHERE `purchases`.`store_id` = '7'
+ORDER BY `purchases`.`purchase_date` DESC
+INFO - 2025-11-25 12:51:03 --> Final output sent to browser
+DEBUG - 2025-11-25 12:51:03 --> Total execution time: 0.0694
+INFO - 2025-11-25 12:51:06 --> Config Class Initialized
+INFO - 2025-11-25 12:51:06 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:51:06 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:51:06 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:51:06 --> URI Class Initialized
+INFO - 2025-11-25 12:51:06 --> Router Class Initialized
+INFO - 2025-11-25 12:51:06 --> Output Class Initialized
+INFO - 2025-11-25 12:51:06 --> Security Class Initialized
+DEBUG - 2025-11-25 12:51:06 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:51:06 --> Input Class Initialized
+INFO - 2025-11-25 12:51:06 --> Language Class Initialized
+INFO - 2025-11-25 12:51:06 --> Loader Class Initialized
+INFO - 2025-11-25 12:51:06 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:51:06 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:51:06 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:51:06 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:51:06 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:51:06 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:51:06 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:51:06 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:51:06 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:51:06 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:51:06 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:51:06 --> Model Class Initialized
+INFO - 2025-11-25 12:51:06 --> Model Class Initialized
+INFO - 2025-11-25 12:51:06 --> Model Class Initialized
+ERROR - 2025-11-25 12:51:06 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:51:06 --> Model Class Initialized
+INFO - 2025-11-25 12:51:06 --> Model Class Initialized
+INFO - 2025-11-25 12:51:06 --> Model Class Initialized
+INFO - 2025-11-25 12:51:06 --> Model Class Initialized
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 78 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 138 in store 7: Purchased=16, Sold=0, Available=16
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 79 in store 7: Purchased=989, Sold=23, Available=966
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 80 in store 7: Purchased=205, Sold=60, Available=145
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 81 in store 7: Purchased=2046, Sold=990, Available=1056
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 145 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 139 in store 7: Purchased=2, Sold=1, Available=1
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 82 in store 7: Purchased=3500, Sold=8699, Available=0
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 83 in store 7: Purchased=0, Sold=2939, Available=0
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 84 in store 7: Purchased=189, Sold=17, Available=172
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 85 in store 7: Purchased=137, Sold=3, Available=134
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 127 in store 7: Purchased=2000, Sold=380, Available=1620
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 86 in store 7: Purchased=384, Sold=362, Available=22
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 87 in store 7: Purchased=588, Sold=650, Available=0
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 88 in store 7: Purchased=937, Sold=655, Available=282
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 89 in store 7: Purchased=2164, Sold=770, Available=1394
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 90 in store 7: Purchased=470, Sold=376, Available=94
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 126 in store 7: Purchased=25, Sold=0, Available=25
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 91 in store 7: Purchased=26, Sold=0, Available=26
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 92 in store 7: Purchased=30, Sold=29, Available=1
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 93 in store 7: Purchased=752, Sold=854, Available=0
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 94 in store 7: Purchased=764, Sold=685, Available=79
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 95 in store 7: Purchased=2263, Sold=622, Available=1641
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 96 in store 7: Purchased=18925, Sold=4335, Available=14590
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 134 in store 7: Purchased=604, Sold=69, Available=535
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 130 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 133 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 131 in store 7: Purchased=19, Sold=0, Available=19
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 97 in store 7: Purchased=6001, Sold=2364, Available=3637
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 98 in store 7: Purchased=442, Sold=44, Available=398
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 146 in store 7: Purchased=200, Sold=0, Available=200
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 99 in store 7: Purchased=2, Sold=0, Available=2
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 100 in store 7: Purchased=34587, Sold=30172, Available=4415
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 137 in store 7: Purchased=189, Sold=4, Available=185
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 101 in store 7: Purchased=107, Sold=34, Available=73
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 102 in store 7: Purchased=11299, Sold=8482, Available=2817
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 103 in store 7: Purchased=29811, Sold=23779, Available=6032
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 104 in store 7: Purchased=7500, Sold=809, Available=6691
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 142 in store 7: Purchased=36, Sold=0, Available=36
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 140 in store 7: Purchased=10, Sold=1, Available=9
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 105 in store 7: Purchased=358, Sold=213, Available=145
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 106 in store 7: Purchased=738, Sold=645, Available=93
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 125 in store 7: Purchased=253, Sold=0, Available=253
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 108 in store 7: Purchased=2503, Sold=2235, Available=268
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 109 in store 7: Purchased=2571, Sold=671, Available=1900
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 110 in store 7: Purchased=4761, Sold=1705, Available=3056
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 132 in store 7: Purchased=200, Sold=175, Available=25
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 111 in store 7: Purchased=406, Sold=89, Available=317
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 112 in store 7: Purchased=1900, Sold=1323, Available=577
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 113 in store 7: Purchased=2241, Sold=825, Available=1416
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 135 in store 7: Purchased=1990, Sold=654, Available=1336
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 114 in store 7: Purchased=922, Sold=45, Available=877
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 115 in store 7: Purchased=16812, Sold=17295, Available=0
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 116 in store 7: Purchased=247094, Sold=235683, Available=11411
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 107 in store 7: Purchased=1200, Sold=836, Available=364
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 117 in store 7: Purchased=9776, Sold=6085, Available=3691
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 118 in store 7: Purchased=24842, Sold=22205, Available=2637
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 144 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 129 in store 7: Purchased=1706, Sold=1560, Available=146
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 119 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 120 in store 7: Purchased=1605, Sold=615, Available=990
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 121 in store 7: Purchased=63, Sold=2, Available=61
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 122 in store 7: Purchased=688, Sold=207, Available=481
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 123 in store 7: Purchased=2020, Sold=1733, Available=287
+DEBUG - 2025-11-25 12:51:06 --> Stock calculation for product 124 in store 7: Purchased=3646, Sold=4469, Available=0
+DEBUG - 2025-11-25 12:51:06 --> Purchases view loaded - Store ID: 7, Is Admin: No, Products Count: 65
+INFO - 2025-11-25 12:51:06 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 12:51:06 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 12:51:06 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 12:51:06 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\products/purchases.php
+INFO - 2025-11-25 12:51:06 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 12:51:06 --> Final output sent to browser
+DEBUG - 2025-11-25 12:51:06 --> Total execution time: 0.2503
+INFO - 2025-11-25 12:51:06 --> Config Class Initialized
+INFO - 2025-11-25 12:51:06 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:51:06 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:51:06 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:51:06 --> URI Class Initialized
+INFO - 2025-11-25 12:51:06 --> Router Class Initialized
+INFO - 2025-11-25 12:51:06 --> Output Class Initialized
+INFO - 2025-11-25 12:51:06 --> Security Class Initialized
+DEBUG - 2025-11-25 12:51:06 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:51:06 --> Input Class Initialized
+INFO - 2025-11-25 12:51:06 --> Language Class Initialized
+INFO - 2025-11-25 12:51:06 --> Loader Class Initialized
+INFO - 2025-11-25 12:51:06 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:51:06 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:51:06 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:51:06 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:51:06 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:51:06 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:51:06 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:51:06 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:51:06 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:51:06 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:51:06 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:51:06 --> Model Class Initialized
+INFO - 2025-11-25 12:51:06 --> Model Class Initialized
+INFO - 2025-11-25 12:51:06 --> Model Class Initialized
+ERROR - 2025-11-25 12:51:06 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:51:06 --> Model Class Initialized
+INFO - 2025-11-25 12:51:06 --> Model Class Initialized
+INFO - 2025-11-25 12:51:06 --> Model Class Initialized
+INFO - 2025-11-25 12:51:06 --> Model Class Initialized
+DEBUG - 2025-11-25 12:51:06 --> getPurchasesData SQL: SELECT `purchases`.*, `products`.`name` as `product_name`, `products`.`unit`, `stores`.`name` as `store_name`, `users`.`username` as `created_by_name`
+FROM `purchases`
+JOIN `products` ON `products`.`id` = `purchases`.`product_id`
+JOIN `stores` ON `stores`.`id` = `purchases`.`store_id`
+LEFT JOIN `users` ON `users`.`id` = `purchases`.`user_id`
+WHERE `purchases`.`store_id` = '7'
+ORDER BY `purchases`.`purchase_date` DESC
+INFO - 2025-11-25 12:51:06 --> Final output sent to browser
+DEBUG - 2025-11-25 12:51:06 --> Total execution time: 0.0622
+INFO - 2025-11-25 12:56:06 --> Config Class Initialized
+INFO - 2025-11-25 12:56:06 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:56:06 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:56:06 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:56:06 --> URI Class Initialized
+INFO - 2025-11-25 12:56:06 --> Router Class Initialized
+INFO - 2025-11-25 12:56:06 --> Output Class Initialized
+INFO - 2025-11-25 12:56:06 --> Security Class Initialized
+DEBUG - 2025-11-25 12:56:06 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:56:06 --> Input Class Initialized
+INFO - 2025-11-25 12:56:06 --> Language Class Initialized
+INFO - 2025-11-25 12:56:06 --> Loader Class Initialized
+INFO - 2025-11-25 12:56:06 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:56:06 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:56:06 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:56:06 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:56:06 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:56:06 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:56:06 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:56:06 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:56:06 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:56:06 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:56:06 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:56:06 --> Model Class Initialized
+INFO - 2025-11-25 12:56:06 --> Model Class Initialized
+INFO - 2025-11-25 12:56:06 --> Model Class Initialized
+ERROR - 2025-11-25 12:56:06 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:56:06 --> Model Class Initialized
+INFO - 2025-11-25 12:56:06 --> Model Class Initialized
+INFO - 2025-11-25 12:56:06 --> Model Class Initialized
+INFO - 2025-11-25 12:56:06 --> Model Class Initialized
+INFO - 2025-11-25 12:56:06 --> Final output sent to browser
+DEBUG - 2025-11-25 12:56:06 --> Total execution time: 0.1667
+INFO - 2025-11-25 12:56:08 --> Config Class Initialized
+INFO - 2025-11-25 12:56:08 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:56:08 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:56:08 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:56:08 --> URI Class Initialized
+INFO - 2025-11-25 12:56:08 --> Router Class Initialized
+INFO - 2025-11-25 12:56:08 --> Output Class Initialized
+INFO - 2025-11-25 12:56:08 --> Security Class Initialized
+DEBUG - 2025-11-25 12:56:08 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:56:08 --> Input Class Initialized
+INFO - 2025-11-25 12:56:08 --> Language Class Initialized
+INFO - 2025-11-25 12:56:08 --> Loader Class Initialized
+INFO - 2025-11-25 12:56:08 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:56:08 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:56:08 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:56:08 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:56:08 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:56:08 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:56:08 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:56:08 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:56:08 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:56:08 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:56:08 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:56:08 --> Model Class Initialized
+INFO - 2025-11-25 12:56:08 --> Model Class Initialized
+INFO - 2025-11-25 12:56:08 --> Model Class Initialized
+ERROR - 2025-11-25 12:56:08 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:56:08 --> Model Class Initialized
+INFO - 2025-11-25 12:56:08 --> Model Class Initialized
+INFO - 2025-11-25 12:56:08 --> Model Class Initialized
+INFO - 2025-11-25 12:56:08 --> Model Class Initialized
+DEBUG - 2025-11-25 12:56:08 --> getPurchasesData SQL: SELECT `purchases`.*, `products`.`name` as `product_name`, `products`.`unit`, `stores`.`name` as `store_name`, `users`.`username` as `created_by_name`
+FROM `purchases`
+JOIN `products` ON `products`.`id` = `purchases`.`product_id`
+JOIN `stores` ON `stores`.`id` = `purchases`.`store_id`
+LEFT JOIN `users` ON `users`.`id` = `purchases`.`user_id`
+WHERE `purchases`.`store_id` = '7'
+ORDER BY `purchases`.`purchase_date` DESC
+INFO - 2025-11-25 12:56:08 --> Final output sent to browser
+DEBUG - 2025-11-25 12:56:08 --> Total execution time: 0.0527
+INFO - 2025-11-25 12:57:18 --> Config Class Initialized
+INFO - 2025-11-25 12:57:18 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:57:18 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:57:18 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:57:18 --> URI Class Initialized
+INFO - 2025-11-25 12:57:18 --> Router Class Initialized
+INFO - 2025-11-25 12:57:18 --> Output Class Initialized
+INFO - 2025-11-25 12:57:18 --> Security Class Initialized
+DEBUG - 2025-11-25 12:57:18 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:57:18 --> Input Class Initialized
+INFO - 2025-11-25 12:57:18 --> Language Class Initialized
+INFO - 2025-11-25 12:57:18 --> Loader Class Initialized
+INFO - 2025-11-25 12:57:18 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:57:18 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:57:18 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:57:18 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:57:18 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:57:18 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:57:18 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:57:18 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:57:18 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:57:18 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:57:18 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:57:18 --> Model Class Initialized
+INFO - 2025-11-25 12:57:18 --> Model Class Initialized
+INFO - 2025-11-25 12:57:18 --> Model Class Initialized
+ERROR - 2025-11-25 12:57:18 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:57:18 --> Model Class Initialized
+INFO - 2025-11-25 12:57:18 --> Model Class Initialized
+INFO - 2025-11-25 12:57:18 --> Model Class Initialized
+INFO - 2025-11-25 12:57:18 --> Model Class Initialized
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 78 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 138 in store 7: Purchased=16, Sold=0, Available=16
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 79 in store 7: Purchased=989, Sold=23, Available=966
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 80 in store 7: Purchased=205, Sold=60, Available=145
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 81 in store 7: Purchased=2046, Sold=990, Available=1056
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 145 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 139 in store 7: Purchased=2, Sold=1, Available=1
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 82 in store 7: Purchased=3500, Sold=8699, Available=0
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 83 in store 7: Purchased=0, Sold=2939, Available=0
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 84 in store 7: Purchased=189, Sold=17, Available=172
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 85 in store 7: Purchased=137, Sold=3, Available=134
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 127 in store 7: Purchased=2000, Sold=380, Available=1620
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 86 in store 7: Purchased=384, Sold=362, Available=22
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 87 in store 7: Purchased=588, Sold=650, Available=0
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 88 in store 7: Purchased=937, Sold=655, Available=282
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 89 in store 7: Purchased=2164, Sold=770, Available=1394
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 90 in store 7: Purchased=470, Sold=376, Available=94
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 126 in store 7: Purchased=25, Sold=0, Available=25
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 91 in store 7: Purchased=26, Sold=0, Available=26
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 92 in store 7: Purchased=30, Sold=29, Available=1
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 93 in store 7: Purchased=752, Sold=854, Available=0
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 94 in store 7: Purchased=764, Sold=685, Available=79
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 95 in store 7: Purchased=2263, Sold=622, Available=1641
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 96 in store 7: Purchased=18925, Sold=4335, Available=14590
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 134 in store 7: Purchased=604, Sold=69, Available=535
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 130 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 133 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 131 in store 7: Purchased=19, Sold=0, Available=19
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 97 in store 7: Purchased=6001, Sold=2364, Available=3637
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 98 in store 7: Purchased=442, Sold=44, Available=398
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 146 in store 7: Purchased=200, Sold=0, Available=200
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 99 in store 7: Purchased=2, Sold=0, Available=2
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 100 in store 7: Purchased=34587, Sold=30172, Available=4415
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 137 in store 7: Purchased=189, Sold=4, Available=185
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 101 in store 7: Purchased=107, Sold=34, Available=73
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 102 in store 7: Purchased=11299, Sold=8482, Available=2817
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 103 in store 7: Purchased=29811, Sold=23779, Available=6032
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 104 in store 7: Purchased=7500, Sold=809, Available=6691
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 142 in store 7: Purchased=36, Sold=0, Available=36
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 140 in store 7: Purchased=10, Sold=1, Available=9
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 105 in store 7: Purchased=358, Sold=213, Available=145
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 106 in store 7: Purchased=738, Sold=645, Available=93
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 125 in store 7: Purchased=253, Sold=0, Available=253
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 108 in store 7: Purchased=2503, Sold=2235, Available=268
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 109 in store 7: Purchased=2571, Sold=671, Available=1900
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 110 in store 7: Purchased=4761, Sold=1705, Available=3056
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 132 in store 7: Purchased=200, Sold=175, Available=25
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 111 in store 7: Purchased=406, Sold=89, Available=317
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 112 in store 7: Purchased=1900, Sold=1323, Available=577
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 113 in store 7: Purchased=2241, Sold=825, Available=1416
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 135 in store 7: Purchased=1990, Sold=654, Available=1336
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 114 in store 7: Purchased=922, Sold=45, Available=877
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 115 in store 7: Purchased=16812, Sold=17295, Available=0
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 116 in store 7: Purchased=247094, Sold=235683, Available=11411
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 107 in store 7: Purchased=1200, Sold=836, Available=364
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 117 in store 7: Purchased=9776, Sold=6085, Available=3691
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 118 in store 7: Purchased=24842, Sold=22205, Available=2637
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 144 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 129 in store 7: Purchased=1706, Sold=1560, Available=146
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 119 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 120 in store 7: Purchased=1605, Sold=615, Available=990
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 121 in store 7: Purchased=63, Sold=2, Available=61
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 122 in store 7: Purchased=688, Sold=207, Available=481
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 123 in store 7: Purchased=2020, Sold=1733, Available=287
+DEBUG - 2025-11-25 12:57:18 --> Stock calculation for product 124 in store 7: Purchased=3646, Sold=4469, Available=0
+DEBUG - 2025-11-25 12:57:18 --> Purchases view loaded - Store ID: 7, Is Admin: No, Products Count: 65
+INFO - 2025-11-25 12:57:18 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 12:57:18 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 12:57:18 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 12:57:18 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\products/purchases.php
+INFO - 2025-11-25 12:57:18 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 12:57:18 --> Final output sent to browser
+DEBUG - 2025-11-25 12:57:18 --> Total execution time: 0.2227
+INFO - 2025-11-25 12:57:19 --> Config Class Initialized
+INFO - 2025-11-25 12:57:19 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:57:19 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:57:19 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:57:19 --> URI Class Initialized
+INFO - 2025-11-25 12:57:19 --> Router Class Initialized
+INFO - 2025-11-25 12:57:19 --> Output Class Initialized
+INFO - 2025-11-25 12:57:19 --> Security Class Initialized
+DEBUG - 2025-11-25 12:57:19 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:57:19 --> Input Class Initialized
+INFO - 2025-11-25 12:57:19 --> Language Class Initialized
+INFO - 2025-11-25 12:57:19 --> Loader Class Initialized
+INFO - 2025-11-25 12:57:19 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:57:19 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:57:19 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:57:19 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:57:19 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:57:19 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:57:19 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:57:19 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:57:19 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:57:19 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:57:19 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:57:19 --> Model Class Initialized
+INFO - 2025-11-25 12:57:19 --> Model Class Initialized
+INFO - 2025-11-25 12:57:19 --> Model Class Initialized
+ERROR - 2025-11-25 12:57:19 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:57:19 --> Model Class Initialized
+INFO - 2025-11-25 12:57:19 --> Model Class Initialized
+INFO - 2025-11-25 12:57:19 --> Model Class Initialized
+INFO - 2025-11-25 12:57:19 --> Model Class Initialized
+DEBUG - 2025-11-25 12:57:19 --> getPurchasesData SQL: SELECT `purchases`.*, `products`.`name` as `product_name`, `products`.`unit`, `stores`.`name` as `store_name`, `users`.`username` as `created_by_name`
+FROM `purchases`
+JOIN `products` ON `products`.`id` = `purchases`.`product_id`
+JOIN `stores` ON `stores`.`id` = `purchases`.`store_id`
+LEFT JOIN `users` ON `users`.`id` = `purchases`.`user_id`
+WHERE `purchases`.`store_id` = '7'
+ORDER BY `purchases`.`purchase_date` DESC
+INFO - 2025-11-25 12:57:19 --> Final output sent to browser
+DEBUG - 2025-11-25 12:57:19 --> Total execution time: 0.0612
+INFO - 2025-11-25 12:58:08 --> Config Class Initialized
+INFO - 2025-11-25 12:58:08 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:58:08 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:58:08 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:58:08 --> URI Class Initialized
+INFO - 2025-11-25 12:58:08 --> Router Class Initialized
+INFO - 2025-11-25 12:58:08 --> Output Class Initialized
+INFO - 2025-11-25 12:58:08 --> Security Class Initialized
+DEBUG - 2025-11-25 12:58:08 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:58:08 --> Input Class Initialized
+INFO - 2025-11-25 12:58:08 --> Language Class Initialized
+INFO - 2025-11-25 12:58:08 --> Loader Class Initialized
+INFO - 2025-11-25 12:58:08 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:58:08 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:58:08 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:58:08 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:58:08 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:58:08 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:58:08 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:58:08 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:58:08 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:58:08 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:58:08 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:58:08 --> Model Class Initialized
+INFO - 2025-11-25 12:58:08 --> Model Class Initialized
+INFO - 2025-11-25 12:58:08 --> Model Class Initialized
+ERROR - 2025-11-25 12:58:08 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:58:08 --> Model Class Initialized
+INFO - 2025-11-25 12:58:08 --> Model Class Initialized
+INFO - 2025-11-25 12:58:08 --> Model Class Initialized
+INFO - 2025-11-25 12:58:08 --> Model Class Initialized
+INFO - 2025-11-25 12:58:09 --> Final output sent to browser
+DEBUG - 2025-11-25 12:58:09 --> Total execution time: 0.1028
+INFO - 2025-11-25 12:58:11 --> Config Class Initialized
+INFO - 2025-11-25 12:58:11 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:58:11 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:58:11 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:58:11 --> URI Class Initialized
+INFO - 2025-11-25 12:58:11 --> Router Class Initialized
+INFO - 2025-11-25 12:58:11 --> Output Class Initialized
+INFO - 2025-11-25 12:58:11 --> Security Class Initialized
+DEBUG - 2025-11-25 12:58:11 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:58:11 --> Input Class Initialized
+INFO - 2025-11-25 12:58:11 --> Language Class Initialized
+INFO - 2025-11-25 12:58:11 --> Loader Class Initialized
+INFO - 2025-11-25 12:58:11 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:58:11 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:58:11 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:58:11 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:58:11 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:58:11 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:58:11 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:58:11 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:58:11 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:58:11 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:58:11 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:58:11 --> Model Class Initialized
+INFO - 2025-11-25 12:58:11 --> Model Class Initialized
+INFO - 2025-11-25 12:58:11 --> Model Class Initialized
+ERROR - 2025-11-25 12:58:11 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:58:11 --> Model Class Initialized
+INFO - 2025-11-25 12:58:11 --> Model Class Initialized
+INFO - 2025-11-25 12:58:11 --> Model Class Initialized
+INFO - 2025-11-25 12:58:11 --> Model Class Initialized
+DEBUG - 2025-11-25 12:58:11 --> getPurchasesData SQL: SELECT `purchases`.*, `products`.`name` as `product_name`, `products`.`unit`, `stores`.`name` as `store_name`, `users`.`username` as `created_by_name`
+FROM `purchases`
+JOIN `products` ON `products`.`id` = `purchases`.`product_id`
+JOIN `stores` ON `stores`.`id` = `purchases`.`store_id`
+LEFT JOIN `users` ON `users`.`id` = `purchases`.`user_id`
+WHERE `purchases`.`store_id` = '7'
+ORDER BY `purchases`.`purchase_date` DESC
+INFO - 2025-11-25 12:58:11 --> Final output sent to browser
+DEBUG - 2025-11-25 12:58:11 --> Total execution time: 0.0656
+INFO - 2025-11-25 12:58:15 --> Config Class Initialized
+INFO - 2025-11-25 12:58:15 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:58:15 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:58:15 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:58:15 --> URI Class Initialized
+INFO - 2025-11-25 12:58:15 --> Router Class Initialized
+INFO - 2025-11-25 12:58:15 --> Output Class Initialized
+INFO - 2025-11-25 12:58:15 --> Security Class Initialized
+DEBUG - 2025-11-25 12:58:15 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:58:15 --> Input Class Initialized
+INFO - 2025-11-25 12:58:15 --> Language Class Initialized
+INFO - 2025-11-25 12:58:15 --> Loader Class Initialized
+INFO - 2025-11-25 12:58:15 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:58:15 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:58:15 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:58:15 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:58:15 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:58:15 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:58:15 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:58:15 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:58:15 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:58:15 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:58:15 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:58:15 --> Model Class Initialized
+INFO - 2025-11-25 12:58:15 --> Model Class Initialized
+INFO - 2025-11-25 12:58:15 --> Model Class Initialized
+ERROR - 2025-11-25 12:58:15 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:58:15 --> Model Class Initialized
+INFO - 2025-11-25 12:58:15 --> Model Class Initialized
+INFO - 2025-11-25 12:58:15 --> Model Class Initialized
+INFO - 2025-11-25 12:58:15 --> Model Class Initialized
+DEBUG - 2025-11-25 12:58:15 --> Stock calculation for product 78 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:58:15 --> Stock calculation for product 138 in store 7: Purchased=16, Sold=0, Available=16
+DEBUG - 2025-11-25 12:58:15 --> Stock calculation for product 79 in store 7: Purchased=989, Sold=23, Available=966
+DEBUG - 2025-11-25 12:58:15 --> Stock calculation for product 80 in store 7: Purchased=205, Sold=60, Available=145
+DEBUG - 2025-11-25 12:58:15 --> Stock calculation for product 81 in store 7: Purchased=2046, Sold=990, Available=1056
+DEBUG - 2025-11-25 12:58:15 --> Stock calculation for product 145 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:58:15 --> Stock calculation for product 139 in store 7: Purchased=2, Sold=1, Available=1
+DEBUG - 2025-11-25 12:58:15 --> Stock calculation for product 82 in store 7: Purchased=3500, Sold=8699, Available=0
+DEBUG - 2025-11-25 12:58:15 --> Stock calculation for product 83 in store 7: Purchased=0, Sold=2939, Available=0
+DEBUG - 2025-11-25 12:58:15 --> Stock calculation for product 84 in store 7: Purchased=189, Sold=17, Available=172
+DEBUG - 2025-11-25 12:58:15 --> Stock calculation for product 85 in store 7: Purchased=137, Sold=3, Available=134
+DEBUG - 2025-11-25 12:58:15 --> Stock calculation for product 127 in store 7: Purchased=2000, Sold=380, Available=1620
+DEBUG - 2025-11-25 12:58:15 --> Stock calculation for product 86 in store 7: Purchased=384, Sold=362, Available=22
+DEBUG - 2025-11-25 12:58:15 --> Stock calculation for product 87 in store 7: Purchased=588, Sold=650, Available=0
+DEBUG - 2025-11-25 12:58:15 --> Stock calculation for product 88 in store 7: Purchased=937, Sold=655, Available=282
+DEBUG - 2025-11-25 12:58:15 --> Stock calculation for product 89 in store 7: Purchased=2164, Sold=770, Available=1394
+DEBUG - 2025-11-25 12:58:15 --> Stock calculation for product 90 in store 7: Purchased=470, Sold=376, Available=94
+DEBUG - 2025-11-25 12:58:15 --> Stock calculation for product 126 in store 7: Purchased=25, Sold=0, Available=25
+DEBUG - 2025-11-25 12:58:15 --> Stock calculation for product 91 in store 7: Purchased=26, Sold=0, Available=26
+DEBUG - 2025-11-25 12:58:15 --> Stock calculation for product 92 in store 7: Purchased=30, Sold=29, Available=1
+DEBUG - 2025-11-25 12:58:15 --> Stock calculation for product 93 in store 7: Purchased=752, Sold=854, Available=0
+DEBUG - 2025-11-25 12:58:15 --> Stock calculation for product 94 in store 7: Purchased=764, Sold=685, Available=79
+DEBUG - 2025-11-25 12:58:15 --> Stock calculation for product 95 in store 7: Purchased=2263, Sold=622, Available=1641
+DEBUG - 2025-11-25 12:58:15 --> Stock calculation for product 96 in store 7: Purchased=18925, Sold=4335, Available=14590
+DEBUG - 2025-11-25 12:58:15 --> Stock calculation for product 134 in store 7: Purchased=604, Sold=69, Available=535
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 130 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 133 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 131 in store 7: Purchased=19, Sold=0, Available=19
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 97 in store 7: Purchased=6001, Sold=2364, Available=3637
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 98 in store 7: Purchased=442, Sold=44, Available=398
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 146 in store 7: Purchased=200, Sold=0, Available=200
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 99 in store 7: Purchased=2, Sold=0, Available=2
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 100 in store 7: Purchased=34587, Sold=30172, Available=4415
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 137 in store 7: Purchased=189, Sold=4, Available=185
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 101 in store 7: Purchased=107, Sold=34, Available=73
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 102 in store 7: Purchased=11299, Sold=8482, Available=2817
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 103 in store 7: Purchased=29811, Sold=23779, Available=6032
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 104 in store 7: Purchased=7500, Sold=809, Available=6691
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 142 in store 7: Purchased=36, Sold=0, Available=36
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 140 in store 7: Purchased=10, Sold=1, Available=9
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 105 in store 7: Purchased=358, Sold=213, Available=145
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 106 in store 7: Purchased=738, Sold=645, Available=93
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 125 in store 7: Purchased=253, Sold=0, Available=253
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 108 in store 7: Purchased=2503, Sold=2235, Available=268
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 109 in store 7: Purchased=2571, Sold=671, Available=1900
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 110 in store 7: Purchased=4761, Sold=1705, Available=3056
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 132 in store 7: Purchased=200, Sold=175, Available=25
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 111 in store 7: Purchased=406, Sold=89, Available=317
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 112 in store 7: Purchased=1900, Sold=1323, Available=577
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 113 in store 7: Purchased=2241, Sold=825, Available=1416
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 135 in store 7: Purchased=1990, Sold=654, Available=1336
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 114 in store 7: Purchased=922, Sold=45, Available=877
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 115 in store 7: Purchased=16812, Sold=17295, Available=0
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 116 in store 7: Purchased=247094, Sold=235683, Available=11411
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 107 in store 7: Purchased=1200, Sold=836, Available=364
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 117 in store 7: Purchased=9776, Sold=6085, Available=3691
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 118 in store 7: Purchased=24842, Sold=22205, Available=2637
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 144 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 129 in store 7: Purchased=1706, Sold=1560, Available=146
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 119 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 120 in store 7: Purchased=1605, Sold=615, Available=990
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 121 in store 7: Purchased=63, Sold=2, Available=61
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 122 in store 7: Purchased=688, Sold=207, Available=481
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 123 in store 7: Purchased=2020, Sold=1733, Available=287
+DEBUG - 2025-11-25 12:58:16 --> Stock calculation for product 124 in store 7: Purchased=3646, Sold=4469, Available=0
+DEBUG - 2025-11-25 12:58:16 --> Purchases view loaded - Store ID: 7, Is Admin: No, Products Count: 65
+INFO - 2025-11-25 12:58:16 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 12:58:16 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 12:58:16 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 12:58:16 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\products/purchases.php
+INFO - 2025-11-25 12:58:16 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 12:58:16 --> Final output sent to browser
+DEBUG - 2025-11-25 12:58:16 --> Total execution time: 0.2369
+INFO - 2025-11-25 12:58:16 --> Config Class Initialized
+INFO - 2025-11-25 12:58:16 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:58:16 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:58:16 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:58:16 --> URI Class Initialized
+INFO - 2025-11-25 12:58:16 --> Router Class Initialized
+INFO - 2025-11-25 12:58:16 --> Output Class Initialized
+INFO - 2025-11-25 12:58:16 --> Security Class Initialized
+DEBUG - 2025-11-25 12:58:16 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:58:16 --> Input Class Initialized
+INFO - 2025-11-25 12:58:16 --> Language Class Initialized
+INFO - 2025-11-25 12:58:16 --> Loader Class Initialized
+INFO - 2025-11-25 12:58:16 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:58:16 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:58:16 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:58:16 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:58:16 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:58:16 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:58:16 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:58:16 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:58:16 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:58:16 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:58:16 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:58:16 --> Model Class Initialized
+INFO - 2025-11-25 12:58:16 --> Model Class Initialized
+INFO - 2025-11-25 12:58:16 --> Model Class Initialized
+ERROR - 2025-11-25 12:58:16 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:58:16 --> Model Class Initialized
+INFO - 2025-11-25 12:58:16 --> Model Class Initialized
+INFO - 2025-11-25 12:58:16 --> Model Class Initialized
+INFO - 2025-11-25 12:58:16 --> Model Class Initialized
+DEBUG - 2025-11-25 12:58:16 --> getPurchasesData SQL: SELECT `purchases`.*, `products`.`name` as `product_name`, `products`.`unit`, `stores`.`name` as `store_name`, `users`.`username` as `created_by_name`
+FROM `purchases`
+JOIN `products` ON `products`.`id` = `purchases`.`product_id`
+JOIN `stores` ON `stores`.`id` = `purchases`.`store_id`
+LEFT JOIN `users` ON `users`.`id` = `purchases`.`user_id`
+WHERE `purchases`.`store_id` = '7'
+ORDER BY `purchases`.`purchase_date` DESC
+INFO - 2025-11-25 12:58:16 --> Final output sent to browser
+DEBUG - 2025-11-25 12:58:16 --> Total execution time: 0.0633
+INFO - 2025-11-25 12:58:46 --> Config Class Initialized
+INFO - 2025-11-25 12:58:46 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:58:46 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:58:46 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:58:46 --> URI Class Initialized
+INFO - 2025-11-25 12:58:46 --> Router Class Initialized
+INFO - 2025-11-25 12:58:46 --> Output Class Initialized
+INFO - 2025-11-25 12:58:46 --> Security Class Initialized
+DEBUG - 2025-11-25 12:58:46 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:58:46 --> Input Class Initialized
+INFO - 2025-11-25 12:58:46 --> Language Class Initialized
+INFO - 2025-11-25 12:58:46 --> Loader Class Initialized
+INFO - 2025-11-25 12:58:46 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:58:46 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:58:46 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:58:46 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:58:46 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:58:46 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:58:46 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:58:46 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:58:46 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:58:46 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:58:46 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:58:46 --> Model Class Initialized
+INFO - 2025-11-25 12:58:46 --> Model Class Initialized
+INFO - 2025-11-25 12:58:46 --> Model Class Initialized
+ERROR - 2025-11-25 12:58:46 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:58:46 --> Model Class Initialized
+INFO - 2025-11-25 12:58:46 --> Model Class Initialized
+INFO - 2025-11-25 12:58:46 --> Model Class Initialized
+INFO - 2025-11-25 12:58:46 --> Model Class Initialized
+INFO - 2025-11-25 12:58:46 --> Final output sent to browser
+DEBUG - 2025-11-25 12:58:46 --> Total execution time: 0.0934
+INFO - 2025-11-25 12:58:47 --> Config Class Initialized
+INFO - 2025-11-25 12:58:47 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:58:47 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:58:47 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:58:47 --> URI Class Initialized
+INFO - 2025-11-25 12:58:47 --> Router Class Initialized
+INFO - 2025-11-25 12:58:47 --> Output Class Initialized
+INFO - 2025-11-25 12:58:47 --> Security Class Initialized
+DEBUG - 2025-11-25 12:58:47 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:58:47 --> Input Class Initialized
+INFO - 2025-11-25 12:58:47 --> Language Class Initialized
+INFO - 2025-11-25 12:58:47 --> Loader Class Initialized
+INFO - 2025-11-25 12:58:47 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:58:47 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:58:47 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:58:47 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:58:47 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:58:47 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:58:47 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:58:47 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:58:47 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:58:47 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:58:47 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:58:47 --> Model Class Initialized
+INFO - 2025-11-25 12:58:47 --> Model Class Initialized
+INFO - 2025-11-25 12:58:47 --> Model Class Initialized
+ERROR - 2025-11-25 12:58:47 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:58:47 --> Model Class Initialized
+INFO - 2025-11-25 12:58:47 --> Model Class Initialized
+INFO - 2025-11-25 12:58:47 --> Model Class Initialized
+INFO - 2025-11-25 12:58:47 --> Model Class Initialized
+DEBUG - 2025-11-25 12:58:47 --> getPurchasesData SQL: SELECT `purchases`.*, `products`.`name` as `product_name`, `products`.`unit`, `stores`.`name` as `store_name`, `users`.`username` as `created_by_name`
+FROM `purchases`
+JOIN `products` ON `products`.`id` = `purchases`.`product_id`
+JOIN `stores` ON `stores`.`id` = `purchases`.`store_id`
+LEFT JOIN `users` ON `users`.`id` = `purchases`.`user_id`
+WHERE `purchases`.`store_id` = '7'
+ORDER BY `purchases`.`purchase_date` DESC
+INFO - 2025-11-25 12:58:47 --> Final output sent to browser
+DEBUG - 2025-11-25 12:58:47 --> Total execution time: 0.0563
+INFO - 2025-11-25 12:59:07 --> Config Class Initialized
+INFO - 2025-11-25 12:59:07 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:59:07 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:59:07 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:59:07 --> URI Class Initialized
+INFO - 2025-11-25 12:59:07 --> Router Class Initialized
+INFO - 2025-11-25 12:59:07 --> Output Class Initialized
+INFO - 2025-11-25 12:59:07 --> Security Class Initialized
+DEBUG - 2025-11-25 12:59:07 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:59:07 --> Input Class Initialized
+INFO - 2025-11-25 12:59:07 --> Language Class Initialized
+INFO - 2025-11-25 12:59:07 --> Loader Class Initialized
+INFO - 2025-11-25 12:59:07 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:59:07 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:59:07 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:59:07 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:59:07 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:59:07 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:59:07 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:59:07 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:59:07 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:59:07 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:59:07 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:59:07 --> Model Class Initialized
+INFO - 2025-11-25 12:59:07 --> Model Class Initialized
+INFO - 2025-11-25 12:59:07 --> Model Class Initialized
+ERROR - 2025-11-25 12:59:07 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:59:07 --> Model Class Initialized
+INFO - 2025-11-25 12:59:07 --> Model Class Initialized
+INFO - 2025-11-25 12:59:07 --> Model Class Initialized
+INFO - 2025-11-25 12:59:07 --> Model Class Initialized
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 78 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 138 in store 7: Purchased=16, Sold=0, Available=16
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 79 in store 7: Purchased=989, Sold=23, Available=966
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 80 in store 7: Purchased=205, Sold=60, Available=145
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 81 in store 7: Purchased=2046, Sold=990, Available=1056
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 145 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 139 in store 7: Purchased=2, Sold=1, Available=1
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 82 in store 7: Purchased=3500, Sold=8699, Available=0
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 83 in store 7: Purchased=0, Sold=2939, Available=0
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 84 in store 7: Purchased=189, Sold=17, Available=172
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 85 in store 7: Purchased=137, Sold=3, Available=134
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 127 in store 7: Purchased=2000, Sold=380, Available=1620
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 86 in store 7: Purchased=384, Sold=362, Available=22
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 87 in store 7: Purchased=588, Sold=650, Available=0
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 88 in store 7: Purchased=937, Sold=655, Available=282
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 89 in store 7: Purchased=2164, Sold=770, Available=1394
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 90 in store 7: Purchased=470, Sold=376, Available=94
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 126 in store 7: Purchased=25, Sold=0, Available=25
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 91 in store 7: Purchased=26, Sold=0, Available=26
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 92 in store 7: Purchased=30, Sold=29, Available=1
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 93 in store 7: Purchased=752, Sold=854, Available=0
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 94 in store 7: Purchased=764, Sold=685, Available=79
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 95 in store 7: Purchased=2263, Sold=622, Available=1641
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 96 in store 7: Purchased=18925, Sold=4335, Available=14590
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 134 in store 7: Purchased=604, Sold=69, Available=535
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 130 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 133 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 131 in store 7: Purchased=19, Sold=0, Available=19
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 97 in store 7: Purchased=6001, Sold=2364, Available=3637
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 98 in store 7: Purchased=442, Sold=44, Available=398
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 146 in store 7: Purchased=200, Sold=0, Available=200
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 99 in store 7: Purchased=2, Sold=0, Available=2
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 100 in store 7: Purchased=34587, Sold=30172, Available=4415
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 137 in store 7: Purchased=189, Sold=4, Available=185
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 101 in store 7: Purchased=107, Sold=34, Available=73
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 102 in store 7: Purchased=11299, Sold=8482, Available=2817
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 103 in store 7: Purchased=29811, Sold=23779, Available=6032
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 104 in store 7: Purchased=7500, Sold=809, Available=6691
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 142 in store 7: Purchased=36, Sold=0, Available=36
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 140 in store 7: Purchased=10, Sold=1, Available=9
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 105 in store 7: Purchased=358, Sold=213, Available=145
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 106 in store 7: Purchased=738, Sold=645, Available=93
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 125 in store 7: Purchased=253, Sold=0, Available=253
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 108 in store 7: Purchased=2503, Sold=2235, Available=268
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 109 in store 7: Purchased=2571, Sold=671, Available=1900
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 110 in store 7: Purchased=4761, Sold=1705, Available=3056
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 132 in store 7: Purchased=200, Sold=175, Available=25
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 111 in store 7: Purchased=406, Sold=89, Available=317
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 112 in store 7: Purchased=1900, Sold=1323, Available=577
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 113 in store 7: Purchased=2241, Sold=825, Available=1416
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 135 in store 7: Purchased=1990, Sold=654, Available=1336
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 114 in store 7: Purchased=922, Sold=45, Available=877
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 115 in store 7: Purchased=16812, Sold=17295, Available=0
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 116 in store 7: Purchased=247094, Sold=235683, Available=11411
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 107 in store 7: Purchased=1200, Sold=836, Available=364
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 117 in store 7: Purchased=9776, Sold=6085, Available=3691
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 118 in store 7: Purchased=24842, Sold=22205, Available=2637
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 144 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 129 in store 7: Purchased=1706, Sold=1560, Available=146
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 119 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 120 in store 7: Purchased=1605, Sold=615, Available=990
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 121 in store 7: Purchased=63, Sold=2, Available=61
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 122 in store 7: Purchased=688, Sold=207, Available=481
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 123 in store 7: Purchased=2020, Sold=1733, Available=287
+DEBUG - 2025-11-25 12:59:07 --> Stock calculation for product 124 in store 7: Purchased=3646, Sold=4469, Available=0
+DEBUG - 2025-11-25 12:59:07 --> Purchases view loaded - Store ID: 7, Is Admin: No, Products Count: 65
+INFO - 2025-11-25 12:59:07 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 12:59:07 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 12:59:07 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 12:59:07 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\products/purchases.php
+INFO - 2025-11-25 12:59:07 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 12:59:07 --> Final output sent to browser
+DEBUG - 2025-11-25 12:59:07 --> Total execution time: 0.2103
+INFO - 2025-11-25 12:59:07 --> Config Class Initialized
+INFO - 2025-11-25 12:59:07 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:59:07 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:59:07 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:59:07 --> URI Class Initialized
+INFO - 2025-11-25 12:59:07 --> Router Class Initialized
+INFO - 2025-11-25 12:59:07 --> Output Class Initialized
+INFO - 2025-11-25 12:59:07 --> Security Class Initialized
+DEBUG - 2025-11-25 12:59:07 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:59:07 --> Input Class Initialized
+INFO - 2025-11-25 12:59:07 --> Language Class Initialized
+INFO - 2025-11-25 12:59:07 --> Loader Class Initialized
+INFO - 2025-11-25 12:59:07 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:59:07 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:59:07 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:59:08 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:59:08 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:59:08 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:59:08 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:59:08 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:59:08 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:59:08 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:59:08 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:59:08 --> Model Class Initialized
+INFO - 2025-11-25 12:59:08 --> Model Class Initialized
+INFO - 2025-11-25 12:59:08 --> Model Class Initialized
+ERROR - 2025-11-25 12:59:08 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:59:08 --> Model Class Initialized
+INFO - 2025-11-25 12:59:08 --> Model Class Initialized
+INFO - 2025-11-25 12:59:08 --> Model Class Initialized
+INFO - 2025-11-25 12:59:08 --> Model Class Initialized
+DEBUG - 2025-11-25 12:59:08 --> getPurchasesData SQL: SELECT `purchases`.*, `products`.`name` as `product_name`, `products`.`unit`, `stores`.`name` as `store_name`, `users`.`username` as `created_by_name`
+FROM `purchases`
+JOIN `products` ON `products`.`id` = `purchases`.`product_id`
+JOIN `stores` ON `stores`.`id` = `purchases`.`store_id`
+LEFT JOIN `users` ON `users`.`id` = `purchases`.`user_id`
+WHERE `purchases`.`store_id` = '7'
+ORDER BY `purchases`.`purchase_date` DESC
+INFO - 2025-11-25 12:59:08 --> Final output sent to browser
+DEBUG - 2025-11-25 12:59:08 --> Total execution time: 0.0655
+INFO - 2025-11-25 12:59:36 --> Config Class Initialized
+INFO - 2025-11-25 12:59:36 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:59:36 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:59:36 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:59:36 --> URI Class Initialized
+INFO - 2025-11-25 12:59:36 --> Router Class Initialized
+INFO - 2025-11-25 12:59:36 --> Output Class Initialized
+INFO - 2025-11-25 12:59:36 --> Security Class Initialized
+DEBUG - 2025-11-25 12:59:36 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:59:36 --> Input Class Initialized
+INFO - 2025-11-25 12:59:36 --> Language Class Initialized
+INFO - 2025-11-25 12:59:36 --> Loader Class Initialized
+INFO - 2025-11-25 12:59:36 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:59:36 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:59:36 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:59:36 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:59:36 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:59:36 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:59:36 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:59:36 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:59:36 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:59:36 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:59:36 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:59:36 --> Model Class Initialized
+INFO - 2025-11-25 12:59:36 --> Model Class Initialized
+INFO - 2025-11-25 12:59:36 --> Model Class Initialized
+ERROR - 2025-11-25 12:59:36 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:59:36 --> Model Class Initialized
+INFO - 2025-11-25 12:59:36 --> Model Class Initialized
+INFO - 2025-11-25 12:59:36 --> Model Class Initialized
+INFO - 2025-11-25 12:59:36 --> Model Class Initialized
+INFO - 2025-11-25 12:59:36 --> Final output sent to browser
+DEBUG - 2025-11-25 12:59:36 --> Total execution time: 0.0880
+INFO - 2025-11-25 12:59:37 --> Config Class Initialized
+INFO - 2025-11-25 12:59:37 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:59:37 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:59:37 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:59:37 --> URI Class Initialized
+INFO - 2025-11-25 12:59:37 --> Router Class Initialized
+INFO - 2025-11-25 12:59:37 --> Output Class Initialized
+INFO - 2025-11-25 12:59:37 --> Security Class Initialized
+DEBUG - 2025-11-25 12:59:37 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:59:37 --> Input Class Initialized
+INFO - 2025-11-25 12:59:37 --> Language Class Initialized
+INFO - 2025-11-25 12:59:37 --> Loader Class Initialized
+INFO - 2025-11-25 12:59:37 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:59:37 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:59:37 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:59:37 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:59:37 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:59:37 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:59:37 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:59:37 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:59:37 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:59:37 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:59:37 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:59:37 --> Model Class Initialized
+INFO - 2025-11-25 12:59:37 --> Model Class Initialized
+INFO - 2025-11-25 12:59:37 --> Model Class Initialized
+ERROR - 2025-11-25 12:59:37 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:59:37 --> Model Class Initialized
+INFO - 2025-11-25 12:59:37 --> Model Class Initialized
+INFO - 2025-11-25 12:59:37 --> Model Class Initialized
+INFO - 2025-11-25 12:59:37 --> Model Class Initialized
+DEBUG - 2025-11-25 12:59:37 --> getPurchasesData SQL: SELECT `purchases`.*, `products`.`name` as `product_name`, `products`.`unit`, `stores`.`name` as `store_name`, `users`.`username` as `created_by_name`
+FROM `purchases`
+JOIN `products` ON `products`.`id` = `purchases`.`product_id`
+JOIN `stores` ON `stores`.`id` = `purchases`.`store_id`
+LEFT JOIN `users` ON `users`.`id` = `purchases`.`user_id`
+WHERE `purchases`.`store_id` = '7'
+ORDER BY `purchases`.`purchase_date` DESC
+INFO - 2025-11-25 12:59:37 --> Final output sent to browser
+DEBUG - 2025-11-25 12:59:37 --> Total execution time: 0.0515
+INFO - 2025-11-25 12:59:39 --> Config Class Initialized
+INFO - 2025-11-25 12:59:39 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:59:39 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:59:39 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:59:39 --> URI Class Initialized
+INFO - 2025-11-25 12:59:39 --> Router Class Initialized
+INFO - 2025-11-25 12:59:39 --> Output Class Initialized
+INFO - 2025-11-25 12:59:39 --> Security Class Initialized
+DEBUG - 2025-11-25 12:59:39 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:59:39 --> Input Class Initialized
+INFO - 2025-11-25 12:59:39 --> Language Class Initialized
+INFO - 2025-11-25 12:59:39 --> Loader Class Initialized
+INFO - 2025-11-25 12:59:39 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:59:39 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:59:39 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:59:39 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:59:39 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:59:39 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:59:39 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:59:39 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:59:39 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:59:39 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:59:39 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:59:39 --> Model Class Initialized
+INFO - 2025-11-25 12:59:39 --> Model Class Initialized
+INFO - 2025-11-25 12:59:39 --> Model Class Initialized
+ERROR - 2025-11-25 12:59:39 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:59:39 --> Model Class Initialized
+INFO - 2025-11-25 12:59:39 --> Model Class Initialized
+INFO - 2025-11-25 12:59:39 --> Model Class Initialized
+INFO - 2025-11-25 12:59:39 --> Model Class Initialized
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 78 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 138 in store 7: Purchased=16, Sold=0, Available=16
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 79 in store 7: Purchased=989, Sold=23, Available=966
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 80 in store 7: Purchased=205, Sold=60, Available=145
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 81 in store 7: Purchased=2046, Sold=990, Available=1056
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 145 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 139 in store 7: Purchased=2, Sold=1, Available=1
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 82 in store 7: Purchased=3500, Sold=8699, Available=0
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 83 in store 7: Purchased=0, Sold=2939, Available=0
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 84 in store 7: Purchased=189, Sold=17, Available=172
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 85 in store 7: Purchased=137, Sold=3, Available=134
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 127 in store 7: Purchased=2000, Sold=380, Available=1620
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 86 in store 7: Purchased=384, Sold=362, Available=22
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 87 in store 7: Purchased=588, Sold=650, Available=0
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 88 in store 7: Purchased=937, Sold=655, Available=282
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 89 in store 7: Purchased=2164, Sold=770, Available=1394
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 90 in store 7: Purchased=470, Sold=376, Available=94
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 126 in store 7: Purchased=25, Sold=0, Available=25
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 91 in store 7: Purchased=26, Sold=0, Available=26
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 92 in store 7: Purchased=30, Sold=29, Available=1
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 93 in store 7: Purchased=752, Sold=854, Available=0
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 94 in store 7: Purchased=764, Sold=685, Available=79
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 95 in store 7: Purchased=2263, Sold=622, Available=1641
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 96 in store 7: Purchased=18925, Sold=4335, Available=14590
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 134 in store 7: Purchased=604, Sold=69, Available=535
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 130 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 133 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 131 in store 7: Purchased=19, Sold=0, Available=19
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 97 in store 7: Purchased=6001, Sold=2364, Available=3637
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 98 in store 7: Purchased=442, Sold=44, Available=398
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 146 in store 7: Purchased=200, Sold=0, Available=200
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 99 in store 7: Purchased=2, Sold=0, Available=2
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 100 in store 7: Purchased=34587, Sold=30172, Available=4415
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 137 in store 7: Purchased=189, Sold=4, Available=185
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 101 in store 7: Purchased=107, Sold=34, Available=73
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 102 in store 7: Purchased=11299, Sold=8482, Available=2817
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 103 in store 7: Purchased=29811, Sold=23779, Available=6032
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 104 in store 7: Purchased=7500, Sold=809, Available=6691
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 142 in store 7: Purchased=36, Sold=0, Available=36
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 140 in store 7: Purchased=10, Sold=1, Available=9
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 105 in store 7: Purchased=358, Sold=213, Available=145
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 106 in store 7: Purchased=738, Sold=645, Available=93
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 125 in store 7: Purchased=253, Sold=0, Available=253
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 108 in store 7: Purchased=2503, Sold=2235, Available=268
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 109 in store 7: Purchased=2571, Sold=671, Available=1900
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 110 in store 7: Purchased=4761, Sold=1705, Available=3056
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 132 in store 7: Purchased=200, Sold=175, Available=25
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 111 in store 7: Purchased=406, Sold=89, Available=317
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 112 in store 7: Purchased=1900, Sold=1323, Available=577
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 113 in store 7: Purchased=2241, Sold=825, Available=1416
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 135 in store 7: Purchased=1990, Sold=654, Available=1336
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 114 in store 7: Purchased=922, Sold=45, Available=877
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 115 in store 7: Purchased=16812, Sold=17295, Available=0
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 116 in store 7: Purchased=247094, Sold=235683, Available=11411
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 107 in store 7: Purchased=1200, Sold=836, Available=364
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 117 in store 7: Purchased=9776, Sold=6085, Available=3691
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 118 in store 7: Purchased=24842, Sold=22205, Available=2637
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 144 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 129 in store 7: Purchased=1706, Sold=1560, Available=146
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 119 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 120 in store 7: Purchased=1605, Sold=615, Available=990
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 121 in store 7: Purchased=63, Sold=2, Available=61
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 122 in store 7: Purchased=688, Sold=207, Available=481
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 123 in store 7: Purchased=2020, Sold=1733, Available=287
+DEBUG - 2025-11-25 12:59:39 --> Stock calculation for product 124 in store 7: Purchased=3646, Sold=4469, Available=0
+DEBUG - 2025-11-25 12:59:39 --> Purchases view loaded - Store ID: 7, Is Admin: No, Products Count: 65
+INFO - 2025-11-25 12:59:39 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 12:59:39 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 12:59:39 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 12:59:39 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\products/purchases.php
+INFO - 2025-11-25 12:59:39 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 12:59:39 --> Final output sent to browser
+DEBUG - 2025-11-25 12:59:39 --> Total execution time: 0.2039
+INFO - 2025-11-25 12:59:39 --> Config Class Initialized
+INFO - 2025-11-25 12:59:39 --> Hooks Class Initialized
+DEBUG - 2025-11-25 12:59:39 --> UTF-8 Support Enabled
+INFO - 2025-11-25 12:59:39 --> Utf8 Class Initialized
+INFO - 2025-11-25 12:59:39 --> URI Class Initialized
+INFO - 2025-11-25 12:59:39 --> Router Class Initialized
+INFO - 2025-11-25 12:59:39 --> Output Class Initialized
+INFO - 2025-11-25 12:59:39 --> Security Class Initialized
+DEBUG - 2025-11-25 12:59:39 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 12:59:39 --> Input Class Initialized
+INFO - 2025-11-25 12:59:39 --> Language Class Initialized
+INFO - 2025-11-25 12:59:39 --> Loader Class Initialized
+INFO - 2025-11-25 12:59:39 --> Helper loaded: url_helper
+INFO - 2025-11-25 12:59:39 --> Helper loaded: form_helper
+INFO - 2025-11-25 12:59:39 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 12:59:39 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 12:59:39 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 12:59:39 --> Form Validation Class Initialized
+INFO - 2025-11-25 12:59:39 --> Controller Class Initialized
+DEBUG - 2025-11-25 12:59:39 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 12:59:39 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 12:59:39 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 12:59:39 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 12:59:39 --> Model Class Initialized
+INFO - 2025-11-25 12:59:39 --> Model Class Initialized
+INFO - 2025-11-25 12:59:39 --> Model Class Initialized
+ERROR - 2025-11-25 12:59:39 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 12:59:39 --> Model Class Initialized
+INFO - 2025-11-25 12:59:39 --> Model Class Initialized
+INFO - 2025-11-25 12:59:39 --> Model Class Initialized
+INFO - 2025-11-25 12:59:39 --> Model Class Initialized
+DEBUG - 2025-11-25 12:59:39 --> getPurchasesData SQL: SELECT `purchases`.*, `products`.`name` as `product_name`, `products`.`unit`, `stores`.`name` as `store_name`, `users`.`username` as `created_by_name`
+FROM `purchases`
+JOIN `products` ON `products`.`id` = `purchases`.`product_id`
+JOIN `stores` ON `stores`.`id` = `purchases`.`store_id`
+LEFT JOIN `users` ON `users`.`id` = `purchases`.`user_id`
+WHERE `purchases`.`store_id` = '7'
+ORDER BY `purchases`.`purchase_date` DESC
+INFO - 2025-11-25 12:59:39 --> Final output sent to browser
+DEBUG - 2025-11-25 12:59:39 --> Total execution time: 0.0573
+INFO - 2025-11-25 13:00:08 --> Config Class Initialized
+INFO - 2025-11-25 13:00:08 --> Hooks Class Initialized
+DEBUG - 2025-11-25 13:00:08 --> UTF-8 Support Enabled
+INFO - 2025-11-25 13:00:08 --> Utf8 Class Initialized
+INFO - 2025-11-25 13:00:08 --> URI Class Initialized
+INFO - 2025-11-25 13:00:08 --> Router Class Initialized
+INFO - 2025-11-25 13:00:08 --> Output Class Initialized
+INFO - 2025-11-25 13:00:08 --> Security Class Initialized
+DEBUG - 2025-11-25 13:00:08 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 13:00:08 --> Input Class Initialized
+INFO - 2025-11-25 13:00:08 --> Language Class Initialized
+INFO - 2025-11-25 13:00:08 --> Loader Class Initialized
+INFO - 2025-11-25 13:00:08 --> Helper loaded: url_helper
+INFO - 2025-11-25 13:00:08 --> Helper loaded: form_helper
+INFO - 2025-11-25 13:00:08 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 13:00:08 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 13:00:08 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 13:00:08 --> Form Validation Class Initialized
+INFO - 2025-11-25 13:00:08 --> Controller Class Initialized
+DEBUG - 2025-11-25 13:00:08 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 13:00:08 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 13:00:08 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 13:00:08 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 13:00:08 --> Model Class Initialized
+INFO - 2025-11-25 13:00:08 --> Model Class Initialized
+INFO - 2025-11-25 13:00:08 --> Model Class Initialized
+ERROR - 2025-11-25 13:00:08 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 13:00:08 --> Model Class Initialized
+INFO - 2025-11-25 13:00:08 --> Model Class Initialized
+INFO - 2025-11-25 13:00:08 --> Model Class Initialized
+INFO - 2025-11-25 13:00:08 --> Model Class Initialized
+INFO - 2025-11-25 13:00:08 --> Final output sent to browser
+DEBUG - 2025-11-25 13:00:08 --> Total execution time: 0.0854
+INFO - 2025-11-25 13:00:40 --> Config Class Initialized
+INFO - 2025-11-25 13:00:40 --> Hooks Class Initialized
+DEBUG - 2025-11-25 13:00:40 --> UTF-8 Support Enabled
+INFO - 2025-11-25 13:00:40 --> Utf8 Class Initialized
+INFO - 2025-11-25 13:00:40 --> URI Class Initialized
+INFO - 2025-11-25 13:00:40 --> Router Class Initialized
+INFO - 2025-11-25 13:00:40 --> Output Class Initialized
+INFO - 2025-11-25 13:00:40 --> Security Class Initialized
+DEBUG - 2025-11-25 13:00:40 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 13:00:40 --> Input Class Initialized
+INFO - 2025-11-25 13:00:40 --> Language Class Initialized
+INFO - 2025-11-25 13:00:40 --> Loader Class Initialized
+INFO - 2025-11-25 13:00:40 --> Helper loaded: url_helper
+INFO - 2025-11-25 13:00:40 --> Helper loaded: form_helper
+INFO - 2025-11-25 13:00:40 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 13:00:40 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 13:00:40 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 13:00:40 --> Form Validation Class Initialized
+INFO - 2025-11-25 13:00:40 --> Controller Class Initialized
+DEBUG - 2025-11-25 13:00:40 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 13:00:40 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 13:00:40 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 13:00:40 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 13:00:40 --> Model Class Initialized
+INFO - 2025-11-25 13:00:40 --> Model Class Initialized
+INFO - 2025-11-25 13:00:40 --> Model Class Initialized
+ERROR - 2025-11-25 13:00:40 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 13:00:40 --> Model Class Initialized
+INFO - 2025-11-25 13:00:40 --> Model Class Initialized
+INFO - 2025-11-25 13:00:40 --> Model Class Initialized
+INFO - 2025-11-25 13:00:40 --> Model Class Initialized
+DEBUG - 2025-11-25 13:00:40 --> getPurchasesData SQL: SELECT `purchases`.*, `products`.`name` as `product_name`, `products`.`unit`, `stores`.`name` as `store_name`, `users`.`username` as `created_by_name`
+FROM `purchases`
+JOIN `products` ON `products`.`id` = `purchases`.`product_id`
+JOIN `stores` ON `stores`.`id` = `purchases`.`store_id`
+LEFT JOIN `users` ON `users`.`id` = `purchases`.`user_id`
+WHERE `purchases`.`store_id` = '7'
+ORDER BY `purchases`.`purchase_date` DESC
+INFO - 2025-11-25 13:00:40 --> Final output sent to browser
+DEBUG - 2025-11-25 13:00:40 --> Total execution time: 0.0562
+INFO - 2025-11-25 13:01:03 --> Config Class Initialized
+INFO - 2025-11-25 13:01:03 --> Hooks Class Initialized
+DEBUG - 2025-11-25 13:01:03 --> UTF-8 Support Enabled
+INFO - 2025-11-25 13:01:03 --> Utf8 Class Initialized
+INFO - 2025-11-25 13:01:03 --> URI Class Initialized
+INFO - 2025-11-25 13:01:03 --> Router Class Initialized
+INFO - 2025-11-25 13:01:03 --> Output Class Initialized
+INFO - 2025-11-25 13:01:03 --> Security Class Initialized
+DEBUG - 2025-11-25 13:01:03 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 13:01:03 --> Input Class Initialized
+INFO - 2025-11-25 13:01:03 --> Language Class Initialized
+INFO - 2025-11-25 13:01:03 --> Loader Class Initialized
+INFO - 2025-11-25 13:01:03 --> Helper loaded: url_helper
+INFO - 2025-11-25 13:01:03 --> Helper loaded: form_helper
+INFO - 2025-11-25 13:01:03 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 13:01:03 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 13:01:03 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 13:01:03 --> Form Validation Class Initialized
+INFO - 2025-11-25 13:01:03 --> Controller Class Initialized
+DEBUG - 2025-11-25 13:01:03 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 13:01:03 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 13:01:03 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 13:01:03 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 13:01:03 --> Model Class Initialized
+INFO - 2025-11-25 13:01:03 --> Model Class Initialized
+INFO - 2025-11-25 13:01:03 --> Model Class Initialized
+ERROR - 2025-11-25 13:01:03 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 13:01:03 --> Model Class Initialized
+INFO - 2025-11-25 13:01:03 --> Model Class Initialized
+INFO - 2025-11-25 13:01:03 --> Model Class Initialized
+INFO - 2025-11-25 13:01:03 --> Model Class Initialized
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 78 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 138 in store 7: Purchased=16, Sold=0, Available=16
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 79 in store 7: Purchased=989, Sold=23, Available=966
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 80 in store 7: Purchased=205, Sold=60, Available=145
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 81 in store 7: Purchased=2046, Sold=990, Available=1056
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 145 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 139 in store 7: Purchased=2, Sold=1, Available=1
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 82 in store 7: Purchased=3500, Sold=8699, Available=0
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 83 in store 7: Purchased=0, Sold=2939, Available=0
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 84 in store 7: Purchased=189, Sold=17, Available=172
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 85 in store 7: Purchased=137, Sold=3, Available=134
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 127 in store 7: Purchased=2000, Sold=380, Available=1620
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 86 in store 7: Purchased=384, Sold=362, Available=22
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 87 in store 7: Purchased=588, Sold=650, Available=0
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 88 in store 7: Purchased=937, Sold=655, Available=282
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 89 in store 7: Purchased=2164, Sold=770, Available=1394
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 90 in store 7: Purchased=470, Sold=376, Available=94
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 126 in store 7: Purchased=25, Sold=0, Available=25
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 91 in store 7: Purchased=26, Sold=0, Available=26
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 92 in store 7: Purchased=30, Sold=29, Available=1
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 93 in store 7: Purchased=752, Sold=854, Available=0
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 94 in store 7: Purchased=764, Sold=685, Available=79
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 95 in store 7: Purchased=2263, Sold=622, Available=1641
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 96 in store 7: Purchased=18925, Sold=4335, Available=14590
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 134 in store 7: Purchased=604, Sold=69, Available=535
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 130 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 133 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 131 in store 7: Purchased=19, Sold=0, Available=19
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 97 in store 7: Purchased=6001, Sold=2364, Available=3637
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 98 in store 7: Purchased=442, Sold=44, Available=398
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 146 in store 7: Purchased=200, Sold=0, Available=200
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 99 in store 7: Purchased=2, Sold=0, Available=2
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 100 in store 7: Purchased=34587, Sold=30172, Available=4415
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 137 in store 7: Purchased=189, Sold=4, Available=185
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 101 in store 7: Purchased=107, Sold=34, Available=73
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 102 in store 7: Purchased=11299, Sold=8482, Available=2817
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 103 in store 7: Purchased=29811, Sold=23779, Available=6032
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 104 in store 7: Purchased=7500, Sold=809, Available=6691
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 142 in store 7: Purchased=36, Sold=0, Available=36
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 140 in store 7: Purchased=10, Sold=1, Available=9
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 105 in store 7: Purchased=358, Sold=213, Available=145
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 106 in store 7: Purchased=738, Sold=645, Available=93
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 125 in store 7: Purchased=253, Sold=0, Available=253
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 108 in store 7: Purchased=2503, Sold=2235, Available=268
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 109 in store 7: Purchased=2571, Sold=671, Available=1900
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 110 in store 7: Purchased=4761, Sold=1705, Available=3056
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 132 in store 7: Purchased=200, Sold=175, Available=25
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 111 in store 7: Purchased=406, Sold=89, Available=317
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 112 in store 7: Purchased=1900, Sold=1323, Available=577
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 113 in store 7: Purchased=2241, Sold=825, Available=1416
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 135 in store 7: Purchased=1990, Sold=654, Available=1336
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 114 in store 7: Purchased=922, Sold=45, Available=877
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 115 in store 7: Purchased=16812, Sold=17295, Available=0
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 116 in store 7: Purchased=247094, Sold=235683, Available=11411
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 107 in store 7: Purchased=1200, Sold=836, Available=364
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 117 in store 7: Purchased=9776, Sold=6085, Available=3691
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 118 in store 7: Purchased=24842, Sold=22205, Available=2637
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 144 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 129 in store 7: Purchased=1706, Sold=1560, Available=146
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 119 in store 7: Purchased=0, Sold=0, Available=0
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 120 in store 7: Purchased=1605, Sold=615, Available=990
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 121 in store 7: Purchased=63, Sold=2, Available=61
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 122 in store 7: Purchased=688, Sold=207, Available=481
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 123 in store 7: Purchased=2020, Sold=1733, Available=287
+DEBUG - 2025-11-25 13:01:03 --> Stock calculation for product 124 in store 7: Purchased=3646, Sold=4469, Available=0
+DEBUG - 2025-11-25 13:01:03 --> Purchases view loaded - Store ID: 7, Is Admin: No, Products Count: 65
+INFO - 2025-11-25 13:01:03 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 13:01:03 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 13:01:03 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 13:01:03 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\products/purchases.php
+INFO - 2025-11-25 13:01:03 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 13:01:03 --> Final output sent to browser
+DEBUG - 2025-11-25 13:01:03 --> Total execution time: 0.2147
+INFO - 2025-11-25 13:01:04 --> Config Class Initialized
+INFO - 2025-11-25 13:01:04 --> Hooks Class Initialized
+DEBUG - 2025-11-25 13:01:04 --> UTF-8 Support Enabled
+INFO - 2025-11-25 13:01:04 --> Utf8 Class Initialized
+INFO - 2025-11-25 13:01:04 --> URI Class Initialized
+INFO - 2025-11-25 13:01:04 --> Router Class Initialized
+INFO - 2025-11-25 13:01:04 --> Output Class Initialized
+INFO - 2025-11-25 13:01:04 --> Security Class Initialized
+DEBUG - 2025-11-25 13:01:04 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 13:01:04 --> Input Class Initialized
+INFO - 2025-11-25 13:01:04 --> Language Class Initialized
+INFO - 2025-11-25 13:01:04 --> Loader Class Initialized
+INFO - 2025-11-25 13:01:04 --> Helper loaded: url_helper
+INFO - 2025-11-25 13:01:04 --> Helper loaded: form_helper
+INFO - 2025-11-25 13:01:04 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 13:01:04 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 13:01:04 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 13:01:04 --> Form Validation Class Initialized
+INFO - 2025-11-25 13:01:04 --> Controller Class Initialized
+DEBUG - 2025-11-25 13:01:04 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 13:01:04 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 13:01:04 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 13:01:04 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 13:01:04 --> Model Class Initialized
+INFO - 2025-11-25 13:01:04 --> Model Class Initialized
+INFO - 2025-11-25 13:01:04 --> Model Class Initialized
+ERROR - 2025-11-25 13:01:04 --> Purchases model not found. Expected Model_purchases.php or model_purchases.php
+INFO - 2025-11-25 13:01:04 --> Model Class Initialized
+INFO - 2025-11-25 13:01:04 --> Model Class Initialized
+INFO - 2025-11-25 13:01:04 --> Model Class Initialized
+INFO - 2025-11-25 13:01:04 --> Model Class Initialized
+DEBUG - 2025-11-25 13:01:04 --> getPurchasesData SQL: SELECT `purchases`.*, `products`.`name` as `product_name`, `products`.`unit`, `stores`.`name` as `store_name`, `users`.`username` as `created_by_name`
+FROM `purchases`
+JOIN `products` ON `products`.`id` = `purchases`.`product_id`
+JOIN `stores` ON `stores`.`id` = `purchases`.`store_id`
+LEFT JOIN `users` ON `users`.`id` = `purchases`.`user_id`
+WHERE `purchases`.`store_id` = '7'
+ORDER BY `purchases`.`purchase_date` DESC
+INFO - 2025-11-25 13:01:04 --> Final output sent to browser
+DEBUG - 2025-11-25 13:01:04 --> Total execution time: 0.0611
+INFO - 2025-11-25 13:01:11 --> Config Class Initialized
+INFO - 2025-11-25 13:01:11 --> Hooks Class Initialized
+DEBUG - 2025-11-25 13:01:11 --> UTF-8 Support Enabled
+INFO - 2025-11-25 13:01:11 --> Utf8 Class Initialized
+INFO - 2025-11-25 13:01:11 --> URI Class Initialized
+INFO - 2025-11-25 13:01:11 --> Router Class Initialized
+INFO - 2025-11-25 13:01:11 --> Output Class Initialized
+INFO - 2025-11-25 13:01:11 --> Security Class Initialized
+DEBUG - 2025-11-25 13:01:11 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 13:01:11 --> Input Class Initialized
+INFO - 2025-11-25 13:01:11 --> Language Class Initialized
+INFO - 2025-11-25 13:01:11 --> Loader Class Initialized
+INFO - 2025-11-25 13:01:11 --> Helper loaded: url_helper
+INFO - 2025-11-25 13:01:11 --> Helper loaded: form_helper
+INFO - 2025-11-25 13:01:11 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 13:01:11 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 13:01:11 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 13:01:11 --> Form Validation Class Initialized
+INFO - 2025-11-25 13:01:11 --> Controller Class Initialized
+DEBUG - 2025-11-25 13:01:11 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 13:01:11 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 13:01:11 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 13:01:11 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 13:01:11 --> Model Class Initialized
+INFO - 2025-11-25 13:01:11 --> Model Class Initialized
+INFO - 2025-11-25 13:01:11 --> Model Class Initialized
+INFO - 2025-11-25 13:01:11 --> Model Class Initialized
+INFO - 2025-11-25 13:01:12 --> Model Class Initialized
+INFO - 2025-11-25 13:01:12 --> Model Class Initialized
+DEBUG - 2025-11-25 13:01:12 --> Controller_Reports initialized
+INFO - 2025-11-25 13:01:12 --> Model Class Initialized
+INFO - 2025-11-25 13:01:12 --> Model Class Initialized
+DEBUG - 2025-11-25 13:01:12 --> === Stock Report Debug ===
+DEBUG - 2025-11-25 13:01:12 --> Filters being applied: {"category":null,"warehouse":null,"stock_status":null,"limit":10,"offset":0}
+DEBUG - 2025-11-25 13:01:12 --> Calling getStockReport with params: {"limit":10,"offset":0,"filters":{"category":null,"warehouse":null,"stock_status":null,"limit":10,"offset":0}}
+DEBUG - 2025-11-25 13:01:12 --> Report data retrieved: {"has_data":true,"record_count":10,"total_items":65,"aggregates":{"total_items":0,"total_value":0,"total_purchase_value":0,"low_stock_items":0,"out_of_stock_items":0}}
+DEBUG - 2025-11-25 13:01:12 --> Data being sent to view: {"stock_count":10,"aggregate_keys":["total_items","total_value","total_purchase_value","low_stock_items","out_of_stock_items"]}
+INFO - 2025-11-25 13:01:12 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header.php
+INFO - 2025-11-25 13:01:12 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/header_menu.php
+INFO - 2025-11-25 13:01:12 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/side_menubar.php
+INFO - 2025-11-25 13:01:12 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\reporting/stock_report.php
+INFO - 2025-11-25 13:01:12 --> File loaded: C:\xampp\htdocs\Inventory_CI\application\views\templates/footer.php
+INFO - 2025-11-25 13:01:12 --> Final output sent to browser
+DEBUG - 2025-11-25 13:01:12 --> Total execution time: 0.4375
+INFO - 2025-11-25 13:01:12 --> Config Class Initialized
+INFO - 2025-11-25 13:01:12 --> Hooks Class Initialized
+DEBUG - 2025-11-25 13:01:12 --> UTF-8 Support Enabled
+INFO - 2025-11-25 13:01:12 --> Utf8 Class Initialized
+INFO - 2025-11-25 13:01:12 --> URI Class Initialized
+INFO - 2025-11-25 13:01:12 --> Router Class Initialized
+INFO - 2025-11-25 13:01:12 --> Output Class Initialized
+INFO - 2025-11-25 13:01:12 --> Security Class Initialized
+DEBUG - 2025-11-25 13:01:12 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 13:01:12 --> Input Class Initialized
+INFO - 2025-11-25 13:01:12 --> Language Class Initialized
+INFO - 2025-11-25 13:01:12 --> Loader Class Initialized
+INFO - 2025-11-25 13:01:12 --> Helper loaded: url_helper
+INFO - 2025-11-25 13:01:12 --> Helper loaded: form_helper
+INFO - 2025-11-25 13:01:12 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 13:01:12 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 13:01:12 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 13:01:12 --> Form Validation Class Initialized
+INFO - 2025-11-25 13:01:12 --> Controller Class Initialized
+DEBUG - 2025-11-25 13:01:12 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 13:01:12 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 13:01:12 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 13:01:12 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 13:01:12 --> Model Class Initialized
+INFO - 2025-11-25 13:01:12 --> Model Class Initialized
+INFO - 2025-11-25 13:01:12 --> Model Class Initialized
+INFO - 2025-11-25 13:01:12 --> Model Class Initialized
+INFO - 2025-11-25 13:01:12 --> Model Class Initialized
+INFO - 2025-11-25 13:01:12 --> Model Class Initialized
+DEBUG - 2025-11-25 13:01:12 --> Controller_Reports initialized
+DEBUG - 2025-11-25 13:01:12 --> Stock Report Parameters: {"draw":1,"start":0,"length":25,"filters":{"date_from":"","date_to":"","category":"","warehouse":"","stock_status":"","search":""}}
+DEBUG - 2025-11-25 13:01:12 --> Stock Report Response Structure: ["draw","recordsTotal","recordsFiltered","data","totalPurchaseValue","totalSalesValue","totalStockValue","lowStockCount"]
+INFO - 2025-11-25 13:01:12 --> Final output sent to browser
+DEBUG - 2025-11-25 13:01:12 --> Total execution time: 0.1315
+INFO - 2025-11-25 13:01:24 --> Config Class Initialized
+INFO - 2025-11-25 13:01:24 --> Hooks Class Initialized
+DEBUG - 2025-11-25 13:01:24 --> UTF-8 Support Enabled
+INFO - 2025-11-25 13:01:24 --> Utf8 Class Initialized
+INFO - 2025-11-25 13:01:24 --> URI Class Initialized
+INFO - 2025-11-25 13:01:24 --> Router Class Initialized
+INFO - 2025-11-25 13:01:24 --> Output Class Initialized
+INFO - 2025-11-25 13:01:24 --> Security Class Initialized
+DEBUG - 2025-11-25 13:01:24 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 13:01:24 --> Input Class Initialized
+INFO - 2025-11-25 13:01:24 --> Language Class Initialized
+INFO - 2025-11-25 13:01:24 --> Loader Class Initialized
+INFO - 2025-11-25 13:01:24 --> Helper loaded: url_helper
+INFO - 2025-11-25 13:01:24 --> Helper loaded: form_helper
+INFO - 2025-11-25 13:01:24 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 13:01:24 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 13:01:24 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 13:01:24 --> Form Validation Class Initialized
+INFO - 2025-11-25 13:01:24 --> Controller Class Initialized
+DEBUG - 2025-11-25 13:01:24 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 13:01:24 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 13:01:24 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 13:01:24 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 13:01:24 --> Model Class Initialized
+INFO - 2025-11-25 13:01:24 --> Model Class Initialized
+INFO - 2025-11-25 13:01:24 --> Model Class Initialized
+INFO - 2025-11-25 13:01:24 --> Model Class Initialized
+INFO - 2025-11-25 13:01:24 --> Model Class Initialized
+INFO - 2025-11-25 13:01:24 --> Model Class Initialized
+DEBUG - 2025-11-25 13:01:24 --> Controller_Reports initialized
+DEBUG - 2025-11-25 13:01:24 --> Stock Report Parameters: {"draw":2,"start":0,"length":25,"filters":{"date_from":"2025-11-24","date_to":"2025-11-24","category":"","warehouse":"1","stock_status":"","search":""}}
+DEBUG - 2025-11-25 13:01:24 --> Stock Report Response Structure: ["draw","recordsTotal","recordsFiltered","data","totalPurchaseValue","totalSalesValue","totalStockValue","lowStockCount"]
+INFO - 2025-11-25 13:01:24 --> Final output sent to browser
+DEBUG - 2025-11-25 13:01:24 --> Total execution time: 0.0586
+INFO - 2025-11-25 13:01:31 --> Config Class Initialized
+INFO - 2025-11-25 13:01:31 --> Hooks Class Initialized
+DEBUG - 2025-11-25 13:01:31 --> UTF-8 Support Enabled
+INFO - 2025-11-25 13:01:31 --> Utf8 Class Initialized
+INFO - 2025-11-25 13:01:31 --> URI Class Initialized
+INFO - 2025-11-25 13:01:31 --> Router Class Initialized
+INFO - 2025-11-25 13:01:31 --> Output Class Initialized
+INFO - 2025-11-25 13:01:31 --> Security Class Initialized
+DEBUG - 2025-11-25 13:01:31 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-25 13:01:31 --> Input Class Initialized
+INFO - 2025-11-25 13:01:31 --> Language Class Initialized
+INFO - 2025-11-25 13:01:31 --> Loader Class Initialized
+INFO - 2025-11-25 13:01:31 --> Helper loaded: url_helper
+INFO - 2025-11-25 13:01:31 --> Helper loaded: form_helper
+INFO - 2025-11-25 13:01:31 --> Database Driver Class Initialized
+DEBUG - 2025-11-25 13:01:31 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-25 13:01:31 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-25 13:01:31 --> Form Validation Class Initialized
+INFO - 2025-11-25 13:01:31 --> Controller Class Initialized
+DEBUG - 2025-11-25 13:01:31 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2025-11-25 13:01:31 --> MY_Controller - Role: administrator
+DEBUG - 2025-11-25 13:01:31 --> MY_Controller - Is Admin: true
+DEBUG - 2025-11-25 13:01:31 --> MY_Controller - Permissions: Array
+(
+)
+
+INFO - 2025-11-25 13:01:31 --> Model Class Initialized
+INFO - 2025-11-25 13:01:31 --> Model Class Initialized
+INFO - 2025-11-25 13:01:31 --> Model Class Initialized
+INFO - 2025-11-25 13:01:31 --> Model Class Initialized
+INFO - 2025-11-25 13:01:31 --> Model Class Initialized
+INFO - 2025-11-25 13:01:31 --> Model Class Initialized
+DEBUG - 2025-11-25 13:01:31 --> Controller_Reports initialized
+DEBUG - 2025-11-25 13:01:31 --> Stock Report Parameters: {"draw":3,"start":0,"length":100,"filters":{"date_from":"2025-11-24","date_to":"2025-11-24","category":"","warehouse":"1","stock_status":"","search":""}}
+DEBUG - 2025-11-25 13:01:31 --> Stock Report Response Structure: ["draw","recordsTotal","recordsFiltered","data","totalPurchaseValue","totalSalesValue","totalStockValue","lowStockCount"]
+INFO - 2025-11-25 13:01:31 --> Final output sent to browser
+DEBUG - 2025-11-25 13:01:31 --> Total execution time: 0.0584

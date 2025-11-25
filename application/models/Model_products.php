@@ -356,44 +356,42 @@ class Model_products extends CI_Model {
     public function createPurchase($data)
     {
         try {
-            // Validate required fields (supplier info optional)
-            $required_fields = ['product_id', 'qty', 'price'];
-            foreach ($required_fields as $field) {
-                if (!isset($data[$field]) || $data[$field] === '') {
-                    throw new Exception("Missing required field: {$field}");
-                }
-            }
-
-            $insert = [
-                'product_id'    => $data['product_id'],
-                'supplier'      => $data['supplier'] ?? '',
-                'supplier_no'   => $data['supplier_no'] ?? '',
-                'price'         => (float)($data['price'] ?? 0),
-                'unit'          => $data['unit'] ?? '',
-                'qty'           => (float)($data['qty'] ?? 0),
-                'total_amount'  => isset($data['total_amount']) ? (float)$data['total_amount'] : ((float)($data['price'] ?? 0) * (float)($data['qty'] ?? 0)),
-                'status'        => $data['status'] ?? 'Unpaid',
-                'amount_paid'   => isset($data['amount_paid']) ? (float)$data['amount_paid'] : 0,
-                'purchase_date' => $data['purchase_date'] ?? date('Y-m-d H:i:s'),
-                'store_id'      => $data['store_id'] ?? $this->session->userdata('store_id') ?? NULL,
-                // use user_id column (existing code expects purchases.user_id elsewhere)
-                'user_id'       => $data['user_id'] ?? $this->session->userdata('id') ?? NULL
-            ];
-
+            // If $data is a single purchase, wrap in array
+            $purchases = isset($data[0]) && is_array($data[0]) ? $data : [$data];
+            $insert_ids = [];
             $this->db->trans_start();
-            $this->db->insert('purchases', $insert);
-            $error = $this->db->error();
-            $this->db->trans_complete();
-
-            if (!empty($error['code'])) {
-                $this->last_db_error = $error;
-                log_message('error', 'createPurchase DB error: ' . json_encode($error) . ' -- data: ' . json_encode($insert));
-                return false;
+            foreach ($purchases as $purchase) {
+                $required_fields = ['product_id', 'qty', 'price'];
+                foreach ($required_fields as $field) {
+                    if (!isset($purchase[$field]) || $purchase[$field] === '') {
+                        throw new Exception("Missing required field: {$field}");
+                    }
+                }
+                $insert = [
+                    'product_id'    => $purchase['product_id'],
+                    'supplier'      => $purchase['supplier'] ?? '',
+                    'supplier_no'   => $purchase['supplier_no'] ?? '',
+                    'price'         => (float)($purchase['price'] ?? 0),
+                    'unit'          => $purchase['unit'] ?? '',
+                    'qty'           => (float)($purchase['qty'] ?? 0),
+                    'total_amount'  => isset($purchase['total_amount']) ? (float)$purchase['total_amount'] : ((float)($purchase['price'] ?? 0) * (float)($purchase['qty'] ?? 0)),
+                    'status'        => $purchase['status'] ?? 'Unpaid',
+                    'amount_paid'   => isset($purchase['amount_paid']) ? (float)$purchase['amount_paid'] : 0,
+                    'purchase_date' => $purchase['purchase_date'] ?? date('Y-m-d H:i:s'),
+                    'store_id'      => $purchase['store_id'] ?? $this->session->userdata('store_id') ?? NULL,
+                    'user_id'       => $purchase['user_id'] ?? $this->session->userdata('id') ?? NULL
+                ];
+                $this->db->insert('purchases', $insert);
+                $error = $this->db->error();
+                if (!empty($error['code'])) {
+                    $this->last_db_error = $error;
+                    log_message('error', 'createPurchase DB error: ' . json_encode($error) . ' -- data: ' . json_encode($insert));
+                    continue;
+                }
+                $insert_ids[] = $this->db->insert_id();
             }
-
-            $id = $this->db->insert_id();
-            return $id ?: false;
-
+            $this->db->trans_complete();
+            return $insert_ids;
         } catch (Exception $e) {
             log_message('error', 'Create Purchase Error: ' . $e->getMessage());
             return false;

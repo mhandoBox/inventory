@@ -48,7 +48,13 @@ class Controller_Products extends Admin_Controller
         // Provide safe defaults so views don't throw notices
         $this->data['products'] = $this->data['products'] ?? [];
         $this->data['stores'] = $this->data['stores'] ?? $this->db->get('stores')->result_array();
-        $this->data['categories'] = $this->data['categories'] ?? $this->db->get('categories')->result_array();
+            // Ensure at least one category exists to avoid "No active categories" errors in the UI
+            $this->ensureCategoryExists();
+            $this->data['categories'] = $this->data['categories'] ?? $this->db->get('categories')->result_array();
+            // The views expect `$category` (singular) — populate it from the model for compatibility
+            $this->data['category'] = $this->data['category'] ?? $this->model_category->getActiveCategory();
+        // Ensure attributes are available for the create-product form
+        $this->data['attributes'] = $this->data['attributes'] ?? $this->prepareAttributeData();
 
         // ensure sidebar knows what to highlight
         $this->data['user_permission'] = $this->permission;
@@ -120,6 +126,35 @@ class Controller_Products extends Admin_Controller
             $attributes_final_data[$k]['attribute_value'] = $value;
         }
         return $attributes_final_data;
+    }
+
+    /**
+     * Ensure there is at least one category in the `categories` table.
+     * If none exist, insert a safe default category named 'Default'.
+     */
+    private function ensureCategoryExists()
+    {
+        $count_row = $this->db->select('COUNT(*) AS cnt', false)
+            ->from('categories')
+            ->get()
+            ->row();
+        $count = isset($count_row->cnt) ? (int) $count_row->cnt : 0;
+
+        if ($count === 0) {
+            $now = date('Y-m-d H:i:s');
+            $data = [
+                'name' => 'Default',
+                'description' => 'Automatically created default category',
+                'created_at' => $now,
+                'updated_at' => $now,
+                'active' => 1,
+            ];
+
+            // Try to insert; wrap in transaction for safety
+            $this->db->trans_start();
+            $this->db->insert('categories', $data);
+            $this->db->trans_complete();
+        }
     }
 
     public function fetchProductData()
@@ -337,10 +372,9 @@ class Controller_Products extends Admin_Controller
         $this->data['page_title'] = 'Add Purchase';
         $this->data['products'] = $this->model_products->getActiveProductData();
 
-        if($this->session->userdata('group_id') == 1 || $this->session->userdata('group_id') == 2) {
-            $this->load->model('model_stores');
-            $this->data['stores'] = $this->model_stores->getActiveStores();
-        }
+        // Always load stores and pass them to the view so selects are populated
+        $this->load->model('model_stores');
+        $this->data['stores'] = $this->model_stores->getActiveStores();
 
         $this->render_template('products/purchases', $this->data);
     }
@@ -489,11 +523,9 @@ class Controller_Products extends Admin_Controller
             return $product;
         }, $this->model_products->getActiveProductData());
 
-        // Get stores list for admin users
-        if ($is_admin) {
-            $this->load->model('model_stores');
-            $this->data['stores'] = $this->model_stores->getStoresData();
-        }
+        // Load stores and pass them to the view so selects are always populated
+        $this->load->model('model_stores');
+        $this->data['stores'] = $this->model_stores->getStoresData();
 
         // Add debug information
         log_message('debug', sprintf(
@@ -510,71 +542,63 @@ class Controller_Products extends Admin_Controller
 
     public function addStock()
     {
+
         // only allow via controller (prevent direct view access)
         if ($this->input->method(true) === 'POST') {
             $payload = $this->input->post();
-
-            // basic server-side validation
-            if (empty($payload['product_id']) || empty($payload['qty'])) {
+            $purchases = isset($payload['purchases']) && is_array($payload['purchases']) ? $payload['purchases'] : [];
+            if (empty($purchases)) {
                 if ($this->input->is_ajax_request()) {
-                    $this->output->set_content_type('application/json')->set_output(json_encode(['success' => false, 'error' => 'Product and quantity are required']));
+                    $this->output->set_content_type('application/json')->set_output(json_encode(['success' => false, 'error' => 'No purchases provided']));
                 } else {
-                    $this->session->set_flashdata('error', 'Product and quantity are required');
+                    $this->session->set_flashdata('error', 'No purchases provided');
                     redirect('Controller_Products/purchases', 'refresh');
                 }
                 return;
             }
 
-            // prepare data
-            $insert_data = [
-                'product_id'   => (int)$payload['product_id'],
-                'supplier'     => $payload['supplier'] ?? '',
-                'supplier_no'  => $payload['supplier_no'] ?? '',
-                'price'        => isset($payload['price']) ? (float)$payload['price'] : 0,
-                'unit'         => $payload['unit'] ?? '',
-                'qty'          => (float)$payload['qty'],
-                'total_amount' => isset($payload['total_amount']) ? (float)$payload['total_amount'] : ((float)$payload['price'] * (float)$payload['qty']),
-                'status'       => $payload['status'] ?? 'Unpaid',
-                'amount_paid'  => isset($payload['amount_paid']) ? (float)$payload['amount_paid'] : 0,
-                'purchase_date'=> $payload['purchase_date'] ?? date('Y-m-d H:i:s'),
-                'store_id'     => isset($payload['store_id']) ? $payload['store_id'] : $this->session->userdata('store_id'),
-                'created_by'   => $payload['created_by'] ?? $this->session->userdata('id') ?? 0
-            ];
-
             // insert via model if available, otherwise fallback to direct DB insert
-            $insert_id = false;
+            $success_count = 0;
+            $fail_count = 0;
+            $insert_ids = [];
             if (!empty($this->model_purchases) && method_exists($this->model_purchases, 'create')) {
-                $insert_id = $this->model_purchases->create($insert_data);
+                foreach ($purchases as $purchase) {
+                    $insert_id = $this->model_purchases->create($purchase);
+                    if ($insert_id) { $success_count++; $insert_ids[] = $insert_id; } else { $fail_count++; }
+                }
             } elseif (!empty($this->model_products)) {
                 if (method_exists($this->model_products, 'createPurchase')) {
-                    $insert_id = $this->model_products->createPurchase($insert_data);
-                } elseif (method_exists($this->model_products, 'create_purchase')) {
-                    $insert_id = $this->model_products->create_purchase($insert_data);
-                } elseif (method_exists($this->model_products, 'addPurchase')) {
-                    $insert_id = $this->model_products->addPurchase($insert_data);
-                } elseif (method_exists($this->model_products, 'add_purchase')) {
-                    $insert_id = $this->model_products->add_purchase($insert_data);
+                    $result = $this->model_products->createPurchase($purchases);
+                    if (is_array($result)) {
+                        $success_count = count($result);
+                        $insert_ids = $result;
+                    } else if ($result) {
+                        $success_count = 1;
+                        $insert_ids = [$result];
+                    } else {
+                        $fail_count = count($purchases);
+                    }
+                } else {
+                    foreach ($purchases as $purchase) {
+                        $this->db->insert('purchases', $purchase);
+                        $insert_id = $this->db->insert_id() ?: false;
+                        if ($insert_id) { $success_count++; $insert_ids[] = $insert_id; } else { $fail_count++; }
+                    }
                 }
             }
 
-            if ($insert_id === false) {
-                // fallback DB insert
-                $this->db->insert('purchases', $insert_data);
-                $insert_id = $this->db->insert_id() ?: false;
-            }
-
-            if ($insert_id) {
+            if ($success_count > 0) {
                 if ($this->input->is_ajax_request()) {
-                    $this->output->set_content_type('application/json')->set_output(json_encode(['success' => true, 'id' => $insert_id]));
+                    $this->output->set_content_type('application/json')->set_output(json_encode(['success' => true, 'ids' => $insert_ids]));
                 } else {
-                    $this->session->set_flashdata('success', 'Purchase added successfully');
+                    $this->session->set_flashdata('success', $success_count.' purchase(s) added successfully');
                     redirect('Controller_Products/purchases', 'refresh');
                 }
             } else {
                 if ($this->input->is_ajax_request()) {
                     $this->output->set_content_type('application/json')->set_output(json_encode(['success' => false, 'error' => 'DB insert failed']));
                 } else {
-                    $this->session->set_flashdata('error', 'Failed to add purchase');
+                    $this->session->set_flashdata('error', 'Failed to add purchases');
                     redirect('Controller_Products/purchases', 'refresh');
                 }
             }
@@ -583,6 +607,39 @@ class Controller_Products extends Admin_Controller
 
         // Non-POST requests: show purchases page (do not expose view file directly)
         redirect('Controller_Products/purchases', 'refresh');
+    }
+
+    // Delete a purchase (AJAX)
+    public function deletePurchase()
+    {
+        if (!$this->input->is_ajax_request()) {
+            show_error('No direct script access allowed', 403);
+            return;
+        }
+
+        if (!in_array('deleteProduct', $this->permission)) {
+            $this->output->set_content_type('application/json')->set_output(json_encode(['success' => false, 'message' => 'Permission denied']));
+            return;
+        }
+
+        $id = $this->input->post('id');
+        if (empty($id)) {
+            $this->output->set_content_type('application/json')->set_output(json_encode(['success' => false, 'message' => 'Missing id']));
+            return;
+        }
+
+        $deleted = false;
+        if (!empty($this->model_purchases) && method_exists($this->model_purchases, 'deletePurchase')) {
+            $deleted = $this->model_purchases->deletePurchase($id);
+        } elseif (!empty($this->model_products) && method_exists($this->model_products, 'deletePurchase')) {
+            $deleted = $this->model_products->deletePurchase($id);
+        }
+
+        if ($deleted) {
+            $this->output->set_content_type('application/json')->set_output(json_encode(['success' => true]));
+        } else {
+            $this->output->set_content_type('application/json')->set_output(json_encode(['success' => false, 'message' => 'Failed to delete']));
+        }
     }
 
     public function purchases_data()

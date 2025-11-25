@@ -1,6 +1,10 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+// Ensure $stores exists to avoid undefined variable warnings when controller doesn't provide it
+if (!isset($stores) || !is_array($stores)) {
+  $stores = array();
+}
 ?>
 
 <div class="content-wrapper">
@@ -82,92 +86,315 @@ ini_set('display_errors', 1);
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-          <h4 class="modal-title" id="addStockModalLabel">Add Purchase</h4>
+          <h4 class="modal-title" id="addStockModalLabel">Add Purchases (Multiple)</h4>
         </div>
         <form id="addStockForm" action="<?php echo site_url('Controller_Products/addStock'); ?>" method="post">
           <div class="modal-body">
             <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
-            <div class="form-group">
-              <label for="add_product_id">Product</label>
-              <select class="form-control select_group" id="add_product_id" name="product_id" required>
-                <option value="">Select Product</option>
-                <?php foreach ($products as $product): ?>
-                    <option value="<?php echo $product['id']; ?>" 
-                            data-price="<?php echo $product['price']; ?>"
-                            data-unit="<?php echo $product['unit']; ?>">
-                        <?php echo $product['name']; ?>
-                    </option>
-                <?php endforeach; ?>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="add_supplier">Supplier Name</label>
-              <input type="text" class="form-control" id="add_supplier" name="supplier" required>
-            </div>
-
-            <div class="form-group">
-              <label for="add_supplier_no">Supplier Phone</label>
-              <input type="text" class="form-control" id="add_supplier_no" name="supplier_no" required>
-            </div>
-
-            <div class="form-group">
-              <label for="add_price">Price per Unit</label>
-              <input type="number" class="form-control" id="add_price" name="price" step="0.01" min="0" required>
-            </div>
-            <input type="hidden" id="add_unit" name="unit">
-
-            <div class="form-group">
-              <label for="add_qty">Quantity</label>
-              <input type="number" class="form-control" id="add_qty" name="qty" min="1" required>
-            </div>
-
-            <div class="form-group">
-              <label for="add_total_amount">Total Amount</label>
-              <input type="number" step="0.01" class="form-control" id="add_total_amount" name="total_amount" readonly>
-            </div>
-            <div class="form-group">
-              <label for="add_status">Status</label>
-              <select class="form-control" id="add_status" name="status" required>
-                <option value="">Select Status</option>
-                <option value="Paid">Paid</option>
-                <option value="Unpaid">Unpaid</option>
-                <option value="Partial">Partial</option>
-              </select>
-            </div>
-            <div class="form-group" id="add_amount_paid_group" style="display: none;">
-              <label for="add_amount_paid">Amount Paid</label>
-              <input type="number" step="0.01" min="0" class="form-control" id="add_amount_paid" name="amount_paid">
-            </div>
-            <div class="form-group">
-              <label for="add_purchase_date">Purchase Date</label>
-              <input type="datetime-local" class="form-control" id="add_purchase_date" name="purchase_date" value="<?php echo date('Y-m-d\TH:i'); ?>" required>
-            </div>
-            <div class="form-group">
-              <label for="add_store_id">Store</label>
-              <?php if($this->session->userdata('group_id') == 1): ?>
-                  <select class="form-control" id="add_store_id" name="store_id" required>
-                      <option value="">Select Store</option>
-                      <?php foreach($stores as $store): ?>
-                          <option value="<?php echo $store['id']; ?>">
-                              <?php echo htmlspecialchars($store['name']); ?>
-                          </option>
-                      <?php endforeach; ?>
+            <div class="row" style="margin-bottom: 15px;">
+              <div class="col-md-6">
+                <label for="purchase_date_global"><strong>Purchase Date</strong></label>
+                <input type="datetime-local" class="form-control" id="purchase_date_global" name="purchase_date_global" value="<?php echo date('Y-m-d\\TH:i'); ?>" required>
+              </div>
+                <div class="col-md-6">
+                <label for="store_id_global"><strong>Store</strong></label>
+                  <select class="form-control" id="store_id_global" name="store_id_global" required>
+                    <option value="">Select Store</option>
+                    <?php foreach($stores as $store): ?>
+                      <option value="<?php echo $store['id']; ?>"><?php echo htmlspecialchars($store['name']); ?></option>
+                    <?php endforeach; ?>
                   </select>
-              <?php else: ?>
-                  <input type="hidden" name="store_id" value="<?php echo $this->session->userdata('store_id'); ?>">
-                  <input type="text" class="form-control" value="<?php echo htmlspecialchars($this->session->userdata('store_name')); ?>" readonly>
-              <?php endif; ?>
+                  <script>
+                    // Debug: log stores passed from PHP to the view
+                    try { console.log('DEBUG: stores from PHP ->', <?php echo json_encode($stores, JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT); ?>); } catch(e) {}
+                  </script>
+              </div>
+            </div>
+            <div class="order-products">
+              <div class="product-header d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom">
+                <h4 class="mb-0">Products</h4>
+                <button type="button" id="addRowBtn" class="btn btn-primary" title="Add Product"><i class="fa fa-plus"></i></button>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-condensed" id="purchase_info_table">
+                  <thead>
+                    <tr>
+                      <th style="width:40%">Product</th>
+                      <th style="width:15%">Supplier</th>
+                      <th style="width:15%" class="text-center">Qty</th>
+                      <th style="width:15%" class="text-right">Price</th>
+                      <th style="width:10%" class="text-right">Total</th>
+                      <th style="width:5%"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr id="prow_1">
+                      <td style="position: relative;">
+                        <select class="form-control product" data-row-id="1" id="product_1" name="purchases[0][product_id]" style="width:100%;" required>
+                          <option value="">Select Product</option>
+                          <?php foreach ($products as $product): ?>
+                            <option value="<?php echo $product['id']; ?>" data-price="<?php echo $product['price']; ?>" data-unit="<?php echo $product['unit']; ?>">
+                              <?php echo $product['name']; ?>
+                            </option>
+                          <?php endforeach; ?>
+                        </select>
+                      </td>
+                      <td>
+                        <input type="text" id="supplier_1" name="purchases[0][supplier]" class="form-control supplier-input" placeholder="Supplier name">
+                      </td>
+                      <td>
+                        <input type="number" name="purchases[0][qty]" id="qty_1" class="form-control qty-input" value="1" min="1" required>
+                      </td>
+                      <td>
+                        <input type="number" name="purchases[0][price]" id="price_1" class="form-control text-right price-input" step="0.01" min="0" required>
+                      </td>
+                      <td>
+                        <input type="number" name="purchases[0][total_amount]" id="total_1" class="form-control text-right total-amount-input" step="0.01" readonly>
+                      </td>
+                      <td class="text-center">
+                        <button type="button" class="btn btn-danger btn-sm btn-remove-row" data-row="1"><i class="fa fa-times"></i></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <!-- hidden template row for cloning -->
+                  <tbody id="purchase_row_template" style="display:none">
+                    <tr id="prow___ID_INDEX__">
+                      <td style="position: relative;">
+                        <select class="form-control product" data-row-id="__ID_INDEX__" id="product___ID_INDEX__" name="purchases[__NAME_INDEX__][product_id]" style="width:100%;" disabled>
+                       <option value="">Select Product</option>
+                       <?php foreach ($products as $product): ?>
+                         <option value="<?php echo $product['id']; ?>" data-price="<?php echo $product['price']; ?>" data-unit="<?php echo $product['unit']; ?>">
+                           <?php echo $product['name']; ?>
+                         </option>
+                       <?php endforeach; ?>
+                     </select>
+                   </td>
+                      <td>
+                        <input type="text" id="supplier___ID_INDEX__" name="purchases[__NAME_INDEX__][supplier]" class="form-control supplier-input" placeholder="Supplier name" disabled>
+                      </td>
+                      <td>
+                        <input type="number" name="purchases[__NAME_INDEX__][qty]" id="qty___ID_INDEX__" class="form-control qty-input" value="1" min="1" disabled>
+                      </td>
+                      <td>
+                        <input type="number" name="purchases[__NAME_INDEX__][price]" id="price___ID_INDEX__" class="form-control text-right price-input" step="0.01" min="0" disabled>
+                      </td>
+                      <td>
+                        <input type="number" name="purchases[__NAME_INDEX__][total_amount]" id="total___ID_INDEX__" class="form-control text-right total-amount-input" step="0.01" readonly disabled>
+                      </td>
+                      <td class="text-center">
+                        <button type="button" class="btn btn-danger btn-sm btn-remove-row" data-row="__ID_INDEX__"><i class="fa fa-times"></i></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row" style="margin-top:10px;">
+              <div class="col-md-12 text-right">
+                <strong>Total: <span id="grandTotal">0.00</span></strong>
+              </div>
+            </div>
             </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Add Purchase</button>
+          <div class="row" style="margin-top:10px;">
+            <div class="col-md-12 text-right">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Add Purchases</button>
+            </div>
           </div>
         </form>
       </div>
     </div>
   </div>
+
+  <!-- Load JS/CSS libraries before inline scripts so $ is defined -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap.min.css">
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+
+  <script>
+  $(function() {
+  let purchaseIndex = 1;
+
+  // Add select2 for product search
+  function applySelect2() {
+    $('#purchase_info_table tbody').first().find('.product').select2({
+      dropdownParent: $('#addStockModal'),
+      width: '100%',
+      placeholder: 'Select Product'
+    });
+  }
+  applySelect2();
+
+  // Add new row (use hidden template)
+  $('#addRowBtn').on('click', function() {
+    // compute next index based on visible rows in the first tbody only
+    const visibleRows = $('#purchase_info_table tbody').first().find('tr').length;
+    const nameIndex = visibleRows; // zero-based index for form names
+    const idIndex = visibleRows + 1; // 1-based index for DOM ids to keep them unique
+    const tpl = $('#purchase_row_template').html();
+    const newHtml = tpl.replace(/__NAME_INDEX__/g, nameIndex).replace(/__ID_INDEX__/g, idIndex);
+    $('#purchase_info_table tbody').first().append(newHtml);
+    const $last = $('#purchase_info_table tbody').first().find('tr').last();
+    // enable inputs/selects that were disabled in the template and restore required attributes
+    $last.find('select, input').prop('disabled', false);
+    $last.find('.product').prop('required', true);
+    $last.find('.qty-input').prop('required', true);
+    $last.find('.price-input').prop('required', true);
+    applySelect2();
+    updateGrandTotal();
+  });
+
+  // Delegated remove handler (only counts visible rows in the first tbody)
+  $('#purchase_info_table').on('click', '.btn-remove-row', function() {
+    if ($('#purchase_info_table tbody').first().find('tr').length > 1) {
+      $(this).closest('tr').remove();
+      updateGrandTotal();
+    }
+  });
+
+  // Update total per row and grand total
+  $('#purchase_info_table').on('input change', '.qty-input, .price-input, .product', function() {
+    $('#purchase_info_table tbody').first().find('tr').each(function() {
+      const $row = $(this);
+      const qty = parseFloat($row.find('.qty-input').val()) || 0;
+      const price = parseFloat($row.find('.price-input').val()) || 0;
+      $row.find('.total-amount-input').val((qty * price).toFixed(2));
+    });
+    updateGrandTotal();
+  });
+
+  function updateGrandTotal() {
+    let total = 0;
+    $('#purchase_info_table tbody').first().find('.total-amount-input').each(function() {
+      total += parseFloat($(this).val()) || 0;
+    });
+    $('#grandTotal').text(total.toFixed(2));
+  }
+
+  // Set price when product changes
+  $('#purchase_info_table').on('change', '.product', function() {
+    const $row = $(this).closest('tr');
+    const price = parseFloat($(this).find('option:selected').data('price') || 0) || 0;
+    $row.find('.price-input').val(price.toFixed(2));
+    $row.find('.qty-input').trigger('input');
+  });
+
+  // no per-row store sync needed; rows now use supplier input
+
+  // Handle form submit: add global date and store to each purchase row
+  $('#addStockForm').on('submit', function(e) {
+    e.preventDefault();
+    
+    // Get global date and store
+    const globalDate = $('#purchase_date_global').val();
+    const storeId = $('#store_id_global').val();
+    
+    // Validate
+    if (!globalDate) {
+      alert('Please select a purchase date');
+      return false;
+    }
+    if (!storeId) {
+      alert('Please select a store');
+      return false;
+    }
+    
+    // Add hidden fields for each purchase row with date and store
+    $('#purchase_info_table tbody').first().find('tr').each(function(idx) {
+      const $row = $(this);
+      // Check if this row already has hidden fields (skip if so)
+      if (!$row.find('input[name="purchases[' + idx + '][purchase_date]"]').length) {
+        $row.append('<input type="hidden" name="purchases[' + idx + '][purchase_date]" value="' + globalDate + '">');
+        $row.append('<input type="hidden" name="purchases[' + idx + '][store_id]" value="' + storeId + '">');
+      }
+    });
+    
+    // Submit via AJAX
+    const form = $(this);
+    const formData = form.serialize();
+    
+    $.ajax({
+      url: form.attr('action'),
+      type: 'POST',
+      dataType: 'json',
+      data: formData,
+      success: function(resp) {
+        if (resp.success) {
+          Swal.fire('Success', 'Purchases added successfully', 'success').then(function() {
+            $('#addStockModal').modal('hide');
+            form[0].reset();
+            // Reinitialize form
+            purchaseIndex = 1;
+            if (typeof purchasesTable !== 'undefined') purchasesTable.ajax.reload();
+            else location.reload();
+          });
+        } else {
+          Swal.fire('Error', resp.error || 'Failed to add purchases', 'error');
+        }
+      },
+      error: function(xhr, status, err) {
+        console.error('Submit error:', err, xhr.responseText);
+        Swal.fire('Error', 'Server error: ' + err, 'error');
+      }
+    });
+  });
+});
+</script>
+
+<script>
+// Provide a global deletePurchase JS function used by the Actions column
+function deletePurchase(id) {
+  if (!id) return;
+  if (!confirm('Delete this purchase? This cannot be undone.')) return;
+  $.post('<?php echo site_url('Controller_Products/deletePurchase'); ?>', { id: id }, function(resp) {
+    if (resp && resp.success) {
+      if (typeof purchasesTable !== 'undefined') purchasesTable.ajax.reload();
+      else location.reload();
+    } else {
+      alert(resp && resp.message ? resp.message : 'Failed to delete');
+    }
+  }, 'json').fail(function(xhr){
+    console.error('Delete request failed', xhr.responseText);
+    alert('Server error deleting purchase');
+  });
+}
+</script>
+
+<script>
+// Delete purchase helper (called by action buttons)
+window.deletePurchase = function(id) {
+  if (!id) return;
+  Swal.fire({
+    title: 'Delete purchase?','
+    text: 'This action cannot be undone.',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Delete',
+    cancelButtonText: 'Cancel'
+  }).then(function(result){
+    if (result.isConfirmed) {
+      $.post('<?php echo site_url('Controller_Products/deletePurchase'); ?>', { id: id }, function(resp){
+        if (resp && resp.success) {
+          Swal.fire('Deleted', 'Purchase removed', 'success');
+          if (typeof purchasesTable !== 'undefined') purchasesTable.ajax.reload(); else location.reload();
+        } else {
+          Swal.fire('Error', resp && resp.error ? resp.error : 'Delete failed', 'error');
+        }
+      }, 'json').fail(function(xhr){
+        Swal.fire('Error', 'Server error', 'error');
+      });
+    }
+  });
+};
+</script>
 
   <!-- Edit Purchase Modal -->
   <div class="modal fade" id="editStockModal" tabindex="-1" role="dialog" aria-labelledby="editStockModalLabel">
@@ -256,16 +483,6 @@ ini_set('display_errors', 1);
   <!-- Products table with stock information -->
   
 </div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap.min.css">
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
 <script>
 var purchasesTable;
 

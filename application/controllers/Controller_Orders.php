@@ -178,6 +178,12 @@ class Controller_Orders extends Admin_Controller
             'store_name' => $this->session->userdata('store_name')
         ];
 
+        // Privileged users (admin/manager) can select store when creating orders
+        $group_id = $this->session->userdata('group_id');
+        $this->data['is_privileged'] = in_array($group_id, [1,2]);
+        // Provide active stores list for the view
+        $this->data['stores'] = $this->model_stores->getActiveStores();
+
         // Company flags required by the view
         $company = $this->model_company->getCompanyData(1);
         $this->data['company_data'] = $company ?: [];

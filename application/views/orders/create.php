@@ -53,13 +53,23 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="store_display">Store</label>
-                                        <input type="text" class="form-control" id="store_display" value="<?php echo isset($store_data['store_name']) ? htmlspecialchars($store_data['store_name']) : ''; ?>" readonly>
-                                        <input type="hidden" name="store_id" id="store_id" value="<?php echo isset($store_data['store_id']) ? htmlspecialchars($store_data['store_id']) : ''; ?>" required>
-                                        <?php if (!isset($store_data['store_id'])): ?>
-                                            <div class="alert alert-danger">
-                                                Error: No store assigned to your account. Please contact administrator.
-                                            </div>
+                                        <label for="store_id">Store</label>
+                                        <?php // If active stores are provided, show a select for everyone so they can choose a store ?>
+                                        <?php if (!empty($stores)): ?>
+                                            <select id="store_id" name="store_id" class="form-control" required>
+                                                <option value="">Select a store</option>
+                                                <?php foreach ($stores as $s): ?>
+                                                    <option value="<?php echo $s['id']; ?>" <?php echo (isset($store_data['store_id']) && $store_data['store_id'] == $s['id']) ? 'selected' : ''; ?>><?php echo htmlspecialchars($s['name']); ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        <?php else: ?>
+                                            <input type="text" class="form-control" id="store_display" value="<?php echo isset($store_data['store_name']) ? htmlspecialchars($store_data['store_name']) : ''; ?>" readonly>
+                                            <input type="hidden" name="store_id" id="store_id" value="<?php echo isset($store_data['store_id']) ? htmlspecialchars($store_data['store_id']) : ''; ?>" required>
+                                            <?php if (!isset($store_data['store_id'])): ?>
+                                                <div class="alert alert-danger">
+                                                    Error: No store assigned to your account. Please contact administrator.
+                                                </div>
+                                            <?php endif; ?>
                                         <?php endif; ?>
                                     </div>
 

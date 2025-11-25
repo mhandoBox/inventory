@@ -138,15 +138,6 @@
               <div class="info-box-content">
                 <span class="info-box-text">Total Products</span>
                 <span class="info-box-number"><?php echo number_format($total_products); ?></span>
-                <span class="info-box-text text-muted">
-                  <?php 
-                    $low_stock_query = $this->db->query('SELECT COUNT(*) as count FROM products WHERE quantity <= minimum_quantity AND quantity >= 0 AND minimum_quantity > 0');
-                    if ($low_stock_query && $low_stock_result = $low_stock_query->row()) {
-                        $low_stock = $low_stock_result->count;
-                        if($low_stock > 0) echo "<small class='text-danger'>{$low_stock} low stock items</small>";
-                    }
-                  ?>
-                </span>
               </div>
             </div>
           </div>
@@ -200,16 +191,6 @@
               <div class="info-box-content">
                 <span class="info-box-text">Warehouses</span>
                 <span class="info-box-number"><?php echo number_format($total_stores); ?></span>
-                <span class="info-box-text text-muted">
-                  <?php
-                    $stock_query = $this->db->query('SELECT COUNT(*) as count FROM products WHERE quantity > 0');
-                    if ($stock_query && $stock_result = $stock_query->row()) {
-                        echo "<small>" . number_format($stock_result->count) . " products in stock</small>";
-                    } else {
-                        echo "<small>0 products in stock</small>";
-                    }
-                  ?>
-                </span>
               </div>
             </div>
           </div>
@@ -266,27 +247,10 @@
               <div class="info-box-content">
                 <span class="info-box-text">Stock Turnover</span>
                 <span class="info-box-number">
-                  <?php
-                    $turnover_query = $this->db->query('
-                      SELECT 
-                        COALESCE(
-                          (SELECT SUM(o.net_amount)
-                           FROM orders o
-                           WHERE MONTH(o.date_time) = MONTH(CURRENT_DATE())
-                           AND YEAR(o.date_time) = YEAR(CURRENT_DATE())
-                           AND o.paid_status = 1) /
-                          NULLIF((
-                            SELECT SUM(CASE WHEN p.quantity > 0 THEN p.price * p.quantity ELSE 0 END)
-                            FROM products p
-                          ), 0) * 100,
-                        0) as turnover
-                    ');
-                    if ($turnover_query && $turnover_result = $turnover_query->row()) {
-                        echo number_format($turnover_result->turnover, 1) . '%';
-                    } else {
-                        echo '0.0%';
-                    }
-                  ?>
+                  N/A
+                </span>
+                <span class="info-box-text text-muted">
+                  <small>Stock turnover calculation not available</small>
                 </span>
                 <span class="info-box-text text-muted">
                   <small>Monthly Rate</small>
