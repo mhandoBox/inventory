@@ -82,9 +82,15 @@ class Controller_Reports extends Admin_Controller
             redirect('dashboard', 'refresh');
         }
 
+        // Use explicit warehouse filter if provided; otherwise default to the user's assigned store
+        $selected_warehouse = $this->input->get('warehouse');
+        if (empty($selected_warehouse)) {
+            $selected_warehouse = $this->session->userdata('store_id') ?: null;
+        }
+
         $filters = array(
             'category' => $this->input->get('category'),
-            'warehouse' => $this->input->get('warehouse'),
+            'warehouse' => $selected_warehouse,
             'stock_status' => $this->input->get('stock_status'),
             'limit' => $this->input->get('limit') ? (int)$this->input->get('limit') : 10,
             'offset' => $this->input->get('offset') ? (int)$this->input->get('offset') : 0

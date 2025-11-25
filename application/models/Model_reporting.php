@@ -419,8 +419,8 @@ public function getSalesReport($filters = array())
 
                     -- optional last activity date for client-side date filtering
                     GREATEST(
-                        COALESCE((SELECT MAX(p2.purchase_date) FROM purchases p2 WHERE p2.product_id = p.id), '1970-01-01'),
-                        COALESCE((SELECT MAX(o.date_time) FROM orders o JOIN orders_item oi ON oi.order_id = o.id WHERE oi.product_id = p.id), '1970-01-01')
+                        COALESCE((SELECT MAX(p2.purchase_date) FROM purchases p2 WHERE p2.product_id = p.id %s), '1970-01-01'),
+                        COALESCE((SELECT MAX(o3.date_time) FROM orders o3 JOIN orders_item oi3 ON oi3.order_id = o3.id WHERE oi3.product_id = p.id %s), '1970-01-01')
                     ) AS last_activity_date
 
                 FROM products p
@@ -431,6 +431,7 @@ public function getSalesReport($filters = array())
                     SELECT product_id, SUM(qty) AS purchased_before
                     FROM purchases
                     WHERE purchase_date < ?
+                    %s
                     GROUP BY product_id
                 ) pb ON pb.product_id = p.id
 
@@ -439,6 +440,7 @@ public function getSalesReport($filters = array())
                     FROM orders_item oi
                     JOIN orders o ON o.id = oi.order_id
                     WHERE o.date_time < ? AND o.paid_status IN (1,2,3)
+                    %s
                     GROUP BY oi.product_id
                 ) sb ON sb.product_id = p.id
 
@@ -446,6 +448,7 @@ public function getSalesReport($filters = array())
                     SELECT product_id, SUM(qty) AS purchased_in_range, SUM(total_amount) AS purchased_value_in_range
                     FROM purchases
                     WHERE purchase_date BETWEEN ? AND ?
+                    %s
                     GROUP BY product_id
                 ) pr ON pr.product_id = p.id
 
@@ -454,18 +457,78 @@ public function getSalesReport($filters = array())
                     FROM orders_item oi
                     JOIN orders o ON o.id = oi.order_id
                     WHERE o.date_time BETWEEN ? AND ? AND o.paid_status IN (1,2,3)
+                    %s
                     GROUP BY oi.product_id
                 ) sr ON sr.product_id = p.id
 
                 WHERE 1=1
             ";
 
-            // binds order: pb < ? , sb < ? , pr BETWEEN ? AND ? , sr BETWEEN ? AND ?
-            $binds = array($start_dt, $start_dt, $start_dt, $end_dt, $start_dt, $end_dt);
+            // Prepare optional store filter fragments and binds
+            $store_frag = '';
+            $order_store_frag = '';
+            $last_purchase_frag = '';
+            $last_order_frag = '';
+            if (!empty($filters['warehouse'])) {
+                // add store filter to each purchases/orders subquery
+                $store_frag = ' AND store_id = ?';
+                $order_store_frag = ' AND o.store_id = ?';
+                // for last_activity subselects use aliases p2 and o3
+                $last_purchase_frag = ' AND p2.store_id = ?';
+                $last_order_frag = ' AND o3.store_id = ?';
+            }
+
+            // We will inject the fragments into the SQL above using sprintf.
+            // Order of placeholders in SQL: last_purchase_frag, last_order_frag, pb store, sb order_store, pr store, sr order_store
+            $sql = sprintf($sql, $last_purchase_frag, $last_order_frag, $store_frag, $order_store_frag, $store_frag, $order_store_frag);
+
+            // Build binds in the exact order the SQL placeholders appear:
+            // If warehouse provided, first two binds are for last_activity subselects (p2.store_id, o3.store_id)
+            // pb: purchase_date < ? [, store_id]
+            // sb: o.date_time < ? [, o.store_id]
+            // pr: purchase_date BETWEEN ? AND ? [, store_id]
+            // sr: o.date_time BETWEEN ? AND ? [, o.store_id]
+            $binds = array();
+
+            // If warehouse present, add binds for last_activity subselects (p2.store_id, o3.store_id)
+            if (!empty($filters['warehouse'])) {
+                $binds[] = $filters['warehouse']; // for p2.store_id
+                $binds[] = $filters['warehouse']; // for o3.store_id
+            }
+
+            // pb
+            $binds[] = $start_dt;
+            if (!empty($filters['warehouse'])) {
+                $binds[] = $filters['warehouse'];
+            }
+
+            // sb
+            $binds[] = $start_dt;
+            if (!empty($filters['warehouse'])) {
+                $binds[] = $filters['warehouse'];
+            }
+
+            // pr
+            $binds[] = $start_dt;
+            $binds[] = $end_dt;
+            if (!empty($filters['warehouse'])) {
+                $binds[] = $filters['warehouse'];
+            }
+
+            // sr
+            $binds[] = $start_dt;
+            $binds[] = $end_dt;
+            if (!empty($filters['warehouse'])) {
+                $binds[] = $filters['warehouse'];
+            }
 
             // apply simple filters
             if (!empty($filters['warehouse'])) {
-                $sql .= " AND p.store_id = " . $this->db->escape($filters['warehouse']);
+                // Include products that are assigned to the warehouse OR have any purchases/orders in that warehouse.
+                // This prevents the product list from being limited only to products whose `p.store_id` matches the warehouse,
+                // while still scoping movement aggregates to the selected warehouse.
+                $wh = $this->db->escape($filters['warehouse']);
+                $sql .= " AND (p.store_id = " . $wh . " OR EXISTS (SELECT 1 FROM purchases pu WHERE pu.product_id = p.id AND pu.store_id = " . $wh . ") OR EXISTS (SELECT 1 FROM orders_item oi2 JOIN orders o2 ON o2.id = oi2.order_id WHERE oi2.product_id = p.id AND o2.store_id = " . $wh . "))";
             }
             if (!empty($filters['category'])) {
                 $sql .= " AND p.category_id = " . $this->db->escape($filters['category']);
